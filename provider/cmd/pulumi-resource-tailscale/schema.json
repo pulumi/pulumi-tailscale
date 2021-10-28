@@ -1,0 +1,431 @@
+{
+    "name": "tailscale",
+    "description": "A Pulumi package for creating and managing xyz cloud resources.",
+    "keywords": [
+        "pulumi",
+        "tailscale"
+    ],
+    "homepage": "https://pulumi.io",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`tailscale` Terraform Provider](https://github.com/davidsbond/terraform-provider-tailscale).",
+    "repository": "https://github.com/pulumi/pulumi-tailscale",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "config": {
+        "variables": {
+            "apiKey": {
+                "type": "string"
+            },
+            "tailnet": {
+                "type": "string"
+            }
+        },
+        "defaults": [
+            "apiKey",
+            "tailnet"
+        ]
+    },
+    "types": {
+        "tailscale:index/getDevicesDevice:getDevicesDevice": {
+            "properties": {
+                "addresses": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Tailscale IPs for the device\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The unique identifier of the device\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the device\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "addresses",
+                "id",
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        }
+    },
+    "provider": {
+        "description": "The provider type for the tailscale package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "properties": {
+            "apiKey": {
+                "type": "string"
+            },
+            "tailnet": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "apiKey",
+            "tailnet"
+        ],
+        "inputProperties": {
+            "apiKey": {
+                "type": "string"
+            },
+            "tailnet": {
+                "type": "string"
+            }
+        },
+        "requiredInputs": [
+            "apiKey",
+            "tailnet"
+        ]
+    },
+    "resources": {
+        "tailscale:index/acl:Acl": {
+            "description": "The acl resource allows you to configure a Tailscale ACL. See the [Tailscale ACL documentation](https://tailscale.com/kb/1018/acls)\nfor more information. You can set the ACL in multiple ways including hujson.\n",
+            "properties": {
+                "acl": {
+                    "type": "string",
+                    "description": "The JSON-based policy that defines which devices and users are allowed to connect in your network.\nThis can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your\nlocal ACL file.\n",
+                    "language": {
+                        "csharp": {
+                            "name": "AclJson"
+                        }
+                    }
+                }
+            },
+            "required": [
+                "acl"
+            ],
+            "inputProperties": {
+                "acl": {
+                    "type": "string",
+                    "description": "The JSON-based policy that defines which devices and users are allowed to connect in your network.\nThis can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your\nlocal ACL file.\n",
+                    "language": {
+                        "csharp": {
+                            "name": "AclJson"
+                        }
+                    }
+                }
+            },
+            "requiredInputs": [
+                "acl"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Acl resources.\n",
+                "properties": {
+                    "acl": {
+                        "type": "string",
+                        "description": "The JSON-based policy that defines which devices and users are allowed to connect in your network.\nThis can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your\nlocal ACL file.\n",
+                        "language": {
+                            "csharp": {
+                                "name": "AclJson"
+                            }
+                        }
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes": {
+            "description": "The device_subnet_routes resource allows you to configure subnet routes for your Tailscale devices. See the\n[Tailscale subnets documentation](https://tailscale.com/kb/1019/subnets) for more information.\n",
+            "properties": {
+                "deviceId": {
+                    "type": "string",
+                    "description": "The device to change enabled subroutes for.\n"
+                },
+                "routes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The subnet routes that are enabled to be routed by a device. Routes can be enabled without a \ndevice advertising them (e.g. for preauth).\n"
+                }
+            },
+            "required": [
+                "deviceId",
+                "routes"
+            ],
+            "inputProperties": {
+                "deviceId": {
+                    "type": "string",
+                    "description": "The device to change enabled subroutes for.\n"
+                },
+                "routes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The subnet routes that are enabled to be routed by a device. Routes can be enabled without a \ndevice advertising them (e.g. for preauth).\n"
+                }
+            },
+            "requiredInputs": [
+                "deviceId",
+                "routes"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DeviceSubnetRoutes resources.\n",
+                "properties": {
+                    "deviceId": {
+                        "type": "string",
+                        "description": "The device to change enabled subroutes for.\n"
+                    },
+                    "routes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The subnet routes that are enabled to be routed by a device. Routes can be enabled without a \ndevice advertising them (e.g. for preauth).\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "tailscale:index/dnsNameservers:DnsNameservers": {
+            "description": "The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See the\n[Tailscale DNS documentation](https://tailscale.com/kb/1054/dns) for more information.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleNameservers = new tailscale.DnsNameservers(\"sample_nameservers\", {\n    nameservers: [\n        \"8.8.8.8\",\n        \"8.8.4.4\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_nameservers = tailscale.DnsNameservers(\"sampleNameservers\", nameservers=[\n    \"8.8.8.8\",\n    \"8.8.4.4\",\n])\n```\n```csharp\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var sampleNameservers = new Tailscale.DnsNameservers(\"sampleNameservers\", new Tailscale.DnsNameserversArgs\n        {\n            Nameservers = \n            {\n                \"8.8.8.8\",\n                \"8.8.4.4\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewDnsNameservers(ctx, \"sampleNameservers\", \u0026tailscale.DnsNameserversArgs{\n\t\t\tNameservers: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"8.8.8.8\"),\n\t\t\t\tpulumi.String(\"8.8.4.4\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "nameservers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 \naddresses are accepted.\n"
+                }
+            },
+            "required": [
+                "nameservers"
+            ],
+            "inputProperties": {
+                "nameservers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 \naddresses are accepted.\n"
+                }
+            },
+            "requiredInputs": [
+                "nameservers"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DnsNameservers resources.\n",
+                "properties": {
+                    "nameservers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 \naddresses are accepted.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "tailscale:index/dnsPreferences:DnsPreferences": {
+            "description": "The dns_preferences resource allows you to configure DNS preferences for your Tailscale network. See the\n[Tailscale DNS documentation](https://tailscale.com/kb/1054/dns) for more information.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst samplePreferences = new tailscale.DnsPreferences(\"sample_preferences\", {\n    magicDns: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_preferences = tailscale.DnsPreferences(\"samplePreferences\", magic_dns=True)\n```\n```csharp\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var samplePreferences = new Tailscale.DnsPreferences(\"samplePreferences\", new Tailscale.DnsPreferencesArgs\n        {\n            MagicDns = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewDnsPreferences(ctx, \"samplePreferences\", \u0026tailscale.DnsPreferencesArgs{\n\t\t\tMagicDns: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "magicDns": {
+                    "type": "boolean",
+                    "description": "Enables or disables MagicDNS, automatically registers DNS names for devices on your network.\nAt least one DNS server must be set before enabling Magic DNS.\n"
+                }
+            },
+            "required": [
+                "magicDns"
+            ],
+            "inputProperties": {
+                "magicDns": {
+                    "type": "boolean",
+                    "description": "Enables or disables MagicDNS, automatically registers DNS names for devices on your network.\nAt least one DNS server must be set before enabling Magic DNS.\n"
+                }
+            },
+            "requiredInputs": [
+                "magicDns"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DnsPreferences resources.\n",
+                "properties": {
+                    "magicDns": {
+                        "type": "boolean",
+                        "description": "Enables or disables MagicDNS, automatically registers DNS names for devices on your network.\nAt least one DNS server must be set before enabling Magic DNS.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "tailscale:index/dnsSearchPaths:DnsSearchPaths": {
+            "description": "The search_paths resource allows you to configure DNS search paths for your Tailscale network. See the\n[Tailscale DNS documentation](https://tailscale.com/kb/1054/dns) for more information.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleSearchPaths = new tailscale.DnsSearchPaths(\"sample_search_paths\", {\n    searchPaths: [\"example.com\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_search_paths = tailscale.DnsSearchPaths(\"sampleSearchPaths\", search_paths=[\"example.com\"])\n```\n```csharp\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var sampleSearchPaths = new Tailscale.DnsSearchPaths(\"sampleSearchPaths\", new Tailscale.DnsSearchPathsArgs\n        {\n            SearchPaths = \n            {\n                \"example.com\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewDnsSearchPaths(ctx, \"sampleSearchPaths\", \u0026tailscale.DnsSearchPathsArgs{\n\t\t\tSearchPaths: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"example.com\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "searchPaths": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Devices on your network will use these domain suffixes to resolve DNS names.\n"
+                }
+            },
+            "required": [
+                "searchPaths"
+            ],
+            "inputProperties": {
+                "searchPaths": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Devices on your network will use these domain suffixes to resolve DNS names.\n"
+                }
+            },
+            "requiredInputs": [
+                "searchPaths"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DnsSearchPaths resources.\n",
+                "properties": {
+                    "searchPaths": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Devices on your network will use these domain suffixes to resolve DNS names.\n"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "functions": {
+        "tailscale:index/getDevice:getDevice": {
+            "description": "The device data source describes a single device in a tailnet.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleDevice = pulumi.output(tailscale.getDevice({\n    name: \"user1-device.example.com\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_device = tailscale.get_device(name=\"user1-device.example.com\")\n```\n```csharp\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var sampleDevice = Output.Create(Tailscale.GetDevice.InvokeAsync(new Tailscale.GetDeviceArgs\n        {\n            Name = \"user1-device.example.com\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.GetDevice(ctx, \u0026GetDeviceArgs{\n\t\t\tName: \"user1-device.example.com\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getDevice.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the tailnet device to obtain the attributes of.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDevice.\n",
+                "properties": {
+                    "addresses": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Tailscale IPs for the device\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "addresses",
+                    "name",
+                    "id"
+                ]
+            }
+        },
+        "tailscale:index/getDevices:getDevices": {
+            "description": "The devices data source describes a list of devices in a tailnet.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleDevices = pulumi.output(tailscale.getDevices({\n    namePrefix: \"example-\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_devices = tailscale.get_devices(name_prefix=\"example-\")\n```\n```csharp\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var sampleDevices = Output.Create(Tailscale.GetDevices.InvokeAsync(new Tailscale.GetDevicesArgs\n        {\n            NamePrefix = \"example-\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"example-\"\n\t\t_, err := tailscale.GetDevices(ctx, \u0026GetDevicesArgs{\n\t\t\tNamePrefix: \u0026opt0,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getDevices.\n",
+                "properties": {
+                    "namePrefix": {
+                        "type": "string",
+                        "description": "Filters the returned list of devices to those whose name have this prefix.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDevices.\n",
+                "properties": {
+                    "devices": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/tailscale:index/getDevicesDevice:getDevicesDevice"
+                        },
+                        "description": "The list of devices returned from the Tailscale API. Each element contains the following:\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "namePrefix": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "devices",
+                    "id"
+                ]
+            }
+        }
+    },
+    "language": {
+        "csharp": {
+            "compatibility": "tfbridge20",
+            "namespaces": null,
+            "packageReferences": {
+                "Pulumi": "3.*"
+            }
+        },
+        "go": {
+            "generateResourceContainerTypes": true,
+            "importBasePath": "github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+        },
+        "nodejs": {
+            "compatibility": "tfbridge20",
+            "dependencies": {
+                "@pulumi/pulumi": "^3.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^10.0.0"
+            },
+            "disableUnionOutputTypes": true,
+            "packageDescription": "A Pulumi package for creating and managing xyz cloud resources.",
+            "packageName": "",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/davidsbond/terraform-provider-tailscale)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-tailscale` repo](https://github.com/pulumi/pulumi-tailscale/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`davidsbond/terraform-provider-tailscale` repo](https://github.com/davidsbond/terraform-provider-tailscale/issues).",
+            "typescriptVersion": ""
+        },
+        "python": {
+            "compatibility": "tfbridge20",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/davidsbond/terraform-provider-tailscale)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-tailscale` repo](https://github.com/pulumi/pulumi-tailscale/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`davidsbond/terraform-provider-tailscale` repo](https://github.com/davidsbond/terraform-provider-tailscale/issues).",
+            "requires": {
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            }
+        }
+    }
+}
