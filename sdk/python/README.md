@@ -8,7 +8,7 @@
 
 # Tailscale Resource Provider
 
-The Tailscale Resource Provider lets you manage SumoLogic resources.
+The Tailscale Resource Provider lets you manage [Tailscale](https://tailscale.com/) resources.
 
 ## Installing
 
