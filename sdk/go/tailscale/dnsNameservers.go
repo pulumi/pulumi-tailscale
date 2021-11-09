@@ -298,6 +298,10 @@ func (o DnsNameserversMapOutput) MapIndex(k pulumi.StringInput) DnsNameserversOu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsNameserversInput)(nil)).Elem(), &DnsNameservers{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsNameserversPtrInput)(nil)).Elem(), &DnsNameservers{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsNameserversArrayInput)(nil)).Elem(), DnsNameserversArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsNameserversMapInput)(nil)).Elem(), DnsNameserversMap{})
 	pulumi.RegisterOutputType(DnsNameserversOutput{})
 	pulumi.RegisterOutputType(DnsNameserversPtrOutput{})
 	pulumi.RegisterOutputType(DnsNameserversArrayOutput{})

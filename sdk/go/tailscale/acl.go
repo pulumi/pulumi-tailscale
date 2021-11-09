@@ -277,6 +277,10 @@ func (o AclMapOutput) MapIndex(k pulumi.StringInput) AclOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AclInput)(nil)).Elem(), &Acl{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclPtrInput)(nil)).Elem(), &Acl{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclArrayInput)(nil)).Elem(), AclArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclMapInput)(nil)).Elem(), AclMap{})
 	pulumi.RegisterOutputType(AclOutput{})
 	pulumi.RegisterOutputType(AclPtrOutput{})
 	pulumi.RegisterOutputType(AclArrayOutput{})
