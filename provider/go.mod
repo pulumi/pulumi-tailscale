@@ -8,8 +8,8 @@ replace (
 )
 
 require (
-	github.com/davidsbond/terraform-provider-tailscale v0.4.0
+	github.com/davidsbond/terraform-provider-tailscale v0.5.1
 	github.com/hashicorp/terraform-plugin-sdk v1.9.1 // indirect
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.9.0
-	github.com/pulumi/pulumi/sdk/v3 v3.14.1-0.20211007222624-789e39219452
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.11.0
+	github.com/pulumi/pulumi/sdk/v3 v3.17.0
 )

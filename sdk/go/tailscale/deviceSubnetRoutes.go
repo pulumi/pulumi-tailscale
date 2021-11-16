@@ -285,6 +285,10 @@ func (o DeviceSubnetRoutesMapOutput) MapIndex(k pulumi.StringInput) DeviceSubnet
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DeviceSubnetRoutesInput)(nil)).Elem(), &DeviceSubnetRoutes{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeviceSubnetRoutesPtrInput)(nil)).Elem(), &DeviceSubnetRoutes{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeviceSubnetRoutesArrayInput)(nil)).Elem(), DeviceSubnetRoutesArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeviceSubnetRoutesMapInput)(nil)).Elem(), DeviceSubnetRoutesMap{})
 	pulumi.RegisterOutputType(DeviceSubnetRoutesOutput{})
 	pulumi.RegisterOutputType(DeviceSubnetRoutesPtrOutput{})
 	pulumi.RegisterOutputType(DeviceSubnetRoutesArrayOutput{})

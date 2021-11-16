@@ -17,15 +17,18 @@ class GetDevicesDeviceResult(dict):
     def __init__(__self__, *,
                  addresses: Sequence[str],
                  id: str,
-                 name: str):
+                 name: str,
+                 user: str):
         """
         :param Sequence[str] addresses: Tailscale IPs for the device
         :param str id: The unique identifier of the device
         :param str name: The name of the device
+        :param str user: The user associated with the device
         """
         pulumi.set(__self__, "addresses", addresses)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter
@@ -50,5 +53,13 @@ class GetDevicesDeviceResult(dict):
         The name of the device
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def user(self) -> str:
+        """
+        The user associated with the device
+        """
+        return pulumi.get(self, "user")
 
 

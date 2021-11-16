@@ -56,6 +56,8 @@ type GetDeviceResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id   string `pulumi:"id"`
 	Name string `pulumi:"name"`
+	// The user associated with the device
+	User string `pulumi:"user"`
 }
 
 func GetDeviceOutput(ctx *pulumi.Context, args GetDeviceOutputArgs, opts ...pulumi.InvokeOption) GetDeviceResultOutput {
@@ -104,6 +106,11 @@ func (o GetDeviceResultOutput) Id() pulumi.StringOutput {
 
 func (o GetDeviceResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeviceResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The user associated with the device
+func (o GetDeviceResultOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.User }).(pulumi.StringOutput)
 }
 
 func init() {

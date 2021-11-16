@@ -58,13 +58,23 @@
                             "mapCase": false
                         }
                     }
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The user associated with the device\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object",
             "required": [
                 "addresses",
                 "id",
-                "name"
+                "name",
+                "user"
             ],
             "language": {
                 "nodejs": {
@@ -142,6 +152,51 @@
                                 "name": "AclJson"
                             }
                         }
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "tailscale:index/deviceAuthorization:DeviceAuthorization": {
+            "description": "The device_authorization resource is used to approve new devices before they can join the tailnet.\nSee the [Tailscale device authorization documentation](https://tailscale.com/kb/1099/device-authorization) for more\ninformation.\n\nThe Tailscale API currently only supports authorizing devices, but not rejecting/removing them. Once a device is\nauthorized by this provider it cannot be modified again afterwards. Modifying or deleting the resource\nwill not affect the device's authorization within the tailnet.\n",
+            "properties": {
+                "authorized": {
+                    "type": "boolean",
+                    "description": "Indicates if the device is allowed to join the tailnet.\n"
+                },
+                "deviceId": {
+                    "type": "string",
+                    "description": "The device to authorize.\n"
+                }
+            },
+            "required": [
+                "authorized",
+                "deviceId"
+            ],
+            "inputProperties": {
+                "authorized": {
+                    "type": "boolean",
+                    "description": "Indicates if the device is allowed to join the tailnet.\n"
+                },
+                "deviceId": {
+                    "type": "string",
+                    "description": "The device to authorize.\n"
+                }
+            },
+            "requiredInputs": [
+                "authorized",
+                "deviceId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DeviceAuthorization resources.\n",
+                "properties": {
+                    "authorized": {
+                        "type": "boolean",
+                        "description": "Indicates if the device is allowed to join the tailnet.\n"
+                    },
+                    "deviceId": {
+                        "type": "string",
+                        "description": "The device to authorize.\n"
                     }
                 },
                 "type": "object"
@@ -345,12 +400,17 @@
                     },
                     "name": {
                         "type": "string"
+                    },
+                    "user": {
+                        "type": "string",
+                        "description": "The user associated with the device\n"
                     }
                 },
                 "type": "object",
                 "required": [
                     "addresses",
                     "name",
+                    "user",
                     "id"
                 ]
             }

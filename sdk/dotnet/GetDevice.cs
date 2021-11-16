@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Tailscale
 {
@@ -39,6 +40,35 @@ namespace Pulumi.Tailscale
         /// </summary>
         public static Task<GetDeviceResult> InvokeAsync(GetDeviceArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDeviceResult>("tailscale:index/getDevice:getDevice", args ?? new GetDeviceArgs(), options.WithVersion());
+
+        /// <summary>
+        /// The device data source describes a single device in a tailnet.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Tailscale = Pulumi.Tailscale;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var sampleDevice = Output.Create(Tailscale.GetDevice.InvokeAsync(new Tailscale.GetDeviceArgs
+        ///         {
+        ///             Name = "user1-device.example.com",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetDeviceResult> Invoke(GetDeviceInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetDeviceResult>("tailscale:index/getDevice:getDevice", args ?? new GetDeviceInvokeArgs(), options.WithVersion());
     }
 
 
@@ -51,6 +81,19 @@ namespace Pulumi.Tailscale
         public string Name { get; set; } = null!;
 
         public GetDeviceArgs()
+        {
+        }
+    }
+
+    public sealed class GetDeviceInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The name of the tailnet device to obtain the attributes of.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        public GetDeviceInvokeArgs()
         {
         }
     }
@@ -68,6 +111,10 @@ namespace Pulumi.Tailscale
         /// </summary>
         public readonly string Id;
         public readonly string Name;
+        /// <summary>
+        /// The user associated with the device
+        /// </summary>
+        public readonly string User;
 
         [OutputConstructor]
         private GetDeviceResult(
@@ -75,11 +122,14 @@ namespace Pulumi.Tailscale
 
             string id,
 
-            string name)
+            string name,
+
+            string user)
         {
             Addresses = addresses;
             Id = id;
             Name = name;
+            User = user;
         }
     }
 }

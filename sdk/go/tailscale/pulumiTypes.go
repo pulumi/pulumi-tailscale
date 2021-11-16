@@ -17,6 +17,8 @@ type GetDevicesDevice struct {
 	Id string `pulumi:"id"`
 	// The name of the device
 	Name string `pulumi:"name"`
+	// The user associated with the device
+	User string `pulumi:"user"`
 }
 
 // GetDevicesDeviceInput is an input type that accepts GetDevicesDeviceArgs and GetDevicesDeviceOutput values.
@@ -37,6 +39,8 @@ type GetDevicesDeviceArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// The name of the device
 	Name pulumi.StringInput `pulumi:"name"`
+	// The user associated with the device
+	User pulumi.StringInput `pulumi:"user"`
 }
 
 func (GetDevicesDeviceArgs) ElementType() reflect.Type {
@@ -103,6 +107,11 @@ func (o GetDevicesDeviceOutput) Id() pulumi.StringOutput {
 // The name of the device
 func (o GetDevicesDeviceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDevicesDevice) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The user associated with the device
+func (o GetDevicesDeviceOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDevicesDevice) string { return v.User }).(pulumi.StringOutput)
 }
 
 type GetDevicesDeviceArrayOutput struct{ *pulumi.OutputState }

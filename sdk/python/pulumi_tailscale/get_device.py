@@ -20,7 +20,7 @@ class GetDeviceResult:
     """
     A collection of values returned by getDevice.
     """
-    def __init__(__self__, addresses=None, id=None, name=None):
+    def __init__(__self__, addresses=None, id=None, name=None, user=None):
         if addresses and not isinstance(addresses, list):
             raise TypeError("Expected argument 'addresses' to be a list")
         pulumi.set(__self__, "addresses", addresses)
@@ -30,6 +30,9 @@ class GetDeviceResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if user and not isinstance(user, str):
+            raise TypeError("Expected argument 'user' to be a str")
+        pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter
@@ -52,6 +55,14 @@ class GetDeviceResult:
     def name(self) -> str:
         return pulumi.get(self, "name")
 
+    @property
+    @pulumi.getter
+    def user(self) -> str:
+        """
+        The user associated with the device
+        """
+        return pulumi.get(self, "user")
+
 
 class AwaitableGetDeviceResult(GetDeviceResult):
     # pylint: disable=using-constant-test
@@ -61,7 +72,8 @@ class AwaitableGetDeviceResult(GetDeviceResult):
         return GetDeviceResult(
             addresses=self.addresses,
             id=self.id,
-            name=self.name)
+            name=self.name,
+            user=self.user)
 
 
 def get_device(name: Optional[str] = None,
@@ -92,7 +104,8 @@ def get_device(name: Optional[str] = None,
     return AwaitableGetDeviceResult(
         addresses=__ret__.addresses,
         id=__ret__.id,
-        name=__ret__.name)
+        name=__ret__.name,
+        user=__ret__.user)
 
 
 @_utilities.lift_output_func(get_device)
