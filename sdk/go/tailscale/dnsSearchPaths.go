@@ -292,6 +292,10 @@ func (o DnsSearchPathsMapOutput) MapIndex(k pulumi.StringInput) DnsSearchPathsOu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsSearchPathsInput)(nil)).Elem(), &DnsSearchPaths{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsSearchPathsPtrInput)(nil)).Elem(), &DnsSearchPaths{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsSearchPathsArrayInput)(nil)).Elem(), DnsSearchPathsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsSearchPathsMapInput)(nil)).Elem(), DnsSearchPathsMap{})
 	pulumi.RegisterOutputType(DnsSearchPathsOutput{})
 	pulumi.RegisterOutputType(DnsSearchPathsPtrOutput{})
 	pulumi.RegisterOutputType(DnsSearchPathsArrayOutput{})

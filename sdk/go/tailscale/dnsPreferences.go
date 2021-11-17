@@ -295,6 +295,10 @@ func (o DnsPreferencesMapOutput) MapIndex(k pulumi.StringInput) DnsPreferencesOu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsPreferencesInput)(nil)).Elem(), &DnsPreferences{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsPreferencesPtrInput)(nil)).Elem(), &DnsPreferences{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsPreferencesArrayInput)(nil)).Elem(), DnsPreferencesArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsPreferencesMapInput)(nil)).Elem(), DnsPreferencesMap{})
 	pulumi.RegisterOutputType(DnsPreferencesOutput{})
 	pulumi.RegisterOutputType(DnsPreferencesPtrOutput{})
 	pulumi.RegisterOutputType(DnsPreferencesArrayOutput{})
