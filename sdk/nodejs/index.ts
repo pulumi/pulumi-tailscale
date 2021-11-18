@@ -6,6 +6,7 @@ import * as utilities from "./utilities";
 
 // Export members:
 export * from "./acl";
+export * from "./deviceAuthorization";
 export * from "./deviceSubnetRoutes";
 export * from "./dnsNameservers";
 export * from "./dnsPreferences";
@@ -25,6 +26,7 @@ export {
 
 // Import resources to register:
 import { Acl } from "./acl";
+import { DeviceAuthorization } from "./deviceAuthorization";
 import { DeviceSubnetRoutes } from "./deviceSubnetRoutes";
 import { DnsNameservers } from "./dnsNameservers";
 import { DnsPreferences } from "./dnsPreferences";
@@ -36,6 +38,8 @@ const _module = {
         switch (type) {
             case "tailscale:index/acl:Acl":
                 return new Acl(name, <any>undefined, { urn })
+            case "tailscale:index/deviceAuthorization:DeviceAuthorization":
+                return new DeviceAuthorization(name, <any>undefined, { urn })
             case "tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes":
                 return new DeviceSubnetRoutes(name, <any>undefined, { urn })
             case "tailscale:index/dnsNameservers:DnsNameservers":
@@ -50,6 +54,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("tailscale", "index/acl", _module)
+pulumi.runtime.registerResourceModule("tailscale", "index/deviceAuthorization", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/deviceSubnetRoutes", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsNameservers", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsPreferences", _module)

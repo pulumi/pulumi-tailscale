@@ -25,6 +25,10 @@ namespace Pulumi.Tailscale.Outputs
         /// The name of the device
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The user associated with the device
+        /// </summary>
+        public readonly string User;
 
         [OutputConstructor]
         private GetDevicesDeviceResult(
@@ -32,11 +36,14 @@ namespace Pulumi.Tailscale.Outputs
 
             string id,
 
-            string name)
+            string name,
+
+            string user)
         {
             Addresses = addresses;
             Id = id;
             Name = name;
+            User = user;
         }
     }
 }

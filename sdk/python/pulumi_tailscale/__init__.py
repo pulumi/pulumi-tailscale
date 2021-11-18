@@ -6,6 +6,7 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .acl import *
+from .device_authorization import *
 from .device_subnet_routes import *
 from .dns_nameservers import *
 from .dns_preferences import *
@@ -31,6 +32,14 @@ _utilities.register(
   "fqn": "pulumi_tailscale",
   "classes": {
    "tailscale:index/acl:Acl": "Acl"
+  }
+ },
+ {
+  "pkg": "tailscale",
+  "mod": "index/deviceAuthorization",
+  "fqn": "pulumi_tailscale",
+  "classes": {
+   "tailscale:index/deviceAuthorization:DeviceAuthorization": "DeviceAuthorization"
   }
  },
  {

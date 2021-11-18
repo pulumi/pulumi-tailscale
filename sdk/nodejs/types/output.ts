@@ -17,5 +17,9 @@ export interface GetDevicesDevice {
      * The name of the device
      */
     name: string;
+    /**
+     * The user associated with the device
+     */
+    user: string;
 }
 

@@ -54,6 +54,10 @@ export interface GetDeviceResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * The user associated with the device
+     */
+    readonly user: string;
 }
 
 export function getDeviceOutput(args: GetDeviceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeviceResult> {
