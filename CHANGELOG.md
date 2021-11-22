@@ -2,10 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v0.5.1 of the tailscale Terraform Provider
-* Upgrade to v3.11.0 of the pulumi-terraform-bridge
+_(none)_
 
 ---
+
+## 0.3.0 (2021-11-22)
+* Upgrade to v0.5.1 of the tailscale Terraform Provider
+* Upgrade to v3.11.0 of the pulumi-terraform-bridge
 
 ## 0.2.0 (2021-11-17)
 * Upgrade to terraform-bridge 3.11.0
