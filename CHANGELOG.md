@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade terraform-provider-tailscale to v0.6.0
+_(none)_
 
 ---
+
+## 0.4.0 (2021-12-31)
+* Upgrade terraform-provider-tailscale to v0.6.0
 
 ## 0.3.0 (2021-11-22)
 * Upgrade to v0.5.1 of the tailscale Terraform Provider
