@@ -28,7 +28,8 @@ builds:
   - -X github.com/pulumi/pulumi-tailscale/provider/pkg/version.Version={{.Tag}}
   main: ./cmd/pulumi-resource-tailscale/
 changelog:
-  skip: true
+  use: git
+  sort: asc
 release:
   disable: false
 snapshot:
