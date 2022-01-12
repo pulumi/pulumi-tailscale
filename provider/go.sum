@@ -213,8 +213,8 @@ github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ3
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/davidsbond/terraform-provider-tailscale v0.6.0 h1:TnG64lRM2NXwPtG8X0h3AN9tA5McDCCSeHmwtXt9wBU=
-github.com/davidsbond/terraform-provider-tailscale v0.6.0/go.mod h1:Ww/OkdWHCnamK775XtQ4bSDe72eRPBCWLx6dc1Kdrck=
+github.com/davidsbond/terraform-provider-tailscale v0.7.0 h1:AiPw46s9c/WEUvekMPe+8Kp53DrGzuNbDYvasFBEI7A=
+github.com/davidsbond/terraform-provider-tailscale v0.7.0/go.mod h1:Ww/OkdWHCnamK775XtQ4bSDe72eRPBCWLx6dc1Kdrck=
 github.com/denisenkom/go-mssqldb v0.9.0/go.mod h1:xbL0rPBG9cCiLr28tMa8zpbdarY27NDyej4t/EjAShU=
 github.com/devigned/tab v0.1.1/go.mod h1:XG9mPq0dFghrYvoBF3xdRrJzSTX1b7IQrvaL9mzjeJY=
 github.com/dgrijalva/jwt-go v3.2.0+incompatible/go.mod h1:E3ru+11k8xSBh+hMPgOLZmtrrCbhqsmaPHjLKYnJCaQ=

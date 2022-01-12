@@ -76,7 +76,7 @@ jobs:
         pr_assignee: stack72
         pr_body: '*Automated PR*'
         pr_label: automation/merge
-        pr_reviewer: stack72
+        pr_reviewer: pulumi/platform-integrations-team
         pr_title: Upgrade to ${{ github.event.client_payload.ref }} of pulumi-terraform-bridge
         source_branch: update-bridge/${{ github.event.client_payload.ref }}-${{ github.run_id
           }}
