@@ -65,22 +65,20 @@ export class DnsNameservers extends pulumi.CustomResource {
      */
     constructor(name: string, args: DnsNameserversArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DnsNameserversArgs | DnsNameserversState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DnsNameserversState | undefined;
-            inputs["nameservers"] = state ? state.nameservers : undefined;
+            resourceInputs["nameservers"] = state ? state.nameservers : undefined;
         } else {
             const args = argsOrState as DnsNameserversArgs | undefined;
             if ((!args || args.nameservers === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'nameservers'");
             }
-            inputs["nameservers"] = args ? args.nameservers : undefined;
+            resourceInputs["nameservers"] = args ? args.nameservers : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(DnsNameservers.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(DnsNameservers.__pulumiType, name, resourceInputs, opts);
     }
 }
 

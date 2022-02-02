@@ -116,7 +116,7 @@ type DnsPreferencesInput interface {
 }
 
 func (*DnsPreferences) ElementType() reflect.Type {
-	return reflect.TypeOf((*DnsPreferences)(nil))
+	return reflect.TypeOf((**DnsPreferences)(nil)).Elem()
 }
 
 func (i *DnsPreferences) ToDnsPreferencesOutput() DnsPreferencesOutput {
@@ -125,35 +125,6 @@ func (i *DnsPreferences) ToDnsPreferencesOutput() DnsPreferencesOutput {
 
 func (i *DnsPreferences) ToDnsPreferencesOutputWithContext(ctx context.Context) DnsPreferencesOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DnsPreferencesOutput)
-}
-
-func (i *DnsPreferences) ToDnsPreferencesPtrOutput() DnsPreferencesPtrOutput {
-	return i.ToDnsPreferencesPtrOutputWithContext(context.Background())
-}
-
-func (i *DnsPreferences) ToDnsPreferencesPtrOutputWithContext(ctx context.Context) DnsPreferencesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DnsPreferencesPtrOutput)
-}
-
-type DnsPreferencesPtrInput interface {
-	pulumi.Input
-
-	ToDnsPreferencesPtrOutput() DnsPreferencesPtrOutput
-	ToDnsPreferencesPtrOutputWithContext(ctx context.Context) DnsPreferencesPtrOutput
-}
-
-type dnsPreferencesPtrType DnsPreferencesArgs
-
-func (*dnsPreferencesPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DnsPreferences)(nil))
-}
-
-func (i *dnsPreferencesPtrType) ToDnsPreferencesPtrOutput() DnsPreferencesPtrOutput {
-	return i.ToDnsPreferencesPtrOutputWithContext(context.Background())
-}
-
-func (i *dnsPreferencesPtrType) ToDnsPreferencesPtrOutputWithContext(ctx context.Context) DnsPreferencesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DnsPreferencesPtrOutput)
 }
 
 // DnsPreferencesArrayInput is an input type that accepts DnsPreferencesArray and DnsPreferencesArrayOutput values.
@@ -209,7 +180,7 @@ func (i DnsPreferencesMap) ToDnsPreferencesMapOutputWithContext(ctx context.Cont
 type DnsPreferencesOutput struct{ *pulumi.OutputState }
 
 func (DnsPreferencesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DnsPreferences)(nil))
+	return reflect.TypeOf((**DnsPreferences)(nil)).Elem()
 }
 
 func (o DnsPreferencesOutput) ToDnsPreferencesOutput() DnsPreferencesOutput {
@@ -220,44 +191,10 @@ func (o DnsPreferencesOutput) ToDnsPreferencesOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o DnsPreferencesOutput) ToDnsPreferencesPtrOutput() DnsPreferencesPtrOutput {
-	return o.ToDnsPreferencesPtrOutputWithContext(context.Background())
-}
-
-func (o DnsPreferencesOutput) ToDnsPreferencesPtrOutputWithContext(ctx context.Context) DnsPreferencesPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DnsPreferences) *DnsPreferences {
-		return &v
-	}).(DnsPreferencesPtrOutput)
-}
-
-type DnsPreferencesPtrOutput struct{ *pulumi.OutputState }
-
-func (DnsPreferencesPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DnsPreferences)(nil))
-}
-
-func (o DnsPreferencesPtrOutput) ToDnsPreferencesPtrOutput() DnsPreferencesPtrOutput {
-	return o
-}
-
-func (o DnsPreferencesPtrOutput) ToDnsPreferencesPtrOutputWithContext(ctx context.Context) DnsPreferencesPtrOutput {
-	return o
-}
-
-func (o DnsPreferencesPtrOutput) Elem() DnsPreferencesOutput {
-	return o.ApplyT(func(v *DnsPreferences) DnsPreferences {
-		if v != nil {
-			return *v
-		}
-		var ret DnsPreferences
-		return ret
-	}).(DnsPreferencesOutput)
-}
-
 type DnsPreferencesArrayOutput struct{ *pulumi.OutputState }
 
 func (DnsPreferencesArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DnsPreferences)(nil))
+	return reflect.TypeOf((*[]*DnsPreferences)(nil)).Elem()
 }
 
 func (o DnsPreferencesArrayOutput) ToDnsPreferencesArrayOutput() DnsPreferencesArrayOutput {
@@ -269,15 +206,15 @@ func (o DnsPreferencesArrayOutput) ToDnsPreferencesArrayOutputWithContext(ctx co
 }
 
 func (o DnsPreferencesArrayOutput) Index(i pulumi.IntInput) DnsPreferencesOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DnsPreferences {
-		return vs[0].([]DnsPreferences)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DnsPreferences {
+		return vs[0].([]*DnsPreferences)[vs[1].(int)]
 	}).(DnsPreferencesOutput)
 }
 
 type DnsPreferencesMapOutput struct{ *pulumi.OutputState }
 
 func (DnsPreferencesMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]DnsPreferences)(nil))
+	return reflect.TypeOf((*map[string]*DnsPreferences)(nil)).Elem()
 }
 
 func (o DnsPreferencesMapOutput) ToDnsPreferencesMapOutput() DnsPreferencesMapOutput {
@@ -289,18 +226,16 @@ func (o DnsPreferencesMapOutput) ToDnsPreferencesMapOutputWithContext(ctx contex
 }
 
 func (o DnsPreferencesMapOutput) MapIndex(k pulumi.StringInput) DnsPreferencesOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DnsPreferences {
-		return vs[0].(map[string]DnsPreferences)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DnsPreferences {
+		return vs[0].(map[string]*DnsPreferences)[vs[1].(string)]
 	}).(DnsPreferencesOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsPreferencesInput)(nil)).Elem(), &DnsPreferences{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DnsPreferencesPtrInput)(nil)).Elem(), &DnsPreferences{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsPreferencesArrayInput)(nil)).Elem(), DnsPreferencesArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsPreferencesMapInput)(nil)).Elem(), DnsPreferencesMap{})
 	pulumi.RegisterOutputType(DnsPreferencesOutput{})
-	pulumi.RegisterOutputType(DnsPreferencesPtrOutput{})
 	pulumi.RegisterOutputType(DnsPreferencesArrayOutput{})
 	pulumi.RegisterOutputType(DnsPreferencesMapOutput{})
 }

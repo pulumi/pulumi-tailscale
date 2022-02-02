@@ -23,9 +23,7 @@ export function getDevice(args: GetDeviceArgs, opts?: pulumi.InvokeOptions): Pro
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("tailscale:index/getDevice:getDevice", {
         "name": args.name,
     }, opts);

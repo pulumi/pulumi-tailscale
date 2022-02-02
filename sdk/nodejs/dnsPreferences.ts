@@ -62,22 +62,20 @@ export class DnsPreferences extends pulumi.CustomResource {
      */
     constructor(name: string, args: DnsPreferencesArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DnsPreferencesArgs | DnsPreferencesState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DnsPreferencesState | undefined;
-            inputs["magicDns"] = state ? state.magicDns : undefined;
+            resourceInputs["magicDns"] = state ? state.magicDns : undefined;
         } else {
             const args = argsOrState as DnsPreferencesArgs | undefined;
             if ((!args || args.magicDns === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'magicDns'");
             }
-            inputs["magicDns"] = args ? args.magicDns : undefined;
+            resourceInputs["magicDns"] = args ? args.magicDns : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(DnsPreferences.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(DnsPreferences.__pulumiType, name, resourceInputs, opts);
     }
 }
 

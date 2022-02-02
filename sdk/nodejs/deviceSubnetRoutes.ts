@@ -55,12 +55,12 @@ export class DeviceSubnetRoutes extends pulumi.CustomResource {
      */
     constructor(name: string, args: DeviceSubnetRoutesArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DeviceSubnetRoutesArgs | DeviceSubnetRoutesState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeviceSubnetRoutesState | undefined;
-            inputs["deviceId"] = state ? state.deviceId : undefined;
-            inputs["routes"] = state ? state.routes : undefined;
+            resourceInputs["deviceId"] = state ? state.deviceId : undefined;
+            resourceInputs["routes"] = state ? state.routes : undefined;
         } else {
             const args = argsOrState as DeviceSubnetRoutesArgs | undefined;
             if ((!args || args.deviceId === undefined) && !opts.urn) {
@@ -69,13 +69,11 @@ export class DeviceSubnetRoutes extends pulumi.CustomResource {
             if ((!args || args.routes === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'routes'");
             }
-            inputs["deviceId"] = args ? args.deviceId : undefined;
-            inputs["routes"] = args ? args.routes : undefined;
+            resourceInputs["deviceId"] = args ? args.deviceId : undefined;
+            resourceInputs["routes"] = args ? args.routes : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(DeviceSubnetRoutes.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(DeviceSubnetRoutes.__pulumiType, name, resourceInputs, opts);
     }
 }
 

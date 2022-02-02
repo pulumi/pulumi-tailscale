@@ -36,7 +36,7 @@ export class Provider extends pulumi.ProviderResource {
      * @param opts A bag of options that control this resource's behavior.
      */
     constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
             if ((!args || args.apiKey === undefined) && !opts.urn) {
@@ -45,13 +45,11 @@ export class Provider extends pulumi.ProviderResource {
             if ((!args || args.tailnet === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'tailnet'");
             }
-            inputs["apiKey"] = args ? args.apiKey : undefined;
-            inputs["tailnet"] = args ? args.tailnet : undefined;
+            resourceInputs["apiKey"] = args ? args.apiKey : undefined;
+            resourceInputs["tailnet"] = args ? args.tailnet : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Provider.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }
 
