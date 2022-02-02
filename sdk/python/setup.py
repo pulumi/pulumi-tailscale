@@ -55,6 +55,7 @@ setup(name='pulumi_tailscale',
       package_data={
           'pulumi_tailscale': [
               'py.typed',
+              'pulumi-plugin.json',
           ]
       },
       install_requires=[

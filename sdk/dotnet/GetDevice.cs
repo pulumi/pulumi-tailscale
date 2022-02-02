@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Tailscale
 {
@@ -39,7 +38,7 @@ namespace Pulumi.Tailscale
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDeviceResult> InvokeAsync(GetDeviceArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDeviceResult>("tailscale:index/getDevice:getDevice", args ?? new GetDeviceArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetDeviceResult>("tailscale:index/getDevice:getDevice", args ?? new GetDeviceArgs(), options.WithDefaults());
 
         /// <summary>
         /// The device data source describes a single device in a tailnet.
@@ -68,7 +67,7 @@ namespace Pulumi.Tailscale
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDeviceResult> Invoke(GetDeviceInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDeviceResult>("tailscale:index/getDevice:getDevice", args ?? new GetDeviceInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetDeviceResult>("tailscale:index/getDevice:getDevice", args ?? new GetDeviceInvokeArgs(), options.WithDefaults());
     }
 
 

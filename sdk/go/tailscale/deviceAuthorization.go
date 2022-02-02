@@ -106,7 +106,7 @@ type DeviceAuthorizationInput interface {
 }
 
 func (*DeviceAuthorization) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeviceAuthorization)(nil))
+	return reflect.TypeOf((**DeviceAuthorization)(nil)).Elem()
 }
 
 func (i *DeviceAuthorization) ToDeviceAuthorizationOutput() DeviceAuthorizationOutput {
@@ -115,35 +115,6 @@ func (i *DeviceAuthorization) ToDeviceAuthorizationOutput() DeviceAuthorizationO
 
 func (i *DeviceAuthorization) ToDeviceAuthorizationOutputWithContext(ctx context.Context) DeviceAuthorizationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceAuthorizationOutput)
-}
-
-func (i *DeviceAuthorization) ToDeviceAuthorizationPtrOutput() DeviceAuthorizationPtrOutput {
-	return i.ToDeviceAuthorizationPtrOutputWithContext(context.Background())
-}
-
-func (i *DeviceAuthorization) ToDeviceAuthorizationPtrOutputWithContext(ctx context.Context) DeviceAuthorizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeviceAuthorizationPtrOutput)
-}
-
-type DeviceAuthorizationPtrInput interface {
-	pulumi.Input
-
-	ToDeviceAuthorizationPtrOutput() DeviceAuthorizationPtrOutput
-	ToDeviceAuthorizationPtrOutputWithContext(ctx context.Context) DeviceAuthorizationPtrOutput
-}
-
-type deviceAuthorizationPtrType DeviceAuthorizationArgs
-
-func (*deviceAuthorizationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeviceAuthorization)(nil))
-}
-
-func (i *deviceAuthorizationPtrType) ToDeviceAuthorizationPtrOutput() DeviceAuthorizationPtrOutput {
-	return i.ToDeviceAuthorizationPtrOutputWithContext(context.Background())
-}
-
-func (i *deviceAuthorizationPtrType) ToDeviceAuthorizationPtrOutputWithContext(ctx context.Context) DeviceAuthorizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeviceAuthorizationPtrOutput)
 }
 
 // DeviceAuthorizationArrayInput is an input type that accepts DeviceAuthorizationArray and DeviceAuthorizationArrayOutput values.
@@ -199,7 +170,7 @@ func (i DeviceAuthorizationMap) ToDeviceAuthorizationMapOutputWithContext(ctx co
 type DeviceAuthorizationOutput struct{ *pulumi.OutputState }
 
 func (DeviceAuthorizationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeviceAuthorization)(nil))
+	return reflect.TypeOf((**DeviceAuthorization)(nil)).Elem()
 }
 
 func (o DeviceAuthorizationOutput) ToDeviceAuthorizationOutput() DeviceAuthorizationOutput {
@@ -210,44 +181,10 @@ func (o DeviceAuthorizationOutput) ToDeviceAuthorizationOutputWithContext(ctx co
 	return o
 }
 
-func (o DeviceAuthorizationOutput) ToDeviceAuthorizationPtrOutput() DeviceAuthorizationPtrOutput {
-	return o.ToDeviceAuthorizationPtrOutputWithContext(context.Background())
-}
-
-func (o DeviceAuthorizationOutput) ToDeviceAuthorizationPtrOutputWithContext(ctx context.Context) DeviceAuthorizationPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeviceAuthorization) *DeviceAuthorization {
-		return &v
-	}).(DeviceAuthorizationPtrOutput)
-}
-
-type DeviceAuthorizationPtrOutput struct{ *pulumi.OutputState }
-
-func (DeviceAuthorizationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeviceAuthorization)(nil))
-}
-
-func (o DeviceAuthorizationPtrOutput) ToDeviceAuthorizationPtrOutput() DeviceAuthorizationPtrOutput {
-	return o
-}
-
-func (o DeviceAuthorizationPtrOutput) ToDeviceAuthorizationPtrOutputWithContext(ctx context.Context) DeviceAuthorizationPtrOutput {
-	return o
-}
-
-func (o DeviceAuthorizationPtrOutput) Elem() DeviceAuthorizationOutput {
-	return o.ApplyT(func(v *DeviceAuthorization) DeviceAuthorization {
-		if v != nil {
-			return *v
-		}
-		var ret DeviceAuthorization
-		return ret
-	}).(DeviceAuthorizationOutput)
-}
-
 type DeviceAuthorizationArrayOutput struct{ *pulumi.OutputState }
 
 func (DeviceAuthorizationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DeviceAuthorization)(nil))
+	return reflect.TypeOf((*[]*DeviceAuthorization)(nil)).Elem()
 }
 
 func (o DeviceAuthorizationArrayOutput) ToDeviceAuthorizationArrayOutput() DeviceAuthorizationArrayOutput {
@@ -259,15 +196,15 @@ func (o DeviceAuthorizationArrayOutput) ToDeviceAuthorizationArrayOutputWithCont
 }
 
 func (o DeviceAuthorizationArrayOutput) Index(i pulumi.IntInput) DeviceAuthorizationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeviceAuthorization {
-		return vs[0].([]DeviceAuthorization)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DeviceAuthorization {
+		return vs[0].([]*DeviceAuthorization)[vs[1].(int)]
 	}).(DeviceAuthorizationOutput)
 }
 
 type DeviceAuthorizationMapOutput struct{ *pulumi.OutputState }
 
 func (DeviceAuthorizationMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]DeviceAuthorization)(nil))
+	return reflect.TypeOf((*map[string]*DeviceAuthorization)(nil)).Elem()
 }
 
 func (o DeviceAuthorizationMapOutput) ToDeviceAuthorizationMapOutput() DeviceAuthorizationMapOutput {
@@ -279,18 +216,16 @@ func (o DeviceAuthorizationMapOutput) ToDeviceAuthorizationMapOutputWithContext(
 }
 
 func (o DeviceAuthorizationMapOutput) MapIndex(k pulumi.StringInput) DeviceAuthorizationOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DeviceAuthorization {
-		return vs[0].(map[string]DeviceAuthorization)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DeviceAuthorization {
+		return vs[0].(map[string]*DeviceAuthorization)[vs[1].(string)]
 	}).(DeviceAuthorizationOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeviceAuthorizationInput)(nil)).Elem(), &DeviceAuthorization{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeviceAuthorizationPtrInput)(nil)).Elem(), &DeviceAuthorization{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeviceAuthorizationArrayInput)(nil)).Elem(), DeviceAuthorizationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeviceAuthorizationMapInput)(nil)).Elem(), DeviceAuthorizationMap{})
 	pulumi.RegisterOutputType(DeviceAuthorizationOutput{})
-	pulumi.RegisterOutputType(DeviceAuthorizationPtrOutput{})
 	pulumi.RegisterOutputType(DeviceAuthorizationArrayOutput{})
 	pulumi.RegisterOutputType(DeviceAuthorizationMapOutput{})
 }

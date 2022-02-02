@@ -106,7 +106,7 @@ type DeviceSubnetRoutesInput interface {
 }
 
 func (*DeviceSubnetRoutes) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeviceSubnetRoutes)(nil))
+	return reflect.TypeOf((**DeviceSubnetRoutes)(nil)).Elem()
 }
 
 func (i *DeviceSubnetRoutes) ToDeviceSubnetRoutesOutput() DeviceSubnetRoutesOutput {
@@ -115,35 +115,6 @@ func (i *DeviceSubnetRoutes) ToDeviceSubnetRoutesOutput() DeviceSubnetRoutesOutp
 
 func (i *DeviceSubnetRoutes) ToDeviceSubnetRoutesOutputWithContext(ctx context.Context) DeviceSubnetRoutesOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceSubnetRoutesOutput)
-}
-
-func (i *DeviceSubnetRoutes) ToDeviceSubnetRoutesPtrOutput() DeviceSubnetRoutesPtrOutput {
-	return i.ToDeviceSubnetRoutesPtrOutputWithContext(context.Background())
-}
-
-func (i *DeviceSubnetRoutes) ToDeviceSubnetRoutesPtrOutputWithContext(ctx context.Context) DeviceSubnetRoutesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeviceSubnetRoutesPtrOutput)
-}
-
-type DeviceSubnetRoutesPtrInput interface {
-	pulumi.Input
-
-	ToDeviceSubnetRoutesPtrOutput() DeviceSubnetRoutesPtrOutput
-	ToDeviceSubnetRoutesPtrOutputWithContext(ctx context.Context) DeviceSubnetRoutesPtrOutput
-}
-
-type deviceSubnetRoutesPtrType DeviceSubnetRoutesArgs
-
-func (*deviceSubnetRoutesPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeviceSubnetRoutes)(nil))
-}
-
-func (i *deviceSubnetRoutesPtrType) ToDeviceSubnetRoutesPtrOutput() DeviceSubnetRoutesPtrOutput {
-	return i.ToDeviceSubnetRoutesPtrOutputWithContext(context.Background())
-}
-
-func (i *deviceSubnetRoutesPtrType) ToDeviceSubnetRoutesPtrOutputWithContext(ctx context.Context) DeviceSubnetRoutesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DeviceSubnetRoutesPtrOutput)
 }
 
 // DeviceSubnetRoutesArrayInput is an input type that accepts DeviceSubnetRoutesArray and DeviceSubnetRoutesArrayOutput values.
@@ -199,7 +170,7 @@ func (i DeviceSubnetRoutesMap) ToDeviceSubnetRoutesMapOutputWithContext(ctx cont
 type DeviceSubnetRoutesOutput struct{ *pulumi.OutputState }
 
 func (DeviceSubnetRoutesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DeviceSubnetRoutes)(nil))
+	return reflect.TypeOf((**DeviceSubnetRoutes)(nil)).Elem()
 }
 
 func (o DeviceSubnetRoutesOutput) ToDeviceSubnetRoutesOutput() DeviceSubnetRoutesOutput {
@@ -210,44 +181,10 @@ func (o DeviceSubnetRoutesOutput) ToDeviceSubnetRoutesOutputWithContext(ctx cont
 	return o
 }
 
-func (o DeviceSubnetRoutesOutput) ToDeviceSubnetRoutesPtrOutput() DeviceSubnetRoutesPtrOutput {
-	return o.ToDeviceSubnetRoutesPtrOutputWithContext(context.Background())
-}
-
-func (o DeviceSubnetRoutesOutput) ToDeviceSubnetRoutesPtrOutputWithContext(ctx context.Context) DeviceSubnetRoutesPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeviceSubnetRoutes) *DeviceSubnetRoutes {
-		return &v
-	}).(DeviceSubnetRoutesPtrOutput)
-}
-
-type DeviceSubnetRoutesPtrOutput struct{ *pulumi.OutputState }
-
-func (DeviceSubnetRoutesPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DeviceSubnetRoutes)(nil))
-}
-
-func (o DeviceSubnetRoutesPtrOutput) ToDeviceSubnetRoutesPtrOutput() DeviceSubnetRoutesPtrOutput {
-	return o
-}
-
-func (o DeviceSubnetRoutesPtrOutput) ToDeviceSubnetRoutesPtrOutputWithContext(ctx context.Context) DeviceSubnetRoutesPtrOutput {
-	return o
-}
-
-func (o DeviceSubnetRoutesPtrOutput) Elem() DeviceSubnetRoutesOutput {
-	return o.ApplyT(func(v *DeviceSubnetRoutes) DeviceSubnetRoutes {
-		if v != nil {
-			return *v
-		}
-		var ret DeviceSubnetRoutes
-		return ret
-	}).(DeviceSubnetRoutesOutput)
-}
-
 type DeviceSubnetRoutesArrayOutput struct{ *pulumi.OutputState }
 
 func (DeviceSubnetRoutesArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DeviceSubnetRoutes)(nil))
+	return reflect.TypeOf((*[]*DeviceSubnetRoutes)(nil)).Elem()
 }
 
 func (o DeviceSubnetRoutesArrayOutput) ToDeviceSubnetRoutesArrayOutput() DeviceSubnetRoutesArrayOutput {
@@ -259,15 +196,15 @@ func (o DeviceSubnetRoutesArrayOutput) ToDeviceSubnetRoutesArrayOutputWithContex
 }
 
 func (o DeviceSubnetRoutesArrayOutput) Index(i pulumi.IntInput) DeviceSubnetRoutesOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeviceSubnetRoutes {
-		return vs[0].([]DeviceSubnetRoutes)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DeviceSubnetRoutes {
+		return vs[0].([]*DeviceSubnetRoutes)[vs[1].(int)]
 	}).(DeviceSubnetRoutesOutput)
 }
 
 type DeviceSubnetRoutesMapOutput struct{ *pulumi.OutputState }
 
 func (DeviceSubnetRoutesMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]DeviceSubnetRoutes)(nil))
+	return reflect.TypeOf((*map[string]*DeviceSubnetRoutes)(nil)).Elem()
 }
 
 func (o DeviceSubnetRoutesMapOutput) ToDeviceSubnetRoutesMapOutput() DeviceSubnetRoutesMapOutput {
@@ -279,18 +216,16 @@ func (o DeviceSubnetRoutesMapOutput) ToDeviceSubnetRoutesMapOutputWithContext(ct
 }
 
 func (o DeviceSubnetRoutesMapOutput) MapIndex(k pulumi.StringInput) DeviceSubnetRoutesOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DeviceSubnetRoutes {
-		return vs[0].(map[string]DeviceSubnetRoutes)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DeviceSubnetRoutes {
+		return vs[0].(map[string]*DeviceSubnetRoutes)[vs[1].(string)]
 	}).(DeviceSubnetRoutesOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeviceSubnetRoutesInput)(nil)).Elem(), &DeviceSubnetRoutes{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DeviceSubnetRoutesPtrInput)(nil)).Elem(), &DeviceSubnetRoutes{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeviceSubnetRoutesArrayInput)(nil)).Elem(), DeviceSubnetRoutesArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeviceSubnetRoutesMapInput)(nil)).Elem(), DeviceSubnetRoutesMap{})
 	pulumi.RegisterOutputType(DeviceSubnetRoutesOutput{})
-	pulumi.RegisterOutputType(DeviceSubnetRoutesPtrOutput{})
 	pulumi.RegisterOutputType(DeviceSubnetRoutesArrayOutput{})
 	pulumi.RegisterOutputType(DeviceSubnetRoutesMapOutput{})
 }

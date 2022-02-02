@@ -59,12 +59,12 @@ export class DeviceAuthorization extends pulumi.CustomResource {
      */
     constructor(name: string, args: DeviceAuthorizationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DeviceAuthorizationArgs | DeviceAuthorizationState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeviceAuthorizationState | undefined;
-            inputs["authorized"] = state ? state.authorized : undefined;
-            inputs["deviceId"] = state ? state.deviceId : undefined;
+            resourceInputs["authorized"] = state ? state.authorized : undefined;
+            resourceInputs["deviceId"] = state ? state.deviceId : undefined;
         } else {
             const args = argsOrState as DeviceAuthorizationArgs | undefined;
             if ((!args || args.authorized === undefined) && !opts.urn) {
@@ -73,13 +73,11 @@ export class DeviceAuthorization extends pulumi.CustomResource {
             if ((!args || args.deviceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'deviceId'");
             }
-            inputs["authorized"] = args ? args.authorized : undefined;
-            inputs["deviceId"] = args ? args.deviceId : undefined;
+            resourceInputs["authorized"] = args ? args.authorized : undefined;
+            resourceInputs["deviceId"] = args ? args.deviceId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(DeviceAuthorization.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(DeviceAuthorization.__pulumiType, name, resourceInputs, opts);
     }
 }
 

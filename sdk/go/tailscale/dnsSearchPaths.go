@@ -113,7 +113,7 @@ type DnsSearchPathsInput interface {
 }
 
 func (*DnsSearchPaths) ElementType() reflect.Type {
-	return reflect.TypeOf((*DnsSearchPaths)(nil))
+	return reflect.TypeOf((**DnsSearchPaths)(nil)).Elem()
 }
 
 func (i *DnsSearchPaths) ToDnsSearchPathsOutput() DnsSearchPathsOutput {
@@ -122,35 +122,6 @@ func (i *DnsSearchPaths) ToDnsSearchPathsOutput() DnsSearchPathsOutput {
 
 func (i *DnsSearchPaths) ToDnsSearchPathsOutputWithContext(ctx context.Context) DnsSearchPathsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DnsSearchPathsOutput)
-}
-
-func (i *DnsSearchPaths) ToDnsSearchPathsPtrOutput() DnsSearchPathsPtrOutput {
-	return i.ToDnsSearchPathsPtrOutputWithContext(context.Background())
-}
-
-func (i *DnsSearchPaths) ToDnsSearchPathsPtrOutputWithContext(ctx context.Context) DnsSearchPathsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DnsSearchPathsPtrOutput)
-}
-
-type DnsSearchPathsPtrInput interface {
-	pulumi.Input
-
-	ToDnsSearchPathsPtrOutput() DnsSearchPathsPtrOutput
-	ToDnsSearchPathsPtrOutputWithContext(ctx context.Context) DnsSearchPathsPtrOutput
-}
-
-type dnsSearchPathsPtrType DnsSearchPathsArgs
-
-func (*dnsSearchPathsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DnsSearchPaths)(nil))
-}
-
-func (i *dnsSearchPathsPtrType) ToDnsSearchPathsPtrOutput() DnsSearchPathsPtrOutput {
-	return i.ToDnsSearchPathsPtrOutputWithContext(context.Background())
-}
-
-func (i *dnsSearchPathsPtrType) ToDnsSearchPathsPtrOutputWithContext(ctx context.Context) DnsSearchPathsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DnsSearchPathsPtrOutput)
 }
 
 // DnsSearchPathsArrayInput is an input type that accepts DnsSearchPathsArray and DnsSearchPathsArrayOutput values.
@@ -206,7 +177,7 @@ func (i DnsSearchPathsMap) ToDnsSearchPathsMapOutputWithContext(ctx context.Cont
 type DnsSearchPathsOutput struct{ *pulumi.OutputState }
 
 func (DnsSearchPathsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DnsSearchPaths)(nil))
+	return reflect.TypeOf((**DnsSearchPaths)(nil)).Elem()
 }
 
 func (o DnsSearchPathsOutput) ToDnsSearchPathsOutput() DnsSearchPathsOutput {
@@ -217,44 +188,10 @@ func (o DnsSearchPathsOutput) ToDnsSearchPathsOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o DnsSearchPathsOutput) ToDnsSearchPathsPtrOutput() DnsSearchPathsPtrOutput {
-	return o.ToDnsSearchPathsPtrOutputWithContext(context.Background())
-}
-
-func (o DnsSearchPathsOutput) ToDnsSearchPathsPtrOutputWithContext(ctx context.Context) DnsSearchPathsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DnsSearchPaths) *DnsSearchPaths {
-		return &v
-	}).(DnsSearchPathsPtrOutput)
-}
-
-type DnsSearchPathsPtrOutput struct{ *pulumi.OutputState }
-
-func (DnsSearchPathsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DnsSearchPaths)(nil))
-}
-
-func (o DnsSearchPathsPtrOutput) ToDnsSearchPathsPtrOutput() DnsSearchPathsPtrOutput {
-	return o
-}
-
-func (o DnsSearchPathsPtrOutput) ToDnsSearchPathsPtrOutputWithContext(ctx context.Context) DnsSearchPathsPtrOutput {
-	return o
-}
-
-func (o DnsSearchPathsPtrOutput) Elem() DnsSearchPathsOutput {
-	return o.ApplyT(func(v *DnsSearchPaths) DnsSearchPaths {
-		if v != nil {
-			return *v
-		}
-		var ret DnsSearchPaths
-		return ret
-	}).(DnsSearchPathsOutput)
-}
-
 type DnsSearchPathsArrayOutput struct{ *pulumi.OutputState }
 
 func (DnsSearchPathsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DnsSearchPaths)(nil))
+	return reflect.TypeOf((*[]*DnsSearchPaths)(nil)).Elem()
 }
 
 func (o DnsSearchPathsArrayOutput) ToDnsSearchPathsArrayOutput() DnsSearchPathsArrayOutput {
@@ -266,15 +203,15 @@ func (o DnsSearchPathsArrayOutput) ToDnsSearchPathsArrayOutputWithContext(ctx co
 }
 
 func (o DnsSearchPathsArrayOutput) Index(i pulumi.IntInput) DnsSearchPathsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DnsSearchPaths {
-		return vs[0].([]DnsSearchPaths)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DnsSearchPaths {
+		return vs[0].([]*DnsSearchPaths)[vs[1].(int)]
 	}).(DnsSearchPathsOutput)
 }
 
 type DnsSearchPathsMapOutput struct{ *pulumi.OutputState }
 
 func (DnsSearchPathsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]DnsSearchPaths)(nil))
+	return reflect.TypeOf((*map[string]*DnsSearchPaths)(nil)).Elem()
 }
 
 func (o DnsSearchPathsMapOutput) ToDnsSearchPathsMapOutput() DnsSearchPathsMapOutput {
@@ -286,18 +223,16 @@ func (o DnsSearchPathsMapOutput) ToDnsSearchPathsMapOutputWithContext(ctx contex
 }
 
 func (o DnsSearchPathsMapOutput) MapIndex(k pulumi.StringInput) DnsSearchPathsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DnsSearchPaths {
-		return vs[0].(map[string]DnsSearchPaths)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DnsSearchPaths {
+		return vs[0].(map[string]*DnsSearchPaths)[vs[1].(string)]
 	}).(DnsSearchPathsOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsSearchPathsInput)(nil)).Elem(), &DnsSearchPaths{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DnsSearchPathsPtrInput)(nil)).Elem(), &DnsSearchPaths{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsSearchPathsArrayInput)(nil)).Elem(), DnsSearchPathsArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsSearchPathsMapInput)(nil)).Elem(), DnsSearchPathsMap{})
 	pulumi.RegisterOutputType(DnsSearchPathsOutput{})
-	pulumi.RegisterOutputType(DnsSearchPathsPtrOutput{})
 	pulumi.RegisterOutputType(DnsSearchPathsArrayOutput{})
 	pulumi.RegisterOutputType(DnsSearchPathsMapOutput{})
 }

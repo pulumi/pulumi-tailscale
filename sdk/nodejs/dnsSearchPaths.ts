@@ -61,22 +61,20 @@ export class DnsSearchPaths extends pulumi.CustomResource {
      */
     constructor(name: string, args: DnsSearchPathsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DnsSearchPathsArgs | DnsSearchPathsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DnsSearchPathsState | undefined;
-            inputs["searchPaths"] = state ? state.searchPaths : undefined;
+            resourceInputs["searchPaths"] = state ? state.searchPaths : undefined;
         } else {
             const args = argsOrState as DnsSearchPathsArgs | undefined;
             if ((!args || args.searchPaths === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'searchPaths'");
             }
-            inputs["searchPaths"] = args ? args.searchPaths : undefined;
+            resourceInputs["searchPaths"] = args ? args.searchPaths : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(DnsSearchPaths.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(DnsSearchPaths.__pulumiType, name, resourceInputs, opts);
     }
 }
 

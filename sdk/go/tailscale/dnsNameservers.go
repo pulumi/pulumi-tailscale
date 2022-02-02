@@ -119,7 +119,7 @@ type DnsNameserversInput interface {
 }
 
 func (*DnsNameservers) ElementType() reflect.Type {
-	return reflect.TypeOf((*DnsNameservers)(nil))
+	return reflect.TypeOf((**DnsNameservers)(nil)).Elem()
 }
 
 func (i *DnsNameservers) ToDnsNameserversOutput() DnsNameserversOutput {
@@ -128,35 +128,6 @@ func (i *DnsNameservers) ToDnsNameserversOutput() DnsNameserversOutput {
 
 func (i *DnsNameservers) ToDnsNameserversOutputWithContext(ctx context.Context) DnsNameserversOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DnsNameserversOutput)
-}
-
-func (i *DnsNameservers) ToDnsNameserversPtrOutput() DnsNameserversPtrOutput {
-	return i.ToDnsNameserversPtrOutputWithContext(context.Background())
-}
-
-func (i *DnsNameservers) ToDnsNameserversPtrOutputWithContext(ctx context.Context) DnsNameserversPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DnsNameserversPtrOutput)
-}
-
-type DnsNameserversPtrInput interface {
-	pulumi.Input
-
-	ToDnsNameserversPtrOutput() DnsNameserversPtrOutput
-	ToDnsNameserversPtrOutputWithContext(ctx context.Context) DnsNameserversPtrOutput
-}
-
-type dnsNameserversPtrType DnsNameserversArgs
-
-func (*dnsNameserversPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DnsNameservers)(nil))
-}
-
-func (i *dnsNameserversPtrType) ToDnsNameserversPtrOutput() DnsNameserversPtrOutput {
-	return i.ToDnsNameserversPtrOutputWithContext(context.Background())
-}
-
-func (i *dnsNameserversPtrType) ToDnsNameserversPtrOutputWithContext(ctx context.Context) DnsNameserversPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DnsNameserversPtrOutput)
 }
 
 // DnsNameserversArrayInput is an input type that accepts DnsNameserversArray and DnsNameserversArrayOutput values.
@@ -212,7 +183,7 @@ func (i DnsNameserversMap) ToDnsNameserversMapOutputWithContext(ctx context.Cont
 type DnsNameserversOutput struct{ *pulumi.OutputState }
 
 func (DnsNameserversOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DnsNameservers)(nil))
+	return reflect.TypeOf((**DnsNameservers)(nil)).Elem()
 }
 
 func (o DnsNameserversOutput) ToDnsNameserversOutput() DnsNameserversOutput {
@@ -223,44 +194,10 @@ func (o DnsNameserversOutput) ToDnsNameserversOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o DnsNameserversOutput) ToDnsNameserversPtrOutput() DnsNameserversPtrOutput {
-	return o.ToDnsNameserversPtrOutputWithContext(context.Background())
-}
-
-func (o DnsNameserversOutput) ToDnsNameserversPtrOutputWithContext(ctx context.Context) DnsNameserversPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v DnsNameservers) *DnsNameservers {
-		return &v
-	}).(DnsNameserversPtrOutput)
-}
-
-type DnsNameserversPtrOutput struct{ *pulumi.OutputState }
-
-func (DnsNameserversPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DnsNameservers)(nil))
-}
-
-func (o DnsNameserversPtrOutput) ToDnsNameserversPtrOutput() DnsNameserversPtrOutput {
-	return o
-}
-
-func (o DnsNameserversPtrOutput) ToDnsNameserversPtrOutputWithContext(ctx context.Context) DnsNameserversPtrOutput {
-	return o
-}
-
-func (o DnsNameserversPtrOutput) Elem() DnsNameserversOutput {
-	return o.ApplyT(func(v *DnsNameservers) DnsNameservers {
-		if v != nil {
-			return *v
-		}
-		var ret DnsNameservers
-		return ret
-	}).(DnsNameserversOutput)
-}
-
 type DnsNameserversArrayOutput struct{ *pulumi.OutputState }
 
 func (DnsNameserversArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DnsNameservers)(nil))
+	return reflect.TypeOf((*[]*DnsNameservers)(nil)).Elem()
 }
 
 func (o DnsNameserversArrayOutput) ToDnsNameserversArrayOutput() DnsNameserversArrayOutput {
@@ -272,15 +209,15 @@ func (o DnsNameserversArrayOutput) ToDnsNameserversArrayOutputWithContext(ctx co
 }
 
 func (o DnsNameserversArrayOutput) Index(i pulumi.IntInput) DnsNameserversOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DnsNameservers {
-		return vs[0].([]DnsNameservers)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DnsNameservers {
+		return vs[0].([]*DnsNameservers)[vs[1].(int)]
 	}).(DnsNameserversOutput)
 }
 
 type DnsNameserversMapOutput struct{ *pulumi.OutputState }
 
 func (DnsNameserversMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]DnsNameservers)(nil))
+	return reflect.TypeOf((*map[string]*DnsNameservers)(nil)).Elem()
 }
 
 func (o DnsNameserversMapOutput) ToDnsNameserversMapOutput() DnsNameserversMapOutput {
@@ -292,18 +229,16 @@ func (o DnsNameserversMapOutput) ToDnsNameserversMapOutputWithContext(ctx contex
 }
 
 func (o DnsNameserversMapOutput) MapIndex(k pulumi.StringInput) DnsNameserversOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DnsNameservers {
-		return vs[0].(map[string]DnsNameservers)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DnsNameservers {
+		return vs[0].(map[string]*DnsNameservers)[vs[1].(string)]
 	}).(DnsNameserversOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsNameserversInput)(nil)).Elem(), &DnsNameservers{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DnsNameserversPtrInput)(nil)).Elem(), &DnsNameservers{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsNameserversArrayInput)(nil)).Elem(), DnsNameserversArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsNameserversMapInput)(nil)).Elem(), DnsNameserversMap{})
 	pulumi.RegisterOutputType(DnsNameserversOutput{})
-	pulumi.RegisterOutputType(DnsNameserversPtrOutput{})
 	pulumi.RegisterOutputType(DnsNameserversArrayOutput{})
 	pulumi.RegisterOutputType(DnsNameserversMapOutput{})
 }

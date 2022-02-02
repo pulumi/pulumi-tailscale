@@ -25,9 +25,7 @@ export function getDevices(args?: GetDevicesArgs, opts?: pulumi.InvokeOptions): 
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("tailscale:index/getDevices:getDevices", {
         "namePrefix": args.namePrefix,
     }, opts);
