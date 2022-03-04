@@ -59,6 +59,18 @@
                         }
                     }
                 },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Tags applied to the device\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "user": {
                     "type": "string",
                     "description": "The user associated with the device\n",
@@ -74,6 +86,7 @@
                 "addresses",
                 "id",
                 "name",
+                "tags",
                 "user"
             ],
             "language": {
@@ -256,6 +269,60 @@
                 "type": "object"
             }
         },
+        "tailscale:index/deviceTags:DeviceTags": {
+            "description": "The device_tags resource is used to apply tags to a device within a Tailnet. For more information on ACL tags, see\nthe [ACL tags documentation](https://tailscale.com/kb/1068/acl-tags/) for more details.\n",
+            "properties": {
+                "deviceId": {
+                    "type": "string",
+                    "description": "The device to apply tags to.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The tags to apply to the device.\n"
+                }
+            },
+            "required": [
+                "deviceId",
+                "tags"
+            ],
+            "inputProperties": {
+                "deviceId": {
+                    "type": "string",
+                    "description": "The device to apply tags to.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The tags to apply to the device.\n"
+                }
+            },
+            "requiredInputs": [
+                "deviceId",
+                "tags"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DeviceTags resources.\n",
+                "properties": {
+                    "deviceId": {
+                        "type": "string",
+                        "description": "The device to apply tags to.\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The tags to apply to the device.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "tailscale:index/dnsNameservers:DnsNameservers": {
             "description": "The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See the\n[Tailscale DNS documentation](https://tailscale.com/kb/1054/dns) for more information.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleNameservers = new tailscale.DnsNameservers(\"sample_nameservers\", {\n    nameservers: [\n        \"8.8.8.8\",\n        \"8.8.4.4\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_nameservers = tailscale.DnsNameservers(\"sampleNameservers\", nameservers=[\n    \"8.8.8.8\",\n    \"8.8.4.4\",\n])\n```\n```csharp\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var sampleNameservers = new Tailscale.DnsNameservers(\"sampleNameservers\", new Tailscale.DnsNameserversArgs\n        {\n            Nameservers = \n            {\n                \"8.8.8.8\",\n                \"8.8.4.4\",\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewDnsNameservers(ctx, \"sampleNameservers\", \u0026tailscale.DnsNameserversArgs{\n\t\t\tNameservers: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"8.8.8.8\"),\n\t\t\t\tpulumi.String(\"8.8.4.4\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
@@ -366,17 +433,99 @@
                 },
                 "type": "object"
             }
+        },
+        "tailscale:index/tailnetKey:TailnetKey": {
+            "description": "The `tailnet_key` resource allows you to generate pre-authentication keys for your tailnet. See the\n[Tailscale auth keys](https://tailscale.com/kb/1085/auth-keys/) documentation for more information\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleKey = new tailscale.TailnetKey(\"sample_key\", {\n    ephemeral: false,\n    reusable: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_key = tailscale.TailnetKey(\"sampleKey\",\n    ephemeral=False,\n    reusable=True)\n```\n```csharp\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var sampleKey = new Tailscale.TailnetKey(\"sampleKey\", new Tailscale.TailnetKeyArgs\n        {\n            Ephemeral = false,\n            Reusable = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewTailnetKey(ctx, \"sampleKey\", \u0026tailscale.TailnetKeyArgs{\n\t\t\tEphemeral: pulumi.Bool(false),\n\t\t\tReusable:  pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "ephemeral": {
+                    "type": "boolean",
+                    "description": "Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating\nephemeral nodes for short-lived workloads.\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The key's identifier\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The generated authentication key.\n"
+                },
+                "reusable": {
+                    "type": "boolean",
+                    "description": "Determines if the generated key is reusable. Reusable keys can be used to connect multiple\nnodes. For example, multiple instances of on-prem database might use a reusable key to connect.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Set of tags to apply to the machines authenticated by the key. These tags can be used in ACL\nrules, see the [Tailscale ACL tag documentation](https://tailscale.com/kb/1068/acl-tags/).\n"
+                }
+            },
+            "required": [
+                "id",
+                "key"
+            ],
+            "inputProperties": {
+                "ephemeral": {
+                    "type": "boolean",
+                    "description": "Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating\nephemeral nodes for short-lived workloads.\n"
+                },
+                "reusable": {
+                    "type": "boolean",
+                    "description": "Determines if the generated key is reusable. Reusable keys can be used to connect multiple\nnodes. For example, multiple instances of on-prem database might use a reusable key to connect.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Set of tags to apply to the machines authenticated by the key. These tags can be used in ACL\nrules, see the [Tailscale ACL tag documentation](https://tailscale.com/kb/1068/acl-tags/).\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering TailnetKey resources.\n",
+                "properties": {
+                    "ephemeral": {
+                        "type": "boolean",
+                        "description": "Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating\nephemeral nodes for short-lived workloads.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The key's identifier\n"
+                    },
+                    "key": {
+                        "type": "string",
+                        "description": "The generated authentication key.\n"
+                    },
+                    "reusable": {
+                        "type": "boolean",
+                        "description": "Determines if the generated key is reusable. Reusable keys can be used to connect multiple\nnodes. For example, multiple instances of on-prem database might use a reusable key to connect.\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Set of tags to apply to the machines authenticated by the key. These tags can be used in ACL\nrules, see the [Tailscale ACL tag documentation](https://tailscale.com/kb/1068/acl-tags/).\n"
+                    }
+                },
+                "type": "object"
+            }
         }
     },
     "functions": {
         "tailscale:index/getDevice:getDevice": {
-            "description": "The device data source describes a single device in a tailnet.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleDevice = pulumi.output(tailscale.getDevice({\n    name: \"user1-device.example.com\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_device = tailscale.get_device(name=\"user1-device.example.com\")\n```\n```csharp\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var sampleDevice = Output.Create(Tailscale.GetDevice.InvokeAsync(new Tailscale.GetDeviceArgs\n        {\n            Name = \"user1-device.example.com\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.GetDevice(ctx, \u0026GetDeviceArgs{\n\t\t\tName: \"user1-device.example.com\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "The device data source describes a single device in a tailnet.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleDevice = pulumi.output(tailscale.getDevice({\n    name: \"user1-device.example.com\",\n    waitFor: \"60s\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_device = tailscale.get_device(name=\"user1-device.example.com\",\n    wait_for=\"60s\")\n```\n```csharp\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var sampleDevice = Output.Create(Tailscale.GetDevice.InvokeAsync(new Tailscale.GetDeviceArgs\n        {\n            Name = \"user1-device.example.com\",\n            WaitFor = \"60s\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.GetDevice(ctx, \u0026GetDeviceArgs{\n\t\t\tName:    \"user1-device.example.com\",\n\t\t\tWaitFor: pulumi.StringRef(\"60s\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getDevice.\n",
                 "properties": {
                     "name": {
                         "type": "string",
                         "description": "The name of the tailnet device to obtain the attributes of.\n"
+                    },
+                    "waitFor": {
+                        "type": "string",
+                        "description": "If specified, the provider will retry obtaining the device data every second until the specified duration has been reached. Must be a value greater than 1 second\n"
                     }
                 },
                 "type": "object",
@@ -401,15 +550,26 @@
                     "name": {
                         "type": "string"
                     },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Tags applied to the device\n"
+                    },
                     "user": {
                         "type": "string",
                         "description": "The user associated with the device\n"
+                    },
+                    "waitFor": {
+                        "type": "string"
                     }
                 },
                 "type": "object",
                 "required": [
                     "addresses",
                     "name",
+                    "tags",
                     "user",
                     "id"
                 ]

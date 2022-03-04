@@ -101,6 +101,8 @@ func Provider() tfbridge.ProviderInfo {
 			"tailscale_dns_preferences":      {Tok: makeResource(mainMod, "DnsPreferences")},
 			"tailscale_dns_search_paths":     {Tok: makeResource(mainMod, "DnsSearchPaths")},
 			"tailscale_device_authorization": {Tok: makeResource(mainMod, "DeviceAuthorization")},
+			"tailscale_device_tags":          {Tok: makeResource(mainMod, "DeviceTags")},
+			"tailscale_tailnet_key":          {Tok: makeResource(mainMod, "TailnetKey")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"tailscale_device":  {Tok: makeDataSource(mainMod, "getDevice")},

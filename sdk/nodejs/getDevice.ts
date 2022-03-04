@@ -15,6 +15,7 @@ import * as utilities from "./utilities";
  *
  * const sampleDevice = pulumi.output(tailscale.getDevice({
  *     name: "user1-device.example.com",
+ *     waitFor: "60s",
  * }));
  * ```
  */
@@ -26,6 +27,7 @@ export function getDevice(args: GetDeviceArgs, opts?: pulumi.InvokeOptions): Pro
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("tailscale:index/getDevice:getDevice", {
         "name": args.name,
+        "waitFor": args.waitFor,
     }, opts);
 }
 
@@ -37,6 +39,10 @@ export interface GetDeviceArgs {
      * The name of the tailnet device to obtain the attributes of.
      */
     name: string;
+    /**
+     * If specified, the provider will retry obtaining the device data every second until the specified duration has been reached. Must be a value greater than 1 second
+     */
+    waitFor?: string;
 }
 
 /**
@@ -53,9 +59,14 @@ export interface GetDeviceResult {
     readonly id: string;
     readonly name: string;
     /**
+     * Tags applied to the device
+     */
+    readonly tags: string[];
+    /**
      * The user associated with the device
      */
     readonly user: string;
+    readonly waitFor?: string;
 }
 
 export function getDeviceOutput(args: GetDeviceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeviceResult> {
@@ -70,4 +81,8 @@ export interface GetDeviceOutputArgs {
      * The name of the tailnet device to obtain the attributes of.
      */
     name: pulumi.Input<string>;
+    /**
+     * If specified, the provider will retry obtaining the device data every second until the specified duration has been reached. Must be a value greater than 1 second
+     */
+    waitFor?: pulumi.Input<string>;
 }

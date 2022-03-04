@@ -18,6 +18,10 @@ export interface GetDevicesDevice {
      */
     name: string;
     /**
+     * Tags applied to the device
+     */
+    tags: string[];
+    /**
      * The user associated with the device
      */
     user: string;
