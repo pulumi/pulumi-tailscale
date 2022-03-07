@@ -18,16 +18,19 @@ class GetDevicesDeviceResult(dict):
                  addresses: Sequence[str],
                  id: str,
                  name: str,
+                 tags: Sequence[str],
                  user: str):
         """
         :param Sequence[str] addresses: Tailscale IPs for the device
         :param str id: The unique identifier of the device
         :param str name: The name of the device
+        :param Sequence[str] tags: Tags applied to the device
         :param str user: The user associated with the device
         """
         pulumi.set(__self__, "addresses", addresses)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "user", user)
 
     @property
@@ -53,6 +56,14 @@ class GetDevicesDeviceResult(dict):
         The name of the device
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence[str]:
+        """
+        Tags applied to the device
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter

@@ -26,6 +26,10 @@ namespace Pulumi.Tailscale.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// Tags applied to the device
+        /// </summary>
+        public readonly ImmutableArray<string> Tags;
+        /// <summary>
         /// The user associated with the device
         /// </summary>
         public readonly string User;
@@ -38,11 +42,14 @@ namespace Pulumi.Tailscale.Outputs
 
             string name,
 
+            ImmutableArray<string> tags,
+
             string user)
         {
             Addresses = addresses;
             Id = id;
             Name = name;
+            Tags = tags;
             User = user;
         }
     }

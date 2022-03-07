@@ -17,6 +17,8 @@ type GetDevicesDevice struct {
 	Id string `pulumi:"id"`
 	// The name of the device
 	Name string `pulumi:"name"`
+	// Tags applied to the device
+	Tags []string `pulumi:"tags"`
 	// The user associated with the device
 	User string `pulumi:"user"`
 }
@@ -39,6 +41,8 @@ type GetDevicesDeviceArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// The name of the device
 	Name pulumi.StringInput `pulumi:"name"`
+	// Tags applied to the device
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
 	// The user associated with the device
 	User pulumi.StringInput `pulumi:"user"`
 }
@@ -107,6 +111,11 @@ func (o GetDevicesDeviceOutput) Id() pulumi.StringOutput {
 // The name of the device
 func (o GetDevicesDeviceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDevicesDevice) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Tags applied to the device
+func (o GetDevicesDeviceOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDevicesDevice) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 // The user associated with the device

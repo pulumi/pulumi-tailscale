@@ -8,12 +8,14 @@ import typing
 from .acl import *
 from .device_authorization import *
 from .device_subnet_routes import *
+from .device_tags import *
 from .dns_nameservers import *
 from .dns_preferences import *
 from .dns_search_paths import *
 from .get_device import *
 from .get_devices import *
 from .provider import *
+from .tailnet_key import *
 from . import outputs
 
 # Make subpackages available:
@@ -52,6 +54,14 @@ _utilities.register(
  },
  {
   "pkg": "tailscale",
+  "mod": "index/deviceTags",
+  "fqn": "pulumi_tailscale",
+  "classes": {
+   "tailscale:index/deviceTags:DeviceTags": "DeviceTags"
+  }
+ },
+ {
+  "pkg": "tailscale",
   "mod": "index/dnsNameservers",
   "fqn": "pulumi_tailscale",
   "classes": {
@@ -72,6 +82,14 @@ _utilities.register(
   "fqn": "pulumi_tailscale",
   "classes": {
    "tailscale:index/dnsSearchPaths:DnsSearchPaths": "DnsSearchPaths"
+  }
+ },
+ {
+  "pkg": "tailscale",
+  "mod": "index/tailnetKey",
+  "fqn": "pulumi_tailscale",
+  "classes": {
+   "tailscale:index/tailnetKey:TailnetKey": "TailnetKey"
   }
  }
 ]

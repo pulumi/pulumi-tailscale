@@ -26,12 +26,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DeviceAuthorization{}
 	case "tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes":
 		r = &DeviceSubnetRoutes{}
+	case "tailscale:index/deviceTags:DeviceTags":
+		r = &DeviceTags{}
 	case "tailscale:index/dnsNameservers:DnsNameservers":
 		r = &DnsNameservers{}
 	case "tailscale:index/dnsPreferences:DnsPreferences":
 		r = &DnsPreferences{}
 	case "tailscale:index/dnsSearchPaths:DnsSearchPaths":
 		r = &DnsSearchPaths{}
+	case "tailscale:index/tailnetKey:TailnetKey":
+		r = &TailnetKey{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -80,6 +84,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"tailscale",
+		"index/deviceTags",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"tailscale",
 		"index/dnsNameservers",
 		&module{version},
 	)
@@ -91,6 +100,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"tailscale",
 		"index/dnsSearchPaths",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"tailscale",
+		"index/tailnetKey",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

@@ -8,12 +8,14 @@ import * as utilities from "./utilities";
 export * from "./acl";
 export * from "./deviceAuthorization";
 export * from "./deviceSubnetRoutes";
+export * from "./deviceTags";
 export * from "./dnsNameservers";
 export * from "./dnsPreferences";
 export * from "./dnsSearchPaths";
 export * from "./getDevice";
 export * from "./getDevices";
 export * from "./provider";
+export * from "./tailnetKey";
 
 // Export sub-modules:
 import * as config from "./config";
@@ -28,9 +30,11 @@ export {
 import { Acl } from "./acl";
 import { DeviceAuthorization } from "./deviceAuthorization";
 import { DeviceSubnetRoutes } from "./deviceSubnetRoutes";
+import { DeviceTags } from "./deviceTags";
 import { DnsNameservers } from "./dnsNameservers";
 import { DnsPreferences } from "./dnsPreferences";
 import { DnsSearchPaths } from "./dnsSearchPaths";
+import { TailnetKey } from "./tailnetKey";
 
 const _module = {
     version: utilities.getVersion(),
@@ -42,12 +46,16 @@ const _module = {
                 return new DeviceAuthorization(name, <any>undefined, { urn })
             case "tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes":
                 return new DeviceSubnetRoutes(name, <any>undefined, { urn })
+            case "tailscale:index/deviceTags:DeviceTags":
+                return new DeviceTags(name, <any>undefined, { urn })
             case "tailscale:index/dnsNameservers:DnsNameservers":
                 return new DnsNameservers(name, <any>undefined, { urn })
             case "tailscale:index/dnsPreferences:DnsPreferences":
                 return new DnsPreferences(name, <any>undefined, { urn })
             case "tailscale:index/dnsSearchPaths:DnsSearchPaths":
                 return new DnsSearchPaths(name, <any>undefined, { urn })
+            case "tailscale:index/tailnetKey:TailnetKey":
+                return new TailnetKey(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -56,9 +64,11 @@ const _module = {
 pulumi.runtime.registerResourceModule("tailscale", "index/acl", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/deviceAuthorization", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/deviceSubnetRoutes", _module)
+pulumi.runtime.registerResourceModule("tailscale", "index/deviceTags", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsNameservers", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsPreferences", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsSearchPaths", _module)
+pulumi.runtime.registerResourceModule("tailscale", "index/tailnetKey", _module)
 
 import { Provider } from "./provider";
 

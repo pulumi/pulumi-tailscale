@@ -29,6 +29,7 @@ namespace Pulumi.Tailscale
         ///         var sampleDevice = Output.Create(Tailscale.GetDevice.InvokeAsync(new Tailscale.GetDeviceArgs
         ///         {
         ///             Name = "user1-device.example.com",
+        ///             WaitFor = "60s",
         ///         }));
         ///     }
         /// 
@@ -58,6 +59,7 @@ namespace Pulumi.Tailscale
         ///         var sampleDevice = Output.Create(Tailscale.GetDevice.InvokeAsync(new Tailscale.GetDeviceArgs
         ///         {
         ///             Name = "user1-device.example.com",
+        ///             WaitFor = "60s",
         ///         }));
         ///     }
         /// 
@@ -79,6 +81,12 @@ namespace Pulumi.Tailscale
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
+        /// <summary>
+        /// If specified, the provider will retry obtaining the device data every second until the specified duration has been reached. Must be a value greater than 1 second
+        /// </summary>
+        [Input("waitFor")]
+        public string? WaitFor { get; set; }
+
         public GetDeviceArgs()
         {
         }
@@ -91,6 +99,12 @@ namespace Pulumi.Tailscale
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// If specified, the provider will retry obtaining the device data every second until the specified duration has been reached. Must be a value greater than 1 second
+        /// </summary>
+        [Input("waitFor")]
+        public Input<string>? WaitFor { get; set; }
 
         public GetDeviceInvokeArgs()
         {
@@ -111,9 +125,14 @@ namespace Pulumi.Tailscale
         public readonly string Id;
         public readonly string Name;
         /// <summary>
+        /// Tags applied to the device
+        /// </summary>
+        public readonly ImmutableArray<string> Tags;
+        /// <summary>
         /// The user associated with the device
         /// </summary>
         public readonly string User;
+        public readonly string? WaitFor;
 
         [OutputConstructor]
         private GetDeviceResult(
@@ -123,12 +142,18 @@ namespace Pulumi.Tailscale
 
             string name,
 
-            string user)
+            ImmutableArray<string> tags,
+
+            string user,
+
+            string? waitFor)
         {
             Addresses = addresses;
             Id = id;
             Name = name;
+            Tags = tags;
             User = user;
+            WaitFor = waitFor;
         }
     }
 }
