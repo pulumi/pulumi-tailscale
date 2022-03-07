@@ -441,10 +441,6 @@
                     "type": "boolean",
                     "description": "Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating\nephemeral nodes for short-lived workloads.\n"
                 },
-                "id": {
-                    "type": "string",
-                    "description": "The key's identifier\n"
-                },
                 "key": {
                     "type": "string",
                     "description": "The generated authentication key.\n"
@@ -462,7 +458,6 @@
                 }
             },
             "required": [
-                "id",
                 "key"
             ],
             "inputProperties": {
@@ -488,10 +483,6 @@
                     "ephemeral": {
                         "type": "boolean",
                         "description": "Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating\nephemeral nodes for short-lived workloads.\n"
-                    },
-                    "id": {
-                        "type": "string",
-                        "description": "The key's identifier\n"
                     },
                     "key": {
                         "type": "string",

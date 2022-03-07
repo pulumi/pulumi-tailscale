@@ -76,7 +76,6 @@ class TailnetKeyArgs:
 class _TailnetKeyState:
     def __init__(__self__, *,
                  ephemeral: Optional[pulumi.Input[bool]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  reusable: Optional[pulumi.Input[bool]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
@@ -84,7 +83,6 @@ class _TailnetKeyState:
         Input properties used for looking up and filtering TailnetKey resources.
         :param pulumi.Input[bool] ephemeral: Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating
                ephemeral nodes for short-lived workloads.
-        :param pulumi.Input[str] id: The key's identifier
         :param pulumi.Input[str] key: The generated authentication key.
         :param pulumi.Input[bool] reusable: Determines if the generated key is reusable. Reusable keys can be used to connect multiple
                nodes. For example, multiple instances of on-prem database might use a reusable key to connect.
@@ -93,8 +91,6 @@ class _TailnetKeyState:
         """
         if ephemeral is not None:
             pulumi.set(__self__, "ephemeral", ephemeral)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if key is not None:
             pulumi.set(__self__, "key", key)
         if reusable is not None:
@@ -114,18 +110,6 @@ class _TailnetKeyState:
     @ephemeral.setter
     def ephemeral(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "ephemeral", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The key's identifier
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter
@@ -253,7 +237,6 @@ class TailnetKey(pulumi.CustomResource):
             __props__.__dict__["ephemeral"] = ephemeral
             __props__.__dict__["reusable"] = reusable
             __props__.__dict__["tags"] = tags
-            __props__.__dict__["id"] = None
             __props__.__dict__["key"] = None
         super(TailnetKey, __self__).__init__(
             'tailscale:index/tailnetKey:TailnetKey',
@@ -266,7 +249,6 @@ class TailnetKey(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             ephemeral: Optional[pulumi.Input[bool]] = None,
-            id: Optional[pulumi.Input[str]] = None,
             key: Optional[pulumi.Input[str]] = None,
             reusable: Optional[pulumi.Input[bool]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'TailnetKey':
@@ -279,7 +261,6 @@ class TailnetKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] ephemeral: Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating
                ephemeral nodes for short-lived workloads.
-        :param pulumi.Input[str] id: The key's identifier
         :param pulumi.Input[str] key: The generated authentication key.
         :param pulumi.Input[bool] reusable: Determines if the generated key is reusable. Reusable keys can be used to connect multiple
                nodes. For example, multiple instances of on-prem database might use a reusable key to connect.
@@ -291,7 +272,6 @@ class TailnetKey(pulumi.CustomResource):
         __props__ = _TailnetKeyState.__new__(_TailnetKeyState)
 
         __props__.__dict__["ephemeral"] = ephemeral
-        __props__.__dict__["id"] = id
         __props__.__dict__["key"] = key
         __props__.__dict__["reusable"] = reusable
         __props__.__dict__["tags"] = tags
@@ -305,14 +285,6 @@ class TailnetKey(pulumi.CustomResource):
         ephemeral nodes for short-lived workloads.
         """
         return pulumi.get(self, "ephemeral")
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        """
-        The key's identifier
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter

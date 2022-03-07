@@ -44,12 +44,6 @@ namespace Pulumi.Tailscale
         public Output<bool?> Ephemeral { get; private set; } = null!;
 
         /// <summary>
-        /// The key's identifier
-        /// </summary>
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
-
-        /// <summary>
         /// The generated authentication key.
         /// </summary>
         [Output("key")]
@@ -155,12 +149,6 @@ namespace Pulumi.Tailscale
         /// </summary>
         [Input("ephemeral")]
         public Input<bool>? Ephemeral { get; set; }
-
-        /// <summary>
-        /// The key's identifier
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
 
         /// <summary>
         /// The generated authentication key.

@@ -54,10 +54,6 @@ export class TailnetKey extends pulumi.CustomResource {
      */
     public readonly ephemeral!: pulumi.Output<boolean | undefined>;
     /**
-     * The key's identifier
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
-    /**
      * The generated authentication key.
      */
     public /*out*/ readonly key!: pulumi.Output<string>;
@@ -86,7 +82,6 @@ export class TailnetKey extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as TailnetKeyState | undefined;
             resourceInputs["ephemeral"] = state ? state.ephemeral : undefined;
-            resourceInputs["id"] = state ? state.id : undefined;
             resourceInputs["key"] = state ? state.key : undefined;
             resourceInputs["reusable"] = state ? state.reusable : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
@@ -95,7 +90,6 @@ export class TailnetKey extends pulumi.CustomResource {
             resourceInputs["ephemeral"] = args ? args.ephemeral : undefined;
             resourceInputs["reusable"] = args ? args.reusable : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["id"] = undefined /*out*/;
             resourceInputs["key"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -112,10 +106,6 @@ export interface TailnetKeyState {
      * ephemeral nodes for short-lived workloads.
      */
     ephemeral?: pulumi.Input<boolean>;
-    /**
-     * The key's identifier
-     */
-    id?: pulumi.Input<string>;
     /**
      * The generated authentication key.
      */

@@ -42,8 +42,6 @@ type TailnetKey struct {
 	// Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating
 	// ephemeral nodes for short-lived workloads.
 	Ephemeral pulumi.BoolPtrOutput `pulumi:"ephemeral"`
-	// The key's identifier
-	Id pulumi.StringOutput `pulumi:"id"`
 	// The generated authentication key.
 	Key pulumi.StringOutput `pulumi:"key"`
 	// Determines if the generated key is reusable. Reusable keys can be used to connect multiple
@@ -86,8 +84,6 @@ type tailnetKeyState struct {
 	// Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating
 	// ephemeral nodes for short-lived workloads.
 	Ephemeral *bool `pulumi:"ephemeral"`
-	// The key's identifier
-	Id *string `pulumi:"id"`
 	// The generated authentication key.
 	Key *string `pulumi:"key"`
 	// Determines if the generated key is reusable. Reusable keys can be used to connect multiple
@@ -102,8 +98,6 @@ type TailnetKeyState struct {
 	// Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating
 	// ephemeral nodes for short-lived workloads.
 	Ephemeral pulumi.BoolPtrInput
-	// The key's identifier
-	Id pulumi.StringPtrInput
 	// The generated authentication key.
 	Key pulumi.StringPtrInput
 	// Determines if the generated key is reusable. Reusable keys can be used to connect multiple
