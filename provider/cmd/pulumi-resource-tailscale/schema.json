@@ -215,6 +215,61 @@
                 "type": "object"
             }
         },
+        "tailscale:index/deviceKey:DeviceKey": {
+            "description": "The `device_key` resource allows you to modify the property of a device's key.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst exampleDevice = tailscale.getDevice({\n    name: \"device.example.com\",\n});\nconst exampleKey = new tailscale.DeviceKey(\"exampleKey\", {\n    deviceId: exampleDevice.then(exampleDevice =\u003e exampleDevice.id),\n    preauthorized: true,\n    keyExpiryDisabled: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nexample_device = tailscale.get_device(name=\"device.example.com\")\nexample_key = tailscale.DeviceKey(\"exampleKey\",\n    device_id=example_device.id,\n    preauthorized=True,\n    key_expiry_disabled=True)\n```\n```csharp\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleDevice = Output.Create(Tailscale.GetDevice.InvokeAsync(new Tailscale.GetDeviceArgs\n        {\n            Name = \"device.example.com\",\n        }));\n        var exampleKey = new Tailscale.DeviceKey(\"exampleKey\", new Tailscale.DeviceKeyArgs\n        {\n            DeviceId = exampleDevice.Apply(exampleDevice =\u003e exampleDevice.Id),\n            Preauthorized = true,\n            KeyExpiryDisabled = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleDevice, err := tailscale.GetDevice(ctx, \u0026GetDeviceArgs{\n\t\t\tName: \"device.example.com\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = tailscale.NewDeviceKey(ctx, \"exampleKey\", \u0026tailscale.DeviceKeyArgs{\n\t\t\tDeviceId:          pulumi.String(exampleDevice.Id),\n\t\t\tPreauthorized:     pulumi.Bool(true),\n\t\t\tKeyExpiryDisabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "deviceId": {
+                    "type": "string",
+                    "description": "The device to change the key properties of.\n"
+                },
+                "keyExpiryDisabled": {
+                    "type": "boolean",
+                    "description": "Whether the device's key will ever expire.\n"
+                },
+                "preauthorized": {
+                    "type": "boolean",
+                    "description": "Whether the device should be authorized for the tailnet by default, works in tailnets \nwhere device authorization is enabled.\n"
+                }
+            },
+            "required": [
+                "deviceId"
+            ],
+            "inputProperties": {
+                "deviceId": {
+                    "type": "string",
+                    "description": "The device to change the key properties of.\n"
+                },
+                "keyExpiryDisabled": {
+                    "type": "boolean",
+                    "description": "Whether the device's key will ever expire.\n"
+                },
+                "preauthorized": {
+                    "type": "boolean",
+                    "description": "Whether the device should be authorized for the tailnet by default, works in tailnets \nwhere device authorization is enabled.\n"
+                }
+            },
+            "requiredInputs": [
+                "deviceId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DeviceKey resources.\n",
+                "properties": {
+                    "deviceId": {
+                        "type": "string",
+                        "description": "The device to change the key properties of.\n"
+                    },
+                    "keyExpiryDisabled": {
+                        "type": "boolean",
+                        "description": "Whether the device's key will ever expire.\n"
+                    },
+                    "preauthorized": {
+                        "type": "boolean",
+                        "description": "Whether the device should be authorized for the tailnet by default, works in tailnets \nwhere device authorization is enabled.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes": {
             "description": "The device_subnet_routes resource allows you to configure subnet routes for your Tailscale devices. See the\n[Tailscale subnets documentation](https://tailscale.com/kb/1019/subnets) for more information.\n",
             "properties": {

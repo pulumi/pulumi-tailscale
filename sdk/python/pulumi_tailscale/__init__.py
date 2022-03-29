@@ -7,6 +7,7 @@ import typing
 # Export this package's modules as members:
 from .acl import *
 from .device_authorization import *
+from .device_key import *
 from .device_subnet_routes import *
 from .device_tags import *
 from .dns_nameservers import *
@@ -42,6 +43,14 @@ _utilities.register(
   "fqn": "pulumi_tailscale",
   "classes": {
    "tailscale:index/deviceAuthorization:DeviceAuthorization": "DeviceAuthorization"
+  }
+ },
+ {
+  "pkg": "tailscale",
+  "mod": "index/deviceKey",
+  "fqn": "pulumi_tailscale",
+  "classes": {
+   "tailscale:index/deviceKey:DeviceKey": "DeviceKey"
   }
  },
  {

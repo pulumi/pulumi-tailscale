@@ -7,6 +7,7 @@ import * as utilities from "./utilities";
 // Export members:
 export * from "./acl";
 export * from "./deviceAuthorization";
+export * from "./deviceKey";
 export * from "./deviceSubnetRoutes";
 export * from "./deviceTags";
 export * from "./dnsNameservers";
@@ -29,6 +30,7 @@ export {
 // Import resources to register:
 import { Acl } from "./acl";
 import { DeviceAuthorization } from "./deviceAuthorization";
+import { DeviceKey } from "./deviceKey";
 import { DeviceSubnetRoutes } from "./deviceSubnetRoutes";
 import { DeviceTags } from "./deviceTags";
 import { DnsNameservers } from "./dnsNameservers";
@@ -44,6 +46,8 @@ const _module = {
                 return new Acl(name, <any>undefined, { urn })
             case "tailscale:index/deviceAuthorization:DeviceAuthorization":
                 return new DeviceAuthorization(name, <any>undefined, { urn })
+            case "tailscale:index/deviceKey:DeviceKey":
+                return new DeviceKey(name, <any>undefined, { urn })
             case "tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes":
                 return new DeviceSubnetRoutes(name, <any>undefined, { urn })
             case "tailscale:index/deviceTags:DeviceTags":
@@ -63,6 +67,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("tailscale", "index/acl", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/deviceAuthorization", _module)
+pulumi.runtime.registerResourceModule("tailscale", "index/deviceKey", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/deviceSubnetRoutes", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/deviceTags", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsNameservers", _module)
