@@ -24,6 +24,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Acl{}
 	case "tailscale:index/deviceAuthorization:DeviceAuthorization":
 		r = &DeviceAuthorization{}
+	case "tailscale:index/deviceKey:DeviceKey":
+		r = &DeviceKey{}
 	case "tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes":
 		r = &DeviceSubnetRoutes{}
 	case "tailscale:index/deviceTags:DeviceTags":
@@ -75,6 +77,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"tailscale",
 		"index/deviceAuthorization",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"tailscale",
+		"index/deviceKey",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
