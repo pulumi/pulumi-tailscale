@@ -21,6 +21,9 @@ namespace Pulumi.Tailscale
         [Output("apiKey")]
         public Output<string> ApiKey { get; private set; } = null!;
 
+        [Output("baseUrl")]
+        public Output<string?> BaseUrl { get; private set; } = null!;
+
         [Output("tailnet")]
         public Output<string> Tailnet { get; private set; } = null!;
 
@@ -54,6 +57,9 @@ namespace Pulumi.Tailscale
     {
         [Input("apiKey", required: true)]
         public Input<string> ApiKey { get; set; } = null!;
+
+        [Input("baseUrl")]
+        public Input<string>? BaseUrl { get; set; }
 
         [Input("tailnet", required: true)]
         public Input<string> Tailnet { get; set; } = null!;

@@ -18,8 +18,9 @@ import (
 type Provider struct {
 	pulumi.ProviderResourceState
 
-	ApiKey  pulumi.StringOutput `pulumi:"apiKey"`
-	Tailnet pulumi.StringOutput `pulumi:"tailnet"`
+	ApiKey  pulumi.StringOutput    `pulumi:"apiKey"`
+	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
+	Tailnet pulumi.StringOutput    `pulumi:"tailnet"`
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
@@ -44,13 +45,15 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	ApiKey  string `pulumi:"apiKey"`
-	Tailnet string `pulumi:"tailnet"`
+	ApiKey  string  `pulumi:"apiKey"`
+	BaseUrl *string `pulumi:"baseUrl"`
+	Tailnet string  `pulumi:"tailnet"`
 }
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
 	ApiKey  pulumi.StringInput
+	BaseUrl pulumi.StringPtrInput
 	Tailnet pulumi.StringInput
 }
 
