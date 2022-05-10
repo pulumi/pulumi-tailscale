@@ -11,6 +11,9 @@ import (
 func GetApiKey(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:apiKey")
 }
+func GetBaseUrl(ctx *pulumi.Context) string {
+	return config.Get(ctx, "tailscale:baseUrl")
+}
 func GetTailnet(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:tailnet")
 }

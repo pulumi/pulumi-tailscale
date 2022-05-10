@@ -26,6 +26,7 @@ export class Provider extends pulumi.ProviderResource {
     }
 
     public readonly apiKey!: pulumi.Output<string>;
+    public readonly baseUrl!: pulumi.Output<string | undefined>;
     public readonly tailnet!: pulumi.Output<string>;
 
     /**
@@ -46,6 +47,7 @@ export class Provider extends pulumi.ProviderResource {
                 throw new Error("Missing required property 'tailnet'");
             }
             resourceInputs["apiKey"] = args ? args.apiKey : undefined;
+            resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
             resourceInputs["tailnet"] = args ? args.tailnet : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -58,5 +60,6 @@ export class Provider extends pulumi.ProviderResource {
  */
 export interface ProviderArgs {
     apiKey: pulumi.Input<string>;
+    baseUrl?: pulumi.Input<string>;
     tailnet: pulumi.Input<string>;
 }
