@@ -19,6 +19,10 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('apiKey')
 
     @property
+    def base_url(self) -> Optional[str]:
+        return __config__.get('baseUrl')
+
+    @property
     def tailnet(self) -> Optional[str]:
         return __config__.get('tailnet')
 

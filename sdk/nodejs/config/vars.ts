@@ -15,6 +15,14 @@ Object.defineProperty(exports, "apiKey", {
     enumerable: true,
 });
 
+export declare const baseUrl: string | undefined;
+Object.defineProperty(exports, "baseUrl", {
+    get() {
+        return __config.get("baseUrl");
+    },
+    enumerable: true,
+});
+
 export declare const tailnet: string | undefined;
 Object.defineProperty(exports, "tailnet", {
     get() {

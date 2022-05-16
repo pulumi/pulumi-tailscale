@@ -39,6 +39,13 @@ namespace Pulumi.Tailscale
             set => _apiKey.Set(value);
         }
 
+        private static readonly __Value<string?> _baseUrl = new __Value<string?>(() => __config.Get("baseUrl"));
+        public static string? BaseUrl
+        {
+            get => _baseUrl.Get();
+            set => _baseUrl.Set(value);
+        }
+
         private static readonly __Value<string?> _tailnet = new __Value<string?>(() => __config.Get("tailnet"));
         public static string? Tailnet
         {

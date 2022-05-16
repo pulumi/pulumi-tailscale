@@ -17,6 +17,9 @@
             "apiKey": {
                 "type": "string"
             },
+            "baseUrl": {
+                "type": "string"
+            },
             "tailnet": {
                 "type": "string"
             }
@@ -102,6 +105,9 @@
             "apiKey": {
                 "type": "string"
             },
+            "baseUrl": {
+                "type": "string"
+            },
             "tailnet": {
                 "type": "string"
             }
@@ -112,6 +118,9 @@
         ],
         "inputProperties": {
             "apiKey": {
+                "type": "string"
+            },
+            "baseUrl": {
                 "type": "string"
             },
             "tailnet": {

@@ -10,5 +10,7 @@ from .. import _utilities
 
 apiKey: Optional[str]
 
+baseUrl: Optional[str]
+
 tailnet: Optional[str]
 

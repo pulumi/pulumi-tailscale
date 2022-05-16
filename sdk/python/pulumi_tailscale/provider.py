@@ -14,12 +14,15 @@ __all__ = ['ProviderArgs', 'Provider']
 class ProviderArgs:
     def __init__(__self__, *,
                  api_key: pulumi.Input[str],
-                 tailnet: pulumi.Input[str]):
+                 tailnet: pulumi.Input[str],
+                 base_url: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
         """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "tailnet", tailnet)
+        if base_url is not None:
+            pulumi.set(__self__, "base_url", base_url)
 
     @property
     @pulumi.getter(name="apiKey")
@@ -39,6 +42,15 @@ class ProviderArgs:
     def tailnet(self, value: pulumi.Input[str]):
         pulumi.set(self, "tailnet", value)
 
+    @property
+    @pulumi.getter(name="baseUrl")
+    def base_url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "base_url")
+
+    @base_url.setter
+    def base_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "base_url", value)
+
 
 class Provider(pulumi.ProviderResource):
     @overload
@@ -46,6 +58,7 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
+                 base_url: Optional[pulumi.Input[str]] = None,
                  tailnet: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -85,6 +98,7 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
+                 base_url: Optional[pulumi.Input[str]] = None,
                  tailnet: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -101,6 +115,7 @@ class Provider(pulumi.ProviderResource):
             if api_key is None and not opts.urn:
                 raise TypeError("Missing required property 'api_key'")
             __props__.__dict__["api_key"] = api_key
+            __props__.__dict__["base_url"] = base_url
             if tailnet is None and not opts.urn:
                 raise TypeError("Missing required property 'tailnet'")
             __props__.__dict__["tailnet"] = tailnet
@@ -114,6 +129,11 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Output[str]:
         return pulumi.get(self, "api_key")
+
+    @property
+    @pulumi.getter(name="baseUrl")
+    def base_url(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "base_url")
 
     @property
     @pulumi.getter
