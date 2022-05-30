@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * The devices data source describes a list of devices in a tailnet.
+ * The devices data source describes a list of devices in a tailnet
  *
  * ## Example Usage
  *
@@ -35,9 +35,6 @@ export function getDevices(args?: GetDevicesArgs, opts?: pulumi.InvokeOptions): 
  * A collection of arguments for invoking getDevices.
  */
 export interface GetDevicesArgs {
-    /**
-     * Filters the returned list of devices to those whose name have this prefix.
-     */
     namePrefix?: string;
 }
 
@@ -45,9 +42,6 @@ export interface GetDevicesArgs {
  * A collection of values returned by getDevices.
  */
 export interface GetDevicesResult {
-    /**
-     * The list of devices returned from the Tailscale API. Each element contains the following:
-     */
     readonly devices: outputs.GetDevicesDevice[];
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -64,8 +58,5 @@ export function getDevicesOutput(args?: GetDevicesOutputArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getDevices.
  */
 export interface GetDevicesOutputArgs {
-    /**
-     * Filters the returned list of devices to those whose name have this prefix.
-     */
     namePrefix?: pulumi.Input<string>;
 }

@@ -16,8 +16,7 @@ class DnsNameserversArgs:
                  nameservers: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
         The set of arguments for constructing a DnsNameservers resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 
-               addresses are accepted.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
         """
         pulumi.set(__self__, "nameservers", nameservers)
 
@@ -25,8 +24,7 @@ class DnsNameserversArgs:
     @pulumi.getter
     def nameservers(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 
-        addresses are accepted.
+        Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
         """
         return pulumi.get(self, "nameservers")
 
@@ -41,8 +39,7 @@ class _DnsNameserversState:
                  nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering DnsNameservers resources.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 
-               addresses are accepted.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
         """
         if nameservers is not None:
             pulumi.set(__self__, "nameservers", nameservers)
@@ -51,8 +48,7 @@ class _DnsNameserversState:
     @pulumi.getter
     def nameservers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 
-        addresses are accepted.
+        Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
         """
         return pulumi.get(self, "nameservers")
 
@@ -69,8 +65,7 @@ class DnsNameservers(pulumi.CustomResource):
                  nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See the
-        [Tailscale DNS documentation](https://tailscale.com/kb/1054/dns) for more information.
+        The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
 
         ## Example Usage
 
@@ -86,8 +81,7 @@ class DnsNameservers(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 
-               addresses are accepted.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
         """
         ...
     @overload
@@ -96,8 +90,7 @@ class DnsNameservers(pulumi.CustomResource):
                  args: DnsNameserversArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See the
-        [Tailscale DNS documentation](https://tailscale.com/kb/1054/dns) for more information.
+        The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
 
         ## Example Usage
 
@@ -160,8 +153,7 @@ class DnsNameservers(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 
-               addresses are accepted.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -174,8 +166,7 @@ class DnsNameservers(pulumi.CustomResource):
     @pulumi.getter
     def nameservers(self) -> pulumi.Output[Sequence[str]]:
         """
-        Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 
-        addresses are accepted.
+        Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
         """
         return pulumi.get(self, "nameservers")
 

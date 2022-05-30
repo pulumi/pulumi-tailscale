@@ -16,9 +16,7 @@ class AclArgs:
                  acl: pulumi.Input[str]):
         """
         The set of arguments for constructing a Acl resource.
-        :param pulumi.Input[str] acl: The JSON-based policy that defines which devices and users are allowed to connect in your network.
-               This can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your
-               local ACL file.
+        :param pulumi.Input[str] acl: The JSON-based policy that defines which devices and users are allowed to connect in your network
         """
         pulumi.set(__self__, "acl", acl)
 
@@ -26,9 +24,7 @@ class AclArgs:
     @pulumi.getter
     def acl(self) -> pulumi.Input[str]:
         """
-        The JSON-based policy that defines which devices and users are allowed to connect in your network.
-        This can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your
-        local ACL file.
+        The JSON-based policy that defines which devices and users are allowed to connect in your network
         """
         return pulumi.get(self, "acl")
 
@@ -43,9 +39,7 @@ class _AclState:
                  acl: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Acl resources.
-        :param pulumi.Input[str] acl: The JSON-based policy that defines which devices and users are allowed to connect in your network.
-               This can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your
-               local ACL file.
+        :param pulumi.Input[str] acl: The JSON-based policy that defines which devices and users are allowed to connect in your network
         """
         if acl is not None:
             pulumi.set(__self__, "acl", acl)
@@ -54,9 +48,7 @@ class _AclState:
     @pulumi.getter
     def acl(self) -> Optional[pulumi.Input[str]]:
         """
-        The JSON-based policy that defines which devices and users are allowed to connect in your network.
-        This can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your
-        local ACL file.
+        The JSON-based policy that defines which devices and users are allowed to connect in your network
         """
         return pulumi.get(self, "acl")
 
@@ -73,14 +65,27 @@ class Acl(pulumi.CustomResource):
                  acl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The acl resource allows you to configure a Tailscale ACL. See the [Tailscale ACL documentation](https://tailscale.com/kb/1018/acls)
-        for more information. You can set the ACL in multiple ways including hujson.
+        The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_tailscale as tailscale
+
+        sample_acl = tailscale.Acl("sampleAcl", acl=json.dumps({
+            "acls": [{
+                "action": "accept",
+                "users": ["*"],
+                "ports": ["*:*"],
+            }],
+        }))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] acl: The JSON-based policy that defines which devices and users are allowed to connect in your network.
-               This can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your
-               local ACL file.
+        :param pulumi.Input[str] acl: The JSON-based policy that defines which devices and users are allowed to connect in your network
         """
         ...
     @overload
@@ -89,8 +94,23 @@ class Acl(pulumi.CustomResource):
                  args: AclArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The acl resource allows you to configure a Tailscale ACL. See the [Tailscale ACL documentation](https://tailscale.com/kb/1018/acls)
-        for more information. You can set the ACL in multiple ways including hujson.
+        The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_tailscale as tailscale
+
+        sample_acl = tailscale.Acl("sampleAcl", acl=json.dumps({
+            "acls": [{
+                "action": "accept",
+                "users": ["*"],
+                "ports": ["*:*"],
+            }],
+        }))
+        ```
 
         :param str resource_name: The name of the resource.
         :param AclArgs args: The arguments to use to populate this resource's properties.
@@ -141,9 +161,7 @@ class Acl(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] acl: The JSON-based policy that defines which devices and users are allowed to connect in your network.
-               This can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your
-               local ACL file.
+        :param pulumi.Input[str] acl: The JSON-based policy that defines which devices and users are allowed to connect in your network
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -156,9 +174,7 @@ class Acl(pulumi.CustomResource):
     @pulumi.getter
     def acl(self) -> pulumi.Output[str]:
         """
-        The JSON-based policy that defines which devices and users are allowed to connect in your network.
-        This can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your
-        local ACL file.
+        The JSON-based policy that defines which devices and users are allowed to connect in your network
         """
         return pulumi.get(self, "acl")
 

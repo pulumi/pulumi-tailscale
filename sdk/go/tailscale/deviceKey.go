@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The `deviceKey` resource allows you to modify the property of a device's key.
+// The deviceKey resource allows you to update the properties of a device's key
 //
 // ## Example Usage
 //
@@ -46,12 +46,11 @@ import (
 type DeviceKey struct {
 	pulumi.CustomResourceState
 
-	// The device to change the key properties of.
+	// The device to update the key properties of
 	DeviceId pulumi.StringOutput `pulumi:"deviceId"`
-	// Whether the device's key will ever expire.
+	// Determines whether or not the device's key will expire
 	KeyExpiryDisabled pulumi.BoolPtrOutput `pulumi:"keyExpiryDisabled"`
-	// Whether the device should be authorized for the tailnet by default, works in tailnets
-	// where device authorization is enabled.
+	// Determines whether or not the device will be authorized for the tailnet by default.
 	Preauthorized pulumi.BoolPtrOutput `pulumi:"preauthorized"`
 }
 
@@ -87,22 +86,20 @@ func GetDeviceKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DeviceKey resources.
 type deviceKeyState struct {
-	// The device to change the key properties of.
+	// The device to update the key properties of
 	DeviceId *string `pulumi:"deviceId"`
-	// Whether the device's key will ever expire.
+	// Determines whether or not the device's key will expire
 	KeyExpiryDisabled *bool `pulumi:"keyExpiryDisabled"`
-	// Whether the device should be authorized for the tailnet by default, works in tailnets
-	// where device authorization is enabled.
+	// Determines whether or not the device will be authorized for the tailnet by default.
 	Preauthorized *bool `pulumi:"preauthorized"`
 }
 
 type DeviceKeyState struct {
-	// The device to change the key properties of.
+	// The device to update the key properties of
 	DeviceId pulumi.StringPtrInput
-	// Whether the device's key will ever expire.
+	// Determines whether or not the device's key will expire
 	KeyExpiryDisabled pulumi.BoolPtrInput
-	// Whether the device should be authorized for the tailnet by default, works in tailnets
-	// where device authorization is enabled.
+	// Determines whether or not the device will be authorized for the tailnet by default.
 	Preauthorized pulumi.BoolPtrInput
 }
 
@@ -111,23 +108,21 @@ func (DeviceKeyState) ElementType() reflect.Type {
 }
 
 type deviceKeyArgs struct {
-	// The device to change the key properties of.
+	// The device to update the key properties of
 	DeviceId string `pulumi:"deviceId"`
-	// Whether the device's key will ever expire.
+	// Determines whether or not the device's key will expire
 	KeyExpiryDisabled *bool `pulumi:"keyExpiryDisabled"`
-	// Whether the device should be authorized for the tailnet by default, works in tailnets
-	// where device authorization is enabled.
+	// Determines whether or not the device will be authorized for the tailnet by default.
 	Preauthorized *bool `pulumi:"preauthorized"`
 }
 
 // The set of arguments for constructing a DeviceKey resource.
 type DeviceKeyArgs struct {
-	// The device to change the key properties of.
+	// The device to update the key properties of
 	DeviceId pulumi.StringInput
-	// Whether the device's key will ever expire.
+	// Determines whether or not the device's key will expire
 	KeyExpiryDisabled pulumi.BoolPtrInput
-	// Whether the device should be authorized for the tailnet by default, works in tailnets
-	// where device authorization is enabled.
+	// Determines whether or not the device will be authorized for the tailnet by default.
 	Preauthorized pulumi.BoolPtrInput
 }
 

@@ -17,8 +17,8 @@ class DeviceTagsArgs:
                  tags: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
         The set of arguments for constructing a DeviceTags resource.
-        :param pulumi.Input[str] device_id: The device to apply tags to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to apply to the device.
+        :param pulumi.Input[str] device_id: The device to set tags for
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to apply to the device
         """
         pulumi.set(__self__, "device_id", device_id)
         pulumi.set(__self__, "tags", tags)
@@ -27,7 +27,7 @@ class DeviceTagsArgs:
     @pulumi.getter(name="deviceId")
     def device_id(self) -> pulumi.Input[str]:
         """
-        The device to apply tags to.
+        The device to set tags for
         """
         return pulumi.get(self, "device_id")
 
@@ -39,7 +39,7 @@ class DeviceTagsArgs:
     @pulumi.getter
     def tags(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        The tags to apply to the device.
+        The tags to apply to the device
         """
         return pulumi.get(self, "tags")
 
@@ -55,8 +55,8 @@ class _DeviceTagsState:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering DeviceTags resources.
-        :param pulumi.Input[str] device_id: The device to apply tags to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to apply to the device.
+        :param pulumi.Input[str] device_id: The device to set tags for
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to apply to the device
         """
         if device_id is not None:
             pulumi.set(__self__, "device_id", device_id)
@@ -67,7 +67,7 @@ class _DeviceTagsState:
     @pulumi.getter(name="deviceId")
     def device_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The device to apply tags to.
+        The device to set tags for
         """
         return pulumi.get(self, "device_id")
 
@@ -79,7 +79,7 @@ class _DeviceTagsState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The tags to apply to the device.
+        The tags to apply to the device
         """
         return pulumi.get(self, "tags")
 
@@ -97,13 +97,24 @@ class DeviceTags(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        The device_tags resource is used to apply tags to a device within a Tailnet. For more information on ACL tags, see
-        the [ACL tags documentation](https://tailscale.com/kb/1068/acl-tags/) for more details.
+        The device_tags resource is used to apply tags to Tailscale devices. See https://tailscale.com/kb/1068/acl-tags/ for more details.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_tailscale as tailscale
+
+        sample_device = tailscale.get_device(name="device.example.com")
+        sample_tags = tailscale.DeviceTags("sampleTags",
+            device_id=sample_device.id,
+            tags=["room:bedroom"])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] device_id: The device to apply tags to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to apply to the device.
+        :param pulumi.Input[str] device_id: The device to set tags for
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to apply to the device
         """
         ...
     @overload
@@ -112,8 +123,19 @@ class DeviceTags(pulumi.CustomResource):
                  args: DeviceTagsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The device_tags resource is used to apply tags to a device within a Tailnet. For more information on ACL tags, see
-        the [ACL tags documentation](https://tailscale.com/kb/1068/acl-tags/) for more details.
+        The device_tags resource is used to apply tags to Tailscale devices. See https://tailscale.com/kb/1068/acl-tags/ for more details.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_tailscale as tailscale
+
+        sample_device = tailscale.get_device(name="device.example.com")
+        sample_tags = tailscale.DeviceTags("sampleTags",
+            device_id=sample_device.id,
+            tags=["room:bedroom"])
+        ```
 
         :param str resource_name: The name of the resource.
         :param DeviceTagsArgs args: The arguments to use to populate this resource's properties.
@@ -169,8 +191,8 @@ class DeviceTags(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] device_id: The device to apply tags to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to apply to the device.
+        :param pulumi.Input[str] device_id: The device to set tags for
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to apply to the device
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -184,7 +206,7 @@ class DeviceTags(pulumi.CustomResource):
     @pulumi.getter(name="deviceId")
     def device_id(self) -> pulumi.Output[str]:
         """
-        The device to apply tags to.
+        The device to set tags for
         """
         return pulumi.get(self, "device_id")
 
@@ -192,7 +214,7 @@ class DeviceTags(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Sequence[str]]:
         """
-        The tags to apply to the device.
+        The tags to apply to the device
         """
         return pulumi.get(self, "tags")
 

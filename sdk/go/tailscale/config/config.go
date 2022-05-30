@@ -8,12 +8,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
 
+// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
 func GetApiKey(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:apiKey")
 }
+
+// The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
+// environment variable.
 func GetBaseUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:baseUrl")
 }
+
+// The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
 func GetTailnet(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:tailnet")
 }

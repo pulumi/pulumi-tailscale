@@ -16,13 +16,23 @@ __config__ = pulumi.Config('tailscale')
 class _ExportableConfig(types.ModuleType):
     @property
     def api_key(self) -> Optional[str]:
+        """
+        The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+        """
         return __config__.get('apiKey')
 
     @property
     def base_url(self) -> Optional[str]:
+        """
+        The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
+        environment variable.
+        """
         return __config__.get('baseUrl')
 
     @property
     def tailnet(self) -> Optional[str]:
+        """
+        The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+        """
         return __config__.get('tailnet')
 

@@ -11,8 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The dnsPreferences resource allows you to configure DNS preferences for your Tailscale network. See the
-// [Tailscale DNS documentation](https://tailscale.com/kb/1054/dns) for more information.
+// The dnsPreferences resource allows you to configure DNS preferences for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
 //
 // ## Example Usage
 //
@@ -39,8 +38,7 @@ import (
 type DnsPreferences struct {
 	pulumi.CustomResourceState
 
-	// Enables or disables MagicDNS, automatically registers DNS names for devices on your network.
-	// At least one DNS server must be set before enabling Magic DNS.
+	// Whether or not to enable magic DNS
 	MagicDns pulumi.BoolOutput `pulumi:"magicDns"`
 }
 
@@ -76,14 +74,12 @@ func GetDnsPreferences(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DnsPreferences resources.
 type dnsPreferencesState struct {
-	// Enables or disables MagicDNS, automatically registers DNS names for devices on your network.
-	// At least one DNS server must be set before enabling Magic DNS.
+	// Whether or not to enable magic DNS
 	MagicDns *bool `pulumi:"magicDns"`
 }
 
 type DnsPreferencesState struct {
-	// Enables or disables MagicDNS, automatically registers DNS names for devices on your network.
-	// At least one DNS server must be set before enabling Magic DNS.
+	// Whether or not to enable magic DNS
 	MagicDns pulumi.BoolPtrInput
 }
 
@@ -92,15 +88,13 @@ func (DnsPreferencesState) ElementType() reflect.Type {
 }
 
 type dnsPreferencesArgs struct {
-	// Enables or disables MagicDNS, automatically registers DNS names for devices on your network.
-	// At least one DNS server must be set before enabling Magic DNS.
+	// Whether or not to enable magic DNS
 	MagicDns bool `pulumi:"magicDns"`
 }
 
 // The set of arguments for constructing a DnsPreferences resource.
 type DnsPreferencesArgs struct {
-	// Enables or disables MagicDNS, automatically registers DNS names for devices on your network.
-	// At least one DNS server must be set before enabling Magic DNS.
+	// Whether or not to enable magic DNS
 	MagicDns pulumi.BoolInput
 }
 

@@ -5,8 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The dnsPreferences resource allows you to configure DNS preferences for your Tailscale network. See the
- * [Tailscale DNS documentation](https://tailscale.com/kb/1054/dns) for more information.
+ * The dnsPreferences resource allows you to configure DNS preferences for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
  *
  * ## Example Usage
  *
@@ -48,8 +47,7 @@ export class DnsPreferences extends pulumi.CustomResource {
     }
 
     /**
-     * Enables or disables MagicDNS, automatically registers DNS names for devices on your network.
-     * At least one DNS server must be set before enabling Magic DNS.
+     * Whether or not to enable magic DNS
      */
     public readonly magicDns!: pulumi.Output<boolean>;
 
@@ -84,8 +82,7 @@ export class DnsPreferences extends pulumi.CustomResource {
  */
 export interface DnsPreferencesState {
     /**
-     * Enables or disables MagicDNS, automatically registers DNS names for devices on your network.
-     * At least one DNS server must be set before enabling Magic DNS.
+     * Whether or not to enable magic DNS
      */
     magicDns?: pulumi.Input<boolean>;
 }
@@ -95,8 +92,7 @@ export interface DnsPreferencesState {
  */
 export interface DnsPreferencesArgs {
     /**
-     * Enables or disables MagicDNS, automatically registers DNS names for devices on your network.
-     * At least one DNS server must be set before enabling Magic DNS.
+     * Whether or not to enable magic DNS
      */
     magicDns: pulumi.Input<boolean>;
 }

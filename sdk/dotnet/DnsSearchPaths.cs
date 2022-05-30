@@ -10,8 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Tailscale
 {
     /// <summary>
-    /// The search_paths resource allows you to configure DNS search paths for your Tailscale network. See the
-    /// [Tailscale DNS documentation](https://tailscale.com/kb/1054/dns) for more information.
+    /// The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
     /// 
     /// ## Example Usage
     /// 

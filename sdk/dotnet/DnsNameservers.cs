@@ -10,8 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Tailscale
 {
     /// <summary>
-    /// The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See the
-    /// [Tailscale DNS documentation](https://tailscale.com/kb/1054/dns) for more information.
+    /// The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
     /// 
     /// ## Example Usage
     /// 
@@ -40,8 +39,7 @@ namespace Pulumi.Tailscale
     public partial class DnsNameservers : Pulumi.CustomResource
     {
         /// <summary>
-        /// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 
-        /// addresses are accepted.
+        /// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
         /// </summary>
         [Output("nameservers")]
         public Output<ImmutableArray<string>> Nameservers { get; private set; } = null!;
@@ -96,8 +94,7 @@ namespace Pulumi.Tailscale
         private InputList<string>? _nameservers;
 
         /// <summary>
-        /// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 
-        /// addresses are accepted.
+        /// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
         /// </summary>
         public InputList<string> Nameservers
         {
@@ -116,8 +113,7 @@ namespace Pulumi.Tailscale
         private InputList<string>? _nameservers;
 
         /// <summary>
-        /// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 
-        /// addresses are accepted.
+        /// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
         /// </summary>
         public InputList<string> Nameservers
         {

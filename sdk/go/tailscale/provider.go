@@ -18,9 +18,13 @@ import (
 type Provider struct {
 	pulumi.ProviderResourceState
 
-	ApiKey  pulumi.StringOutput    `pulumi:"apiKey"`
+	// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+	ApiKey pulumi.StringOutput `pulumi:"apiKey"`
+	// The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
+	// environment variable.
 	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
-	Tailnet pulumi.StringOutput    `pulumi:"tailnet"`
+	// The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+	Tailnet pulumi.StringOutput `pulumi:"tailnet"`
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
@@ -45,15 +49,23 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	ApiKey  string  `pulumi:"apiKey"`
+	// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+	ApiKey string `pulumi:"apiKey"`
+	// The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
+	// environment variable.
 	BaseUrl *string `pulumi:"baseUrl"`
-	Tailnet string  `pulumi:"tailnet"`
+	// The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+	Tailnet string `pulumi:"tailnet"`
 }
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
-	ApiKey  pulumi.StringInput
+	// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+	ApiKey pulumi.StringInput
+	// The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
+	// environment variable.
 	BaseUrl pulumi.StringPtrInput
+	// The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
 	Tailnet pulumi.StringInput
 }
 

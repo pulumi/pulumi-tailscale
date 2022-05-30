@@ -10,25 +10,43 @@ using Pulumi.Serialization;
 namespace Pulumi.Tailscale
 {
     /// <summary>
-    /// The device_authorization resource is used to approve new devices before they can join the tailnet.
-    /// See the [Tailscale device authorization documentation](https://tailscale.com/kb/1099/device-authorization) for more
-    /// information.
+    /// The device_authorization resource is used to approve new devices before they can join the tailnet. See https://tailscale.com/kb/1099/device-authorization/ for more details.
     /// 
-    /// The Tailscale API currently only supports authorizing devices, but not rejecting/removing them. Once a device is
-    /// authorized by this provider it cannot be modified again afterwards. Modifying or deleting the resource
-    /// will not affect the device's authorization within the tailnet.
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Tailscale = Pulumi.Tailscale;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var sampleDevice = Output.Create(Tailscale.GetDevice.InvokeAsync(new Tailscale.GetDeviceArgs
+    ///         {
+    ///             Name = "device.example.com",
+    ///         }));
+    ///         var sampleAuthorization = new Tailscale.DeviceAuthorization("sampleAuthorization", new Tailscale.DeviceAuthorizationArgs
+    ///         {
+    ///             DeviceId = sampleDevice.Apply(sampleDevice =&gt; sampleDevice.Id),
+    ///             Authorized = true,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/deviceAuthorization:DeviceAuthorization")]
     public partial class DeviceAuthorization : Pulumi.CustomResource
     {
         /// <summary>
-        /// Indicates if the device is allowed to join the tailnet.
+        /// Whether or not the device is authorized
         /// </summary>
         [Output("authorized")]
         public Output<bool> Authorized { get; private set; } = null!;
 
         /// <summary>
-        /// The device to authorize.
+        /// The device to set as authorized
         /// </summary>
         [Output("deviceId")]
         public Output<string> DeviceId { get; private set; } = null!;
@@ -80,13 +98,13 @@ namespace Pulumi.Tailscale
     public sealed class DeviceAuthorizationArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates if the device is allowed to join the tailnet.
+        /// Whether or not the device is authorized
         /// </summary>
         [Input("authorized", required: true)]
         public Input<bool> Authorized { get; set; } = null!;
 
         /// <summary>
-        /// The device to authorize.
+        /// The device to set as authorized
         /// </summary>
         [Input("deviceId", required: true)]
         public Input<string> DeviceId { get; set; } = null!;
@@ -99,13 +117,13 @@ namespace Pulumi.Tailscale
     public sealed class DeviceAuthorizationState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates if the device is allowed to join the tailnet.
+        /// Whether or not the device is authorized
         /// </summary>
         [Input("authorized")]
         public Input<bool>? Authorized { get; set; }
 
         /// <summary>
-        /// The device to authorize.
+        /// The device to set as authorized
         /// </summary>
         [Input("deviceId")]
         public Input<string>? DeviceId { get; set; }

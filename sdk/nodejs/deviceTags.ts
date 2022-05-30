@@ -5,8 +5,22 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The deviceTags resource is used to apply tags to a device within a Tailnet. For more information on ACL tags, see
- * the [ACL tags documentation](https://tailscale.com/kb/1068/acl-tags/) for more details.
+ * The deviceTags resource is used to apply tags to Tailscale devices. See https://tailscale.com/kb/1068/acl-tags/ for more details.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as tailscale from "@pulumi/tailscale";
+ *
+ * const sampleDevice = tailscale.getDevice({
+ *     name: "device.example.com",
+ * });
+ * const sampleTags = new tailscale.DeviceTags("sampleTags", {
+ *     deviceId: sampleDevice.then(sampleDevice => sampleDevice.id),
+ *     tags: ["room:bedroom"],
+ * });
+ * ```
  */
 export class DeviceTags extends pulumi.CustomResource {
     /**
@@ -37,11 +51,11 @@ export class DeviceTags extends pulumi.CustomResource {
     }
 
     /**
-     * The device to apply tags to.
+     * The device to set tags for
      */
     public readonly deviceId!: pulumi.Output<string>;
     /**
-     * The tags to apply to the device.
+     * The tags to apply to the device
      */
     public readonly tags!: pulumi.Output<string[]>;
 
@@ -81,11 +95,11 @@ export class DeviceTags extends pulumi.CustomResource {
  */
 export interface DeviceTagsState {
     /**
-     * The device to apply tags to.
+     * The device to set tags for
      */
     deviceId?: pulumi.Input<string>;
     /**
-     * The tags to apply to the device.
+     * The tags to apply to the device
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -95,11 +109,11 @@ export interface DeviceTagsState {
  */
 export interface DeviceTagsArgs {
     /**
-     * The device to apply tags to.
+     * The device to set tags for
      */
     deviceId: pulumi.Input<string>;
     /**
-     * The tags to apply to the device.
+     * The tags to apply to the device
      */
     tags: pulumi.Input<pulumi.Input<string>[]>;
 }

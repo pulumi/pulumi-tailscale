@@ -10,16 +10,54 @@ using Pulumi.Serialization;
 namespace Pulumi.Tailscale
 {
     /// <summary>
-    /// The acl resource allows you to configure a Tailscale ACL. See the [Tailscale ACL documentation](https://tailscale.com/kb/1018/acls)
-    /// for more information. You can set the ACL in multiple ways including hujson.
+    /// The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Tailscale = Pulumi.Tailscale;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var sampleAcl = new Tailscale.Acl("sampleAcl", new Tailscale.AclArgs
+    ///         {
+    ///             Acl = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 { "acls", new[]
+    ///                     {
+    ///                         new Dictionary&lt;string, object?&gt;
+    ///                         {
+    ///                             { "action", "accept" },
+    ///                             { "users", new[]
+    ///                                 {
+    ///                                     "*",
+    ///                                 }
+    ///                              },
+    ///                             { "ports", new[]
+    ///                                 {
+    ///                                     "*:*",
+    ///                                 }
+    ///                              },
+    ///                         },
+    ///                     }
+    ///                  },
+    ///             }),
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/acl:Acl")]
     public partial class Acl : Pulumi.CustomResource
     {
         /// <summary>
-        /// The JSON-based policy that defines which devices and users are allowed to connect in your network.
-        /// This can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your
-        /// local ACL file.
+        /// The JSON-based policy that defines which devices and users are allowed to connect in your network
         /// </summary>
         [Output("acl")]
         public Output<string> AclJson { get; private set; } = null!;
@@ -71,9 +109,7 @@ namespace Pulumi.Tailscale
     public sealed class AclArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The JSON-based policy that defines which devices and users are allowed to connect in your network.
-        /// This can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your
-        /// local ACL file.
+        /// The JSON-based policy that defines which devices and users are allowed to connect in your network
         /// </summary>
         [Input("acl", required: true)]
         public Input<string> AclJson { get; set; } = null!;
@@ -86,9 +122,7 @@ namespace Pulumi.Tailscale
     public sealed class AclState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The JSON-based policy that defines which devices and users are allowed to connect in your network.
-        /// This can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your
-        /// local ACL file.
+        /// The JSON-based policy that defines which devices and users are allowed to connect in your network
         /// </summary>
         [Input("acl")]
         public Input<string>? AclJson { get; set; }

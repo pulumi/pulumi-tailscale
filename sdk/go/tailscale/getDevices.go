@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The devices data source describes a list of devices in a tailnet.
+// The devices data source describes a list of devices in a tailnet
 //
 // ## Example Usage
 //
@@ -45,13 +45,11 @@ func GetDevices(ctx *pulumi.Context, args *GetDevicesArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getDevices.
 type GetDevicesArgs struct {
-	// Filters the returned list of devices to those whose name have this prefix.
 	NamePrefix *string `pulumi:"namePrefix"`
 }
 
 // A collection of values returned by getDevices.
 type GetDevicesResult struct {
-	// The list of devices returned from the Tailscale API. Each element contains the following:
 	Devices []GetDevicesDevice `pulumi:"devices"`
 	// The provider-assigned unique ID for this managed resource.
 	Id         string  `pulumi:"id"`
@@ -73,7 +71,6 @@ func GetDevicesOutput(ctx *pulumi.Context, args GetDevicesOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getDevices.
 type GetDevicesOutputArgs struct {
-	// Filters the returned list of devices to those whose name have this prefix.
 	NamePrefix pulumi.StringPtrInput `pulumi:"namePrefix"`
 }
 
@@ -96,7 +93,6 @@ func (o GetDevicesResultOutput) ToGetDevicesResultOutputWithContext(ctx context.
 	return o
 }
 
-// The list of devices returned from the Tailscale API. Each element contains the following:
 func (o GetDevicesResultOutput) Devices() GetDevicesDeviceArrayOutput {
 	return o.ApplyT(func(v GetDevicesResult) []GetDevicesDevice { return v.Devices }).(GetDevicesDeviceArrayOutput)
 }

@@ -5,25 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
 export interface GetDevicesDevice {
-    /**
-     * Tailscale IPs for the device
-     */
     addresses: string[];
-    /**
-     * The unique identifier of the device
-     */
     id: string;
-    /**
-     * The name of the device
-     */
     name: string;
-    /**
-     * Tags applied to the device
-     */
     tags: string[];
-    /**
-     * The user associated with the device
-     */
     user: string;
 }
 

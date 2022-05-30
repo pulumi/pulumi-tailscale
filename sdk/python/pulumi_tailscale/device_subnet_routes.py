@@ -17,9 +17,8 @@ class DeviceSubnetRoutesArgs:
                  routes: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
         The set of arguments for constructing a DeviceSubnetRoutes resource.
-        :param pulumi.Input[str] device_id: The device to change enabled subroutes for.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] routes: The subnet routes that are enabled to be routed by a device. Routes can be enabled without a 
-               device advertising them (e.g. for preauth).
+        :param pulumi.Input[str] device_id: The device to set subnet routes for
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] routes: The subnet routes that are enabled to be routed by a device
         """
         pulumi.set(__self__, "device_id", device_id)
         pulumi.set(__self__, "routes", routes)
@@ -28,7 +27,7 @@ class DeviceSubnetRoutesArgs:
     @pulumi.getter(name="deviceId")
     def device_id(self) -> pulumi.Input[str]:
         """
-        The device to change enabled subroutes for.
+        The device to set subnet routes for
         """
         return pulumi.get(self, "device_id")
 
@@ -40,8 +39,7 @@ class DeviceSubnetRoutesArgs:
     @pulumi.getter
     def routes(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        The subnet routes that are enabled to be routed by a device. Routes can be enabled without a 
-        device advertising them (e.g. for preauth).
+        The subnet routes that are enabled to be routed by a device
         """
         return pulumi.get(self, "routes")
 
@@ -57,9 +55,8 @@ class _DeviceSubnetRoutesState:
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering DeviceSubnetRoutes resources.
-        :param pulumi.Input[str] device_id: The device to change enabled subroutes for.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] routes: The subnet routes that are enabled to be routed by a device. Routes can be enabled without a 
-               device advertising them (e.g. for preauth).
+        :param pulumi.Input[str] device_id: The device to set subnet routes for
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] routes: The subnet routes that are enabled to be routed by a device
         """
         if device_id is not None:
             pulumi.set(__self__, "device_id", device_id)
@@ -70,7 +67,7 @@ class _DeviceSubnetRoutesState:
     @pulumi.getter(name="deviceId")
     def device_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The device to change enabled subroutes for.
+        The device to set subnet routes for
         """
         return pulumi.get(self, "device_id")
 
@@ -82,8 +79,7 @@ class _DeviceSubnetRoutesState:
     @pulumi.getter
     def routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The subnet routes that are enabled to be routed by a device. Routes can be enabled without a 
-        device advertising them (e.g. for preauth).
+        The subnet routes that are enabled to be routed by a device
         """
         return pulumi.get(self, "routes")
 
@@ -101,14 +97,28 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        The device_subnet_routes resource allows you to configure subnet routes for your Tailscale devices. See the
-        [Tailscale subnets documentation](https://tailscale.com/kb/1019/subnets) for more information.
+        The device_subnet_routes resource allows you to configure subnet routes for your Tailscale devices. See https://tailscale.com/kb/1019/subnets for more information.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_tailscale as tailscale
+
+        sample_device = tailscale.get_device(name="device.example.com")
+        sample_routes = tailscale.DeviceSubnetRoutes("sampleRoutes",
+            device_id=sample_device.id,
+            routes=[
+                "10.0.1.0/24",
+                "1.2.0.0/16",
+                "2.0.0.0/24",
+            ])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] device_id: The device to change enabled subroutes for.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] routes: The subnet routes that are enabled to be routed by a device. Routes can be enabled without a 
-               device advertising them (e.g. for preauth).
+        :param pulumi.Input[str] device_id: The device to set subnet routes for
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] routes: The subnet routes that are enabled to be routed by a device
         """
         ...
     @overload
@@ -117,8 +127,23 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
                  args: DeviceSubnetRoutesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The device_subnet_routes resource allows you to configure subnet routes for your Tailscale devices. See the
-        [Tailscale subnets documentation](https://tailscale.com/kb/1019/subnets) for more information.
+        The device_subnet_routes resource allows you to configure subnet routes for your Tailscale devices. See https://tailscale.com/kb/1019/subnets for more information.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_tailscale as tailscale
+
+        sample_device = tailscale.get_device(name="device.example.com")
+        sample_routes = tailscale.DeviceSubnetRoutes("sampleRoutes",
+            device_id=sample_device.id,
+            routes=[
+                "10.0.1.0/24",
+                "1.2.0.0/16",
+                "2.0.0.0/24",
+            ])
+        ```
 
         :param str resource_name: The name of the resource.
         :param DeviceSubnetRoutesArgs args: The arguments to use to populate this resource's properties.
@@ -174,9 +199,8 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] device_id: The device to change enabled subroutes for.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] routes: The subnet routes that are enabled to be routed by a device. Routes can be enabled without a 
-               device advertising them (e.g. for preauth).
+        :param pulumi.Input[str] device_id: The device to set subnet routes for
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] routes: The subnet routes that are enabled to be routed by a device
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -190,7 +214,7 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
     @pulumi.getter(name="deviceId")
     def device_id(self) -> pulumi.Output[str]:
         """
-        The device to change enabled subroutes for.
+        The device to set subnet routes for
         """
         return pulumi.get(self, "device_id")
 
@@ -198,8 +222,7 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
     @pulumi.getter
     def routes(self) -> pulumi.Output[Sequence[str]]:
         """
-        The subnet routes that are enabled to be routed by a device. Routes can be enabled without a 
-        device advertising them (e.g. for preauth).
+        The subnet routes that are enabled to be routed by a device
         """
         return pulumi.get(self, "routes")
 

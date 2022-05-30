@@ -11,14 +11,53 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The acl resource allows you to configure a Tailscale ACL. See the [Tailscale ACL documentation](https://tailscale.com/kb/1018/acls)
-// for more information. You can set the ACL in multiple ways including hujson.
+// The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"encoding/json"
+//
+// 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		tmpJSON0, err := json.Marshal(map[string]interface{}{
+// 			"acls": []map[string]interface{}{
+// 				map[string]interface{}{
+// 					"action": "accept",
+// 					"users": []string{
+// 						"*",
+// 					},
+// 					"ports": []string{
+// 						"*:*",
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		json0 := string(tmpJSON0)
+// 		_, err := tailscale.NewAcl(ctx, "sampleAcl", &tailscale.AclArgs{
+// 			Acl: pulumi.String(json0),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Acl struct {
 	pulumi.CustomResourceState
 
-	// The JSON-based policy that defines which devices and users are allowed to connect in your network.
-	// This can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your
-	// local ACL file.
+	// The JSON-based policy that defines which devices and users are allowed to connect in your network
 	Acl pulumi.StringOutput `pulumi:"acl"`
 }
 
@@ -54,16 +93,12 @@ func GetAcl(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Acl resources.
 type aclState struct {
-	// The JSON-based policy that defines which devices and users are allowed to connect in your network.
-	// This can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your
-	// local ACL file.
+	// The JSON-based policy that defines which devices and users are allowed to connect in your network
 	Acl *string `pulumi:"acl"`
 }
 
 type AclState struct {
-	// The JSON-based policy that defines which devices and users are allowed to connect in your network.
-	// This can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your
-	// local ACL file.
+	// The JSON-based policy that defines which devices and users are allowed to connect in your network
 	Acl pulumi.StringPtrInput
 }
 
@@ -72,17 +107,13 @@ func (AclState) ElementType() reflect.Type {
 }
 
 type aclArgs struct {
-	// The JSON-based policy that defines which devices and users are allowed to connect in your network.
-	// This can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your
-	// local ACL file.
+	// The JSON-based policy that defines which devices and users are allowed to connect in your network
 	Acl string `pulumi:"acl"`
 }
 
 // The set of arguments for constructing a Acl resource.
 type AclArgs struct {
-	// The JSON-based policy that defines which devices and users are allowed to connect in your network.
-	// This can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your
-	// local ACL file.
+	// The JSON-based policy that defines which devices and users are allowed to connect in your network
 	Acl pulumi.StringInput
 }
 

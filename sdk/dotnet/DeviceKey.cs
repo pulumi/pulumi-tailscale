@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Tailscale
 {
     /// <summary>
-    /// The `device_key` resource allows you to modify the property of a device's key.
+    /// The device_key resource allows you to update the properties of a device's key
     /// 
     /// ## Example Usage
     /// 
@@ -41,20 +41,19 @@ namespace Pulumi.Tailscale
     public partial class DeviceKey : Pulumi.CustomResource
     {
         /// <summary>
-        /// The device to change the key properties of.
+        /// The device to update the key properties of
         /// </summary>
         [Output("deviceId")]
         public Output<string> DeviceId { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the device's key will ever expire.
+        /// Determines whether or not the device's key will expire
         /// </summary>
         [Output("keyExpiryDisabled")]
         public Output<bool?> KeyExpiryDisabled { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the device should be authorized for the tailnet by default, works in tailnets 
-        /// where device authorization is enabled.
+        /// Determines whether or not the device will be authorized for the tailnet by default.
         /// </summary>
         [Output("preauthorized")]
         public Output<bool?> Preauthorized { get; private set; } = null!;
@@ -106,20 +105,19 @@ namespace Pulumi.Tailscale
     public sealed class DeviceKeyArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The device to change the key properties of.
+        /// The device to update the key properties of
         /// </summary>
         [Input("deviceId", required: true)]
         public Input<string> DeviceId { get; set; } = null!;
 
         /// <summary>
-        /// Whether the device's key will ever expire.
+        /// Determines whether or not the device's key will expire
         /// </summary>
         [Input("keyExpiryDisabled")]
         public Input<bool>? KeyExpiryDisabled { get; set; }
 
         /// <summary>
-        /// Whether the device should be authorized for the tailnet by default, works in tailnets 
-        /// where device authorization is enabled.
+        /// Determines whether or not the device will be authorized for the tailnet by default.
         /// </summary>
         [Input("preauthorized")]
         public Input<bool>? Preauthorized { get; set; }
@@ -132,20 +130,19 @@ namespace Pulumi.Tailscale
     public sealed class DeviceKeyState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The device to change the key properties of.
+        /// The device to update the key properties of
         /// </summary>
         [Input("deviceId")]
         public Input<string>? DeviceId { get; set; }
 
         /// <summary>
-        /// Whether the device's key will ever expire.
+        /// Determines whether or not the device's key will expire
         /// </summary>
         [Input("keyExpiryDisabled")]
         public Input<bool>? KeyExpiryDisabled { get; set; }
 
         /// <summary>
-        /// Whether the device should be authorized for the tailnet by default, works in tailnets 
-        /// where device authorization is enabled.
+        /// Determines whether or not the device will be authorized for the tailnet by default.
         /// </summary>
         [Input("preauthorized")]
         public Input<bool>? Preauthorized { get; set; }
