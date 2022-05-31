@@ -10,21 +10,48 @@ using Pulumi.Serialization;
 namespace Pulumi.Tailscale
 {
     /// <summary>
-    /// The device_subnet_routes resource allows you to configure subnet routes for your Tailscale devices. See the
-    /// [Tailscale subnets documentation](https://tailscale.com/kb/1019/subnets) for more information.
+    /// The device_subnet_routes resource allows you to configure subnet routes for your Tailscale devices. See https://tailscale.com/kb/1019/subnets for more information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Tailscale = Pulumi.Tailscale;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var sampleDevice = Output.Create(Tailscale.GetDevice.InvokeAsync(new Tailscale.GetDeviceArgs
+    ///         {
+    ///             Name = "device.example.com",
+    ///         }));
+    ///         var sampleRoutes = new Tailscale.DeviceSubnetRoutes("sampleRoutes", new Tailscale.DeviceSubnetRoutesArgs
+    ///         {
+    ///             DeviceId = sampleDevice.Apply(sampleDevice =&gt; sampleDevice.Id),
+    ///             Routes = 
+    ///             {
+    ///                 "10.0.1.0/24",
+    ///                 "1.2.0.0/16",
+    ///                 "2.0.0.0/24",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes")]
     public partial class DeviceSubnetRoutes : Pulumi.CustomResource
     {
         /// <summary>
-        /// The device to change enabled subroutes for.
+        /// The device to set subnet routes for
         /// </summary>
         [Output("deviceId")]
         public Output<string> DeviceId { get; private set; } = null!;
 
         /// <summary>
-        /// The subnet routes that are enabled to be routed by a device. Routes can be enabled without a 
-        /// device advertising them (e.g. for preauth).
+        /// The subnet routes that are enabled to be routed by a device
         /// </summary>
         [Output("routes")]
         public Output<ImmutableArray<string>> Routes { get; private set; } = null!;
@@ -76,7 +103,7 @@ namespace Pulumi.Tailscale
     public sealed class DeviceSubnetRoutesArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The device to change enabled subroutes for.
+        /// The device to set subnet routes for
         /// </summary>
         [Input("deviceId", required: true)]
         public Input<string> DeviceId { get; set; } = null!;
@@ -85,8 +112,7 @@ namespace Pulumi.Tailscale
         private InputList<string>? _routes;
 
         /// <summary>
-        /// The subnet routes that are enabled to be routed by a device. Routes can be enabled without a 
-        /// device advertising them (e.g. for preauth).
+        /// The subnet routes that are enabled to be routed by a device
         /// </summary>
         public InputList<string> Routes
         {
@@ -102,7 +128,7 @@ namespace Pulumi.Tailscale
     public sealed class DeviceSubnetRoutesState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The device to change enabled subroutes for.
+        /// The device to set subnet routes for
         /// </summary>
         [Input("deviceId")]
         public Input<string>? DeviceId { get; set; }
@@ -111,8 +137,7 @@ namespace Pulumi.Tailscale
         private InputList<string>? _routes;
 
         /// <summary>
-        /// The subnet routes that are enabled to be routed by a device. Routes can be enabled without a 
-        /// device advertising them (e.g. for preauth).
+        /// The subnet routes that are enabled to be routed by a device
         /// </summary>
         public InputList<string> Routes
         {

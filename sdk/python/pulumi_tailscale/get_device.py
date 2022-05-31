@@ -43,9 +43,6 @@ class GetDeviceResult:
     @property
     @pulumi.getter
     def addresses(self) -> Sequence[str]:
-        """
-        Tailscale IPs for the device
-        """
         return pulumi.get(self, "addresses")
 
     @property
@@ -64,17 +61,11 @@ class GetDeviceResult:
     @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
-        """
-        Tags applied to the device
-        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def user(self) -> str:
-        """
-        The user associated with the device
-        """
         return pulumi.get(self, "user")
 
     @property
@@ -101,7 +92,7 @@ def get_device(name: Optional[str] = None,
                wait_for: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDeviceResult:
     """
-    The device data source describes a single device in a tailnet.
+    The device data source describes a single device in a tailnet
 
     ## Example Usage
 
@@ -112,10 +103,6 @@ def get_device(name: Optional[str] = None,
     sample_device = tailscale.get_device(name="user1-device.example.com",
         wait_for="60s")
     ```
-
-
-    :param str name: The name of the tailnet device to obtain the attributes of.
-    :param str wait_for: If specified, the provider will retry obtaining the device data every second until the specified duration has been reached. Must be a value greater than 1 second
     """
     __args__ = dict()
     __args__['name'] = name
@@ -140,7 +127,7 @@ def get_device_output(name: Optional[pulumi.Input[str]] = None,
                       wait_for: Optional[pulumi.Input[Optional[str]]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDeviceResult]:
     """
-    The device data source describes a single device in a tailnet.
+    The device data source describes a single device in a tailnet
 
     ## Example Usage
 
@@ -151,9 +138,5 @@ def get_device_output(name: Optional[pulumi.Input[str]] = None,
     sample_device = tailscale.get_device(name="user1-device.example.com",
         wait_for="60s")
     ```
-
-
-    :param str name: The name of the tailnet device to obtain the attributes of.
-    :param str wait_for: If specified, the provider will retry obtaining the device data every second until the specified duration has been reached. Must be a value greater than 1 second
     """
     ...

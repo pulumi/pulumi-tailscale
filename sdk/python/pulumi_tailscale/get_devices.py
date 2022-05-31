@@ -35,9 +35,6 @@ class GetDevicesResult:
     @property
     @pulumi.getter
     def devices(self) -> Sequence['outputs.GetDevicesDeviceResult']:
-        """
-        The list of devices returned from the Tailscale API. Each element contains the following:
-        """
         return pulumi.get(self, "devices")
 
     @property
@@ -68,7 +65,7 @@ class AwaitableGetDevicesResult(GetDevicesResult):
 def get_devices(name_prefix: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDevicesResult:
     """
-    The devices data source describes a list of devices in a tailnet.
+    The devices data source describes a list of devices in a tailnet
 
     ## Example Usage
 
@@ -78,9 +75,6 @@ def get_devices(name_prefix: Optional[str] = None,
 
     sample_devices = tailscale.get_devices(name_prefix="example-")
     ```
-
-
-    :param str name_prefix: Filters the returned list of devices to those whose name have this prefix.
     """
     __args__ = dict()
     __args__['namePrefix'] = name_prefix
@@ -100,7 +94,7 @@ def get_devices(name_prefix: Optional[str] = None,
 def get_devices_output(name_prefix: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDevicesResult]:
     """
-    The devices data source describes a list of devices in a tailnet.
+    The devices data source describes a list of devices in a tailnet
 
     ## Example Usage
 
@@ -110,8 +104,5 @@ def get_devices_output(name_prefix: Optional[pulumi.Input[Optional[str]]] = None
 
     sample_devices = tailscale.get_devices(name_prefix="example-")
     ```
-
-
-    :param str name_prefix: Filters the returned list of devices to those whose name have this prefix.
     """
     ...

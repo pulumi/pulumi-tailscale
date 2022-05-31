@@ -25,8 +25,18 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === Provider.__pulumiType;
     }
 
+    /**
+     * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+     */
     public readonly apiKey!: pulumi.Output<string>;
+    /**
+     * The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
+     * environment variable.
+     */
     public readonly baseUrl!: pulumi.Output<string | undefined>;
+    /**
+     * The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+     */
     public readonly tailnet!: pulumi.Output<string>;
 
     /**
@@ -59,7 +69,17 @@ export class Provider extends pulumi.ProviderResource {
  * The set of arguments for constructing a Provider resource.
  */
 export interface ProviderArgs {
+    /**
+     * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+     */
     apiKey: pulumi.Input<string>;
+    /**
+     * The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
+     * environment variable.
+     */
     baseUrl?: pulumi.Input<string>;
+    /**
+     * The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+     */
     tailnet: pulumi.Input<string>;
 }

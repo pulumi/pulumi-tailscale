@@ -13,25 +13,10 @@ namespace Pulumi.Tailscale.Outputs
     [OutputType]
     public sealed class GetDevicesDeviceResult
     {
-        /// <summary>
-        /// Tailscale IPs for the device
-        /// </summary>
         public readonly ImmutableArray<string> Addresses;
-        /// <summary>
-        /// The unique identifier of the device
-        /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// The name of the device
-        /// </summary>
         public readonly string Name;
-        /// <summary>
-        /// Tags applied to the device
-        /// </summary>
         public readonly ImmutableArray<string> Tags;
-        /// <summary>
-        /// The user associated with the device
-        /// </summary>
         public readonly string User;
 
         [OutputConstructor]

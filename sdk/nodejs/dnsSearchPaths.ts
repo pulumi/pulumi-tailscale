@@ -5,8 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The searchPaths resource allows you to configure DNS search paths for your Tailscale network. See the
- * [Tailscale DNS documentation](https://tailscale.com/kb/1054/dns) for more information.
+ * The dnsNameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
  *
  * ## Example Usage
  *

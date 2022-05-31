@@ -9,8 +9,18 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 apiKey: Optional[str]
+"""
+The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+"""
 
 baseUrl: Optional[str]
+"""
+The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
+environment variable.
+"""
 
 tailnet: Optional[str]
+"""
+The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+"""
 

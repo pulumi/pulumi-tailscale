@@ -12,7 +12,7 @@ namespace Pulumi.Tailscale
     public static class GetDevice
     {
         /// <summary>
-        /// The device data source describes a single device in a tailnet.
+        /// The device data source describes a single device in a tailnet
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -42,7 +42,7 @@ namespace Pulumi.Tailscale
             => Pulumi.Deployment.Instance.InvokeAsync<GetDeviceResult>("tailscale:index/getDevice:getDevice", args ?? new GetDeviceArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The device data source describes a single device in a tailnet.
+        /// The device data source describes a single device in a tailnet
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -75,15 +75,9 @@ namespace Pulumi.Tailscale
 
     public sealed class GetDeviceArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The name of the tailnet device to obtain the attributes of.
-        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
-        /// <summary>
-        /// If specified, the provider will retry obtaining the device data every second until the specified duration has been reached. Must be a value greater than 1 second
-        /// </summary>
         [Input("waitFor")]
         public string? WaitFor { get; set; }
 
@@ -94,15 +88,9 @@ namespace Pulumi.Tailscale
 
     public sealed class GetDeviceInvokeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The name of the tailnet device to obtain the attributes of.
-        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
-        /// <summary>
-        /// If specified, the provider will retry obtaining the device data every second until the specified duration has been reached. Must be a value greater than 1 second
-        /// </summary>
         [Input("waitFor")]
         public Input<string>? WaitFor { get; set; }
 
@@ -115,22 +103,13 @@ namespace Pulumi.Tailscale
     [OutputType]
     public sealed class GetDeviceResult
     {
-        /// <summary>
-        /// Tailscale IPs for the device
-        /// </summary>
         public readonly ImmutableArray<string> Addresses;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string Name;
-        /// <summary>
-        /// Tags applied to the device
-        /// </summary>
         public readonly ImmutableArray<string> Tags;
-        /// <summary>
-        /// The user associated with the device
-        /// </summary>
         public readonly string User;
         public readonly string? WaitFor;
 

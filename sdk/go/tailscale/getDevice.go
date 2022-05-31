@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The device data source describes a single device in a tailnet.
+// The device data source describes a single device in a tailnet
 //
 // ## Example Usage
 //
@@ -46,24 +46,19 @@ func GetDevice(ctx *pulumi.Context, args *GetDeviceArgs, opts ...pulumi.InvokeOp
 
 // A collection of arguments for invoking getDevice.
 type GetDeviceArgs struct {
-	// The name of the tailnet device to obtain the attributes of.
-	Name string `pulumi:"name"`
-	// If specified, the provider will retry obtaining the device data every second until the specified duration has been reached. Must be a value greater than 1 second
+	Name    string  `pulumi:"name"`
 	WaitFor *string `pulumi:"waitFor"`
 }
 
 // A collection of values returned by getDevice.
 type GetDeviceResult struct {
-	// Tailscale IPs for the device
 	Addresses []string `pulumi:"addresses"`
 	// The provider-assigned unique ID for this managed resource.
-	Id   string `pulumi:"id"`
-	Name string `pulumi:"name"`
-	// Tags applied to the device
-	Tags []string `pulumi:"tags"`
-	// The user associated with the device
-	User    string  `pulumi:"user"`
-	WaitFor *string `pulumi:"waitFor"`
+	Id      string   `pulumi:"id"`
+	Name    string   `pulumi:"name"`
+	Tags    []string `pulumi:"tags"`
+	User    string   `pulumi:"user"`
+	WaitFor *string  `pulumi:"waitFor"`
 }
 
 func GetDeviceOutput(ctx *pulumi.Context, args GetDeviceOutputArgs, opts ...pulumi.InvokeOption) GetDeviceResultOutput {
@@ -81,9 +76,7 @@ func GetDeviceOutput(ctx *pulumi.Context, args GetDeviceOutputArgs, opts ...pulu
 
 // A collection of arguments for invoking getDevice.
 type GetDeviceOutputArgs struct {
-	// The name of the tailnet device to obtain the attributes of.
-	Name pulumi.StringInput `pulumi:"name"`
-	// If specified, the provider will retry obtaining the device data every second until the specified duration has been reached. Must be a value greater than 1 second
+	Name    pulumi.StringInput    `pulumi:"name"`
 	WaitFor pulumi.StringPtrInput `pulumi:"waitFor"`
 }
 
@@ -106,7 +99,6 @@ func (o GetDeviceResultOutput) ToGetDeviceResultOutputWithContext(ctx context.Co
 	return o
 }
 
-// Tailscale IPs for the device
 func (o GetDeviceResultOutput) Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDeviceResult) []string { return v.Addresses }).(pulumi.StringArrayOutput)
 }
@@ -120,12 +112,10 @@ func (o GetDeviceResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeviceResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Tags applied to the device
 func (o GetDeviceResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDeviceResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The user associated with the device
 func (o GetDeviceResultOutput) User() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeviceResult) string { return v.User }).(pulumi.StringOutput)
 }

@@ -10,20 +10,46 @@ using Pulumi.Serialization;
 namespace Pulumi.Tailscale
 {
     /// <summary>
-    /// The device_tags resource is used to apply tags to a device within a Tailnet. For more information on ACL tags, see
-    /// the [ACL tags documentation](https://tailscale.com/kb/1068/acl-tags/) for more details.
+    /// The device_tags resource is used to apply tags to Tailscale devices. See https://tailscale.com/kb/1068/acl-tags/ for more details.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Tailscale = Pulumi.Tailscale;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var sampleDevice = Output.Create(Tailscale.GetDevice.InvokeAsync(new Tailscale.GetDeviceArgs
+    ///         {
+    ///             Name = "device.example.com",
+    ///         }));
+    ///         var sampleTags = new Tailscale.DeviceTags("sampleTags", new Tailscale.DeviceTagsArgs
+    ///         {
+    ///             DeviceId = sampleDevice.Apply(sampleDevice =&gt; sampleDevice.Id),
+    ///             Tags = 
+    ///             {
+    ///                 "room:bedroom",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/deviceTags:DeviceTags")]
     public partial class DeviceTags : Pulumi.CustomResource
     {
         /// <summary>
-        /// The device to apply tags to.
+        /// The device to set tags for
         /// </summary>
         [Output("deviceId")]
         public Output<string> DeviceId { get; private set; } = null!;
 
         /// <summary>
-        /// The tags to apply to the device.
+        /// The tags to apply to the device
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
@@ -75,7 +101,7 @@ namespace Pulumi.Tailscale
     public sealed class DeviceTagsArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The device to apply tags to.
+        /// The device to set tags for
         /// </summary>
         [Input("deviceId", required: true)]
         public Input<string> DeviceId { get; set; } = null!;
@@ -84,7 +110,7 @@ namespace Pulumi.Tailscale
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags to apply to the device.
+        /// The tags to apply to the device
         /// </summary>
         public InputList<string> Tags
         {
@@ -100,7 +126,7 @@ namespace Pulumi.Tailscale
     public sealed class DeviceTagsState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The device to apply tags to.
+        /// The device to set tags for
         /// </summary>
         [Input("deviceId")]
         public Input<string>? DeviceId { get; set; }
@@ -109,7 +135,7 @@ namespace Pulumi.Tailscale
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags to apply to the device.
+        /// The tags to apply to the device
         /// </summary>
         public InputList<string> Tags
         {

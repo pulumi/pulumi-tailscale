@@ -11,8 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The dnsNameservers resource allows you to configure DNS nameservers for your Tailscale network. See the
-// [Tailscale DNS documentation](https://tailscale.com/kb/1054/dns) for more information.
+// The dnsNameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
 //
 // ## Example Usage
 //
@@ -42,8 +41,7 @@ import (
 type DnsNameservers struct {
 	pulumi.CustomResourceState
 
-	// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6
-	// addresses are accepted.
+	// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
 	Nameservers pulumi.StringArrayOutput `pulumi:"nameservers"`
 }
 
@@ -79,14 +77,12 @@ func GetDnsNameservers(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DnsNameservers resources.
 type dnsNameserversState struct {
-	// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6
-	// addresses are accepted.
+	// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
 	Nameservers []string `pulumi:"nameservers"`
 }
 
 type DnsNameserversState struct {
-	// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6
-	// addresses are accepted.
+	// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
 	Nameservers pulumi.StringArrayInput
 }
 
@@ -95,15 +91,13 @@ func (DnsNameserversState) ElementType() reflect.Type {
 }
 
 type dnsNameserversArgs struct {
-	// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6
-	// addresses are accepted.
+	// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
 	Nameservers []string `pulumi:"nameservers"`
 }
 
 // The set of arguments for constructing a DnsNameservers resource.
 type DnsNameserversArgs struct {
-	// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6
-	// addresses are accepted.
+	// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
 	Nameservers pulumi.StringArrayInput
 }
 

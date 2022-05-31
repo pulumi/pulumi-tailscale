@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The device data source describes a single device in a tailnet.
+ * The device data source describes a single device in a tailnet
  *
  * ## Example Usage
  *
@@ -35,13 +35,7 @@ export function getDevice(args: GetDeviceArgs, opts?: pulumi.InvokeOptions): Pro
  * A collection of arguments for invoking getDevice.
  */
 export interface GetDeviceArgs {
-    /**
-     * The name of the tailnet device to obtain the attributes of.
-     */
     name: string;
-    /**
-     * If specified, the provider will retry obtaining the device data every second until the specified duration has been reached. Must be a value greater than 1 second
-     */
     waitFor?: string;
 }
 
@@ -49,22 +43,13 @@ export interface GetDeviceArgs {
  * A collection of values returned by getDevice.
  */
 export interface GetDeviceResult {
-    /**
-     * Tailscale IPs for the device
-     */
     readonly addresses: string[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly name: string;
-    /**
-     * Tags applied to the device
-     */
     readonly tags: string[];
-    /**
-     * The user associated with the device
-     */
     readonly user: string;
     readonly waitFor?: string;
 }
@@ -77,12 +62,6 @@ export function getDeviceOutput(args: GetDeviceOutputArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getDevice.
  */
 export interface GetDeviceOutputArgs {
-    /**
-     * The name of the tailnet device to obtain the attributes of.
-     */
     name: pulumi.Input<string>;
-    /**
-     * If specified, the provider will retry obtaining the device data every second until the specified duration has been reached. Must be a value greater than 1 second
-     */
     waitFor?: pulumi.Input<string>;
 }

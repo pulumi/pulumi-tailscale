@@ -18,6 +18,10 @@ class ProviderArgs:
                  base_url: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
+        :param pulumi.Input[str] api_key: The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+        :param pulumi.Input[str] tailnet: The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+        :param pulumi.Input[str] base_url: The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
+               environment variable.
         """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "tailnet", tailnet)
@@ -27,6 +31,9 @@ class ProviderArgs:
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[str]:
+        """
+        The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+        """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
@@ -36,6 +43,9 @@ class ProviderArgs:
     @property
     @pulumi.getter
     def tailnet(self) -> pulumi.Input[str]:
+        """
+        The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+        """
         return pulumi.get(self, "tailnet")
 
     @tailnet.setter
@@ -45,6 +55,10 @@ class ProviderArgs:
     @property
     @pulumi.getter(name="baseUrl")
     def base_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
+        environment variable.
+        """
         return pulumi.get(self, "base_url")
 
     @base_url.setter
@@ -69,6 +83,10 @@ class Provider(pulumi.ProviderResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] api_key: The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+        :param pulumi.Input[str] base_url: The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
+               environment variable.
+        :param pulumi.Input[str] tailnet: The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
         """
         ...
     @overload
@@ -128,15 +146,25 @@ class Provider(pulumi.ProviderResource):
     @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Output[str]:
+        """
+        The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+        """
         return pulumi.get(self, "api_key")
 
     @property
     @pulumi.getter(name="baseUrl")
     def base_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
+        environment variable.
+        """
         return pulumi.get(self, "base_url")
 
     @property
     @pulumi.getter
     def tailnet(self) -> pulumi.Output[str]:
+        """
+        The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+        """
         return pulumi.get(self, "tailnet")
 

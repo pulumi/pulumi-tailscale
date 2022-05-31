@@ -5,8 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `tailnetKey` resource allows you to generate pre-authentication keys for your tailnet. See the
- * [Tailscale auth keys](https://tailscale.com/kb/1085/auth-keys/) documentation for more information
+ * The tailnetKey resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information
  *
  * ## Example Usage
  *
@@ -49,22 +48,19 @@ export class TailnetKey extends pulumi.CustomResource {
     }
 
     /**
-     * Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating
-     * ephemeral nodes for short-lived workloads.
+     * Indicates if the key is ephemeral.
      */
     public readonly ephemeral!: pulumi.Output<boolean | undefined>;
     /**
-     * The generated authentication key.
+     * The authentication key
      */
     public /*out*/ readonly key!: pulumi.Output<string>;
     /**
-     * Determines if the generated key is reusable. Reusable keys can be used to connect multiple
-     * nodes. For example, multiple instances of on-prem database might use a reusable key to connect.
+     * Indicates if the key is reusable or single-use.
      */
     public readonly reusable!: pulumi.Output<boolean | undefined>;
     /**
-     * Set of tags to apply to the machines authenticated by the key. These tags can be used in ACL
-     * rules, see the [Tailscale ACL tag documentation](https://tailscale.com/kb/1068/acl-tags/).
+     * List of tags to apply to the machines authenticated by the key.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
 
@@ -102,22 +98,19 @@ export class TailnetKey extends pulumi.CustomResource {
  */
 export interface TailnetKeyState {
     /**
-     * Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating
-     * ephemeral nodes for short-lived workloads.
+     * Indicates if the key is ephemeral.
      */
     ephemeral?: pulumi.Input<boolean>;
     /**
-     * The generated authentication key.
+     * The authentication key
      */
     key?: pulumi.Input<string>;
     /**
-     * Determines if the generated key is reusable. Reusable keys can be used to connect multiple
-     * nodes. For example, multiple instances of on-prem database might use a reusable key to connect.
+     * Indicates if the key is reusable or single-use.
      */
     reusable?: pulumi.Input<boolean>;
     /**
-     * Set of tags to apply to the machines authenticated by the key. These tags can be used in ACL
-     * rules, see the [Tailscale ACL tag documentation](https://tailscale.com/kb/1068/acl-tags/).
+     * List of tags to apply to the machines authenticated by the key.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -127,18 +120,15 @@ export interface TailnetKeyState {
  */
 export interface TailnetKeyArgs {
     /**
-     * Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating
-     * ephemeral nodes for short-lived workloads.
+     * Indicates if the key is ephemeral.
      */
     ephemeral?: pulumi.Input<boolean>;
     /**
-     * Determines if the generated key is reusable. Reusable keys can be used to connect multiple
-     * nodes. For example, multiple instances of on-prem database might use a reusable key to connect.
+     * Indicates if the key is reusable or single-use.
      */
     reusable?: pulumi.Input<boolean>;
     /**
-     * Set of tags to apply to the machines authenticated by the key. These tags can be used in ACL
-     * rules, see the [Tailscale ACL tag documentation](https://tailscale.com/kb/1068/acl-tags/).
+     * List of tags to apply to the machines authenticated by the key.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
 }

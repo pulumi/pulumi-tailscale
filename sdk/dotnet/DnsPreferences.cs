@@ -10,8 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Tailscale
 {
     /// <summary>
-    /// The dns_preferences resource allows you to configure DNS preferences for your Tailscale network. See the
-    /// [Tailscale DNS documentation](https://tailscale.com/kb/1054/dns) for more information.
+    /// The dns_preferences resource allows you to configure DNS preferences for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
     /// 
     /// ## Example Usage
     /// 
@@ -36,8 +35,7 @@ namespace Pulumi.Tailscale
     public partial class DnsPreferences : Pulumi.CustomResource
     {
         /// <summary>
-        /// Enables or disables MagicDNS, automatically registers DNS names for devices on your network.
-        /// At least one DNS server must be set before enabling Magic DNS.
+        /// Whether or not to enable magic DNS
         /// </summary>
         [Output("magicDns")]
         public Output<bool> MagicDns { get; private set; } = null!;
@@ -89,8 +87,7 @@ namespace Pulumi.Tailscale
     public sealed class DnsPreferencesArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enables or disables MagicDNS, automatically registers DNS names for devices on your network.
-        /// At least one DNS server must be set before enabling Magic DNS.
+        /// Whether or not to enable magic DNS
         /// </summary>
         [Input("magicDns", required: true)]
         public Input<bool> MagicDns { get; set; } = null!;
@@ -103,8 +100,7 @@ namespace Pulumi.Tailscale
     public sealed class DnsPreferencesState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enables or disables MagicDNS, automatically registers DNS names for devices on your network.
-        /// At least one DNS server must be set before enabling Magic DNS.
+        /// Whether or not to enable magic DNS
         /// </summary>
         [Input("magicDns")]
         public Input<bool>? MagicDns { get; set; }

@@ -17,8 +17,8 @@ class DeviceAuthorizationArgs:
                  device_id: pulumi.Input[str]):
         """
         The set of arguments for constructing a DeviceAuthorization resource.
-        :param pulumi.Input[bool] authorized: Indicates if the device is allowed to join the tailnet.
-        :param pulumi.Input[str] device_id: The device to authorize.
+        :param pulumi.Input[bool] authorized: Whether or not the device is authorized
+        :param pulumi.Input[str] device_id: The device to set as authorized
         """
         pulumi.set(__self__, "authorized", authorized)
         pulumi.set(__self__, "device_id", device_id)
@@ -27,7 +27,7 @@ class DeviceAuthorizationArgs:
     @pulumi.getter
     def authorized(self) -> pulumi.Input[bool]:
         """
-        Indicates if the device is allowed to join the tailnet.
+        Whether or not the device is authorized
         """
         return pulumi.get(self, "authorized")
 
@@ -39,7 +39,7 @@ class DeviceAuthorizationArgs:
     @pulumi.getter(name="deviceId")
     def device_id(self) -> pulumi.Input[str]:
         """
-        The device to authorize.
+        The device to set as authorized
         """
         return pulumi.get(self, "device_id")
 
@@ -55,8 +55,8 @@ class _DeviceAuthorizationState:
                  device_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DeviceAuthorization resources.
-        :param pulumi.Input[bool] authorized: Indicates if the device is allowed to join the tailnet.
-        :param pulumi.Input[str] device_id: The device to authorize.
+        :param pulumi.Input[bool] authorized: Whether or not the device is authorized
+        :param pulumi.Input[str] device_id: The device to set as authorized
         """
         if authorized is not None:
             pulumi.set(__self__, "authorized", authorized)
@@ -67,7 +67,7 @@ class _DeviceAuthorizationState:
     @pulumi.getter
     def authorized(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates if the device is allowed to join the tailnet.
+        Whether or not the device is authorized
         """
         return pulumi.get(self, "authorized")
 
@@ -79,7 +79,7 @@ class _DeviceAuthorizationState:
     @pulumi.getter(name="deviceId")
     def device_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The device to authorize.
+        The device to set as authorized
         """
         return pulumi.get(self, "device_id")
 
@@ -97,18 +97,24 @@ class DeviceAuthorization(pulumi.CustomResource):
                  device_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The device_authorization resource is used to approve new devices before they can join the tailnet.
-        See the [Tailscale device authorization documentation](https://tailscale.com/kb/1099/device-authorization) for more
-        information.
+        The device_authorization resource is used to approve new devices before they can join the tailnet. See https://tailscale.com/kb/1099/device-authorization/ for more details.
 
-        The Tailscale API currently only supports authorizing devices, but not rejecting/removing them. Once a device is
-        authorized by this provider it cannot be modified again afterwards. Modifying or deleting the resource
-        will not affect the device's authorization within the tailnet.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_tailscale as tailscale
+
+        sample_device = tailscale.get_device(name="device.example.com")
+        sample_authorization = tailscale.DeviceAuthorization("sampleAuthorization",
+            device_id=sample_device.id,
+            authorized=True)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] authorized: Indicates if the device is allowed to join the tailnet.
-        :param pulumi.Input[str] device_id: The device to authorize.
+        :param pulumi.Input[bool] authorized: Whether or not the device is authorized
+        :param pulumi.Input[str] device_id: The device to set as authorized
         """
         ...
     @overload
@@ -117,13 +123,19 @@ class DeviceAuthorization(pulumi.CustomResource):
                  args: DeviceAuthorizationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The device_authorization resource is used to approve new devices before they can join the tailnet.
-        See the [Tailscale device authorization documentation](https://tailscale.com/kb/1099/device-authorization) for more
-        information.
+        The device_authorization resource is used to approve new devices before they can join the tailnet. See https://tailscale.com/kb/1099/device-authorization/ for more details.
 
-        The Tailscale API currently only supports authorizing devices, but not rejecting/removing them. Once a device is
-        authorized by this provider it cannot be modified again afterwards. Modifying or deleting the resource
-        will not affect the device's authorization within the tailnet.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_tailscale as tailscale
+
+        sample_device = tailscale.get_device(name="device.example.com")
+        sample_authorization = tailscale.DeviceAuthorization("sampleAuthorization",
+            device_id=sample_device.id,
+            authorized=True)
+        ```
 
         :param str resource_name: The name of the resource.
         :param DeviceAuthorizationArgs args: The arguments to use to populate this resource's properties.
@@ -179,8 +191,8 @@ class DeviceAuthorization(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] authorized: Indicates if the device is allowed to join the tailnet.
-        :param pulumi.Input[str] device_id: The device to authorize.
+        :param pulumi.Input[bool] authorized: Whether or not the device is authorized
+        :param pulumi.Input[str] device_id: The device to set as authorized
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -194,7 +206,7 @@ class DeviceAuthorization(pulumi.CustomResource):
     @pulumi.getter
     def authorized(self) -> pulumi.Output[bool]:
         """
-        Indicates if the device is allowed to join the tailnet.
+        Whether or not the device is authorized
         """
         return pulumi.get(self, "authorized")
 
@@ -202,7 +214,7 @@ class DeviceAuthorization(pulumi.CustomResource):
     @pulumi.getter(name="deviceId")
     def device_id(self) -> pulumi.Output[str]:
         """
-        The device to authorize.
+        The device to set as authorized
         """
         return pulumi.get(self, "device_id")
 

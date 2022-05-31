@@ -18,12 +18,9 @@ class TailnetKeyArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a TailnetKey resource.
-        :param pulumi.Input[bool] ephemeral: Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating
-               ephemeral nodes for short-lived workloads.
-        :param pulumi.Input[bool] reusable: Determines if the generated key is reusable. Reusable keys can be used to connect multiple
-               nodes. For example, multiple instances of on-prem database might use a reusable key to connect.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Set of tags to apply to the machines authenticated by the key. These tags can be used in ACL
-               rules, see the [Tailscale ACL tag documentation](https://tailscale.com/kb/1068/acl-tags/).
+        :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
+        :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
         if ephemeral is not None:
             pulumi.set(__self__, "ephemeral", ephemeral)
@@ -36,8 +33,7 @@ class TailnetKeyArgs:
     @pulumi.getter
     def ephemeral(self) -> Optional[pulumi.Input[bool]]:
         """
-        Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating
-        ephemeral nodes for short-lived workloads.
+        Indicates if the key is ephemeral.
         """
         return pulumi.get(self, "ephemeral")
 
@@ -49,8 +45,7 @@ class TailnetKeyArgs:
     @pulumi.getter
     def reusable(self) -> Optional[pulumi.Input[bool]]:
         """
-        Determines if the generated key is reusable. Reusable keys can be used to connect multiple
-        nodes. For example, multiple instances of on-prem database might use a reusable key to connect.
+        Indicates if the key is reusable or single-use.
         """
         return pulumi.get(self, "reusable")
 
@@ -62,8 +57,7 @@ class TailnetKeyArgs:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Set of tags to apply to the machines authenticated by the key. These tags can be used in ACL
-        rules, see the [Tailscale ACL tag documentation](https://tailscale.com/kb/1068/acl-tags/).
+        List of tags to apply to the machines authenticated by the key.
         """
         return pulumi.get(self, "tags")
 
@@ -81,13 +75,10 @@ class _TailnetKeyState:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering TailnetKey resources.
-        :param pulumi.Input[bool] ephemeral: Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating
-               ephemeral nodes for short-lived workloads.
-        :param pulumi.Input[str] key: The generated authentication key.
-        :param pulumi.Input[bool] reusable: Determines if the generated key is reusable. Reusable keys can be used to connect multiple
-               nodes. For example, multiple instances of on-prem database might use a reusable key to connect.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Set of tags to apply to the machines authenticated by the key. These tags can be used in ACL
-               rules, see the [Tailscale ACL tag documentation](https://tailscale.com/kb/1068/acl-tags/).
+        :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
+        :param pulumi.Input[str] key: The authentication key
+        :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
         if ephemeral is not None:
             pulumi.set(__self__, "ephemeral", ephemeral)
@@ -102,8 +93,7 @@ class _TailnetKeyState:
     @pulumi.getter
     def ephemeral(self) -> Optional[pulumi.Input[bool]]:
         """
-        Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating
-        ephemeral nodes for short-lived workloads.
+        Indicates if the key is ephemeral.
         """
         return pulumi.get(self, "ephemeral")
 
@@ -115,7 +105,7 @@ class _TailnetKeyState:
     @pulumi.getter
     def key(self) -> Optional[pulumi.Input[str]]:
         """
-        The generated authentication key.
+        The authentication key
         """
         return pulumi.get(self, "key")
 
@@ -127,8 +117,7 @@ class _TailnetKeyState:
     @pulumi.getter
     def reusable(self) -> Optional[pulumi.Input[bool]]:
         """
-        Determines if the generated key is reusable. Reusable keys can be used to connect multiple
-        nodes. For example, multiple instances of on-prem database might use a reusable key to connect.
+        Indicates if the key is reusable or single-use.
         """
         return pulumi.get(self, "reusable")
 
@@ -140,8 +129,7 @@ class _TailnetKeyState:
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Set of tags to apply to the machines authenticated by the key. These tags can be used in ACL
-        rules, see the [Tailscale ACL tag documentation](https://tailscale.com/kb/1068/acl-tags/).
+        List of tags to apply to the machines authenticated by the key.
         """
         return pulumi.get(self, "tags")
 
@@ -160,8 +148,7 @@ class TailnetKey(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        The `tailnet_key` resource allows you to generate pre-authentication keys for your tailnet. See the
-        [Tailscale auth keys](https://tailscale.com/kb/1085/auth-keys/) documentation for more information
+        The tailnet_key resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information
 
         ## Example Usage
 
@@ -176,12 +163,9 @@ class TailnetKey(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] ephemeral: Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating
-               ephemeral nodes for short-lived workloads.
-        :param pulumi.Input[bool] reusable: Determines if the generated key is reusable. Reusable keys can be used to connect multiple
-               nodes. For example, multiple instances of on-prem database might use a reusable key to connect.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Set of tags to apply to the machines authenticated by the key. These tags can be used in ACL
-               rules, see the [Tailscale ACL tag documentation](https://tailscale.com/kb/1068/acl-tags/).
+        :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
+        :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
         ...
     @overload
@@ -190,8 +174,7 @@ class TailnetKey(pulumi.CustomResource):
                  args: Optional[TailnetKeyArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `tailnet_key` resource allows you to generate pre-authentication keys for your tailnet. See the
-        [Tailscale auth keys](https://tailscale.com/kb/1085/auth-keys/) documentation for more information
+        The tailnet_key resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information
 
         ## Example Usage
 
@@ -259,13 +242,10 @@ class TailnetKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] ephemeral: Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating
-               ephemeral nodes for short-lived workloads.
-        :param pulumi.Input[str] key: The generated authentication key.
-        :param pulumi.Input[bool] reusable: Determines if the generated key is reusable. Reusable keys can be used to connect multiple
-               nodes. For example, multiple instances of on-prem database might use a reusable key to connect.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Set of tags to apply to the machines authenticated by the key. These tags can be used in ACL
-               rules, see the [Tailscale ACL tag documentation](https://tailscale.com/kb/1068/acl-tags/).
+        :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
+        :param pulumi.Input[str] key: The authentication key
+        :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -281,8 +261,7 @@ class TailnetKey(pulumi.CustomResource):
     @pulumi.getter
     def ephemeral(self) -> pulumi.Output[Optional[bool]]:
         """
-        Determines if the generated key is ephemeral. Ephemeral keys are used for authenticating
-        ephemeral nodes for short-lived workloads.
+        Indicates if the key is ephemeral.
         """
         return pulumi.get(self, "ephemeral")
 
@@ -290,7 +269,7 @@ class TailnetKey(pulumi.CustomResource):
     @pulumi.getter
     def key(self) -> pulumi.Output[str]:
         """
-        The generated authentication key.
+        The authentication key
         """
         return pulumi.get(self, "key")
 
@@ -298,8 +277,7 @@ class TailnetKey(pulumi.CustomResource):
     @pulumi.getter
     def reusable(self) -> pulumi.Output[Optional[bool]]:
         """
-        Determines if the generated key is reusable. Reusable keys can be used to connect multiple
-        nodes. For example, multiple instances of on-prem database might use a reusable key to connect.
+        Indicates if the key is reusable or single-use.
         """
         return pulumi.get(self, "reusable")
 
@@ -307,8 +285,7 @@ class TailnetKey(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        Set of tags to apply to the machines authenticated by the key. These tags can be used in ACL
-        rules, see the [Tailscale ACL tag documentation](https://tailscale.com/kb/1068/acl-tags/).
+        List of tags to apply to the machines authenticated by the key.
         """
         return pulumi.get(self, "tags")
 

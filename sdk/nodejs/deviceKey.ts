@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `deviceKey` resource allows you to modify the property of a device's key.
+ * The deviceKey resource allows you to update the properties of a device's key
  *
  * ## Example Usage
  *
@@ -52,16 +52,15 @@ export class DeviceKey extends pulumi.CustomResource {
     }
 
     /**
-     * The device to change the key properties of.
+     * The device to update the key properties of
      */
     public readonly deviceId!: pulumi.Output<string>;
     /**
-     * Whether the device's key will ever expire.
+     * Determines whether or not the device's key will expire
      */
     public readonly keyExpiryDisabled!: pulumi.Output<boolean | undefined>;
     /**
-     * Whether the device should be authorized for the tailnet by default, works in tailnets 
-     * where device authorization is enabled.
+     * Determines whether or not the device will be authorized for the tailnet by default.
      */
     public readonly preauthorized!: pulumi.Output<boolean | undefined>;
 
@@ -100,16 +99,15 @@ export class DeviceKey extends pulumi.CustomResource {
  */
 export interface DeviceKeyState {
     /**
-     * The device to change the key properties of.
+     * The device to update the key properties of
      */
     deviceId?: pulumi.Input<string>;
     /**
-     * Whether the device's key will ever expire.
+     * Determines whether or not the device's key will expire
      */
     keyExpiryDisabled?: pulumi.Input<boolean>;
     /**
-     * Whether the device should be authorized for the tailnet by default, works in tailnets 
-     * where device authorization is enabled.
+     * Determines whether or not the device will be authorized for the tailnet by default.
      */
     preauthorized?: pulumi.Input<boolean>;
 }
@@ -119,16 +117,15 @@ export interface DeviceKeyState {
  */
 export interface DeviceKeyArgs {
     /**
-     * The device to change the key properties of.
+     * The device to update the key properties of
      */
     deviceId: pulumi.Input<string>;
     /**
-     * Whether the device's key will ever expire.
+     * Determines whether or not the device's key will expire
      */
     keyExpiryDisabled?: pulumi.Input<boolean>;
     /**
-     * Whether the device should be authorized for the tailnet by default, works in tailnets 
-     * where device authorization is enabled.
+     * Determines whether or not the device will be authorized for the tailnet by default.
      */
     preauthorized?: pulumi.Input<boolean>;
 }

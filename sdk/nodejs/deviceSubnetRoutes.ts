@@ -5,8 +5,26 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The deviceSubnetRoutes resource allows you to configure subnet routes for your Tailscale devices. See the
- * [Tailscale subnets documentation](https://tailscale.com/kb/1019/subnets) for more information.
+ * The deviceSubnetRoutes resource allows you to configure subnet routes for your Tailscale devices. See https://tailscale.com/kb/1019/subnets for more information.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as tailscale from "@pulumi/tailscale";
+ *
+ * const sampleDevice = tailscale.getDevice({
+ *     name: "device.example.com",
+ * });
+ * const sampleRoutes = new tailscale.DeviceSubnetRoutes("sampleRoutes", {
+ *     deviceId: sampleDevice.then(sampleDevice => sampleDevice.id),
+ *     routes: [
+ *         "10.0.1.0/24",
+ *         "1.2.0.0/16",
+ *         "2.0.0.0/24",
+ *     ],
+ * });
+ * ```
  */
 export class DeviceSubnetRoutes extends pulumi.CustomResource {
     /**
@@ -37,12 +55,11 @@ export class DeviceSubnetRoutes extends pulumi.CustomResource {
     }
 
     /**
-     * The device to change enabled subroutes for.
+     * The device to set subnet routes for
      */
     public readonly deviceId!: pulumi.Output<string>;
     /**
-     * The subnet routes that are enabled to be routed by a device. Routes can be enabled without a 
-     * device advertising them (e.g. for preauth).
+     * The subnet routes that are enabled to be routed by a device
      */
     public readonly routes!: pulumi.Output<string[]>;
 
@@ -82,12 +99,11 @@ export class DeviceSubnetRoutes extends pulumi.CustomResource {
  */
 export interface DeviceSubnetRoutesState {
     /**
-     * The device to change enabled subroutes for.
+     * The device to set subnet routes for
      */
     deviceId?: pulumi.Input<string>;
     /**
-     * The subnet routes that are enabled to be routed by a device. Routes can be enabled without a 
-     * device advertising them (e.g. for preauth).
+     * The subnet routes that are enabled to be routed by a device
      */
     routes?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -97,12 +113,11 @@ export interface DeviceSubnetRoutesState {
  */
 export interface DeviceSubnetRoutesArgs {
     /**
-     * The device to change enabled subroutes for.
+     * The device to set subnet routes for
      */
     deviceId: pulumi.Input<string>;
     /**
-     * The subnet routes that are enabled to be routed by a device. Routes can be enabled without a 
-     * device advertising them (e.g. for preauth).
+     * The subnet routes that are enabled to be routed by a device
      */
     routes: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -11,19 +11,43 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The deviceAuthorization resource is used to approve new devices before they can join the tailnet.
-// See the [Tailscale device authorization documentation](https://tailscale.com/kb/1099/device-authorization) for more
-// information.
+// The deviceAuthorization resource is used to approve new devices before they can join the tailnet. See https://tailscale.com/kb/1099/device-authorization/ for more details.
 //
-// The Tailscale API currently only supports authorizing devices, but not rejecting/removing them. Once a device is
-// authorized by this provider it cannot be modified again afterwards. Modifying or deleting the resource
-// will not affect the device's authorization within the tailnet.
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		sampleDevice, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
+// 			Name: "device.example.com",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = tailscale.NewDeviceAuthorization(ctx, "sampleAuthorization", &tailscale.DeviceAuthorizationArgs{
+// 			DeviceId:   pulumi.String(sampleDevice.Id),
+// 			Authorized: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type DeviceAuthorization struct {
 	pulumi.CustomResourceState
 
-	// Indicates if the device is allowed to join the tailnet.
+	// Whether or not the device is authorized
 	Authorized pulumi.BoolOutput `pulumi:"authorized"`
-	// The device to authorize.
+	// The device to set as authorized
 	DeviceId pulumi.StringOutput `pulumi:"deviceId"`
 }
 
@@ -62,16 +86,16 @@ func GetDeviceAuthorization(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DeviceAuthorization resources.
 type deviceAuthorizationState struct {
-	// Indicates if the device is allowed to join the tailnet.
+	// Whether or not the device is authorized
 	Authorized *bool `pulumi:"authorized"`
-	// The device to authorize.
+	// The device to set as authorized
 	DeviceId *string `pulumi:"deviceId"`
 }
 
 type DeviceAuthorizationState struct {
-	// Indicates if the device is allowed to join the tailnet.
+	// Whether or not the device is authorized
 	Authorized pulumi.BoolPtrInput
-	// The device to authorize.
+	// The device to set as authorized
 	DeviceId pulumi.StringPtrInput
 }
 
@@ -80,17 +104,17 @@ func (DeviceAuthorizationState) ElementType() reflect.Type {
 }
 
 type deviceAuthorizationArgs struct {
-	// Indicates if the device is allowed to join the tailnet.
+	// Whether or not the device is authorized
 	Authorized bool `pulumi:"authorized"`
-	// The device to authorize.
+	// The device to set as authorized
 	DeviceId string `pulumi:"deviceId"`
 }
 
 // The set of arguments for constructing a DeviceAuthorization resource.
 type DeviceAuthorizationArgs struct {
-	// Indicates if the device is allowed to join the tailnet.
+	// Whether or not the device is authorized
 	Authorized pulumi.BoolInput
-	// The device to authorize.
+	// The device to set as authorized
 	DeviceId pulumi.StringInput
 }
 

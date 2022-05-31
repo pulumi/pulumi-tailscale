@@ -16,8 +16,7 @@ class DnsPreferencesArgs:
                  magic_dns: pulumi.Input[bool]):
         """
         The set of arguments for constructing a DnsPreferences resource.
-        :param pulumi.Input[bool] magic_dns: Enables or disables MagicDNS, automatically registers DNS names for devices on your network.
-               At least one DNS server must be set before enabling Magic DNS.
+        :param pulumi.Input[bool] magic_dns: Whether or not to enable magic DNS
         """
         pulumi.set(__self__, "magic_dns", magic_dns)
 
@@ -25,8 +24,7 @@ class DnsPreferencesArgs:
     @pulumi.getter(name="magicDns")
     def magic_dns(self) -> pulumi.Input[bool]:
         """
-        Enables or disables MagicDNS, automatically registers DNS names for devices on your network.
-        At least one DNS server must be set before enabling Magic DNS.
+        Whether or not to enable magic DNS
         """
         return pulumi.get(self, "magic_dns")
 
@@ -41,8 +39,7 @@ class _DnsPreferencesState:
                  magic_dns: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering DnsPreferences resources.
-        :param pulumi.Input[bool] magic_dns: Enables or disables MagicDNS, automatically registers DNS names for devices on your network.
-               At least one DNS server must be set before enabling Magic DNS.
+        :param pulumi.Input[bool] magic_dns: Whether or not to enable magic DNS
         """
         if magic_dns is not None:
             pulumi.set(__self__, "magic_dns", magic_dns)
@@ -51,8 +48,7 @@ class _DnsPreferencesState:
     @pulumi.getter(name="magicDns")
     def magic_dns(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enables or disables MagicDNS, automatically registers DNS names for devices on your network.
-        At least one DNS server must be set before enabling Magic DNS.
+        Whether or not to enable magic DNS
         """
         return pulumi.get(self, "magic_dns")
 
@@ -69,8 +65,7 @@ class DnsPreferences(pulumi.CustomResource):
                  magic_dns: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        The dns_preferences resource allows you to configure DNS preferences for your Tailscale network. See the
-        [Tailscale DNS documentation](https://tailscale.com/kb/1054/dns) for more information.
+        The dns_preferences resource allows you to configure DNS preferences for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
 
         ## Example Usage
 
@@ -83,8 +78,7 @@ class DnsPreferences(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] magic_dns: Enables or disables MagicDNS, automatically registers DNS names for devices on your network.
-               At least one DNS server must be set before enabling Magic DNS.
+        :param pulumi.Input[bool] magic_dns: Whether or not to enable magic DNS
         """
         ...
     @overload
@@ -93,8 +87,7 @@ class DnsPreferences(pulumi.CustomResource):
                  args: DnsPreferencesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The dns_preferences resource allows you to configure DNS preferences for your Tailscale network. See the
-        [Tailscale DNS documentation](https://tailscale.com/kb/1054/dns) for more information.
+        The dns_preferences resource allows you to configure DNS preferences for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
 
         ## Example Usage
 
@@ -154,8 +147,7 @@ class DnsPreferences(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] magic_dns: Enables or disables MagicDNS, automatically registers DNS names for devices on your network.
-               At least one DNS server must be set before enabling Magic DNS.
+        :param pulumi.Input[bool] magic_dns: Whether or not to enable magic DNS
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -168,8 +160,7 @@ class DnsPreferences(pulumi.CustomResource):
     @pulumi.getter(name="magicDns")
     def magic_dns(self) -> pulumi.Output[bool]:
         """
-        Enables or disables MagicDNS, automatically registers DNS names for devices on your network.
-        At least one DNS server must be set before enabling Magic DNS.
+        Whether or not to enable magic DNS
         """
         return pulumi.get(self, "magic_dns")
 

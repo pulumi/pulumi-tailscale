@@ -11,15 +11,47 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The deviceSubnetRoutes resource allows you to configure subnet routes for your Tailscale devices. See the
-// [Tailscale subnets documentation](https://tailscale.com/kb/1019/subnets) for more information.
+// The deviceSubnetRoutes resource allows you to configure subnet routes for your Tailscale devices. See https://tailscale.com/kb/1019/subnets for more information.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		sampleDevice, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
+// 			Name: "device.example.com",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = tailscale.NewDeviceSubnetRoutes(ctx, "sampleRoutes", &tailscale.DeviceSubnetRoutesArgs{
+// 			DeviceId: pulumi.String(sampleDevice.Id),
+// 			Routes: pulumi.StringArray{
+// 				pulumi.String("10.0.1.0/24"),
+// 				pulumi.String("1.2.0.0/16"),
+// 				pulumi.String("2.0.0.0/24"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type DeviceSubnetRoutes struct {
 	pulumi.CustomResourceState
 
-	// The device to change enabled subroutes for.
+	// The device to set subnet routes for
 	DeviceId pulumi.StringOutput `pulumi:"deviceId"`
-	// The subnet routes that are enabled to be routed by a device. Routes can be enabled without a
-	// device advertising them (e.g. for preauth).
+	// The subnet routes that are enabled to be routed by a device
 	Routes pulumi.StringArrayOutput `pulumi:"routes"`
 }
 
@@ -58,18 +90,16 @@ func GetDeviceSubnetRoutes(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DeviceSubnetRoutes resources.
 type deviceSubnetRoutesState struct {
-	// The device to change enabled subroutes for.
+	// The device to set subnet routes for
 	DeviceId *string `pulumi:"deviceId"`
-	// The subnet routes that are enabled to be routed by a device. Routes can be enabled without a
-	// device advertising them (e.g. for preauth).
+	// The subnet routes that are enabled to be routed by a device
 	Routes []string `pulumi:"routes"`
 }
 
 type DeviceSubnetRoutesState struct {
-	// The device to change enabled subroutes for.
+	// The device to set subnet routes for
 	DeviceId pulumi.StringPtrInput
-	// The subnet routes that are enabled to be routed by a device. Routes can be enabled without a
-	// device advertising them (e.g. for preauth).
+	// The subnet routes that are enabled to be routed by a device
 	Routes pulumi.StringArrayInput
 }
 
@@ -78,19 +108,17 @@ func (DeviceSubnetRoutesState) ElementType() reflect.Type {
 }
 
 type deviceSubnetRoutesArgs struct {
-	// The device to change enabled subroutes for.
+	// The device to set subnet routes for
 	DeviceId string `pulumi:"deviceId"`
-	// The subnet routes that are enabled to be routed by a device. Routes can be enabled without a
-	// device advertising them (e.g. for preauth).
+	// The subnet routes that are enabled to be routed by a device
 	Routes []string `pulumi:"routes"`
 }
 
 // The set of arguments for constructing a DeviceSubnetRoutes resource.
 type DeviceSubnetRoutesArgs struct {
-	// The device to change enabled subroutes for.
+	// The device to set subnet routes for
 	DeviceId pulumi.StringInput
-	// The subnet routes that are enabled to be routed by a device. Routes can be enabled without a
-	// device advertising them (e.g. for preauth).
+	// The subnet routes that are enabled to be routed by a device
 	Routes pulumi.StringArrayInput
 }
 

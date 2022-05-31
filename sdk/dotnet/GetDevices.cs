@@ -12,7 +12,7 @@ namespace Pulumi.Tailscale
     public static class GetDevices
     {
         /// <summary>
-        /// The devices data source describes a list of devices in a tailnet.
+        /// The devices data source describes a list of devices in a tailnet
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -41,7 +41,7 @@ namespace Pulumi.Tailscale
             => Pulumi.Deployment.Instance.InvokeAsync<GetDevicesResult>("tailscale:index/getDevices:getDevices", args ?? new GetDevicesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The devices data source describes a list of devices in a tailnet.
+        /// The devices data source describes a list of devices in a tailnet
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -73,9 +73,6 @@ namespace Pulumi.Tailscale
 
     public sealed class GetDevicesArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Filters the returned list of devices to those whose name have this prefix.
-        /// </summary>
         [Input("namePrefix")]
         public string? NamePrefix { get; set; }
 
@@ -86,9 +83,6 @@ namespace Pulumi.Tailscale
 
     public sealed class GetDevicesInvokeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Filters the returned list of devices to those whose name have this prefix.
-        /// </summary>
         [Input("namePrefix")]
         public Input<string>? NamePrefix { get; set; }
 
@@ -101,9 +95,6 @@ namespace Pulumi.Tailscale
     [OutputType]
     public sealed class GetDevicesResult
     {
-        /// <summary>
-        /// The list of devices returned from the Tailscale API. Each element contains the following:
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetDevicesDeviceResult> Devices;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.

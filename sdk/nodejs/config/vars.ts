@@ -7,6 +7,9 @@ import * as utilities from "../utilities";
 declare var exports: any;
 const __config = new pulumi.Config("tailscale");
 
+/**
+ * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+ */
 export declare const apiKey: string | undefined;
 Object.defineProperty(exports, "apiKey", {
     get() {
@@ -15,6 +18,10 @@ Object.defineProperty(exports, "apiKey", {
     enumerable: true,
 });
 
+/**
+ * The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
+ * environment variable.
+ */
 export declare const baseUrl: string | undefined;
 Object.defineProperty(exports, "baseUrl", {
     get() {
@@ -23,6 +30,9 @@ Object.defineProperty(exports, "baseUrl", {
     enumerable: true,
 });
 
+/**
+ * The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+ */
 export declare const tailnet: string | undefined;
 Object.defineProperty(exports, "tailnet", {
     get() {

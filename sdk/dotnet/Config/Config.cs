@@ -33,6 +33,9 @@ namespace Pulumi.Tailscale
         private static readonly Pulumi.Config __config = new Pulumi.Config("tailscale");
 
         private static readonly __Value<string?> _apiKey = new __Value<string?>(() => __config.Get("apiKey"));
+        /// <summary>
+        /// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+        /// </summary>
         public static string? ApiKey
         {
             get => _apiKey.Get();
@@ -40,6 +43,10 @@ namespace Pulumi.Tailscale
         }
 
         private static readonly __Value<string?> _baseUrl = new __Value<string?>(() => __config.Get("baseUrl"));
+        /// <summary>
+        /// The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
+        /// environment variable.
+        /// </summary>
         public static string? BaseUrl
         {
             get => _baseUrl.Get();
@@ -47,6 +54,9 @@ namespace Pulumi.Tailscale
         }
 
         private static readonly __Value<string?> _tailnet = new __Value<string?>(() => __config.Get("tailnet"));
+        /// <summary>
+        /// The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+        /// </summary>
         public static string? Tailnet
         {
             get => _tailnet.Get();

@@ -11,14 +11,45 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The deviceTags resource is used to apply tags to a device within a Tailnet. For more information on ACL tags, see
-// the [ACL tags documentation](https://tailscale.com/kb/1068/acl-tags/) for more details.
+// The deviceTags resource is used to apply tags to Tailscale devices. See https://tailscale.com/kb/1068/acl-tags/ for more details.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		sampleDevice, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
+// 			Name: "device.example.com",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = tailscale.NewDeviceTags(ctx, "sampleTags", &tailscale.DeviceTagsArgs{
+// 			DeviceId: pulumi.String(sampleDevice.Id),
+// 			Tags: pulumi.StringArray{
+// 				pulumi.String("room:bedroom"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type DeviceTags struct {
 	pulumi.CustomResourceState
 
-	// The device to apply tags to.
+	// The device to set tags for
 	DeviceId pulumi.StringOutput `pulumi:"deviceId"`
-	// The tags to apply to the device.
+	// The tags to apply to the device
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 }
 
@@ -57,16 +88,16 @@ func GetDeviceTags(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DeviceTags resources.
 type deviceTagsState struct {
-	// The device to apply tags to.
+	// The device to set tags for
 	DeviceId *string `pulumi:"deviceId"`
-	// The tags to apply to the device.
+	// The tags to apply to the device
 	Tags []string `pulumi:"tags"`
 }
 
 type DeviceTagsState struct {
-	// The device to apply tags to.
+	// The device to set tags for
 	DeviceId pulumi.StringPtrInput
-	// The tags to apply to the device.
+	// The tags to apply to the device
 	Tags pulumi.StringArrayInput
 }
 
@@ -75,17 +106,17 @@ func (DeviceTagsState) ElementType() reflect.Type {
 }
 
 type deviceTagsArgs struct {
-	// The device to apply tags to.
+	// The device to set tags for
 	DeviceId string `pulumi:"deviceId"`
-	// The tags to apply to the device.
+	// The tags to apply to the device
 	Tags []string `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a DeviceTags resource.
 type DeviceTagsArgs struct {
-	// The device to apply tags to.
+	// The device to set tags for
 	DeviceId pulumi.StringInput
-	// The tags to apply to the device.
+	// The tags to apply to the device
 	Tags pulumi.StringArrayInput
 }
 

@@ -5,8 +5,22 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The acl resource allows you to configure a Tailscale ACL. See the [Tailscale ACL documentation](https://tailscale.com/kb/1018/acls)
- * for more information. You can set the ACL in multiple ways including hujson.
+ * The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as tailscale from "@pulumi/tailscale";
+ *
+ * const sampleAcl = new tailscale.Acl("sampleAcl", {acl: JSON.stringify({
+ *     acls: [{
+ *         action: "accept",
+ *         users: ["*"],
+ *         ports: ["*:*"],
+ *     }],
+ * })});
+ * ```
  */
 export class Acl extends pulumi.CustomResource {
     /**
@@ -37,9 +51,7 @@ export class Acl extends pulumi.CustomResource {
     }
 
     /**
-     * The JSON-based policy that defines which devices and users are allowed to connect in your network.
-     * This can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your
-     * local ACL file.
+     * The JSON-based policy that defines which devices and users are allowed to connect in your network
      */
     public readonly acl!: pulumi.Output<string>;
 
@@ -74,9 +86,7 @@ export class Acl extends pulumi.CustomResource {
  */
 export interface AclState {
     /**
-     * The JSON-based policy that defines which devices and users are allowed to connect in your network.
-     * This can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your
-     * local ACL file.
+     * The JSON-based policy that defines which devices and users are allowed to connect in your network
      */
     acl?: pulumi.Input<string>;
 }
@@ -86,9 +96,7 @@ export interface AclState {
  */
 export interface AclArgs {
     /**
-     * The JSON-based policy that defines which devices and users are allowed to connect in your network.
-     * This can be JSON or HuJSON. Comments will not be provided when sent to the Tailscale API, they were only appear in your
-     * local ACL file.
+     * The JSON-based policy that defines which devices and users are allowed to connect in your network
      */
     acl: pulumi.Input<string>;
 }

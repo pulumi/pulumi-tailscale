@@ -18,12 +18,22 @@ namespace Pulumi.Tailscale
     [TailscaleResourceType("pulumi:providers:tailscale")]
     public partial class Provider : Pulumi.ProviderResource
     {
+        /// <summary>
+        /// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+        /// </summary>
         [Output("apiKey")]
         public Output<string> ApiKey { get; private set; } = null!;
 
+        /// <summary>
+        /// The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
+        /// environment variable.
+        /// </summary>
         [Output("baseUrl")]
         public Output<string?> BaseUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+        /// </summary>
         [Output("tailnet")]
         public Output<string> Tailnet { get; private set; } = null!;
 
@@ -55,12 +65,22 @@ namespace Pulumi.Tailscale
 
     public sealed class ProviderArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+        /// </summary>
         [Input("apiKey", required: true)]
         public Input<string> ApiKey { get; set; } = null!;
 
+        /// <summary>
+        /// The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
+        /// environment variable.
+        /// </summary>
         [Input("baseUrl")]
         public Input<string>? BaseUrl { get; set; }
 
+        /// <summary>
+        /// The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+        /// </summary>
         [Input("tailnet", required: true)]
         public Input<string> Tailnet { get; set; } = null!;
 
