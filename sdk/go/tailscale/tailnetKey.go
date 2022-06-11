@@ -25,8 +25,9 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := tailscale.NewTailnetKey(ctx, "sampleKey", &tailscale.TailnetKeyArgs{
-// 			Ephemeral: pulumi.Bool(false),
-// 			Reusable:  pulumi.Bool(true),
+// 			Ephemeral:     pulumi.Bool(false),
+// 			Preauthorized: pulumi.Bool(true),
+// 			Reusable:      pulumi.Bool(true),
 // 		})
 // 		if err != nil {
 // 			return err
@@ -42,6 +43,8 @@ type TailnetKey struct {
 	Ephemeral pulumi.BoolPtrOutput `pulumi:"ephemeral"`
 	// The authentication key
 	Key pulumi.StringOutput `pulumi:"key"`
+	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+	Preauthorized pulumi.BoolPtrOutput `pulumi:"preauthorized"`
 	// Indicates if the key is reusable or single-use.
 	Reusable pulumi.BoolPtrOutput `pulumi:"reusable"`
 	// List of tags to apply to the machines authenticated by the key.
@@ -81,6 +84,8 @@ type tailnetKeyState struct {
 	Ephemeral *bool `pulumi:"ephemeral"`
 	// The authentication key
 	Key *string `pulumi:"key"`
+	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+	Preauthorized *bool `pulumi:"preauthorized"`
 	// Indicates if the key is reusable or single-use.
 	Reusable *bool `pulumi:"reusable"`
 	// List of tags to apply to the machines authenticated by the key.
@@ -92,6 +97,8 @@ type TailnetKeyState struct {
 	Ephemeral pulumi.BoolPtrInput
 	// The authentication key
 	Key pulumi.StringPtrInput
+	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+	Preauthorized pulumi.BoolPtrInput
 	// Indicates if the key is reusable or single-use.
 	Reusable pulumi.BoolPtrInput
 	// List of tags to apply to the machines authenticated by the key.
@@ -105,6 +112,8 @@ func (TailnetKeyState) ElementType() reflect.Type {
 type tailnetKeyArgs struct {
 	// Indicates if the key is ephemeral.
 	Ephemeral *bool `pulumi:"ephemeral"`
+	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+	Preauthorized *bool `pulumi:"preauthorized"`
 	// Indicates if the key is reusable or single-use.
 	Reusable *bool `pulumi:"reusable"`
 	// List of tags to apply to the machines authenticated by the key.
@@ -115,6 +124,8 @@ type tailnetKeyArgs struct {
 type TailnetKeyArgs struct {
 	// Indicates if the key is ephemeral.
 	Ephemeral pulumi.BoolPtrInput
+	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+	Preauthorized pulumi.BoolPtrInput
 	// Indicates if the key is reusable or single-use.
 	Reusable pulumi.BoolPtrInput
 	// List of tags to apply to the machines authenticated by the key.

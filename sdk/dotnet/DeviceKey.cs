@@ -29,7 +29,6 @@ namespace Pulumi.Tailscale
     ///         var exampleKey = new Tailscale.DeviceKey("exampleKey", new Tailscale.DeviceKeyArgs
     ///         {
     ///             DeviceId = exampleDevice.Apply(exampleDevice =&gt; exampleDevice.Id),
-    ///             Preauthorized = true,
     ///             KeyExpiryDisabled = true,
     ///         });
     ///     }
@@ -51,12 +50,6 @@ namespace Pulumi.Tailscale
         /// </summary>
         [Output("keyExpiryDisabled")]
         public Output<bool?> KeyExpiryDisabled { get; private set; } = null!;
-
-        /// <summary>
-        /// Determines whether or not the device will be authorized for the tailnet by default.
-        /// </summary>
-        [Output("preauthorized")]
-        public Output<bool?> Preauthorized { get; private set; } = null!;
 
 
         /// <summary>
@@ -116,12 +109,6 @@ namespace Pulumi.Tailscale
         [Input("keyExpiryDisabled")]
         public Input<bool>? KeyExpiryDisabled { get; set; }
 
-        /// <summary>
-        /// Determines whether or not the device will be authorized for the tailnet by default.
-        /// </summary>
-        [Input("preauthorized")]
-        public Input<bool>? Preauthorized { get; set; }
-
         public DeviceKeyArgs()
         {
         }
@@ -140,12 +127,6 @@ namespace Pulumi.Tailscale
         /// </summary>
         [Input("keyExpiryDisabled")]
         public Input<bool>? KeyExpiryDisabled { get; set; }
-
-        /// <summary>
-        /// Determines whether or not the device will be authorized for the tailnet by default.
-        /// </summary>
-        [Input("preauthorized")]
-        public Input<bool>? Preauthorized { get; set; }
 
         public DeviceKeyState()
         {

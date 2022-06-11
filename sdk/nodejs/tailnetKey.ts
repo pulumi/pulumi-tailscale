@@ -15,6 +15,7 @@ import * as utilities from "./utilities";
  *
  * const sampleKey = new tailscale.TailnetKey("sample_key", {
  *     ephemeral: false,
+ *     preauthorized: true,
  *     reusable: true,
  * });
  * ```
@@ -56,6 +57,10 @@ export class TailnetKey extends pulumi.CustomResource {
      */
     public /*out*/ readonly key!: pulumi.Output<string>;
     /**
+     * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+     */
+    public readonly preauthorized!: pulumi.Output<boolean | undefined>;
+    /**
      * Indicates if the key is reusable or single-use.
      */
     public readonly reusable!: pulumi.Output<boolean | undefined>;
@@ -79,11 +84,13 @@ export class TailnetKey extends pulumi.CustomResource {
             const state = argsOrState as TailnetKeyState | undefined;
             resourceInputs["ephemeral"] = state ? state.ephemeral : undefined;
             resourceInputs["key"] = state ? state.key : undefined;
+            resourceInputs["preauthorized"] = state ? state.preauthorized : undefined;
             resourceInputs["reusable"] = state ? state.reusable : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as TailnetKeyArgs | undefined;
             resourceInputs["ephemeral"] = args ? args.ephemeral : undefined;
+            resourceInputs["preauthorized"] = args ? args.preauthorized : undefined;
             resourceInputs["reusable"] = args ? args.reusable : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["key"] = undefined /*out*/;
@@ -106,6 +113,10 @@ export interface TailnetKeyState {
      */
     key?: pulumi.Input<string>;
     /**
+     * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+     */
+    preauthorized?: pulumi.Input<boolean>;
+    /**
      * Indicates if the key is reusable or single-use.
      */
     reusable?: pulumi.Input<boolean>;
@@ -123,6 +134,10 @@ export interface TailnetKeyArgs {
      * Indicates if the key is ephemeral.
      */
     ephemeral?: pulumi.Input<boolean>;
+    /**
+     * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+     */
+    preauthorized?: pulumi.Input<boolean>;
     /**
      * Indicates if the key is reusable or single-use.
      */
