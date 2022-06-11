@@ -18,7 +18,6 @@ import * as utilities from "./utilities";
  * });
  * const exampleKey = new tailscale.DeviceKey("exampleKey", {
  *     deviceId: exampleDevice.then(exampleDevice => exampleDevice.id),
- *     preauthorized: true,
  *     keyExpiryDisabled: true,
  * });
  * ```
@@ -59,10 +58,6 @@ export class DeviceKey extends pulumi.CustomResource {
      * Determines whether or not the device's key will expire
      */
     public readonly keyExpiryDisabled!: pulumi.Output<boolean | undefined>;
-    /**
-     * Determines whether or not the device will be authorized for the tailnet by default.
-     */
-    public readonly preauthorized!: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a DeviceKey resource with the given unique name, arguments, and options.
@@ -79,7 +74,6 @@ export class DeviceKey extends pulumi.CustomResource {
             const state = argsOrState as DeviceKeyState | undefined;
             resourceInputs["deviceId"] = state ? state.deviceId : undefined;
             resourceInputs["keyExpiryDisabled"] = state ? state.keyExpiryDisabled : undefined;
-            resourceInputs["preauthorized"] = state ? state.preauthorized : undefined;
         } else {
             const args = argsOrState as DeviceKeyArgs | undefined;
             if ((!args || args.deviceId === undefined) && !opts.urn) {
@@ -87,7 +81,6 @@ export class DeviceKey extends pulumi.CustomResource {
             }
             resourceInputs["deviceId"] = args ? args.deviceId : undefined;
             resourceInputs["keyExpiryDisabled"] = args ? args.keyExpiryDisabled : undefined;
-            resourceInputs["preauthorized"] = args ? args.preauthorized : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DeviceKey.__pulumiType, name, resourceInputs, opts);
@@ -106,10 +99,6 @@ export interface DeviceKeyState {
      * Determines whether or not the device's key will expire
      */
     keyExpiryDisabled?: pulumi.Input<boolean>;
-    /**
-     * Determines whether or not the device will be authorized for the tailnet by default.
-     */
-    preauthorized?: pulumi.Input<boolean>;
 }
 
 /**
@@ -124,8 +113,4 @@ export interface DeviceKeyArgs {
      * Determines whether or not the device's key will expire
      */
     keyExpiryDisabled?: pulumi.Input<boolean>;
-    /**
-     * Determines whether or not the device will be authorized for the tailnet by default.
-     */
-    preauthorized?: pulumi.Input<boolean>;
 }
