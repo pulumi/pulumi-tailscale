@@ -14,19 +14,15 @@ __all__ = ['DeviceKeyArgs', 'DeviceKey']
 class DeviceKeyArgs:
     def __init__(__self__, *,
                  device_id: pulumi.Input[str],
-                 key_expiry_disabled: Optional[pulumi.Input[bool]] = None,
-                 preauthorized: Optional[pulumi.Input[bool]] = None):
+                 key_expiry_disabled: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a DeviceKey resource.
         :param pulumi.Input[str] device_id: The device to update the key properties of
         :param pulumi.Input[bool] key_expiry_disabled: Determines whether or not the device's key will expire
-        :param pulumi.Input[bool] preauthorized: Determines whether or not the device will be authorized for the tailnet by default.
         """
         pulumi.set(__self__, "device_id", device_id)
         if key_expiry_disabled is not None:
             pulumi.set(__self__, "key_expiry_disabled", key_expiry_disabled)
-        if preauthorized is not None:
-            pulumi.set(__self__, "preauthorized", preauthorized)
 
     @property
     @pulumi.getter(name="deviceId")
@@ -52,37 +48,21 @@ class DeviceKeyArgs:
     def key_expiry_disabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "key_expiry_disabled", value)
 
-    @property
-    @pulumi.getter
-    def preauthorized(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Determines whether or not the device will be authorized for the tailnet by default.
-        """
-        return pulumi.get(self, "preauthorized")
-
-    @preauthorized.setter
-    def preauthorized(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "preauthorized", value)
-
 
 @pulumi.input_type
 class _DeviceKeyState:
     def __init__(__self__, *,
                  device_id: Optional[pulumi.Input[str]] = None,
-                 key_expiry_disabled: Optional[pulumi.Input[bool]] = None,
-                 preauthorized: Optional[pulumi.Input[bool]] = None):
+                 key_expiry_disabled: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering DeviceKey resources.
         :param pulumi.Input[str] device_id: The device to update the key properties of
         :param pulumi.Input[bool] key_expiry_disabled: Determines whether or not the device's key will expire
-        :param pulumi.Input[bool] preauthorized: Determines whether or not the device will be authorized for the tailnet by default.
         """
         if device_id is not None:
             pulumi.set(__self__, "device_id", device_id)
         if key_expiry_disabled is not None:
             pulumi.set(__self__, "key_expiry_disabled", key_expiry_disabled)
-        if preauthorized is not None:
-            pulumi.set(__self__, "preauthorized", preauthorized)
 
     @property
     @pulumi.getter(name="deviceId")
@@ -108,18 +88,6 @@ class _DeviceKeyState:
     def key_expiry_disabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "key_expiry_disabled", value)
 
-    @property
-    @pulumi.getter
-    def preauthorized(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Determines whether or not the device will be authorized for the tailnet by default.
-        """
-        return pulumi.get(self, "preauthorized")
-
-    @preauthorized.setter
-    def preauthorized(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "preauthorized", value)
-
 
 class DeviceKey(pulumi.CustomResource):
     @overload
@@ -128,7 +96,6 @@ class DeviceKey(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  device_id: Optional[pulumi.Input[str]] = None,
                  key_expiry_disabled: Optional[pulumi.Input[bool]] = None,
-                 preauthorized: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         The device_key resource allows you to update the properties of a device's key
@@ -142,7 +109,6 @@ class DeviceKey(pulumi.CustomResource):
         example_device = tailscale.get_device(name="device.example.com")
         example_key = tailscale.DeviceKey("exampleKey",
             device_id=example_device.id,
-            preauthorized=True,
             key_expiry_disabled=True)
         ```
 
@@ -150,7 +116,6 @@ class DeviceKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_id: The device to update the key properties of
         :param pulumi.Input[bool] key_expiry_disabled: Determines whether or not the device's key will expire
-        :param pulumi.Input[bool] preauthorized: Determines whether or not the device will be authorized for the tailnet by default.
         """
         ...
     @overload
@@ -170,7 +135,6 @@ class DeviceKey(pulumi.CustomResource):
         example_device = tailscale.get_device(name="device.example.com")
         example_key = tailscale.DeviceKey("exampleKey",
             device_id=example_device.id,
-            preauthorized=True,
             key_expiry_disabled=True)
         ```
 
@@ -191,7 +155,6 @@ class DeviceKey(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  device_id: Optional[pulumi.Input[str]] = None,
                  key_expiry_disabled: Optional[pulumi.Input[bool]] = None,
-                 preauthorized: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -208,7 +171,6 @@ class DeviceKey(pulumi.CustomResource):
                 raise TypeError("Missing required property 'device_id'")
             __props__.__dict__["device_id"] = device_id
             __props__.__dict__["key_expiry_disabled"] = key_expiry_disabled
-            __props__.__dict__["preauthorized"] = preauthorized
         super(DeviceKey, __self__).__init__(
             'tailscale:index/deviceKey:DeviceKey',
             resource_name,
@@ -220,8 +182,7 @@ class DeviceKey(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             device_id: Optional[pulumi.Input[str]] = None,
-            key_expiry_disabled: Optional[pulumi.Input[bool]] = None,
-            preauthorized: Optional[pulumi.Input[bool]] = None) -> 'DeviceKey':
+            key_expiry_disabled: Optional[pulumi.Input[bool]] = None) -> 'DeviceKey':
         """
         Get an existing DeviceKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -231,7 +192,6 @@ class DeviceKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_id: The device to update the key properties of
         :param pulumi.Input[bool] key_expiry_disabled: Determines whether or not the device's key will expire
-        :param pulumi.Input[bool] preauthorized: Determines whether or not the device will be authorized for the tailnet by default.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -239,7 +199,6 @@ class DeviceKey(pulumi.CustomResource):
 
         __props__.__dict__["device_id"] = device_id
         __props__.__dict__["key_expiry_disabled"] = key_expiry_disabled
-        __props__.__dict__["preauthorized"] = preauthorized
         return DeviceKey(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -257,12 +216,4 @@ class DeviceKey(pulumi.CustomResource):
         Determines whether or not the device's key will expire
         """
         return pulumi.get(self, "key_expiry_disabled")
-
-    @property
-    @pulumi.getter
-    def preauthorized(self) -> pulumi.Output[Optional[bool]]:
-        """
-        Determines whether or not the device will be authorized for the tailnet by default.
-        """
-        return pulumi.get(self, "preauthorized")
 

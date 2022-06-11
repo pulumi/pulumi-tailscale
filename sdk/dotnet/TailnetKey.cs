@@ -25,6 +25,7 @@ namespace Pulumi.Tailscale
     ///         var sampleKey = new Tailscale.TailnetKey("sampleKey", new Tailscale.TailnetKeyArgs
     ///         {
     ///             Ephemeral = false,
+    ///             Preauthorized = true,
     ///             Reusable = true,
     ///         });
     ///     }
@@ -46,6 +47,12 @@ namespace Pulumi.Tailscale
         /// </summary>
         [Output("key")]
         public Output<string> Key { get; private set; } = null!;
+
+        /// <summary>
+        /// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+        /// </summary>
+        [Output("preauthorized")]
+        public Output<bool?> Preauthorized { get; private set; } = null!;
 
         /// <summary>
         /// Indicates if the key is reusable or single-use.
@@ -112,6 +119,12 @@ namespace Pulumi.Tailscale
         public Input<bool>? Ephemeral { get; set; }
 
         /// <summary>
+        /// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+        /// </summary>
+        [Input("preauthorized")]
+        public Input<bool>? Preauthorized { get; set; }
+
+        /// <summary>
         /// Indicates if the key is reusable or single-use.
         /// </summary>
         [Input("reusable")]
@@ -147,6 +160,12 @@ namespace Pulumi.Tailscale
         /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
+
+        /// <summary>
+        /// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+        /// </summary>
+        [Input("preauthorized")]
+        public Input<bool>? Preauthorized { get; set; }
 
         /// <summary>
         /// Indicates if the key is reusable or single-use.

@@ -14,16 +14,20 @@ __all__ = ['TailnetKeyArgs', 'TailnetKey']
 class TailnetKeyArgs:
     def __init__(__self__, *,
                  ephemeral: Optional[pulumi.Input[bool]] = None,
+                 preauthorized: Optional[pulumi.Input[bool]] = None,
                  reusable: Optional[pulumi.Input[bool]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a TailnetKey resource.
         :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
+        :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
         if ephemeral is not None:
             pulumi.set(__self__, "ephemeral", ephemeral)
+        if preauthorized is not None:
+            pulumi.set(__self__, "preauthorized", preauthorized)
         if reusable is not None:
             pulumi.set(__self__, "reusable", reusable)
         if tags is not None:
@@ -40,6 +44,18 @@ class TailnetKeyArgs:
     @ephemeral.setter
     def ephemeral(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "ephemeral", value)
+
+    @property
+    @pulumi.getter
+    def preauthorized(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+        """
+        return pulumi.get(self, "preauthorized")
+
+    @preauthorized.setter
+    def preauthorized(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "preauthorized", value)
 
     @property
     @pulumi.getter
@@ -71,12 +87,14 @@ class _TailnetKeyState:
     def __init__(__self__, *,
                  ephemeral: Optional[pulumi.Input[bool]] = None,
                  key: Optional[pulumi.Input[str]] = None,
+                 preauthorized: Optional[pulumi.Input[bool]] = None,
                  reusable: Optional[pulumi.Input[bool]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering TailnetKey resources.
         :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
         :param pulumi.Input[str] key: The authentication key
+        :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
@@ -84,6 +102,8 @@ class _TailnetKeyState:
             pulumi.set(__self__, "ephemeral", ephemeral)
         if key is not None:
             pulumi.set(__self__, "key", key)
+        if preauthorized is not None:
+            pulumi.set(__self__, "preauthorized", preauthorized)
         if reusable is not None:
             pulumi.set(__self__, "reusable", reusable)
         if tags is not None:
@@ -112,6 +132,18 @@ class _TailnetKeyState:
     @key.setter
     def key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def preauthorized(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+        """
+        return pulumi.get(self, "preauthorized")
+
+    @preauthorized.setter
+    def preauthorized(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "preauthorized", value)
 
     @property
     @pulumi.getter
@@ -144,6 +176,7 @@ class TailnetKey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  ephemeral: Optional[pulumi.Input[bool]] = None,
+                 preauthorized: Optional[pulumi.Input[bool]] = None,
                  reusable: Optional[pulumi.Input[bool]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -158,12 +191,14 @@ class TailnetKey(pulumi.CustomResource):
 
         sample_key = tailscale.TailnetKey("sampleKey",
             ephemeral=False,
+            preauthorized=True,
             reusable=True)
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
+        :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
@@ -184,6 +219,7 @@ class TailnetKey(pulumi.CustomResource):
 
         sample_key = tailscale.TailnetKey("sampleKey",
             ephemeral=False,
+            preauthorized=True,
             reusable=True)
         ```
 
@@ -203,6 +239,7 @@ class TailnetKey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  ephemeral: Optional[pulumi.Input[bool]] = None,
+                 preauthorized: Optional[pulumi.Input[bool]] = None,
                  reusable: Optional[pulumi.Input[bool]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -218,6 +255,7 @@ class TailnetKey(pulumi.CustomResource):
             __props__ = TailnetKeyArgs.__new__(TailnetKeyArgs)
 
             __props__.__dict__["ephemeral"] = ephemeral
+            __props__.__dict__["preauthorized"] = preauthorized
             __props__.__dict__["reusable"] = reusable
             __props__.__dict__["tags"] = tags
             __props__.__dict__["key"] = None
@@ -233,6 +271,7 @@ class TailnetKey(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             ephemeral: Optional[pulumi.Input[bool]] = None,
             key: Optional[pulumi.Input[str]] = None,
+            preauthorized: Optional[pulumi.Input[bool]] = None,
             reusable: Optional[pulumi.Input[bool]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'TailnetKey':
         """
@@ -244,6 +283,7 @@ class TailnetKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
         :param pulumi.Input[str] key: The authentication key
+        :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
@@ -253,6 +293,7 @@ class TailnetKey(pulumi.CustomResource):
 
         __props__.__dict__["ephemeral"] = ephemeral
         __props__.__dict__["key"] = key
+        __props__.__dict__["preauthorized"] = preauthorized
         __props__.__dict__["reusable"] = reusable
         __props__.__dict__["tags"] = tags
         return TailnetKey(resource_name, opts=opts, __props__=__props__)
@@ -272,6 +313,14 @@ class TailnetKey(pulumi.CustomResource):
         The authentication key
         """
         return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def preauthorized(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+        """
+        return pulumi.get(self, "preauthorized")
 
     @property
     @pulumi.getter
