@@ -229,7 +229,7 @@
             }
         },
         "tailscale:index/deviceKey:DeviceKey": {
-            "description": "The device_key resource allows you to update the properties of a device's key\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst exampleDevice = tailscale.getDevice({\n    name: \"device.example.com\",\n});\nconst exampleKey = new tailscale.DeviceKey(\"exampleKey\", {\n    deviceId: exampleDevice.then(exampleDevice =\u003e exampleDevice.id),\n    preauthorized: true,\n    keyExpiryDisabled: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nexample_device = tailscale.get_device(name=\"device.example.com\")\nexample_key = tailscale.DeviceKey(\"exampleKey\",\n    device_id=example_device.id,\n    preauthorized=True,\n    key_expiry_disabled=True)\n```\n```csharp\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleDevice = Output.Create(Tailscale.GetDevice.InvokeAsync(new Tailscale.GetDeviceArgs\n        {\n            Name = \"device.example.com\",\n        }));\n        var exampleKey = new Tailscale.DeviceKey(\"exampleKey\", new Tailscale.DeviceKeyArgs\n        {\n            DeviceId = exampleDevice.Apply(exampleDevice =\u003e exampleDevice.Id),\n            Preauthorized = true,\n            KeyExpiryDisabled = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleDevice, err := tailscale.GetDevice(ctx, \u0026GetDeviceArgs{\n\t\t\tName: \"device.example.com\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = tailscale.NewDeviceKey(ctx, \"exampleKey\", \u0026tailscale.DeviceKeyArgs{\n\t\t\tDeviceId:          pulumi.String(exampleDevice.Id),\n\t\t\tPreauthorized:     pulumi.Bool(true),\n\t\t\tKeyExpiryDisabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "The device_key resource allows you to update the properties of a device's key\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst exampleDevice = tailscale.getDevice({\n    name: \"device.example.com\",\n});\nconst exampleKey = new tailscale.DeviceKey(\"exampleKey\", {\n    deviceId: exampleDevice.then(exampleDevice =\u003e exampleDevice.id),\n    keyExpiryDisabled: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nexample_device = tailscale.get_device(name=\"device.example.com\")\nexample_key = tailscale.DeviceKey(\"exampleKey\",\n    device_id=example_device.id,\n    key_expiry_disabled=True)\n```\n```csharp\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exampleDevice = Output.Create(Tailscale.GetDevice.InvokeAsync(new Tailscale.GetDeviceArgs\n        {\n            Name = \"device.example.com\",\n        }));\n        var exampleKey = new Tailscale.DeviceKey(\"exampleKey\", new Tailscale.DeviceKeyArgs\n        {\n            DeviceId = exampleDevice.Apply(exampleDevice =\u003e exampleDevice.Id),\n            KeyExpiryDisabled = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleDevice, err := tailscale.GetDevice(ctx, \u0026GetDeviceArgs{\n\t\t\tName: \"device.example.com\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = tailscale.NewDeviceKey(ctx, \"exampleKey\", \u0026tailscale.DeviceKeyArgs{\n\t\t\tDeviceId:          pulumi.String(exampleDevice.Id),\n\t\t\tKeyExpiryDisabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "deviceId": {
                     "type": "string",
@@ -238,10 +238,6 @@
                 "keyExpiryDisabled": {
                     "type": "boolean",
                     "description": "Determines whether or not the device's key will expire\n"
-                },
-                "preauthorized": {
-                    "type": "boolean",
-                    "description": "Determines whether or not the device will be authorized for the tailnet by default.\n"
                 }
             },
             "required": [
@@ -255,10 +251,6 @@
                 "keyExpiryDisabled": {
                     "type": "boolean",
                     "description": "Determines whether or not the device's key will expire\n"
-                },
-                "preauthorized": {
-                    "type": "boolean",
-                    "description": "Determines whether or not the device will be authorized for the tailnet by default.\n"
                 }
             },
             "requiredInputs": [
@@ -274,10 +266,6 @@
                     "keyExpiryDisabled": {
                         "type": "boolean",
                         "description": "Determines whether or not the device's key will expire\n"
-                    },
-                    "preauthorized": {
-                        "type": "boolean",
-                        "description": "Determines whether or not the device will be authorized for the tailnet by default.\n"
                     }
                 },
                 "type": "object"
@@ -503,7 +491,7 @@
             }
         },
         "tailscale:index/tailnetKey:TailnetKey": {
-            "description": "The tailnet_key resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleKey = new tailscale.TailnetKey(\"sample_key\", {\n    ephemeral: false,\n    reusable: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_key = tailscale.TailnetKey(\"sampleKey\",\n    ephemeral=False,\n    reusable=True)\n```\n```csharp\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var sampleKey = new Tailscale.TailnetKey(\"sampleKey\", new Tailscale.TailnetKeyArgs\n        {\n            Ephemeral = false,\n            Reusable = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewTailnetKey(ctx, \"sampleKey\", \u0026tailscale.TailnetKeyArgs{\n\t\t\tEphemeral: pulumi.Bool(false),\n\t\t\tReusable:  pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "The tailnet_key resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleKey = new tailscale.TailnetKey(\"sample_key\", {\n    ephemeral: false,\n    preauthorized: true,\n    reusable: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_key = tailscale.TailnetKey(\"sampleKey\",\n    ephemeral=False,\n    preauthorized=True,\n    reusable=True)\n```\n```csharp\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var sampleKey = new Tailscale.TailnetKey(\"sampleKey\", new Tailscale.TailnetKeyArgs\n        {\n            Ephemeral = false,\n            Preauthorized = true,\n            Reusable = true,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewTailnetKey(ctx, \"sampleKey\", \u0026tailscale.TailnetKeyArgs{\n\t\t\tEphemeral:     pulumi.Bool(false),\n\t\t\tPreauthorized: pulumi.Bool(true),\n\t\t\tReusable:      pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "ephemeral": {
                     "type": "boolean",
@@ -512,6 +500,10 @@
                 "key": {
                     "type": "string",
                     "description": "The authentication key\n"
+                },
+                "preauthorized": {
+                    "type": "boolean",
+                    "description": "Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.\n"
                 },
                 "reusable": {
                     "type": "boolean",
@@ -532,6 +524,10 @@
                 "ephemeral": {
                     "type": "boolean",
                     "description": "Indicates if the key is ephemeral.\n"
+                },
+                "preauthorized": {
+                    "type": "boolean",
+                    "description": "Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.\n"
                 },
                 "reusable": {
                     "type": "boolean",
@@ -555,6 +551,10 @@
                     "key": {
                         "type": "string",
                         "description": "The authentication key\n"
+                    },
+                    "preauthorized": {
+                        "type": "boolean",
+                        "description": "Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.\n"
                     },
                     "reusable": {
                         "type": "boolean",
