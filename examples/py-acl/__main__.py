@@ -6,9 +6,9 @@ import pulumi_tailscale as tailscale
 acl = tailscale.Acl("demo-py",
                     acl=json.dumps({
                         "ACLs": [{
-                            "Action": "accept",
-                            "User": ["*"],
-                            "Ports": ["*:*"],
+                            "action": "accept",
+                            "users": ["*"],
+                            "ports": ["*:*"],
                         }]
                     }))
 
