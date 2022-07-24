@@ -26,11 +26,7 @@
                 "type": "string",
                 "description": "The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.\n"
             }
-        },
-        "defaults": [
-            "apiKey",
-            "tailnet"
-        ]
+        }
     },
     "types": {
         "tailscale:index/getDevicesDevice:getDevicesDevice": {
@@ -113,10 +109,6 @@
                 "description": "The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.\n"
             }
         },
-        "required": [
-            "apiKey",
-            "tailnet"
-        ],
         "inputProperties": {
             "apiKey": {
                 "type": "string",
@@ -130,11 +122,7 @@
                 "type": "string",
                 "description": "The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.\n"
             }
-        },
-        "requiredInputs": [
-            "apiKey",
-            "tailnet"
-        ]
+        }
     },
     "resources": {
         "tailscale:index/acl:Acl": {
