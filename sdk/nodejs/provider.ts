@@ -28,7 +28,7 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
      */
-    public readonly apiKey!: pulumi.Output<string>;
+    public readonly apiKey!: pulumi.Output<string | undefined>;
     /**
      * The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
      * environment variable.
@@ -37,7 +37,7 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
      */
-    public readonly tailnet!: pulumi.Output<string>;
+    public readonly tailnet!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -46,16 +46,10 @@ export class Provider extends pulumi.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            if ((!args || args.apiKey === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'apiKey'");
-            }
-            if ((!args || args.tailnet === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'tailnet'");
-            }
             resourceInputs["apiKey"] = args ? args.apiKey : undefined;
             resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
             resourceInputs["tailnet"] = args ? args.tailnet : undefined;
@@ -72,7 +66,7 @@ export interface ProviderArgs {
     /**
      * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
      */
-    apiKey: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string>;
     /**
      * The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
      * environment variable.
@@ -81,5 +75,5 @@ export interface ProviderArgs {
     /**
      * The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
      */
-    tailnet: pulumi.Input<string>;
+    tailnet?: pulumi.Input<string>;
 }

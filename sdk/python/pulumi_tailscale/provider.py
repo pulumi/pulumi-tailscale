@@ -13,44 +13,34 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 api_key: pulumi.Input[str],
-                 tailnet: pulumi.Input[str],
-                 base_url: Optional[pulumi.Input[str]] = None):
+                 api_key: Optional[pulumi.Input[str]] = None,
+                 base_url: Optional[pulumi.Input[str]] = None,
+                 tailnet: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] api_key: The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
-        :param pulumi.Input[str] tailnet: The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
         :param pulumi.Input[str] base_url: The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
                environment variable.
+        :param pulumi.Input[str] tailnet: The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
         """
-        pulumi.set(__self__, "api_key", api_key)
-        pulumi.set(__self__, "tailnet", tailnet)
+        if api_key is not None:
+            pulumi.set(__self__, "api_key", api_key)
         if base_url is not None:
             pulumi.set(__self__, "base_url", base_url)
+        if tailnet is not None:
+            pulumi.set(__self__, "tailnet", tailnet)
 
     @property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> pulumi.Input[str]:
+    def api_key(self) -> Optional[pulumi.Input[str]]:
         """
         The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
         """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
-    def api_key(self, value: pulumi.Input[str]):
+    def api_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "api_key", value)
-
-    @property
-    @pulumi.getter
-    def tailnet(self) -> pulumi.Input[str]:
-        """
-        The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
-        """
-        return pulumi.get(self, "tailnet")
-
-    @tailnet.setter
-    def tailnet(self, value: pulumi.Input[str]):
-        pulumi.set(self, "tailnet", value)
 
     @property
     @pulumi.getter(name="baseUrl")
@@ -64,6 +54,18 @@ class ProviderArgs:
     @base_url.setter
     def base_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "base_url", value)
+
+    @property
+    @pulumi.getter
+    def tailnet(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+        """
+        return pulumi.get(self, "tailnet")
+
+    @tailnet.setter
+    def tailnet(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tailnet", value)
 
 
 class Provider(pulumi.ProviderResource):
@@ -92,7 +94,7 @@ class Provider(pulumi.ProviderResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ProviderArgs,
+                 args: Optional[ProviderArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The provider type for the tailscale package. By default, resources use package-wide configuration
@@ -130,12 +132,8 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
-            if api_key is None and not opts.urn:
-                raise TypeError("Missing required property 'api_key'")
             __props__.__dict__["api_key"] = api_key
             __props__.__dict__["base_url"] = base_url
-            if tailnet is None and not opts.urn:
-                raise TypeError("Missing required property 'tailnet'")
             __props__.__dict__["tailnet"] = tailnet
         super(Provider, __self__).__init__(
             'tailscale',
@@ -145,7 +143,7 @@ class Provider(pulumi.ProviderResource):
 
     @property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> pulumi.Output[str]:
+    def api_key(self) -> pulumi.Output[Optional[str]]:
         """
         The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
         """
@@ -162,7 +160,7 @@ class Provider(pulumi.ProviderResource):
 
     @property
     @pulumi.getter
-    def tailnet(self) -> pulumi.Output[str]:
+    def tailnet(self) -> pulumi.Output[Optional[str]]:
         """
         The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
         """

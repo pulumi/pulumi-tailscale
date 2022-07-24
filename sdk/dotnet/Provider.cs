@@ -22,7 +22,7 @@ namespace Pulumi.Tailscale
         /// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
         /// </summary>
         [Output("apiKey")]
-        public Output<string> ApiKey { get; private set; } = null!;
+        public Output<string?> ApiKey { get; private set; } = null!;
 
         /// <summary>
         /// The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
@@ -35,7 +35,7 @@ namespace Pulumi.Tailscale
         /// The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
         /// </summary>
         [Output("tailnet")]
-        public Output<string> Tailnet { get; private set; } = null!;
+        public Output<string?> Tailnet { get; private set; } = null!;
 
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Pulumi.Tailscale
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Provider(string name, ProviderArgs args, CustomResourceOptions? options = null)
+        public Provider(string name, ProviderArgs? args = null, CustomResourceOptions? options = null)
             : base("tailscale", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -68,8 +68,8 @@ namespace Pulumi.Tailscale
         /// <summary>
         /// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
         /// </summary>
-        [Input("apiKey", required: true)]
-        public Input<string> ApiKey { get; set; } = null!;
+        [Input("apiKey")]
+        public Input<string>? ApiKey { get; set; }
 
         /// <summary>
         /// The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
@@ -81,8 +81,8 @@ namespace Pulumi.Tailscale
         /// <summary>
         /// The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
         /// </summary>
-        [Input("tailnet", required: true)]
-        public Input<string> Tailnet { get; set; } = null!;
+        [Input("tailnet")]
+        public Input<string>? Tailnet { get; set; }
 
         public ProviderArgs()
         {
