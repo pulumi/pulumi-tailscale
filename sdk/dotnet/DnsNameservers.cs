@@ -15,28 +15,26 @@ namespace Pulumi.Tailscale
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Tailscale = Pulumi.Tailscale;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var sampleNameservers = new Tailscale.DnsNameservers("sampleNameservers", new()
     ///     {
-    ///         var sampleNameservers = new Tailscale.DnsNameservers("sampleNameservers", new Tailscale.DnsNameserversArgs
+    ///         Nameservers = new[]
     ///         {
-    ///             Nameservers = 
-    ///             {
-    ///                 "8.8.8.8",
-    ///                 "8.8.4.4",
-    ///             },
-    ///         });
-    ///     }
+    ///             "8.8.8.8",
+    ///             "8.8.4.4",
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/dnsNameservers:DnsNameservers")]
-    public partial class DnsNameservers : Pulumi.CustomResource
+    public partial class DnsNameservers : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
@@ -88,7 +86,7 @@ namespace Pulumi.Tailscale
         }
     }
 
-    public sealed class DnsNameserversArgs : Pulumi.ResourceArgs
+    public sealed class DnsNameserversArgs : global::Pulumi.ResourceArgs
     {
         [Input("nameservers", required: true)]
         private InputList<string>? _nameservers;
@@ -105,9 +103,10 @@ namespace Pulumi.Tailscale
         public DnsNameserversArgs()
         {
         }
+        public static new DnsNameserversArgs Empty => new DnsNameserversArgs();
     }
 
-    public sealed class DnsNameserversState : Pulumi.ResourceArgs
+    public sealed class DnsNameserversState : global::Pulumi.ResourceArgs
     {
         [Input("nameservers")]
         private InputList<string>? _nameservers;
@@ -124,5 +123,6 @@ namespace Pulumi.Tailscale
         public DnsNameserversState()
         {
         }
+        public static new DnsNameserversState Empty => new DnsNameserversState();
     }
 }

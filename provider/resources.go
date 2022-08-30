@@ -19,13 +19,13 @@ import (
 	"path/filepath"
 	"unicode"
 
-	"github.com/davidsbond/terraform-provider-tailscale/tailscale"
 	"github.com/pulumi/pulumi-tailscale/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/tailscale/terraform-provider-tailscale/tailscale"
 )
 
 // all of the token components used below.
@@ -83,7 +83,7 @@ func Provider() tfbridge.ProviderInfo {
 		Keywords:             []string{"pulumi", "tailscale"},
 		License:              "Apache-2.0",
 		Homepage:             "https://pulumi.io",
-		GitHubOrg:            "davidsbond",
+		GitHubOrg:            "tailscale",
 		Repository:           "https://github.com/pulumi/pulumi-tailscale",
 		Config:               map[string]*tfbridge.SchemaInfo{},
 		PreConfigureCallback: preConfigureCallback,
@@ -108,6 +108,7 @@ func Provider() tfbridge.ProviderInfo {
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"tailscale_device":  {Tok: makeDataSource(mainMod, "getDevice")},
 			"tailscale_devices": {Tok: makeDataSource(mainMod, "getDevices")},
+			"tailscale_4via6":   {Tok: makeDataSource(mainMod, "get4Via6")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{

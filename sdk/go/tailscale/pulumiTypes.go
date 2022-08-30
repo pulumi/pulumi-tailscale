@@ -12,16 +12,17 @@ import (
 
 type GetDevicesDevice struct {
 	Addresses []string `pulumi:"addresses"`
-	Id        string   `pulumi:"id"`
-	Name      string   `pulumi:"name"`
-	Tags      []string `pulumi:"tags"`
-	User      string   `pulumi:"user"`
+	// The ID of this resource.
+	Id   string   `pulumi:"id"`
+	Name string   `pulumi:"name"`
+	Tags []string `pulumi:"tags"`
+	User string   `pulumi:"user"`
 }
 
 // GetDevicesDeviceInput is an input type that accepts GetDevicesDeviceArgs and GetDevicesDeviceOutput values.
 // You can construct a concrete instance of `GetDevicesDeviceInput` via:
 //
-//          GetDevicesDeviceArgs{...}
+//	GetDevicesDeviceArgs{...}
 type GetDevicesDeviceInput interface {
 	pulumi.Input
 
@@ -31,10 +32,11 @@ type GetDevicesDeviceInput interface {
 
 type GetDevicesDeviceArgs struct {
 	Addresses pulumi.StringArrayInput `pulumi:"addresses"`
-	Id        pulumi.StringInput      `pulumi:"id"`
-	Name      pulumi.StringInput      `pulumi:"name"`
-	Tags      pulumi.StringArrayInput `pulumi:"tags"`
-	User      pulumi.StringInput      `pulumi:"user"`
+	// The ID of this resource.
+	Id   pulumi.StringInput      `pulumi:"id"`
+	Name pulumi.StringInput      `pulumi:"name"`
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	User pulumi.StringInput      `pulumi:"user"`
 }
 
 func (GetDevicesDeviceArgs) ElementType() reflect.Type {
@@ -52,7 +54,7 @@ func (i GetDevicesDeviceArgs) ToGetDevicesDeviceOutputWithContext(ctx context.Co
 // GetDevicesDeviceArrayInput is an input type that accepts GetDevicesDeviceArray and GetDevicesDeviceArrayOutput values.
 // You can construct a concrete instance of `GetDevicesDeviceArrayInput` via:
 //
-//          GetDevicesDeviceArray{ GetDevicesDeviceArgs{...} }
+//	GetDevicesDeviceArray{ GetDevicesDeviceArgs{...} }
 type GetDevicesDeviceArrayInput interface {
 	pulumi.Input
 
@@ -92,6 +94,7 @@ func (o GetDevicesDeviceOutput) Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDevicesDevice) []string { return v.Addresses }).(pulumi.StringArrayOutput)
 }
 
+// The ID of this resource.
 func (o GetDevicesDeviceOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDevicesDevice) string { return v.Id }).(pulumi.StringOutput)
 }

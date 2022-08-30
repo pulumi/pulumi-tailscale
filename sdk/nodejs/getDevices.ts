@@ -35,6 +35,9 @@ export function getDevices(args?: GetDevicesArgs, opts?: pulumi.InvokeOptions): 
  * A collection of arguments for invoking getDevices.
  */
 export interface GetDevicesArgs {
+    /**
+     * Filters the device list to elements whose name has the provided prefix
+     */
     namePrefix?: string;
 }
 
@@ -42,11 +45,17 @@ export interface GetDevicesArgs {
  * A collection of values returned by getDevices.
  */
 export interface GetDevicesResult {
+    /**
+     * The list of devices in the tailnet
+     */
     readonly devices: outputs.GetDevicesDevice[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Filters the device list to elements whose name has the provided prefix
+     */
     readonly namePrefix?: string;
 }
 
@@ -58,5 +67,8 @@ export function getDevicesOutput(args?: GetDevicesOutputArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getDevices.
  */
 export interface GetDevicesOutputArgs {
+    /**
+     * Filters the device list to elements whose name has the provided prefix
+     */
     namePrefix?: pulumi.Input<string>;
 }

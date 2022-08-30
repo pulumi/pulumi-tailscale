@@ -74,7 +74,7 @@ namespace Pulumi.Tailscale
         }
     }
 
-    internal sealed class TailscaleResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    internal sealed class TailscaleResourceTypeAttribute : global::Pulumi.ResourceTypeAttribute
     {
         public TailscaleResourceTypeAttribute(string type) : base(type, Utilities.Version)
         {

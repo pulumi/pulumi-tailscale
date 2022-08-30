@@ -19,21 +19,19 @@ namespace Pulumi.Tailscale
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Tailscale = Pulumi.Tailscale;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var sampleDevice = Tailscale.GetDevice.Invoke(new()
         ///     {
-        ///         var sampleDevice = Output.Create(Tailscale.GetDevice.InvokeAsync(new Tailscale.GetDeviceArgs
-        ///         {
-        ///             Name = "user1-device.example.com",
-        ///             WaitFor = "60s",
-        ///         }));
-        ///     }
+        ///         Name = "user1-device.example.com",
+        ///         WaitFor = "60s",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -49,21 +47,19 @@ namespace Pulumi.Tailscale
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Tailscale = Pulumi.Tailscale;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var sampleDevice = Tailscale.GetDevice.Invoke(new()
         ///     {
-        ///         var sampleDevice = Output.Create(Tailscale.GetDevice.InvokeAsync(new Tailscale.GetDeviceArgs
-        ///         {
-        ///             Name = "user1-device.example.com",
-        ///             WaitFor = "60s",
-        ///         }));
-        ///     }
+        ///         Name = "user1-device.example.com",
+        ///         WaitFor = "60s",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -73,44 +69,73 @@ namespace Pulumi.Tailscale
     }
 
 
-    public sealed class GetDeviceArgs : Pulumi.InvokeArgs
+    public sealed class GetDeviceArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the device
+        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
+        /// <summary>
+        /// If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
+        /// </summary>
         [Input("waitFor")]
         public string? WaitFor { get; set; }
 
         public GetDeviceArgs()
         {
         }
+        public static new GetDeviceArgs Empty => new GetDeviceArgs();
     }
 
-    public sealed class GetDeviceInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetDeviceInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the device
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
+        /// </summary>
         [Input("waitFor")]
         public Input<string>? WaitFor { get; set; }
 
         public GetDeviceInvokeArgs()
         {
         }
+        public static new GetDeviceInvokeArgs Empty => new GetDeviceInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetDeviceResult
     {
+        /// <summary>
+        /// The list of device's IPs
+        /// </summary>
         public readonly ImmutableArray<string> Addresses;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The name of the device
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The tags applied to the device
+        /// </summary>
         public readonly ImmutableArray<string> Tags;
+        /// <summary>
+        /// The user associated with the device
+        /// </summary>
         public readonly string User;
+        /// <summary>
+        /// If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
+        /// </summary>
         public readonly string? WaitFor;
 
         [OutputConstructor]

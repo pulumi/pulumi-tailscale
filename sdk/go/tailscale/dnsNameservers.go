@@ -19,24 +19,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := tailscale.NewDnsNameservers(ctx, "sampleNameservers", &tailscale.DnsNameserversArgs{
-// 			Nameservers: pulumi.StringArray{
-// 				pulumi.String("8.8.8.8"),
-// 				pulumi.String("8.8.4.4"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := tailscale.NewDnsNameservers(ctx, "sampleNameservers", &tailscale.DnsNameserversArgs{
+//				Nameservers: pulumi.StringArray{
+//					pulumi.String("8.8.8.8"),
+//					pulumi.String("8.8.4.4"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type DnsNameservers struct {
 	pulumi.CustomResourceState
@@ -127,7 +130,7 @@ func (i *DnsNameservers) ToDnsNameserversOutputWithContext(ctx context.Context) 
 // DnsNameserversArrayInput is an input type that accepts DnsNameserversArray and DnsNameserversArrayOutput values.
 // You can construct a concrete instance of `DnsNameserversArrayInput` via:
 //
-//          DnsNameserversArray{ DnsNameserversArgs{...} }
+//	DnsNameserversArray{ DnsNameserversArgs{...} }
 type DnsNameserversArrayInput interface {
 	pulumi.Input
 
@@ -152,7 +155,7 @@ func (i DnsNameserversArray) ToDnsNameserversArrayOutputWithContext(ctx context.
 // DnsNameserversMapInput is an input type that accepts DnsNameserversMap and DnsNameserversMapOutput values.
 // You can construct a concrete instance of `DnsNameserversMapInput` via:
 //
-//          DnsNameserversMap{ "key": DnsNameserversArgs{...} }
+//	DnsNameserversMap{ "key": DnsNameserversArgs{...} }
 type DnsNameserversMapInput interface {
 	pulumi.Input
 
@@ -186,6 +189,11 @@ func (o DnsNameserversOutput) ToDnsNameserversOutput() DnsNameserversOutput {
 
 func (o DnsNameserversOutput) ToDnsNameserversOutputWithContext(ctx context.Context) DnsNameserversOutput {
 	return o
+}
+
+// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
+func (o DnsNameserversOutput) Nameservers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DnsNameservers) pulumi.StringArrayOutput { return v.Nameservers }).(pulumi.StringArrayOutput)
 }
 
 type DnsNameserversArrayOutput struct{ *pulumi.OutputState }

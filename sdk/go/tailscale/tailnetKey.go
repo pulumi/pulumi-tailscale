@@ -18,23 +18,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := tailscale.NewTailnetKey(ctx, "sampleKey", &tailscale.TailnetKeyArgs{
-// 			Ephemeral:     pulumi.Bool(false),
-// 			Preauthorized: pulumi.Bool(true),
-// 			Reusable:      pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := tailscale.NewTailnetKey(ctx, "sampleKey", &tailscale.TailnetKeyArgs{
+//				Ephemeral:     pulumi.Bool(false),
+//				Preauthorized: pulumi.Bool(true),
+//				Reusable:      pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type TailnetKey struct {
 	pulumi.CustomResourceState
@@ -158,7 +161,7 @@ func (i *TailnetKey) ToTailnetKeyOutputWithContext(ctx context.Context) TailnetK
 // TailnetKeyArrayInput is an input type that accepts TailnetKeyArray and TailnetKeyArrayOutput values.
 // You can construct a concrete instance of `TailnetKeyArrayInput` via:
 //
-//          TailnetKeyArray{ TailnetKeyArgs{...} }
+//	TailnetKeyArray{ TailnetKeyArgs{...} }
 type TailnetKeyArrayInput interface {
 	pulumi.Input
 
@@ -183,7 +186,7 @@ func (i TailnetKeyArray) ToTailnetKeyArrayOutputWithContext(ctx context.Context)
 // TailnetKeyMapInput is an input type that accepts TailnetKeyMap and TailnetKeyMapOutput values.
 // You can construct a concrete instance of `TailnetKeyMapInput` via:
 //
-//          TailnetKeyMap{ "key": TailnetKeyArgs{...} }
+//	TailnetKeyMap{ "key": TailnetKeyArgs{...} }
 type TailnetKeyMapInput interface {
 	pulumi.Input
 
@@ -217,6 +220,31 @@ func (o TailnetKeyOutput) ToTailnetKeyOutput() TailnetKeyOutput {
 
 func (o TailnetKeyOutput) ToTailnetKeyOutputWithContext(ctx context.Context) TailnetKeyOutput {
 	return o
+}
+
+// Indicates if the key is ephemeral.
+func (o TailnetKeyOutput) Ephemeral() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *TailnetKey) pulumi.BoolPtrOutput { return v.Ephemeral }).(pulumi.BoolPtrOutput)
+}
+
+// The authentication key
+func (o TailnetKeyOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v *TailnetKey) pulumi.StringOutput { return v.Key }).(pulumi.StringOutput)
+}
+
+// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+func (o TailnetKeyOutput) Preauthorized() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *TailnetKey) pulumi.BoolPtrOutput { return v.Preauthorized }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the key is reusable or single-use.
+func (o TailnetKeyOutput) Reusable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *TailnetKey) pulumi.BoolPtrOutput { return v.Reusable }).(pulumi.BoolPtrOutput)
+}
+
+// List of tags to apply to the machines authenticated by the key.
+func (o TailnetKeyOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TailnetKey) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 type TailnetKeyArrayOutput struct{ *pulumi.OutputState }

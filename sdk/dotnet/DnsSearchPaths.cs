@@ -15,27 +15,25 @@ namespace Pulumi.Tailscale
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Tailscale = Pulumi.Tailscale;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var sampleSearchPaths = new Tailscale.DnsSearchPaths("sampleSearchPaths", new()
     ///     {
-    ///         var sampleSearchPaths = new Tailscale.DnsSearchPaths("sampleSearchPaths", new Tailscale.DnsSearchPathsArgs
+    ///         SearchPaths = new[]
     ///         {
-    ///             SearchPaths = 
-    ///             {
-    ///                 "example.com",
-    ///             },
-    ///         });
-    ///     }
+    ///             "example.com",
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/dnsSearchPaths:DnsSearchPaths")]
-    public partial class DnsSearchPaths : Pulumi.CustomResource
+    public partial class DnsSearchPaths : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Devices on your network will use these domain suffixes to resolve DNS names.
@@ -87,7 +85,7 @@ namespace Pulumi.Tailscale
         }
     }
 
-    public sealed class DnsSearchPathsArgs : Pulumi.ResourceArgs
+    public sealed class DnsSearchPathsArgs : global::Pulumi.ResourceArgs
     {
         [Input("searchPaths", required: true)]
         private InputList<string>? _searchPaths;
@@ -104,9 +102,10 @@ namespace Pulumi.Tailscale
         public DnsSearchPathsArgs()
         {
         }
+        public static new DnsSearchPathsArgs Empty => new DnsSearchPathsArgs();
     }
 
-    public sealed class DnsSearchPathsState : Pulumi.ResourceArgs
+    public sealed class DnsSearchPathsState : global::Pulumi.ResourceArgs
     {
         [Input("searchPaths")]
         private InputList<string>? _searchPaths;
@@ -123,5 +122,6 @@ namespace Pulumi.Tailscale
         public DnsSearchPathsState()
         {
         }
+        public static new DnsSearchPathsState Empty => new DnsSearchPathsState();
     }
 }

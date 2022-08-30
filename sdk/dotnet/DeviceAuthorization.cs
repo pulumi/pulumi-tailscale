@@ -15,29 +15,28 @@ namespace Pulumi.Tailscale
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Tailscale = Pulumi.Tailscale;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var sampleDevice = Tailscale.GetDevice.Invoke(new()
     ///     {
-    ///         var sampleDevice = Output.Create(Tailscale.GetDevice.InvokeAsync(new Tailscale.GetDeviceArgs
-    ///         {
-    ///             Name = "device.example.com",
-    ///         }));
-    ///         var sampleAuthorization = new Tailscale.DeviceAuthorization("sampleAuthorization", new Tailscale.DeviceAuthorizationArgs
-    ///         {
-    ///             DeviceId = sampleDevice.Apply(sampleDevice =&gt; sampleDevice.Id),
-    ///             Authorized = true,
-    ///         });
-    ///     }
+    ///         Name = "device.example.com",
+    ///     });
     /// 
-    /// }
+    ///     var sampleAuthorization = new Tailscale.DeviceAuthorization("sampleAuthorization", new()
+    ///     {
+    ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.Id),
+    ///         Authorized = true,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/deviceAuthorization:DeviceAuthorization")]
-    public partial class DeviceAuthorization : Pulumi.CustomResource
+    public partial class DeviceAuthorization : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether or not the device is authorized
@@ -95,7 +94,7 @@ namespace Pulumi.Tailscale
         }
     }
 
-    public sealed class DeviceAuthorizationArgs : Pulumi.ResourceArgs
+    public sealed class DeviceAuthorizationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether or not the device is authorized
@@ -112,9 +111,10 @@ namespace Pulumi.Tailscale
         public DeviceAuthorizationArgs()
         {
         }
+        public static new DeviceAuthorizationArgs Empty => new DeviceAuthorizationArgs();
     }
 
-    public sealed class DeviceAuthorizationState : Pulumi.ResourceArgs
+    public sealed class DeviceAuthorizationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether or not the device is authorized
@@ -131,5 +131,6 @@ namespace Pulumi.Tailscale
         public DeviceAuthorizationState()
         {
         }
+        public static new DeviceAuthorizationState Empty => new DeviceAuthorizationState();
     }
 }
