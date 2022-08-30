@@ -18,22 +18,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
-// 			Name:    "user1-device.example.com",
-// 			WaitFor: pulumi.StringRef("60s"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
+//				Name:    "user1-device.example.com",
+//				WaitFor: pulumi.StringRef("60s"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetDevice(ctx *pulumi.Context, args *GetDeviceArgs, opts ...pulumi.InvokeOption) (*GetDeviceResult, error) {
 	var rv GetDeviceResult
@@ -46,19 +49,26 @@ func GetDevice(ctx *pulumi.Context, args *GetDeviceArgs, opts ...pulumi.InvokeOp
 
 // A collection of arguments for invoking getDevice.
 type GetDeviceArgs struct {
-	Name    string  `pulumi:"name"`
+	// The name of the device
+	Name string `pulumi:"name"`
+	// If specified, the provider will make multiple attempts to obtain the data source until the waitFor duration is reached. Retries are made every second so this value should be greater than 1s
 	WaitFor *string `pulumi:"waitFor"`
 }
 
 // A collection of values returned by getDevice.
 type GetDeviceResult struct {
+	// The list of device's IPs
 	Addresses []string `pulumi:"addresses"`
 	// The provider-assigned unique ID for this managed resource.
-	Id      string   `pulumi:"id"`
-	Name    string   `pulumi:"name"`
-	Tags    []string `pulumi:"tags"`
-	User    string   `pulumi:"user"`
-	WaitFor *string  `pulumi:"waitFor"`
+	Id string `pulumi:"id"`
+	// The name of the device
+	Name string `pulumi:"name"`
+	// The tags applied to the device
+	Tags []string `pulumi:"tags"`
+	// The user associated with the device
+	User string `pulumi:"user"`
+	// If specified, the provider will make multiple attempts to obtain the data source until the waitFor duration is reached. Retries are made every second so this value should be greater than 1s
+	WaitFor *string `pulumi:"waitFor"`
 }
 
 func GetDeviceOutput(ctx *pulumi.Context, args GetDeviceOutputArgs, opts ...pulumi.InvokeOption) GetDeviceResultOutput {
@@ -76,7 +86,9 @@ func GetDeviceOutput(ctx *pulumi.Context, args GetDeviceOutputArgs, opts ...pulu
 
 // A collection of arguments for invoking getDevice.
 type GetDeviceOutputArgs struct {
-	Name    pulumi.StringInput    `pulumi:"name"`
+	// The name of the device
+	Name pulumi.StringInput `pulumi:"name"`
+	// If specified, the provider will make multiple attempts to obtain the data source until the waitFor duration is reached. Retries are made every second so this value should be greater than 1s
 	WaitFor pulumi.StringPtrInput `pulumi:"waitFor"`
 }
 
@@ -99,6 +111,7 @@ func (o GetDeviceResultOutput) ToGetDeviceResultOutputWithContext(ctx context.Co
 	return o
 }
 
+// The list of device's IPs
 func (o GetDeviceResultOutput) Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDeviceResult) []string { return v.Addresses }).(pulumi.StringArrayOutput)
 }
@@ -108,18 +121,22 @@ func (o GetDeviceResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeviceResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The name of the device
 func (o GetDeviceResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeviceResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The tags applied to the device
 func (o GetDeviceResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDeviceResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
+// The user associated with the device
 func (o GetDeviceResultOutput) User() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeviceResult) string { return v.User }).(pulumi.StringOutput)
 }
 
+// If specified, the provider will make multiple attempts to obtain the data source until the waitFor duration is reached. Retries are made every second so this value should be greater than 1s
 func (o GetDeviceResultOutput) WaitFor() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeviceResult) *string { return v.WaitFor }).(pulumi.StringPtrOutput)
 }

@@ -15,34 +15,33 @@ namespace Pulumi.Tailscale
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Tailscale = Pulumi.Tailscale;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var sampleDevice = Tailscale.GetDevice.Invoke(new()
     ///     {
-    ///         var sampleDevice = Output.Create(Tailscale.GetDevice.InvokeAsync(new Tailscale.GetDeviceArgs
-    ///         {
-    ///             Name = "device.example.com",
-    ///         }));
-    ///         var sampleRoutes = new Tailscale.DeviceSubnetRoutes("sampleRoutes", new Tailscale.DeviceSubnetRoutesArgs
-    ///         {
-    ///             DeviceId = sampleDevice.Apply(sampleDevice =&gt; sampleDevice.Id),
-    ///             Routes = 
-    ///             {
-    ///                 "10.0.1.0/24",
-    ///                 "1.2.0.0/16",
-    ///                 "2.0.0.0/24",
-    ///             },
-    ///         });
-    ///     }
+    ///         Name = "device.example.com",
+    ///     });
     /// 
-    /// }
+    ///     var sampleRoutes = new Tailscale.DeviceSubnetRoutes("sampleRoutes", new()
+    ///     {
+    ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.Id),
+    ///         Routes = new[]
+    ///         {
+    ///             "10.0.1.0/24",
+    ///             "1.2.0.0/16",
+    ///             "2.0.0.0/24",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes")]
-    public partial class DeviceSubnetRoutes : Pulumi.CustomResource
+    public partial class DeviceSubnetRoutes : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The device to set subnet routes for
@@ -100,7 +99,7 @@ namespace Pulumi.Tailscale
         }
     }
 
-    public sealed class DeviceSubnetRoutesArgs : Pulumi.ResourceArgs
+    public sealed class DeviceSubnetRoutesArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The device to set subnet routes for
@@ -123,9 +122,10 @@ namespace Pulumi.Tailscale
         public DeviceSubnetRoutesArgs()
         {
         }
+        public static new DeviceSubnetRoutesArgs Empty => new DeviceSubnetRoutesArgs();
     }
 
-    public sealed class DeviceSubnetRoutesState : Pulumi.ResourceArgs
+    public sealed class DeviceSubnetRoutesState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The device to set subnet routes for
@@ -148,5 +148,6 @@ namespace Pulumi.Tailscale
         public DeviceSubnetRoutesState()
         {
         }
+        public static new DeviceSubnetRoutesState Empty => new DeviceSubnetRoutesState();
     }
 }

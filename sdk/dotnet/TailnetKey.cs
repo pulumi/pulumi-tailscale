@@ -15,26 +15,24 @@ namespace Pulumi.Tailscale
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Tailscale = Pulumi.Tailscale;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var sampleKey = new Tailscale.TailnetKey("sampleKey", new()
     ///     {
-    ///         var sampleKey = new Tailscale.TailnetKey("sampleKey", new Tailscale.TailnetKeyArgs
-    ///         {
-    ///             Ephemeral = false,
-    ///             Preauthorized = true,
-    ///             Reusable = true,
-    ///         });
-    ///     }
+    ///         Ephemeral = false,
+    ///         Preauthorized = true,
+    ///         Reusable = true,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/tailnetKey:TailnetKey")]
-    public partial class TailnetKey : Pulumi.CustomResource
+    public partial class TailnetKey : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Indicates if the key is ephemeral.
@@ -110,7 +108,7 @@ namespace Pulumi.Tailscale
         }
     }
 
-    public sealed class TailnetKeyArgs : Pulumi.ResourceArgs
+    public sealed class TailnetKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates if the key is ephemeral.
@@ -145,9 +143,10 @@ namespace Pulumi.Tailscale
         public TailnetKeyArgs()
         {
         }
+        public static new TailnetKeyArgs Empty => new TailnetKeyArgs();
     }
 
-    public sealed class TailnetKeyState : Pulumi.ResourceArgs
+    public sealed class TailnetKeyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Indicates if the key is ephemeral.
@@ -188,5 +187,6 @@ namespace Pulumi.Tailscale
         public TailnetKeyState()
         {
         }
+        public static new TailnetKeyState Empty => new TailnetKeyState();
     }
 }

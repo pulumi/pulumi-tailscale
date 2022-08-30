@@ -19,28 +19,31 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		sampleDevice, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
-// 			Name: "device.example.com",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = tailscale.NewDeviceAuthorization(ctx, "sampleAuthorization", &tailscale.DeviceAuthorizationArgs{
-// 			DeviceId:   pulumi.String(sampleDevice.Id),
-// 			Authorized: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			sampleDevice, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
+//				Name: "device.example.com",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = tailscale.NewDeviceAuthorization(ctx, "sampleAuthorization", &tailscale.DeviceAuthorizationArgs{
+//				DeviceId:   pulumi.String(sampleDevice.Id),
+//				Authorized: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type DeviceAuthorization struct {
 	pulumi.CustomResourceState
@@ -144,7 +147,7 @@ func (i *DeviceAuthorization) ToDeviceAuthorizationOutputWithContext(ctx context
 // DeviceAuthorizationArrayInput is an input type that accepts DeviceAuthorizationArray and DeviceAuthorizationArrayOutput values.
 // You can construct a concrete instance of `DeviceAuthorizationArrayInput` via:
 //
-//          DeviceAuthorizationArray{ DeviceAuthorizationArgs{...} }
+//	DeviceAuthorizationArray{ DeviceAuthorizationArgs{...} }
 type DeviceAuthorizationArrayInput interface {
 	pulumi.Input
 
@@ -169,7 +172,7 @@ func (i DeviceAuthorizationArray) ToDeviceAuthorizationArrayOutputWithContext(ct
 // DeviceAuthorizationMapInput is an input type that accepts DeviceAuthorizationMap and DeviceAuthorizationMapOutput values.
 // You can construct a concrete instance of `DeviceAuthorizationMapInput` via:
 //
-//          DeviceAuthorizationMap{ "key": DeviceAuthorizationArgs{...} }
+//	DeviceAuthorizationMap{ "key": DeviceAuthorizationArgs{...} }
 type DeviceAuthorizationMapInput interface {
 	pulumi.Input
 
@@ -203,6 +206,16 @@ func (o DeviceAuthorizationOutput) ToDeviceAuthorizationOutput() DeviceAuthoriza
 
 func (o DeviceAuthorizationOutput) ToDeviceAuthorizationOutputWithContext(ctx context.Context) DeviceAuthorizationOutput {
 	return o
+}
+
+// Whether or not the device is authorized
+func (o DeviceAuthorizationOutput) Authorized() pulumi.BoolOutput {
+	return o.ApplyT(func(v *DeviceAuthorization) pulumi.BoolOutput { return v.Authorized }).(pulumi.BoolOutput)
+}
+
+// The device to set as authorized
+func (o DeviceAuthorizationOutput) DeviceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DeviceAuthorization) pulumi.StringOutput { return v.DeviceId }).(pulumi.StringOutput)
 }
 
 type DeviceAuthorizationArrayOutput struct{ *pulumi.OutputState }

@@ -19,28 +19,31 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		exampleDevice, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
-// 			Name: "device.example.com",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = tailscale.NewDeviceKey(ctx, "exampleKey", &tailscale.DeviceKeyArgs{
-// 			DeviceId:          pulumi.String(exampleDevice.Id),
-// 			KeyExpiryDisabled: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleDevice, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
+//				Name: "device.example.com",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = tailscale.NewDeviceKey(ctx, "exampleKey", &tailscale.DeviceKeyArgs{
+//				DeviceId:          pulumi.String(exampleDevice.Id),
+//				KeyExpiryDisabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type DeviceKey struct {
 	pulumi.CustomResourceState
@@ -141,7 +144,7 @@ func (i *DeviceKey) ToDeviceKeyOutputWithContext(ctx context.Context) DeviceKeyO
 // DeviceKeyArrayInput is an input type that accepts DeviceKeyArray and DeviceKeyArrayOutput values.
 // You can construct a concrete instance of `DeviceKeyArrayInput` via:
 //
-//          DeviceKeyArray{ DeviceKeyArgs{...} }
+//	DeviceKeyArray{ DeviceKeyArgs{...} }
 type DeviceKeyArrayInput interface {
 	pulumi.Input
 
@@ -166,7 +169,7 @@ func (i DeviceKeyArray) ToDeviceKeyArrayOutputWithContext(ctx context.Context) D
 // DeviceKeyMapInput is an input type that accepts DeviceKeyMap and DeviceKeyMapOutput values.
 // You can construct a concrete instance of `DeviceKeyMapInput` via:
 //
-//          DeviceKeyMap{ "key": DeviceKeyArgs{...} }
+//	DeviceKeyMap{ "key": DeviceKeyArgs{...} }
 type DeviceKeyMapInput interface {
 	pulumi.Input
 
@@ -200,6 +203,16 @@ func (o DeviceKeyOutput) ToDeviceKeyOutput() DeviceKeyOutput {
 
 func (o DeviceKeyOutput) ToDeviceKeyOutputWithContext(ctx context.Context) DeviceKeyOutput {
 	return o
+}
+
+// The device to update the key properties of
+func (o DeviceKeyOutput) DeviceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DeviceKey) pulumi.StringOutput { return v.DeviceId }).(pulumi.StringOutput)
+}
+
+// Determines whether or not the device's key will expire
+func (o DeviceKeyOutput) KeyExpiryDisabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DeviceKey) pulumi.BoolPtrOutput { return v.KeyExpiryDisabled }).(pulumi.BoolPtrOutput)
 }
 
 type DeviceKeyArrayOutput struct{ *pulumi.OutputState }

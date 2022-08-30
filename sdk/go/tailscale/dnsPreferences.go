@@ -19,21 +19,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := tailscale.NewDnsPreferences(ctx, "samplePreferences", &tailscale.DnsPreferencesArgs{
-// 			MagicDns: pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := tailscale.NewDnsPreferences(ctx, "samplePreferences", &tailscale.DnsPreferencesArgs{
+//				MagicDns: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type DnsPreferences struct {
 	pulumi.CustomResourceState
@@ -124,7 +127,7 @@ func (i *DnsPreferences) ToDnsPreferencesOutputWithContext(ctx context.Context) 
 // DnsPreferencesArrayInput is an input type that accepts DnsPreferencesArray and DnsPreferencesArrayOutput values.
 // You can construct a concrete instance of `DnsPreferencesArrayInput` via:
 //
-//          DnsPreferencesArray{ DnsPreferencesArgs{...} }
+//	DnsPreferencesArray{ DnsPreferencesArgs{...} }
 type DnsPreferencesArrayInput interface {
 	pulumi.Input
 
@@ -149,7 +152,7 @@ func (i DnsPreferencesArray) ToDnsPreferencesArrayOutputWithContext(ctx context.
 // DnsPreferencesMapInput is an input type that accepts DnsPreferencesMap and DnsPreferencesMapOutput values.
 // You can construct a concrete instance of `DnsPreferencesMapInput` via:
 //
-//          DnsPreferencesMap{ "key": DnsPreferencesArgs{...} }
+//	DnsPreferencesMap{ "key": DnsPreferencesArgs{...} }
 type DnsPreferencesMapInput interface {
 	pulumi.Input
 
@@ -183,6 +186,11 @@ func (o DnsPreferencesOutput) ToDnsPreferencesOutput() DnsPreferencesOutput {
 
 func (o DnsPreferencesOutput) ToDnsPreferencesOutputWithContext(ctx context.Context) DnsPreferencesOutput {
 	return o
+}
+
+// Whether or not to enable magic DNS
+func (o DnsPreferencesOutput) MagicDns() pulumi.BoolOutput {
+	return o.ApplyT(func(v *DnsPreferences) pulumi.BoolOutput { return v.MagicDns }).(pulumi.BoolOutput)
 }
 
 type DnsPreferencesArrayOutput struct{ *pulumi.OutputState }

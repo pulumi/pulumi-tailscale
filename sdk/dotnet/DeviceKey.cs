@@ -15,29 +15,28 @@ namespace Pulumi.Tailscale
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Tailscale = Pulumi.Tailscale;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var exampleDevice = Tailscale.GetDevice.Invoke(new()
     ///     {
-    ///         var exampleDevice = Output.Create(Tailscale.GetDevice.InvokeAsync(new Tailscale.GetDeviceArgs
-    ///         {
-    ///             Name = "device.example.com",
-    ///         }));
-    ///         var exampleKey = new Tailscale.DeviceKey("exampleKey", new Tailscale.DeviceKeyArgs
-    ///         {
-    ///             DeviceId = exampleDevice.Apply(exampleDevice =&gt; exampleDevice.Id),
-    ///             KeyExpiryDisabled = true,
-    ///         });
-    ///     }
+    ///         Name = "device.example.com",
+    ///     });
     /// 
-    /// }
+    ///     var exampleKey = new Tailscale.DeviceKey("exampleKey", new()
+    ///     {
+    ///         DeviceId = exampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.Id),
+    ///         KeyExpiryDisabled = true,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/deviceKey:DeviceKey")]
-    public partial class DeviceKey : Pulumi.CustomResource
+    public partial class DeviceKey : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The device to update the key properties of
@@ -95,7 +94,7 @@ namespace Pulumi.Tailscale
         }
     }
 
-    public sealed class DeviceKeyArgs : Pulumi.ResourceArgs
+    public sealed class DeviceKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The device to update the key properties of
@@ -112,9 +111,10 @@ namespace Pulumi.Tailscale
         public DeviceKeyArgs()
         {
         }
+        public static new DeviceKeyArgs Empty => new DeviceKeyArgs();
     }
 
-    public sealed class DeviceKeyState : Pulumi.ResourceArgs
+    public sealed class DeviceKeyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The device to update the key properties of
@@ -131,5 +131,6 @@ namespace Pulumi.Tailscale
         public DeviceKeyState()
         {
         }
+        public static new DeviceKeyState Empty => new DeviceKeyState();
     }
 }

@@ -15,32 +15,31 @@ namespace Pulumi.Tailscale
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Tailscale = Pulumi.Tailscale;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var sampleDevice = Tailscale.GetDevice.Invoke(new()
     ///     {
-    ///         var sampleDevice = Output.Create(Tailscale.GetDevice.InvokeAsync(new Tailscale.GetDeviceArgs
-    ///         {
-    ///             Name = "device.example.com",
-    ///         }));
-    ///         var sampleTags = new Tailscale.DeviceTags("sampleTags", new Tailscale.DeviceTagsArgs
-    ///         {
-    ///             DeviceId = sampleDevice.Apply(sampleDevice =&gt; sampleDevice.Id),
-    ///             Tags = 
-    ///             {
-    ///                 "room:bedroom",
-    ///             },
-    ///         });
-    ///     }
+    ///         Name = "device.example.com",
+    ///     });
     /// 
-    /// }
+    ///     var sampleTags = new Tailscale.DeviceTags("sampleTags", new()
+    ///     {
+    ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.Id),
+    ///         Tags = new[]
+    ///         {
+    ///             "room:bedroom",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/deviceTags:DeviceTags")]
-    public partial class DeviceTags : Pulumi.CustomResource
+    public partial class DeviceTags : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The device to set tags for
@@ -98,7 +97,7 @@ namespace Pulumi.Tailscale
         }
     }
 
-    public sealed class DeviceTagsArgs : Pulumi.ResourceArgs
+    public sealed class DeviceTagsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The device to set tags for
@@ -121,9 +120,10 @@ namespace Pulumi.Tailscale
         public DeviceTagsArgs()
         {
         }
+        public static new DeviceTagsArgs Empty => new DeviceTagsArgs();
     }
 
-    public sealed class DeviceTagsState : Pulumi.ResourceArgs
+    public sealed class DeviceTagsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The device to set tags for
@@ -146,5 +146,6 @@ namespace Pulumi.Tailscale
         public DeviceTagsState()
         {
         }
+        public static new DeviceTagsState Empty => new DeviceTagsState();
     }
 }

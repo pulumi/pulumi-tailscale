@@ -15,24 +15,22 @@ namespace Pulumi.Tailscale
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Tailscale = Pulumi.Tailscale;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var samplePreferences = new Tailscale.DnsPreferences("samplePreferences", new()
     ///     {
-    ///         var samplePreferences = new Tailscale.DnsPreferences("samplePreferences", new Tailscale.DnsPreferencesArgs
-    ///         {
-    ///             MagicDns = true,
-    ///         });
-    ///     }
+    ///         MagicDns = true,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/dnsPreferences:DnsPreferences")]
-    public partial class DnsPreferences : Pulumi.CustomResource
+    public partial class DnsPreferences : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether or not to enable magic DNS
@@ -84,7 +82,7 @@ namespace Pulumi.Tailscale
         }
     }
 
-    public sealed class DnsPreferencesArgs : Pulumi.ResourceArgs
+    public sealed class DnsPreferencesArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether or not to enable magic DNS
@@ -95,9 +93,10 @@ namespace Pulumi.Tailscale
         public DnsPreferencesArgs()
         {
         }
+        public static new DnsPreferencesArgs Empty => new DnsPreferencesArgs();
     }
 
-    public sealed class DnsPreferencesState : Pulumi.ResourceArgs
+    public sealed class DnsPreferencesState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether or not to enable magic DNS
@@ -108,5 +107,6 @@ namespace Pulumi.Tailscale
         public DnsPreferencesState()
         {
         }
+        public static new DnsPreferencesState Empty => new DnsPreferencesState();
     }
 }

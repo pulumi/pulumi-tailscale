@@ -19,40 +19,43 @@ import (
 // package main
 //
 // import (
-// 	"encoding/json"
 //
-// 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		tmpJSON0, err := json.Marshal(map[string]interface{}{
-// 			"acls": []map[string]interface{}{
-// 				map[string]interface{}{
-// 					"action": "accept",
-// 					"users": []string{
-// 						"*",
-// 					},
-// 					"ports": []string{
-// 						"*:*",
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		json0 := string(tmpJSON0)
-// 		_, err := tailscale.NewAcl(ctx, "sampleAcl", &tailscale.AclArgs{
-// 			Acl: pulumi.String(json0),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"acls": []map[string]interface{}{
+//					map[string]interface{}{
+//						"action": "accept",
+//						"users": []string{
+//							"*",
+//						},
+//						"ports": []string{
+//							"*:*",
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			_, err = tailscale.NewAcl(ctx, "sampleAcl", &tailscale.AclArgs{
+//				Acl: pulumi.String(json0),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type Acl struct {
 	pulumi.CustomResourceState
@@ -143,7 +146,7 @@ func (i *Acl) ToAclOutputWithContext(ctx context.Context) AclOutput {
 // AclArrayInput is an input type that accepts AclArray and AclArrayOutput values.
 // You can construct a concrete instance of `AclArrayInput` via:
 //
-//          AclArray{ AclArgs{...} }
+//	AclArray{ AclArgs{...} }
 type AclArrayInput interface {
 	pulumi.Input
 
@@ -168,7 +171,7 @@ func (i AclArray) ToAclArrayOutputWithContext(ctx context.Context) AclArrayOutpu
 // AclMapInput is an input type that accepts AclMap and AclMapOutput values.
 // You can construct a concrete instance of `AclMapInput` via:
 //
-//          AclMap{ "key": AclArgs{...} }
+//	AclMap{ "key": AclArgs{...} }
 type AclMapInput interface {
 	pulumi.Input
 
@@ -202,6 +205,11 @@ func (o AclOutput) ToAclOutput() AclOutput {
 
 func (o AclOutput) ToAclOutputWithContext(ctx context.Context) AclOutput {
 	return o
+}
+
+// The JSON-based policy that defines which devices and users are allowed to connect in your network
+func (o AclOutput) Acl() pulumi.StringOutput {
+	return o.ApplyT(func(v *Acl) pulumi.StringOutput { return v.Acl }).(pulumi.StringOutput)
 }
 
 type AclArrayOutput struct{ *pulumi.OutputState }

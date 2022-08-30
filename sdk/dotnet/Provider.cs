@@ -16,7 +16,7 @@ namespace Pulumi.Tailscale
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
     [TailscaleResourceType("pulumi:providers:tailscale")]
-    public partial class Provider : Pulumi.ProviderResource
+    public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
         /// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
@@ -63,7 +63,7 @@ namespace Pulumi.Tailscale
         }
     }
 
-    public sealed class ProviderArgs : Pulumi.ResourceArgs
+    public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
@@ -87,5 +87,6 @@ namespace Pulumi.Tailscale
         public ProviderArgs()
         {
         }
+        public static new ProviderArgs Empty => new ProviderArgs();
     }
 }

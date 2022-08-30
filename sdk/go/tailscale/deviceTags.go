@@ -19,30 +19,33 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		sampleDevice, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
-// 			Name: "device.example.com",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = tailscale.NewDeviceTags(ctx, "sampleTags", &tailscale.DeviceTagsArgs{
-// 			DeviceId: pulumi.String(sampleDevice.Id),
-// 			Tags: pulumi.StringArray{
-// 				pulumi.String("room:bedroom"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			sampleDevice, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
+//				Name: "device.example.com",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = tailscale.NewDeviceTags(ctx, "sampleTags", &tailscale.DeviceTagsArgs{
+//				DeviceId: pulumi.String(sampleDevice.Id),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("room:bedroom"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type DeviceTags struct {
 	pulumi.CustomResourceState
@@ -146,7 +149,7 @@ func (i *DeviceTags) ToDeviceTagsOutputWithContext(ctx context.Context) DeviceTa
 // DeviceTagsArrayInput is an input type that accepts DeviceTagsArray and DeviceTagsArrayOutput values.
 // You can construct a concrete instance of `DeviceTagsArrayInput` via:
 //
-//          DeviceTagsArray{ DeviceTagsArgs{...} }
+//	DeviceTagsArray{ DeviceTagsArgs{...} }
 type DeviceTagsArrayInput interface {
 	pulumi.Input
 
@@ -171,7 +174,7 @@ func (i DeviceTagsArray) ToDeviceTagsArrayOutputWithContext(ctx context.Context)
 // DeviceTagsMapInput is an input type that accepts DeviceTagsMap and DeviceTagsMapOutput values.
 // You can construct a concrete instance of `DeviceTagsMapInput` via:
 //
-//          DeviceTagsMap{ "key": DeviceTagsArgs{...} }
+//	DeviceTagsMap{ "key": DeviceTagsArgs{...} }
 type DeviceTagsMapInput interface {
 	pulumi.Input
 
@@ -205,6 +208,16 @@ func (o DeviceTagsOutput) ToDeviceTagsOutput() DeviceTagsOutput {
 
 func (o DeviceTagsOutput) ToDeviceTagsOutputWithContext(ctx context.Context) DeviceTagsOutput {
 	return o
+}
+
+// The device to set tags for
+func (o DeviceTagsOutput) DeviceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DeviceTags) pulumi.StringOutput { return v.DeviceId }).(pulumi.StringOutput)
+}
+
+// The tags to apply to the device
+func (o DeviceTagsOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DeviceTags) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 type DeviceTagsArrayOutput struct{ *pulumi.OutputState }

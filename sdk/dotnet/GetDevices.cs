@@ -19,20 +19,18 @@ namespace Pulumi.Tailscale
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Tailscale = Pulumi.Tailscale;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var sampleDevices = Tailscale.GetDevices.Invoke(new()
         ///     {
-        ///         var sampleDevices = Output.Create(Tailscale.GetDevices.InvokeAsync(new Tailscale.GetDevicesArgs
-        ///         {
-        ///             NamePrefix = "example-",
-        ///         }));
-        ///     }
+        ///         NamePrefix = "example-",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -48,20 +46,18 @@ namespace Pulumi.Tailscale
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Tailscale = Pulumi.Tailscale;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var sampleDevices = Tailscale.GetDevices.Invoke(new()
         ///     {
-        ///         var sampleDevices = Output.Create(Tailscale.GetDevices.InvokeAsync(new Tailscale.GetDevicesArgs
-        ///         {
-        ///             NamePrefix = "example-",
-        ///         }));
-        ///     }
+        ///         NamePrefix = "example-",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
@@ -71,35 +67,49 @@ namespace Pulumi.Tailscale
     }
 
 
-    public sealed class GetDevicesArgs : Pulumi.InvokeArgs
+    public sealed class GetDevicesArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Filters the device list to elements whose name has the provided prefix
+        /// </summary>
         [Input("namePrefix")]
         public string? NamePrefix { get; set; }
 
         public GetDevicesArgs()
         {
         }
+        public static new GetDevicesArgs Empty => new GetDevicesArgs();
     }
 
-    public sealed class GetDevicesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetDevicesInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Filters the device list to elements whose name has the provided prefix
+        /// </summary>
         [Input("namePrefix")]
         public Input<string>? NamePrefix { get; set; }
 
         public GetDevicesInvokeArgs()
         {
         }
+        public static new GetDevicesInvokeArgs Empty => new GetDevicesInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetDevicesResult
     {
+        /// <summary>
+        /// The list of devices in the tailnet
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetDevicesDeviceResult> Devices;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Filters the device list to elements whose name has the provided prefix
+        /// </summary>
         public readonly string? NamePrefix;
 
         [OutputConstructor]

@@ -20,41 +20,35 @@ namespace Pulumi.Tailscale
     /// using Pulumi;
     /// using Tailscale = Pulumi.Tailscale;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var sampleAcl = new Tailscale.Acl("sampleAcl", new()
     ///     {
-    ///         var sampleAcl = new Tailscale.Acl("sampleAcl", new Tailscale.AclArgs
+    ///         AclJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             Acl = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///             ["acls"] = new[]
     ///             {
-    ///                 { "acls", new[]
+    ///                 new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["action"] = "accept",
+    ///                     ["users"] = new[]
     ///                     {
-    ///                         new Dictionary&lt;string, object?&gt;
-    ///                         {
-    ///                             { "action", "accept" },
-    ///                             { "users", new[]
-    ///                                 {
-    ///                                     "*",
-    ///                                 }
-    ///                              },
-    ///                             { "ports", new[]
-    ///                                 {
-    ///                                     "*:*",
-    ///                                 }
-    ///                              },
-    ///                         },
-    ///                     }
-    ///                  },
-    ///             }),
-    ///         });
-    ///     }
+    ///                         "*",
+    ///                     },
+    ///                     ["ports"] = new[]
+    ///                     {
+    ///                         "*:*",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         }),
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/acl:Acl")]
-    public partial class Acl : Pulumi.CustomResource
+    public partial class Acl : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The JSON-based policy that defines which devices and users are allowed to connect in your network
@@ -106,7 +100,7 @@ namespace Pulumi.Tailscale
         }
     }
 
-    public sealed class AclArgs : Pulumi.ResourceArgs
+    public sealed class AclArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The JSON-based policy that defines which devices and users are allowed to connect in your network
@@ -117,9 +111,10 @@ namespace Pulumi.Tailscale
         public AclArgs()
         {
         }
+        public static new AclArgs Empty => new AclArgs();
     }
 
-    public sealed class AclState : Pulumi.ResourceArgs
+    public sealed class AclState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The JSON-based policy that defines which devices and users are allowed to connect in your network
@@ -130,5 +125,6 @@ namespace Pulumi.Tailscale
         public AclState()
         {
         }
+        public static new AclState Empty => new AclState();
     }
 }

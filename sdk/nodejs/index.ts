@@ -13,6 +13,7 @@ export * from "./deviceTags";
 export * from "./dnsNameservers";
 export * from "./dnsPreferences";
 export * from "./dnsSearchPaths";
+export * from "./get4Via6";
 export * from "./getDevice";
 export * from "./getDevices";
 export * from "./provider";
