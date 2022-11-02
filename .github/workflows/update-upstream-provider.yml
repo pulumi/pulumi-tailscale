@@ -23,7 +23,7 @@ env:
   TAILSCALE_TAILNET: ${{ secrets.TAILSCALE_TAILNET }}
   TRAVIS_OS_NAME: linux
   UPSTREAM_PROVIDER_MAJOR_VERSION: ""
-  UPSTREAM_PROVIDER_ORG: davidsbond
+  UPSTREAM_PROVIDER_ORG: tailscale
   UPSTREAM_PROVIDER_REPO: terraform-provider-tailscale
 jobs:
   update_upstream_provider:
