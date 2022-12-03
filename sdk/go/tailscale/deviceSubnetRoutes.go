@@ -19,35 +19,32 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			sampleDevice, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
-//				Name: "device.example.com",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = tailscale.NewDeviceSubnetRoutes(ctx, "sampleRoutes", &tailscale.DeviceSubnetRoutesArgs{
-//				DeviceId: pulumi.String(sampleDevice.Id),
-//				Routes: pulumi.StringArray{
-//					pulumi.String("10.0.1.0/24"),
-//					pulumi.String("1.2.0.0/16"),
-//					pulumi.String("2.0.0.0/24"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		sampleDevice, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
+// 			Name: "device.example.com",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = tailscale.NewDeviceSubnetRoutes(ctx, "sampleRoutes", &tailscale.DeviceSubnetRoutesArgs{
+// 			DeviceId: pulumi.String(sampleDevice.Id),
+// 			Routes: pulumi.StringArray{
+// 				pulumi.String("10.0.1.0/24"),
+// 				pulumi.String("1.2.0.0/16"),
+// 				pulumi.String("2.0.0.0/24"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type DeviceSubnetRoutes struct {
 	pulumi.CustomResourceState
@@ -151,7 +148,7 @@ func (i *DeviceSubnetRoutes) ToDeviceSubnetRoutesOutputWithContext(ctx context.C
 // DeviceSubnetRoutesArrayInput is an input type that accepts DeviceSubnetRoutesArray and DeviceSubnetRoutesArrayOutput values.
 // You can construct a concrete instance of `DeviceSubnetRoutesArrayInput` via:
 //
-//	DeviceSubnetRoutesArray{ DeviceSubnetRoutesArgs{...} }
+//          DeviceSubnetRoutesArray{ DeviceSubnetRoutesArgs{...} }
 type DeviceSubnetRoutesArrayInput interface {
 	pulumi.Input
 
@@ -176,7 +173,7 @@ func (i DeviceSubnetRoutesArray) ToDeviceSubnetRoutesArrayOutputWithContext(ctx 
 // DeviceSubnetRoutesMapInput is an input type that accepts DeviceSubnetRoutesMap and DeviceSubnetRoutesMapOutput values.
 // You can construct a concrete instance of `DeviceSubnetRoutesMapInput` via:
 //
-//	DeviceSubnetRoutesMap{ "key": DeviceSubnetRoutesArgs{...} }
+//          DeviceSubnetRoutesMap{ "key": DeviceSubnetRoutesArgs{...} }
 type DeviceSubnetRoutesMapInput interface {
 	pulumi.Input
 

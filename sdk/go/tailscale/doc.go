@@ -1,3 +1,3 @@
-// A Pulumi package for creating and managing xyz cloud resources.
+// A Pulumi package for creating and managing Tailscale cloud resources.
 
 package tailscale

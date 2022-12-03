@@ -22,7 +22,7 @@ type GetDevicesDevice struct {
 // GetDevicesDeviceInput is an input type that accepts GetDevicesDeviceArgs and GetDevicesDeviceOutput values.
 // You can construct a concrete instance of `GetDevicesDeviceInput` via:
 //
-//	GetDevicesDeviceArgs{...}
+//          GetDevicesDeviceArgs{...}
 type GetDevicesDeviceInput interface {
 	pulumi.Input
 
@@ -54,7 +54,7 @@ func (i GetDevicesDeviceArgs) ToGetDevicesDeviceOutputWithContext(ctx context.Co
 // GetDevicesDeviceArrayInput is an input type that accepts GetDevicesDeviceArray and GetDevicesDeviceArrayOutput values.
 // You can construct a concrete instance of `GetDevicesDeviceArrayInput` via:
 //
-//	GetDevicesDeviceArray{ GetDevicesDeviceArgs{...} }
+//          GetDevicesDeviceArray{ GetDevicesDeviceArgs{...} }
 type GetDevicesDeviceArrayInput interface {
 	pulumi.Input
 

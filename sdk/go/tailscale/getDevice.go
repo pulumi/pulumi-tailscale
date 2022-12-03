@@ -18,25 +18,22 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
-//				Name:    "user1-device.example.com",
-//				WaitFor: pulumi.StringRef("60s"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
+// 			Name:    "user1-device.example.com",
+// 			WaitFor: pulumi.StringRef("60s"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 func GetDevice(ctx *pulumi.Context, args *GetDeviceArgs, opts ...pulumi.InvokeOption) (*GetDeviceResult, error) {
 	var rv GetDeviceResult

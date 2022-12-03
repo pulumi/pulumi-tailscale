@@ -19,26 +19,23 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tailscale.NewDnsSearchPaths(ctx, "sampleSearchPaths", &tailscale.DnsSearchPathsArgs{
-//				SearchPaths: pulumi.StringArray{
-//					pulumi.String("example.com"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := tailscale.NewDnsSearchPaths(ctx, "sampleSearchPaths", &tailscale.DnsSearchPathsArgs{
+// 			SearchPaths: pulumi.StringArray{
+// 				pulumi.String("example.com"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type DnsSearchPaths struct {
 	pulumi.CustomResourceState
@@ -129,7 +126,7 @@ func (i *DnsSearchPaths) ToDnsSearchPathsOutputWithContext(ctx context.Context) 
 // DnsSearchPathsArrayInput is an input type that accepts DnsSearchPathsArray and DnsSearchPathsArrayOutput values.
 // You can construct a concrete instance of `DnsSearchPathsArrayInput` via:
 //
-//	DnsSearchPathsArray{ DnsSearchPathsArgs{...} }
+//          DnsSearchPathsArray{ DnsSearchPathsArgs{...} }
 type DnsSearchPathsArrayInput interface {
 	pulumi.Input
 
@@ -154,7 +151,7 @@ func (i DnsSearchPathsArray) ToDnsSearchPathsArrayOutputWithContext(ctx context.
 // DnsSearchPathsMapInput is an input type that accepts DnsSearchPathsMap and DnsSearchPathsMapOutput values.
 // You can construct a concrete instance of `DnsSearchPathsMapInput` via:
 //
-//	DnsSearchPathsMap{ "key": DnsSearchPathsArgs{...} }
+//          DnsSearchPathsMap{ "key": DnsSearchPathsArgs{...} }
 type DnsSearchPathsMapInput interface {
 	pulumi.Input
 

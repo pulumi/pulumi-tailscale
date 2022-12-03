@@ -18,25 +18,22 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tailscale.Get4Via6(ctx, &Get4Via6Args{
-//				Cidr: "10.1.1.0/24",
-//				Site: 7,
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := tailscale.Get4Via6(ctx, &Get4Via6Args{
+// 			Cidr: "10.1.1.0/24",
+// 			Site: 7,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 func Get4Via6(ctx *pulumi.Context, args *Get4Via6Args, opts ...pulumi.InvokeOption) (*Get4Via6Result, error) {
 	var rv Get4Via6Result
