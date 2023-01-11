@@ -21,9 +21,6 @@ class GetDevicesDeviceResult(dict):
                  name: str,
                  tags: Sequence[str],
                  user: str):
-        """
-        :param str id: The ID of this resource.
-        """
         pulumi.set(__self__, "addresses", addresses)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
@@ -38,9 +35,6 @@ class GetDevicesDeviceResult(dict):
     @property
     @pulumi.getter
     def id(self) -> str:
-        """
-        The ID of this resource.
-        """
         return pulumi.get(self, "id")
 
     @property

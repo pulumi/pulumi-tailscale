@@ -11,10 +11,6 @@ import java.util.Objects;
 @CustomType
 public final class GetDevicesDevice {
     private List<String> addresses;
-    /**
-     * @return The ID of this resource.
-     * 
-     */
     private String id;
     private String name;
     private List<String> tags;
@@ -24,10 +20,6 @@ public final class GetDevicesDevice {
     public List<String> addresses() {
         return this.addresses;
     }
-    /**
-     * @return The ID of this resource.
-     * 
-     */
     public String id() {
         return this.id;
     }

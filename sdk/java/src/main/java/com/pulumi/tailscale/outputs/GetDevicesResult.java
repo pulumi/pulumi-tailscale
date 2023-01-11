@@ -13,27 +13,15 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetDevicesResult {
-    /**
-     * @return The list of devices in the tailnet
-     * 
-     */
     private List<GetDevicesDevice> devices;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
-    /**
-     * @return Filters the device list to elements whose name has the provided prefix
-     * 
-     */
     private @Nullable String namePrefix;
 
     private GetDevicesResult() {}
-    /**
-     * @return The list of devices in the tailnet
-     * 
-     */
     public List<GetDevicesDevice> devices() {
         return this.devices;
     }
@@ -44,10 +32,6 @@ public final class GetDevicesResult {
     public String id() {
         return this.id;
     }
-    /**
-     * @return Filters the device list to elements whose name has the provided prefix
-     * 
-     */
     public Optional<String> namePrefix() {
         return Optional.ofNullable(this.namePrefix);
     }

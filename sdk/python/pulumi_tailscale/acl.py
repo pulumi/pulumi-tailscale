@@ -66,24 +66,7 @@ class Acl(pulumi.CustomResource):
                  acl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import json
-        import pulumi_tailscale as tailscale
-
-        sample_acl = tailscale.Acl("sampleAcl", acl=json.dumps({
-            "acls": [{
-                "action": "accept",
-                "users": ["*"],
-                "ports": ["*:*"],
-            }],
-        }))
-        ```
-
+        Create a Acl resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl: The JSON-based policy that defines which devices and users are allowed to connect in your network
@@ -95,24 +78,7 @@ class Acl(pulumi.CustomResource):
                  args: AclArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import json
-        import pulumi_tailscale as tailscale
-
-        sample_acl = tailscale.Acl("sampleAcl", acl=json.dumps({
-            "acls": [{
-                "action": "accept",
-                "users": ["*"],
-                "ports": ["*:*"],
-            }],
-        }))
-        ```
-
+        Create a Acl resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param AclArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

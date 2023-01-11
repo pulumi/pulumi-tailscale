@@ -13,48 +13,6 @@ import com.pulumi.tailscale.inputs.AclState;
 import java.lang.String;
 import javax.annotation.Nullable;
 
-/**
- * The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information.
- * 
- * ## Example Usage
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.tailscale.Acl;
- * import com.pulumi.tailscale.AclArgs;
- * import static com.pulumi.codegen.internal.Serialization.*;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var sampleAcl = new Acl(&#34;sampleAcl&#34;, AclArgs.builder()        
- *             .acl(serializeJson(
- *                 jsonObject(
- *                     jsonProperty(&#34;acls&#34;, jsonArray(jsonObject(
- *                         jsonProperty(&#34;action&#34;, &#34;accept&#34;),
- *                         jsonProperty(&#34;users&#34;, jsonArray(&#34;*&#34;)),
- *                         jsonProperty(&#34;ports&#34;, jsonArray(&#34;*:*&#34;))
- *                     )))
- *                 )))
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
- */
 @ResourceType(type="tailscale:index/acl:Acl")
 public class Acl extends com.pulumi.resources.CustomResource {
     /**

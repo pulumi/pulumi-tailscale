@@ -4,20 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * The dnsPreferences resource allows you to configure DNS preferences for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as tailscale from "@pulumi/tailscale";
- *
- * const samplePreferences = new tailscale.DnsPreferences("sample_preferences", {
- *     magicDns: true,
- * });
- * ```
- */
 export class DnsPreferences extends pulumi.CustomResource {
     /**
      * Get an existing DnsPreferences resource's state with the given name, ID, and optional extra

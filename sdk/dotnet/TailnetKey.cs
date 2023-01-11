@@ -9,28 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Tailscale
 {
-    /// <summary>
-    /// The tailnet_key resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Tailscale = Pulumi.Tailscale;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var sampleKey = new Tailscale.TailnetKey("sampleKey", new()
-    ///     {
-    ///         Ephemeral = false,
-    ///         Preauthorized = true,
-    ///         Reusable = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// </summary>
     [TailscaleResourceType("tailscale:index/tailnetKey:TailnetKey")]
     public partial class TailnetKey : global::Pulumi.CustomResource
     {

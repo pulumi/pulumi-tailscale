@@ -99,20 +99,7 @@ class DeviceKey(pulumi.CustomResource):
                  key_expiry_disabled: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        The device_key resource allows you to update the properties of a device's key
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_tailscale as tailscale
-
-        example_device = tailscale.get_device(name="device.example.com")
-        example_key = tailscale.DeviceKey("exampleKey",
-            device_id=example_device.id,
-            key_expiry_disabled=True)
-        ```
-
+        Create a DeviceKey resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_id: The device to update the key properties of
@@ -125,20 +112,7 @@ class DeviceKey(pulumi.CustomResource):
                  args: DeviceKeyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The device_key resource allows you to update the properties of a device's key
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_tailscale as tailscale
-
-        example_device = tailscale.get_device(name="device.example.com")
-        example_key = tailscale.DeviceKey("exampleKey",
-            device_id=example_device.id,
-            key_expiry_disabled=True)
-        ```
-
+        Create a DeviceKey resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DeviceKeyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

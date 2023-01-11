@@ -14,47 +14,6 @@ import java.lang.Boolean;
 import java.lang.String;
 import javax.annotation.Nullable;
 
-/**
- * The device_authorization resource is used to approve new devices before they can join the tailnet. See https://tailscale.com/kb/1099/device-authorization/ for more details.
- * 
- * ## Example Usage
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.tailscale.TailscaleFunctions;
- * import com.pulumi.tailscale.inputs.GetDeviceArgs;
- * import com.pulumi.tailscale.DeviceAuthorization;
- * import com.pulumi.tailscale.DeviceAuthorizationArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
- *             .name(&#34;device.example.com&#34;)
- *             .build());
- * 
- *         var sampleAuthorization = new DeviceAuthorization(&#34;sampleAuthorization&#34;, DeviceAuthorizationArgs.builder()        
- *             .deviceId(sampleDevice.applyValue(getDeviceResult -&gt; getDeviceResult.id()))
- *             .authorized(true)
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
- */
 @ResourceType(type="tailscale:index/deviceAuthorization:DeviceAuthorization")
 public class DeviceAuthorization extends com.pulumi.resources.CustomResource {
     /**

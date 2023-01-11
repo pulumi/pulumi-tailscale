@@ -13,32 +13,16 @@ public final class Get4Via6PlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final Get4Via6PlainArgs Empty = new Get4Via6PlainArgs();
 
-    /**
-     * The IPv4 CIDR to map
-     * 
-     */
     @Import(name="cidr", required=true)
     private String cidr;
 
-    /**
-     * @return The IPv4 CIDR to map
-     * 
-     */
     public String cidr() {
         return this.cidr;
     }
 
-    /**
-     * Site ID (between 0 and 255)
-     * 
-     */
     @Import(name="site", required=true)
     private Integer site;
 
-    /**
-     * @return Site ID (between 0 and 255)
-     * 
-     */
     public Integer site() {
         return this.site;
     }
@@ -68,23 +52,11 @@ public final class Get4Via6PlainArgs extends com.pulumi.resources.InvokeArgs {
             $ = new Get4Via6PlainArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param cidr The IPv4 CIDR to map
-         * 
-         * @return builder
-         * 
-         */
         public Builder cidr(String cidr) {
             $.cidr = cidr;
             return this;
         }
 
-        /**
-         * @param site Site ID (between 0 and 255)
-         * 
-         * @return builder
-         * 
-         */
         public Builder site(Integer site) {
             $.site = site;
             return this;

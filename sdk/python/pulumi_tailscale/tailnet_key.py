@@ -182,20 +182,7 @@ class TailnetKey(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        The tailnet_key resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_tailscale as tailscale
-
-        sample_key = tailscale.TailnetKey("sampleKey",
-            ephemeral=False,
-            preauthorized=True,
-            reusable=True)
-        ```
-
+        Create a TailnetKey resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
@@ -210,20 +197,7 @@ class TailnetKey(pulumi.CustomResource):
                  args: Optional[TailnetKeyArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The tailnet_key resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_tailscale as tailscale
-
-        sample_key = tailscale.TailnetKey("sampleKey",
-            ephemeral=False,
-            preauthorized=True,
-            reusable=True)
-        ```
-
+        Create a TailnetKey resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param TailnetKeyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

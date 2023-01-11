@@ -9,29 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Tailscale
 {
-    /// <summary>
-    /// The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Tailscale = Pulumi.Tailscale;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var sampleSearchPaths = new Tailscale.DnsSearchPaths("sampleSearchPaths", new()
-    ///     {
-    ///         SearchPaths = new[]
-    ///         {
-    ///             "example.com",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// </summary>
     [TailscaleResourceType("tailscale:index/dnsSearchPaths:DnsSearchPaths")]
     public partial class DnsSearchPaths : global::Pulumi.CustomResource
     {

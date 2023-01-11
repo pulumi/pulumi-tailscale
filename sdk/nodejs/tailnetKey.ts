@@ -4,22 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * The tailnetKey resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as tailscale from "@pulumi/tailscale";
- *
- * const sampleKey = new tailscale.TailnetKey("sample_key", {
- *     ephemeral: false,
- *     preauthorized: true,
- *     reusable: true,
- * });
- * ```
- */
 export class TailnetKey extends pulumi.CustomResource {
     /**
      * Get an existing TailnetKey resource's state with the given name, ID, and optional extra

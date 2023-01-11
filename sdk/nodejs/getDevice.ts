@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * The device data source describes a single device in a tailnet
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as tailscale from "@pulumi/tailscale";
- *
- * const sampleDevice = pulumi.output(tailscale.getDevice({
- *     name: "user1-device.example.com",
- *     waitFor: "60s",
- * }));
- * ```
- */
 export function getDevice(args: GetDeviceArgs, opts?: pulumi.InvokeOptions): Promise<GetDeviceResult> {
     if (!opts) {
         opts = {}
@@ -35,13 +20,7 @@ export function getDevice(args: GetDeviceArgs, opts?: pulumi.InvokeOptions): Pro
  * A collection of arguments for invoking getDevice.
  */
 export interface GetDeviceArgs {
-    /**
-     * The name of the device
-     */
     name: string;
-    /**
-     * If specified, the provider will make multiple attempts to obtain the data source until the waitFor duration is reached. Retries are made every second so this value should be greater than 1s
-     */
     waitFor?: string;
 }
 
@@ -49,29 +28,14 @@ export interface GetDeviceArgs {
  * A collection of values returned by getDevice.
  */
 export interface GetDeviceResult {
-    /**
-     * The list of device's IPs
-     */
     readonly addresses: string[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * The name of the device
-     */
     readonly name: string;
-    /**
-     * The tags applied to the device
-     */
     readonly tags: string[];
-    /**
-     * The user associated with the device
-     */
     readonly user: string;
-    /**
-     * If specified, the provider will make multiple attempts to obtain the data source until the waitFor duration is reached. Retries are made every second so this value should be greater than 1s
-     */
     readonly waitFor?: string;
 }
 
@@ -83,12 +47,6 @@ export function getDeviceOutput(args: GetDeviceOutputArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getDevice.
  */
 export interface GetDeviceOutputArgs {
-    /**
-     * The name of the device
-     */
     name: pulumi.Input<string>;
-    /**
-     * If specified, the provider will make multiple attempts to obtain the data source until the waitFor duration is reached. Retries are made every second so this value should be greater than 1s
-     */
     waitFor?: pulumi.Input<string>;
 }

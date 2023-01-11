@@ -11,42 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The deviceTags resource is used to apply tags to Tailscale devices. See https://tailscale.com/kb/1068/acl-tags/ for more details.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			sampleDevice, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
-//				Name: "device.example.com",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = tailscale.NewDeviceTags(ctx, "sampleTags", &tailscale.DeviceTagsArgs{
-//				DeviceId: pulumi.String(sampleDevice.Id),
-//				Tags: pulumi.StringArray{
-//					pulumi.String("room:bedroom"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 type DeviceTags struct {
 	pulumi.CustomResourceState
 

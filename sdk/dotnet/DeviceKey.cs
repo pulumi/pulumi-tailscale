@@ -9,32 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Tailscale
 {
-    /// <summary>
-    /// The device_key resource allows you to update the properties of a device's key
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Tailscale = Pulumi.Tailscale;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var exampleDevice = Tailscale.GetDevice.Invoke(new()
-    ///     {
-    ///         Name = "device.example.com",
-    ///     });
-    /// 
-    ///     var exampleKey = new Tailscale.DeviceKey("exampleKey", new()
-    ///     {
-    ///         DeviceId = exampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.Id),
-    ///         KeyExpiryDisabled = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// </summary>
     [TailscaleResourceType("tailscale:index/deviceKey:DeviceKey")]
     public partial class DeviceKey : global::Pulumi.CustomResource
     {

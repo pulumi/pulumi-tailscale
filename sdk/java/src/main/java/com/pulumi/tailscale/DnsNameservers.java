@@ -14,42 +14,6 @@ import java.lang.String;
 import java.util.List;
 import javax.annotation.Nullable;
 
-/**
- * The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
- * 
- * ## Example Usage
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.tailscale.DnsNameservers;
- * import com.pulumi.tailscale.DnsNameserversArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var sampleNameservers = new DnsNameservers(&#34;sampleNameservers&#34;, DnsNameserversArgs.builder()        
- *             .nameservers(            
- *                 &#34;8.8.8.8&#34;,
- *                 &#34;8.8.4.4&#34;)
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
- */
 @ResourceType(type="tailscale:index/dnsNameservers:DnsNameservers")
 public class DnsNameservers extends com.pulumi.resources.CustomResource {
     /**

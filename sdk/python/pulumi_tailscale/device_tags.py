@@ -98,20 +98,7 @@ class DeviceTags(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        The device_tags resource is used to apply tags to Tailscale devices. See https://tailscale.com/kb/1068/acl-tags/ for more details.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_tailscale as tailscale
-
-        sample_device = tailscale.get_device(name="device.example.com")
-        sample_tags = tailscale.DeviceTags("sampleTags",
-            device_id=sample_device.id,
-            tags=["room:bedroom"])
-        ```
-
+        Create a DeviceTags resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_id: The device to set tags for
@@ -124,20 +111,7 @@ class DeviceTags(pulumi.CustomResource):
                  args: DeviceTagsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The device_tags resource is used to apply tags to Tailscale devices. See https://tailscale.com/kb/1068/acl-tags/ for more details.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_tailscale as tailscale
-
-        sample_device = tailscale.get_device(name="device.example.com")
-        sample_tags = tailscale.DeviceTags("sampleTags",
-            device_id=sample_device.id,
-            tags=["room:bedroom"])
-        ```
-
+        Create a DeviceTags resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DeviceTagsArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

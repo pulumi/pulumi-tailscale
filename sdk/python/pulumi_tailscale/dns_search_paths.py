@@ -66,17 +66,7 @@ class DnsSearchPaths(pulumi.CustomResource):
                  search_paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_tailscale as tailscale
-
-        sample_search_paths = tailscale.DnsSearchPaths("sampleSearchPaths", search_paths=["example.com"])
-        ```
-
+        Create a DnsSearchPaths resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] search_paths: Devices on your network will use these domain suffixes to resolve DNS names.
@@ -88,17 +78,7 @@ class DnsSearchPaths(pulumi.CustomResource):
                  args: DnsSearchPathsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_tailscale as tailscale
-
-        sample_search_paths = tailscale.DnsSearchPaths("sampleSearchPaths", search_paths=["example.com"])
-        ```
-
+        Create a DnsSearchPaths resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DnsSearchPathsArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

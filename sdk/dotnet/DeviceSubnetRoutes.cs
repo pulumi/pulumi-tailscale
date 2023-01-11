@@ -9,37 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Tailscale
 {
-    /// <summary>
-    /// The device_subnet_routes resource allows you to configure subnet routes for your Tailscale devices. See https://tailscale.com/kb/1019/subnets for more information.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Tailscale = Pulumi.Tailscale;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var sampleDevice = Tailscale.GetDevice.Invoke(new()
-    ///     {
-    ///         Name = "device.example.com",
-    ///     });
-    /// 
-    ///     var sampleRoutes = new Tailscale.DeviceSubnetRoutes("sampleRoutes", new()
-    ///     {
-    ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.Id),
-    ///         Routes = new[]
-    ///         {
-    ///             "10.0.1.0/24",
-    ///             "1.2.0.0/16",
-    ///             "2.0.0.0/24",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// </summary>
     [TailscaleResourceType("tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes")]
     public partial class DeviceSubnetRoutes : global::Pulumi.CustomResource
     {

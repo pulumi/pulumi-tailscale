@@ -44,9 +44,6 @@ class GetDeviceResult:
     @property
     @pulumi.getter
     def addresses(self) -> Sequence[str]:
-        """
-        The list of device's IPs
-        """
         return pulumi.get(self, "addresses")
 
     @property
@@ -60,33 +57,21 @@ class GetDeviceResult:
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        The name of the device
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
-        """
-        The tags applied to the device
-        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def user(self) -> str:
-        """
-        The user associated with the device
-        """
         return pulumi.get(self, "user")
 
     @property
     @pulumi.getter(name="waitFor")
     def wait_for(self) -> Optional[str]:
-        """
-        If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
-        """
         return pulumi.get(self, "wait_for")
 
 
@@ -108,21 +93,7 @@ def get_device(name: Optional[str] = None,
                wait_for: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDeviceResult:
     """
-    The device data source describes a single device in a tailnet
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_tailscale as tailscale
-
-    sample_device = tailscale.get_device(name="user1-device.example.com",
-        wait_for="60s")
-    ```
-
-
-    :param str name: The name of the device
-    :param str wait_for: If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -144,20 +115,6 @@ def get_device_output(name: Optional[pulumi.Input[str]] = None,
                       wait_for: Optional[pulumi.Input[Optional[str]]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDeviceResult]:
     """
-    The device data source describes a single device in a tailnet
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_tailscale as tailscale
-
-    sample_device = tailscale.get_device(name="user1-device.example.com",
-        wait_for="60s")
-    ```
-
-
-    :param str name: The name of the device
-    :param str wait_for: If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
+    Use this data source to access information about an existing resource.
     """
     ...

@@ -10,32 +10,16 @@ import java.util.Objects;
 
 @CustomType
 public final class Get4Via6Result {
-    /**
-     * @return The IPv4 CIDR to map
-     * 
-     */
     private String cidr;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
-    /**
-     * @return The 4via6 mapped address
-     * 
-     */
     private String ipv6;
-    /**
-     * @return Site ID (between 0 and 255)
-     * 
-     */
     private Integer site;
 
     private Get4Via6Result() {}
-    /**
-     * @return The IPv4 CIDR to map
-     * 
-     */
     public String cidr() {
         return this.cidr;
     }
@@ -46,17 +30,9 @@ public final class Get4Via6Result {
     public String id() {
         return this.id;
     }
-    /**
-     * @return The 4via6 mapped address
-     * 
-     */
     public String ipv6() {
         return this.ipv6;
     }
-    /**
-     * @return Site ID (between 0 and 255)
-     * 
-     */
     public Integer site() {
         return this.site;
     }

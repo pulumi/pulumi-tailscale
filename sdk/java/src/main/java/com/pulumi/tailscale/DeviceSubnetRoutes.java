@@ -14,50 +14,6 @@ import java.lang.String;
 import java.util.List;
 import javax.annotation.Nullable;
 
-/**
- * The device_subnet_routes resource allows you to configure subnet routes for your Tailscale devices. See https://tailscale.com/kb/1019/subnets for more information.
- * 
- * ## Example Usage
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.tailscale.TailscaleFunctions;
- * import com.pulumi.tailscale.inputs.GetDeviceArgs;
- * import com.pulumi.tailscale.DeviceSubnetRoutes;
- * import com.pulumi.tailscale.DeviceSubnetRoutesArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
- *             .name(&#34;device.example.com&#34;)
- *             .build());
- * 
- *         var sampleRoutes = new DeviceSubnetRoutes(&#34;sampleRoutes&#34;, DeviceSubnetRoutesArgs.builder()        
- *             .deviceId(sampleDevice.applyValue(getDeviceResult -&gt; getDeviceResult.id()))
- *             .routes(            
- *                 &#34;10.0.1.0/24&#34;,
- *                 &#34;1.2.0.0/16&#34;,
- *                 &#34;2.0.0.0/24&#34;)
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
- */
 @ResourceType(type="tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes")
 public class DeviceSubnetRoutes extends com.pulumi.resources.CustomResource {
     /**

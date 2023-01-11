@@ -6,9 +6,6 @@ import { input as inputs, output as outputs } from "../types";
 
 export interface GetDevicesDevice {
     addresses: string[];
-    /**
-     * The ID of this resource.
-     */
     id: string;
     name: string;
     tags: string[];

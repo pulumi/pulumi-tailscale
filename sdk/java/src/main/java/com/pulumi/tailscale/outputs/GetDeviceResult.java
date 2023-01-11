@@ -12,42 +12,18 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetDeviceResult {
-    /**
-     * @return The list of device&#39;s IPs
-     * 
-     */
     private List<String> addresses;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
-    /**
-     * @return The name of the device
-     * 
-     */
     private String name;
-    /**
-     * @return The tags applied to the device
-     * 
-     */
     private List<String> tags;
-    /**
-     * @return The user associated with the device
-     * 
-     */
     private String user;
-    /**
-     * @return If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
-     * 
-     */
     private @Nullable String waitFor;
 
     private GetDeviceResult() {}
-    /**
-     * @return The list of device&#39;s IPs
-     * 
-     */
     public List<String> addresses() {
         return this.addresses;
     }
@@ -58,31 +34,15 @@ public final class GetDeviceResult {
     public String id() {
         return this.id;
     }
-    /**
-     * @return The name of the device
-     * 
-     */
     public String name() {
         return this.name;
     }
-    /**
-     * @return The tags applied to the device
-     * 
-     */
     public List<String> tags() {
         return this.tags;
     }
-    /**
-     * @return The user associated with the device
-     * 
-     */
     public String user() {
         return this.user;
     }
-    /**
-     * @return If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
-     * 
-     */
     public Optional<String> waitFor() {
         return Optional.ofNullable(this.waitFor);
     }

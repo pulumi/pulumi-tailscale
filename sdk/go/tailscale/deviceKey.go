@@ -11,40 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The deviceKey resource allows you to update the properties of a device's key
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleDevice, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
-//				Name: "device.example.com",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = tailscale.NewDeviceKey(ctx, "exampleKey", &tailscale.DeviceKeyArgs{
-//				DeviceId:          pulumi.String(exampleDevice.Id),
-//				KeyExpiryDisabled: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 type DeviceKey struct {
 	pulumi.CustomResourceState
 

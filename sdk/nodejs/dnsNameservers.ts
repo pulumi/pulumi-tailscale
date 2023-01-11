@@ -4,23 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * The dnsNameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as tailscale from "@pulumi/tailscale";
- *
- * const sampleNameservers = new tailscale.DnsNameservers("sample_nameservers", {
- *     nameservers: [
- *         "8.8.8.8",
- *         "8.8.4.4",
- *     ],
- * });
- * ```
- */
 export class DnsNameservers extends pulumi.CustomResource {
     /**
      * Get an existing DnsNameservers resource's state with the given name, ID, and optional extra

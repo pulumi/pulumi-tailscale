@@ -15,32 +15,16 @@ public final class GetDeviceArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetDeviceArgs Empty = new GetDeviceArgs();
 
-    /**
-     * The name of the device
-     * 
-     */
     @Import(name="name", required=true)
     private Output<String> name;
 
-    /**
-     * @return The name of the device
-     * 
-     */
     public Output<String> name() {
         return this.name;
     }
 
-    /**
-     * If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
-     * 
-     */
     @Import(name="waitFor")
     private @Nullable Output<String> waitFor;
 
-    /**
-     * @return If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
-     * 
-     */
     public Optional<Output<String>> waitFor() {
         return Optional.ofNullable(this.waitFor);
     }
@@ -70,44 +54,20 @@ public final class GetDeviceArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetDeviceArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param name The name of the device
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
-        /**
-         * @param name The name of the device
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
-        /**
-         * @param waitFor If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
-         * 
-         * @return builder
-         * 
-         */
         public Builder waitFor(@Nullable Output<String> waitFor) {
             $.waitFor = waitFor;
             return this;
         }
 
-        /**
-         * @param waitFor If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
-         * 
-         * @return builder
-         * 
-         */
         public Builder waitFor(String waitFor) {
             return waitFor(Output.of(waitFor));
         }

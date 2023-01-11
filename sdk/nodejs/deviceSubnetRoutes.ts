@@ -4,28 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * The deviceSubnetRoutes resource allows you to configure subnet routes for your Tailscale devices. See https://tailscale.com/kb/1019/subnets for more information.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as tailscale from "@pulumi/tailscale";
- *
- * const sampleDevice = tailscale.getDevice({
- *     name: "device.example.com",
- * });
- * const sampleRoutes = new tailscale.DeviceSubnetRoutes("sampleRoutes", {
- *     deviceId: sampleDevice.then(sampleDevice => sampleDevice.id),
- *     routes: [
- *         "10.0.1.0/24",
- *         "1.2.0.0/16",
- *         "2.0.0.0/24",
- *     ],
- * });
- * ```
- */
 export class DeviceSubnetRoutes extends pulumi.CustomResource {
     /**
      * Get an existing DeviceSubnetRoutes resource's state with the given name, ID, and optional extra

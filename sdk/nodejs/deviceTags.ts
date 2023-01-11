@@ -4,24 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * The deviceTags resource is used to apply tags to Tailscale devices. See https://tailscale.com/kb/1068/acl-tags/ for more details.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as tailscale from "@pulumi/tailscale";
- *
- * const sampleDevice = tailscale.getDevice({
- *     name: "device.example.com",
- * });
- * const sampleTags = new tailscale.DeviceTags("sampleTags", {
- *     deviceId: sampleDevice.then(sampleDevice => sampleDevice.id),
- *     tags: ["room:bedroom"],
- * });
- * ```
- */
 export class DeviceTags extends pulumi.CustomResource {
     /**
      * Get an existing DeviceTags resource's state with the given name, ID, and optional extra

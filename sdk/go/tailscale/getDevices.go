@@ -10,33 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The devices data source describes a list of devices in a tailnet
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tailscale.GetDevices(ctx, &GetDevicesArgs{
-//				NamePrefix: pulumi.StringRef("example-"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetDevices(ctx *pulumi.Context, args *GetDevicesArgs, opts ...pulumi.InvokeOption) (*GetDevicesResult, error) {
 	var rv GetDevicesResult
 	err := ctx.Invoke("tailscale:index/getDevices:getDevices", args, &rv, opts...)
@@ -48,17 +21,14 @@ func GetDevices(ctx *pulumi.Context, args *GetDevicesArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getDevices.
 type GetDevicesArgs struct {
-	// Filters the device list to elements whose name has the provided prefix
 	NamePrefix *string `pulumi:"namePrefix"`
 }
 
 // A collection of values returned by getDevices.
 type GetDevicesResult struct {
-	// The list of devices in the tailnet
 	Devices []GetDevicesDevice `pulumi:"devices"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// Filters the device list to elements whose name has the provided prefix
+	Id         string  `pulumi:"id"`
 	NamePrefix *string `pulumi:"namePrefix"`
 }
 
@@ -77,7 +47,6 @@ func GetDevicesOutput(ctx *pulumi.Context, args GetDevicesOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getDevices.
 type GetDevicesOutputArgs struct {
-	// Filters the device list to elements whose name has the provided prefix
 	NamePrefix pulumi.StringPtrInput `pulumi:"namePrefix"`
 }
 
@@ -100,7 +69,6 @@ func (o GetDevicesResultOutput) ToGetDevicesResultOutputWithContext(ctx context.
 	return o
 }
 
-// The list of devices in the tailnet
 func (o GetDevicesResultOutput) Devices() GetDevicesDeviceArrayOutput {
 	return o.ApplyT(func(v GetDevicesResult) []GetDevicesDevice { return v.Devices }).(GetDevicesDeviceArrayOutput)
 }
@@ -110,7 +78,6 @@ func (o GetDevicesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDevicesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Filters the device list to elements whose name has the provided prefix
 func (o GetDevicesResultOutput) NamePrefix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDevicesResult) *string { return v.NamePrefix }).(pulumi.StringPtrOutput)
 }

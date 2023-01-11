@@ -38,9 +38,6 @@ class Get4Via6Result:
     @property
     @pulumi.getter
     def cidr(self) -> str:
-        """
-        The IPv4 CIDR to map
-        """
         return pulumi.get(self, "cidr")
 
     @property
@@ -54,17 +51,11 @@ class Get4Via6Result:
     @property
     @pulumi.getter
     def ipv6(self) -> str:
-        """
-        The 4via6 mapped address
-        """
         return pulumi.get(self, "ipv6")
 
     @property
     @pulumi.getter
     def site(self) -> int:
-        """
-        Site ID (between 0 and 255)
-        """
         return pulumi.get(self, "site")
 
 
@@ -84,21 +75,7 @@ def get4_via6(cidr: Optional[str] = None,
               site: Optional[int] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGet4Via6Result:
     """
-    The 4via6 data source is calculates an IPv6 prefix for a given site ID and IPv4 CIDR. See Tailscale documentation for [4via6 subnets](https://tailscale.com/kb/1201/4via6-subnets/) for more details.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_tailscale as tailscale
-
-    example = tailscale.get4_via6(cidr="10.1.1.0/24",
-        site=7)
-    ```
-
-
-    :param str cidr: The IPv4 CIDR to map
-    :param int site: Site ID (between 0 and 255)
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['cidr'] = cidr
@@ -118,20 +95,6 @@ def get4_via6_output(cidr: Optional[pulumi.Input[str]] = None,
                      site: Optional[pulumi.Input[int]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[Get4Via6Result]:
     """
-    The 4via6 data source is calculates an IPv6 prefix for a given site ID and IPv4 CIDR. See Tailscale documentation for [4via6 subnets](https://tailscale.com/kb/1201/4via6-subnets/) for more details.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_tailscale as tailscale
-
-    example = tailscale.get4_via6(cidr="10.1.1.0/24",
-        site=7)
-    ```
-
-
-    :param str cidr: The IPv4 CIDR to map
-    :param int site: Site ID (between 0 and 255)
+    Use this data source to access information about an existing resource.
     """
     ...

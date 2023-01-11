@@ -11,57 +11,9 @@ namespace Pulumi.Tailscale
 {
     public static class GetDevices
     {
-        /// <summary>
-        /// The devices data source describes a list of devices in a tailnet
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using Pulumi;
-        /// using Tailscale = Pulumi.Tailscale;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var sampleDevices = Tailscale.GetDevices.Invoke(new()
-        ///     {
-        ///         NamePrefix = "example-",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Task<GetDevicesResult> InvokeAsync(GetDevicesArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDevicesResult>("tailscale:index/getDevices:getDevices", args ?? new GetDevicesArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// The devices data source describes a list of devices in a tailnet
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using Pulumi;
-        /// using Tailscale = Pulumi.Tailscale;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var sampleDevices = Tailscale.GetDevices.Invoke(new()
-        ///     {
-        ///         NamePrefix = "example-",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Output<GetDevicesResult> Invoke(GetDevicesInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetDevicesResult>("tailscale:index/getDevices:getDevices", args ?? new GetDevicesInvokeArgs(), options.WithDefaults());
     }
@@ -69,9 +21,6 @@ namespace Pulumi.Tailscale
 
     public sealed class GetDevicesArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Filters the device list to elements whose name has the provided prefix
-        /// </summary>
         [Input("namePrefix")]
         public string? NamePrefix { get; set; }
 
@@ -83,9 +32,6 @@ namespace Pulumi.Tailscale
 
     public sealed class GetDevicesInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Filters the device list to elements whose name has the provided prefix
-        /// </summary>
         [Input("namePrefix")]
         public Input<string>? NamePrefix { get; set; }
 
@@ -99,17 +45,11 @@ namespace Pulumi.Tailscale
     [OutputType]
     public sealed class GetDevicesResult
     {
-        /// <summary>
-        /// The list of devices in the tailnet
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetDevicesDeviceResult> Devices;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// Filters the device list to elements whose name has the provided prefix
-        /// </summary>
         public readonly string? NamePrefix;
 
         [OutputConstructor]

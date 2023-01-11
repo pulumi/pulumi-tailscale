@@ -4,24 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as tailscale from "@pulumi/tailscale";
- *
- * const sampleAcl = new tailscale.Acl("sampleAcl", {acl: JSON.stringify({
- *     acls: [{
- *         action: "accept",
- *         users: ["*"],
- *         ports: ["*:*"],
- *     }],
- * })});
- * ```
- */
 export class Acl extends pulumi.CustomResource {
     /**
      * Get an existing Acl resource's state with the given name, ID, and optional extra

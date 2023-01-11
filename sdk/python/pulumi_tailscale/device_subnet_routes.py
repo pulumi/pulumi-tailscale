@@ -98,24 +98,7 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        The device_subnet_routes resource allows you to configure subnet routes for your Tailscale devices. See https://tailscale.com/kb/1019/subnets for more information.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_tailscale as tailscale
-
-        sample_device = tailscale.get_device(name="device.example.com")
-        sample_routes = tailscale.DeviceSubnetRoutes("sampleRoutes",
-            device_id=sample_device.id,
-            routes=[
-                "10.0.1.0/24",
-                "1.2.0.0/16",
-                "2.0.0.0/24",
-            ])
-        ```
-
+        Create a DeviceSubnetRoutes resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_id: The device to set subnet routes for
@@ -128,24 +111,7 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
                  args: DeviceSubnetRoutesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The device_subnet_routes resource allows you to configure subnet routes for your Tailscale devices. See https://tailscale.com/kb/1019/subnets for more information.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_tailscale as tailscale
-
-        sample_device = tailscale.get_device(name="device.example.com")
-        sample_routes = tailscale.DeviceSubnetRoutes("sampleRoutes",
-            device_id=sample_device.id,
-            routes=[
-                "10.0.1.0/24",
-                "1.2.0.0/16",
-                "2.0.0.0/24",
-            ])
-        ```
-
+        Create a DeviceSubnetRoutes resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DeviceSubnetRoutesArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

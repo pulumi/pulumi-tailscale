@@ -13,40 +13,6 @@ import com.pulumi.tailscale.inputs.DnsPreferencesState;
 import java.lang.Boolean;
 import javax.annotation.Nullable;
 
-/**
- * The dns_preferences resource allows you to configure DNS preferences for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
- * 
- * ## Example Usage
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.tailscale.DnsPreferences;
- * import com.pulumi.tailscale.DnsPreferencesArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var samplePreferences = new DnsPreferences(&#34;samplePreferences&#34;, DnsPreferencesArgs.builder()        
- *             .magicDns(true)
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
- */
 @ResourceType(type="tailscale:index/dnsPreferences:DnsPreferences")
 public class DnsPreferences extends com.pulumi.resources.CustomResource {
     /**

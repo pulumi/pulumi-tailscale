@@ -14,32 +14,16 @@ public final class Get4Via6Args extends com.pulumi.resources.InvokeArgs {
 
     public static final Get4Via6Args Empty = new Get4Via6Args();
 
-    /**
-     * The IPv4 CIDR to map
-     * 
-     */
     @Import(name="cidr", required=true)
     private Output<String> cidr;
 
-    /**
-     * @return The IPv4 CIDR to map
-     * 
-     */
     public Output<String> cidr() {
         return this.cidr;
     }
 
-    /**
-     * Site ID (between 0 and 255)
-     * 
-     */
     @Import(name="site", required=true)
     private Output<Integer> site;
 
-    /**
-     * @return Site ID (between 0 and 255)
-     * 
-     */
     public Output<Integer> site() {
         return this.site;
     }
@@ -69,44 +53,20 @@ public final class Get4Via6Args extends com.pulumi.resources.InvokeArgs {
             $ = new Get4Via6Args(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param cidr The IPv4 CIDR to map
-         * 
-         * @return builder
-         * 
-         */
         public Builder cidr(Output<String> cidr) {
             $.cidr = cidr;
             return this;
         }
 
-        /**
-         * @param cidr The IPv4 CIDR to map
-         * 
-         * @return builder
-         * 
-         */
         public Builder cidr(String cidr) {
             return cidr(Output.of(cidr));
         }
 
-        /**
-         * @param site Site ID (between 0 and 255)
-         * 
-         * @return builder
-         * 
-         */
         public Builder site(Output<Integer> site) {
             $.site = site;
             return this;
         }
 
-        /**
-         * @param site Site ID (between 0 and 255)
-         * 
-         * @return builder
-         * 
-         */
         public Builder site(Integer site) {
             return site(Output.of(site));
         }

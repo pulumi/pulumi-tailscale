@@ -11,52 +11,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"encoding/json"
-//
-//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			tmpJSON0, err := json.Marshal(map[string]interface{}{
-//				"acls": []map[string]interface{}{
-//					map[string]interface{}{
-//						"action": "accept",
-//						"users": []string{
-//							"*",
-//						},
-//						"ports": []string{
-//							"*:*",
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			json0 := string(tmpJSON0)
-//			_, err = tailscale.NewAcl(ctx, "sampleAcl", &tailscale.AclArgs{
-//				Acl: pulumi.String(json0),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 type Acl struct {
 	pulumi.CustomResourceState
 

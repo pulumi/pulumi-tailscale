@@ -15,47 +15,6 @@ import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
-/**
- * The device_key resource allows you to update the properties of a device&#39;s key
- * 
- * ## Example Usage
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.tailscale.TailscaleFunctions;
- * import com.pulumi.tailscale.inputs.GetDeviceArgs;
- * import com.pulumi.tailscale.DeviceKey;
- * import com.pulumi.tailscale.DeviceKeyArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         final var exampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
- *             .name(&#34;device.example.com&#34;)
- *             .build());
- * 
- *         var exampleKey = new DeviceKey(&#34;exampleKey&#34;, DeviceKeyArgs.builder()        
- *             .deviceId(exampleDevice.applyValue(getDeviceResult -&gt; getDeviceResult.id()))
- *             .keyExpiryDisabled(true)
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
- */
 @ResourceType(type="tailscale:index/deviceKey:DeviceKey")
 public class DeviceKey extends com.pulumi.resources.CustomResource {
     /**

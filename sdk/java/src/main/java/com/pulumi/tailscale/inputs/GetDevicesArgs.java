@@ -15,17 +15,9 @@ public final class GetDevicesArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetDevicesArgs Empty = new GetDevicesArgs();
 
-    /**
-     * Filters the device list to elements whose name has the provided prefix
-     * 
-     */
     @Import(name="namePrefix")
     private @Nullable Output<String> namePrefix;
 
-    /**
-     * @return Filters the device list to elements whose name has the provided prefix
-     * 
-     */
     public Optional<Output<String>> namePrefix() {
         return Optional.ofNullable(this.namePrefix);
     }
@@ -54,23 +46,11 @@ public final class GetDevicesArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetDevicesArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param namePrefix Filters the device list to elements whose name has the provided prefix
-         * 
-         * @return builder
-         * 
-         */
         public Builder namePrefix(@Nullable Output<String> namePrefix) {
             $.namePrefix = namePrefix;
             return this;
         }
 
-        /**
-         * @param namePrefix Filters the device list to elements whose name has the provided prefix
-         * 
-         * @return builder
-         * 
-         */
         public Builder namePrefix(String namePrefix) {
             return namePrefix(Output.of(namePrefix));
         }

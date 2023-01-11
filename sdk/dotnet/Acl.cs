@@ -9,44 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Tailscale
 {
-    /// <summary>
-    /// The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Text.Json;
-    /// using Pulumi;
-    /// using Tailscale = Pulumi.Tailscale;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var sampleAcl = new Tailscale.Acl("sampleAcl", new()
-    ///     {
-    ///         AclJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
-    ///         {
-    ///             ["acls"] = new[]
-    ///             {
-    ///                 new Dictionary&lt;string, object?&gt;
-    ///                 {
-    ///                     ["action"] = "accept",
-    ///                     ["users"] = new[]
-    ///                     {
-    ///                         "*",
-    ///                     },
-    ///                     ["ports"] = new[]
-    ///                     {
-    ///                         "*:*",
-    ///                     },
-    ///                 },
-    ///             },
-    ///         }),
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// </summary>
     [TailscaleResourceType("tailscale:index/acl:Acl")]
     public partial class Acl : global::Pulumi.CustomResource
     {

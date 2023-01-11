@@ -9,32 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Tailscale
 {
-    /// <summary>
-    /// The device_authorization resource is used to approve new devices before they can join the tailnet. See https://tailscale.com/kb/1099/device-authorization/ for more details.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Tailscale = Pulumi.Tailscale;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var sampleDevice = Tailscale.GetDevice.Invoke(new()
-    ///     {
-    ///         Name = "device.example.com",
-    ///     });
-    /// 
-    ///     var sampleAuthorization = new Tailscale.DeviceAuthorization("sampleAuthorization", new()
-    ///     {
-    ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.Id),
-    ///         Authorized = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// </summary>
     [TailscaleResourceType("tailscale:index/deviceAuthorization:DeviceAuthorization")]
     public partial class DeviceAuthorization : global::Pulumi.CustomResource
     {

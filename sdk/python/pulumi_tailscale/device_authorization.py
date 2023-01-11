@@ -98,20 +98,7 @@ class DeviceAuthorization(pulumi.CustomResource):
                  device_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The device_authorization resource is used to approve new devices before they can join the tailnet. See https://tailscale.com/kb/1099/device-authorization/ for more details.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_tailscale as tailscale
-
-        sample_device = tailscale.get_device(name="device.example.com")
-        sample_authorization = tailscale.DeviceAuthorization("sampleAuthorization",
-            device_id=sample_device.id,
-            authorized=True)
-        ```
-
+        Create a DeviceAuthorization resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] authorized: Whether or not the device is authorized
@@ -124,20 +111,7 @@ class DeviceAuthorization(pulumi.CustomResource):
                  args: DeviceAuthorizationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The device_authorization resource is used to approve new devices before they can join the tailnet. See https://tailscale.com/kb/1099/device-authorization/ for more details.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_tailscale as tailscale
-
-        sample_device = tailscale.get_device(name="device.example.com")
-        sample_authorization = tailscale.DeviceAuthorization("sampleAuthorization",
-            device_id=sample_device.id,
-            authorized=True)
-        ```
-
+        Create a DeviceAuthorization resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DeviceAuthorizationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

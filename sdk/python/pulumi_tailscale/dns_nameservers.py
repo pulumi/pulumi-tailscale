@@ -66,20 +66,7 @@ class DnsNameservers(pulumi.CustomResource):
                  nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_tailscale as tailscale
-
-        sample_nameservers = tailscale.DnsNameservers("sampleNameservers", nameservers=[
-            "8.8.8.8",
-            "8.8.4.4",
-        ])
-        ```
-
+        Create a DnsNameservers resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
@@ -91,20 +78,7 @@ class DnsNameservers(pulumi.CustomResource):
                  args: DnsNameserversArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_tailscale as tailscale
-
-        sample_nameservers = tailscale.DnsNameservers("sampleNameservers", nameservers=[
-            "8.8.8.8",
-            "8.8.4.4",
-        ])
-        ```
-
+        Create a DnsNameservers resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DnsNameserversArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -9,35 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Tailscale
 {
-    /// <summary>
-    /// The device_tags resource is used to apply tags to Tailscale devices. See https://tailscale.com/kb/1068/acl-tags/ for more details.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Tailscale = Pulumi.Tailscale;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var sampleDevice = Tailscale.GetDevice.Invoke(new()
-    ///     {
-    ///         Name = "device.example.com",
-    ///     });
-    /// 
-    ///     var sampleTags = new Tailscale.DeviceTags("sampleTags", new()
-    ///     {
-    ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.Id),
-    ///         Tags = new[]
-    ///         {
-    ///             "room:bedroom",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// </summary>
     [TailscaleResourceType("tailscale:index/deviceTags:DeviceTags")]
     public partial class DeviceTags : global::Pulumi.CustomResource
     {

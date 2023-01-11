@@ -14,32 +14,16 @@ public final class GetDevicePlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetDevicePlainArgs Empty = new GetDevicePlainArgs();
 
-    /**
-     * The name of the device
-     * 
-     */
     @Import(name="name", required=true)
     private String name;
 
-    /**
-     * @return The name of the device
-     * 
-     */
     public String name() {
         return this.name;
     }
 
-    /**
-     * If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
-     * 
-     */
     @Import(name="waitFor")
     private @Nullable String waitFor;
 
-    /**
-     * @return If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
-     * 
-     */
     public Optional<String> waitFor() {
         return Optional.ofNullable(this.waitFor);
     }
@@ -69,23 +53,11 @@ public final class GetDevicePlainArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetDevicePlainArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param name The name of the device
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(String name) {
             $.name = name;
             return this;
         }
 
-        /**
-         * @param waitFor If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
-         * 
-         * @return builder
-         * 
-         */
         public Builder waitFor(@Nullable String waitFor) {
             $.waitFor = waitFor;
             return this;

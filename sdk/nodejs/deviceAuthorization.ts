@@ -4,24 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * The deviceAuthorization resource is used to approve new devices before they can join the tailnet. See https://tailscale.com/kb/1099/device-authorization/ for more details.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as tailscale from "@pulumi/tailscale";
- *
- * const sampleDevice = tailscale.getDevice({
- *     name: "device.example.com",
- * });
- * const sampleAuthorization = new tailscale.DeviceAuthorization("sampleAuthorization", {
- *     deviceId: sampleDevice.then(sampleDevice => sampleDevice.id),
- *     authorized: true,
- * });
- * ```
- */
 export class DeviceAuthorization extends pulumi.CustomResource {
     /**
      * Get an existing DeviceAuthorization resource's state with the given name, ID, and optional extra

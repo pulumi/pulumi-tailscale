@@ -10,34 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The 4via6 data source is calculates an IPv6 prefix for a given site ID and IPv4 CIDR. See Tailscale documentation for [4via6 subnets](https://tailscale.com/kb/1201/4via6-subnets/) for more details.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tailscale.Get4Via6(ctx, &Get4Via6Args{
-//				Cidr: "10.1.1.0/24",
-//				Site: 7,
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func Get4Via6(ctx *pulumi.Context, args *Get4Via6Args, opts ...pulumi.InvokeOption) (*Get4Via6Result, error) {
 	var rv Get4Via6Result
 	err := ctx.Invoke("tailscale:index/get4Via6:get4Via6", args, &rv, opts...)
@@ -49,22 +21,17 @@ func Get4Via6(ctx *pulumi.Context, args *Get4Via6Args, opts ...pulumi.InvokeOpti
 
 // A collection of arguments for invoking get4Via6.
 type Get4Via6Args struct {
-	// The IPv4 CIDR to map
 	Cidr string `pulumi:"cidr"`
-	// Site ID (between 0 and 255)
-	Site int `pulumi:"site"`
+	Site int    `pulumi:"site"`
 }
 
 // A collection of values returned by get4Via6.
 type Get4Via6Result struct {
-	// The IPv4 CIDR to map
 	Cidr string `pulumi:"cidr"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// The 4via6 mapped address
+	Id   string `pulumi:"id"`
 	Ipv6 string `pulumi:"ipv6"`
-	// Site ID (between 0 and 255)
-	Site int `pulumi:"site"`
+	Site int    `pulumi:"site"`
 }
 
 func Get4Via6Output(ctx *pulumi.Context, args Get4Via6OutputArgs, opts ...pulumi.InvokeOption) Get4Via6ResultOutput {
@@ -82,10 +49,8 @@ func Get4Via6Output(ctx *pulumi.Context, args Get4Via6OutputArgs, opts ...pulumi
 
 // A collection of arguments for invoking get4Via6.
 type Get4Via6OutputArgs struct {
-	// The IPv4 CIDR to map
 	Cidr pulumi.StringInput `pulumi:"cidr"`
-	// Site ID (between 0 and 255)
-	Site pulumi.IntInput `pulumi:"site"`
+	Site pulumi.IntInput    `pulumi:"site"`
 }
 
 func (Get4Via6OutputArgs) ElementType() reflect.Type {
@@ -107,7 +72,6 @@ func (o Get4Via6ResultOutput) ToGet4Via6ResultOutputWithContext(ctx context.Cont
 	return o
 }
 
-// The IPv4 CIDR to map
 func (o Get4Via6ResultOutput) Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v Get4Via6Result) string { return v.Cidr }).(pulumi.StringOutput)
 }
@@ -117,12 +81,10 @@ func (o Get4Via6ResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v Get4Via6Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The 4via6 mapped address
 func (o Get4Via6ResultOutput) Ipv6() pulumi.StringOutput {
 	return o.ApplyT(func(v Get4Via6Result) string { return v.Ipv6 }).(pulumi.StringOutput)
 }
 
-// Site ID (between 0 and 255)
 func (o Get4Via6ResultOutput) Site() pulumi.IntOutput {
 	return o.ApplyT(func(v Get4Via6Result) int { return v.Site }).(pulumi.IntOutput)
 }

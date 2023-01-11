@@ -4,24 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * The deviceKey resource allows you to update the properties of a device's key
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as tailscale from "@pulumi/tailscale";
- *
- * const exampleDevice = tailscale.getDevice({
- *     name: "device.example.com",
- * });
- * const exampleKey = new tailscale.DeviceKey("exampleKey", {
- *     deviceId: exampleDevice.then(exampleDevice => exampleDevice.id),
- *     keyExpiryDisabled: true,
- * });
- * ```
- */
 export class DeviceKey extends pulumi.CustomResource {
     /**
      * Get an existing DeviceKey resource's state with the given name, ID, and optional extra
