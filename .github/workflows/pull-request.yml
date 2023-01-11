@@ -19,6 +19,7 @@ env:
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
   TAILSCALE_API_KEY: ${{ secrets.TAILSCALE_API_KEY }}
   TAILSCALE_TAILNET: ${{ secrets.TAILSCALE_TAILNET }}
+  TF_APPEND_USER_AGENT: pulumi
   TRAVIS_OS_NAME: linux
 jobs:
   comment-on-pr:
