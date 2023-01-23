@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -14,18 +15,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
  *
- * const sampleDevices = pulumi.output(tailscale.getDevices({
+ * const sampleDevices = tailscale.getDevices({
  *     namePrefix: "example-",
- * }));
+ * });
  * ```
  */
 export function getDevices(args?: GetDevicesArgs, opts?: pulumi.InvokeOptions): Promise<GetDevicesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale:index/getDevices:getDevices", {
         "namePrefix": args.namePrefix,
     }, opts);
@@ -58,9 +56,22 @@ export interface GetDevicesResult {
      */
     readonly namePrefix?: string;
 }
-
+/**
+ * The devices data source describes a list of devices in a tailnet
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as tailscale from "@pulumi/tailscale";
+ *
+ * const sampleDevices = tailscale.getDevices({
+ *     namePrefix: "example-",
+ * });
+ * ```
+ */
 export function getDevicesOutput(args?: GetDevicesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDevicesResult> {
-    return pulumi.output(args).apply(a => getDevices(a, opts))
+    return pulumi.output(args).apply((a: any) => getDevices(a, opts))
 }
 
 /**

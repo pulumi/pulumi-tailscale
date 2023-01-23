@@ -24,6 +24,7 @@ namespace Pulumi.Tailscale
     ///     var sampleKey = new Tailscale.TailnetKey("sampleKey", new()
     ///     {
     ///         Ephemeral = false,
+    ///         Expiry = 3600,
     ///         Preauthorized = true,
     ///         Reusable = true,
     ///     });
@@ -39,6 +40,12 @@ namespace Pulumi.Tailscale
         /// </summary>
         [Output("ephemeral")]
         public Output<bool?> Ephemeral { get; private set; } = null!;
+
+        /// <summary>
+        /// The expiry of the key in seconds
+        /// </summary>
+        [Output("expiry")]
+        public Output<int?> Expiry { get; private set; } = null!;
 
         /// <summary>
         /// The authentication key
@@ -87,6 +94,10 @@ namespace Pulumi.Tailscale
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "key",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -115,6 +126,12 @@ namespace Pulumi.Tailscale
         /// </summary>
         [Input("ephemeral")]
         public Input<bool>? Ephemeral { get; set; }
+
+        /// <summary>
+        /// The expiry of the key in seconds
+        /// </summary>
+        [Input("expiry")]
+        public Input<int>? Expiry { get; set; }
 
         /// <summary>
         /// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
@@ -155,10 +172,26 @@ namespace Pulumi.Tailscale
         public Input<bool>? Ephemeral { get; set; }
 
         /// <summary>
+        /// The expiry of the key in seconds
+        /// </summary>
+        [Input("expiry")]
+        public Input<int>? Expiry { get; set; }
+
+        [Input("key")]
+        private Input<string>? _key;
+
+        /// <summary>
         /// The authentication key
         /// </summary>
-        [Input("key")]
-        public Input<string>? Key { get; set; }
+        public Input<string>? Key
+        {
+            get => _key;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _key = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.

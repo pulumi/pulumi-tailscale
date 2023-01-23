@@ -27,14 +27,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			sampleDevice, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
+//			sampleDevice, err := tailscale.GetDevice(ctx, &tailscale.GetDeviceArgs{
 //				Name: "device.example.com",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			_, err = tailscale.NewDeviceSubnetRoutes(ctx, "sampleRoutes", &tailscale.DeviceSubnetRoutesArgs{
-//				DeviceId: pulumi.String(sampleDevice.Id),
+//				DeviceId: *pulumi.String(sampleDevice.Id),
 //				Routes: pulumi.StringArray{
 //					pulumi.String("10.0.1.0/24"),
 //					pulumi.String("1.2.0.0/16"),

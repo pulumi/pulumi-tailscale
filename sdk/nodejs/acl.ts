@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information.
+ * The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
  *
  * ## Example Usage
  *

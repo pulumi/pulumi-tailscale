@@ -13,18 +13,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
  *
- * const sampleDevice = pulumi.output(tailscale.getDevice({
+ * const sampleDevice = tailscale.getDevice({
  *     name: "user1-device.example.com",
  *     waitFor: "60s",
- * }));
+ * });
  * ```
  */
 export function getDevice(args: GetDeviceArgs, opts?: pulumi.InvokeOptions): Promise<GetDeviceResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale:index/getDevice:getDevice", {
         "name": args.name,
         "waitFor": args.waitFor,
@@ -74,9 +71,23 @@ export interface GetDeviceResult {
      */
     readonly waitFor?: string;
 }
-
+/**
+ * The device data source describes a single device in a tailnet
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as tailscale from "@pulumi/tailscale";
+ *
+ * const sampleDevice = tailscale.getDevice({
+ *     name: "user1-device.example.com",
+ *     waitFor: "60s",
+ * });
+ * ```
+ */
 export function getDeviceOutput(args: GetDeviceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeviceResult> {
-    return pulumi.output(args).apply(a => getDevice(a, opts))
+    return pulumi.output(args).apply((a: any) => getDevice(a, opts))
 }
 
 /**

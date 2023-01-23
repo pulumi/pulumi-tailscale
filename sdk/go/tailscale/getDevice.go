@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
+//			_, err := tailscale.GetDevice(ctx, &tailscale.GetDeviceArgs{
 //				Name:    "user1-device.example.com",
 //				WaitFor: pulumi.StringRef("60s"),
 //			}, nil)

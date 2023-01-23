@@ -13,12 +13,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
  *
- * const sampleNameservers = new tailscale.DnsNameservers("sample_nameservers", {
- *     nameservers: [
- *         "8.8.8.8",
- *         "8.8.4.4",
- *     ],
- * });
+ * const sampleNameservers = new tailscale.DnsNameservers("sampleNameservers", {nameservers: [
+ *     "8.8.8.8",
+ *     "8.8.4.4",
+ * ]});
  * ```
  */
 export class DnsNameservers extends pulumi.CustomResource {

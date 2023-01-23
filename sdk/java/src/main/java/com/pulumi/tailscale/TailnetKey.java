@@ -11,6 +11,7 @@ import com.pulumi.tailscale.TailnetKeyArgs;
 import com.pulumi.tailscale.Utilities;
 import com.pulumi.tailscale.inputs.TailnetKeyState;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -43,6 +44,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var sampleKey = new TailnetKey(&#34;sampleKey&#34;, TailnetKeyArgs.builder()        
  *             .ephemeral(false)
+ *             .expiry(3600)
  *             .preauthorized(true)
  *             .reusable(true)
  *             .build());
@@ -67,6 +69,20 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> ephemeral() {
         return Codegen.optional(this.ephemeral);
+    }
+    /**
+     * The expiry of the key in seconds
+     * 
+     */
+    @Export(name="expiry", type=Integer.class, parameters={})
+    private Output</* @Nullable */ Integer> expiry;
+
+    /**
+     * @return The expiry of the key in seconds
+     * 
+     */
+    public Output<Optional<Integer>> expiry() {
+        return Codegen.optional(this.expiry);
     }
     /**
      * The authentication key
@@ -157,6 +173,9 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "key"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

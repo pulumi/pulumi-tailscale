@@ -36,7 +36,7 @@ namespace Pulumi.Tailscale
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDevicesResult> InvokeAsync(GetDevicesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDevicesResult>("tailscale:index/getDevices:getDevices", args ?? new GetDevicesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDevicesResult>("tailscale:index/getDevices:getDevices", args ?? new GetDevicesArgs(), options.WithDefaults());
 
         /// <summary>
         /// The devices data source describes a list of devices in a tailnet
@@ -63,7 +63,7 @@ namespace Pulumi.Tailscale
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDevicesResult> Invoke(GetDevicesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDevicesResult>("tailscale:index/getDevices:getDevices", args ?? new GetDevicesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetDevicesResult>("tailscale:index/getDevices:getDevices", args ?? new GetDevicesInvokeArgs(), options.WithDefaults());
     }
 
 

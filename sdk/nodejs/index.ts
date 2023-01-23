@@ -5,19 +5,71 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./acl";
-export * from "./deviceAuthorization";
-export * from "./deviceKey";
-export * from "./deviceSubnetRoutes";
-export * from "./deviceTags";
-export * from "./dnsNameservers";
-export * from "./dnsPreferences";
-export * from "./dnsSearchPaths";
-export * from "./get4Via6";
-export * from "./getDevice";
-export * from "./getDevices";
-export * from "./provider";
-export * from "./tailnetKey";
+export { AclArgs, AclState } from "./acl";
+export type Acl = import("./acl").Acl;
+export const Acl: typeof import("./acl").Acl = null as any;
+utilities.lazyLoad(exports, ["Acl"], () => require("./acl"));
+
+export { DeviceAuthorizationArgs, DeviceAuthorizationState } from "./deviceAuthorization";
+export type DeviceAuthorization = import("./deviceAuthorization").DeviceAuthorization;
+export const DeviceAuthorization: typeof import("./deviceAuthorization").DeviceAuthorization = null as any;
+utilities.lazyLoad(exports, ["DeviceAuthorization"], () => require("./deviceAuthorization"));
+
+export { DeviceKeyArgs, DeviceKeyState } from "./deviceKey";
+export type DeviceKey = import("./deviceKey").DeviceKey;
+export const DeviceKey: typeof import("./deviceKey").DeviceKey = null as any;
+utilities.lazyLoad(exports, ["DeviceKey"], () => require("./deviceKey"));
+
+export { DeviceSubnetRoutesArgs, DeviceSubnetRoutesState } from "./deviceSubnetRoutes";
+export type DeviceSubnetRoutes = import("./deviceSubnetRoutes").DeviceSubnetRoutes;
+export const DeviceSubnetRoutes: typeof import("./deviceSubnetRoutes").DeviceSubnetRoutes = null as any;
+utilities.lazyLoad(exports, ["DeviceSubnetRoutes"], () => require("./deviceSubnetRoutes"));
+
+export { DeviceTagsArgs, DeviceTagsState } from "./deviceTags";
+export type DeviceTags = import("./deviceTags").DeviceTags;
+export const DeviceTags: typeof import("./deviceTags").DeviceTags = null as any;
+utilities.lazyLoad(exports, ["DeviceTags"], () => require("./deviceTags"));
+
+export { DnsNameserversArgs, DnsNameserversState } from "./dnsNameservers";
+export type DnsNameservers = import("./dnsNameservers").DnsNameservers;
+export const DnsNameservers: typeof import("./dnsNameservers").DnsNameservers = null as any;
+utilities.lazyLoad(exports, ["DnsNameservers"], () => require("./dnsNameservers"));
+
+export { DnsPreferencesArgs, DnsPreferencesState } from "./dnsPreferences";
+export type DnsPreferences = import("./dnsPreferences").DnsPreferences;
+export const DnsPreferences: typeof import("./dnsPreferences").DnsPreferences = null as any;
+utilities.lazyLoad(exports, ["DnsPreferences"], () => require("./dnsPreferences"));
+
+export { DnsSearchPathsArgs, DnsSearchPathsState } from "./dnsSearchPaths";
+export type DnsSearchPaths = import("./dnsSearchPaths").DnsSearchPaths;
+export const DnsSearchPaths: typeof import("./dnsSearchPaths").DnsSearchPaths = null as any;
+utilities.lazyLoad(exports, ["DnsSearchPaths"], () => require("./dnsSearchPaths"));
+
+export { Get4Via6Args, Get4Via6Result, Get4Via6OutputArgs } from "./get4Via6";
+export const get4Via6: typeof import("./get4Via6").get4Via6 = null as any;
+export const get4Via6Output: typeof import("./get4Via6").get4Via6Output = null as any;
+utilities.lazyLoad(exports, ["get4Via6","get4Via6Output"], () => require("./get4Via6"));
+
+export { GetDeviceArgs, GetDeviceResult, GetDeviceOutputArgs } from "./getDevice";
+export const getDevice: typeof import("./getDevice").getDevice = null as any;
+export const getDeviceOutput: typeof import("./getDevice").getDeviceOutput = null as any;
+utilities.lazyLoad(exports, ["getDevice","getDeviceOutput"], () => require("./getDevice"));
+
+export { GetDevicesArgs, GetDevicesResult, GetDevicesOutputArgs } from "./getDevices";
+export const getDevices: typeof import("./getDevices").getDevices = null as any;
+export const getDevicesOutput: typeof import("./getDevices").getDevicesOutput = null as any;
+utilities.lazyLoad(exports, ["getDevices","getDevicesOutput"], () => require("./getDevices"));
+
+export { ProviderArgs } from "./provider";
+export type Provider = import("./provider").Provider;
+export const Provider: typeof import("./provider").Provider = null as any;
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+
+export { TailnetKeyArgs, TailnetKeyState } from "./tailnetKey";
+export type TailnetKey = import("./tailnetKey").TailnetKey;
+export const TailnetKey: typeof import("./tailnetKey").TailnetKey = null as any;
+utilities.lazyLoad(exports, ["TailnetKey"], () => require("./tailnetKey"));
+
 
 // Export sub-modules:
 import * as config from "./config";
@@ -27,17 +79,6 @@ export {
     config,
     types,
 };
-
-// Import resources to register:
-import { Acl } from "./acl";
-import { DeviceAuthorization } from "./deviceAuthorization";
-import { DeviceKey } from "./deviceKey";
-import { DeviceSubnetRoutes } from "./deviceSubnetRoutes";
-import { DeviceTags } from "./deviceTags";
-import { DnsNameservers } from "./dnsNameservers";
-import { DnsPreferences } from "./dnsPreferences";
-import { DnsSearchPaths } from "./dnsSearchPaths";
-import { TailnetKey } from "./tailnetKey";
 
 const _module = {
     version: utilities.getVersion(),
@@ -75,9 +116,6 @@ pulumi.runtime.registerResourceModule("tailscale", "index/dnsNameservers", _modu
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsPreferences", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsSearchPaths", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/tailnetKey", _module)
-
-import { Provider } from "./provider";
-
 pulumi.runtime.registerResourcePackage("tailscale", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

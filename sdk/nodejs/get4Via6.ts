@@ -13,18 +13,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
  *
- * const example = pulumi.output(tailscale.get4Via6({
+ * const example = tailscale.get4Via6({
  *     cidr: "10.1.1.0/24",
  *     site: 7,
- * }));
+ * });
  * ```
  */
 export function get4Via6(args: Get4Via6Args, opts?: pulumi.InvokeOptions): Promise<Get4Via6Result> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale:index/get4Via6:get4Via6", {
         "cidr": args.cidr,
         "site": args.site,
@@ -66,9 +63,23 @@ export interface Get4Via6Result {
      */
     readonly site: number;
 }
-
+/**
+ * The 4via6 data source is calculates an IPv6 prefix for a given site ID and IPv4 CIDR. See Tailscale documentation for [4via6 subnets](https://tailscale.com/kb/1201/4via6-subnets/) for more details.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as tailscale from "@pulumi/tailscale";
+ *
+ * const example = tailscale.get4Via6({
+ *     cidr: "10.1.1.0/24",
+ *     site: 7,
+ * });
+ * ```
+ */
 export function get4Via6Output(args: Get4Via6OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<Get4Via6Result> {
-    return pulumi.output(args).apply(a => get4Via6(a, opts))
+    return pulumi.output(args).apply((a: any) => get4Via6(a, opts))
 }
 
 /**
