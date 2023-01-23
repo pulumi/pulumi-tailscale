@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tailscale.Get4Via6(ctx, &Get4Via6Args{
+//			_, err := tailscale.Get4Via6(ctx, &tailscale.Get4Via6Args{
 //				Cidr: "10.1.1.0/24",
 //				Site: 7,
 //			}, nil)

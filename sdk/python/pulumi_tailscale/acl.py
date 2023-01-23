@@ -66,7 +66,7 @@ class Acl(pulumi.CustomResource):
                  acl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information.
+        The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
 
         ## Example Usage
 
@@ -95,7 +95,7 @@ class Acl(pulumi.CustomResource):
                  args: AclArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information.
+        The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
 
         ## Example Usage
 

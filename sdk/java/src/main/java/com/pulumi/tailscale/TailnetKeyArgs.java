@@ -6,6 +6,7 @@ package com.pulumi.tailscale;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -30,6 +31,21 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> ephemeral() {
         return Optional.ofNullable(this.ephemeral);
+    }
+
+    /**
+     * The expiry of the key in seconds
+     * 
+     */
+    @Import(name="expiry")
+    private @Nullable Output<Integer> expiry;
+
+    /**
+     * @return The expiry of the key in seconds
+     * 
+     */
+    public Optional<Output<Integer>> expiry() {
+        return Optional.ofNullable(this.expiry);
     }
 
     /**
@@ -81,6 +97,7 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
 
     private TailnetKeyArgs(TailnetKeyArgs $) {
         this.ephemeral = $.ephemeral;
+        this.expiry = $.expiry;
         this.preauthorized = $.preauthorized;
         this.reusable = $.reusable;
         this.tags = $.tags;
@@ -123,6 +140,27 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder ephemeral(Boolean ephemeral) {
             return ephemeral(Output.of(ephemeral));
+        }
+
+        /**
+         * @param expiry The expiry of the key in seconds
+         * 
+         * @return builder
+         * 
+         */
+        public Builder expiry(@Nullable Output<Integer> expiry) {
+            $.expiry = expiry;
+            return this;
+        }
+
+        /**
+         * @param expiry The expiry of the key in seconds
+         * 
+         * @return builder
+         * 
+         */
+        public Builder expiry(Integer expiry) {
+            return expiry(Output.of(expiry));
         }
 
         /**

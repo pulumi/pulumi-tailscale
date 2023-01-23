@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tailscale.GetDevices(ctx, &GetDevicesArgs{
+//			_, err := tailscale.GetDevices(ctx, &tailscale.GetDevicesArgs{
 //				NamePrefix: pulumi.StringRef("example-"),
 //			}, nil)
 //			if err != nil {

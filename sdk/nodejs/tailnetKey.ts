@@ -13,8 +13,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
  *
- * const sampleKey = new tailscale.TailnetKey("sample_key", {
+ * const sampleKey = new tailscale.TailnetKey("sampleKey", {
  *     ephemeral: false,
+ *     expiry: 3600,
  *     preauthorized: true,
  *     reusable: true,
  * });
@@ -53,6 +54,10 @@ export class TailnetKey extends pulumi.CustomResource {
      */
     public readonly ephemeral!: pulumi.Output<boolean | undefined>;
     /**
+     * The expiry of the key in seconds
+     */
+    public readonly expiry!: pulumi.Output<number | undefined>;
+    /**
      * The authentication key
      */
     public /*out*/ readonly key!: pulumi.Output<string>;
@@ -83,6 +88,7 @@ export class TailnetKey extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as TailnetKeyState | undefined;
             resourceInputs["ephemeral"] = state ? state.ephemeral : undefined;
+            resourceInputs["expiry"] = state ? state.expiry : undefined;
             resourceInputs["key"] = state ? state.key : undefined;
             resourceInputs["preauthorized"] = state ? state.preauthorized : undefined;
             resourceInputs["reusable"] = state ? state.reusable : undefined;
@@ -90,12 +96,15 @@ export class TailnetKey extends pulumi.CustomResource {
         } else {
             const args = argsOrState as TailnetKeyArgs | undefined;
             resourceInputs["ephemeral"] = args ? args.ephemeral : undefined;
+            resourceInputs["expiry"] = args ? args.expiry : undefined;
             resourceInputs["preauthorized"] = args ? args.preauthorized : undefined;
             resourceInputs["reusable"] = args ? args.reusable : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["key"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["key"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(TailnetKey.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -108,6 +117,10 @@ export interface TailnetKeyState {
      * Indicates if the key is ephemeral.
      */
     ephemeral?: pulumi.Input<boolean>;
+    /**
+     * The expiry of the key in seconds
+     */
+    expiry?: pulumi.Input<number>;
     /**
      * The authentication key
      */
@@ -134,6 +147,10 @@ export interface TailnetKeyArgs {
      * Indicates if the key is ephemeral.
      */
     ephemeral?: pulumi.Input<boolean>;
+    /**
+     * The expiry of the key in seconds
+     */
+    expiry?: pulumi.Input<number>;
     /**
      * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
      */

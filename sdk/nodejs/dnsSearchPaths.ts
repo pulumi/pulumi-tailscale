@@ -13,9 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
  *
- * const sampleSearchPaths = new tailscale.DnsSearchPaths("sample_search_paths", {
- *     searchPaths: ["example.com"],
- * });
+ * const sampleSearchPaths = new tailscale.DnsSearchPaths("sampleSearchPaths", {searchPaths: ["example.com"]});
  * ```
  */
 export class DnsSearchPaths extends pulumi.CustomResource {

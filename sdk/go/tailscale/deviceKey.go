@@ -27,14 +27,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleDevice, err := tailscale.GetDevice(ctx, &GetDeviceArgs{
+//			exampleDevice, err := tailscale.GetDevice(ctx, &tailscale.GetDeviceArgs{
 //				Name: "device.example.com",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			_, err = tailscale.NewDeviceKey(ctx, "exampleKey", &tailscale.DeviceKeyArgs{
-//				DeviceId:          pulumi.String(exampleDevice.Id),
+//				DeviceId:          *pulumi.String(exampleDevice.Id),
 //				KeyExpiryDisabled: pulumi.Bool(true),
 //			})
 //			if err != nil {

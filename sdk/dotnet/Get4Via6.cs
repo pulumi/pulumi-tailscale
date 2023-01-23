@@ -37,7 +37,7 @@ namespace Pulumi.Tailscale
         /// {{% /examples %}}
         /// </summary>
         public static Task<Get4Via6Result> InvokeAsync(Get4Via6Args args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<Get4Via6Result>("tailscale:index/get4Via6:get4Via6", args ?? new Get4Via6Args(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Get4Via6Result>("tailscale:index/get4Via6:get4Via6", args ?? new Get4Via6Args(), options.WithDefaults());
 
         /// <summary>
         /// The 4via6 data source is calculates an IPv6 prefix for a given site ID and IPv4 CIDR. See Tailscale documentation for [4via6 subnets](https://tailscale.com/kb/1201/4via6-subnets/) for more details.
@@ -65,7 +65,7 @@ namespace Pulumi.Tailscale
         /// {{% /examples %}}
         /// </summary>
         public static Output<Get4Via6Result> Invoke(Get4Via6InvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<Get4Via6Result>("tailscale:index/get4Via6:get4Via6", args ?? new Get4Via6InvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<Get4Via6Result>("tailscale:index/get4Via6:get4Via6", args ?? new Get4Via6InvokeArgs(), options.WithDefaults());
     }
 
 

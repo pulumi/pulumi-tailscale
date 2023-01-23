@@ -28,6 +28,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tailscale.NewTailnetKey(ctx, "sampleKey", &tailscale.TailnetKeyArgs{
 //				Ephemeral:     pulumi.Bool(false),
+//				Expiry:        pulumi.Int(3600),
 //				Preauthorized: pulumi.Bool(true),
 //				Reusable:      pulumi.Bool(true),
 //			})
@@ -44,6 +45,8 @@ type TailnetKey struct {
 
 	// Indicates if the key is ephemeral.
 	Ephemeral pulumi.BoolPtrOutput `pulumi:"ephemeral"`
+	// The expiry of the key in seconds
+	Expiry pulumi.IntPtrOutput `pulumi:"expiry"`
 	// The authentication key
 	Key pulumi.StringOutput `pulumi:"key"`
 	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
@@ -61,6 +64,10 @@ func NewTailnetKey(ctx *pulumi.Context,
 		args = &TailnetKeyArgs{}
 	}
 
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"key",
+	})
+	opts = append(opts, secrets)
 	var resource TailnetKey
 	err := ctx.RegisterResource("tailscale:index/tailnetKey:TailnetKey", name, args, &resource, opts...)
 	if err != nil {
@@ -85,6 +92,8 @@ func GetTailnetKey(ctx *pulumi.Context,
 type tailnetKeyState struct {
 	// Indicates if the key is ephemeral.
 	Ephemeral *bool `pulumi:"ephemeral"`
+	// The expiry of the key in seconds
+	Expiry *int `pulumi:"expiry"`
 	// The authentication key
 	Key *string `pulumi:"key"`
 	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
@@ -98,6 +107,8 @@ type tailnetKeyState struct {
 type TailnetKeyState struct {
 	// Indicates if the key is ephemeral.
 	Ephemeral pulumi.BoolPtrInput
+	// The expiry of the key in seconds
+	Expiry pulumi.IntPtrInput
 	// The authentication key
 	Key pulumi.StringPtrInput
 	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
@@ -115,6 +126,8 @@ func (TailnetKeyState) ElementType() reflect.Type {
 type tailnetKeyArgs struct {
 	// Indicates if the key is ephemeral.
 	Ephemeral *bool `pulumi:"ephemeral"`
+	// The expiry of the key in seconds
+	Expiry *int `pulumi:"expiry"`
 	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
 	Preauthorized *bool `pulumi:"preauthorized"`
 	// Indicates if the key is reusable or single-use.
@@ -127,6 +140,8 @@ type tailnetKeyArgs struct {
 type TailnetKeyArgs struct {
 	// Indicates if the key is ephemeral.
 	Ephemeral pulumi.BoolPtrInput
+	// The expiry of the key in seconds
+	Expiry pulumi.IntPtrInput
 	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
 	Preauthorized pulumi.BoolPtrInput
 	// Indicates if the key is reusable or single-use.
@@ -225,6 +240,11 @@ func (o TailnetKeyOutput) ToTailnetKeyOutputWithContext(ctx context.Context) Tai
 // Indicates if the key is ephemeral.
 func (o TailnetKeyOutput) Ephemeral() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *TailnetKey) pulumi.BoolPtrOutput { return v.Ephemeral }).(pulumi.BoolPtrOutput)
+}
+
+// The expiry of the key in seconds
+func (o TailnetKeyOutput) Expiry() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *TailnetKey) pulumi.IntPtrOutput { return v.Expiry }).(pulumi.IntPtrOutput)
 }
 
 // The authentication key

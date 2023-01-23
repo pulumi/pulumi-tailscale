@@ -15,18 +15,22 @@ __all__ = ['TailnetKeyArgs', 'TailnetKey']
 class TailnetKeyArgs:
     def __init__(__self__, *,
                  ephemeral: Optional[pulumi.Input[bool]] = None,
+                 expiry: Optional[pulumi.Input[int]] = None,
                  preauthorized: Optional[pulumi.Input[bool]] = None,
                  reusable: Optional[pulumi.Input[bool]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a TailnetKey resource.
         :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
+        :param pulumi.Input[int] expiry: The expiry of the key in seconds
         :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
         if ephemeral is not None:
             pulumi.set(__self__, "ephemeral", ephemeral)
+        if expiry is not None:
+            pulumi.set(__self__, "expiry", expiry)
         if preauthorized is not None:
             pulumi.set(__self__, "preauthorized", preauthorized)
         if reusable is not None:
@@ -45,6 +49,18 @@ class TailnetKeyArgs:
     @ephemeral.setter
     def ephemeral(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "ephemeral", value)
+
+    @property
+    @pulumi.getter
+    def expiry(self) -> Optional[pulumi.Input[int]]:
+        """
+        The expiry of the key in seconds
+        """
+        return pulumi.get(self, "expiry")
+
+    @expiry.setter
+    def expiry(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "expiry", value)
 
     @property
     @pulumi.getter
@@ -87,6 +103,7 @@ class TailnetKeyArgs:
 class _TailnetKeyState:
     def __init__(__self__, *,
                  ephemeral: Optional[pulumi.Input[bool]] = None,
+                 expiry: Optional[pulumi.Input[int]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  preauthorized: Optional[pulumi.Input[bool]] = None,
                  reusable: Optional[pulumi.Input[bool]] = None,
@@ -94,6 +111,7 @@ class _TailnetKeyState:
         """
         Input properties used for looking up and filtering TailnetKey resources.
         :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
+        :param pulumi.Input[int] expiry: The expiry of the key in seconds
         :param pulumi.Input[str] key: The authentication key
         :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
@@ -101,6 +119,8 @@ class _TailnetKeyState:
         """
         if ephemeral is not None:
             pulumi.set(__self__, "ephemeral", ephemeral)
+        if expiry is not None:
+            pulumi.set(__self__, "expiry", expiry)
         if key is not None:
             pulumi.set(__self__, "key", key)
         if preauthorized is not None:
@@ -121,6 +141,18 @@ class _TailnetKeyState:
     @ephemeral.setter
     def ephemeral(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "ephemeral", value)
+
+    @property
+    @pulumi.getter
+    def expiry(self) -> Optional[pulumi.Input[int]]:
+        """
+        The expiry of the key in seconds
+        """
+        return pulumi.get(self, "expiry")
+
+    @expiry.setter
+    def expiry(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "expiry", value)
 
     @property
     @pulumi.getter
@@ -177,6 +209,7 @@ class TailnetKey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  ephemeral: Optional[pulumi.Input[bool]] = None,
+                 expiry: Optional[pulumi.Input[int]] = None,
                  preauthorized: Optional[pulumi.Input[bool]] = None,
                  reusable: Optional[pulumi.Input[bool]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -192,6 +225,7 @@ class TailnetKey(pulumi.CustomResource):
 
         sample_key = tailscale.TailnetKey("sampleKey",
             ephemeral=False,
+            expiry=3600,
             preauthorized=True,
             reusable=True)
         ```
@@ -199,6 +233,7 @@ class TailnetKey(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
+        :param pulumi.Input[int] expiry: The expiry of the key in seconds
         :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
@@ -220,6 +255,7 @@ class TailnetKey(pulumi.CustomResource):
 
         sample_key = tailscale.TailnetKey("sampleKey",
             ephemeral=False,
+            expiry=3600,
             preauthorized=True,
             reusable=True)
         ```
@@ -240,6 +276,7 @@ class TailnetKey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  ephemeral: Optional[pulumi.Input[bool]] = None,
+                 expiry: Optional[pulumi.Input[int]] = None,
                  preauthorized: Optional[pulumi.Input[bool]] = None,
                  reusable: Optional[pulumi.Input[bool]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -253,10 +290,13 @@ class TailnetKey(pulumi.CustomResource):
             __props__ = TailnetKeyArgs.__new__(TailnetKeyArgs)
 
             __props__.__dict__["ephemeral"] = ephemeral
+            __props__.__dict__["expiry"] = expiry
             __props__.__dict__["preauthorized"] = preauthorized
             __props__.__dict__["reusable"] = reusable
             __props__.__dict__["tags"] = tags
             __props__.__dict__["key"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["key"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(TailnetKey, __self__).__init__(
             'tailscale:index/tailnetKey:TailnetKey',
             resource_name,
@@ -268,6 +308,7 @@ class TailnetKey(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             ephemeral: Optional[pulumi.Input[bool]] = None,
+            expiry: Optional[pulumi.Input[int]] = None,
             key: Optional[pulumi.Input[str]] = None,
             preauthorized: Optional[pulumi.Input[bool]] = None,
             reusable: Optional[pulumi.Input[bool]] = None,
@@ -280,6 +321,7 @@ class TailnetKey(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
+        :param pulumi.Input[int] expiry: The expiry of the key in seconds
         :param pulumi.Input[str] key: The authentication key
         :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
@@ -290,6 +332,7 @@ class TailnetKey(pulumi.CustomResource):
         __props__ = _TailnetKeyState.__new__(_TailnetKeyState)
 
         __props__.__dict__["ephemeral"] = ephemeral
+        __props__.__dict__["expiry"] = expiry
         __props__.__dict__["key"] = key
         __props__.__dict__["preauthorized"] = preauthorized
         __props__.__dict__["reusable"] = reusable
@@ -303,6 +346,14 @@ class TailnetKey(pulumi.CustomResource):
         Indicates if the key is ephemeral.
         """
         return pulumi.get(self, "ephemeral")
+
+    @property
+    @pulumi.getter
+    def expiry(self) -> pulumi.Output[Optional[int]]:
+        """
+        The expiry of the key in seconds
+        """
+        return pulumi.get(self, "expiry")
 
     @property
     @pulumi.getter
