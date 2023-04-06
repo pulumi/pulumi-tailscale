@@ -35,6 +35,7 @@ namespace Pulumi.Tailscale
         private static readonly __Value<string?> _apiKey = new __Value<string?>(() => __config.Get("apiKey"));
         /// <summary>
         /// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+        /// Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
         /// </summary>
         public static string? ApiKey
         {
@@ -51,6 +52,40 @@ namespace Pulumi.Tailscale
         {
             get => _baseUrl.Get();
             set => _baseUrl.Set(value);
+        }
+
+        private static readonly __Value<string?> _oauthClientId = new __Value<string?>(() => __config.Get("oauthClientId"));
+        /// <summary>
+        /// The OAuth application's ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable.
+        /// Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+        /// </summary>
+        public static string? OauthClientId
+        {
+            get => _oauthClientId.Get();
+            set => _oauthClientId.Set(value);
+        }
+
+        private static readonly __Value<string?> _oauthClientSecret = new __Value<string?>(() => __config.Get("oauthClientSecret"));
+        /// <summary>
+        /// The OAuth application's secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment
+        /// variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+        /// </summary>
+        public static string? OauthClientSecret
+        {
+            get => _oauthClientSecret.Get();
+            set => _oauthClientSecret.Set(value);
+        }
+
+        private static readonly __Value<ImmutableArray<string>> _scopes = new __Value<ImmutableArray<string>>(() => __config.GetObject<ImmutableArray<string>>("scopes"));
+        /// <summary>
+        /// The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See
+        /// https://tailscale.com/kb/1215/oauth-clients/#scopes for avialable scopes. Only valid when both 'oauth_client_id' and
+        /// 'oauth_client_secret' are set.
+        /// </summary>
+        public static ImmutableArray<string> Scopes
+        {
+            get => _scopes.Get();
+            set => _scopes.Set(value);
         }
 
         private static readonly __Value<string?> _tailnet = new __Value<string?>(() => __config.Get("tailnet"));

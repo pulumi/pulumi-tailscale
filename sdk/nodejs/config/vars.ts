@@ -9,6 +9,7 @@ const __config = new pulumi.Config("tailscale");
 
 /**
  * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+ * Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
  */
 export declare const apiKey: string | undefined;
 Object.defineProperty(exports, "apiKey", {
@@ -26,6 +27,43 @@ export declare const baseUrl: string | undefined;
 Object.defineProperty(exports, "baseUrl", {
     get() {
         return __config.get("baseUrl");
+    },
+    enumerable: true,
+});
+
+/**
+ * The OAuth application's ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable.
+ * Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+ */
+export declare const oauthClientId: string | undefined;
+Object.defineProperty(exports, "oauthClientId", {
+    get() {
+        return __config.get("oauthClientId");
+    },
+    enumerable: true,
+});
+
+/**
+ * The OAuth application's secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment
+ * variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+ */
+export declare const oauthClientSecret: string | undefined;
+Object.defineProperty(exports, "oauthClientSecret", {
+    get() {
+        return __config.get("oauthClientSecret");
+    },
+    enumerable: true,
+});
+
+/**
+ * The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See
+ * https://tailscale.com/kb/1215/oauth-clients/#scopes for avialable scopes. Only valid when both 'oauth_client_id' and
+ * 'oauth_client_secret' are set.
+ */
+export declare const scopes: string[] | undefined;
+Object.defineProperty(exports, "scopes", {
+    get() {
+        return __config.getObject<string[]>("scopes");
     },
     enumerable: true,
 });

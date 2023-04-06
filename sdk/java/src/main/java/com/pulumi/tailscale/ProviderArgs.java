@@ -6,6 +6,7 @@ package com.pulumi.tailscale;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -17,6 +18,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+     * Conflicts with &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;.
      * 
      */
     @Import(name="apiKey")
@@ -24,6 +26,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+     * Conflicts with &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;.
      * 
      */
     public Optional<Output<String>> apiKey() {
@@ -48,6 +51,59 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable.
+     * Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+     * 
+     */
+    @Import(name="oauthClientId")
+    private @Nullable Output<String> oauthClientId;
+
+    /**
+     * @return The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable.
+     * Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+     * 
+     */
+    public Optional<Output<String>> oauthClientId() {
+        return Optional.ofNullable(this.oauthClientId);
+    }
+
+    /**
+     * The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment
+     * variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+     * 
+     */
+    @Import(name="oauthClientSecret")
+    private @Nullable Output<String> oauthClientSecret;
+
+    /**
+     * @return The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment
+     * variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+     * 
+     */
+    public Optional<Output<String>> oauthClientSecret() {
+        return Optional.ofNullable(this.oauthClientSecret);
+    }
+
+    /**
+     * The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See
+     * https://tailscale.com/kb/1215/oauth-clients/#scopes for avialable scopes. Only valid when both &#39;oauth_client_id&#39; and
+     * &#39;oauth_client_secret&#39; are set.
+     * 
+     */
+    @Import(name="scopes", json=true)
+    private @Nullable Output<List<String>> scopes;
+
+    /**
+     * @return The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See
+     * https://tailscale.com/kb/1215/oauth-clients/#scopes for avialable scopes. Only valid when both &#39;oauth_client_id&#39; and
+     * &#39;oauth_client_secret&#39; are set.
+     * 
+     */
+    public Optional<Output<List<String>>> scopes() {
+        return Optional.ofNullable(this.scopes);
+    }
+
+    /**
      * The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
      * 
      */
@@ -67,6 +123,9 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     private ProviderArgs(ProviderArgs $) {
         this.apiKey = $.apiKey;
         this.baseUrl = $.baseUrl;
+        this.oauthClientId = $.oauthClientId;
+        this.oauthClientSecret = $.oauthClientSecret;
+        this.scopes = $.scopes;
         this.tailnet = $.tailnet;
     }
 
@@ -90,6 +149,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param apiKey The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+         * Conflicts with &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;.
          * 
          * @return builder
          * 
@@ -101,6 +161,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param apiKey The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
+         * Conflicts with &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;.
          * 
          * @return builder
          * 
@@ -130,6 +191,89 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder baseUrl(String baseUrl) {
             return baseUrl(Output.of(baseUrl));
+        }
+
+        /**
+         * @param oauthClientId The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable.
+         * Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oauthClientId(@Nullable Output<String> oauthClientId) {
+            $.oauthClientId = oauthClientId;
+            return this;
+        }
+
+        /**
+         * @param oauthClientId The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable.
+         * Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oauthClientId(String oauthClientId) {
+            return oauthClientId(Output.of(oauthClientId));
+        }
+
+        /**
+         * @param oauthClientSecret The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment
+         * variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oauthClientSecret(@Nullable Output<String> oauthClientSecret) {
+            $.oauthClientSecret = oauthClientSecret;
+            return this;
+        }
+
+        /**
+         * @param oauthClientSecret The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment
+         * variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oauthClientSecret(String oauthClientSecret) {
+            return oauthClientSecret(Output.of(oauthClientSecret));
+        }
+
+        /**
+         * @param scopes The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See
+         * https://tailscale.com/kb/1215/oauth-clients/#scopes for avialable scopes. Only valid when both &#39;oauth_client_id&#39; and
+         * &#39;oauth_client_secret&#39; are set.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder scopes(@Nullable Output<List<String>> scopes) {
+            $.scopes = scopes;
+            return this;
+        }
+
+        /**
+         * @param scopes The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See
+         * https://tailscale.com/kb/1215/oauth-clients/#scopes for avialable scopes. Only valid when both &#39;oauth_client_id&#39; and
+         * &#39;oauth_client_secret&#39; are set.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder scopes(List<String> scopes) {
+            return scopes(Output.of(scopes));
+        }
+
+        /**
+         * @param scopes The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See
+         * https://tailscale.com/kb/1215/oauth-clients/#scopes for avialable scopes. Only valid when both &#39;oauth_client_id&#39; and
+         * &#39;oauth_client_secret&#39; are set.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder scopes(String... scopes) {
+            return scopes(List.of(scopes));
         }
 
         /**

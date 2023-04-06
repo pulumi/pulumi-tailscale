@@ -53,12 +53,28 @@
         "variables": {
             "apiKey": {
                 "type": "string",
-                "description": "The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.\n",
+                "description": "The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.\nConflicts with 'oauth_client_id' and 'oauth_client_secret'.\n",
                 "secret": true
             },
             "baseUrl": {
                 "type": "string",
                 "description": "The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL\nenvironment variable.\n"
+            },
+            "oauthClientId": {
+                "type": "string",
+                "description": "The OAuth application's ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable.\nBoth 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.\n"
+            },
+            "oauthClientSecret": {
+                "type": "string",
+                "description": "The OAuth application's secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment\nvariable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.\n",
+                "secret": true
+            },
+            "scopes": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "description": "The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See\nhttps://tailscale.com/kb/1215/oauth-clients/#scopes for avialable scopes. Only valid when both 'oauth_client_id' and\n'oauth_client_secret' are set.\n"
             },
             "tailnet": {
                 "type": "string",
@@ -73,48 +89,23 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    },
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
                     }
                 },
                 "id": {
                     "type": "string",
-                    "description": "The ID of this resource.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "The ID of this resource.\n"
                 },
                 "name": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "type": "string"
                 },
                 "tags": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    },
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
                     }
                 },
                 "user": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "type": "string"
                 }
             },
             "type": "object",
@@ -137,12 +128,28 @@
         "properties": {
             "apiKey": {
                 "type": "string",
-                "description": "The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.\n",
+                "description": "The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.\nConflicts with 'oauth_client_id' and 'oauth_client_secret'.\n",
                 "secret": true
             },
             "baseUrl": {
                 "type": "string",
                 "description": "The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL\nenvironment variable.\n"
+            },
+            "oauthClientId": {
+                "type": "string",
+                "description": "The OAuth application's ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable.\nBoth 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.\n"
+            },
+            "oauthClientSecret": {
+                "type": "string",
+                "description": "The OAuth application's secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment\nvariable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.\n",
+                "secret": true
+            },
+            "scopes": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "description": "The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See\nhttps://tailscale.com/kb/1215/oauth-clients/#scopes for avialable scopes. Only valid when both 'oauth_client_id' and\n'oauth_client_secret' are set.\n"
             },
             "tailnet": {
                 "type": "string",
@@ -152,12 +159,28 @@
         "inputProperties": {
             "apiKey": {
                 "type": "string",
-                "description": "The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.\n",
+                "description": "The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.\nConflicts with 'oauth_client_id' and 'oauth_client_secret'.\n",
                 "secret": true
             },
             "baseUrl": {
                 "type": "string",
                 "description": "The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL\nenvironment variable.\n"
+            },
+            "oauthClientId": {
+                "type": "string",
+                "description": "The OAuth application's ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable.\nBoth 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.\n"
+            },
+            "oauthClientSecret": {
+                "type": "string",
+                "description": "The OAuth application's secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment\nvariable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.\n",
+                "secret": true
+            },
+            "scopes": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "description": "The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See\nhttps://tailscale.com/kb/1215/oauth-clients/#scopes for avialable scopes. Only valid when both 'oauth_client_id' and\n'oauth_client_secret' are set.\n"
             },
             "tailnet": {
                 "type": "string",
