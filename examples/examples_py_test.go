@@ -4,6 +4,7 @@
 package examples
 
 import (
+	"os"
 	"path/filepath"
 	"testing"
 
