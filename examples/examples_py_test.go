@@ -11,6 +11,7 @@ import (
 )
 
 func TestAccAclPy(t *testing.T) {
+	checkTokens(t)
 	test := getPythonBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			Dir: filepath.Join(getCwd(t), "py-acl"),
