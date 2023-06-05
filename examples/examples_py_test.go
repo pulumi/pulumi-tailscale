@@ -15,6 +15,10 @@ func TestAccAclPy(t *testing.T) {
 	test := getPythonBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			Dir: filepath.Join(getCwd(t), "py-acl"),
+			Secrets: map[string]string{
+				"tailscale:oauthClientSecret": os.Getenv("TAILSCALE_OAUTH_CLIENT_SECRET"),
+				"tailscale:oauthClientId":     os.Getenv("TAILSCALE_OAUTH_CLIENT_ID"),
+			},
 		})
 
 	integration.ProgramTest(t, &test)
