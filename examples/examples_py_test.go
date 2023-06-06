@@ -11,11 +11,11 @@ import (
 	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
 )
 
-func TestAccAclPy(t *testing.T) {
+func TestAccKeyPy(t *testing.T) {
 	checkTokens(t)
 	test := getPythonBaseOptions(t).
 		With(integration.ProgramTestOptions{
-			Dir: filepath.Join(getCwd(t), "py-acl"),
+			Dir: filepath.Join(getCwd(t), "py-tailnet-key"),
 			Secrets: map[string]string{
 				"tailscale:oauthClientSecret": os.Getenv("TAILSCALE_OAUTH_CLIENT_SECRET"),
 				"tailscale:oauthClientId":     os.Getenv("TAILSCALE_OAUTH_CLIENT_ID"),
