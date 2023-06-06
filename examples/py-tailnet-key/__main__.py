@@ -2,4 +2,4 @@
 
 import pulumi_tailscale as tailscale
 
-tailscale.TailnetKey("demo-py")
+tailscale.TailnetKey("demo-py", tags=["tag:server"])

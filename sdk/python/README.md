@@ -51,6 +51,9 @@ The following configuration points are available:
 - `tailscale:tailnet` - (Required) Tailscale tailnet to manage resources for. It must be provided, but it can also be
   sourced from the `TAILSCALE_TAILNET` variable. A tailnet is the name of your Tailscale network. You can find it in 
   the top left corner of the Admin Panel beside the Tailscale logo.
+- `tailscale:oauthClientId` - The OAuth application's ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable. Both 'oauthClientId' and 'oauthClientSecret' must be set. Conflicts with 'apiKey'.
+- `oauthClientSecret` - The OAuth application's secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment variable. Both 'oauthClientId' and 'oauthClientSecret' must be set. Conflicts with 'apiKey'.
+- `scopes` - The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauthClientId' and 'oauthClientSecret' are set.
 
 ## Reference
 
