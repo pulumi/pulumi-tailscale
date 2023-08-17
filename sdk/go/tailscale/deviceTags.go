@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -69,6 +70,7 @@ func NewDeviceTags(ctx *pulumi.Context,
 	if args.Tags == nil {
 		return nil, errors.New("invalid value for required argument 'Tags'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DeviceTags
 	err := ctx.RegisterResource("tailscale:index/deviceTags:DeviceTags", name, args, &resource, opts...)
 	if err != nil {

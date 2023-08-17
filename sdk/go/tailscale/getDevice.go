@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -39,6 +40,7 @@ import (
 //
 // ```
 func GetDevice(ctx *pulumi.Context, args *GetDeviceArgs, opts ...pulumi.InvokeOption) (*GetDeviceResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDeviceResult
 	err := ctx.Invoke("tailscale:index/getDevice:getDevice", args, &rv, opts...)
 	if err != nil {

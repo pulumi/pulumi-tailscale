@@ -34,16 +34,16 @@ class _ExportableConfig(types.ModuleType):
     @property
     def oauth_client_id(self) -> Optional[str]:
         """
-        The OAuth application's ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable.
-        Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+        The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment
+        variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
         """
         return __config__.get('oauthClientId')
 
     @property
     def oauth_client_secret(self) -> Optional[str]:
         """
-        The OAuth application's secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment
-        variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+        The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET
+        environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
         """
         return __config__.get('oauthClientSecret')
 
@@ -51,7 +51,7 @@ class _ExportableConfig(types.ModuleType):
     def scopes(self) -> Optional[str]:
         """
         The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See
-        https://tailscale.com/kb/1215/oauth-clients/#scopes for avialable scopes. Only valid when both 'oauth_client_id' and
+        https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and
         'oauth_client_secret' are set.
         """
         return __config__.get('scopes')
@@ -59,7 +59,8 @@ class _ExportableConfig(types.ModuleType):
     @property
     def tailnet(self) -> Optional[str]:
         """
-        The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+        The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
+        variable. Default is the tailnet that owns API credentials passed to the provider.
         """
         return __config__.get('tailnet')
 

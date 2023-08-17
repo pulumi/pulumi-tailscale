@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -57,6 +58,7 @@ func NewDnsSearchPaths(ctx *pulumi.Context,
 	if args.SearchPaths == nil {
 		return nil, errors.New("invalid value for required argument 'SearchPaths'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DnsSearchPaths
 	err := ctx.RegisterResource("tailscale:index/dnsSearchPaths:DnsSearchPaths", name, args, &resource, opts...)
 	if err != nil {

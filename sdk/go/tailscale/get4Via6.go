@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -39,6 +40,7 @@ import (
 //
 // ```
 func Get4Via6(ctx *pulumi.Context, args *Get4Via6Args, opts ...pulumi.InvokeOption) (*Get4Via6Result, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv Get4Via6Result
 	err := ctx.Invoke("tailscale:index/get4Via6:get4Via6", args, &rv, opts...)
 	if err != nil {

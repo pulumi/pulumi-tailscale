@@ -131,12 +131,12 @@ def get_device(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('tailscale:index/getDevice:getDevice', __args__, opts=opts, typ=GetDeviceResult).value
 
     return AwaitableGetDeviceResult(
-        addresses=__ret__.addresses,
-        id=__ret__.id,
-        name=__ret__.name,
-        tags=__ret__.tags,
-        user=__ret__.user,
-        wait_for=__ret__.wait_for)
+        addresses=pulumi.get(__ret__, 'addresses'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        tags=pulumi.get(__ret__, 'tags'),
+        user=pulumi.get(__ret__, 'user'),
+        wait_for=pulumi.get(__ret__, 'wait_for'))
 
 
 @_utilities.lift_output_func(get_device)

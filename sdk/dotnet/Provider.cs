@@ -33,21 +33,22 @@ namespace Pulumi.Tailscale
         public Output<string?> BaseUrl { get; private set; } = null!;
 
         /// <summary>
-        /// The OAuth application's ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable.
-        /// Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+        /// The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment
+        /// variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
         /// </summary>
         [Output("oauthClientId")]
         public Output<string?> OauthClientId { get; private set; } = null!;
 
         /// <summary>
-        /// The OAuth application's secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment
-        /// variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+        /// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET
+        /// environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
         /// </summary>
         [Output("oauthClientSecret")]
         public Output<string?> OauthClientSecret { get; private set; } = null!;
 
         /// <summary>
-        /// The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+        /// The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
+        /// variable. Default is the tailnet that owns API credentials passed to the provider.
         /// </summary>
         [Output("tailnet")]
         public Output<string?> Tailnet { get; private set; } = null!;
@@ -110,8 +111,8 @@ namespace Pulumi.Tailscale
         public Input<string>? BaseUrl { get; set; }
 
         /// <summary>
-        /// The OAuth application's ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable.
-        /// Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+        /// The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment
+        /// variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
         /// </summary>
         [Input("oauthClientId")]
         public Input<string>? OauthClientId { get; set; }
@@ -120,8 +121,8 @@ namespace Pulumi.Tailscale
         private Input<string>? _oauthClientSecret;
 
         /// <summary>
-        /// The OAuth application's secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment
-        /// variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+        /// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET
+        /// environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
         /// </summary>
         public Input<string>? OauthClientSecret
         {
@@ -138,7 +139,7 @@ namespace Pulumi.Tailscale
 
         /// <summary>
         /// The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See
-        /// https://tailscale.com/kb/1215/oauth-clients/#scopes for avialable scopes. Only valid when both 'oauth_client_id' and
+        /// https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and
         /// 'oauth_client_secret' are set.
         /// </summary>
         public InputList<string> Scopes
@@ -148,7 +149,8 @@ namespace Pulumi.Tailscale
         }
 
         /// <summary>
-        /// The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+        /// The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
+        /// variable. Default is the tailnet that owns API credentials passed to the provider.
         /// </summary>
         [Input("tailnet")]
         public Input<string>? Tailnet { get; set; }

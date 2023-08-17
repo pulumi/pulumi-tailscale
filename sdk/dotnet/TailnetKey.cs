@@ -16,6 +16,7 @@ namespace Pulumi.Tailscale
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Tailscale = Pulumi.Tailscale;
     /// 
@@ -36,10 +37,22 @@ namespace Pulumi.Tailscale
     public partial class TailnetKey : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The creation timestamp of the key in RFC3339 format
+        /// </summary>
+        [Output("createdAt")]
+        public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
         /// Indicates if the key is ephemeral.
         /// </summary>
         [Output("ephemeral")]
         public Output<bool?> Ephemeral { get; private set; } = null!;
+
+        /// <summary>
+        /// The expiry timestamp of the key in RFC3339 format
+        /// </summary>
+        [Output("expiresAt")]
+        public Output<string> ExpiresAt { get; private set; } = null!;
 
         /// <summary>
         /// The expiry of the key in seconds
@@ -166,10 +179,22 @@ namespace Pulumi.Tailscale
     public sealed class TailnetKeyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The creation timestamp of the key in RFC3339 format
+        /// </summary>
+        [Input("createdAt")]
+        public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
         /// Indicates if the key is ephemeral.
         /// </summary>
         [Input("ephemeral")]
         public Input<bool>? Ephemeral { get; set; }
+
+        /// <summary>
+        /// The expiry timestamp of the key in RFC3339 format
+        /// </summary>
+        [Input("expiresAt")]
+        public Input<string>? ExpiresAt { get; set; }
 
         /// <summary>
         /// The expiry of the key in seconds

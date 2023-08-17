@@ -107,10 +107,10 @@ def get4_via6(cidr: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('tailscale:index/get4Via6:get4Via6', __args__, opts=opts, typ=Get4Via6Result).value
 
     return AwaitableGet4Via6Result(
-        cidr=__ret__.cidr,
-        id=__ret__.id,
-        ipv6=__ret__.ipv6,
-        site=__ret__.site)
+        cidr=pulumi.get(__ret__, 'cidr'),
+        id=pulumi.get(__ret__, 'id'),
+        ipv6=pulumi.get(__ret__, 'ipv6'),
+        site=pulumi.get(__ret__, 'site'))
 
 
 @_utilities.lift_output_func(get4_via6)

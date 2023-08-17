@@ -22,7 +22,7 @@ export class Provider extends pulumi.ProviderResource {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Provider.__pulumiType;
+        return obj['__pulumiType'] === "pulumi:providers:" + Provider.__pulumiType;
     }
 
     /**
@@ -36,17 +36,18 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly baseUrl!: pulumi.Output<string | undefined>;
     /**
-     * The OAuth application's ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable.
-     * Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+     * The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment
+     * variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
      */
     public readonly oauthClientId!: pulumi.Output<string | undefined>;
     /**
-     * The OAuth application's secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment
-     * variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+     * The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET
+     * environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
      */
     public readonly oauthClientSecret!: pulumi.Output<string | undefined>;
     /**
-     * The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+     * The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
+     * variable. Default is the tailnet that owns API credentials passed to the provider.
      */
     public readonly tailnet!: pulumi.Output<string | undefined>;
 
@@ -90,23 +91,24 @@ export interface ProviderArgs {
      */
     baseUrl?: pulumi.Input<string>;
     /**
-     * The OAuth application's ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable.
-     * Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+     * The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment
+     * variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
      */
     oauthClientId?: pulumi.Input<string>;
     /**
-     * The OAuth application's secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment
-     * variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+     * The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET
+     * environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
      */
     oauthClientSecret?: pulumi.Input<string>;
     /**
      * The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See
-     * https://tailscale.com/kb/1215/oauth-clients/#scopes for avialable scopes. Only valid when both 'oauth_client_id' and
+     * https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and
      * 'oauth_client_secret' are set.
      */
     scopes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+     * The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
+     * variable. Default is the tailnet that owns API credentials passed to the provider.
      */
     tailnet?: pulumi.Input<string>;
 }
