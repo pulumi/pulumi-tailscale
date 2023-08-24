@@ -19,7 +19,8 @@ class ProviderArgs:
                  oauth_client_id: Optional[pulumi.Input[str]] = None,
                  oauth_client_secret: Optional[pulumi.Input[str]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 tailnet: Optional[pulumi.Input[str]] = None):
+                 tailnet: Optional[pulumi.Input[str]] = None,
+                 user_agent: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] api_key: The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
@@ -35,6 +36,7 @@ class ProviderArgs:
                'oauth_client_secret' are set.
         :param pulumi.Input[str] tailnet: The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
                variable. Default is the tailnet that owns API credentials passed to the provider.
+        :param pulumi.Input[str] user_agent: User-Agent header for API requests.
         """
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
@@ -48,6 +50,8 @@ class ProviderArgs:
             pulumi.set(__self__, "scopes", scopes)
         if tailnet is not None:
             pulumi.set(__self__, "tailnet", tailnet)
+        if user_agent is not None:
+            pulumi.set(__self__, "user_agent", user_agent)
 
     @property
     @pulumi.getter(name="apiKey")
@@ -128,6 +132,18 @@ class ProviderArgs:
     def tailnet(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "tailnet", value)
 
+    @property
+    @pulumi.getter(name="userAgent")
+    def user_agent(self) -> Optional[pulumi.Input[str]]:
+        """
+        User-Agent header for API requests.
+        """
+        return pulumi.get(self, "user_agent")
+
+    @user_agent.setter
+    def user_agent(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_agent", value)
+
 
 class Provider(pulumi.ProviderResource):
     @overload
@@ -140,6 +156,7 @@ class Provider(pulumi.ProviderResource):
                  oauth_client_secret: Optional[pulumi.Input[str]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tailnet: Optional[pulumi.Input[str]] = None,
+                 user_agent: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         The provider type for the tailscale package. By default, resources use package-wide configuration
@@ -162,6 +179,7 @@ class Provider(pulumi.ProviderResource):
                'oauth_client_secret' are set.
         :param pulumi.Input[str] tailnet: The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
                variable. Default is the tailnet that owns API credentials passed to the provider.
+        :param pulumi.Input[str] user_agent: User-Agent header for API requests.
         """
         ...
     @overload
@@ -196,6 +214,7 @@ class Provider(pulumi.ProviderResource):
                  oauth_client_secret: Optional[pulumi.Input[str]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tailnet: Optional[pulumi.Input[str]] = None,
+                 user_agent: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -211,6 +230,7 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["oauth_client_secret"] = None if oauth_client_secret is None else pulumi.Output.secret(oauth_client_secret)
             __props__.__dict__["scopes"] = pulumi.Output.from_input(scopes).apply(pulumi.runtime.to_json) if scopes is not None else None
             __props__.__dict__["tailnet"] = tailnet
+            __props__.__dict__["user_agent"] = user_agent
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["apiKey", "oauthClientSecret"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
@@ -263,4 +283,12 @@ class Provider(pulumi.ProviderResource):
         variable. Default is the tailnet that owns API credentials passed to the provider.
         """
         return pulumi.get(self, "tailnet")
+
+    @property
+    @pulumi.getter(name="userAgent")
+    def user_agent(self) -> pulumi.Output[Optional[str]]:
+        """
+        User-Agent header for API requests.
+        """
+        return pulumi.get(self, "user_agent")
 

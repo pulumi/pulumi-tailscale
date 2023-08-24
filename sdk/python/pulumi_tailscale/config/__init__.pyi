@@ -46,3 +46,8 @@ The organization name of the Tailnet in which to perform actions. Can be set via
 variable. Default is the tailnet that owns API credentials passed to the provider.
 """
 
+userAgent: Optional[str]
+"""
+User-Agent header for API requests.
+"""
+

@@ -103,6 +103,20 @@ public class Provider extends com.pulumi.resources.ProviderResource {
     public Output<Optional<String>> tailnet() {
         return Codegen.optional(this.tailnet);
     }
+    /**
+     * User-Agent header for API requests.
+     * 
+     */
+    @Export(name="userAgent", type=String.class, parameters={})
+    private Output</* @Nullable */ String> userAgent;
+
+    /**
+     * @return User-Agent header for API requests.
+     * 
+     */
+    public Output<Optional<String>> userAgent() {
+        return Codegen.optional(this.userAgent);
+    }
 
     /**
      *

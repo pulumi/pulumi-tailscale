@@ -33,6 +33,8 @@ type Provider struct {
 	// The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
 	// variable. Default is the tailnet that owns API credentials passed to the provider.
 	Tailnet pulumi.StringPtrOutput `pulumi:"tailnet"`
+	// User-Agent header for API requests.
+	UserAgent pulumi.StringPtrOutput `pulumi:"userAgent"`
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
@@ -82,6 +84,8 @@ type providerArgs struct {
 	// The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
 	// variable. Default is the tailnet that owns API credentials passed to the provider.
 	Tailnet *string `pulumi:"tailnet"`
+	// User-Agent header for API requests.
+	UserAgent *string `pulumi:"userAgent"`
 }
 
 // The set of arguments for constructing a Provider resource.
@@ -105,6 +109,8 @@ type ProviderArgs struct {
 	// The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
 	// variable. Default is the tailnet that owns API credentials passed to the provider.
 	Tailnet pulumi.StringPtrInput
+	// User-Agent header for API requests.
+	UserAgent pulumi.StringPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
@@ -172,6 +178,11 @@ func (o ProviderOutput) OauthClientSecret() pulumi.StringPtrOutput {
 // variable. Default is the tailnet that owns API credentials passed to the provider.
 func (o ProviderOutput) Tailnet() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Tailnet }).(pulumi.StringPtrOutput)
+}
+
+// User-Agent header for API requests.
+func (o ProviderOutput) UserAgent() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.UserAgent }).(pulumi.StringPtrOutput)
 }
 
 func init() {

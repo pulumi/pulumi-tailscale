@@ -50,6 +50,10 @@ export class Provider extends pulumi.ProviderResource {
      * variable. Default is the tailnet that owns API credentials passed to the provider.
      */
     public readonly tailnet!: pulumi.Output<string | undefined>;
+    /**
+     * User-Agent header for API requests.
+     */
+    public readonly userAgent!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -68,6 +72,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["oauthClientSecret"] = args?.oauthClientSecret ? pulumi.secret(args.oauthClientSecret) : undefined;
             resourceInputs["scopes"] = pulumi.output(args ? args.scopes : undefined).apply(JSON.stringify);
             resourceInputs["tailnet"] = args ? args.tailnet : undefined;
+            resourceInputs["userAgent"] = args ? args.userAgent : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["apiKey", "oauthClientSecret"] };
@@ -111,4 +116,8 @@ export interface ProviderArgs {
      * variable. Default is the tailnet that owns API credentials passed to the provider.
      */
     tailnet?: pulumi.Input<string>;
+    /**
+     * User-Agent header for API requests.
+     */
+    userAgent?: pulumi.Input<string>;
 }

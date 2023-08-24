@@ -47,3 +47,8 @@ func GetScopes(ctx *pulumi.Context) string {
 func GetTailnet(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:tailnet")
 }
+
+// User-Agent header for API requests.
+func GetUserAgent(ctx *pulumi.Context) string {
+	return config.Get(ctx, "tailscale:userAgent")
+}

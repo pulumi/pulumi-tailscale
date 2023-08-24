@@ -53,6 +53,12 @@ namespace Pulumi.Tailscale
         [Output("tailnet")]
         public Output<string?> Tailnet { get; private set; } = null!;
 
+        /// <summary>
+        /// User-Agent header for API requests.
+        /// </summary>
+        [Output("userAgent")]
+        public Output<string?> UserAgent { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Provider resource with the given unique name, arguments, and options.
@@ -154,6 +160,12 @@ namespace Pulumi.Tailscale
         /// </summary>
         [Input("tailnet")]
         public Input<string>? Tailnet { get; set; }
+
+        /// <summary>
+        /// User-Agent header for API requests.
+        /// </summary>
+        [Input("userAgent")]
+        public Input<string>? UserAgent { get; set; }
 
         public ProviderArgs()
         {

@@ -80,3 +80,14 @@ Object.defineProperty(exports, "tailnet", {
     enumerable: true,
 });
 
+/**
+ * User-Agent header for API requests.
+ */
+export declare const userAgent: string | undefined;
+Object.defineProperty(exports, "userAgent", {
+    get() {
+        return __config.get("userAgent");
+    },
+    enumerable: true,
+});
+

@@ -64,3 +64,10 @@ class _ExportableConfig(types.ModuleType):
         """
         return __config__.get('tailnet')
 
+    @property
+    def user_agent(self) -> Optional[str]:
+        """
+        User-Agent header for API requests.
+        """
+        return __config__.get('userAgent')
+

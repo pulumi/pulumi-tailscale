@@ -99,5 +99,15 @@ namespace Pulumi.Tailscale
             set => _tailnet.Set(value);
         }
 
+        private static readonly __Value<string?> _userAgent = new __Value<string?>(() => __config.Get("userAgent"));
+        /// <summary>
+        /// User-Agent header for API requests.
+        /// </summary>
+        public static string? UserAgent
+        {
+            get => _userAgent.Get();
+            set => _userAgent.Set(value);
+        }
+
     }
 }

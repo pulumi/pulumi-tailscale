@@ -77,6 +77,10 @@
             "tailnet": {
                 "type": "string",
                 "description": "The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment\nvariable. Default is the tailnet that owns API credentials passed to the provider.\n"
+            },
+            "userAgent": {
+                "type": "string",
+                "description": "User-Agent header for API requests.\n"
             }
         }
     },
@@ -152,6 +156,10 @@
             "tailnet": {
                 "type": "string",
                 "description": "The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment\nvariable. Default is the tailnet that owns API credentials passed to the provider.\n"
+            },
+            "userAgent": {
+                "type": "string",
+                "description": "User-Agent header for API requests.\n"
             }
         },
         "inputProperties": {
@@ -183,6 +191,10 @@
             "tailnet": {
                 "type": "string",
                 "description": "The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment\nvariable. Default is the tailnet that owns API credentials passed to the provider.\n"
+            },
+            "userAgent": {
+                "type": "string",
+                "description": "User-Agent header for API requests.\n"
             }
         }
     },

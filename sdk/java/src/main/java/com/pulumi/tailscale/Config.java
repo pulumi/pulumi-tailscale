@@ -61,4 +61,11 @@ public final class Config {
     public Optional<String> tailnet() {
         return Codegen.stringProp("tailnet").config(config).get();
     }
+/**
+ * User-Agent header for API requests.
+ * 
+ */
+    public Optional<String> userAgent() {
+        return Codegen.stringProp("userAgent").config(config).get();
+    }
 }

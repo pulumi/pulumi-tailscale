@@ -120,6 +120,21 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.tailnet);
     }
 
+    /**
+     * User-Agent header for API requests.
+     * 
+     */
+    @Import(name="userAgent")
+    private @Nullable Output<String> userAgent;
+
+    /**
+     * @return User-Agent header for API requests.
+     * 
+     */
+    public Optional<Output<String>> userAgent() {
+        return Optional.ofNullable(this.userAgent);
+    }
+
     private ProviderArgs() {}
 
     private ProviderArgs(ProviderArgs $) {
@@ -129,6 +144,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         this.oauthClientSecret = $.oauthClientSecret;
         this.scopes = $.scopes;
         this.tailnet = $.tailnet;
+        this.userAgent = $.userAgent;
     }
 
     public static Builder builder() {
@@ -299,6 +315,27 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder tailnet(String tailnet) {
             return tailnet(Output.of(tailnet));
+        }
+
+        /**
+         * @param userAgent User-Agent header for API requests.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder userAgent(@Nullable Output<String> userAgent) {
+            $.userAgent = userAgent;
+            return this;
+        }
+
+        /**
+         * @param userAgent User-Agent header for API requests.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder userAgent(String userAgent) {
+            return userAgent(Output.of(userAgent));
         }
 
         public ProviderArgs build() {
