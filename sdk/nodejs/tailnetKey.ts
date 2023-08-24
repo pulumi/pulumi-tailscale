@@ -50,9 +50,17 @@ export class TailnetKey extends pulumi.CustomResource {
     }
 
     /**
+     * The creation timestamp of the key in RFC3339 format
+     */
+    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
      * Indicates if the key is ephemeral.
      */
     public readonly ephemeral!: pulumi.Output<boolean | undefined>;
+    /**
+     * The expiry timestamp of the key in RFC3339 format
+     */
+    public /*out*/ readonly expiresAt!: pulumi.Output<string>;
     /**
      * The expiry of the key in seconds
      */
@@ -87,7 +95,9 @@ export class TailnetKey extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TailnetKeyState | undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["ephemeral"] = state ? state.ephemeral : undefined;
+            resourceInputs["expiresAt"] = state ? state.expiresAt : undefined;
             resourceInputs["expiry"] = state ? state.expiry : undefined;
             resourceInputs["key"] = state ? state.key : undefined;
             resourceInputs["preauthorized"] = state ? state.preauthorized : undefined;
@@ -100,6 +110,8 @@ export class TailnetKey extends pulumi.CustomResource {
             resourceInputs["preauthorized"] = args ? args.preauthorized : undefined;
             resourceInputs["reusable"] = args ? args.reusable : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["expiresAt"] = undefined /*out*/;
             resourceInputs["key"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -114,9 +126,17 @@ export class TailnetKey extends pulumi.CustomResource {
  */
 export interface TailnetKeyState {
     /**
+     * The creation timestamp of the key in RFC3339 format
+     */
+    createdAt?: pulumi.Input<string>;
+    /**
      * Indicates if the key is ephemeral.
      */
     ephemeral?: pulumi.Input<boolean>;
+    /**
+     * The expiry timestamp of the key in RFC3339 format
+     */
+    expiresAt?: pulumi.Input<string>;
     /**
      * The expiry of the key in seconds
      */

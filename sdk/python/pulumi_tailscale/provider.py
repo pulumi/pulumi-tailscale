@@ -19,21 +19,24 @@ class ProviderArgs:
                  oauth_client_id: Optional[pulumi.Input[str]] = None,
                  oauth_client_secret: Optional[pulumi.Input[str]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 tailnet: Optional[pulumi.Input[str]] = None):
+                 tailnet: Optional[pulumi.Input[str]] = None,
+                 user_agent: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] api_key: The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
                Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
         :param pulumi.Input[str] base_url: The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
                environment variable.
-        :param pulumi.Input[str] oauth_client_id: The OAuth application's ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable.
-               Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
-        :param pulumi.Input[str] oauth_client_secret: The OAuth application's secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment
+        :param pulumi.Input[str] oauth_client_id: The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment
                variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+        :param pulumi.Input[str] oauth_client_secret: The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET
+               environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See
-               https://tailscale.com/kb/1215/oauth-clients/#scopes for avialable scopes. Only valid when both 'oauth_client_id' and
+               https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and
                'oauth_client_secret' are set.
-        :param pulumi.Input[str] tailnet: The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+        :param pulumi.Input[str] tailnet: The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
+               variable. Default is the tailnet that owns API credentials passed to the provider.
+        :param pulumi.Input[str] user_agent: User-Agent header for API requests.
         """
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
@@ -47,6 +50,8 @@ class ProviderArgs:
             pulumi.set(__self__, "scopes", scopes)
         if tailnet is not None:
             pulumi.set(__self__, "tailnet", tailnet)
+        if user_agent is not None:
+            pulumi.set(__self__, "user_agent", user_agent)
 
     @property
     @pulumi.getter(name="apiKey")
@@ -78,8 +83,8 @@ class ProviderArgs:
     @pulumi.getter(name="oauthClientId")
     def oauth_client_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The OAuth application's ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable.
-        Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+        The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment
+        variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
         """
         return pulumi.get(self, "oauth_client_id")
 
@@ -91,8 +96,8 @@ class ProviderArgs:
     @pulumi.getter(name="oauthClientSecret")
     def oauth_client_secret(self) -> Optional[pulumi.Input[str]]:
         """
-        The OAuth application's secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment
-        variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+        The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET
+        environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
         """
         return pulumi.get(self, "oauth_client_secret")
 
@@ -105,7 +110,7 @@ class ProviderArgs:
     def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See
-        https://tailscale.com/kb/1215/oauth-clients/#scopes for avialable scopes. Only valid when both 'oauth_client_id' and
+        https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and
         'oauth_client_secret' are set.
         """
         return pulumi.get(self, "scopes")
@@ -118,13 +123,26 @@ class ProviderArgs:
     @pulumi.getter
     def tailnet(self) -> Optional[pulumi.Input[str]]:
         """
-        The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+        The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
+        variable. Default is the tailnet that owns API credentials passed to the provider.
         """
         return pulumi.get(self, "tailnet")
 
     @tailnet.setter
     def tailnet(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "tailnet", value)
+
+    @property
+    @pulumi.getter(name="userAgent")
+    def user_agent(self) -> Optional[pulumi.Input[str]]:
+        """
+        User-Agent header for API requests.
+        """
+        return pulumi.get(self, "user_agent")
+
+    @user_agent.setter
+    def user_agent(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_agent", value)
 
 
 class Provider(pulumi.ProviderResource):
@@ -138,6 +156,7 @@ class Provider(pulumi.ProviderResource):
                  oauth_client_secret: Optional[pulumi.Input[str]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tailnet: Optional[pulumi.Input[str]] = None,
+                 user_agent: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         The provider type for the tailscale package. By default, resources use package-wide configuration
@@ -151,14 +170,16 @@ class Provider(pulumi.ProviderResource):
                Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
         :param pulumi.Input[str] base_url: The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
                environment variable.
-        :param pulumi.Input[str] oauth_client_id: The OAuth application's ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable.
-               Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
-        :param pulumi.Input[str] oauth_client_secret: The OAuth application's secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment
+        :param pulumi.Input[str] oauth_client_id: The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment
                variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+        :param pulumi.Input[str] oauth_client_secret: The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET
+               environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes: The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See
-               https://tailscale.com/kb/1215/oauth-clients/#scopes for avialable scopes. Only valid when both 'oauth_client_id' and
+               https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and
                'oauth_client_secret' are set.
-        :param pulumi.Input[str] tailnet: The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+        :param pulumi.Input[str] tailnet: The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
+               variable. Default is the tailnet that owns API credentials passed to the provider.
+        :param pulumi.Input[str] user_agent: User-Agent header for API requests.
         """
         ...
     @overload
@@ -193,6 +214,7 @@ class Provider(pulumi.ProviderResource):
                  oauth_client_secret: Optional[pulumi.Input[str]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tailnet: Optional[pulumi.Input[str]] = None,
+                 user_agent: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -208,6 +230,7 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["oauth_client_secret"] = None if oauth_client_secret is None else pulumi.Output.secret(oauth_client_secret)
             __props__.__dict__["scopes"] = pulumi.Output.from_input(scopes).apply(pulumi.runtime.to_json) if scopes is not None else None
             __props__.__dict__["tailnet"] = tailnet
+            __props__.__dict__["user_agent"] = user_agent
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["apiKey", "oauthClientSecret"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
@@ -238,8 +261,8 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="oauthClientId")
     def oauth_client_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The OAuth application's ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable.
-        Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+        The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment
+        variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
         """
         return pulumi.get(self, "oauth_client_id")
 
@@ -247,8 +270,8 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="oauthClientSecret")
     def oauth_client_secret(self) -> pulumi.Output[Optional[str]]:
         """
-        The OAuth application's secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment
-        variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+        The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET
+        environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
         """
         return pulumi.get(self, "oauth_client_secret")
 
@@ -256,7 +279,16 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter
     def tailnet(self) -> pulumi.Output[Optional[str]]:
         """
-        The Tailnet to perform actions in. Can be set via the TAILSCALE_TAILNET environment variable.
+        The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
+        variable. Default is the tailnet that owns API credentials passed to the provider.
         """
         return pulumi.get(self, "tailnet")
+
+    @property
+    @pulumi.getter(name="userAgent")
+    def user_agent(self) -> pulumi.Output[Optional[str]]:
+        """
+        User-Agent header for API requests.
+        """
+        return pulumi.get(self, "user_agent")
 

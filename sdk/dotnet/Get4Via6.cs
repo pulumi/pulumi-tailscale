@@ -20,6 +20,7 @@ namespace Pulumi.Tailscale
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Tailscale = Pulumi.Tailscale;
         /// 
@@ -48,6 +49,7 @@ namespace Pulumi.Tailscale
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Tailscale = Pulumi.Tailscale;
         /// 

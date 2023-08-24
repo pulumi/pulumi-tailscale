@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -43,8 +44,12 @@ import (
 type TailnetKey struct {
 	pulumi.CustomResourceState
 
+	// The creation timestamp of the key in RFC3339 format
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Indicates if the key is ephemeral.
 	Ephemeral pulumi.BoolPtrOutput `pulumi:"ephemeral"`
+	// The expiry timestamp of the key in RFC3339 format
+	ExpiresAt pulumi.StringOutput `pulumi:"expiresAt"`
 	// The expiry of the key in seconds
 	Expiry pulumi.IntPtrOutput `pulumi:"expiry"`
 	// The authentication key
@@ -68,6 +73,7 @@ func NewTailnetKey(ctx *pulumi.Context,
 		"key",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource TailnetKey
 	err := ctx.RegisterResource("tailscale:index/tailnetKey:TailnetKey", name, args, &resource, opts...)
 	if err != nil {
@@ -90,8 +96,12 @@ func GetTailnetKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TailnetKey resources.
 type tailnetKeyState struct {
+	// The creation timestamp of the key in RFC3339 format
+	CreatedAt *string `pulumi:"createdAt"`
 	// Indicates if the key is ephemeral.
 	Ephemeral *bool `pulumi:"ephemeral"`
+	// The expiry timestamp of the key in RFC3339 format
+	ExpiresAt *string `pulumi:"expiresAt"`
 	// The expiry of the key in seconds
 	Expiry *int `pulumi:"expiry"`
 	// The authentication key
@@ -105,8 +115,12 @@ type tailnetKeyState struct {
 }
 
 type TailnetKeyState struct {
+	// The creation timestamp of the key in RFC3339 format
+	CreatedAt pulumi.StringPtrInput
 	// Indicates if the key is ephemeral.
 	Ephemeral pulumi.BoolPtrInput
+	// The expiry timestamp of the key in RFC3339 format
+	ExpiresAt pulumi.StringPtrInput
 	// The expiry of the key in seconds
 	Expiry pulumi.IntPtrInput
 	// The authentication key
@@ -237,9 +251,19 @@ func (o TailnetKeyOutput) ToTailnetKeyOutputWithContext(ctx context.Context) Tai
 	return o
 }
 
+// The creation timestamp of the key in RFC3339 format
+func (o TailnetKeyOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *TailnetKey) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
 // Indicates if the key is ephemeral.
 func (o TailnetKeyOutput) Ephemeral() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *TailnetKey) pulumi.BoolPtrOutput { return v.Ephemeral }).(pulumi.BoolPtrOutput)
+}
+
+// The expiry timestamp of the key in RFC3339 format
+func (o TailnetKeyOutput) ExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *TailnetKey) pulumi.StringOutput { return v.ExpiresAt }).(pulumi.StringOutput)
 }
 
 // The expiry of the key in seconds

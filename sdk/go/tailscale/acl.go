@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -74,6 +75,7 @@ func NewAcl(ctx *pulumi.Context,
 	if args.Acl == nil {
 		return nil, errors.New("invalid value for required argument 'Acl'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Acl
 	err := ctx.RegisterResource("tailscale:index/acl:Acl", name, args, &resource, opts...)
 	if err != nil {

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -71,6 +72,7 @@ func NewDeviceSubnetRoutes(ctx *pulumi.Context,
 	if args.Routes == nil {
 		return nil, errors.New("invalid value for required argument 'Routes'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DeviceSubnetRoutes
 	err := ctx.RegisterResource("tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes", name, args, &resource, opts...)
 	if err != nil {

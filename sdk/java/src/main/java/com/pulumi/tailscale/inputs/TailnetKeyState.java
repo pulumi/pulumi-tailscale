@@ -19,6 +19,21 @@ public final class TailnetKeyState extends com.pulumi.resources.ResourceArgs {
     public static final TailnetKeyState Empty = new TailnetKeyState();
 
     /**
+     * The creation timestamp of the key in RFC3339 format
+     * 
+     */
+    @Import(name="createdAt")
+    private @Nullable Output<String> createdAt;
+
+    /**
+     * @return The creation timestamp of the key in RFC3339 format
+     * 
+     */
+    public Optional<Output<String>> createdAt() {
+        return Optional.ofNullable(this.createdAt);
+    }
+
+    /**
      * Indicates if the key is ephemeral.
      * 
      */
@@ -31,6 +46,21 @@ public final class TailnetKeyState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> ephemeral() {
         return Optional.ofNullable(this.ephemeral);
+    }
+
+    /**
+     * The expiry timestamp of the key in RFC3339 format
+     * 
+     */
+    @Import(name="expiresAt")
+    private @Nullable Output<String> expiresAt;
+
+    /**
+     * @return The expiry timestamp of the key in RFC3339 format
+     * 
+     */
+    public Optional<Output<String>> expiresAt() {
+        return Optional.ofNullable(this.expiresAt);
     }
 
     /**
@@ -111,7 +141,9 @@ public final class TailnetKeyState extends com.pulumi.resources.ResourceArgs {
     private TailnetKeyState() {}
 
     private TailnetKeyState(TailnetKeyState $) {
+        this.createdAt = $.createdAt;
         this.ephemeral = $.ephemeral;
+        this.expiresAt = $.expiresAt;
         this.expiry = $.expiry;
         this.key = $.key;
         this.preauthorized = $.preauthorized;
@@ -138,6 +170,27 @@ public final class TailnetKeyState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param createdAt The creation timestamp of the key in RFC3339 format
+         * 
+         * @return builder
+         * 
+         */
+        public Builder createdAt(@Nullable Output<String> createdAt) {
+            $.createdAt = createdAt;
+            return this;
+        }
+
+        /**
+         * @param createdAt The creation timestamp of the key in RFC3339 format
+         * 
+         * @return builder
+         * 
+         */
+        public Builder createdAt(String createdAt) {
+            return createdAt(Output.of(createdAt));
+        }
+
+        /**
          * @param ephemeral Indicates if the key is ephemeral.
          * 
          * @return builder
@@ -156,6 +209,27 @@ public final class TailnetKeyState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder ephemeral(Boolean ephemeral) {
             return ephemeral(Output.of(ephemeral));
+        }
+
+        /**
+         * @param expiresAt The expiry timestamp of the key in RFC3339 format
+         * 
+         * @return builder
+         * 
+         */
+        public Builder expiresAt(@Nullable Output<String> expiresAt) {
+            $.expiresAt = expiresAt;
+            return this;
+        }
+
+        /**
+         * @param expiresAt The expiry timestamp of the key in RFC3339 format
+         * 
+         * @return builder
+         * 
+         */
+        public Builder expiresAt(String expiresAt) {
+            return expiresAt(Output.of(expiresAt));
         }
 
         /**

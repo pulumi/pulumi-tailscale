@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -64,6 +65,7 @@ func NewDeviceKey(ctx *pulumi.Context,
 	if args.DeviceId == nil {
 		return nil, errors.New("invalid value for required argument 'DeviceId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DeviceKey
 	err := ctx.RegisterResource("tailscale:index/deviceKey:DeviceKey", name, args, &resource, opts...)
 	if err != nil {

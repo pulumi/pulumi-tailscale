@@ -57,6 +57,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="tailscale:index/tailnetKey:TailnetKey")
 public class TailnetKey extends com.pulumi.resources.CustomResource {
     /**
+     * The creation timestamp of the key in RFC3339 format
+     * 
+     */
+    @Export(name="createdAt", type=String.class, parameters={})
+    private Output<String> createdAt;
+
+    /**
+     * @return The creation timestamp of the key in RFC3339 format
+     * 
+     */
+    public Output<String> createdAt() {
+        return this.createdAt;
+    }
+    /**
      * Indicates if the key is ephemeral.
      * 
      */
@@ -69,6 +83,20 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> ephemeral() {
         return Codegen.optional(this.ephemeral);
+    }
+    /**
+     * The expiry timestamp of the key in RFC3339 format
+     * 
+     */
+    @Export(name="expiresAt", type=String.class, parameters={})
+    private Output<String> expiresAt;
+
+    /**
+     * @return The expiry timestamp of the key in RFC3339 format
+     * 
+     */
+    public Output<String> expiresAt() {
+        return this.expiresAt;
     }
     /**
      * The expiry of the key in seconds

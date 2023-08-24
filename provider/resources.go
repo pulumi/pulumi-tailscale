@@ -19,6 +19,7 @@ import (
 	"path/filepath"
 	"unicode"
 
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/pulumi/pulumi-tailscale/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
@@ -73,7 +74,7 @@ func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) erro
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv2.NewProvider(tailscale.Provider())
+	p := shimv2.NewProvider(tailscale.Provider(addUserAgent))
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
@@ -144,4 +145,16 @@ func Provider() tfbridge.ProviderInfo {
 	prov.SetAutonaming(255, "-")
 
 	return prov
+}
+
+// addUserAgent adds a `user_agent` configuration key to the provider with a
+// default value based on provider version. This is adapted from the upstream provider.
+// See: https://github.com/tailscale/terraform-provider-tailscale/commit/e2961ac83f24bc2cc279177abcf23e28570815c6
+func addUserAgent(p *schema.Provider) {
+	p.Schema["user_agent"] = &schema.Schema{
+		Type:        schema.TypeString,
+		Default:     fmt.Sprintf("Pulumi/3.0 (https://www.pulumi.com) pulumi-tailscale/%s", version.Version),
+		Optional:    true,
+		Description: "User-Agent header for API requests.",
+	}
 }
