@@ -14,6 +14,7 @@ __all__ = ['TailnetKeyArgs', 'TailnetKey']
 @pulumi.input_type
 class TailnetKeyArgs:
     def __init__(__self__, *,
+                 description: Optional[pulumi.Input[str]] = None,
                  ephemeral: Optional[pulumi.Input[bool]] = None,
                  expiry: Optional[pulumi.Input[int]] = None,
                  preauthorized: Optional[pulumi.Input[bool]] = None,
@@ -21,12 +22,15 @@ class TailnetKeyArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a TailnetKey resource.
+        :param pulumi.Input[str] description: A description of the key consisting of alphanumeric characters.
         :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
         :param pulumi.Input[int] expiry: The expiry of the key in seconds
         :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if ephemeral is not None:
             pulumi.set(__self__, "ephemeral", ephemeral)
         if expiry is not None:
@@ -37,6 +41,18 @@ class TailnetKeyArgs:
             pulumi.set(__self__, "reusable", reusable)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the key consisting of alphanumeric characters.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter
@@ -103,6 +119,7 @@ class TailnetKeyArgs:
 class _TailnetKeyState:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  ephemeral: Optional[pulumi.Input[bool]] = None,
                  expires_at: Optional[pulumi.Input[str]] = None,
                  expiry: Optional[pulumi.Input[int]] = None,
@@ -113,6 +130,7 @@ class _TailnetKeyState:
         """
         Input properties used for looking up and filtering TailnetKey resources.
         :param pulumi.Input[str] created_at: The creation timestamp of the key in RFC3339 format
+        :param pulumi.Input[str] description: A description of the key consisting of alphanumeric characters.
         :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
         :param pulumi.Input[str] expires_at: The expiry timestamp of the key in RFC3339 format
         :param pulumi.Input[int] expiry: The expiry of the key in seconds
@@ -123,6 +141,8 @@ class _TailnetKeyState:
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if ephemeral is not None:
             pulumi.set(__self__, "ephemeral", ephemeral)
         if expires_at is not None:
@@ -149,6 +169,18 @@ class _TailnetKeyState:
     @created_at.setter
     def created_at(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the key consisting of alphanumeric characters.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter
@@ -240,6 +272,7 @@ class TailnetKey(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  ephemeral: Optional[pulumi.Input[bool]] = None,
                  expiry: Optional[pulumi.Input[int]] = None,
                  preauthorized: Optional[pulumi.Input[bool]] = None,
@@ -256,6 +289,7 @@ class TailnetKey(pulumi.CustomResource):
         import pulumi_tailscale as tailscale
 
         sample_key = tailscale.TailnetKey("sampleKey",
+            description="Sample key",
             ephemeral=False,
             expiry=3600,
             preauthorized=True,
@@ -264,6 +298,7 @@ class TailnetKey(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: A description of the key consisting of alphanumeric characters.
         :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
         :param pulumi.Input[int] expiry: The expiry of the key in seconds
         :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
@@ -286,6 +321,7 @@ class TailnetKey(pulumi.CustomResource):
         import pulumi_tailscale as tailscale
 
         sample_key = tailscale.TailnetKey("sampleKey",
+            description="Sample key",
             ephemeral=False,
             expiry=3600,
             preauthorized=True,
@@ -307,6 +343,7 @@ class TailnetKey(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  ephemeral: Optional[pulumi.Input[bool]] = None,
                  expiry: Optional[pulumi.Input[int]] = None,
                  preauthorized: Optional[pulumi.Input[bool]] = None,
@@ -321,6 +358,7 @@ class TailnetKey(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = TailnetKeyArgs.__new__(TailnetKeyArgs)
 
+            __props__.__dict__["description"] = description
             __props__.__dict__["ephemeral"] = ephemeral
             __props__.__dict__["expiry"] = expiry
             __props__.__dict__["preauthorized"] = preauthorized
@@ -342,6 +380,7 @@ class TailnetKey(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
             ephemeral: Optional[pulumi.Input[bool]] = None,
             expires_at: Optional[pulumi.Input[str]] = None,
             expiry: Optional[pulumi.Input[int]] = None,
@@ -357,6 +396,7 @@ class TailnetKey(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] created_at: The creation timestamp of the key in RFC3339 format
+        :param pulumi.Input[str] description: A description of the key consisting of alphanumeric characters.
         :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
         :param pulumi.Input[str] expires_at: The expiry timestamp of the key in RFC3339 format
         :param pulumi.Input[int] expiry: The expiry of the key in seconds
@@ -370,6 +410,7 @@ class TailnetKey(pulumi.CustomResource):
         __props__ = _TailnetKeyState.__new__(_TailnetKeyState)
 
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["description"] = description
         __props__.__dict__["ephemeral"] = ephemeral
         __props__.__dict__["expires_at"] = expires_at
         __props__.__dict__["expiry"] = expiry
@@ -386,6 +427,14 @@ class TailnetKey(pulumi.CustomResource):
         The creation timestamp of the key in RFC3339 format
         """
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        A description of the key consisting of alphanumeric characters.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter

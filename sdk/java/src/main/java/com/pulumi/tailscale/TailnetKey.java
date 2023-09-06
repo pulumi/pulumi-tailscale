@@ -43,6 +43,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var sampleKey = new TailnetKey(&#34;sampleKey&#34;, TailnetKeyArgs.builder()        
+ *             .description(&#34;Sample key&#34;)
  *             .ephemeral(false)
  *             .expiry(3600)
  *             .preauthorized(true)
@@ -69,6 +70,20 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      */
     public Output<String> createdAt() {
         return this.createdAt;
+    }
+    /**
+     * A description of the key consisting of alphanumeric characters.
+     * 
+     */
+    @Export(name="description", type=String.class, parameters={})
+    private Output</* @Nullable */ String> description;
+
+    /**
+     * @return A description of the key consisting of alphanumeric characters.
+     * 
+     */
+    public Output<Optional<String>> description() {
+        return Codegen.optional(this.description);
     }
     /**
      * Indicates if the key is ephemeral.

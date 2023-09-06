@@ -28,6 +28,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tailscale.NewTailnetKey(ctx, "sampleKey", &tailscale.TailnetKeyArgs{
+//				Description:   pulumi.String("Sample key"),
 //				Ephemeral:     pulumi.Bool(false),
 //				Expiry:        pulumi.Int(3600),
 //				Preauthorized: pulumi.Bool(true),
@@ -46,6 +47,8 @@ type TailnetKey struct {
 
 	// The creation timestamp of the key in RFC3339 format
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// A description of the key consisting of alphanumeric characters.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Indicates if the key is ephemeral.
 	Ephemeral pulumi.BoolPtrOutput `pulumi:"ephemeral"`
 	// The expiry timestamp of the key in RFC3339 format
@@ -98,6 +101,8 @@ func GetTailnetKey(ctx *pulumi.Context,
 type tailnetKeyState struct {
 	// The creation timestamp of the key in RFC3339 format
 	CreatedAt *string `pulumi:"createdAt"`
+	// A description of the key consisting of alphanumeric characters.
+	Description *string `pulumi:"description"`
 	// Indicates if the key is ephemeral.
 	Ephemeral *bool `pulumi:"ephemeral"`
 	// The expiry timestamp of the key in RFC3339 format
@@ -117,6 +122,8 @@ type tailnetKeyState struct {
 type TailnetKeyState struct {
 	// The creation timestamp of the key in RFC3339 format
 	CreatedAt pulumi.StringPtrInput
+	// A description of the key consisting of alphanumeric characters.
+	Description pulumi.StringPtrInput
 	// Indicates if the key is ephemeral.
 	Ephemeral pulumi.BoolPtrInput
 	// The expiry timestamp of the key in RFC3339 format
@@ -138,6 +145,8 @@ func (TailnetKeyState) ElementType() reflect.Type {
 }
 
 type tailnetKeyArgs struct {
+	// A description of the key consisting of alphanumeric characters.
+	Description *string `pulumi:"description"`
 	// Indicates if the key is ephemeral.
 	Ephemeral *bool `pulumi:"ephemeral"`
 	// The expiry of the key in seconds
@@ -152,6 +161,8 @@ type tailnetKeyArgs struct {
 
 // The set of arguments for constructing a TailnetKey resource.
 type TailnetKeyArgs struct {
+	// A description of the key consisting of alphanumeric characters.
+	Description pulumi.StringPtrInput
 	// Indicates if the key is ephemeral.
 	Ephemeral pulumi.BoolPtrInput
 	// The expiry of the key in seconds
@@ -254,6 +265,11 @@ func (o TailnetKeyOutput) ToTailnetKeyOutputWithContext(ctx context.Context) Tai
 // The creation timestamp of the key in RFC3339 format
 func (o TailnetKeyOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *TailnetKey) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// A description of the key consisting of alphanumeric characters.
+func (o TailnetKeyOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TailnetKey) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 // Indicates if the key is ephemeral.
