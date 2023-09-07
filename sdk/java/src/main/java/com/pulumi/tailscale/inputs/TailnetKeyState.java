@@ -34,6 +34,21 @@ public final class TailnetKeyState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * A description of the key consisting of alphanumeric characters.
+     * 
+     */
+    @Import(name="description")
+    private @Nullable Output<String> description;
+
+    /**
+     * @return A description of the key consisting of alphanumeric characters.
+     * 
+     */
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
+    }
+
+    /**
      * Indicates if the key is ephemeral.
      * 
      */
@@ -142,6 +157,7 @@ public final class TailnetKeyState extends com.pulumi.resources.ResourceArgs {
 
     private TailnetKeyState(TailnetKeyState $) {
         this.createdAt = $.createdAt;
+        this.description = $.description;
         this.ephemeral = $.ephemeral;
         this.expiresAt = $.expiresAt;
         this.expiry = $.expiry;
@@ -188,6 +204,27 @@ public final class TailnetKeyState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder createdAt(String createdAt) {
             return createdAt(Output.of(createdAt));
+        }
+
+        /**
+         * @param description A description of the key consisting of alphanumeric characters.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(@Nullable Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        /**
+         * @param description A description of the key consisting of alphanumeric characters.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder description(String description) {
+            return description(Output.of(description));
         }
 
         /**

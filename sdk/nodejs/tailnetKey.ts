@@ -14,6 +14,7 @@ import * as utilities from "./utilities";
  * import * as tailscale from "@pulumi/tailscale";
  *
  * const sampleKey = new tailscale.TailnetKey("sampleKey", {
+ *     description: "Sample key",
  *     ephemeral: false,
  *     expiry: 3600,
  *     preauthorized: true,
@@ -53,6 +54,10 @@ export class TailnetKey extends pulumi.CustomResource {
      * The creation timestamp of the key in RFC3339 format
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * A description of the key consisting of alphanumeric characters.
+     */
+    public readonly description!: pulumi.Output<string | undefined>;
     /**
      * Indicates if the key is ephemeral.
      */
@@ -96,6 +101,7 @@ export class TailnetKey extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as TailnetKeyState | undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["ephemeral"] = state ? state.ephemeral : undefined;
             resourceInputs["expiresAt"] = state ? state.expiresAt : undefined;
             resourceInputs["expiry"] = state ? state.expiry : undefined;
@@ -105,6 +111,7 @@ export class TailnetKey extends pulumi.CustomResource {
             resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as TailnetKeyArgs | undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["ephemeral"] = args ? args.ephemeral : undefined;
             resourceInputs["expiry"] = args ? args.expiry : undefined;
             resourceInputs["preauthorized"] = args ? args.preauthorized : undefined;
@@ -129,6 +136,10 @@ export interface TailnetKeyState {
      * The creation timestamp of the key in RFC3339 format
      */
     createdAt?: pulumi.Input<string>;
+    /**
+     * A description of the key consisting of alphanumeric characters.
+     */
+    description?: pulumi.Input<string>;
     /**
      * Indicates if the key is ephemeral.
      */
@@ -163,6 +174,10 @@ export interface TailnetKeyState {
  * The set of arguments for constructing a TailnetKey resource.
  */
 export interface TailnetKeyArgs {
+    /**
+     * A description of the key consisting of alphanumeric characters.
+     */
+    description?: pulumi.Input<string>;
     /**
      * Indicates if the key is ephemeral.
      */

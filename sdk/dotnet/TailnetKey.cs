@@ -24,6 +24,7 @@ namespace Pulumi.Tailscale
     /// {
     ///     var sampleKey = new Tailscale.TailnetKey("sampleKey", new()
     ///     {
+    ///         Description = "Sample key",
     ///         Ephemeral = false,
     ///         Expiry = 3600,
     ///         Preauthorized = true,
@@ -41,6 +42,12 @@ namespace Pulumi.Tailscale
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// A description of the key consisting of alphanumeric characters.
+        /// </summary>
+        [Output("description")]
+        public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
         /// Indicates if the key is ephemeral.
@@ -135,6 +142,12 @@ namespace Pulumi.Tailscale
     public sealed class TailnetKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// A description of the key consisting of alphanumeric characters.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
+        /// <summary>
         /// Indicates if the key is ephemeral.
         /// </summary>
         [Input("ephemeral")]
@@ -183,6 +196,12 @@ namespace Pulumi.Tailscale
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// A description of the key consisting of alphanumeric characters.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
 
         /// <summary>
         /// Indicates if the key is ephemeral.
