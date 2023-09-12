@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The deviceSubnetRoutes resource allows you to configure subnet routes for your Tailscale devices. See https://tailscale.com/kb/1019/subnets for more information.
@@ -150,6 +151,12 @@ func (i *DeviceSubnetRoutes) ToDeviceSubnetRoutesOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceSubnetRoutesOutput)
 }
 
+func (i *DeviceSubnetRoutes) ToOutput(ctx context.Context) pulumix.Output[*DeviceSubnetRoutes] {
+	return pulumix.Output[*DeviceSubnetRoutes]{
+		OutputState: i.ToDeviceSubnetRoutesOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DeviceSubnetRoutesArrayInput is an input type that accepts DeviceSubnetRoutesArray and DeviceSubnetRoutesArrayOutput values.
 // You can construct a concrete instance of `DeviceSubnetRoutesArrayInput` via:
 //
@@ -173,6 +180,12 @@ func (i DeviceSubnetRoutesArray) ToDeviceSubnetRoutesArrayOutput() DeviceSubnetR
 
 func (i DeviceSubnetRoutesArray) ToDeviceSubnetRoutesArrayOutputWithContext(ctx context.Context) DeviceSubnetRoutesArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceSubnetRoutesArrayOutput)
+}
+
+func (i DeviceSubnetRoutesArray) ToOutput(ctx context.Context) pulumix.Output[[]*DeviceSubnetRoutes] {
+	return pulumix.Output[[]*DeviceSubnetRoutes]{
+		OutputState: i.ToDeviceSubnetRoutesArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DeviceSubnetRoutesMapInput is an input type that accepts DeviceSubnetRoutesMap and DeviceSubnetRoutesMapOutput values.
@@ -200,6 +213,12 @@ func (i DeviceSubnetRoutesMap) ToDeviceSubnetRoutesMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceSubnetRoutesMapOutput)
 }
 
+func (i DeviceSubnetRoutesMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DeviceSubnetRoutes] {
+	return pulumix.Output[map[string]*DeviceSubnetRoutes]{
+		OutputState: i.ToDeviceSubnetRoutesMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeviceSubnetRoutesOutput struct{ *pulumi.OutputState }
 
 func (DeviceSubnetRoutesOutput) ElementType() reflect.Type {
@@ -212,6 +231,12 @@ func (o DeviceSubnetRoutesOutput) ToDeviceSubnetRoutesOutput() DeviceSubnetRoute
 
 func (o DeviceSubnetRoutesOutput) ToDeviceSubnetRoutesOutputWithContext(ctx context.Context) DeviceSubnetRoutesOutput {
 	return o
+}
+
+func (o DeviceSubnetRoutesOutput) ToOutput(ctx context.Context) pulumix.Output[*DeviceSubnetRoutes] {
+	return pulumix.Output[*DeviceSubnetRoutes]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The device to set subnet routes for
@@ -238,6 +263,12 @@ func (o DeviceSubnetRoutesArrayOutput) ToDeviceSubnetRoutesArrayOutputWithContex
 	return o
 }
 
+func (o DeviceSubnetRoutesArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DeviceSubnetRoutes] {
+	return pulumix.Output[[]*DeviceSubnetRoutes]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DeviceSubnetRoutesArrayOutput) Index(i pulumi.IntInput) DeviceSubnetRoutesOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DeviceSubnetRoutes {
 		return vs[0].([]*DeviceSubnetRoutes)[vs[1].(int)]
@@ -256,6 +287,12 @@ func (o DeviceSubnetRoutesMapOutput) ToDeviceSubnetRoutesMapOutput() DeviceSubne
 
 func (o DeviceSubnetRoutesMapOutput) ToDeviceSubnetRoutesMapOutputWithContext(ctx context.Context) DeviceSubnetRoutesMapOutput {
 	return o
+}
+
+func (o DeviceSubnetRoutesMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DeviceSubnetRoutes] {
+	return pulumix.Output[map[string]*DeviceSubnetRoutes]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeviceSubnetRoutesMapOutput) MapIndex(k pulumi.StringInput) DeviceSubnetRoutesOutput {

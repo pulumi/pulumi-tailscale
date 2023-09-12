@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The dnsNameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
@@ -128,6 +129,12 @@ func (i *DnsSearchPaths) ToDnsSearchPathsOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(DnsSearchPathsOutput)
 }
 
+func (i *DnsSearchPaths) ToOutput(ctx context.Context) pulumix.Output[*DnsSearchPaths] {
+	return pulumix.Output[*DnsSearchPaths]{
+		OutputState: i.ToDnsSearchPathsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DnsSearchPathsArrayInput is an input type that accepts DnsSearchPathsArray and DnsSearchPathsArrayOutput values.
 // You can construct a concrete instance of `DnsSearchPathsArrayInput` via:
 //
@@ -151,6 +158,12 @@ func (i DnsSearchPathsArray) ToDnsSearchPathsArrayOutput() DnsSearchPathsArrayOu
 
 func (i DnsSearchPathsArray) ToDnsSearchPathsArrayOutputWithContext(ctx context.Context) DnsSearchPathsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DnsSearchPathsArrayOutput)
+}
+
+func (i DnsSearchPathsArray) ToOutput(ctx context.Context) pulumix.Output[[]*DnsSearchPaths] {
+	return pulumix.Output[[]*DnsSearchPaths]{
+		OutputState: i.ToDnsSearchPathsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DnsSearchPathsMapInput is an input type that accepts DnsSearchPathsMap and DnsSearchPathsMapOutput values.
@@ -178,6 +191,12 @@ func (i DnsSearchPathsMap) ToDnsSearchPathsMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(DnsSearchPathsMapOutput)
 }
 
+func (i DnsSearchPathsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DnsSearchPaths] {
+	return pulumix.Output[map[string]*DnsSearchPaths]{
+		OutputState: i.ToDnsSearchPathsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DnsSearchPathsOutput struct{ *pulumi.OutputState }
 
 func (DnsSearchPathsOutput) ElementType() reflect.Type {
@@ -190,6 +209,12 @@ func (o DnsSearchPathsOutput) ToDnsSearchPathsOutput() DnsSearchPathsOutput {
 
 func (o DnsSearchPathsOutput) ToDnsSearchPathsOutputWithContext(ctx context.Context) DnsSearchPathsOutput {
 	return o
+}
+
+func (o DnsSearchPathsOutput) ToOutput(ctx context.Context) pulumix.Output[*DnsSearchPaths] {
+	return pulumix.Output[*DnsSearchPaths]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Devices on your network will use these domain suffixes to resolve DNS names.
@@ -211,6 +236,12 @@ func (o DnsSearchPathsArrayOutput) ToDnsSearchPathsArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o DnsSearchPathsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DnsSearchPaths] {
+	return pulumix.Output[[]*DnsSearchPaths]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DnsSearchPathsArrayOutput) Index(i pulumi.IntInput) DnsSearchPathsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DnsSearchPaths {
 		return vs[0].([]*DnsSearchPaths)[vs[1].(int)]
@@ -229,6 +260,12 @@ func (o DnsSearchPathsMapOutput) ToDnsSearchPathsMapOutput() DnsSearchPathsMapOu
 
 func (o DnsSearchPathsMapOutput) ToDnsSearchPathsMapOutputWithContext(ctx context.Context) DnsSearchPathsMapOutput {
 	return o
+}
+
+func (o DnsSearchPathsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DnsSearchPaths] {
+	return pulumix.Output[map[string]*DnsSearchPaths]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DnsSearchPathsMapOutput) MapIndex(k pulumi.StringInput) DnsSearchPathsOutput {

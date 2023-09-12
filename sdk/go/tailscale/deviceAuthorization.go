@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The deviceAuthorization resource is used to approve new devices before they can join the tailnet. See https://tailscale.com/kb/1099/device-authorization/ for more details.
@@ -146,6 +147,12 @@ func (i *DeviceAuthorization) ToDeviceAuthorizationOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceAuthorizationOutput)
 }
 
+func (i *DeviceAuthorization) ToOutput(ctx context.Context) pulumix.Output[*DeviceAuthorization] {
+	return pulumix.Output[*DeviceAuthorization]{
+		OutputState: i.ToDeviceAuthorizationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DeviceAuthorizationArrayInput is an input type that accepts DeviceAuthorizationArray and DeviceAuthorizationArrayOutput values.
 // You can construct a concrete instance of `DeviceAuthorizationArrayInput` via:
 //
@@ -169,6 +176,12 @@ func (i DeviceAuthorizationArray) ToDeviceAuthorizationArrayOutput() DeviceAutho
 
 func (i DeviceAuthorizationArray) ToDeviceAuthorizationArrayOutputWithContext(ctx context.Context) DeviceAuthorizationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceAuthorizationArrayOutput)
+}
+
+func (i DeviceAuthorizationArray) ToOutput(ctx context.Context) pulumix.Output[[]*DeviceAuthorization] {
+	return pulumix.Output[[]*DeviceAuthorization]{
+		OutputState: i.ToDeviceAuthorizationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DeviceAuthorizationMapInput is an input type that accepts DeviceAuthorizationMap and DeviceAuthorizationMapOutput values.
@@ -196,6 +209,12 @@ func (i DeviceAuthorizationMap) ToDeviceAuthorizationMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceAuthorizationMapOutput)
 }
 
+func (i DeviceAuthorizationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DeviceAuthorization] {
+	return pulumix.Output[map[string]*DeviceAuthorization]{
+		OutputState: i.ToDeviceAuthorizationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeviceAuthorizationOutput struct{ *pulumi.OutputState }
 
 func (DeviceAuthorizationOutput) ElementType() reflect.Type {
@@ -208,6 +227,12 @@ func (o DeviceAuthorizationOutput) ToDeviceAuthorizationOutput() DeviceAuthoriza
 
 func (o DeviceAuthorizationOutput) ToDeviceAuthorizationOutputWithContext(ctx context.Context) DeviceAuthorizationOutput {
 	return o
+}
+
+func (o DeviceAuthorizationOutput) ToOutput(ctx context.Context) pulumix.Output[*DeviceAuthorization] {
+	return pulumix.Output[*DeviceAuthorization]{
+		OutputState: o.OutputState,
+	}
 }
 
 // Whether or not the device is authorized
@@ -234,6 +259,12 @@ func (o DeviceAuthorizationArrayOutput) ToDeviceAuthorizationArrayOutputWithCont
 	return o
 }
 
+func (o DeviceAuthorizationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DeviceAuthorization] {
+	return pulumix.Output[[]*DeviceAuthorization]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DeviceAuthorizationArrayOutput) Index(i pulumi.IntInput) DeviceAuthorizationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DeviceAuthorization {
 		return vs[0].([]*DeviceAuthorization)[vs[1].(int)]
@@ -252,6 +283,12 @@ func (o DeviceAuthorizationMapOutput) ToDeviceAuthorizationMapOutput() DeviceAut
 
 func (o DeviceAuthorizationMapOutput) ToDeviceAuthorizationMapOutputWithContext(ctx context.Context) DeviceAuthorizationMapOutput {
 	return o
+}
+
+func (o DeviceAuthorizationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DeviceAuthorization] {
+	return pulumix.Output[map[string]*DeviceAuthorization]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeviceAuthorizationMapOutput) MapIndex(k pulumi.StringInput) DeviceAuthorizationOutput {

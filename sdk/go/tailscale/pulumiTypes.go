@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -54,6 +55,12 @@ func (i GetDevicesDeviceArgs) ToGetDevicesDeviceOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(GetDevicesDeviceOutput)
 }
 
+func (i GetDevicesDeviceArgs) ToOutput(ctx context.Context) pulumix.Output[GetDevicesDevice] {
+	return pulumix.Output[GetDevicesDevice]{
+		OutputState: i.ToGetDevicesDeviceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetDevicesDeviceArrayInput is an input type that accepts GetDevicesDeviceArray and GetDevicesDeviceArrayOutput values.
 // You can construct a concrete instance of `GetDevicesDeviceArrayInput` via:
 //
@@ -79,6 +86,12 @@ func (i GetDevicesDeviceArray) ToGetDevicesDeviceArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetDevicesDeviceArrayOutput)
 }
 
+func (i GetDevicesDeviceArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDevicesDevice] {
+	return pulumix.Output[[]GetDevicesDevice]{
+		OutputState: i.ToGetDevicesDeviceArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetDevicesDeviceOutput struct{ *pulumi.OutputState }
 
 func (GetDevicesDeviceOutput) ElementType() reflect.Type {
@@ -91,6 +104,12 @@ func (o GetDevicesDeviceOutput) ToGetDevicesDeviceOutput() GetDevicesDeviceOutpu
 
 func (o GetDevicesDeviceOutput) ToGetDevicesDeviceOutputWithContext(ctx context.Context) GetDevicesDeviceOutput {
 	return o
+}
+
+func (o GetDevicesDeviceOutput) ToOutput(ctx context.Context) pulumix.Output[GetDevicesDevice] {
+	return pulumix.Output[GetDevicesDevice]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDevicesDeviceOutput) Addresses() pulumi.StringArrayOutput {
@@ -126,6 +145,12 @@ func (o GetDevicesDeviceArrayOutput) ToGetDevicesDeviceArrayOutput() GetDevicesD
 
 func (o GetDevicesDeviceArrayOutput) ToGetDevicesDeviceArrayOutputWithContext(ctx context.Context) GetDevicesDeviceArrayOutput {
 	return o
+}
+
+func (o GetDevicesDeviceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDevicesDevice] {
+	return pulumix.Output[[]GetDevicesDevice]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetDevicesDeviceArrayOutput) Index(i pulumi.IntInput) GetDevicesDeviceOutput {
