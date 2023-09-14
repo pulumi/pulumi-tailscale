@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The deviceKey resource allows you to update the properties of a device's key
@@ -143,6 +144,12 @@ func (i *DeviceKey) ToDeviceKeyOutputWithContext(ctx context.Context) DeviceKeyO
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceKeyOutput)
 }
 
+func (i *DeviceKey) ToOutput(ctx context.Context) pulumix.Output[*DeviceKey] {
+	return pulumix.Output[*DeviceKey]{
+		OutputState: i.ToDeviceKeyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DeviceKeyArrayInput is an input type that accepts DeviceKeyArray and DeviceKeyArrayOutput values.
 // You can construct a concrete instance of `DeviceKeyArrayInput` via:
 //
@@ -166,6 +173,12 @@ func (i DeviceKeyArray) ToDeviceKeyArrayOutput() DeviceKeyArrayOutput {
 
 func (i DeviceKeyArray) ToDeviceKeyArrayOutputWithContext(ctx context.Context) DeviceKeyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceKeyArrayOutput)
+}
+
+func (i DeviceKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*DeviceKey] {
+	return pulumix.Output[[]*DeviceKey]{
+		OutputState: i.ToDeviceKeyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DeviceKeyMapInput is an input type that accepts DeviceKeyMap and DeviceKeyMapOutput values.
@@ -193,6 +206,12 @@ func (i DeviceKeyMap) ToDeviceKeyMapOutputWithContext(ctx context.Context) Devic
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceKeyMapOutput)
 }
 
+func (i DeviceKeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DeviceKey] {
+	return pulumix.Output[map[string]*DeviceKey]{
+		OutputState: i.ToDeviceKeyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeviceKeyOutput struct{ *pulumi.OutputState }
 
 func (DeviceKeyOutput) ElementType() reflect.Type {
@@ -205,6 +224,12 @@ func (o DeviceKeyOutput) ToDeviceKeyOutput() DeviceKeyOutput {
 
 func (o DeviceKeyOutput) ToDeviceKeyOutputWithContext(ctx context.Context) DeviceKeyOutput {
 	return o
+}
+
+func (o DeviceKeyOutput) ToOutput(ctx context.Context) pulumix.Output[*DeviceKey] {
+	return pulumix.Output[*DeviceKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The device to update the key properties of
@@ -231,6 +256,12 @@ func (o DeviceKeyArrayOutput) ToDeviceKeyArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o DeviceKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DeviceKey] {
+	return pulumix.Output[[]*DeviceKey]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DeviceKeyArrayOutput) Index(i pulumi.IntInput) DeviceKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DeviceKey {
 		return vs[0].([]*DeviceKey)[vs[1].(int)]
@@ -249,6 +280,12 @@ func (o DeviceKeyMapOutput) ToDeviceKeyMapOutput() DeviceKeyMapOutput {
 
 func (o DeviceKeyMapOutput) ToDeviceKeyMapOutputWithContext(ctx context.Context) DeviceKeyMapOutput {
 	return o
+}
+
+func (o DeviceKeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DeviceKey] {
+	return pulumix.Output[map[string]*DeviceKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeviceKeyMapOutput) MapIndex(k pulumi.StringInput) DeviceKeyOutput {

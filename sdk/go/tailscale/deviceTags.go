@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The deviceTags resource is used to apply tags to Tailscale devices. See https://tailscale.com/kb/1068/acl-tags/ for more details.
@@ -148,6 +149,12 @@ func (i *DeviceTags) ToDeviceTagsOutputWithContext(ctx context.Context) DeviceTa
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceTagsOutput)
 }
 
+func (i *DeviceTags) ToOutput(ctx context.Context) pulumix.Output[*DeviceTags] {
+	return pulumix.Output[*DeviceTags]{
+		OutputState: i.ToDeviceTagsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DeviceTagsArrayInput is an input type that accepts DeviceTagsArray and DeviceTagsArrayOutput values.
 // You can construct a concrete instance of `DeviceTagsArrayInput` via:
 //
@@ -171,6 +178,12 @@ func (i DeviceTagsArray) ToDeviceTagsArrayOutput() DeviceTagsArrayOutput {
 
 func (i DeviceTagsArray) ToDeviceTagsArrayOutputWithContext(ctx context.Context) DeviceTagsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceTagsArrayOutput)
+}
+
+func (i DeviceTagsArray) ToOutput(ctx context.Context) pulumix.Output[[]*DeviceTags] {
+	return pulumix.Output[[]*DeviceTags]{
+		OutputState: i.ToDeviceTagsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DeviceTagsMapInput is an input type that accepts DeviceTagsMap and DeviceTagsMapOutput values.
@@ -198,6 +211,12 @@ func (i DeviceTagsMap) ToDeviceTagsMapOutputWithContext(ctx context.Context) Dev
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceTagsMapOutput)
 }
 
+func (i DeviceTagsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DeviceTags] {
+	return pulumix.Output[map[string]*DeviceTags]{
+		OutputState: i.ToDeviceTagsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DeviceTagsOutput struct{ *pulumi.OutputState }
 
 func (DeviceTagsOutput) ElementType() reflect.Type {
@@ -210,6 +229,12 @@ func (o DeviceTagsOutput) ToDeviceTagsOutput() DeviceTagsOutput {
 
 func (o DeviceTagsOutput) ToDeviceTagsOutputWithContext(ctx context.Context) DeviceTagsOutput {
 	return o
+}
+
+func (o DeviceTagsOutput) ToOutput(ctx context.Context) pulumix.Output[*DeviceTags] {
+	return pulumix.Output[*DeviceTags]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The device to set tags for
@@ -236,6 +261,12 @@ func (o DeviceTagsArrayOutput) ToDeviceTagsArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o DeviceTagsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DeviceTags] {
+	return pulumix.Output[[]*DeviceTags]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DeviceTagsArrayOutput) Index(i pulumi.IntInput) DeviceTagsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DeviceTags {
 		return vs[0].([]*DeviceTags)[vs[1].(int)]
@@ -254,6 +285,12 @@ func (o DeviceTagsMapOutput) ToDeviceTagsMapOutput() DeviceTagsMapOutput {
 
 func (o DeviceTagsMapOutput) ToDeviceTagsMapOutputWithContext(ctx context.Context) DeviceTagsMapOutput {
 	return o
+}
+
+func (o DeviceTagsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DeviceTags] {
+	return pulumix.Output[map[string]*DeviceTags]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DeviceTagsMapOutput) MapIndex(k pulumi.StringInput) DeviceTagsOutput {
