@@ -61,7 +61,7 @@ public class DeviceAuthorization extends com.pulumi.resources.CustomResource {
      * Whether or not the device is authorized
      * 
      */
-    @Export(name="authorized", type=Boolean.class, parameters={})
+    @Export(name="authorized", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> authorized;
 
     /**
@@ -75,7 +75,7 @@ public class DeviceAuthorization extends com.pulumi.resources.CustomResource {
      * The device to set as authorized
      * 
      */
-    @Export(name="deviceId", type=String.class, parameters={})
+    @Export(name="deviceId", refs={String.class}, tree="[0]")
     private Output<String> deviceId;
 
     /**

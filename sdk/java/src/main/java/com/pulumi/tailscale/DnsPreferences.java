@@ -53,7 +53,7 @@ public class DnsPreferences extends com.pulumi.resources.CustomResource {
      * Whether or not to enable magic DNS
      * 
      */
-    @Export(name="magicDns", type=Boolean.class, parameters={})
+    @Export(name="magicDns", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> magicDns;
 
     /**
