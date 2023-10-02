@@ -61,7 +61,7 @@ public class DeviceTags extends com.pulumi.resources.CustomResource {
      * The device to set tags for
      * 
      */
-    @Export(name="deviceId", type=String.class, parameters={})
+    @Export(name="deviceId", refs={String.class}, tree="[0]")
     private Output<String> deviceId;
 
     /**
@@ -75,7 +75,7 @@ public class DeviceTags extends com.pulumi.resources.CustomResource {
      * The tags to apply to the device
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> tags;
 
     /**
