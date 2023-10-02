@@ -54,7 +54,7 @@ public class DnsSearchPaths extends com.pulumi.resources.CustomResource {
      * Devices on your network will use these domain suffixes to resolve DNS names.
      * 
      */
-    @Export(name="searchPaths", type=List.class, parameters={String.class})
+    @Export(name="searchPaths", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> searchPaths;
 
     /**

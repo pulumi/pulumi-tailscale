@@ -62,7 +62,7 @@ public class DeviceKey extends com.pulumi.resources.CustomResource {
      * The device to update the key properties of
      * 
      */
-    @Export(name="deviceId", type=String.class, parameters={})
+    @Export(name="deviceId", refs={String.class}, tree="[0]")
     private Output<String> deviceId;
 
     /**
@@ -76,7 +76,7 @@ public class DeviceKey extends com.pulumi.resources.CustomResource {
      * Determines whether or not the device&#39;s key will expire
      * 
      */
-    @Export(name="keyExpiryDisabled", type=Boolean.class, parameters={})
+    @Export(name="keyExpiryDisabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> keyExpiryDisabled;
 
     /**

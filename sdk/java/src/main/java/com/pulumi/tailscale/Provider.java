@@ -28,7 +28,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Conflicts with &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;.
      * 
      */
-    @Export(name="apiKey", type=String.class, parameters={})
+    @Export(name="apiKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiKey;
 
     /**
@@ -44,7 +44,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * environment variable.
      * 
      */
-    @Export(name="baseUrl", type=String.class, parameters={})
+    @Export(name="baseUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> baseUrl;
 
     /**
@@ -60,7 +60,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
      * 
      */
-    @Export(name="oauthClientId", type=String.class, parameters={})
+    @Export(name="oauthClientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oauthClientId;
 
     /**
@@ -76,7 +76,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
      * 
      */
-    @Export(name="oauthClientSecret", type=String.class, parameters={})
+    @Export(name="oauthClientSecret", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oauthClientSecret;
 
     /**
@@ -92,7 +92,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * variable. Default is the tailnet that owns API credentials passed to the provider.
      * 
      */
-    @Export(name="tailnet", type=String.class, parameters={})
+    @Export(name="tailnet", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tailnet;
 
     /**
@@ -107,7 +107,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * User-Agent header for API requests.
      * 
      */
-    @Export(name="userAgent", type=String.class, parameters={})
+    @Export(name="userAgent", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> userAgent;
 
     /**
