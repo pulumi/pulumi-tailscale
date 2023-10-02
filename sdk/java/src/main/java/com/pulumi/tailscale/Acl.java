@@ -61,7 +61,7 @@ public class Acl extends com.pulumi.resources.CustomResource {
      * The JSON-based policy that defines which devices and users are allowed to connect in your network
      * 
      */
-    @Export(name="acl", type=String.class, parameters={})
+    @Export(name="acl", refs={String.class}, tree="[0]")
     private Output<String> acl;
 
     /**
