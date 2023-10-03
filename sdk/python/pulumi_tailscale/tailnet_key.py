@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['TailnetKeyArgs', 'TailnetKey']
@@ -29,18 +29,37 @@ class TailnetKeyArgs:
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
+        TailnetKeyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            ephemeral=ephemeral,
+            expiry=expiry,
+            preauthorized=preauthorized,
+            reusable=reusable,
+            tags=tags,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[pulumi.Input[str]] = None,
+             ephemeral: Optional[pulumi.Input[bool]] = None,
+             expiry: Optional[pulumi.Input[int]] = None,
+             preauthorized: Optional[pulumi.Input[bool]] = None,
+             reusable: Optional[pulumi.Input[bool]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if ephemeral is not None:
-            pulumi.set(__self__, "ephemeral", ephemeral)
+            _setter("ephemeral", ephemeral)
         if expiry is not None:
-            pulumi.set(__self__, "expiry", expiry)
+            _setter("expiry", expiry)
         if preauthorized is not None:
-            pulumi.set(__self__, "preauthorized", preauthorized)
+            _setter("preauthorized", preauthorized)
         if reusable is not None:
-            pulumi.set(__self__, "reusable", reusable)
+            _setter("reusable", reusable)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
 
     @property
     @pulumi.getter
@@ -139,24 +158,49 @@ class _TailnetKeyState:
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
+        _TailnetKeyState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            created_at=created_at,
+            description=description,
+            ephemeral=ephemeral,
+            expires_at=expires_at,
+            expiry=expiry,
+            key=key,
+            preauthorized=preauthorized,
+            reusable=reusable,
+            tags=tags,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             created_at: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             ephemeral: Optional[pulumi.Input[bool]] = None,
+             expires_at: Optional[pulumi.Input[str]] = None,
+             expiry: Optional[pulumi.Input[int]] = None,
+             key: Optional[pulumi.Input[str]] = None,
+             preauthorized: Optional[pulumi.Input[bool]] = None,
+             reusable: Optional[pulumi.Input[bool]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if ephemeral is not None:
-            pulumi.set(__self__, "ephemeral", ephemeral)
+            _setter("ephemeral", ephemeral)
         if expires_at is not None:
-            pulumi.set(__self__, "expires_at", expires_at)
+            _setter("expires_at", expires_at)
         if expiry is not None:
-            pulumi.set(__self__, "expiry", expiry)
+            _setter("expiry", expiry)
         if key is not None:
-            pulumi.set(__self__, "key", key)
+            _setter("key", key)
         if preauthorized is not None:
-            pulumi.set(__self__, "preauthorized", preauthorized)
+            _setter("preauthorized", preauthorized)
         if reusable is not None:
-            pulumi.set(__self__, "reusable", reusable)
+            _setter("reusable", reusable)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -338,6 +382,10 @@ class TailnetKey(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            TailnetKeyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

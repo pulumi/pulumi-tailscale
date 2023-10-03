@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['DeviceSubnetRoutesArgs', 'DeviceSubnetRoutes']
@@ -21,8 +21,19 @@ class DeviceSubnetRoutesArgs:
         :param pulumi.Input[str] device_id: The device to set subnet routes for
         :param pulumi.Input[Sequence[pulumi.Input[str]]] routes: The subnet routes that are enabled to be routed by a device
         """
-        pulumi.set(__self__, "device_id", device_id)
-        pulumi.set(__self__, "routes", routes)
+        DeviceSubnetRoutesArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            device_id=device_id,
+            routes=routes,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             device_id: pulumi.Input[str],
+             routes: pulumi.Input[Sequence[pulumi.Input[str]]],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("device_id", device_id)
+        _setter("routes", routes)
 
     @property
     @pulumi.getter(name="deviceId")
@@ -59,10 +70,21 @@ class _DeviceSubnetRoutesState:
         :param pulumi.Input[str] device_id: The device to set subnet routes for
         :param pulumi.Input[Sequence[pulumi.Input[str]]] routes: The subnet routes that are enabled to be routed by a device
         """
+        _DeviceSubnetRoutesState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            device_id=device_id,
+            routes=routes,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             device_id: Optional[pulumi.Input[str]] = None,
+             routes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if device_id is not None:
-            pulumi.set(__self__, "device_id", device_id)
+            _setter("device_id", device_id)
         if routes is not None:
-            pulumi.set(__self__, "routes", routes)
+            _setter("routes", routes)
 
     @property
     @pulumi.getter(name="deviceId")
@@ -156,6 +178,10 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            DeviceSubnetRoutesArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
