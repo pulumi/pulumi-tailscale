@@ -61,7 +61,7 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      * The creation timestamp of the key in RFC3339 format
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -75,7 +75,7 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      * A description of the key consisting of alphanumeric characters.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -89,7 +89,7 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      * Indicates if the key is ephemeral.
      * 
      */
-    @Export(name="ephemeral", type=Boolean.class, parameters={})
+    @Export(name="ephemeral", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> ephemeral;
 
     /**
@@ -103,7 +103,7 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      * The expiry timestamp of the key in RFC3339 format
      * 
      */
-    @Export(name="expiresAt", type=String.class, parameters={})
+    @Export(name="expiresAt", refs={String.class}, tree="[0]")
     private Output<String> expiresAt;
 
     /**
@@ -117,7 +117,7 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      * The expiry of the key in seconds
      * 
      */
-    @Export(name="expiry", type=Integer.class, parameters={})
+    @Export(name="expiry", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> expiry;
 
     /**
@@ -131,7 +131,7 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      * The authentication key
      * 
      */
-    @Export(name="key", type=String.class, parameters={})
+    @Export(name="key", refs={String.class}, tree="[0]")
     private Output<String> key;
 
     /**
@@ -145,7 +145,7 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
      * 
      */
-    @Export(name="preauthorized", type=Boolean.class, parameters={})
+    @Export(name="preauthorized", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> preauthorized;
 
     /**
@@ -159,7 +159,7 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      * Indicates if the key is reusable or single-use.
      * 
      */
-    @Export(name="reusable", type=Boolean.class, parameters={})
+    @Export(name="reusable", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> reusable;
 
     /**
@@ -173,7 +173,7 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      * List of tags to apply to the machines authenticated by the key.
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**

@@ -56,7 +56,7 @@ public class DnsNameservers extends com.pulumi.resources.CustomResource {
      * Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
      * 
      */
-    @Export(name="nameservers", type=List.class, parameters={String.class})
+    @Export(name="nameservers", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> nameservers;
 
     /**

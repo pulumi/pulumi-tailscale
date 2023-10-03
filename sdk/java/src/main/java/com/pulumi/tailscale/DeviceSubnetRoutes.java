@@ -64,7 +64,7 @@ public class DeviceSubnetRoutes extends com.pulumi.resources.CustomResource {
      * The device to set subnet routes for
      * 
      */
-    @Export(name="deviceId", type=String.class, parameters={})
+    @Export(name="deviceId", refs={String.class}, tree="[0]")
     private Output<String> deviceId;
 
     /**
@@ -78,7 +78,7 @@ public class DeviceSubnetRoutes extends com.pulumi.resources.CustomResource {
      * The subnet routes that are enabled to be routed by a device
      * 
      */
-    @Export(name="routes", type=List.class, parameters={String.class})
+    @Export(name="routes", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> routes;
 
     /**
