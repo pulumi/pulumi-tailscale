@@ -14,9 +14,6 @@ namespace Pulumi.Tailscale.Outputs
     public sealed class GetDevicesDeviceResult
     {
         public readonly ImmutableArray<string> Addresses;
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         public readonly string Id;
         public readonly string Name;
         public readonly ImmutableArray<string> Tags;

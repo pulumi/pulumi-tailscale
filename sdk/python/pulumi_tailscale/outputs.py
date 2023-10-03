@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -21,14 +21,28 @@ class GetDevicesDeviceResult(dict):
                  name: str,
                  tags: Sequence[str],
                  user: str):
-        """
-        :param str id: The ID of this resource.
-        """
-        pulumi.set(__self__, "addresses", addresses)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "tags", tags)
-        pulumi.set(__self__, "user", user)
+        GetDevicesDeviceResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            addresses=addresses,
+            id=id,
+            name=name,
+            tags=tags,
+            user=user,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             addresses: Sequence[str],
+             id: str,
+             name: str,
+             tags: Sequence[str],
+             user: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("addresses", addresses)
+        _setter("id", id)
+        _setter("name", name)
+        _setter("tags", tags)
+        _setter("user", user)
 
     @property
     @pulumi.getter
@@ -38,9 +52,6 @@ class GetDevicesDeviceResult(dict):
     @property
     @pulumi.getter
     def id(self) -> str:
-        """
-        The ID of this resource.
-        """
         return pulumi.get(self, "id")
 
     @property

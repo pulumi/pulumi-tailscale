@@ -16,11 +16,10 @@ var _ = internal.GetEnvOrDefault
 
 type GetDevicesDevice struct {
 	Addresses []string `pulumi:"addresses"`
-	// The ID of this resource.
-	Id   string   `pulumi:"id"`
-	Name string   `pulumi:"name"`
-	Tags []string `pulumi:"tags"`
-	User string   `pulumi:"user"`
+	Id        string   `pulumi:"id"`
+	Name      string   `pulumi:"name"`
+	Tags      []string `pulumi:"tags"`
+	User      string   `pulumi:"user"`
 }
 
 // GetDevicesDeviceInput is an input type that accepts GetDevicesDeviceArgs and GetDevicesDeviceOutput values.
@@ -36,11 +35,10 @@ type GetDevicesDeviceInput interface {
 
 type GetDevicesDeviceArgs struct {
 	Addresses pulumi.StringArrayInput `pulumi:"addresses"`
-	// The ID of this resource.
-	Id   pulumi.StringInput      `pulumi:"id"`
-	Name pulumi.StringInput      `pulumi:"name"`
-	Tags pulumi.StringArrayInput `pulumi:"tags"`
-	User pulumi.StringInput      `pulumi:"user"`
+	Id        pulumi.StringInput      `pulumi:"id"`
+	Name      pulumi.StringInput      `pulumi:"name"`
+	Tags      pulumi.StringArrayInput `pulumi:"tags"`
+	User      pulumi.StringInput      `pulumi:"user"`
 }
 
 func (GetDevicesDeviceArgs) ElementType() reflect.Type {
@@ -116,7 +114,6 @@ func (o GetDevicesDeviceOutput) Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDevicesDevice) []string { return v.Addresses }).(pulumi.StringArrayOutput)
 }
 
-// The ID of this resource.
 func (o GetDevicesDeviceOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDevicesDevice) string { return v.Id }).(pulumi.StringOutput)
 }

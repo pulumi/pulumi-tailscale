@@ -7,9 +7,6 @@ import * as outputs from "../types/output";
 
 export interface GetDevicesDevice {
     addresses: string[];
-    /**
-     * The ID of this resource.
-     */
     id: string;
     name: string;
     tags: string[];
