@@ -1,0 +1,12 @@
+provider: tailscale
+major-version: 1
+env:
+  TAILSCALE_OAUTH_CLIENT_SECRET: ${{ secrets.TAILSCALE_OAUTH_CLIENT_SECRET }}
+  TAILSCALE_OAUTH_CLIENT_ID: ${{ secrets.TAILSCALE_OAUTH_CLIENT_ID }}
+  TAILSCALE_TAILNET: ${{ secrets.TAILSCALE_TAILNET }}
+makeTemplate: bridged
+plugins:
+  - name: random 
+    version: "4.3.1"
+team: ecosystem
+javaGenVersion: "v0.9.7"
