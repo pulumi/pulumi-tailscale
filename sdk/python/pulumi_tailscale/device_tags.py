@@ -29,9 +29,17 @@ class DeviceTagsArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             device_id: pulumi.Input[str],
-             tags: pulumi.Input[Sequence[pulumi.Input[str]]],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             device_id: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if device_id is None and 'deviceId' in kwargs:
+            device_id = kwargs['deviceId']
+        if device_id is None:
+            raise TypeError("Missing 'device_id' argument")
+        if tags is None:
+            raise TypeError("Missing 'tags' argument")
+
         _setter("device_id", device_id)
         _setter("tags", tags)
 
@@ -80,7 +88,11 @@ class _DeviceTagsState:
              _setter: Callable[[Any, Any], None],
              device_id: Optional[pulumi.Input[str]] = None,
              tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if device_id is None and 'deviceId' in kwargs:
+            device_id = kwargs['deviceId']
+
         if device_id is not None:
             _setter("device_id", device_id)
         if tags is not None:

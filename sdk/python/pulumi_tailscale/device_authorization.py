@@ -29,9 +29,17 @@ class DeviceAuthorizationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             authorized: pulumi.Input[bool],
-             device_id: pulumi.Input[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             authorized: Optional[pulumi.Input[bool]] = None,
+             device_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if authorized is None:
+            raise TypeError("Missing 'authorized' argument")
+        if device_id is None and 'deviceId' in kwargs:
+            device_id = kwargs['deviceId']
+        if device_id is None:
+            raise TypeError("Missing 'device_id' argument")
+
         _setter("authorized", authorized)
         _setter("device_id", device_id)
 
@@ -80,7 +88,11 @@ class _DeviceAuthorizationState:
              _setter: Callable[[Any, Any], None],
              authorized: Optional[pulumi.Input[bool]] = None,
              device_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if device_id is None and 'deviceId' in kwargs:
+            device_id = kwargs['deviceId']
+
         if authorized is not None:
             _setter("authorized", authorized)
         if device_id is not None:

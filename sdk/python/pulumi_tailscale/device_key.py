@@ -29,9 +29,17 @@ class DeviceKeyArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             device_id: pulumi.Input[str],
+             device_id: Optional[pulumi.Input[str]] = None,
              key_expiry_disabled: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if device_id is None and 'deviceId' in kwargs:
+            device_id = kwargs['deviceId']
+        if device_id is None:
+            raise TypeError("Missing 'device_id' argument")
+        if key_expiry_disabled is None and 'keyExpiryDisabled' in kwargs:
+            key_expiry_disabled = kwargs['keyExpiryDisabled']
+
         _setter("device_id", device_id)
         if key_expiry_disabled is not None:
             _setter("key_expiry_disabled", key_expiry_disabled)
@@ -81,7 +89,13 @@ class _DeviceKeyState:
              _setter: Callable[[Any, Any], None],
              device_id: Optional[pulumi.Input[str]] = None,
              key_expiry_disabled: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if device_id is None and 'deviceId' in kwargs:
+            device_id = kwargs['deviceId']
+        if key_expiry_disabled is None and 'keyExpiryDisabled' in kwargs:
+            key_expiry_disabled = kwargs['keyExpiryDisabled']
+
         if device_id is not None:
             _setter("device_id", device_id)
         if key_expiry_disabled is not None:

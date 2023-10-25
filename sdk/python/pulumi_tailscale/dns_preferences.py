@@ -26,8 +26,14 @@ class DnsPreferencesArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             magic_dns: pulumi.Input[bool],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             magic_dns: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if magic_dns is None and 'magicDns' in kwargs:
+            magic_dns = kwargs['magicDns']
+        if magic_dns is None:
+            raise TypeError("Missing 'magic_dns' argument")
+
         _setter("magic_dns", magic_dns)
 
     @property
@@ -59,7 +65,11 @@ class _DnsPreferencesState:
     def _configure(
              _setter: Callable[[Any, Any], None],
              magic_dns: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if magic_dns is None and 'magicDns' in kwargs:
+            magic_dns = kwargs['magicDns']
+
         if magic_dns is not None:
             _setter("magic_dns", magic_dns)
 

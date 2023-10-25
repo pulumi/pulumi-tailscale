@@ -26,8 +26,14 @@ class DnsSearchPathsArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             search_paths: pulumi.Input[Sequence[pulumi.Input[str]]],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             search_paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if search_paths is None and 'searchPaths' in kwargs:
+            search_paths = kwargs['searchPaths']
+        if search_paths is None:
+            raise TypeError("Missing 'search_paths' argument")
+
         _setter("search_paths", search_paths)
 
     @property
@@ -59,7 +65,11 @@ class _DnsSearchPathsState:
     def _configure(
              _setter: Callable[[Any, Any], None],
              search_paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if search_paths is None and 'searchPaths' in kwargs:
+            search_paths = kwargs['searchPaths']
+
         if search_paths is not None:
             _setter("search_paths", search_paths)
 

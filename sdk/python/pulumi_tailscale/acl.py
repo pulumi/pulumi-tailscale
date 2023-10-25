@@ -26,8 +26,12 @@ class AclArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             acl: pulumi.Input[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             acl: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if acl is None:
+            raise TypeError("Missing 'acl' argument")
+
         _setter("acl", acl)
 
     @property
@@ -59,7 +63,9 @@ class _AclState:
     def _configure(
              _setter: Callable[[Any, Any], None],
              acl: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if acl is not None:
             _setter("acl", acl)
 

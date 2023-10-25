@@ -58,7 +58,19 @@ class ProviderArgs:
              scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              tailnet: Optional[pulumi.Input[str]] = None,
              user_agent: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if api_key is None and 'apiKey' in kwargs:
+            api_key = kwargs['apiKey']
+        if base_url is None and 'baseUrl' in kwargs:
+            base_url = kwargs['baseUrl']
+        if oauth_client_id is None and 'oauthClientId' in kwargs:
+            oauth_client_id = kwargs['oauthClientId']
+        if oauth_client_secret is None and 'oauthClientSecret' in kwargs:
+            oauth_client_secret = kwargs['oauthClientSecret']
+        if user_agent is None and 'userAgent' in kwargs:
+            user_agent = kwargs['userAgent']
+
         if api_key is not None:
             _setter("api_key", api_key)
         if base_url is not None:
