@@ -32,12 +32,24 @@ class GetDevicesDeviceResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             addresses: Sequence[str],
-             id: str,
-             name: str,
-             tags: Sequence[str],
-             user: str,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             addresses: Optional[Sequence[str]] = None,
+             id: Optional[str] = None,
+             name: Optional[str] = None,
+             tags: Optional[Sequence[str]] = None,
+             user: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if addresses is None:
+            raise TypeError("Missing 'addresses' argument")
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if tags is None:
+            raise TypeError("Missing 'tags' argument")
+        if user is None:
+            raise TypeError("Missing 'user' argument")
+
         _setter("addresses", addresses)
         _setter("id", id)
         _setter("name", name)

@@ -26,8 +26,12 @@ class DnsNameserversArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             nameservers: pulumi.Input[Sequence[pulumi.Input[str]]],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if nameservers is None:
+            raise TypeError("Missing 'nameservers' argument")
+
         _setter("nameservers", nameservers)
 
     @property
@@ -59,7 +63,9 @@ class _DnsNameserversState:
     def _configure(
              _setter: Callable[[Any, Any], None],
              nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if nameservers is not None:
             _setter("nameservers", nameservers)
 

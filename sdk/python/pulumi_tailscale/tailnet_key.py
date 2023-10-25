@@ -47,7 +47,9 @@ class TailnetKeyArgs:
              preauthorized: Optional[pulumi.Input[bool]] = None,
              reusable: Optional[pulumi.Input[bool]] = None,
              tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if description is not None:
             _setter("description", description)
         if ephemeral is not None:
@@ -182,7 +184,13 @@ class _TailnetKeyState:
              preauthorized: Optional[pulumi.Input[bool]] = None,
              reusable: Optional[pulumi.Input[bool]] = None,
              tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if created_at is None and 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if expires_at is None and 'expiresAt' in kwargs:
+            expires_at = kwargs['expiresAt']
+
         if created_at is not None:
             _setter("created_at", created_at)
         if description is not None:
