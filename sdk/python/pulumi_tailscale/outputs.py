@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -21,40 +21,11 @@ class GetDevicesDeviceResult(dict):
                  name: str,
                  tags: Sequence[str],
                  user: str):
-        GetDevicesDeviceResult._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            addresses=addresses,
-            id=id,
-            name=name,
-            tags=tags,
-            user=user,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             addresses: Optional[Sequence[str]] = None,
-             id: Optional[str] = None,
-             name: Optional[str] = None,
-             tags: Optional[Sequence[str]] = None,
-             user: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if addresses is None:
-            raise TypeError("Missing 'addresses' argument")
-        if id is None:
-            raise TypeError("Missing 'id' argument")
-        if name is None:
-            raise TypeError("Missing 'name' argument")
-        if tags is None:
-            raise TypeError("Missing 'tags' argument")
-        if user is None:
-            raise TypeError("Missing 'user' argument")
-
-        _setter("addresses", addresses)
-        _setter("id", id)
-        _setter("name", name)
-        _setter("tags", tags)
-        _setter("user", user)
+        pulumi.set(__self__, "addresses", addresses)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter

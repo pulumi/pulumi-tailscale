@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ProviderArgs', 'Provider']
@@ -38,53 +38,20 @@ class ProviderArgs:
                variable. Default is the tailnet that owns API credentials passed to the provider.
         :param pulumi.Input[str] user_agent: User-Agent header for API requests.
         """
-        ProviderArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            api_key=api_key,
-            base_url=base_url,
-            oauth_client_id=oauth_client_id,
-            oauth_client_secret=oauth_client_secret,
-            scopes=scopes,
-            tailnet=tailnet,
-            user_agent=user_agent,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             api_key: Optional[pulumi.Input[str]] = None,
-             base_url: Optional[pulumi.Input[str]] = None,
-             oauth_client_id: Optional[pulumi.Input[str]] = None,
-             oauth_client_secret: Optional[pulumi.Input[str]] = None,
-             scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             tailnet: Optional[pulumi.Input[str]] = None,
-             user_agent: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if api_key is None and 'apiKey' in kwargs:
-            api_key = kwargs['apiKey']
-        if base_url is None and 'baseUrl' in kwargs:
-            base_url = kwargs['baseUrl']
-        if oauth_client_id is None and 'oauthClientId' in kwargs:
-            oauth_client_id = kwargs['oauthClientId']
-        if oauth_client_secret is None and 'oauthClientSecret' in kwargs:
-            oauth_client_secret = kwargs['oauthClientSecret']
-        if user_agent is None and 'userAgent' in kwargs:
-            user_agent = kwargs['userAgent']
-
         if api_key is not None:
-            _setter("api_key", api_key)
+            pulumi.set(__self__, "api_key", api_key)
         if base_url is not None:
-            _setter("base_url", base_url)
+            pulumi.set(__self__, "base_url", base_url)
         if oauth_client_id is not None:
-            _setter("oauth_client_id", oauth_client_id)
+            pulumi.set(__self__, "oauth_client_id", oauth_client_id)
         if oauth_client_secret is not None:
-            _setter("oauth_client_secret", oauth_client_secret)
+            pulumi.set(__self__, "oauth_client_secret", oauth_client_secret)
         if scopes is not None:
-            _setter("scopes", scopes)
+            pulumi.set(__self__, "scopes", scopes)
         if tailnet is not None:
-            _setter("tailnet", tailnet)
+            pulumi.set(__self__, "tailnet", tailnet)
         if user_agent is not None:
-            _setter("user_agent", user_agent)
+            pulumi.set(__self__, "user_agent", user_agent)
 
     @property
     @pulumi.getter(name="apiKey")
@@ -236,10 +203,6 @@ class Provider(pulumi.ProviderResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            ProviderArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

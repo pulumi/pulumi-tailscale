@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['DeviceTagsArgs', 'DeviceTags']
@@ -21,27 +21,8 @@ class DeviceTagsArgs:
         :param pulumi.Input[str] device_id: The device to set tags for
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to apply to the device
         """
-        DeviceTagsArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            device_id=device_id,
-            tags=tags,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             device_id: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if device_id is None and 'deviceId' in kwargs:
-            device_id = kwargs['deviceId']
-        if device_id is None:
-            raise TypeError("Missing 'device_id' argument")
-        if tags is None:
-            raise TypeError("Missing 'tags' argument")
-
-        _setter("device_id", device_id)
-        _setter("tags", tags)
+        pulumi.set(__self__, "device_id", device_id)
+        pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="deviceId")
@@ -78,25 +59,10 @@ class _DeviceTagsState:
         :param pulumi.Input[str] device_id: The device to set tags for
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags to apply to the device
         """
-        _DeviceTagsState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            device_id=device_id,
-            tags=tags,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             device_id: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if device_id is None and 'deviceId' in kwargs:
-            device_id = kwargs['deviceId']
-
         if device_id is not None:
-            _setter("device_id", device_id)
+            pulumi.set(__self__, "device_id", device_id)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="deviceId")
@@ -182,10 +148,6 @@ class DeviceTags(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            DeviceTagsArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

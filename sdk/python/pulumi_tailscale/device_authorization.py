@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['DeviceAuthorizationArgs', 'DeviceAuthorization']
@@ -21,27 +21,8 @@ class DeviceAuthorizationArgs:
         :param pulumi.Input[bool] authorized: Whether or not the device is authorized
         :param pulumi.Input[str] device_id: The device to set as authorized
         """
-        DeviceAuthorizationArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            authorized=authorized,
-            device_id=device_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             authorized: Optional[pulumi.Input[bool]] = None,
-             device_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if authorized is None:
-            raise TypeError("Missing 'authorized' argument")
-        if device_id is None and 'deviceId' in kwargs:
-            device_id = kwargs['deviceId']
-        if device_id is None:
-            raise TypeError("Missing 'device_id' argument")
-
-        _setter("authorized", authorized)
-        _setter("device_id", device_id)
+        pulumi.set(__self__, "authorized", authorized)
+        pulumi.set(__self__, "device_id", device_id)
 
     @property
     @pulumi.getter
@@ -78,25 +59,10 @@ class _DeviceAuthorizationState:
         :param pulumi.Input[bool] authorized: Whether or not the device is authorized
         :param pulumi.Input[str] device_id: The device to set as authorized
         """
-        _DeviceAuthorizationState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            authorized=authorized,
-            device_id=device_id,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             authorized: Optional[pulumi.Input[bool]] = None,
-             device_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if device_id is None and 'deviceId' in kwargs:
-            device_id = kwargs['deviceId']
-
         if authorized is not None:
-            _setter("authorized", authorized)
+            pulumi.set(__self__, "authorized", authorized)
         if device_id is not None:
-            _setter("device_id", device_id)
+            pulumi.set(__self__, "device_id", device_id)
 
     @property
     @pulumi.getter
@@ -182,10 +148,6 @@ class DeviceAuthorization(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            DeviceAuthorizationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
