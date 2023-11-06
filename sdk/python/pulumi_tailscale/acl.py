@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['AclArgs', 'Acl']
@@ -19,7 +19,20 @@ class AclArgs:
         The set of arguments for constructing a Acl resource.
         :param pulumi.Input[str] acl: The JSON-based policy that defines which devices and users are allowed to connect in your network
         """
-        pulumi.set(__self__, "acl", acl)
+        AclArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            acl=acl,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             acl: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if acl is None:
+            raise TypeError("Missing 'acl' argument")
+
+        _setter("acl", acl)
 
     @property
     @pulumi.getter
@@ -42,8 +55,19 @@ class _AclState:
         Input properties used for looking up and filtering Acl resources.
         :param pulumi.Input[str] acl: The JSON-based policy that defines which devices and users are allowed to connect in your network
         """
+        _AclState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            acl=acl,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             acl: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if acl is not None:
-            pulumi.set(__self__, "acl", acl)
+            _setter("acl", acl)
 
     @property
     @pulumi.getter
@@ -123,6 +147,10 @@ class Acl(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            AclArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

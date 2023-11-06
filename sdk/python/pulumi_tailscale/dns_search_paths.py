@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['DnsSearchPathsArgs', 'DnsSearchPaths']
@@ -19,7 +19,22 @@ class DnsSearchPathsArgs:
         The set of arguments for constructing a DnsSearchPaths resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] search_paths: Devices on your network will use these domain suffixes to resolve DNS names.
         """
-        pulumi.set(__self__, "search_paths", search_paths)
+        DnsSearchPathsArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            search_paths=search_paths,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             search_paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if search_paths is None and 'searchPaths' in kwargs:
+            search_paths = kwargs['searchPaths']
+        if search_paths is None:
+            raise TypeError("Missing 'search_paths' argument")
+
+        _setter("search_paths", search_paths)
 
     @property
     @pulumi.getter(name="searchPaths")
@@ -42,8 +57,21 @@ class _DnsSearchPathsState:
         Input properties used for looking up and filtering DnsSearchPaths resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] search_paths: Devices on your network will use these domain suffixes to resolve DNS names.
         """
+        _DnsSearchPathsState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            search_paths=search_paths,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             search_paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if search_paths is None and 'searchPaths' in kwargs:
+            search_paths = kwargs['searchPaths']
+
         if search_paths is not None:
-            pulumi.set(__self__, "search_paths", search_paths)
+            _setter("search_paths", search_paths)
 
     @property
     @pulumi.getter(name="searchPaths")
@@ -109,6 +137,10 @@ class DnsSearchPaths(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            DnsSearchPathsArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

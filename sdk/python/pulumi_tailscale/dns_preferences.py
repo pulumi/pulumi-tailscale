@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['DnsPreferencesArgs', 'DnsPreferences']
@@ -19,7 +19,22 @@ class DnsPreferencesArgs:
         The set of arguments for constructing a DnsPreferences resource.
         :param pulumi.Input[bool] magic_dns: Whether or not to enable magic DNS
         """
-        pulumi.set(__self__, "magic_dns", magic_dns)
+        DnsPreferencesArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            magic_dns=magic_dns,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             magic_dns: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if magic_dns is None and 'magicDns' in kwargs:
+            magic_dns = kwargs['magicDns']
+        if magic_dns is None:
+            raise TypeError("Missing 'magic_dns' argument")
+
+        _setter("magic_dns", magic_dns)
 
     @property
     @pulumi.getter(name="magicDns")
@@ -42,8 +57,21 @@ class _DnsPreferencesState:
         Input properties used for looking up and filtering DnsPreferences resources.
         :param pulumi.Input[bool] magic_dns: Whether or not to enable magic DNS
         """
+        _DnsPreferencesState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            magic_dns=magic_dns,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             magic_dns: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if magic_dns is None and 'magicDns' in kwargs:
+            magic_dns = kwargs['magicDns']
+
         if magic_dns is not None:
-            pulumi.set(__self__, "magic_dns", magic_dns)
+            _setter("magic_dns", magic_dns)
 
     @property
     @pulumi.getter(name="magicDns")
@@ -109,6 +137,10 @@ class DnsPreferences(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            DnsPreferencesArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

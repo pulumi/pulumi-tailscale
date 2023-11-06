@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['DeviceKeyArgs', 'DeviceKey']
@@ -21,9 +21,28 @@ class DeviceKeyArgs:
         :param pulumi.Input[str] device_id: The device to update the key properties of
         :param pulumi.Input[bool] key_expiry_disabled: Determines whether or not the device's key will expire
         """
-        pulumi.set(__self__, "device_id", device_id)
+        DeviceKeyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            device_id=device_id,
+            key_expiry_disabled=key_expiry_disabled,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             device_id: Optional[pulumi.Input[str]] = None,
+             key_expiry_disabled: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if device_id is None and 'deviceId' in kwargs:
+            device_id = kwargs['deviceId']
+        if device_id is None:
+            raise TypeError("Missing 'device_id' argument")
+        if key_expiry_disabled is None and 'keyExpiryDisabled' in kwargs:
+            key_expiry_disabled = kwargs['keyExpiryDisabled']
+
+        _setter("device_id", device_id)
         if key_expiry_disabled is not None:
-            pulumi.set(__self__, "key_expiry_disabled", key_expiry_disabled)
+            _setter("key_expiry_disabled", key_expiry_disabled)
 
     @property
     @pulumi.getter(name="deviceId")
@@ -60,10 +79,27 @@ class _DeviceKeyState:
         :param pulumi.Input[str] device_id: The device to update the key properties of
         :param pulumi.Input[bool] key_expiry_disabled: Determines whether or not the device's key will expire
         """
+        _DeviceKeyState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            device_id=device_id,
+            key_expiry_disabled=key_expiry_disabled,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             device_id: Optional[pulumi.Input[str]] = None,
+             key_expiry_disabled: Optional[pulumi.Input[bool]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if device_id is None and 'deviceId' in kwargs:
+            device_id = kwargs['deviceId']
+        if key_expiry_disabled is None and 'keyExpiryDisabled' in kwargs:
+            key_expiry_disabled = kwargs['keyExpiryDisabled']
+
         if device_id is not None:
-            pulumi.set(__self__, "device_id", device_id)
+            _setter("device_id", device_id)
         if key_expiry_disabled is not None:
-            pulumi.set(__self__, "key_expiry_disabled", key_expiry_disabled)
+            _setter("key_expiry_disabled", key_expiry_disabled)
 
     @property
     @pulumi.getter(name="deviceId")
@@ -149,6 +185,10 @@ class DeviceKey(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            DeviceKeyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

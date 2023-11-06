@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['DnsNameserversArgs', 'DnsNameservers']
@@ -19,7 +19,20 @@ class DnsNameserversArgs:
         The set of arguments for constructing a DnsNameservers resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
         """
-        pulumi.set(__self__, "nameservers", nameservers)
+        DnsNameserversArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            nameservers=nameservers,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if nameservers is None:
+            raise TypeError("Missing 'nameservers' argument")
+
+        _setter("nameservers", nameservers)
 
     @property
     @pulumi.getter
@@ -42,8 +55,19 @@ class _DnsNameserversState:
         Input properties used for looking up and filtering DnsNameservers resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
         """
+        _DnsNameserversState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            nameservers=nameservers,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if nameservers is not None:
-            pulumi.set(__self__, "nameservers", nameservers)
+            _setter("nameservers", nameservers)
 
     @property
     @pulumi.getter
@@ -115,6 +139,10 @@ class DnsNameservers(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            DnsNameserversArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
