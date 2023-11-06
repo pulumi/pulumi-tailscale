@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The tailnetKey resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information
@@ -199,12 +198,6 @@ func (i *TailnetKey) ToTailnetKeyOutputWithContext(ctx context.Context) TailnetK
 	return pulumi.ToOutputWithContext(ctx, i).(TailnetKeyOutput)
 }
 
-func (i *TailnetKey) ToOutput(ctx context.Context) pulumix.Output[*TailnetKey] {
-	return pulumix.Output[*TailnetKey]{
-		OutputState: i.ToTailnetKeyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // TailnetKeyArrayInput is an input type that accepts TailnetKeyArray and TailnetKeyArrayOutput values.
 // You can construct a concrete instance of `TailnetKeyArrayInput` via:
 //
@@ -228,12 +221,6 @@ func (i TailnetKeyArray) ToTailnetKeyArrayOutput() TailnetKeyArrayOutput {
 
 func (i TailnetKeyArray) ToTailnetKeyArrayOutputWithContext(ctx context.Context) TailnetKeyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TailnetKeyArrayOutput)
-}
-
-func (i TailnetKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*TailnetKey] {
-	return pulumix.Output[[]*TailnetKey]{
-		OutputState: i.ToTailnetKeyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // TailnetKeyMapInput is an input type that accepts TailnetKeyMap and TailnetKeyMapOutput values.
@@ -261,12 +248,6 @@ func (i TailnetKeyMap) ToTailnetKeyMapOutputWithContext(ctx context.Context) Tai
 	return pulumi.ToOutputWithContext(ctx, i).(TailnetKeyMapOutput)
 }
 
-func (i TailnetKeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*TailnetKey] {
-	return pulumix.Output[map[string]*TailnetKey]{
-		OutputState: i.ToTailnetKeyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type TailnetKeyOutput struct{ *pulumi.OutputState }
 
 func (TailnetKeyOutput) ElementType() reflect.Type {
@@ -279,12 +260,6 @@ func (o TailnetKeyOutput) ToTailnetKeyOutput() TailnetKeyOutput {
 
 func (o TailnetKeyOutput) ToTailnetKeyOutputWithContext(ctx context.Context) TailnetKeyOutput {
 	return o
-}
-
-func (o TailnetKeyOutput) ToOutput(ctx context.Context) pulumix.Output[*TailnetKey] {
-	return pulumix.Output[*TailnetKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The creation timestamp of the key in RFC3339 format
@@ -346,12 +321,6 @@ func (o TailnetKeyArrayOutput) ToTailnetKeyArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o TailnetKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*TailnetKey] {
-	return pulumix.Output[[]*TailnetKey]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o TailnetKeyArrayOutput) Index(i pulumi.IntInput) TailnetKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *TailnetKey {
 		return vs[0].([]*TailnetKey)[vs[1].(int)]
@@ -370,12 +339,6 @@ func (o TailnetKeyMapOutput) ToTailnetKeyMapOutput() TailnetKeyMapOutput {
 
 func (o TailnetKeyMapOutput) ToTailnetKeyMapOutputWithContext(ctx context.Context) TailnetKeyMapOutput {
 	return o
-}
-
-func (o TailnetKeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*TailnetKey] {
-	return pulumix.Output[map[string]*TailnetKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o TailnetKeyMapOutput) MapIndex(k pulumi.StringInput) TailnetKeyOutput {

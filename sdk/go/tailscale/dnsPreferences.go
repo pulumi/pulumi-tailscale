@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The dnsPreferences resource allows you to configure DNS preferences for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
@@ -127,12 +126,6 @@ func (i *DnsPreferences) ToDnsPreferencesOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(DnsPreferencesOutput)
 }
 
-func (i *DnsPreferences) ToOutput(ctx context.Context) pulumix.Output[*DnsPreferences] {
-	return pulumix.Output[*DnsPreferences]{
-		OutputState: i.ToDnsPreferencesOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DnsPreferencesArrayInput is an input type that accepts DnsPreferencesArray and DnsPreferencesArrayOutput values.
 // You can construct a concrete instance of `DnsPreferencesArrayInput` via:
 //
@@ -156,12 +149,6 @@ func (i DnsPreferencesArray) ToDnsPreferencesArrayOutput() DnsPreferencesArrayOu
 
 func (i DnsPreferencesArray) ToDnsPreferencesArrayOutputWithContext(ctx context.Context) DnsPreferencesArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DnsPreferencesArrayOutput)
-}
-
-func (i DnsPreferencesArray) ToOutput(ctx context.Context) pulumix.Output[[]*DnsPreferences] {
-	return pulumix.Output[[]*DnsPreferences]{
-		OutputState: i.ToDnsPreferencesArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DnsPreferencesMapInput is an input type that accepts DnsPreferencesMap and DnsPreferencesMapOutput values.
@@ -189,12 +176,6 @@ func (i DnsPreferencesMap) ToDnsPreferencesMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(DnsPreferencesMapOutput)
 }
 
-func (i DnsPreferencesMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DnsPreferences] {
-	return pulumix.Output[map[string]*DnsPreferences]{
-		OutputState: i.ToDnsPreferencesMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DnsPreferencesOutput struct{ *pulumi.OutputState }
 
 func (DnsPreferencesOutput) ElementType() reflect.Type {
@@ -207,12 +188,6 @@ func (o DnsPreferencesOutput) ToDnsPreferencesOutput() DnsPreferencesOutput {
 
 func (o DnsPreferencesOutput) ToDnsPreferencesOutputWithContext(ctx context.Context) DnsPreferencesOutput {
 	return o
-}
-
-func (o DnsPreferencesOutput) ToOutput(ctx context.Context) pulumix.Output[*DnsPreferences] {
-	return pulumix.Output[*DnsPreferences]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Whether or not to enable magic DNS
@@ -234,12 +209,6 @@ func (o DnsPreferencesArrayOutput) ToDnsPreferencesArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o DnsPreferencesArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DnsPreferences] {
-	return pulumix.Output[[]*DnsPreferences]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o DnsPreferencesArrayOutput) Index(i pulumi.IntInput) DnsPreferencesOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DnsPreferences {
 		return vs[0].([]*DnsPreferences)[vs[1].(int)]
@@ -258,12 +227,6 @@ func (o DnsPreferencesMapOutput) ToDnsPreferencesMapOutput() DnsPreferencesMapOu
 
 func (o DnsPreferencesMapOutput) ToDnsPreferencesMapOutputWithContext(ctx context.Context) DnsPreferencesMapOutput {
 	return o
-}
-
-func (o DnsPreferencesMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DnsPreferences] {
-	return pulumix.Output[map[string]*DnsPreferences]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DnsPreferencesMapOutput) MapIndex(k pulumi.StringInput) DnsPreferencesOutput {
