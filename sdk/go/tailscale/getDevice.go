@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The device data source describes a single device in a tailnet
@@ -112,12 +111,6 @@ func (o GetDeviceResultOutput) ToGetDeviceResultOutput() GetDeviceResultOutput {
 
 func (o GetDeviceResultOutput) ToGetDeviceResultOutputWithContext(ctx context.Context) GetDeviceResultOutput {
 	return o
-}
-
-func (o GetDeviceResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeviceResult] {
-	return pulumix.Output[GetDeviceResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The list of device's IPs

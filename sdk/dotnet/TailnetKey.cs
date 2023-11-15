@@ -44,13 +44,13 @@ namespace Pulumi.Tailscale
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// A description of the key consisting of alphanumeric characters.
+        /// A description of the key consisting of alphanumeric characters. Defaults to `""`.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates if the key is ephemeral.
+        /// Indicates if the key is ephemeral. Defaults to `false`.
         /// </summary>
         [Output("ephemeral")]
         public Output<bool?> Ephemeral { get; private set; } = null!;
@@ -62,7 +62,7 @@ namespace Pulumi.Tailscale
         public Output<string> ExpiresAt { get; private set; } = null!;
 
         /// <summary>
-        /// The expiry of the key in seconds
+        /// The expiry of the key in seconds. Defaults to `7776000` (90 days).
         /// </summary>
         [Output("expiry")]
         public Output<int?> Expiry { get; private set; } = null!;
@@ -74,13 +74,13 @@ namespace Pulumi.Tailscale
         public Output<string> Key { get; private set; } = null!;
 
         /// <summary>
-        /// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+        /// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
         /// </summary>
         [Output("preauthorized")]
         public Output<bool?> Preauthorized { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates if the key is reusable or single-use.
+        /// Indicates if the key is reusable or single-use. Defaults to `false`.
         /// </summary>
         [Output("reusable")]
         public Output<bool?> Reusable { get; private set; } = null!;
@@ -142,31 +142,31 @@ namespace Pulumi.Tailscale
     public sealed class TailnetKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A description of the key consisting of alphanumeric characters.
+        /// A description of the key consisting of alphanumeric characters. Defaults to `""`.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Indicates if the key is ephemeral.
+        /// Indicates if the key is ephemeral. Defaults to `false`.
         /// </summary>
         [Input("ephemeral")]
         public Input<bool>? Ephemeral { get; set; }
 
         /// <summary>
-        /// The expiry of the key in seconds
+        /// The expiry of the key in seconds. Defaults to `7776000` (90 days).
         /// </summary>
         [Input("expiry")]
         public Input<int>? Expiry { get; set; }
 
         /// <summary>
-        /// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+        /// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
         /// </summary>
         [Input("preauthorized")]
         public Input<bool>? Preauthorized { get; set; }
 
         /// <summary>
-        /// Indicates if the key is reusable or single-use.
+        /// Indicates if the key is reusable or single-use. Defaults to `false`.
         /// </summary>
         [Input("reusable")]
         public Input<bool>? Reusable { get; set; }
@@ -198,13 +198,13 @@ namespace Pulumi.Tailscale
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// A description of the key consisting of alphanumeric characters.
+        /// A description of the key consisting of alphanumeric characters. Defaults to `""`.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Indicates if the key is ephemeral.
+        /// Indicates if the key is ephemeral. Defaults to `false`.
         /// </summary>
         [Input("ephemeral")]
         public Input<bool>? Ephemeral { get; set; }
@@ -216,7 +216,7 @@ namespace Pulumi.Tailscale
         public Input<string>? ExpiresAt { get; set; }
 
         /// <summary>
-        /// The expiry of the key in seconds
+        /// The expiry of the key in seconds. Defaults to `7776000` (90 days).
         /// </summary>
         [Input("expiry")]
         public Input<int>? Expiry { get; set; }
@@ -238,13 +238,13 @@ namespace Pulumi.Tailscale
         }
 
         /// <summary>
-        /// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+        /// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
         /// </summary>
         [Input("preauthorized")]
         public Input<bool>? Preauthorized { get; set; }
 
         /// <summary>
-        /// Indicates if the key is reusable or single-use.
+        /// Indicates if the key is reusable or single-use. Defaults to `false`.
         /// </summary>
         [Input("reusable")]
         public Input<bool>? Reusable { get; set; }

@@ -46,7 +46,7 @@ namespace Pulumi.Tailscale
         public Output<string> DeviceId { get; private set; } = null!;
 
         /// <summary>
-        /// Determines whether or not the device's key will expire
+        /// Determines whether or not the device's key will expire. Defaults to `false`.
         /// </summary>
         [Output("keyExpiryDisabled")]
         public Output<bool?> KeyExpiryDisabled { get; private set; } = null!;
@@ -104,7 +104,7 @@ namespace Pulumi.Tailscale
         public Input<string> DeviceId { get; set; } = null!;
 
         /// <summary>
-        /// Determines whether or not the device's key will expire
+        /// Determines whether or not the device's key will expire. Defaults to `false`.
         /// </summary>
         [Input("keyExpiryDisabled")]
         public Input<bool>? KeyExpiryDisabled { get; set; }
@@ -124,7 +124,7 @@ namespace Pulumi.Tailscale
         public Input<string>? DeviceId { get; set; }
 
         /// <summary>
-        /// Determines whether or not the device's key will expire
+        /// Determines whether or not the device's key will expire. Defaults to `false`.
         /// </summary>
         [Input("keyExpiryDisabled")]
         public Input<bool>? KeyExpiryDisabled { get; set; }

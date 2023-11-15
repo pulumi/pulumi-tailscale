@@ -73,14 +73,14 @@ public class DeviceKey extends com.pulumi.resources.CustomResource {
         return this.deviceId;
     }
     /**
-     * Determines whether or not the device&#39;s key will expire
+     * Determines whether or not the device&#39;s key will expire. Defaults to `false`.
      * 
      */
     @Export(name="keyExpiryDisabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> keyExpiryDisabled;
 
     /**
-     * @return Determines whether or not the device&#39;s key will expire
+     * @return Determines whether or not the device&#39;s key will expire. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> keyExpiryDisabled() {

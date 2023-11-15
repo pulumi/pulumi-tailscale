@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The deviceKey resource allows you to update the properties of a device's key
@@ -52,7 +51,7 @@ type DeviceKey struct {
 
 	// The device to update the key properties of
 	DeviceId pulumi.StringOutput `pulumi:"deviceId"`
-	// Determines whether or not the device's key will expire
+	// Determines whether or not the device's key will expire. Defaults to `false`.
 	KeyExpiryDisabled pulumi.BoolPtrOutput `pulumi:"keyExpiryDisabled"`
 }
 
@@ -91,14 +90,14 @@ func GetDeviceKey(ctx *pulumi.Context,
 type deviceKeyState struct {
 	// The device to update the key properties of
 	DeviceId *string `pulumi:"deviceId"`
-	// Determines whether or not the device's key will expire
+	// Determines whether or not the device's key will expire. Defaults to `false`.
 	KeyExpiryDisabled *bool `pulumi:"keyExpiryDisabled"`
 }
 
 type DeviceKeyState struct {
 	// The device to update the key properties of
 	DeviceId pulumi.StringPtrInput
-	// Determines whether or not the device's key will expire
+	// Determines whether or not the device's key will expire. Defaults to `false`.
 	KeyExpiryDisabled pulumi.BoolPtrInput
 }
 
@@ -109,7 +108,7 @@ func (DeviceKeyState) ElementType() reflect.Type {
 type deviceKeyArgs struct {
 	// The device to update the key properties of
 	DeviceId string `pulumi:"deviceId"`
-	// Determines whether or not the device's key will expire
+	// Determines whether or not the device's key will expire. Defaults to `false`.
 	KeyExpiryDisabled *bool `pulumi:"keyExpiryDisabled"`
 }
 
@@ -117,7 +116,7 @@ type deviceKeyArgs struct {
 type DeviceKeyArgs struct {
 	// The device to update the key properties of
 	DeviceId pulumi.StringInput
-	// Determines whether or not the device's key will expire
+	// Determines whether or not the device's key will expire. Defaults to `false`.
 	KeyExpiryDisabled pulumi.BoolPtrInput
 }
 
@@ -142,12 +141,6 @@ func (i *DeviceKey) ToDeviceKeyOutput() DeviceKeyOutput {
 
 func (i *DeviceKey) ToDeviceKeyOutputWithContext(ctx context.Context) DeviceKeyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceKeyOutput)
-}
-
-func (i *DeviceKey) ToOutput(ctx context.Context) pulumix.Output[*DeviceKey] {
-	return pulumix.Output[*DeviceKey]{
-		OutputState: i.ToDeviceKeyOutputWithContext(ctx).OutputState,
-	}
 }
 
 // DeviceKeyArrayInput is an input type that accepts DeviceKeyArray and DeviceKeyArrayOutput values.
@@ -175,12 +168,6 @@ func (i DeviceKeyArray) ToDeviceKeyArrayOutputWithContext(ctx context.Context) D
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceKeyArrayOutput)
 }
 
-func (i DeviceKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*DeviceKey] {
-	return pulumix.Output[[]*DeviceKey]{
-		OutputState: i.ToDeviceKeyArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 // DeviceKeyMapInput is an input type that accepts DeviceKeyMap and DeviceKeyMapOutput values.
 // You can construct a concrete instance of `DeviceKeyMapInput` via:
 //
@@ -206,12 +193,6 @@ func (i DeviceKeyMap) ToDeviceKeyMapOutputWithContext(ctx context.Context) Devic
 	return pulumi.ToOutputWithContext(ctx, i).(DeviceKeyMapOutput)
 }
 
-func (i DeviceKeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DeviceKey] {
-	return pulumix.Output[map[string]*DeviceKey]{
-		OutputState: i.ToDeviceKeyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type DeviceKeyOutput struct{ *pulumi.OutputState }
 
 func (DeviceKeyOutput) ElementType() reflect.Type {
@@ -226,18 +207,12 @@ func (o DeviceKeyOutput) ToDeviceKeyOutputWithContext(ctx context.Context) Devic
 	return o
 }
 
-func (o DeviceKeyOutput) ToOutput(ctx context.Context) pulumix.Output[*DeviceKey] {
-	return pulumix.Output[*DeviceKey]{
-		OutputState: o.OutputState,
-	}
-}
-
 // The device to update the key properties of
 func (o DeviceKeyOutput) DeviceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DeviceKey) pulumi.StringOutput { return v.DeviceId }).(pulumi.StringOutput)
 }
 
-// Determines whether or not the device's key will expire
+// Determines whether or not the device's key will expire. Defaults to `false`.
 func (o DeviceKeyOutput) KeyExpiryDisabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DeviceKey) pulumi.BoolPtrOutput { return v.KeyExpiryDisabled }).(pulumi.BoolPtrOutput)
 }
@@ -254,12 +229,6 @@ func (o DeviceKeyArrayOutput) ToDeviceKeyArrayOutput() DeviceKeyArrayOutput {
 
 func (o DeviceKeyArrayOutput) ToDeviceKeyArrayOutputWithContext(ctx context.Context) DeviceKeyArrayOutput {
 	return o
-}
-
-func (o DeviceKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DeviceKey] {
-	return pulumix.Output[[]*DeviceKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DeviceKeyArrayOutput) Index(i pulumi.IntInput) DeviceKeyOutput {
@@ -280,12 +249,6 @@ func (o DeviceKeyMapOutput) ToDeviceKeyMapOutput() DeviceKeyMapOutput {
 
 func (o DeviceKeyMapOutput) ToDeviceKeyMapOutputWithContext(ctx context.Context) DeviceKeyMapOutput {
 	return o
-}
-
-func (o DeviceKeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DeviceKey] {
-	return pulumix.Output[map[string]*DeviceKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o DeviceKeyMapOutput) MapIndex(k pulumi.StringInput) DeviceKeyOutput {

@@ -15,6 +15,14 @@ import * as utilities from "./utilities";
  *
  * const samplePreferences = new tailscale.DnsPreferences("samplePreferences", {magicDns: true});
  * ```
+ *
+ * ## Import
+ *
+ * ID doesn't matter.
+ *
+ * ```sh
+ *  $ pulumi import tailscale:index/dnsPreferences:DnsPreferences sample_preferences dns_preferences
+ * ```
  */
 export class DnsPreferences extends pulumi.CustomResource {
     /**

@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The tailnetKey resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information
@@ -48,19 +47,19 @@ type TailnetKey struct {
 
 	// The creation timestamp of the key in RFC3339 format
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// A description of the key consisting of alphanumeric characters.
+	// A description of the key consisting of alphanumeric characters. Defaults to `""`.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Indicates if the key is ephemeral.
+	// Indicates if the key is ephemeral. Defaults to `false`.
 	Ephemeral pulumi.BoolPtrOutput `pulumi:"ephemeral"`
 	// The expiry timestamp of the key in RFC3339 format
 	ExpiresAt pulumi.StringOutput `pulumi:"expiresAt"`
-	// The expiry of the key in seconds
+	// The expiry of the key in seconds. Defaults to `7776000` (90 days).
 	Expiry pulumi.IntPtrOutput `pulumi:"expiry"`
 	// The authentication key
 	Key pulumi.StringOutput `pulumi:"key"`
-	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
 	Preauthorized pulumi.BoolPtrOutput `pulumi:"preauthorized"`
-	// Indicates if the key is reusable or single-use.
+	// Indicates if the key is reusable or single-use. Defaults to `false`.
 	Reusable pulumi.BoolPtrOutput `pulumi:"reusable"`
 	// List of tags to apply to the machines authenticated by the key.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
@@ -102,19 +101,19 @@ func GetTailnetKey(ctx *pulumi.Context,
 type tailnetKeyState struct {
 	// The creation timestamp of the key in RFC3339 format
 	CreatedAt *string `pulumi:"createdAt"`
-	// A description of the key consisting of alphanumeric characters.
+	// A description of the key consisting of alphanumeric characters. Defaults to `""`.
 	Description *string `pulumi:"description"`
-	// Indicates if the key is ephemeral.
+	// Indicates if the key is ephemeral. Defaults to `false`.
 	Ephemeral *bool `pulumi:"ephemeral"`
 	// The expiry timestamp of the key in RFC3339 format
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// The expiry of the key in seconds
+	// The expiry of the key in seconds. Defaults to `7776000` (90 days).
 	Expiry *int `pulumi:"expiry"`
 	// The authentication key
 	Key *string `pulumi:"key"`
-	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
 	Preauthorized *bool `pulumi:"preauthorized"`
-	// Indicates if the key is reusable or single-use.
+	// Indicates if the key is reusable or single-use. Defaults to `false`.
 	Reusable *bool `pulumi:"reusable"`
 	// List of tags to apply to the machines authenticated by the key.
 	Tags []string `pulumi:"tags"`
@@ -123,19 +122,19 @@ type tailnetKeyState struct {
 type TailnetKeyState struct {
 	// The creation timestamp of the key in RFC3339 format
 	CreatedAt pulumi.StringPtrInput
-	// A description of the key consisting of alphanumeric characters.
+	// A description of the key consisting of alphanumeric characters. Defaults to `""`.
 	Description pulumi.StringPtrInput
-	// Indicates if the key is ephemeral.
+	// Indicates if the key is ephemeral. Defaults to `false`.
 	Ephemeral pulumi.BoolPtrInput
 	// The expiry timestamp of the key in RFC3339 format
 	ExpiresAt pulumi.StringPtrInput
-	// The expiry of the key in seconds
+	// The expiry of the key in seconds. Defaults to `7776000` (90 days).
 	Expiry pulumi.IntPtrInput
 	// The authentication key
 	Key pulumi.StringPtrInput
-	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
 	Preauthorized pulumi.BoolPtrInput
-	// Indicates if the key is reusable or single-use.
+	// Indicates if the key is reusable or single-use. Defaults to `false`.
 	Reusable pulumi.BoolPtrInput
 	// List of tags to apply to the machines authenticated by the key.
 	Tags pulumi.StringArrayInput
@@ -146,15 +145,15 @@ func (TailnetKeyState) ElementType() reflect.Type {
 }
 
 type tailnetKeyArgs struct {
-	// A description of the key consisting of alphanumeric characters.
+	// A description of the key consisting of alphanumeric characters. Defaults to `""`.
 	Description *string `pulumi:"description"`
-	// Indicates if the key is ephemeral.
+	// Indicates if the key is ephemeral. Defaults to `false`.
 	Ephemeral *bool `pulumi:"ephemeral"`
-	// The expiry of the key in seconds
+	// The expiry of the key in seconds. Defaults to `7776000` (90 days).
 	Expiry *int `pulumi:"expiry"`
-	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
 	Preauthorized *bool `pulumi:"preauthorized"`
-	// Indicates if the key is reusable or single-use.
+	// Indicates if the key is reusable or single-use. Defaults to `false`.
 	Reusable *bool `pulumi:"reusable"`
 	// List of tags to apply to the machines authenticated by the key.
 	Tags []string `pulumi:"tags"`
@@ -162,15 +161,15 @@ type tailnetKeyArgs struct {
 
 // The set of arguments for constructing a TailnetKey resource.
 type TailnetKeyArgs struct {
-	// A description of the key consisting of alphanumeric characters.
+	// A description of the key consisting of alphanumeric characters. Defaults to `""`.
 	Description pulumi.StringPtrInput
-	// Indicates if the key is ephemeral.
+	// Indicates if the key is ephemeral. Defaults to `false`.
 	Ephemeral pulumi.BoolPtrInput
-	// The expiry of the key in seconds
+	// The expiry of the key in seconds. Defaults to `7776000` (90 days).
 	Expiry pulumi.IntPtrInput
-	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
 	Preauthorized pulumi.BoolPtrInput
-	// Indicates if the key is reusable or single-use.
+	// Indicates if the key is reusable or single-use. Defaults to `false`.
 	Reusable pulumi.BoolPtrInput
 	// List of tags to apply to the machines authenticated by the key.
 	Tags pulumi.StringArrayInput
@@ -199,12 +198,6 @@ func (i *TailnetKey) ToTailnetKeyOutputWithContext(ctx context.Context) TailnetK
 	return pulumi.ToOutputWithContext(ctx, i).(TailnetKeyOutput)
 }
 
-func (i *TailnetKey) ToOutput(ctx context.Context) pulumix.Output[*TailnetKey] {
-	return pulumix.Output[*TailnetKey]{
-		OutputState: i.ToTailnetKeyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // TailnetKeyArrayInput is an input type that accepts TailnetKeyArray and TailnetKeyArrayOutput values.
 // You can construct a concrete instance of `TailnetKeyArrayInput` via:
 //
@@ -228,12 +221,6 @@ func (i TailnetKeyArray) ToTailnetKeyArrayOutput() TailnetKeyArrayOutput {
 
 func (i TailnetKeyArray) ToTailnetKeyArrayOutputWithContext(ctx context.Context) TailnetKeyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(TailnetKeyArrayOutput)
-}
-
-func (i TailnetKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*TailnetKey] {
-	return pulumix.Output[[]*TailnetKey]{
-		OutputState: i.ToTailnetKeyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // TailnetKeyMapInput is an input type that accepts TailnetKeyMap and TailnetKeyMapOutput values.
@@ -261,12 +248,6 @@ func (i TailnetKeyMap) ToTailnetKeyMapOutputWithContext(ctx context.Context) Tai
 	return pulumi.ToOutputWithContext(ctx, i).(TailnetKeyMapOutput)
 }
 
-func (i TailnetKeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*TailnetKey] {
-	return pulumix.Output[map[string]*TailnetKey]{
-		OutputState: i.ToTailnetKeyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type TailnetKeyOutput struct{ *pulumi.OutputState }
 
 func (TailnetKeyOutput) ElementType() reflect.Type {
@@ -281,23 +262,17 @@ func (o TailnetKeyOutput) ToTailnetKeyOutputWithContext(ctx context.Context) Tai
 	return o
 }
 
-func (o TailnetKeyOutput) ToOutput(ctx context.Context) pulumix.Output[*TailnetKey] {
-	return pulumix.Output[*TailnetKey]{
-		OutputState: o.OutputState,
-	}
-}
-
 // The creation timestamp of the key in RFC3339 format
 func (o TailnetKeyOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *TailnetKey) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// A description of the key consisting of alphanumeric characters.
+// A description of the key consisting of alphanumeric characters. Defaults to `""`.
 func (o TailnetKeyOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *TailnetKey) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// Indicates if the key is ephemeral.
+// Indicates if the key is ephemeral. Defaults to `false`.
 func (o TailnetKeyOutput) Ephemeral() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *TailnetKey) pulumi.BoolPtrOutput { return v.Ephemeral }).(pulumi.BoolPtrOutput)
 }
@@ -307,7 +282,7 @@ func (o TailnetKeyOutput) ExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *TailnetKey) pulumi.StringOutput { return v.ExpiresAt }).(pulumi.StringOutput)
 }
 
-// The expiry of the key in seconds
+// The expiry of the key in seconds. Defaults to `7776000` (90 days).
 func (o TailnetKeyOutput) Expiry() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *TailnetKey) pulumi.IntPtrOutput { return v.Expiry }).(pulumi.IntPtrOutput)
 }
@@ -317,12 +292,12 @@ func (o TailnetKeyOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v *TailnetKey) pulumi.StringOutput { return v.Key }).(pulumi.StringOutput)
 }
 
-// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
 func (o TailnetKeyOutput) Preauthorized() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *TailnetKey) pulumi.BoolPtrOutput { return v.Preauthorized }).(pulumi.BoolPtrOutput)
 }
 
-// Indicates if the key is reusable or single-use.
+// Indicates if the key is reusable or single-use. Defaults to `false`.
 func (o TailnetKeyOutput) Reusable() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *TailnetKey) pulumi.BoolPtrOutput { return v.Reusable }).(pulumi.BoolPtrOutput)
 }
@@ -346,12 +321,6 @@ func (o TailnetKeyArrayOutput) ToTailnetKeyArrayOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o TailnetKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*TailnetKey] {
-	return pulumix.Output[[]*TailnetKey]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o TailnetKeyArrayOutput) Index(i pulumi.IntInput) TailnetKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *TailnetKey {
 		return vs[0].([]*TailnetKey)[vs[1].(int)]
@@ -370,12 +339,6 @@ func (o TailnetKeyMapOutput) ToTailnetKeyMapOutput() TailnetKeyMapOutput {
 
 func (o TailnetKeyMapOutput) ToTailnetKeyMapOutputWithContext(ctx context.Context) TailnetKeyMapOutput {
 	return o
-}
-
-func (o TailnetKeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*TailnetKey] {
-	return pulumix.Output[map[string]*TailnetKey]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o TailnetKeyMapOutput) MapIndex(k pulumi.StringInput) TailnetKeyOutput {

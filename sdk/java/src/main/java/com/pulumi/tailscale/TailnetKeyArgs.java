@@ -19,14 +19,14 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
     public static final TailnetKeyArgs Empty = new TailnetKeyArgs();
 
     /**
-     * A description of the key consisting of alphanumeric characters.
+     * A description of the key consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
      * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
-     * @return A description of the key consisting of alphanumeric characters.
+     * @return A description of the key consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
      * 
      */
     public Optional<Output<String>> description() {
@@ -34,14 +34,14 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Indicates if the key is ephemeral.
+     * Indicates if the key is ephemeral. Defaults to `false`.
      * 
      */
     @Import(name="ephemeral")
     private @Nullable Output<Boolean> ephemeral;
 
     /**
-     * @return Indicates if the key is ephemeral.
+     * @return Indicates if the key is ephemeral. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> ephemeral() {
@@ -49,14 +49,14 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The expiry of the key in seconds
+     * The expiry of the key in seconds. Defaults to `7776000` (90 days).
      * 
      */
     @Import(name="expiry")
     private @Nullable Output<Integer> expiry;
 
     /**
-     * @return The expiry of the key in seconds
+     * @return The expiry of the key in seconds. Defaults to `7776000` (90 days).
      * 
      */
     public Optional<Output<Integer>> expiry() {
@@ -64,14 +64,14 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+     * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
      * 
      */
     @Import(name="preauthorized")
     private @Nullable Output<Boolean> preauthorized;
 
     /**
-     * @return Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+     * @return Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> preauthorized() {
@@ -79,14 +79,14 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Indicates if the key is reusable or single-use.
+     * Indicates if the key is reusable or single-use. Defaults to `false`.
      * 
      */
     @Import(name="reusable")
     private @Nullable Output<Boolean> reusable;
 
     /**
-     * @return Indicates if the key is reusable or single-use.
+     * @return Indicates if the key is reusable or single-use. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> reusable() {
@@ -138,7 +138,7 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param description A description of the key consisting of alphanumeric characters.
+         * @param description A description of the key consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
          * 
          * @return builder
          * 
@@ -149,7 +149,7 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param description A description of the key consisting of alphanumeric characters.
+         * @param description A description of the key consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
          * 
          * @return builder
          * 
@@ -159,7 +159,7 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ephemeral Indicates if the key is ephemeral.
+         * @param ephemeral Indicates if the key is ephemeral. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -170,7 +170,7 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ephemeral Indicates if the key is ephemeral.
+         * @param ephemeral Indicates if the key is ephemeral. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -180,7 +180,7 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param expiry The expiry of the key in seconds
+         * @param expiry The expiry of the key in seconds. Defaults to `7776000` (90 days).
          * 
          * @return builder
          * 
@@ -191,7 +191,7 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param expiry The expiry of the key in seconds
+         * @param expiry The expiry of the key in seconds. Defaults to `7776000` (90 days).
          * 
          * @return builder
          * 
@@ -201,7 +201,7 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param preauthorized Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+         * @param preauthorized Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -212,7 +212,7 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param preauthorized Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+         * @param preauthorized Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -222,7 +222,7 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param reusable Indicates if the key is reusable or single-use.
+         * @param reusable Indicates if the key is reusable or single-use. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -233,7 +233,7 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param reusable Indicates if the key is reusable or single-use.
+         * @param reusable Indicates if the key is reusable or single-use. Defaults to `false`.
          * 
          * @return builder
          * 

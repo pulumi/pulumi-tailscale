@@ -22,11 +22,11 @@ class TailnetKeyArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a TailnetKey resource.
-        :param pulumi.Input[str] description: A description of the key consisting of alphanumeric characters.
-        :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
-        :param pulumi.Input[int] expiry: The expiry of the key in seconds
-        :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
-        :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
+        :param pulumi.Input[str] description: A description of the key consisting of alphanumeric characters. Defaults to `""`.
+        :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral. Defaults to `false`.
+        :param pulumi.Input[int] expiry: The expiry of the key in seconds. Defaults to `7776000` (90 days).
+        :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
+        :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
         if description is not None:
@@ -46,7 +46,7 @@ class TailnetKeyArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        A description of the key consisting of alphanumeric characters.
+        A description of the key consisting of alphanumeric characters. Defaults to `""`.
         """
         return pulumi.get(self, "description")
 
@@ -58,7 +58,7 @@ class TailnetKeyArgs:
     @pulumi.getter
     def ephemeral(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates if the key is ephemeral.
+        Indicates if the key is ephemeral. Defaults to `false`.
         """
         return pulumi.get(self, "ephemeral")
 
@@ -70,7 +70,7 @@ class TailnetKeyArgs:
     @pulumi.getter
     def expiry(self) -> Optional[pulumi.Input[int]]:
         """
-        The expiry of the key in seconds
+        The expiry of the key in seconds. Defaults to `7776000` (90 days).
         """
         return pulumi.get(self, "expiry")
 
@@ -82,7 +82,7 @@ class TailnetKeyArgs:
     @pulumi.getter
     def preauthorized(self) -> Optional[pulumi.Input[bool]]:
         """
-        Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+        Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
         """
         return pulumi.get(self, "preauthorized")
 
@@ -94,7 +94,7 @@ class TailnetKeyArgs:
     @pulumi.getter
     def reusable(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates if the key is reusable or single-use.
+        Indicates if the key is reusable or single-use. Defaults to `false`.
         """
         return pulumi.get(self, "reusable")
 
@@ -130,13 +130,13 @@ class _TailnetKeyState:
         """
         Input properties used for looking up and filtering TailnetKey resources.
         :param pulumi.Input[str] created_at: The creation timestamp of the key in RFC3339 format
-        :param pulumi.Input[str] description: A description of the key consisting of alphanumeric characters.
-        :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
+        :param pulumi.Input[str] description: A description of the key consisting of alphanumeric characters. Defaults to `""`.
+        :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral. Defaults to `false`.
         :param pulumi.Input[str] expires_at: The expiry timestamp of the key in RFC3339 format
-        :param pulumi.Input[int] expiry: The expiry of the key in seconds
+        :param pulumi.Input[int] expiry: The expiry of the key in seconds. Defaults to `7776000` (90 days).
         :param pulumi.Input[str] key: The authentication key
-        :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
-        :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
+        :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
+        :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
         if created_at is not None:
@@ -174,7 +174,7 @@ class _TailnetKeyState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        A description of the key consisting of alphanumeric characters.
+        A description of the key consisting of alphanumeric characters. Defaults to `""`.
         """
         return pulumi.get(self, "description")
 
@@ -186,7 +186,7 @@ class _TailnetKeyState:
     @pulumi.getter
     def ephemeral(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates if the key is ephemeral.
+        Indicates if the key is ephemeral. Defaults to `false`.
         """
         return pulumi.get(self, "ephemeral")
 
@@ -210,7 +210,7 @@ class _TailnetKeyState:
     @pulumi.getter
     def expiry(self) -> Optional[pulumi.Input[int]]:
         """
-        The expiry of the key in seconds
+        The expiry of the key in seconds. Defaults to `7776000` (90 days).
         """
         return pulumi.get(self, "expiry")
 
@@ -234,7 +234,7 @@ class _TailnetKeyState:
     @pulumi.getter
     def preauthorized(self) -> Optional[pulumi.Input[bool]]:
         """
-        Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+        Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
         """
         return pulumi.get(self, "preauthorized")
 
@@ -246,7 +246,7 @@ class _TailnetKeyState:
     @pulumi.getter
     def reusable(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates if the key is reusable or single-use.
+        Indicates if the key is reusable or single-use. Defaults to `false`.
         """
         return pulumi.get(self, "reusable")
 
@@ -298,11 +298,11 @@ class TailnetKey(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: A description of the key consisting of alphanumeric characters.
-        :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
-        :param pulumi.Input[int] expiry: The expiry of the key in seconds
-        :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
-        :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
+        :param pulumi.Input[str] description: A description of the key consisting of alphanumeric characters. Defaults to `""`.
+        :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral. Defaults to `false`.
+        :param pulumi.Input[int] expiry: The expiry of the key in seconds. Defaults to `7776000` (90 days).
+        :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
+        :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
         ...
@@ -396,13 +396,13 @@ class TailnetKey(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] created_at: The creation timestamp of the key in RFC3339 format
-        :param pulumi.Input[str] description: A description of the key consisting of alphanumeric characters.
-        :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral.
+        :param pulumi.Input[str] description: A description of the key consisting of alphanumeric characters. Defaults to `""`.
+        :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral. Defaults to `false`.
         :param pulumi.Input[str] expires_at: The expiry timestamp of the key in RFC3339 format
-        :param pulumi.Input[int] expiry: The expiry of the key in seconds
+        :param pulumi.Input[int] expiry: The expiry of the key in seconds. Defaults to `7776000` (90 days).
         :param pulumi.Input[str] key: The authentication key
-        :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
-        :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use.
+        :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
+        :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -432,7 +432,7 @@ class TailnetKey(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        A description of the key consisting of alphanumeric characters.
+        A description of the key consisting of alphanumeric characters. Defaults to `""`.
         """
         return pulumi.get(self, "description")
 
@@ -440,7 +440,7 @@ class TailnetKey(pulumi.CustomResource):
     @pulumi.getter
     def ephemeral(self) -> pulumi.Output[Optional[bool]]:
         """
-        Indicates if the key is ephemeral.
+        Indicates if the key is ephemeral. Defaults to `false`.
         """
         return pulumi.get(self, "ephemeral")
 
@@ -456,7 +456,7 @@ class TailnetKey(pulumi.CustomResource):
     @pulumi.getter
     def expiry(self) -> pulumi.Output[Optional[int]]:
         """
-        The expiry of the key in seconds
+        The expiry of the key in seconds. Defaults to `7776000` (90 days).
         """
         return pulumi.get(self, "expiry")
 
@@ -472,7 +472,7 @@ class TailnetKey(pulumi.CustomResource):
     @pulumi.getter
     def preauthorized(self) -> pulumi.Output[Optional[bool]]:
         """
-        Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+        Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
         """
         return pulumi.get(self, "preauthorized")
 
@@ -480,7 +480,7 @@ class TailnetKey(pulumi.CustomResource):
     @pulumi.getter
     def reusable(self) -> pulumi.Output[Optional[bool]]:
         """
-        Indicates if the key is reusable or single-use.
+        Indicates if the key is reusable or single-use. Defaults to `false`.
         """
         return pulumi.get(self, "reusable")
 

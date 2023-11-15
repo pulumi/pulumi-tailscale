@@ -21,6 +21,14 @@ import * as utilities from "./utilities";
  *     }],
  * })});
  * ```
+ *
+ * ## Import
+ *
+ * ID doesn't matter.
+ *
+ * ```sh
+ *  $ pulumi import tailscale:index/acl:Acl sample_acl acl
+ * ```
  */
 export class Acl extends pulumi.CustomResource {
     /**

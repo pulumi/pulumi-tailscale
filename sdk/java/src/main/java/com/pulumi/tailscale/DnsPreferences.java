@@ -46,6 +46,14 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ## Import
+ * 
+ * ID doesn&#39;t matter.
+ * 
+ * ```sh
+ *  $ pulumi import tailscale:index/dnsPreferences:DnsPreferences sample_preferences dns_preferences
+ * ```
+ * 
  */
 @ResourceType(type="tailscale:index/dnsPreferences:DnsPreferences")
 public class DnsPreferences extends com.pulumi.resources.CustomResource {
