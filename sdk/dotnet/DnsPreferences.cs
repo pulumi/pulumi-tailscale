@@ -29,6 +29,14 @@ namespace Pulumi.Tailscale
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ID doesn't matter.
+    /// 
+    /// ```sh
+    ///  $ pulumi import tailscale:index/dnsPreferences:DnsPreferences sample_preferences dns_preferences
+    /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/dnsPreferences:DnsPreferences")]
     public partial class DnsPreferences : global::Pulumi.CustomResource

@@ -84,6 +84,14 @@ class Acl(pulumi.CustomResource):
         }))
         ```
 
+        ## Import
+
+        ID doesn't matter.
+
+        ```sh
+         $ pulumi import tailscale:index/acl:Acl sample_acl acl
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl: The JSON-based policy that defines which devices and users are allowed to connect in your network
@@ -111,6 +119,14 @@ class Acl(pulumi.CustomResource):
                 "ports": ["*:*"],
             }],
         }))
+        ```
+
+        ## Import
+
+        ID doesn't matter.
+
+        ```sh
+         $ pulumi import tailscale:index/acl:Acl sample_acl acl
         ```
 
         :param str resource_name: The name of the resource.

@@ -47,6 +47,14 @@ namespace Pulumi.Tailscale
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ID doesn't matter.
+    /// 
+    /// ```sh
+    ///  $ pulumi import tailscale:index/acl:Acl sample_acl acl
+    /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/acl:Acl")]
     public partial class Acl : global::Pulumi.CustomResource

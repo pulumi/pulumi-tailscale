@@ -32,14 +32,14 @@ public final class DeviceKeyState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Determines whether or not the device&#39;s key will expire
+     * Determines whether or not the device&#39;s key will expire. Defaults to `false`.
      * 
      */
     @Import(name="keyExpiryDisabled")
     private @Nullable Output<Boolean> keyExpiryDisabled;
 
     /**
-     * @return Determines whether or not the device&#39;s key will expire
+     * @return Determines whether or not the device&#39;s key will expire. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> keyExpiryDisabled() {
@@ -93,7 +93,7 @@ public final class DeviceKeyState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyExpiryDisabled Determines whether or not the device&#39;s key will expire
+         * @param keyExpiryDisabled Determines whether or not the device&#39;s key will expire. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -104,7 +104,7 @@ public final class DeviceKeyState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyExpiryDisabled Determines whether or not the device&#39;s key will expire
+         * @param keyExpiryDisabled Determines whether or not the device&#39;s key will expire. Defaults to `false`.
          * 
          * @return builder
          * 

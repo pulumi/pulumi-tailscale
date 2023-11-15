@@ -19,7 +19,7 @@ class DeviceKeyArgs:
         """
         The set of arguments for constructing a DeviceKey resource.
         :param pulumi.Input[str] device_id: The device to update the key properties of
-        :param pulumi.Input[bool] key_expiry_disabled: Determines whether or not the device's key will expire
+        :param pulumi.Input[bool] key_expiry_disabled: Determines whether or not the device's key will expire. Defaults to `false`.
         """
         pulumi.set(__self__, "device_id", device_id)
         if key_expiry_disabled is not None:
@@ -41,7 +41,7 @@ class DeviceKeyArgs:
     @pulumi.getter(name="keyExpiryDisabled")
     def key_expiry_disabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Determines whether or not the device's key will expire
+        Determines whether or not the device's key will expire. Defaults to `false`.
         """
         return pulumi.get(self, "key_expiry_disabled")
 
@@ -58,7 +58,7 @@ class _DeviceKeyState:
         """
         Input properties used for looking up and filtering DeviceKey resources.
         :param pulumi.Input[str] device_id: The device to update the key properties of
-        :param pulumi.Input[bool] key_expiry_disabled: Determines whether or not the device's key will expire
+        :param pulumi.Input[bool] key_expiry_disabled: Determines whether or not the device's key will expire. Defaults to `false`.
         """
         if device_id is not None:
             pulumi.set(__self__, "device_id", device_id)
@@ -81,7 +81,7 @@ class _DeviceKeyState:
     @pulumi.getter(name="keyExpiryDisabled")
     def key_expiry_disabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Determines whether or not the device's key will expire
+        Determines whether or not the device's key will expire. Defaults to `false`.
         """
         return pulumi.get(self, "key_expiry_disabled")
 
@@ -116,7 +116,7 @@ class DeviceKey(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_id: The device to update the key properties of
-        :param pulumi.Input[bool] key_expiry_disabled: Determines whether or not the device's key will expire
+        :param pulumi.Input[bool] key_expiry_disabled: Determines whether or not the device's key will expire. Defaults to `false`.
         """
         ...
     @overload
@@ -189,7 +189,7 @@ class DeviceKey(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_id: The device to update the key properties of
-        :param pulumi.Input[bool] key_expiry_disabled: Determines whether or not the device's key will expire
+        :param pulumi.Input[bool] key_expiry_disabled: Determines whether or not the device's key will expire. Defaults to `false`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -211,7 +211,7 @@ class DeviceKey(pulumi.CustomResource):
     @pulumi.getter(name="keyExpiryDisabled")
     def key_expiry_disabled(self) -> pulumi.Output[Optional[bool]]:
         """
-        Determines whether or not the device's key will expire
+        Determines whether or not the device's key will expire. Defaults to `false`.
         """
         return pulumi.get(self, "key_expiry_disabled")
 

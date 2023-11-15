@@ -55,11 +55,11 @@ export class TailnetKey extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * A description of the key consisting of alphanumeric characters.
+     * A description of the key consisting of alphanumeric characters. Defaults to `""`.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * Indicates if the key is ephemeral.
+     * Indicates if the key is ephemeral. Defaults to `false`.
      */
     public readonly ephemeral!: pulumi.Output<boolean | undefined>;
     /**
@@ -67,7 +67,7 @@ export class TailnetKey extends pulumi.CustomResource {
      */
     public /*out*/ readonly expiresAt!: pulumi.Output<string>;
     /**
-     * The expiry of the key in seconds
+     * The expiry of the key in seconds. Defaults to `7776000` (90 days).
      */
     public readonly expiry!: pulumi.Output<number | undefined>;
     /**
@@ -75,11 +75,11 @@ export class TailnetKey extends pulumi.CustomResource {
      */
     public /*out*/ readonly key!: pulumi.Output<string>;
     /**
-     * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+     * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
      */
     public readonly preauthorized!: pulumi.Output<boolean | undefined>;
     /**
-     * Indicates if the key is reusable or single-use.
+     * Indicates if the key is reusable or single-use. Defaults to `false`.
      */
     public readonly reusable!: pulumi.Output<boolean | undefined>;
     /**
@@ -137,11 +137,11 @@ export interface TailnetKeyState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * A description of the key consisting of alphanumeric characters.
+     * A description of the key consisting of alphanumeric characters. Defaults to `""`.
      */
     description?: pulumi.Input<string>;
     /**
-     * Indicates if the key is ephemeral.
+     * Indicates if the key is ephemeral. Defaults to `false`.
      */
     ephemeral?: pulumi.Input<boolean>;
     /**
@@ -149,7 +149,7 @@ export interface TailnetKeyState {
      */
     expiresAt?: pulumi.Input<string>;
     /**
-     * The expiry of the key in seconds
+     * The expiry of the key in seconds. Defaults to `7776000` (90 days).
      */
     expiry?: pulumi.Input<number>;
     /**
@@ -157,11 +157,11 @@ export interface TailnetKeyState {
      */
     key?: pulumi.Input<string>;
     /**
-     * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+     * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
      */
     preauthorized?: pulumi.Input<boolean>;
     /**
-     * Indicates if the key is reusable or single-use.
+     * Indicates if the key is reusable or single-use. Defaults to `false`.
      */
     reusable?: pulumi.Input<boolean>;
     /**
@@ -175,23 +175,23 @@ export interface TailnetKeyState {
  */
 export interface TailnetKeyArgs {
     /**
-     * A description of the key consisting of alphanumeric characters.
+     * A description of the key consisting of alphanumeric characters. Defaults to `""`.
      */
     description?: pulumi.Input<string>;
     /**
-     * Indicates if the key is ephemeral.
+     * Indicates if the key is ephemeral. Defaults to `false`.
      */
     ephemeral?: pulumi.Input<boolean>;
     /**
-     * The expiry of the key in seconds
+     * The expiry of the key in seconds. Defaults to `7776000` (90 days).
      */
     expiry?: pulumi.Input<number>;
     /**
-     * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+     * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
      */
     preauthorized?: pulumi.Input<boolean>;
     /**
-     * Indicates if the key is reusable or single-use.
+     * Indicates if the key is reusable or single-use. Defaults to `false`.
      */
     reusable?: pulumi.Input<boolean>;
     /**

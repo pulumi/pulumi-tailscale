@@ -54,6 +54,14 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ## Import
+ * 
+ * ID doesn&#39;t matter.
+ * 
+ * ```sh
+ *  $ pulumi import tailscale:index/acl:Acl sample_acl acl
+ * ```
+ * 
  */
 @ResourceType(type="tailscale:index/acl:Acl")
 public class Acl extends com.pulumi.resources.CustomResource {

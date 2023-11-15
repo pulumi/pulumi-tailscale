@@ -72,28 +72,28 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
         return this.createdAt;
     }
     /**
-     * A description of the key consisting of alphanumeric characters.
+     * A description of the key consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
-     * @return A description of the key consisting of alphanumeric characters.
+     * @return A description of the key consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
      * 
      */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
     /**
-     * Indicates if the key is ephemeral.
+     * Indicates if the key is ephemeral. Defaults to `false`.
      * 
      */
     @Export(name="ephemeral", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> ephemeral;
 
     /**
-     * @return Indicates if the key is ephemeral.
+     * @return Indicates if the key is ephemeral. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> ephemeral() {
@@ -114,14 +114,14 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
         return this.expiresAt;
     }
     /**
-     * The expiry of the key in seconds
+     * The expiry of the key in seconds. Defaults to `7776000` (90 days).
      * 
      */
     @Export(name="expiry", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> expiry;
 
     /**
-     * @return The expiry of the key in seconds
+     * @return The expiry of the key in seconds. Defaults to `7776000` (90 days).
      * 
      */
     public Output<Optional<Integer>> expiry() {
@@ -142,28 +142,28 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
         return this.key;
     }
     /**
-     * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+     * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
      * 
      */
     @Export(name="preauthorized", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> preauthorized;
 
     /**
-     * @return Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default.
+     * @return Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> preauthorized() {
         return Codegen.optional(this.preauthorized);
     }
     /**
-     * Indicates if the key is reusable or single-use.
+     * Indicates if the key is reusable or single-use. Defaults to `false`.
      * 
      */
     @Export(name="reusable", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> reusable;
 
     /**
-     * @return Indicates if the key is reusable or single-use.
+     * @return Indicates if the key is reusable or single-use. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> reusable() {

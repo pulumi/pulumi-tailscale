@@ -55,7 +55,7 @@ export class DeviceKey extends pulumi.CustomResource {
      */
     public readonly deviceId!: pulumi.Output<string>;
     /**
-     * Determines whether or not the device's key will expire
+     * Determines whether or not the device's key will expire. Defaults to `false`.
      */
     public readonly keyExpiryDisabled!: pulumi.Output<boolean | undefined>;
 
@@ -96,7 +96,7 @@ export interface DeviceKeyState {
      */
     deviceId?: pulumi.Input<string>;
     /**
-     * Determines whether or not the device's key will expire
+     * Determines whether or not the device's key will expire. Defaults to `false`.
      */
     keyExpiryDisabled?: pulumi.Input<boolean>;
 }
@@ -110,7 +110,7 @@ export interface DeviceKeyArgs {
      */
     deviceId: pulumi.Input<string>;
     /**
-     * Determines whether or not the device's key will expire
+     * Determines whether or not the device's key will expire. Defaults to `false`.
      */
     keyExpiryDisabled?: pulumi.Input<boolean>;
 }

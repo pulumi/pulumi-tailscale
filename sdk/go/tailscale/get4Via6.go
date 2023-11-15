@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The 4via6 data source is calculates an IPv6 prefix for a given site ID and IPv4 CIDR. See Tailscale documentation for [4via6 subnets](https://tailscale.com/kb/1201/4via6-subnets/) for more details.
@@ -108,12 +107,6 @@ func (o Get4Via6ResultOutput) ToGet4Via6ResultOutput() Get4Via6ResultOutput {
 
 func (o Get4Via6ResultOutput) ToGet4Via6ResultOutputWithContext(ctx context.Context) Get4Via6ResultOutput {
 	return o
-}
-
-func (o Get4Via6ResultOutput) ToOutput(ctx context.Context) pulumix.Output[Get4Via6Result] {
-	return pulumix.Output[Get4Via6Result]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The IPv4 CIDR to map

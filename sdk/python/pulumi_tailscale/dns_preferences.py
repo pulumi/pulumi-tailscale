@@ -77,6 +77,14 @@ class DnsPreferences(pulumi.CustomResource):
         sample_preferences = tailscale.DnsPreferences("samplePreferences", magic_dns=True)
         ```
 
+        ## Import
+
+        ID doesn't matter.
+
+        ```sh
+         $ pulumi import tailscale:index/dnsPreferences:DnsPreferences sample_preferences dns_preferences
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] magic_dns: Whether or not to enable magic DNS
@@ -97,6 +105,14 @@ class DnsPreferences(pulumi.CustomResource):
         import pulumi_tailscale as tailscale
 
         sample_preferences = tailscale.DnsPreferences("samplePreferences", magic_dns=True)
+        ```
+
+        ## Import
+
+        ID doesn't matter.
+
+        ```sh
+         $ pulumi import tailscale:index/dnsPreferences:DnsPreferences sample_preferences dns_preferences
         ```
 
         :param str resource_name: The name of the resource.
