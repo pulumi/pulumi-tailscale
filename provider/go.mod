@@ -6,8 +6,8 @@ replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraf
 
 require (
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.29.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.65.0
-	github.com/pulumi/pulumi/sdk/v3 v3.93.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.66.0
+	github.com/pulumi/pulumi/sdk/v3 v3.94.2
 	github.com/tailscale/terraform-provider-tailscale v0.13.12
 )
 
@@ -170,11 +170,11 @@ require (
 	github.com/pkg/term v1.1.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/posener/complete v1.2.3 // indirect
-	github.com/pulumi/esc v0.5.7-0.20231030195049-f71961c0d5fa // indirect
+	github.com/pulumi/esc v0.6.0 // indirect
 	github.com/pulumi/pulumi-java/pkg v0.9.8 // indirect
 	github.com/pulumi/pulumi-terraform-bridge/x/muxer v0.0.4 // indirect
-	github.com/pulumi/pulumi-yaml v1.4.0 // indirect
-	github.com/pulumi/pulumi/pkg/v3 v3.93.0 // indirect
+	github.com/pulumi/pulumi-yaml v1.4.2 // indirect
+	github.com/pulumi/pulumi/pkg/v3 v3.94.2 // indirect
 	github.com/pulumi/schema-tools v0.1.2 // indirect
 	github.com/pulumi/terraform-diff-reader v0.0.2 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
