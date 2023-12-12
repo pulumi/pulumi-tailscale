@@ -104,12 +104,12 @@ public final class Get4Via6Result {
             return this;
         }
         public Get4Via6Result build() {
-            final var o = new Get4Via6Result();
-            o.cidr = cidr;
-            o.id = id;
-            o.ipv6 = ipv6;
-            o.site = site;
-            return o;
+            final var _resultValue = new Get4Via6Result();
+            _resultValue.cidr = cidr;
+            _resultValue.id = id;
+            _resultValue.ipv6 = ipv6;
+            _resultValue.site = site;
+            return _resultValue;
         }
     }
 }

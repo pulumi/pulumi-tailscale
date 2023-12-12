@@ -91,11 +91,11 @@ public final class GetDevicesResult {
             return this;
         }
         public GetDevicesResult build() {
-            final var o = new GetDevicesResult();
-            o.devices = devices;
-            o.id = id;
-            o.namePrefix = namePrefix;
-            return o;
+            final var _resultValue = new GetDevicesResult();
+            _resultValue.devices = devices;
+            _resultValue.id = id;
+            _resultValue.namePrefix = namePrefix;
+            return _resultValue;
         }
     }
 }

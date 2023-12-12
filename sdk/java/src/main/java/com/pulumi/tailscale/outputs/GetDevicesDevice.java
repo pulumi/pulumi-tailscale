@@ -89,13 +89,13 @@ public final class GetDevicesDevice {
             return this;
         }
         public GetDevicesDevice build() {
-            final var o = new GetDevicesDevice();
-            o.addresses = addresses;
-            o.id = id;
-            o.name = name;
-            o.tags = tags;
-            o.user = user;
-            return o;
+            final var _resultValue = new GetDevicesDevice();
+            _resultValue.addresses = addresses;
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.tags = tags;
+            _resultValue.user = user;
+            return _resultValue;
         }
     }
 }

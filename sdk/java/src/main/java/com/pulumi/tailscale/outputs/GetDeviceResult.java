@@ -150,14 +150,14 @@ public final class GetDeviceResult {
             return this;
         }
         public GetDeviceResult build() {
-            final var o = new GetDeviceResult();
-            o.addresses = addresses;
-            o.id = id;
-            o.name = name;
-            o.tags = tags;
-            o.user = user;
-            o.waitFor = waitFor;
-            return o;
+            final var _resultValue = new GetDeviceResult();
+            _resultValue.addresses = addresses;
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.tags = tags;
+            _resultValue.user = user;
+            _resultValue.waitFor = waitFor;
+            return _resultValue;
         }
     }
 }
