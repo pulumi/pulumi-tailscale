@@ -9,4 +9,3 @@ plugins:
   - name: random 
     version: "4.3.1"
 team: ecosystem
-javaGenVersion: "v0.9.7"
