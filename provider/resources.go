@@ -66,6 +66,7 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
+			// Overridden for back-compat reasons. Defaults to "get4via6".
 			"tailscale_4via6": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "get4Via6")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
