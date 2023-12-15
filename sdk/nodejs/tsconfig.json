@@ -23,7 +23,7 @@
         "dnsNameservers.ts",
         "dnsPreferences.ts",
         "dnsSearchPaths.ts",
-        "get4via6.ts",
+        "get4Via6.ts",
         "getAcl.ts",
         "getDevice.ts",
         "getDevices.ts",

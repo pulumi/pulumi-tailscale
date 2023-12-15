@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tailscale.Get4via6(ctx, &tailscale.Get4via6Args{
+//			_, err := tailscale.Get4Via6(ctx, &tailscale.Get4Via6Args{
 //				Cidr: "10.1.1.0/24",
 //				Site: 7,
 //			}, nil)
@@ -39,26 +39,26 @@ import (
 //	}
 //
 // ```
-func Get4via6(ctx *pulumi.Context, args *Get4via6Args, opts ...pulumi.InvokeOption) (*Get4via6Result, error) {
+func Get4Via6(ctx *pulumi.Context, args *Get4Via6Args, opts ...pulumi.InvokeOption) (*Get4Via6Result, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
-	var rv Get4via6Result
-	err := ctx.Invoke("tailscale:index/get4via6:get4via6", args, &rv, opts...)
+	var rv Get4Via6Result
+	err := ctx.Invoke("tailscale:index/get4Via6:get4Via6", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &rv, nil
 }
 
-// A collection of arguments for invoking get4via6.
-type Get4via6Args struct {
+// A collection of arguments for invoking get4Via6.
+type Get4Via6Args struct {
 	// The IPv4 CIDR to map
 	Cidr string `pulumi:"cidr"`
 	// Site ID (between 0 and 255)
 	Site int `pulumi:"site"`
 }
 
-// A collection of values returned by get4via6.
-type Get4via6Result struct {
+// A collection of values returned by get4Via6.
+type Get4Via6Result struct {
 	// The IPv4 CIDR to map
 	Cidr string `pulumi:"cidr"`
 	// The provider-assigned unique ID for this managed resource.
@@ -69,66 +69,66 @@ type Get4via6Result struct {
 	Site int `pulumi:"site"`
 }
 
-func Get4via6Output(ctx *pulumi.Context, args Get4via6OutputArgs, opts ...pulumi.InvokeOption) Get4via6ResultOutput {
+func Get4Via6Output(ctx *pulumi.Context, args Get4Via6OutputArgs, opts ...pulumi.InvokeOption) Get4Via6ResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (Get4via6Result, error) {
-			args := v.(Get4via6Args)
-			r, err := Get4via6(ctx, &args, opts...)
-			var s Get4via6Result
+		ApplyT(func(v interface{}) (Get4Via6Result, error) {
+			args := v.(Get4Via6Args)
+			r, err := Get4Via6(ctx, &args, opts...)
+			var s Get4Via6Result
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(Get4via6ResultOutput)
+		}).(Get4Via6ResultOutput)
 }
 
-// A collection of arguments for invoking get4via6.
-type Get4via6OutputArgs struct {
+// A collection of arguments for invoking get4Via6.
+type Get4Via6OutputArgs struct {
 	// The IPv4 CIDR to map
 	Cidr pulumi.StringInput `pulumi:"cidr"`
 	// Site ID (between 0 and 255)
 	Site pulumi.IntInput `pulumi:"site"`
 }
 
-func (Get4via6OutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*Get4via6Args)(nil)).Elem()
+func (Get4Via6OutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*Get4Via6Args)(nil)).Elem()
 }
 
-// A collection of values returned by get4via6.
-type Get4via6ResultOutput struct{ *pulumi.OutputState }
+// A collection of values returned by get4Via6.
+type Get4Via6ResultOutput struct{ *pulumi.OutputState }
 
-func (Get4via6ResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Get4via6Result)(nil)).Elem()
+func (Get4Via6ResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*Get4Via6Result)(nil)).Elem()
 }
 
-func (o Get4via6ResultOutput) ToGet4via6ResultOutput() Get4via6ResultOutput {
+func (o Get4Via6ResultOutput) ToGet4Via6ResultOutput() Get4Via6ResultOutput {
 	return o
 }
 
-func (o Get4via6ResultOutput) ToGet4via6ResultOutputWithContext(ctx context.Context) Get4via6ResultOutput {
+func (o Get4Via6ResultOutput) ToGet4Via6ResultOutputWithContext(ctx context.Context) Get4Via6ResultOutput {
 	return o
 }
 
 // The IPv4 CIDR to map
-func (o Get4via6ResultOutput) Cidr() pulumi.StringOutput {
-	return o.ApplyT(func(v Get4via6Result) string { return v.Cidr }).(pulumi.StringOutput)
+func (o Get4Via6ResultOutput) Cidr() pulumi.StringOutput {
+	return o.ApplyT(func(v Get4Via6Result) string { return v.Cidr }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
-func (o Get4via6ResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v Get4via6Result) string { return v.Id }).(pulumi.StringOutput)
+func (o Get4Via6ResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v Get4Via6Result) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The 4via6 mapped address
-func (o Get4via6ResultOutput) Ipv6() pulumi.StringOutput {
-	return o.ApplyT(func(v Get4via6Result) string { return v.Ipv6 }).(pulumi.StringOutput)
+func (o Get4Via6ResultOutput) Ipv6() pulumi.StringOutput {
+	return o.ApplyT(func(v Get4Via6Result) string { return v.Ipv6 }).(pulumi.StringOutput)
 }
 
 // Site ID (between 0 and 255)
-func (o Get4via6ResultOutput) Site() pulumi.IntOutput {
-	return o.ApplyT(func(v Get4via6Result) int { return v.Site }).(pulumi.IntOutput)
+func (o Get4Via6ResultOutput) Site() pulumi.IntOutput {
+	return o.ApplyT(func(v Get4Via6Result) int { return v.Site }).(pulumi.IntOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(Get4via6ResultOutput{})
+	pulumi.RegisterOutputType(Get4Via6ResultOutput{})
 }

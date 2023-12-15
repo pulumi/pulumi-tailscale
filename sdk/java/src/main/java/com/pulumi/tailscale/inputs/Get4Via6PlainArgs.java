@@ -9,9 +9,9 @@ import java.lang.String;
 import java.util.Objects;
 
 
-public final class Get4via6PlainArgs extends com.pulumi.resources.InvokeArgs {
+public final class Get4Via6PlainArgs extends com.pulumi.resources.InvokeArgs {
 
-    public static final Get4via6PlainArgs Empty = new Get4via6PlainArgs();
+    public static final Get4Via6PlainArgs Empty = new Get4Via6PlainArgs();
 
     /**
      * The IPv4 CIDR to map
@@ -43,9 +43,9 @@ public final class Get4via6PlainArgs extends com.pulumi.resources.InvokeArgs {
         return this.site;
     }
 
-    private Get4via6PlainArgs() {}
+    private Get4Via6PlainArgs() {}
 
-    private Get4via6PlainArgs(Get4via6PlainArgs $) {
+    private Get4Via6PlainArgs(Get4Via6PlainArgs $) {
         this.cidr = $.cidr;
         this.site = $.site;
     }
@@ -53,19 +53,19 @@ public final class Get4via6PlainArgs extends com.pulumi.resources.InvokeArgs {
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(Get4via6PlainArgs defaults) {
+    public static Builder builder(Get4Via6PlainArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private Get4via6PlainArgs $;
+        private Get4Via6PlainArgs $;
 
         public Builder() {
-            $ = new Get4via6PlainArgs();
+            $ = new Get4Via6PlainArgs();
         }
 
-        public Builder(Get4via6PlainArgs defaults) {
-            $ = new Get4via6PlainArgs(Objects.requireNonNull(defaults));
+        public Builder(Get4Via6PlainArgs defaults) {
+            $ = new Get4Via6PlainArgs(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -90,7 +90,7 @@ public final class Get4via6PlainArgs extends com.pulumi.resources.InvokeArgs {
             return this;
         }
 
-        public Get4via6PlainArgs build() {
+        public Get4Via6PlainArgs build() {
             $.cidr = Objects.requireNonNull($.cidr, "expected parameter 'cidr' to be non-null");
             $.site = Objects.requireNonNull($.site, "expected parameter 'site' to be non-null");
             return $;

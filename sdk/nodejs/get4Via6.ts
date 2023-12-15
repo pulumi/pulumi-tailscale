@@ -13,25 +13,25 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
  *
- * const example = tailscale.get4via6({
+ * const example = tailscale.get4Via6({
  *     cidr: "10.1.1.0/24",
  *     site: 7,
  * });
  * ```
  */
-export function get4via6(args: Get4via6Args, opts?: pulumi.InvokeOptions): Promise<Get4via6Result> {
+export function get4Via6(args: Get4Via6Args, opts?: pulumi.InvokeOptions): Promise<Get4Via6Result> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
-    return pulumi.runtime.invoke("tailscale:index/get4via6:get4via6", {
+    return pulumi.runtime.invoke("tailscale:index/get4Via6:get4Via6", {
         "cidr": args.cidr,
         "site": args.site,
     }, opts);
 }
 
 /**
- * A collection of arguments for invoking get4via6.
+ * A collection of arguments for invoking get4Via6.
  */
-export interface Get4via6Args {
+export interface Get4Via6Args {
     /**
      * The IPv4 CIDR to map
      */
@@ -43,9 +43,9 @@ export interface Get4via6Args {
 }
 
 /**
- * A collection of values returned by get4via6.
+ * A collection of values returned by get4Via6.
  */
-export interface Get4via6Result {
+export interface Get4Via6Result {
     /**
      * The IPv4 CIDR to map
      */
@@ -72,20 +72,20 @@ export interface Get4via6Result {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
  *
- * const example = tailscale.get4via6({
+ * const example = tailscale.get4Via6({
  *     cidr: "10.1.1.0/24",
  *     site: 7,
  * });
  * ```
  */
-export function get4via6Output(args: Get4via6OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<Get4via6Result> {
-    return pulumi.output(args).apply((a: any) => get4via6(a, opts))
+export function get4Via6Output(args: Get4Via6OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<Get4Via6Result> {
+    return pulumi.output(args).apply((a: any) => get4Via6(a, opts))
 }
 
 /**
- * A collection of arguments for invoking get4via6.
+ * A collection of arguments for invoking get4Via6.
  */
-export interface Get4via6OutputArgs {
+export interface Get4Via6OutputArgs {
     /**
      * The IPv4 CIDR to map
      */
