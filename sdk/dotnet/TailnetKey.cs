@@ -68,6 +68,12 @@ namespace Pulumi.Tailscale
         public Output<int?> Expiry { get; private set; } = null!;
 
         /// <summary>
+        /// Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
+        /// </summary>
+        [Output("invalid")]
+        public Output<bool> Invalid { get; private set; } = null!;
+
+        /// <summary>
         /// The authentication key
         /// </summary>
         [Output("key")]
@@ -78,6 +84,12 @@ namespace Pulumi.Tailscale
         /// </summary>
         [Output("preauthorized")]
         public Output<bool?> Preauthorized { get; private set; } = null!;
+
+        /// <summary>
+        /// Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
+        /// </summary>
+        [Output("recreateIfInvalid")]
+        public Output<string?> RecreateIfInvalid { get; private set; } = null!;
 
         /// <summary>
         /// Indicates if the key is reusable or single-use. Defaults to `false`.
@@ -166,6 +178,12 @@ namespace Pulumi.Tailscale
         public Input<bool>? Preauthorized { get; set; }
 
         /// <summary>
+        /// Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
+        /// </summary>
+        [Input("recreateIfInvalid")]
+        public Input<string>? RecreateIfInvalid { get; set; }
+
+        /// <summary>
         /// Indicates if the key is reusable or single-use. Defaults to `false`.
         /// </summary>
         [Input("reusable")]
@@ -221,6 +239,12 @@ namespace Pulumi.Tailscale
         [Input("expiry")]
         public Input<int>? Expiry { get; set; }
 
+        /// <summary>
+        /// Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
+        /// </summary>
+        [Input("invalid")]
+        public Input<bool>? Invalid { get; set; }
+
         [Input("key")]
         private Input<string>? _key;
 
@@ -242,6 +266,12 @@ namespace Pulumi.Tailscale
         /// </summary>
         [Input("preauthorized")]
         public Input<bool>? Preauthorized { get; set; }
+
+        /// <summary>
+        /// Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
+        /// </summary>
+        [Input("recreateIfInvalid")]
+        public Input<string>? RecreateIfInvalid { get; set; }
 
         /// <summary>
         /// Indicates if the key is reusable or single-use. Defaults to `false`.

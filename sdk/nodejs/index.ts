@@ -45,10 +45,15 @@ export type DnsSearchPaths = import("./dnsSearchPaths").DnsSearchPaths;
 export const DnsSearchPaths: typeof import("./dnsSearchPaths").DnsSearchPaths = null as any;
 utilities.lazyLoad(exports, ["DnsSearchPaths"], () => require("./dnsSearchPaths"));
 
-export { Get4Via6Args, Get4Via6Result, Get4Via6OutputArgs } from "./get4Via6";
-export const get4Via6: typeof import("./get4Via6").get4Via6 = null as any;
-export const get4Via6Output: typeof import("./get4Via6").get4Via6Output = null as any;
-utilities.lazyLoad(exports, ["get4Via6","get4Via6Output"], () => require("./get4Via6"));
+export { Get4via6Args, Get4via6Result, Get4via6OutputArgs } from "./get4via6";
+export const get4via6: typeof import("./get4via6").get4via6 = null as any;
+export const get4via6Output: typeof import("./get4via6").get4via6Output = null as any;
+utilities.lazyLoad(exports, ["get4via6","get4via6Output"], () => require("./get4via6"));
+
+export { GetAclResult } from "./getAcl";
+export const getAcl: typeof import("./getAcl").getAcl = null as any;
+export const getAclOutput: typeof import("./getAcl").getAclOutput = null as any;
+utilities.lazyLoad(exports, ["getAcl","getAclOutput"], () => require("./getAcl"));
 
 export { GetDeviceArgs, GetDeviceResult, GetDeviceOutputArgs } from "./getDevice";
 export const getDevice: typeof import("./getDevice").getDevice = null as any;

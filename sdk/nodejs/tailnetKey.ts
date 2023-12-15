@@ -71,6 +71,10 @@ export class TailnetKey extends pulumi.CustomResource {
      */
     public readonly expiry!: pulumi.Output<number | undefined>;
     /**
+     * Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
+     */
+    public /*out*/ readonly invalid!: pulumi.Output<boolean>;
+    /**
      * The authentication key
      */
     public /*out*/ readonly key!: pulumi.Output<string>;
@@ -78,6 +82,10 @@ export class TailnetKey extends pulumi.CustomResource {
      * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
      */
     public readonly preauthorized!: pulumi.Output<boolean | undefined>;
+    /**
+     * Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
+     */
+    public readonly recreateIfInvalid!: pulumi.Output<string | undefined>;
     /**
      * Indicates if the key is reusable or single-use. Defaults to `false`.
      */
@@ -105,8 +113,10 @@ export class TailnetKey extends pulumi.CustomResource {
             resourceInputs["ephemeral"] = state ? state.ephemeral : undefined;
             resourceInputs["expiresAt"] = state ? state.expiresAt : undefined;
             resourceInputs["expiry"] = state ? state.expiry : undefined;
+            resourceInputs["invalid"] = state ? state.invalid : undefined;
             resourceInputs["key"] = state ? state.key : undefined;
             resourceInputs["preauthorized"] = state ? state.preauthorized : undefined;
+            resourceInputs["recreateIfInvalid"] = state ? state.recreateIfInvalid : undefined;
             resourceInputs["reusable"] = state ? state.reusable : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
@@ -115,10 +125,12 @@ export class TailnetKey extends pulumi.CustomResource {
             resourceInputs["ephemeral"] = args ? args.ephemeral : undefined;
             resourceInputs["expiry"] = args ? args.expiry : undefined;
             resourceInputs["preauthorized"] = args ? args.preauthorized : undefined;
+            resourceInputs["recreateIfInvalid"] = args ? args.recreateIfInvalid : undefined;
             resourceInputs["reusable"] = args ? args.reusable : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["expiresAt"] = undefined /*out*/;
+            resourceInputs["invalid"] = undefined /*out*/;
             resourceInputs["key"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -153,6 +165,10 @@ export interface TailnetKeyState {
      */
     expiry?: pulumi.Input<number>;
     /**
+     * Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
+     */
+    invalid?: pulumi.Input<boolean>;
+    /**
      * The authentication key
      */
     key?: pulumi.Input<string>;
@@ -160,6 +176,10 @@ export interface TailnetKeyState {
      * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
      */
     preauthorized?: pulumi.Input<boolean>;
+    /**
+     * Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
+     */
+    recreateIfInvalid?: pulumi.Input<string>;
     /**
      * Indicates if the key is reusable or single-use. Defaults to `false`.
      */
@@ -190,6 +210,10 @@ export interface TailnetKeyArgs {
      * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
      */
     preauthorized?: pulumi.Input<boolean>;
+    /**
+     * Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
+     */
+    recreateIfInvalid?: pulumi.Input<string>;
     /**
      * Indicates if the key is reusable or single-use. Defaults to `false`.
      */

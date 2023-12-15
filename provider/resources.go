@@ -61,9 +61,7 @@ func Provider() tfbridge.ProviderInfo {
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"tailscale_acl": {
 				Fields: map[string]*tfbridge.SchemaInfo{
-					"acl": {
-						CSharpName: "AclJson",
-					},
+					"acl": {CSharpName: "AclJson"},
 				},
 			},
 		},

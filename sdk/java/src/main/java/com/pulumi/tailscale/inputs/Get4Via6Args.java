@@ -10,9 +10,9 @@ import java.lang.String;
 import java.util.Objects;
 
 
-public final class Get4Via6Args extends com.pulumi.resources.InvokeArgs {
+public final class Get4via6Args extends com.pulumi.resources.InvokeArgs {
 
-    public static final Get4Via6Args Empty = new Get4Via6Args();
+    public static final Get4via6Args Empty = new Get4via6Args();
 
     /**
      * The IPv4 CIDR to map
@@ -44,9 +44,9 @@ public final class Get4Via6Args extends com.pulumi.resources.InvokeArgs {
         return this.site;
     }
 
-    private Get4Via6Args() {}
+    private Get4via6Args() {}
 
-    private Get4Via6Args(Get4Via6Args $) {
+    private Get4via6Args(Get4via6Args $) {
         this.cidr = $.cidr;
         this.site = $.site;
     }
@@ -54,19 +54,19 @@ public final class Get4Via6Args extends com.pulumi.resources.InvokeArgs {
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(Get4Via6Args defaults) {
+    public static Builder builder(Get4via6Args defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private Get4Via6Args $;
+        private Get4via6Args $;
 
         public Builder() {
-            $ = new Get4Via6Args();
+            $ = new Get4via6Args();
         }
 
-        public Builder(Get4Via6Args defaults) {
-            $ = new Get4Via6Args(Objects.requireNonNull(defaults));
+        public Builder(Get4via6Args defaults) {
+            $ = new Get4via6Args(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -111,7 +111,7 @@ public final class Get4Via6Args extends com.pulumi.resources.InvokeArgs {
             return site(Output.of(site));
         }
 
-        public Get4Via6Args build() {
+        public Get4via6Args build() {
             $.cidr = Objects.requireNonNull($.cidr, "expected parameter 'cidr' to be non-null");
             $.site = Objects.requireNonNull($.site, "expected parameter 'site' to be non-null");
             return $;

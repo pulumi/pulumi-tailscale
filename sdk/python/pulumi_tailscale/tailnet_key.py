@@ -18,6 +18,7 @@ class TailnetKeyArgs:
                  ephemeral: Optional[pulumi.Input[bool]] = None,
                  expiry: Optional[pulumi.Input[int]] = None,
                  preauthorized: Optional[pulumi.Input[bool]] = None,
+                 recreate_if_invalid: Optional[pulumi.Input[str]] = None,
                  reusable: Optional[pulumi.Input[bool]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
@@ -26,6 +27,7 @@ class TailnetKeyArgs:
         :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral. Defaults to `false`.
         :param pulumi.Input[int] expiry: The expiry of the key in seconds. Defaults to `7776000` (90 days).
         :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
+        :param pulumi.Input[str] recreate_if_invalid: Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
@@ -37,6 +39,8 @@ class TailnetKeyArgs:
             pulumi.set(__self__, "expiry", expiry)
         if preauthorized is not None:
             pulumi.set(__self__, "preauthorized", preauthorized)
+        if recreate_if_invalid is not None:
+            pulumi.set(__self__, "recreate_if_invalid", recreate_if_invalid)
         if reusable is not None:
             pulumi.set(__self__, "reusable", reusable)
         if tags is not None:
@@ -91,6 +95,18 @@ class TailnetKeyArgs:
         pulumi.set(self, "preauthorized", value)
 
     @property
+    @pulumi.getter(name="recreateIfInvalid")
+    def recreate_if_invalid(self) -> Optional[pulumi.Input[str]]:
+        """
+        Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
+        """
+        return pulumi.get(self, "recreate_if_invalid")
+
+    @recreate_if_invalid.setter
+    def recreate_if_invalid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "recreate_if_invalid", value)
+
+    @property
     @pulumi.getter
     def reusable(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -123,8 +139,10 @@ class _TailnetKeyState:
                  ephemeral: Optional[pulumi.Input[bool]] = None,
                  expires_at: Optional[pulumi.Input[str]] = None,
                  expiry: Optional[pulumi.Input[int]] = None,
+                 invalid: Optional[pulumi.Input[bool]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  preauthorized: Optional[pulumi.Input[bool]] = None,
+                 recreate_if_invalid: Optional[pulumi.Input[str]] = None,
                  reusable: Optional[pulumi.Input[bool]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
@@ -134,8 +152,10 @@ class _TailnetKeyState:
         :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral. Defaults to `false`.
         :param pulumi.Input[str] expires_at: The expiry timestamp of the key in RFC3339 format
         :param pulumi.Input[int] expiry: The expiry of the key in seconds. Defaults to `7776000` (90 days).
+        :param pulumi.Input[bool] invalid: Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
         :param pulumi.Input[str] key: The authentication key
         :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
+        :param pulumi.Input[str] recreate_if_invalid: Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
@@ -149,10 +169,14 @@ class _TailnetKeyState:
             pulumi.set(__self__, "expires_at", expires_at)
         if expiry is not None:
             pulumi.set(__self__, "expiry", expiry)
+        if invalid is not None:
+            pulumi.set(__self__, "invalid", invalid)
         if key is not None:
             pulumi.set(__self__, "key", key)
         if preauthorized is not None:
             pulumi.set(__self__, "preauthorized", preauthorized)
+        if recreate_if_invalid is not None:
+            pulumi.set(__self__, "recreate_if_invalid", recreate_if_invalid)
         if reusable is not None:
             pulumi.set(__self__, "reusable", reusable)
         if tags is not None:
@@ -220,6 +244,18 @@ class _TailnetKeyState:
 
     @property
     @pulumi.getter
+    def invalid(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
+        """
+        return pulumi.get(self, "invalid")
+
+    @invalid.setter
+    def invalid(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "invalid", value)
+
+    @property
+    @pulumi.getter
     def key(self) -> Optional[pulumi.Input[str]]:
         """
         The authentication key
@@ -241,6 +277,18 @@ class _TailnetKeyState:
     @preauthorized.setter
     def preauthorized(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "preauthorized", value)
+
+    @property
+    @pulumi.getter(name="recreateIfInvalid")
+    def recreate_if_invalid(self) -> Optional[pulumi.Input[str]]:
+        """
+        Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
+        """
+        return pulumi.get(self, "recreate_if_invalid")
+
+    @recreate_if_invalid.setter
+    def recreate_if_invalid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "recreate_if_invalid", value)
 
     @property
     @pulumi.getter
@@ -276,6 +324,7 @@ class TailnetKey(pulumi.CustomResource):
                  ephemeral: Optional[pulumi.Input[bool]] = None,
                  expiry: Optional[pulumi.Input[int]] = None,
                  preauthorized: Optional[pulumi.Input[bool]] = None,
+                 recreate_if_invalid: Optional[pulumi.Input[str]] = None,
                  reusable: Optional[pulumi.Input[bool]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -302,6 +351,7 @@ class TailnetKey(pulumi.CustomResource):
         :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral. Defaults to `false`.
         :param pulumi.Input[int] expiry: The expiry of the key in seconds. Defaults to `7776000` (90 days).
         :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
+        :param pulumi.Input[str] recreate_if_invalid: Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
@@ -347,6 +397,7 @@ class TailnetKey(pulumi.CustomResource):
                  ephemeral: Optional[pulumi.Input[bool]] = None,
                  expiry: Optional[pulumi.Input[int]] = None,
                  preauthorized: Optional[pulumi.Input[bool]] = None,
+                 recreate_if_invalid: Optional[pulumi.Input[str]] = None,
                  reusable: Optional[pulumi.Input[bool]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -362,10 +413,12 @@ class TailnetKey(pulumi.CustomResource):
             __props__.__dict__["ephemeral"] = ephemeral
             __props__.__dict__["expiry"] = expiry
             __props__.__dict__["preauthorized"] = preauthorized
+            __props__.__dict__["recreate_if_invalid"] = recreate_if_invalid
             __props__.__dict__["reusable"] = reusable
             __props__.__dict__["tags"] = tags
             __props__.__dict__["created_at"] = None
             __props__.__dict__["expires_at"] = None
+            __props__.__dict__["invalid"] = None
             __props__.__dict__["key"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["key"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -384,8 +437,10 @@ class TailnetKey(pulumi.CustomResource):
             ephemeral: Optional[pulumi.Input[bool]] = None,
             expires_at: Optional[pulumi.Input[str]] = None,
             expiry: Optional[pulumi.Input[int]] = None,
+            invalid: Optional[pulumi.Input[bool]] = None,
             key: Optional[pulumi.Input[str]] = None,
             preauthorized: Optional[pulumi.Input[bool]] = None,
+            recreate_if_invalid: Optional[pulumi.Input[str]] = None,
             reusable: Optional[pulumi.Input[bool]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'TailnetKey':
         """
@@ -400,8 +455,10 @@ class TailnetKey(pulumi.CustomResource):
         :param pulumi.Input[bool] ephemeral: Indicates if the key is ephemeral. Defaults to `false`.
         :param pulumi.Input[str] expires_at: The expiry timestamp of the key in RFC3339 format
         :param pulumi.Input[int] expiry: The expiry of the key in seconds. Defaults to `7776000` (90 days).
+        :param pulumi.Input[bool] invalid: Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
         :param pulumi.Input[str] key: The authentication key
         :param pulumi.Input[bool] preauthorized: Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
+        :param pulumi.Input[str] recreate_if_invalid: Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
         """
@@ -414,8 +471,10 @@ class TailnetKey(pulumi.CustomResource):
         __props__.__dict__["ephemeral"] = ephemeral
         __props__.__dict__["expires_at"] = expires_at
         __props__.__dict__["expiry"] = expiry
+        __props__.__dict__["invalid"] = invalid
         __props__.__dict__["key"] = key
         __props__.__dict__["preauthorized"] = preauthorized
+        __props__.__dict__["recreate_if_invalid"] = recreate_if_invalid
         __props__.__dict__["reusable"] = reusable
         __props__.__dict__["tags"] = tags
         return TailnetKey(resource_name, opts=opts, __props__=__props__)
@@ -462,6 +521,14 @@ class TailnetKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def invalid(self) -> pulumi.Output[bool]:
+        """
+        Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
+        """
+        return pulumi.get(self, "invalid")
+
+    @property
+    @pulumi.getter
     def key(self) -> pulumi.Output[str]:
         """
         The authentication key
@@ -475,6 +542,14 @@ class TailnetKey(pulumi.CustomResource):
         Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
         """
         return pulumi.get(self, "preauthorized")
+
+    @property
+    @pulumi.getter(name="recreateIfInvalid")
+    def recreate_if_invalid(self) -> pulumi.Output[Optional[str]]:
+        """
+        Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
+        """
+        return pulumi.get(self, "recreate_if_invalid")
 
     @property
     @pulumi.getter

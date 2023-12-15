@@ -94,6 +94,21 @@ public final class TailnetKeyState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
+     * 
+     */
+    @Import(name="invalid")
+    private @Nullable Output<Boolean> invalid;
+
+    /**
+     * @return Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
+     * 
+     */
+    public Optional<Output<Boolean>> invalid() {
+        return Optional.ofNullable(this.invalid);
+    }
+
+    /**
      * The authentication key
      * 
      */
@@ -121,6 +136,21 @@ public final class TailnetKeyState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> preauthorized() {
         return Optional.ofNullable(this.preauthorized);
+    }
+
+    /**
+     * Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: &#39;always&#39;, &#39;never&#39;.
+     * 
+     */
+    @Import(name="recreateIfInvalid")
+    private @Nullable Output<String> recreateIfInvalid;
+
+    /**
+     * @return Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: &#39;always&#39;, &#39;never&#39;.
+     * 
+     */
+    public Optional<Output<String>> recreateIfInvalid() {
+        return Optional.ofNullable(this.recreateIfInvalid);
     }
 
     /**
@@ -161,8 +191,10 @@ public final class TailnetKeyState extends com.pulumi.resources.ResourceArgs {
         this.ephemeral = $.ephemeral;
         this.expiresAt = $.expiresAt;
         this.expiry = $.expiry;
+        this.invalid = $.invalid;
         this.key = $.key;
         this.preauthorized = $.preauthorized;
+        this.recreateIfInvalid = $.recreateIfInvalid;
         this.reusable = $.reusable;
         this.tags = $.tags;
     }
@@ -291,6 +323,27 @@ public final class TailnetKeyState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param invalid Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder invalid(@Nullable Output<Boolean> invalid) {
+            $.invalid = invalid;
+            return this;
+        }
+
+        /**
+         * @param invalid Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder invalid(Boolean invalid) {
+            return invalid(Output.of(invalid));
+        }
+
+        /**
          * @param key The authentication key
          * 
          * @return builder
@@ -330,6 +383,27 @@ public final class TailnetKeyState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder preauthorized(Boolean preauthorized) {
             return preauthorized(Output.of(preauthorized));
+        }
+
+        /**
+         * @param recreateIfInvalid Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: &#39;always&#39;, &#39;never&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder recreateIfInvalid(@Nullable Output<String> recreateIfInvalid) {
+            $.recreateIfInvalid = recreateIfInvalid;
+            return this;
+        }
+
+        /**
+         * @param recreateIfInvalid Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: &#39;always&#39;, &#39;never&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder recreateIfInvalid(String recreateIfInvalid) {
+            return recreateIfInvalid(Output.of(recreateIfInvalid));
         }
 
         /**

@@ -79,6 +79,21 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: &#39;always&#39;, &#39;never&#39;.
+     * 
+     */
+    @Import(name="recreateIfInvalid")
+    private @Nullable Output<String> recreateIfInvalid;
+
+    /**
+     * @return Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: &#39;always&#39;, &#39;never&#39;.
+     * 
+     */
+    public Optional<Output<String>> recreateIfInvalid() {
+        return Optional.ofNullable(this.recreateIfInvalid);
+    }
+
+    /**
      * Indicates if the key is reusable or single-use. Defaults to `false`.
      * 
      */
@@ -115,6 +130,7 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
         this.ephemeral = $.ephemeral;
         this.expiry = $.expiry;
         this.preauthorized = $.preauthorized;
+        this.recreateIfInvalid = $.recreateIfInvalid;
         this.reusable = $.reusable;
         this.tags = $.tags;
     }
@@ -219,6 +235,27 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder preauthorized(Boolean preauthorized) {
             return preauthorized(Output.of(preauthorized));
+        }
+
+        /**
+         * @param recreateIfInvalid Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: &#39;always&#39;, &#39;never&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder recreateIfInvalid(@Nullable Output<String> recreateIfInvalid) {
+            $.recreateIfInvalid = recreateIfInvalid;
+            return this;
+        }
+
+        /**
+         * @param recreateIfInvalid Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: &#39;always&#39;, &#39;never&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder recreateIfInvalid(String recreateIfInvalid) {
+            return recreateIfInvalid(Output.of(recreateIfInvalid));
         }
 
         /**

@@ -9,7 +9,7 @@ import java.lang.String;
 import java.util.Objects;
 
 @CustomType
-public final class Get4Via6Result {
+public final class Get4via6Result {
     /**
      * @return The IPv4 CIDR to map
      * 
@@ -31,7 +31,7 @@ public final class Get4Via6Result {
      */
     private Integer site;
 
-    private Get4Via6Result() {}
+    private Get4via6Result() {}
     /**
      * @return The IPv4 CIDR to map
      * 
@@ -65,7 +65,7 @@ public final class Get4Via6Result {
         return new Builder();
     }
 
-    public static Builder builder(Get4Via6Result defaults) {
+    public static Builder builder(Get4via6Result defaults) {
         return new Builder(defaults);
     }
     @CustomType.Builder
@@ -75,7 +75,7 @@ public final class Get4Via6Result {
         private String ipv6;
         private Integer site;
         public Builder() {}
-        public Builder(Get4Via6Result defaults) {
+        public Builder(Get4via6Result defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.cidr = defaults.cidr;
     	      this.id = defaults.id;
@@ -103,8 +103,8 @@ public final class Get4Via6Result {
             this.site = Objects.requireNonNull(site);
             return this;
         }
-        public Get4Via6Result build() {
-            final var _resultValue = new Get4Via6Result();
+        public Get4via6Result build() {
+            final var _resultValue = new Get4via6Result();
             _resultValue.cidr = cidr;
             _resultValue.id = id;
             _resultValue.ipv6 = ipv6;

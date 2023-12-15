@@ -7,14 +7,16 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.resources.InvokeArgs;
 import com.pulumi.tailscale.Utilities;
-import com.pulumi.tailscale.inputs.Get4Via6Args;
-import com.pulumi.tailscale.inputs.Get4Via6PlainArgs;
+import com.pulumi.tailscale.inputs.Get4via6Args;
+import com.pulumi.tailscale.inputs.Get4via6PlainArgs;
 import com.pulumi.tailscale.inputs.GetDeviceArgs;
 import com.pulumi.tailscale.inputs.GetDevicePlainArgs;
 import com.pulumi.tailscale.inputs.GetDevicesArgs;
 import com.pulumi.tailscale.inputs.GetDevicesPlainArgs;
-import com.pulumi.tailscale.outputs.Get4Via6Result;
+import com.pulumi.tailscale.outputs.Get4via6Result;
+import com.pulumi.tailscale.outputs.GetAclResult;
 import com.pulumi.tailscale.outputs.GetDeviceResult;
 import com.pulumi.tailscale.outputs.GetDevicesResult;
 import java.util.concurrent.CompletableFuture;
@@ -31,7 +33,7 @@ public final class TailscaleFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
-     * import com.pulumi.tailscale.inputs.Get4Via6Args;
+     * import com.pulumi.tailscale.inputs.Get4via6Args;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -45,7 +47,7 @@ public final class TailscaleFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = TailscaleFunctions.get4Via6(Get4Via6Args.builder()
+     *         final var example = TailscaleFunctions.get4via6(Get4via6Args.builder()
      *             .cidr(&#34;10.1.1.0/24&#34;)
      *             .site(7)
      *             .build());
@@ -55,8 +57,8 @@ public final class TailscaleFunctions {
      * ```
      * 
      */
-    public static Output<Get4Via6Result> get4Via6(Get4Via6Args args) {
-        return get4Via6(args, InvokeOptions.Empty);
+    public static Output<Get4via6Result> get4via6(Get4via6Args args) {
+        return get4via6(args, InvokeOptions.Empty);
     }
     /**
      * The 4via6 data source is calculates an IPv6 prefix for a given site ID and IPv4 CIDR. See Tailscale documentation for [4via6 subnets](https://tailscale.com/kb/1201/4via6-subnets/) for more details.
@@ -69,7 +71,7 @@ public final class TailscaleFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
-     * import com.pulumi.tailscale.inputs.Get4Via6Args;
+     * import com.pulumi.tailscale.inputs.Get4via6Args;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -83,7 +85,7 @@ public final class TailscaleFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = TailscaleFunctions.get4Via6(Get4Via6Args.builder()
+     *         final var example = TailscaleFunctions.get4via6(Get4via6Args.builder()
      *             .cidr(&#34;10.1.1.0/24&#34;)
      *             .site(7)
      *             .build());
@@ -93,8 +95,8 @@ public final class TailscaleFunctions {
      * ```
      * 
      */
-    public static CompletableFuture<Get4Via6Result> get4Via6Plain(Get4Via6PlainArgs args) {
-        return get4Via6Plain(args, InvokeOptions.Empty);
+    public static CompletableFuture<Get4via6Result> get4via6Plain(Get4via6PlainArgs args) {
+        return get4via6Plain(args, InvokeOptions.Empty);
     }
     /**
      * The 4via6 data source is calculates an IPv6 prefix for a given site ID and IPv4 CIDR. See Tailscale documentation for [4via6 subnets](https://tailscale.com/kb/1201/4via6-subnets/) for more details.
@@ -107,7 +109,7 @@ public final class TailscaleFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
-     * import com.pulumi.tailscale.inputs.Get4Via6Args;
+     * import com.pulumi.tailscale.inputs.Get4via6Args;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -121,7 +123,7 @@ public final class TailscaleFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = TailscaleFunctions.get4Via6(Get4Via6Args.builder()
+     *         final var example = TailscaleFunctions.get4via6(Get4via6Args.builder()
      *             .cidr(&#34;10.1.1.0/24&#34;)
      *             .site(7)
      *             .build());
@@ -131,8 +133,8 @@ public final class TailscaleFunctions {
      * ```
      * 
      */
-    public static Output<Get4Via6Result> get4Via6(Get4Via6Args args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("tailscale:index/get4Via6:get4Via6", TypeShape.of(Get4Via6Result.class), args, Utilities.withVersion(options));
+    public static Output<Get4via6Result> get4via6(Get4via6Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("tailscale:index/get4via6:get4via6", TypeShape.of(Get4via6Result.class), args, Utilities.withVersion(options));
     }
     /**
      * The 4via6 data source is calculates an IPv6 prefix for a given site ID and IPv4 CIDR. See Tailscale documentation for [4via6 subnets](https://tailscale.com/kb/1201/4via6-subnets/) for more details.
@@ -145,7 +147,7 @@ public final class TailscaleFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
-     * import com.pulumi.tailscale.inputs.Get4Via6Args;
+     * import com.pulumi.tailscale.inputs.Get4via6Args;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -159,7 +161,7 @@ public final class TailscaleFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = TailscaleFunctions.get4Via6(Get4Via6Args.builder()
+     *         final var example = TailscaleFunctions.get4via6(Get4via6Args.builder()
      *             .cidr(&#34;10.1.1.0/24&#34;)
      *             .site(7)
      *             .build());
@@ -169,8 +171,50 @@ public final class TailscaleFunctions {
      * ```
      * 
      */
-    public static CompletableFuture<Get4Via6Result> get4Via6Plain(Get4Via6PlainArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invokeAsync("tailscale:index/get4Via6:get4Via6", TypeShape.of(Get4Via6Result.class), args, Utilities.withVersion(options));
+    public static CompletableFuture<Get4via6Result> get4via6Plain(Get4via6PlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("tailscale:index/get4via6:get4via6", TypeShape.of(Get4via6Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The acl data source gets the Tailscale ACL for a tailnet
+     * 
+     */
+    public static Output<GetAclResult> getAcl() {
+        return getAcl(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * The acl data source gets the Tailscale ACL for a tailnet
+     * 
+     */
+    public static CompletableFuture<GetAclResult> getAclPlain() {
+        return getAclPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * The acl data source gets the Tailscale ACL for a tailnet
+     * 
+     */
+    public static Output<GetAclResult> getAcl(InvokeArgs args) {
+        return getAcl(args, InvokeOptions.Empty);
+    }
+    /**
+     * The acl data source gets the Tailscale ACL for a tailnet
+     * 
+     */
+    public static CompletableFuture<GetAclResult> getAclPlain(InvokeArgs args) {
+        return getAclPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The acl data source gets the Tailscale ACL for a tailnet
+     * 
+     */
+    public static Output<GetAclResult> getAcl(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("tailscale:index/getAcl:getAcl", TypeShape.of(GetAclResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The acl data source gets the Tailscale ACL for a tailnet
+     * 
+     */
+    public static CompletableFuture<GetAclResult> getAclPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("tailscale:index/getAcl:getAcl", TypeShape.of(GetAclResult.class), args, Utilities.withVersion(options));
     }
     /**
      * The device data source describes a single device in a tailnet

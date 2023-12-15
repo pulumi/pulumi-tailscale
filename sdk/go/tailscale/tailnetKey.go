@@ -55,10 +55,14 @@ type TailnetKey struct {
 	ExpiresAt pulumi.StringOutput `pulumi:"expiresAt"`
 	// The expiry of the key in seconds. Defaults to `7776000` (90 days).
 	Expiry pulumi.IntPtrOutput `pulumi:"expiry"`
+	// Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
+	Invalid pulumi.BoolOutput `pulumi:"invalid"`
 	// The authentication key
 	Key pulumi.StringOutput `pulumi:"key"`
 	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
 	Preauthorized pulumi.BoolPtrOutput `pulumi:"preauthorized"`
+	// Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
+	RecreateIfInvalid pulumi.StringPtrOutput `pulumi:"recreateIfInvalid"`
 	// Indicates if the key is reusable or single-use. Defaults to `false`.
 	Reusable pulumi.BoolPtrOutput `pulumi:"reusable"`
 	// List of tags to apply to the machines authenticated by the key.
@@ -109,10 +113,14 @@ type tailnetKeyState struct {
 	ExpiresAt *string `pulumi:"expiresAt"`
 	// The expiry of the key in seconds. Defaults to `7776000` (90 days).
 	Expiry *int `pulumi:"expiry"`
+	// Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
+	Invalid *bool `pulumi:"invalid"`
 	// The authentication key
 	Key *string `pulumi:"key"`
 	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
 	Preauthorized *bool `pulumi:"preauthorized"`
+	// Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
+	RecreateIfInvalid *string `pulumi:"recreateIfInvalid"`
 	// Indicates if the key is reusable or single-use. Defaults to `false`.
 	Reusable *bool `pulumi:"reusable"`
 	// List of tags to apply to the machines authenticated by the key.
@@ -130,10 +138,14 @@ type TailnetKeyState struct {
 	ExpiresAt pulumi.StringPtrInput
 	// The expiry of the key in seconds. Defaults to `7776000` (90 days).
 	Expiry pulumi.IntPtrInput
+	// Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
+	Invalid pulumi.BoolPtrInput
 	// The authentication key
 	Key pulumi.StringPtrInput
 	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
 	Preauthorized pulumi.BoolPtrInput
+	// Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
+	RecreateIfInvalid pulumi.StringPtrInput
 	// Indicates if the key is reusable or single-use. Defaults to `false`.
 	Reusable pulumi.BoolPtrInput
 	// List of tags to apply to the machines authenticated by the key.
@@ -153,6 +165,8 @@ type tailnetKeyArgs struct {
 	Expiry *int `pulumi:"expiry"`
 	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
 	Preauthorized *bool `pulumi:"preauthorized"`
+	// Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
+	RecreateIfInvalid *string `pulumi:"recreateIfInvalid"`
 	// Indicates if the key is reusable or single-use. Defaults to `false`.
 	Reusable *bool `pulumi:"reusable"`
 	// List of tags to apply to the machines authenticated by the key.
@@ -169,6 +183,8 @@ type TailnetKeyArgs struct {
 	Expiry pulumi.IntPtrInput
 	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
 	Preauthorized pulumi.BoolPtrInput
+	// Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
+	RecreateIfInvalid pulumi.StringPtrInput
 	// Indicates if the key is reusable or single-use. Defaults to `false`.
 	Reusable pulumi.BoolPtrInput
 	// List of tags to apply to the machines authenticated by the key.
@@ -287,6 +303,11 @@ func (o TailnetKeyOutput) Expiry() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *TailnetKey) pulumi.IntPtrOutput { return v.Expiry }).(pulumi.IntPtrOutput)
 }
 
+// Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
+func (o TailnetKeyOutput) Invalid() pulumi.BoolOutput {
+	return o.ApplyT(func(v *TailnetKey) pulumi.BoolOutput { return v.Invalid }).(pulumi.BoolOutput)
+}
+
 // The authentication key
 func (o TailnetKeyOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v *TailnetKey) pulumi.StringOutput { return v.Key }).(pulumi.StringOutput)
@@ -295,6 +316,11 @@ func (o TailnetKeyOutput) Key() pulumi.StringOutput {
 // Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
 func (o TailnetKeyOutput) Preauthorized() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *TailnetKey) pulumi.BoolPtrOutput { return v.Preauthorized }).(pulumi.BoolPtrOutput)
+}
+
+// Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
+func (o TailnetKeyOutput) RecreateIfInvalid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TailnetKey) pulumi.StringPtrOutput { return v.RecreateIfInvalid }).(pulumi.StringPtrOutput)
 }
 
 // Indicates if the key is reusable or single-use. Defaults to `false`.

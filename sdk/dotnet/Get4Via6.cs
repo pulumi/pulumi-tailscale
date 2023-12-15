@@ -9,7 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Tailscale
 {
-    public static class Get4Via6
+    public static class Get4via6
     {
         /// <summary>
         /// The 4via6 data source is calculates an IPv6 prefix for a given site ID and IPv4 CIDR. See Tailscale documentation for [4via6 subnets](https://tailscale.com/kb/1201/4via6-subnets/) for more details.
@@ -26,7 +26,7 @@ namespace Pulumi.Tailscale
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Tailscale.Get4Via6.Invoke(new()
+        ///     var example = Tailscale.Get4via6.Invoke(new()
         ///     {
         ///         Cidr = "10.1.1.0/24",
         ///         Site = 7,
@@ -37,8 +37,8 @@ namespace Pulumi.Tailscale
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Task<Get4Via6Result> InvokeAsync(Get4Via6Args args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.InvokeAsync<Get4Via6Result>("tailscale:index/get4Via6:get4Via6", args ?? new Get4Via6Args(), options.WithDefaults());
+        public static Task<Get4via6Result> InvokeAsync(Get4via6Args args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Get4via6Result>("tailscale:index/get4via6:get4via6", args ?? new Get4via6Args(), options.WithDefaults());
 
         /// <summary>
         /// The 4via6 data source is calculates an IPv6 prefix for a given site ID and IPv4 CIDR. See Tailscale documentation for [4via6 subnets](https://tailscale.com/kb/1201/4via6-subnets/) for more details.
@@ -55,7 +55,7 @@ namespace Pulumi.Tailscale
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Tailscale.Get4Via6.Invoke(new()
+        ///     var example = Tailscale.Get4via6.Invoke(new()
         ///     {
         ///         Cidr = "10.1.1.0/24",
         ///         Site = 7,
@@ -66,12 +66,12 @@ namespace Pulumi.Tailscale
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Output<Get4Via6Result> Invoke(Get4Via6InvokeArgs args, InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<Get4Via6Result>("tailscale:index/get4Via6:get4Via6", args ?? new Get4Via6InvokeArgs(), options.WithDefaults());
+        public static Output<Get4via6Result> Invoke(Get4via6InvokeArgs args, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<Get4via6Result>("tailscale:index/get4via6:get4via6", args ?? new Get4via6InvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class Get4Via6Args : global::Pulumi.InvokeArgs
+    public sealed class Get4via6Args : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The IPv4 CIDR to map
@@ -85,13 +85,13 @@ namespace Pulumi.Tailscale
         [Input("site", required: true)]
         public int Site { get; set; }
 
-        public Get4Via6Args()
+        public Get4via6Args()
         {
         }
-        public static new Get4Via6Args Empty => new Get4Via6Args();
+        public static new Get4via6Args Empty => new Get4via6Args();
     }
 
-    public sealed class Get4Via6InvokeArgs : global::Pulumi.InvokeArgs
+    public sealed class Get4via6InvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The IPv4 CIDR to map
@@ -105,15 +105,15 @@ namespace Pulumi.Tailscale
         [Input("site", required: true)]
         public Input<int> Site { get; set; } = null!;
 
-        public Get4Via6InvokeArgs()
+        public Get4via6InvokeArgs()
         {
         }
-        public static new Get4Via6InvokeArgs Empty => new Get4Via6InvokeArgs();
+        public static new Get4via6InvokeArgs Empty => new Get4via6InvokeArgs();
     }
 
 
     [OutputType]
-    public sealed class Get4Via6Result
+    public sealed class Get4via6Result
     {
         /// <summary>
         /// The IPv4 CIDR to map
@@ -133,7 +133,7 @@ namespace Pulumi.Tailscale
         public readonly int Site;
 
         [OutputConstructor]
-        private Get4Via6Result(
+        private Get4via6Result(
             string cidr,
 
             string id,
