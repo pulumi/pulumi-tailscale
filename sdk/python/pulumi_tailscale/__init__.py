@@ -14,6 +14,7 @@ from .dns_nameservers import *
 from .dns_preferences import *
 from .dns_search_paths import *
 from .get4_via6 import *
+from .get_acl import *
 from .get_device import *
 from .get_devices import *
 from .provider import *

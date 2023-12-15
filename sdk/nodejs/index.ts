@@ -50,6 +50,11 @@ export const get4Via6: typeof import("./get4Via6").get4Via6 = null as any;
 export const get4Via6Output: typeof import("./get4Via6").get4Via6Output = null as any;
 utilities.lazyLoad(exports, ["get4Via6","get4Via6Output"], () => require("./get4Via6"));
 
+export { GetAclResult } from "./getAcl";
+export const getAcl: typeof import("./getAcl").getAcl = null as any;
+export const getAclOutput: typeof import("./getAcl").getAclOutput = null as any;
+utilities.lazyLoad(exports, ["getAcl","getAclOutput"], () => require("./getAcl"));
+
 export { GetDeviceArgs, GetDeviceResult, GetDeviceOutputArgs } from "./getDevice";
 export const getDevice: typeof import("./getDevice").getDevice = null as any;
 export const getDeviceOutput: typeof import("./getDevice").getDeviceOutput = null as any;

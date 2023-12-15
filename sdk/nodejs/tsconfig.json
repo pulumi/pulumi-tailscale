@@ -24,6 +24,7 @@
         "dnsPreferences.ts",
         "dnsSearchPaths.ts",
         "get4Via6.ts",
+        "getAcl.ts",
         "getDevice.ts",
         "getDevices.ts",
         "index.ts",

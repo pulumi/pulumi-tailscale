@@ -128,6 +128,20 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.expiry);
     }
     /**
+     * Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
+     * 
+     */
+    @Export(name="invalid", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> invalid;
+
+    /**
+     * @return Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
+     * 
+     */
+    public Output<Boolean> invalid() {
+        return this.invalid;
+    }
+    /**
      * The authentication key
      * 
      */
@@ -154,6 +168,20 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> preauthorized() {
         return Codegen.optional(this.preauthorized);
+    }
+    /**
+     * Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: &#39;always&#39;, &#39;never&#39;.
+     * 
+     */
+    @Export(name="recreateIfInvalid", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> recreateIfInvalid;
+
+    /**
+     * @return Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: &#39;always&#39;, &#39;never&#39;.
+     * 
+     */
+    public Output<Optional<String>> recreateIfInvalid() {
+        return Codegen.optional(this.recreateIfInvalid);
     }
     /**
      * Indicates if the key is reusable or single-use. Defaults to `false`.

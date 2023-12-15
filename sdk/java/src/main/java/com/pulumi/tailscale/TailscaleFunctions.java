@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.resources.InvokeArgs;
 import com.pulumi.tailscale.Utilities;
 import com.pulumi.tailscale.inputs.Get4Via6Args;
 import com.pulumi.tailscale.inputs.Get4Via6PlainArgs;
@@ -15,6 +16,7 @@ import com.pulumi.tailscale.inputs.GetDevicePlainArgs;
 import com.pulumi.tailscale.inputs.GetDevicesArgs;
 import com.pulumi.tailscale.inputs.GetDevicesPlainArgs;
 import com.pulumi.tailscale.outputs.Get4Via6Result;
+import com.pulumi.tailscale.outputs.GetAclResult;
 import com.pulumi.tailscale.outputs.GetDeviceResult;
 import com.pulumi.tailscale.outputs.GetDevicesResult;
 import java.util.concurrent.CompletableFuture;
@@ -171,6 +173,48 @@ public final class TailscaleFunctions {
      */
     public static CompletableFuture<Get4Via6Result> get4Via6Plain(Get4Via6PlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("tailscale:index/get4Via6:get4Via6", TypeShape.of(Get4Via6Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The acl data source gets the Tailscale ACL for a tailnet
+     * 
+     */
+    public static Output<GetAclResult> getAcl() {
+        return getAcl(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * The acl data source gets the Tailscale ACL for a tailnet
+     * 
+     */
+    public static CompletableFuture<GetAclResult> getAclPlain() {
+        return getAclPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * The acl data source gets the Tailscale ACL for a tailnet
+     * 
+     */
+    public static Output<GetAclResult> getAcl(InvokeArgs args) {
+        return getAcl(args, InvokeOptions.Empty);
+    }
+    /**
+     * The acl data source gets the Tailscale ACL for a tailnet
+     * 
+     */
+    public static CompletableFuture<GetAclResult> getAclPlain(InvokeArgs args) {
+        return getAclPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The acl data source gets the Tailscale ACL for a tailnet
+     * 
+     */
+    public static Output<GetAclResult> getAcl(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("tailscale:index/getAcl:getAcl", TypeShape.of(GetAclResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The acl data source gets the Tailscale ACL for a tailnet
+     * 
+     */
+    public static CompletableFuture<GetAclResult> getAclPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("tailscale:index/getAcl:getAcl", TypeShape.of(GetAclResult.class), args, Utilities.withVersion(options));
     }
     /**
      * The device data source describes a single device in a tailnet
