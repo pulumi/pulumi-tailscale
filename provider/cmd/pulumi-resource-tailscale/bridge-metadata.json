@@ -92,6 +92,7 @@
             }
         }
     },
+    "auto-settings": {},
     "renames": {
         "resources": {
             "tailscale:index/acl:Acl": "tailscale_acl",
