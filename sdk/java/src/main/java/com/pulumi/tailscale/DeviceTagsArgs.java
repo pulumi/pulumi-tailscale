@@ -5,6 +5,7 @@ package com.pulumi.tailscale;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -122,8 +123,12 @@ public final class DeviceTagsArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public DeviceTagsArgs build() {
-            $.deviceId = Objects.requireNonNull($.deviceId, "expected parameter 'deviceId' to be non-null");
-            $.tags = Objects.requireNonNull($.tags, "expected parameter 'tags' to be non-null");
+            if ($.deviceId == null) {
+                throw new MissingRequiredPropertyException("DeviceTagsArgs", "deviceId");
+            }
+            if ($.tags == null) {
+                throw new MissingRequiredPropertyException("DeviceTagsArgs", "tags");
+            }
             return $;
         }
     }

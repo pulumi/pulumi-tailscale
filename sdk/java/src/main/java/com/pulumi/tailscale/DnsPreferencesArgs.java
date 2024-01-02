@@ -5,6 +5,7 @@ package com.pulumi.tailscale;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.util.Objects;
 
@@ -74,7 +75,9 @@ public final class DnsPreferencesArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         public DnsPreferencesArgs build() {
-            $.magicDns = Objects.requireNonNull($.magicDns, "expected parameter 'magicDns' to be non-null");
+            if ($.magicDns == null) {
+                throw new MissingRequiredPropertyException("DnsPreferencesArgs", "magicDns");
+            }
             return $;
         }
     }

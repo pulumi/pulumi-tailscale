@@ -5,6 +5,7 @@ package com.pulumi.tailscale;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -85,7 +86,9 @@ public final class DnsSearchPathsArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         public DnsSearchPathsArgs build() {
-            $.searchPaths = Objects.requireNonNull($.searchPaths, "expected parameter 'searchPaths' to be non-null");
+            if ($.searchPaths == null) {
+                throw new MissingRequiredPropertyException("DnsSearchPathsArgs", "searchPaths");
+            }
             return $;
         }
     }

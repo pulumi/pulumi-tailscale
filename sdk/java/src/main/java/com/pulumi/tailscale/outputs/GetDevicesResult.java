@@ -4,6 +4,7 @@
 package com.pulumi.tailscale.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.tailscale.outputs.GetDevicesDevice;
 import java.lang.String;
 import java.util.List;
@@ -74,7 +75,10 @@ public final class GetDevicesResult {
 
         @CustomType.Setter
         public Builder devices(List<GetDevicesDevice> devices) {
-            this.devices = Objects.requireNonNull(devices);
+            if (devices == null) {
+              throw new MissingRequiredPropertyException("GetDevicesResult", "devices");
+            }
+            this.devices = devices;
             return this;
         }
         public Builder devices(GetDevicesDevice... devices) {
@@ -82,11 +86,15 @@ public final class GetDevicesResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetDevicesResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder namePrefix(@Nullable String namePrefix) {
+
             this.namePrefix = namePrefix;
             return this;
         }
