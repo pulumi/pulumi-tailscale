@@ -5,6 +5,7 @@ package com.pulumi.tailscale;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -122,8 +123,12 @@ public final class DeviceSubnetRoutesArgs extends com.pulumi.resources.ResourceA
         }
 
         public DeviceSubnetRoutesArgs build() {
-            $.deviceId = Objects.requireNonNull($.deviceId, "expected parameter 'deviceId' to be non-null");
-            $.routes = Objects.requireNonNull($.routes, "expected parameter 'routes' to be non-null");
+            if ($.deviceId == null) {
+                throw new MissingRequiredPropertyException("DeviceSubnetRoutesArgs", "deviceId");
+            }
+            if ($.routes == null) {
+                throw new MissingRequiredPropertyException("DeviceSubnetRoutesArgs", "routes");
+            }
             return $;
         }
     }
