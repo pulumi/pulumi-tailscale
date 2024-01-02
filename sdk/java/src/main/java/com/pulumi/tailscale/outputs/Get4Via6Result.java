@@ -4,6 +4,7 @@
 package com.pulumi.tailscale.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -85,22 +86,34 @@ public final class Get4Via6Result {
 
         @CustomType.Setter
         public Builder cidr(String cidr) {
-            this.cidr = Objects.requireNonNull(cidr);
+            if (cidr == null) {
+              throw new MissingRequiredPropertyException("Get4Via6Result", "cidr");
+            }
+            this.cidr = cidr;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("Get4Via6Result", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder ipv6(String ipv6) {
-            this.ipv6 = Objects.requireNonNull(ipv6);
+            if (ipv6 == null) {
+              throw new MissingRequiredPropertyException("Get4Via6Result", "ipv6");
+            }
+            this.ipv6 = ipv6;
             return this;
         }
         @CustomType.Setter
         public Builder site(Integer site) {
-            this.site = Objects.requireNonNull(site);
+            if (site == null) {
+              throw new MissingRequiredPropertyException("Get4Via6Result", "site");
+            }
+            this.site = site;
             return this;
         }
         public Get4Via6Result build() {

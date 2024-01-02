@@ -5,6 +5,7 @@ package com.pulumi.tailscale.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -112,8 +113,12 @@ public final class Get4Via6Args extends com.pulumi.resources.InvokeArgs {
         }
 
         public Get4Via6Args build() {
-            $.cidr = Objects.requireNonNull($.cidr, "expected parameter 'cidr' to be non-null");
-            $.site = Objects.requireNonNull($.site, "expected parameter 'site' to be non-null");
+            if ($.cidr == null) {
+                throw new MissingRequiredPropertyException("Get4Via6Args", "cidr");
+            }
+            if ($.site == null) {
+                throw new MissingRequiredPropertyException("Get4Via6Args", "site");
+            }
             return $;
         }
     }

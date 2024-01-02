@@ -4,6 +4,7 @@
 package com.pulumi.tailscale.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -115,7 +116,10 @@ public final class GetDeviceResult {
 
         @CustomType.Setter
         public Builder addresses(List<String> addresses) {
-            this.addresses = Objects.requireNonNull(addresses);
+            if (addresses == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "addresses");
+            }
+            this.addresses = addresses;
             return this;
         }
         public Builder addresses(String... addresses) {
@@ -123,17 +127,26 @@ public final class GetDeviceResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder tags(List<String> tags) {
-            this.tags = Objects.requireNonNull(tags);
+            if (tags == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "tags");
+            }
+            this.tags = tags;
             return this;
         }
         public Builder tags(String... tags) {
@@ -141,11 +154,15 @@ public final class GetDeviceResult {
         }
         @CustomType.Setter
         public Builder user(String user) {
-            this.user = Objects.requireNonNull(user);
+            if (user == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "user");
+            }
+            this.user = user;
             return this;
         }
         @CustomType.Setter
         public Builder waitFor(@Nullable String waitFor) {
+
             this.waitFor = waitFor;
             return this;
         }

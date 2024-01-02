@@ -5,6 +5,7 @@ package com.pulumi.tailscale;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -112,8 +113,12 @@ public final class DeviceAuthorizationArgs extends com.pulumi.resources.Resource
         }
 
         public DeviceAuthorizationArgs build() {
-            $.authorized = Objects.requireNonNull($.authorized, "expected parameter 'authorized' to be non-null");
-            $.deviceId = Objects.requireNonNull($.deviceId, "expected parameter 'deviceId' to be non-null");
+            if ($.authorized == null) {
+                throw new MissingRequiredPropertyException("DeviceAuthorizationArgs", "authorized");
+            }
+            if ($.deviceId == null) {
+                throw new MissingRequiredPropertyException("DeviceAuthorizationArgs", "deviceId");
+            }
             return $;
         }
     }
