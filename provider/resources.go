@@ -22,11 +22,13 @@ import (
 	_ "embed"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/pulumi/pulumi-tailscale/provider/pkg/version"
+	"github.com/tailscale/terraform-provider-tailscale/tailscale"
+
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-	"github.com/tailscale/terraform-provider-tailscale/tailscale"
+
+	"github.com/pulumi/pulumi-tailscale/provider/pkg/version"
 )
 
 // all of the token components used below.
