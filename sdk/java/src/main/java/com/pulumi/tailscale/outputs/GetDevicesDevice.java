@@ -11,25 +11,65 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDevicesDevice {
+    /**
+     * @return The list of device&#39;s IPs
+     * 
+     */
     private List<String> addresses;
+    /**
+     * @return The unique identifier of the device
+     * 
+     */
     private String id;
+    /**
+     * @return The name of the device
+     * 
+     */
     private String name;
+    /**
+     * @return The tags applied to the device
+     * 
+     */
     private List<String> tags;
+    /**
+     * @return The user associated with the device
+     * 
+     */
     private String user;
 
     private GetDevicesDevice() {}
+    /**
+     * @return The list of device&#39;s IPs
+     * 
+     */
     public List<String> addresses() {
         return this.addresses;
     }
+    /**
+     * @return The unique identifier of the device
+     * 
+     */
     public String id() {
         return this.id;
     }
+    /**
+     * @return The name of the device
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return The tags applied to the device
+     * 
+     */
     public List<String> tags() {
         return this.tags;
     }
+    /**
+     * @return The user associated with the device
+     * 
+     */
     public String user() {
         return this.user;
     }

@@ -6,10 +6,25 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
 export interface GetDevicesDevice {
+    /**
+     * The list of device's IPs
+     */
     addresses: string[];
+    /**
+     * The unique identifier of the device
+     */
     id: string;
+    /**
+     * The name of the device
+     */
     name: string;
+    /**
+     * The tags applied to the device
+     */
     tags: string[];
+    /**
+     * The user associated with the device
+     */
     user: string;
 }
 
