@@ -21,6 +21,13 @@ class GetDevicesDeviceResult(dict):
                  name: str,
                  tags: Sequence[str],
                  user: str):
+        """
+        :param Sequence[str] addresses: The list of device's IPs
+        :param str id: The unique identifier of the device
+        :param str name: The name of the device
+        :param Sequence[str] tags: The tags applied to the device
+        :param str user: The user associated with the device
+        """
         pulumi.set(__self__, "addresses", addresses)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
@@ -30,26 +37,41 @@ class GetDevicesDeviceResult(dict):
     @property
     @pulumi.getter
     def addresses(self) -> Sequence[str]:
+        """
+        The list of device's IPs
+        """
         return pulumi.get(self, "addresses")
 
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        The unique identifier of the device
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the device
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
+        """
+        The tags applied to the device
+        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def user(self) -> str:
+        """
+        The user associated with the device
+        """
         return pulumi.get(self, "user")
 
 
