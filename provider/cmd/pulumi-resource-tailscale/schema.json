@@ -93,22 +93,27 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The list of device's IPs\n"
                 },
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The unique identifier of the device\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the device\n"
                 },
                 "tags": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "The tags applied to the device\n"
                 },
                 "user": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The user associated with the device\n"
                 }
             },
             "type": "object",
