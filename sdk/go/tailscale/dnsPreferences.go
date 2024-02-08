@@ -45,9 +45,7 @@ import (
 // ID doesn't matter.
 //
 // ```sh
-//
-//	$ pulumi import tailscale:index/dnsPreferences:DnsPreferences sample_preferences dns_preferences
-//
+// $ pulumi import tailscale:index/dnsPreferences:DnsPreferences sample_preferences dns_preferences
 // ```
 type DnsPreferences struct {
 	pulumi.CustomResourceState
