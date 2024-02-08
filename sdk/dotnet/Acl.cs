@@ -53,7 +53,7 @@ namespace Pulumi.Tailscale
     /// ID doesn't matter.
     /// 
     /// ```sh
-    ///  $ pulumi import tailscale:index/acl:Acl sample_acl acl
+    /// $ pulumi import tailscale:index/acl:Acl sample_acl acl
     /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/acl:Acl")]

@@ -89,7 +89,7 @@ class Acl(pulumi.CustomResource):
         ID doesn't matter.
 
         ```sh
-         $ pulumi import tailscale:index/acl:Acl sample_acl acl
+        $ pulumi import tailscale:index/acl:Acl sample_acl acl
         ```
 
         :param str resource_name: The name of the resource.
@@ -126,7 +126,7 @@ class Acl(pulumi.CustomResource):
         ID doesn't matter.
 
         ```sh
-         $ pulumi import tailscale:index/acl:Acl sample_acl acl
+        $ pulumi import tailscale:index/acl:Acl sample_acl acl
         ```
 
         :param str resource_name: The name of the resource.
