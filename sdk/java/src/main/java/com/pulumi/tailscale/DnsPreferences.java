@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * ID doesn&#39;t matter.
  * 
  * ```sh
- *  $ pulumi import tailscale:index/dnsPreferences:DnsPreferences sample_preferences dns_preferences
+ * $ pulumi import tailscale:index/dnsPreferences:DnsPreferences sample_preferences dns_preferences
  * ```
  * 
  */

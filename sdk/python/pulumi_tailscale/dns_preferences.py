@@ -82,7 +82,7 @@ class DnsPreferences(pulumi.CustomResource):
         ID doesn't matter.
 
         ```sh
-         $ pulumi import tailscale:index/dnsPreferences:DnsPreferences sample_preferences dns_preferences
+        $ pulumi import tailscale:index/dnsPreferences:DnsPreferences sample_preferences dns_preferences
         ```
 
         :param str resource_name: The name of the resource.
@@ -112,7 +112,7 @@ class DnsPreferences(pulumi.CustomResource):
         ID doesn't matter.
 
         ```sh
-         $ pulumi import tailscale:index/dnsPreferences:DnsPreferences sample_preferences dns_preferences
+        $ pulumi import tailscale:index/dnsPreferences:DnsPreferences sample_preferences dns_preferences
         ```
 
         :param str resource_name: The name of the resource.
