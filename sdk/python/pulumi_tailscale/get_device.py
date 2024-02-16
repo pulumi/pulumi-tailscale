@@ -21,10 +21,13 @@ class GetDeviceResult:
     """
     A collection of values returned by getDevice.
     """
-    def __init__(__self__, addresses=None, id=None, name=None, tags=None, user=None, wait_for=None):
+    def __init__(__self__, addresses=None, hostname=None, id=None, name=None, tags=None, user=None, wait_for=None):
         if addresses and not isinstance(addresses, list):
             raise TypeError("Expected argument 'addresses' to be a list")
         pulumi.set(__self__, "addresses", addresses)
+        if hostname and not isinstance(hostname, str):
+            raise TypeError("Expected argument 'hostname' to be a str")
+        pulumi.set(__self__, "hostname", hostname)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -51,6 +54,14 @@ class GetDeviceResult:
 
     @property
     @pulumi.getter
+    def hostname(self) -> Optional[str]:
+        """
+        The short hostname of the device
+        """
+        return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter
     def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
@@ -59,9 +70,9 @@ class GetDeviceResult:
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> Optional[str]:
         """
-        The name of the device
+        The full name of the device (e.g. `hostname.domain.ts.net`)
         """
         return pulumi.get(self, "name")
 
@@ -97,6 +108,7 @@ class AwaitableGetDeviceResult(GetDeviceResult):
             yield self
         return GetDeviceResult(
             addresses=self.addresses,
+            hostname=self.hostname,
             id=self.id,
             name=self.name,
             tags=self.tags,
@@ -104,7 +116,8 @@ class AwaitableGetDeviceResult(GetDeviceResult):
             wait_for=self.wait_for)
 
 
-def get_device(name: Optional[str] = None,
+def get_device(hostname: Optional[str] = None,
+               name: Optional[str] = None,
                wait_for: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDeviceResult:
     """
@@ -116,15 +129,19 @@ def get_device(name: Optional[str] = None,
     import pulumi
     import pulumi_tailscale as tailscale
 
-    sample_device = tailscale.get_device(name="user1-device.example.com",
+    sample_device = tailscale.get_device(name="device1.example.ts.net",
+        wait_for="60s")
+    sample_device2 = tailscale.get_device(hostname="device2",
         wait_for="60s")
     ```
 
 
-    :param str name: The name of the device
+    :param str hostname: The short hostname of the device
+    :param str name: The full name of the device (e.g. `hostname.domain.ts.net`)
     :param str wait_for: If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
     """
     __args__ = dict()
+    __args__['hostname'] = hostname
     __args__['name'] = name
     __args__['waitFor'] = wait_for
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -132,6 +149,7 @@ def get_device(name: Optional[str] = None,
 
     return AwaitableGetDeviceResult(
         addresses=pulumi.get(__ret__, 'addresses'),
+        hostname=pulumi.get(__ret__, 'hostname'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         tags=pulumi.get(__ret__, 'tags'),
@@ -140,7 +158,8 @@ def get_device(name: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_device)
-def get_device_output(name: Optional[pulumi.Input[str]] = None,
+def get_device_output(hostname: Optional[pulumi.Input[Optional[str]]] = None,
+                      name: Optional[pulumi.Input[Optional[str]]] = None,
                       wait_for: Optional[pulumi.Input[Optional[str]]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDeviceResult]:
     """
@@ -152,12 +171,15 @@ def get_device_output(name: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_tailscale as tailscale
 
-    sample_device = tailscale.get_device(name="user1-device.example.com",
+    sample_device = tailscale.get_device(name="device1.example.ts.net",
+        wait_for="60s")
+    sample_device2 = tailscale.get_device(hostname="device2",
         wait_for="60s")
     ```
 
 
-    :param str name: The name of the device
+    :param str hostname: The short hostname of the device
+    :param str name: The full name of the device (e.g. `hostname.domain.ts.net`)
     :param str wait_for: If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
     """
     ...

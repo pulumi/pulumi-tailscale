@@ -242,7 +242,98 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
-     *             .name(&#34;user1-device.example.com&#34;)
+     *             .name(&#34;device1.example.ts.net&#34;)
+     *             .waitFor(&#34;60s&#34;)
+     *             .build());
+     * 
+     *         final var sampleDevice2 = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
+     *             .hostname(&#34;device2&#34;)
+     *             .waitFor(&#34;60s&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetDeviceResult> getDevice() {
+        return getDevice(GetDeviceArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * The device data source describes a single device in a tailnet
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.tailscale.TailscaleFunctions;
+     * import com.pulumi.tailscale.inputs.GetDeviceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
+     *             .name(&#34;device1.example.ts.net&#34;)
+     *             .waitFor(&#34;60s&#34;)
+     *             .build());
+     * 
+     *         final var sampleDevice2 = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
+     *             .hostname(&#34;device2&#34;)
+     *             .waitFor(&#34;60s&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetDeviceResult> getDevicePlain() {
+        return getDevicePlain(GetDevicePlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * The device data source describes a single device in a tailnet
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.tailscale.TailscaleFunctions;
+     * import com.pulumi.tailscale.inputs.GetDeviceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
+     *             .name(&#34;device1.example.ts.net&#34;)
+     *             .waitFor(&#34;60s&#34;)
+     *             .build());
+     * 
+     *         final var sampleDevice2 = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
+     *             .hostname(&#34;device2&#34;)
      *             .waitFor(&#34;60s&#34;)
      *             .build());
      * 
@@ -280,7 +371,12 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
-     *             .name(&#34;user1-device.example.com&#34;)
+     *             .name(&#34;device1.example.ts.net&#34;)
+     *             .waitFor(&#34;60s&#34;)
+     *             .build());
+     * 
+     *         final var sampleDevice2 = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
+     *             .hostname(&#34;device2&#34;)
      *             .waitFor(&#34;60s&#34;)
      *             .build());
      * 
@@ -318,7 +414,12 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
-     *             .name(&#34;user1-device.example.com&#34;)
+     *             .name(&#34;device1.example.ts.net&#34;)
+     *             .waitFor(&#34;60s&#34;)
+     *             .build());
+     * 
+     *         final var sampleDevice2 = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
+     *             .hostname(&#34;device2&#34;)
      *             .waitFor(&#34;60s&#34;)
      *             .build());
      * 
@@ -356,7 +457,12 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
-     *             .name(&#34;user1-device.example.com&#34;)
+     *             .name(&#34;device1.example.ts.net&#34;)
+     *             .waitFor(&#34;60s&#34;)
+     *             .build());
+     * 
+     *         final var sampleDevice2 = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
+     *             .hostname(&#34;device2&#34;)
      *             .waitFor(&#34;60s&#34;)
      *             .build());
      * 

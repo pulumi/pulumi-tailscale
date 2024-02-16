@@ -10,11 +10,15 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.tailscale.AclArgs;
 import com.pulumi.tailscale.Utilities;
 import com.pulumi.tailscale.inputs.AclState;
+import java.lang.Boolean;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
  * The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
+ * 
+ * If tests are defined in the ACL (the top-level &#34;tests&#34; section), ACL validation will occur before creation and update operations are applied.
  * 
  * ## Example Usage
  * ```java
@@ -39,7 +43,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var sampleAcl = new Acl(&#34;sampleAcl&#34;, AclArgs.builder()        
+ *         var asJson = new Acl(&#34;asJson&#34;, AclArgs.builder()        
  *             .acl(serializeJson(
  *                 jsonObject(
  *                     jsonProperty(&#34;acls&#34;, jsonArray(jsonObject(
@@ -48,6 +52,22 @@ import javax.annotation.Nullable;
  *                         jsonProperty(&#34;ports&#34;, jsonArray(&#34;*:*&#34;))
  *                     )))
  *                 )))
+ *             .build());
+ * 
+ *         var asHujson = new Acl(&#34;asHujson&#34;, AclArgs.builder()        
+ *             .acl(&#34;&#34;&#34;
+ *   {
+ *     // Comments in HuJSON policy are preserved when the policy is applied.
+ *     &#34;acls&#34;: [
+ *       {
+ *         // Allow all users access to all ports.
+ *         action = &#34;accept&#34;,
+ *         users  = [&#34;*&#34;],
+ *         ports  = [&#34;*:*&#34;],
+ *       },
+ *     ],
+ *   }
+ *             &#34;&#34;&#34;)
  *             .build());
  * 
  *     }
@@ -66,18 +86,32 @@ import javax.annotation.Nullable;
 @ResourceType(type="tailscale:index/acl:Acl")
 public class Acl extends com.pulumi.resources.CustomResource {
     /**
-     * The JSON-based policy that defines which devices and users are allowed to connect in your network
+     * The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
      * 
      */
     @Export(name="acl", refs={String.class}, tree="[0]")
     private Output<String> acl;
 
     /**
-     * @return The JSON-based policy that defines which devices and users are allowed to connect in your network
+     * @return The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
      * 
      */
     public Output<String> acl() {
         return this.acl;
+    }
+    /**
+     * If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+     * 
+     */
+    @Export(name="overwriteExistingContent", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> overwriteExistingContent;
+
+    /**
+     * @return If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+     * 
+     */
+    public Output<Optional<Boolean>> overwriteExistingContent() {
+        return Codegen.optional(this.overwriteExistingContent);
     }
 
     /**

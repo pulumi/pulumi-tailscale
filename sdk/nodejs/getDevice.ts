@@ -14,15 +14,21 @@ import * as utilities from "./utilities";
  * import * as tailscale from "@pulumi/tailscale";
  *
  * const sampleDevice = tailscale.getDevice({
- *     name: "user1-device.example.com",
+ *     name: "device1.example.ts.net",
+ *     waitFor: "60s",
+ * });
+ * const sampleDevice2 = tailscale.getDevice({
+ *     hostname: "device2",
  *     waitFor: "60s",
  * });
  * ```
  */
-export function getDevice(args: GetDeviceArgs, opts?: pulumi.InvokeOptions): Promise<GetDeviceResult> {
+export function getDevice(args?: GetDeviceArgs, opts?: pulumi.InvokeOptions): Promise<GetDeviceResult> {
+    args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale:index/getDevice:getDevice", {
+        "hostname": args.hostname,
         "name": args.name,
         "waitFor": args.waitFor,
     }, opts);
@@ -33,9 +39,13 @@ export function getDevice(args: GetDeviceArgs, opts?: pulumi.InvokeOptions): Pro
  */
 export interface GetDeviceArgs {
     /**
-     * The name of the device
+     * The short hostname of the device
      */
-    name: string;
+    hostname?: string;
+    /**
+     * The full name of the device (e.g. `hostname.domain.ts.net`)
+     */
+    name?: string;
     /**
      * If specified, the provider will make multiple attempts to obtain the data source until the waitFor duration is reached. Retries are made every second so this value should be greater than 1s
      */
@@ -51,13 +61,17 @@ export interface GetDeviceResult {
      */
     readonly addresses: string[];
     /**
+     * The short hostname of the device
+     */
+    readonly hostname?: string;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     /**
-     * The name of the device
+     * The full name of the device (e.g. `hostname.domain.ts.net`)
      */
-    readonly name: string;
+    readonly name?: string;
     /**
      * The tags applied to the device
      */
@@ -81,12 +95,16 @@ export interface GetDeviceResult {
  * import * as tailscale from "@pulumi/tailscale";
  *
  * const sampleDevice = tailscale.getDevice({
- *     name: "user1-device.example.com",
+ *     name: "device1.example.ts.net",
+ *     waitFor: "60s",
+ * });
+ * const sampleDevice2 = tailscale.getDevice({
+ *     hostname: "device2",
  *     waitFor: "60s",
  * });
  * ```
  */
-export function getDeviceOutput(args: GetDeviceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeviceResult> {
+export function getDeviceOutput(args?: GetDeviceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeviceResult> {
     return pulumi.output(args).apply((a: any) => getDevice(a, opts))
 }
 
@@ -95,9 +113,13 @@ export function getDeviceOutput(args: GetDeviceOutputArgs, opts?: pulumi.InvokeO
  */
 export interface GetDeviceOutputArgs {
     /**
-     * The name of the device
+     * The short hostname of the device
      */
-    name: pulumi.Input<string>;
+    hostname?: pulumi.Input<string>;
+    /**
+     * The full name of the device (e.g. `hostname.domain.ts.net`)
+     */
+    name?: pulumi.Input<string>;
     /**
      * If specified, the provider will make multiple attempts to obtain the data source until the waitFor duration is reached. Retries are made every second so this value should be greater than 1s
      */

@@ -17,18 +17,21 @@ __all__ = [
 class GetDevicesDeviceResult(dict):
     def __init__(__self__, *,
                  addresses: Sequence[str],
+                 hostname: str,
                  id: str,
                  name: str,
                  tags: Sequence[str],
                  user: str):
         """
         :param Sequence[str] addresses: The list of device's IPs
+        :param str hostname: The short hostname of the device
         :param str id: The unique identifier of the device
-        :param str name: The name of the device
+        :param str name: The full name of the device (e.g. `hostname.domain.ts.net`)
         :param Sequence[str] tags: The tags applied to the device
         :param str user: The user associated with the device
         """
         pulumi.set(__self__, "addresses", addresses)
+        pulumi.set(__self__, "hostname", hostname)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "tags", tags)
@@ -44,6 +47,14 @@ class GetDevicesDeviceResult(dict):
 
     @property
     @pulumi.getter
+    def hostname(self) -> str:
+        """
+        The short hostname of the device
+        """
+        return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter
     def id(self) -> str:
         """
         The unique identifier of the device
@@ -54,7 +65,7 @@ class GetDevicesDeviceResult(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        The name of the device
+        The full name of the device (e.g. `hostname.domain.ts.net`)
         """
         return pulumi.get(self, "name")
 

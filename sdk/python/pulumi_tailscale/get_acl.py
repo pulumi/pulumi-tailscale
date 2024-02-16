@@ -21,13 +21,24 @@ class GetAclResult:
     """
     A collection of values returned by getAcl.
     """
-    def __init__(__self__, id=None, json=None):
+    def __init__(__self__, hujson=None, id=None, json=None):
+        if hujson and not isinstance(hujson, str):
+            raise TypeError("Expected argument 'hujson' to be a str")
+        pulumi.set(__self__, "hujson", hujson)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if json and not isinstance(json, str):
             raise TypeError("Expected argument 'json' to be a str")
         pulumi.set(__self__, "json", json)
+
+    @property
+    @pulumi.getter
+    def hujson(self) -> str:
+        """
+        The contents of Tailscale ACL as a HuJSON string
+        """
+        return pulumi.get(self, "hujson")
 
     @property
     @pulumi.getter
@@ -41,7 +52,7 @@ class GetAclResult:
     @pulumi.getter
     def json(self) -> str:
         """
-        The contents of Tailscale ACL as JSON
+        The contents of Tailscale ACL as a JSON string
         """
         return pulumi.get(self, "json")
 
@@ -52,6 +63,7 @@ class AwaitableGetAclResult(GetAclResult):
         if False:
             yield self
         return GetAclResult(
+            hujson=self.hujson,
             id=self.id,
             json=self.json)
 
@@ -65,6 +77,7 @@ def get_acl(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAclResul
     __ret__ = pulumi.runtime.invoke('tailscale:index/getAcl:getAcl', __args__, opts=opts, typ=GetAclResult).value
 
     return AwaitableGetAclResult(
+        hujson=pulumi.get(__ret__, 'hujson'),
         id=pulumi.get(__ret__, 'id'),
         json=pulumi.get(__ret__, 'json'))
 

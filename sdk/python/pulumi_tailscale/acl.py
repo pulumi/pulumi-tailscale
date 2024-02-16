@@ -14,18 +14,22 @@ __all__ = ['AclArgs', 'Acl']
 @pulumi.input_type
 class AclArgs:
     def __init__(__self__, *,
-                 acl: pulumi.Input[str]):
+                 acl: pulumi.Input[str],
+                 overwrite_existing_content: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Acl resource.
-        :param pulumi.Input[str] acl: The JSON-based policy that defines which devices and users are allowed to connect in your network
+        :param pulumi.Input[str] acl: The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
+        :param pulumi.Input[bool] overwrite_existing_content: If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
         """
         pulumi.set(__self__, "acl", acl)
+        if overwrite_existing_content is not None:
+            pulumi.set(__self__, "overwrite_existing_content", overwrite_existing_content)
 
     @property
     @pulumi.getter
     def acl(self) -> pulumi.Input[str]:
         """
-        The JSON-based policy that defines which devices and users are allowed to connect in your network
+        The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
         """
         return pulumi.get(self, "acl")
 
@@ -33,29 +37,57 @@ class AclArgs:
     def acl(self, value: pulumi.Input[str]):
         pulumi.set(self, "acl", value)
 
+    @property
+    @pulumi.getter(name="overwriteExistingContent")
+    def overwrite_existing_content(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+        """
+        return pulumi.get(self, "overwrite_existing_content")
+
+    @overwrite_existing_content.setter
+    def overwrite_existing_content(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "overwrite_existing_content", value)
+
 
 @pulumi.input_type
 class _AclState:
     def __init__(__self__, *,
-                 acl: Optional[pulumi.Input[str]] = None):
+                 acl: Optional[pulumi.Input[str]] = None,
+                 overwrite_existing_content: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering Acl resources.
-        :param pulumi.Input[str] acl: The JSON-based policy that defines which devices and users are allowed to connect in your network
+        :param pulumi.Input[str] acl: The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
+        :param pulumi.Input[bool] overwrite_existing_content: If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
         """
         if acl is not None:
             pulumi.set(__self__, "acl", acl)
+        if overwrite_existing_content is not None:
+            pulumi.set(__self__, "overwrite_existing_content", overwrite_existing_content)
 
     @property
     @pulumi.getter
     def acl(self) -> Optional[pulumi.Input[str]]:
         """
-        The JSON-based policy that defines which devices and users are allowed to connect in your network
+        The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
         """
         return pulumi.get(self, "acl")
 
     @acl.setter
     def acl(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "acl", value)
+
+    @property
+    @pulumi.getter(name="overwriteExistingContent")
+    def overwrite_existing_content(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+        """
+        return pulumi.get(self, "overwrite_existing_content")
+
+    @overwrite_existing_content.setter
+    def overwrite_existing_content(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "overwrite_existing_content", value)
 
 
 class Acl(pulumi.CustomResource):
@@ -64,9 +96,12 @@ class Acl(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  acl: Optional[pulumi.Input[str]] = None,
+                 overwrite_existing_content: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
+
+        If tests are defined in the ACL (the top-level "tests" section), ACL validation will occur before creation and update operations are applied.
 
         ## Example Usage
 
@@ -75,13 +110,25 @@ class Acl(pulumi.CustomResource):
         import json
         import pulumi_tailscale as tailscale
 
-        sample_acl = tailscale.Acl("sampleAcl", acl=json.dumps({
+        as_json = tailscale.Acl("asJson", acl=json.dumps({
             "acls": [{
                 "action": "accept",
                 "users": ["*"],
                 "ports": ["*:*"],
             }],
         }))
+        as_hujson = tailscale.Acl("asHujson", acl=\"\"\"  {
+            // Comments in HuJSON policy are preserved when the policy is applied.
+            "acls": [
+              {
+                // Allow all users access to all ports.
+                action = "accept",
+                users  = ["*"],
+                ports  = ["*:*"],
+              },
+            ],
+          }
+        \"\"\")
         ```
 
         ## Import
@@ -94,7 +141,8 @@ class Acl(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] acl: The JSON-based policy that defines which devices and users are allowed to connect in your network
+        :param pulumi.Input[str] acl: The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
+        :param pulumi.Input[bool] overwrite_existing_content: If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
         """
         ...
     @overload
@@ -105,6 +153,8 @@ class Acl(pulumi.CustomResource):
         """
         The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
 
+        If tests are defined in the ACL (the top-level "tests" section), ACL validation will occur before creation and update operations are applied.
+
         ## Example Usage
 
         ```python
@@ -112,13 +162,25 @@ class Acl(pulumi.CustomResource):
         import json
         import pulumi_tailscale as tailscale
 
-        sample_acl = tailscale.Acl("sampleAcl", acl=json.dumps({
+        as_json = tailscale.Acl("asJson", acl=json.dumps({
             "acls": [{
                 "action": "accept",
                 "users": ["*"],
                 "ports": ["*:*"],
             }],
         }))
+        as_hujson = tailscale.Acl("asHujson", acl=\"\"\"  {
+            // Comments in HuJSON policy are preserved when the policy is applied.
+            "acls": [
+              {
+                // Allow all users access to all ports.
+                action = "accept",
+                users  = ["*"],
+                ports  = ["*:*"],
+              },
+            ],
+          }
+        \"\"\")
         ```
 
         ## Import
@@ -145,6 +207,7 @@ class Acl(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  acl: Optional[pulumi.Input[str]] = None,
+                 overwrite_existing_content: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -157,6 +220,7 @@ class Acl(pulumi.CustomResource):
             if acl is None and not opts.urn:
                 raise TypeError("Missing required property 'acl'")
             __props__.__dict__["acl"] = acl
+            __props__.__dict__["overwrite_existing_content"] = overwrite_existing_content
         super(Acl, __self__).__init__(
             'tailscale:index/acl:Acl',
             resource_name,
@@ -167,7 +231,8 @@ class Acl(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acl: Optional[pulumi.Input[str]] = None) -> 'Acl':
+            acl: Optional[pulumi.Input[str]] = None,
+            overwrite_existing_content: Optional[pulumi.Input[bool]] = None) -> 'Acl':
         """
         Get an existing Acl resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -175,20 +240,30 @@ class Acl(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] acl: The JSON-based policy that defines which devices and users are allowed to connect in your network
+        :param pulumi.Input[str] acl: The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
+        :param pulumi.Input[bool] overwrite_existing_content: If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _AclState.__new__(_AclState)
 
         __props__.__dict__["acl"] = acl
+        __props__.__dict__["overwrite_existing_content"] = overwrite_existing_content
         return Acl(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
     def acl(self) -> pulumi.Output[str]:
         """
-        The JSON-based policy that defines which devices and users are allowed to connect in your network
+        The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
         """
         return pulumi.get(self, "acl")
+
+    @property
+    @pulumi.getter(name="overwriteExistingContent")
+    def overwrite_existing_content(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+        """
+        return pulumi.get(self, "overwrite_existing_content")
 

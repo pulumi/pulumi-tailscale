@@ -6,8 +6,11 @@ package com.pulumi.tailscale;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class AclArgs extends com.pulumi.resources.ResourceArgs {
@@ -15,24 +18,40 @@ public final class AclArgs extends com.pulumi.resources.ResourceArgs {
     public static final AclArgs Empty = new AclArgs();
 
     /**
-     * The JSON-based policy that defines which devices and users are allowed to connect in your network
+     * The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
      * 
      */
     @Import(name="acl", required=true)
     private Output<String> acl;
 
     /**
-     * @return The JSON-based policy that defines which devices and users are allowed to connect in your network
+     * @return The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
      * 
      */
     public Output<String> acl() {
         return this.acl;
     }
 
+    /**
+     * If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+     * 
+     */
+    @Import(name="overwriteExistingContent")
+    private @Nullable Output<Boolean> overwriteExistingContent;
+
+    /**
+     * @return If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+     * 
+     */
+    public Optional<Output<Boolean>> overwriteExistingContent() {
+        return Optional.ofNullable(this.overwriteExistingContent);
+    }
+
     private AclArgs() {}
 
     private AclArgs(AclArgs $) {
         this.acl = $.acl;
+        this.overwriteExistingContent = $.overwriteExistingContent;
     }
 
     public static Builder builder() {
@@ -54,7 +73,7 @@ public final class AclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param acl The JSON-based policy that defines which devices and users are allowed to connect in your network
+         * @param acl The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
          * 
          * @return builder
          * 
@@ -65,13 +84,34 @@ public final class AclArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param acl The JSON-based policy that defines which devices and users are allowed to connect in your network
+         * @param acl The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
          * 
          * @return builder
          * 
          */
         public Builder acl(String acl) {
             return acl(Output.of(acl));
+        }
+
+        /**
+         * @param overwriteExistingContent If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+         * 
+         * @return builder
+         * 
+         */
+        public Builder overwriteExistingContent(@Nullable Output<Boolean> overwriteExistingContent) {
+            $.overwriteExistingContent = overwriteExistingContent;
+            return this;
+        }
+
+        /**
+         * @param overwriteExistingContent If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+         * 
+         * @return builder
+         * 
+         */
+        public Builder overwriteExistingContent(Boolean overwriteExistingContent) {
+            return overwriteExistingContent(Output.of(overwriteExistingContent));
         }
 
         public AclArgs build() {

@@ -14,6 +14,8 @@ import (
 
 // The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
 //
+// If tests are defined in the ACL (the top-level "tests" section), ACL validation will occur before creation and update operations are applied.
+//
 // ## Example Usage
 //
 // ```go
@@ -47,8 +49,27 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			_, err = tailscale.NewAcl(ctx, "sampleAcl", &tailscale.AclArgs{
+//			_, err = tailscale.NewAcl(ctx, "asJson", &tailscale.AclArgs{
 //				Acl: pulumi.String(json0),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = tailscale.NewAcl(ctx, "asHujson", &tailscale.AclArgs{
+//				Acl: pulumi.String(`  {
+//	    // Comments in HuJSON policy are preserved when the policy is applied.
+//	    "acls": [
+//	      {
+//	        // Allow all users access to all ports.
+//	        action = "accept",
+//	        users  = ["*"],
+//	        ports  = ["*:*"],
+//	      },
+//	    ],
+//	  }
+//
+// `),
+//
 //			})
 //			if err != nil {
 //				return err
@@ -69,8 +90,10 @@ import (
 type Acl struct {
 	pulumi.CustomResourceState
 
-	// The JSON-based policy that defines which devices and users are allowed to connect in your network
+	// The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
 	Acl pulumi.StringOutput `pulumi:"acl"`
+	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+	OverwriteExistingContent pulumi.BoolPtrOutput `pulumi:"overwriteExistingContent"`
 }
 
 // NewAcl registers a new resource with the given unique name, arguments, and options.
@@ -106,13 +129,17 @@ func GetAcl(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Acl resources.
 type aclState struct {
-	// The JSON-based policy that defines which devices and users are allowed to connect in your network
+	// The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
 	Acl *string `pulumi:"acl"`
+	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+	OverwriteExistingContent *bool `pulumi:"overwriteExistingContent"`
 }
 
 type AclState struct {
-	// The JSON-based policy that defines which devices and users are allowed to connect in your network
+	// The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
 	Acl pulumi.StringPtrInput
+	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+	OverwriteExistingContent pulumi.BoolPtrInput
 }
 
 func (AclState) ElementType() reflect.Type {
@@ -120,14 +147,18 @@ func (AclState) ElementType() reflect.Type {
 }
 
 type aclArgs struct {
-	// The JSON-based policy that defines which devices and users are allowed to connect in your network
+	// The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
 	Acl string `pulumi:"acl"`
+	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+	OverwriteExistingContent *bool `pulumi:"overwriteExistingContent"`
 }
 
 // The set of arguments for constructing a Acl resource.
 type AclArgs struct {
-	// The JSON-based policy that defines which devices and users are allowed to connect in your network
+	// The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
 	Acl pulumi.StringInput
+	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+	OverwriteExistingContent pulumi.BoolPtrInput
 }
 
 func (AclArgs) ElementType() reflect.Type {
@@ -217,9 +248,14 @@ func (o AclOutput) ToAclOutputWithContext(ctx context.Context) AclOutput {
 	return o
 }
 
-// The JSON-based policy that defines which devices and users are allowed to connect in your network
+// The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
 func (o AclOutput) Acl() pulumi.StringOutput {
 	return o.ApplyT(func(v *Acl) pulumi.StringOutput { return v.Acl }).(pulumi.StringOutput)
+}
+
+// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+func (o AclOutput) OverwriteExistingContent() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Acl) pulumi.BoolPtrOutput { return v.OverwriteExistingContent }).(pulumi.BoolPtrOutput)
 }
 
 type AclArrayOutput struct{ *pulumi.OutputState }

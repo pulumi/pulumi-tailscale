@@ -28,8 +28,15 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tailscale.GetDevice(ctx, &tailscale.GetDeviceArgs{
-//				Name:    "user1-device.example.com",
+//				Name:    pulumi.StringRef("device1.example.ts.net"),
 //				WaitFor: pulumi.StringRef("60s"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = tailscale.GetDevice(ctx, &tailscale.GetDeviceArgs{
+//				Hostname: pulumi.StringRef("device2"),
+//				WaitFor:  pulumi.StringRef("60s"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -51,8 +58,10 @@ func GetDevice(ctx *pulumi.Context, args *GetDeviceArgs, opts ...pulumi.InvokeOp
 
 // A collection of arguments for invoking getDevice.
 type GetDeviceArgs struct {
-	// The name of the device
-	Name string `pulumi:"name"`
+	// The short hostname of the device
+	Hostname *string `pulumi:"hostname"`
+	// The full name of the device (e.g. `hostname.domain.ts.net`)
+	Name *string `pulumi:"name"`
 	// If specified, the provider will make multiple attempts to obtain the data source until the waitFor duration is reached. Retries are made every second so this value should be greater than 1s
 	WaitFor *string `pulumi:"waitFor"`
 }
@@ -61,10 +70,12 @@ type GetDeviceArgs struct {
 type GetDeviceResult struct {
 	// The list of device's IPs
 	Addresses []string `pulumi:"addresses"`
+	// The short hostname of the device
+	Hostname *string `pulumi:"hostname"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// The name of the device
-	Name string `pulumi:"name"`
+	// The full name of the device (e.g. `hostname.domain.ts.net`)
+	Name *string `pulumi:"name"`
 	// The tags applied to the device
 	Tags []string `pulumi:"tags"`
 	// The user associated with the device
@@ -88,8 +99,10 @@ func GetDeviceOutput(ctx *pulumi.Context, args GetDeviceOutputArgs, opts ...pulu
 
 // A collection of arguments for invoking getDevice.
 type GetDeviceOutputArgs struct {
-	// The name of the device
-	Name pulumi.StringInput `pulumi:"name"`
+	// The short hostname of the device
+	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
+	// The full name of the device (e.g. `hostname.domain.ts.net`)
+	Name pulumi.StringPtrInput `pulumi:"name"`
 	// If specified, the provider will make multiple attempts to obtain the data source until the waitFor duration is reached. Retries are made every second so this value should be greater than 1s
 	WaitFor pulumi.StringPtrInput `pulumi:"waitFor"`
 }
@@ -118,14 +131,19 @@ func (o GetDeviceResultOutput) Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDeviceResult) []string { return v.Addresses }).(pulumi.StringArrayOutput)
 }
 
+// The short hostname of the device
+func (o GetDeviceResultOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDeviceResult) *string { return v.Hostname }).(pulumi.StringPtrOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o GetDeviceResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeviceResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The name of the device
-func (o GetDeviceResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetDeviceResult) string { return v.Name }).(pulumi.StringOutput)
+// The full name of the device (e.g. `hostname.domain.ts.net`)
+func (o GetDeviceResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDeviceResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 // The tags applied to the device

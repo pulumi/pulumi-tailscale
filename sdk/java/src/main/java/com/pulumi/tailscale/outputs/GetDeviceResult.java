@@ -19,15 +19,20 @@ public final class GetDeviceResult {
      */
     private List<String> addresses;
     /**
+     * @return The short hostname of the device
+     * 
+     */
+    private @Nullable String hostname;
+    /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
     /**
-     * @return The name of the device
+     * @return The full name of the device (e.g. `hostname.domain.ts.net`)
      * 
      */
-    private String name;
+    private @Nullable String name;
     /**
      * @return The tags applied to the device
      * 
@@ -53,6 +58,13 @@ public final class GetDeviceResult {
         return this.addresses;
     }
     /**
+     * @return The short hostname of the device
+     * 
+     */
+    public Optional<String> hostname() {
+        return Optional.ofNullable(this.hostname);
+    }
+    /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
@@ -60,11 +72,11 @@ public final class GetDeviceResult {
         return this.id;
     }
     /**
-     * @return The name of the device
+     * @return The full name of the device (e.g. `hostname.domain.ts.net`)
      * 
      */
-    public String name() {
-        return this.name;
+    public Optional<String> name() {
+        return Optional.ofNullable(this.name);
     }
     /**
      * @return The tags applied to the device
@@ -98,8 +110,9 @@ public final class GetDeviceResult {
     @CustomType.Builder
     public static final class Builder {
         private List<String> addresses;
+        private @Nullable String hostname;
         private String id;
-        private String name;
+        private @Nullable String name;
         private List<String> tags;
         private String user;
         private @Nullable String waitFor;
@@ -107,6 +120,7 @@ public final class GetDeviceResult {
         public Builder(GetDeviceResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.addresses = defaults.addresses;
+    	      this.hostname = defaults.hostname;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.tags = defaults.tags;
@@ -126,6 +140,12 @@ public final class GetDeviceResult {
             return addresses(List.of(addresses));
         }
         @CustomType.Setter
+        public Builder hostname(@Nullable String hostname) {
+
+            this.hostname = hostname;
+            return this;
+        }
+        @CustomType.Setter
         public Builder id(String id) {
             if (id == null) {
               throw new MissingRequiredPropertyException("GetDeviceResult", "id");
@@ -134,10 +154,8 @@ public final class GetDeviceResult {
             return this;
         }
         @CustomType.Setter
-        public Builder name(String name) {
-            if (name == null) {
-              throw new MissingRequiredPropertyException("GetDeviceResult", "name");
-            }
+        public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }
@@ -169,6 +187,7 @@ public final class GetDeviceResult {
         public GetDeviceResult build() {
             final var _resultValue = new GetDeviceResult();
             _resultValue.addresses = addresses;
+            _resultValue.hostname = hostname;
             _resultValue.id = id;
             _resultValue.name = name;
             _resultValue.tags = tags;

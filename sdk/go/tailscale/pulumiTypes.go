@@ -16,9 +16,11 @@ var _ = internal.GetEnvOrDefault
 type GetDevicesDevice struct {
 	// The list of device's IPs
 	Addresses []string `pulumi:"addresses"`
+	// The short hostname of the device
+	Hostname string `pulumi:"hostname"`
 	// The unique identifier of the device
 	Id string `pulumi:"id"`
-	// The name of the device
+	// The full name of the device (e.g. `hostname.domain.ts.net`)
 	Name string `pulumi:"name"`
 	// The tags applied to the device
 	Tags []string `pulumi:"tags"`
@@ -40,9 +42,11 @@ type GetDevicesDeviceInput interface {
 type GetDevicesDeviceArgs struct {
 	// The list of device's IPs
 	Addresses pulumi.StringArrayInput `pulumi:"addresses"`
+	// The short hostname of the device
+	Hostname pulumi.StringInput `pulumi:"hostname"`
 	// The unique identifier of the device
 	Id pulumi.StringInput `pulumi:"id"`
-	// The name of the device
+	// The full name of the device (e.g. `hostname.domain.ts.net`)
 	Name pulumi.StringInput `pulumi:"name"`
 	// The tags applied to the device
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
@@ -106,12 +110,17 @@ func (o GetDevicesDeviceOutput) Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDevicesDevice) []string { return v.Addresses }).(pulumi.StringArrayOutput)
 }
 
+// The short hostname of the device
+func (o GetDevicesDeviceOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDevicesDevice) string { return v.Hostname }).(pulumi.StringOutput)
+}
+
 // The unique identifier of the device
 func (o GetDevicesDeviceOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDevicesDevice) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The name of the device
+// The full name of the device (e.g. `hostname.domain.ts.net`)
 func (o GetDevicesDeviceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDevicesDevice) string { return v.Name }).(pulumi.StringOutput)
 }

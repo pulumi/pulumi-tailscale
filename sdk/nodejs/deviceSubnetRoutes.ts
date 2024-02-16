@@ -24,6 +24,13 @@ import * as utilities from "./utilities";
  *         "2.0.0.0/24",
  *     ],
  * });
+ * const sampleExitNode = new tailscale.DeviceSubnetRoutes("sampleExitNode", {
+ *     deviceId: sampleDevice.then(sampleDevice => sampleDevice.id),
+ *     routes: [
+ *         "0.0.0.0/0",
+ *         "::/0",
+ *     ],
+ * });
  * ```
  */
 export class DeviceSubnetRoutes extends pulumi.CustomResource {

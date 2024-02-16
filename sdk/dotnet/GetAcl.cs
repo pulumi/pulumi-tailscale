@@ -29,20 +29,27 @@ namespace Pulumi.Tailscale
     public sealed class GetAclResult
     {
         /// <summary>
+        /// The contents of Tailscale ACL as a HuJSON string
+        /// </summary>
+        public readonly string Hujson;
+        /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The contents of Tailscale ACL as JSON
+        /// The contents of Tailscale ACL as a JSON string
         /// </summary>
         public readonly string Json;
 
         [OutputConstructor]
         private GetAclResult(
+            string hujson,
+
             string id,
 
             string json)
         {
+            Hujson = hujson;
             Id = id;
             Json = json;
         }

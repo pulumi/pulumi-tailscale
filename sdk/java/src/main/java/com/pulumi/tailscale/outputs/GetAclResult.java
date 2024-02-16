@@ -11,17 +11,29 @@ import java.util.Objects;
 @CustomType
 public final class GetAclResult {
     /**
+     * @return The contents of Tailscale ACL as a HuJSON string
+     * 
+     */
+    private String hujson;
+    /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
     /**
-     * @return The contents of Tailscale ACL as JSON
+     * @return The contents of Tailscale ACL as a JSON string
      * 
      */
     private String json;
 
     private GetAclResult() {}
+    /**
+     * @return The contents of Tailscale ACL as a HuJSON string
+     * 
+     */
+    public String hujson() {
+        return this.hujson;
+    }
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -30,7 +42,7 @@ public final class GetAclResult {
         return this.id;
     }
     /**
-     * @return The contents of Tailscale ACL as JSON
+     * @return The contents of Tailscale ACL as a JSON string
      * 
      */
     public String json() {
@@ -46,15 +58,25 @@ public final class GetAclResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String hujson;
         private String id;
         private String json;
         public Builder() {}
         public Builder(GetAclResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.hujson = defaults.hujson;
     	      this.id = defaults.id;
     	      this.json = defaults.json;
         }
 
+        @CustomType.Setter
+        public Builder hujson(String hujson) {
+            if (hujson == null) {
+              throw new MissingRequiredPropertyException("GetAclResult", "hujson");
+            }
+            this.hujson = hujson;
+            return this;
+        }
         @CustomType.Setter
         public Builder id(String id) {
             if (id == null) {
@@ -73,6 +95,7 @@ public final class GetAclResult {
         }
         public GetAclResult build() {
             final var _resultValue = new GetAclResult();
+            _resultValue.hujson = hujson;
             _resultValue.id = id;
             _resultValue.json = json;
             return _resultValue;

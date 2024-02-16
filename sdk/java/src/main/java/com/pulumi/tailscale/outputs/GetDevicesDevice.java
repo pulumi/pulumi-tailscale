@@ -17,12 +17,17 @@ public final class GetDevicesDevice {
      */
     private List<String> addresses;
     /**
+     * @return The short hostname of the device
+     * 
+     */
+    private String hostname;
+    /**
      * @return The unique identifier of the device
      * 
      */
     private String id;
     /**
-     * @return The name of the device
+     * @return The full name of the device (e.g. `hostname.domain.ts.net`)
      * 
      */
     private String name;
@@ -46,6 +51,13 @@ public final class GetDevicesDevice {
         return this.addresses;
     }
     /**
+     * @return The short hostname of the device
+     * 
+     */
+    public String hostname() {
+        return this.hostname;
+    }
+    /**
      * @return The unique identifier of the device
      * 
      */
@@ -53,7 +65,7 @@ public final class GetDevicesDevice {
         return this.id;
     }
     /**
-     * @return The name of the device
+     * @return The full name of the device (e.g. `hostname.domain.ts.net`)
      * 
      */
     public String name() {
@@ -84,6 +96,7 @@ public final class GetDevicesDevice {
     @CustomType.Builder
     public static final class Builder {
         private List<String> addresses;
+        private String hostname;
         private String id;
         private String name;
         private List<String> tags;
@@ -92,6 +105,7 @@ public final class GetDevicesDevice {
         public Builder(GetDevicesDevice defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.addresses = defaults.addresses;
+    	      this.hostname = defaults.hostname;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.tags = defaults.tags;
@@ -108,6 +122,14 @@ public final class GetDevicesDevice {
         }
         public Builder addresses(String... addresses) {
             return addresses(List.of(addresses));
+        }
+        @CustomType.Setter
+        public Builder hostname(String hostname) {
+            if (hostname == null) {
+              throw new MissingRequiredPropertyException("GetDevicesDevice", "hostname");
+            }
+            this.hostname = hostname;
+            return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
@@ -147,6 +169,7 @@ public final class GetDevicesDevice {
         public GetDevicesDevice build() {
             final var _resultValue = new GetDevicesDevice();
             _resultValue.addresses = addresses;
+            _resultValue.hostname = hostname;
             _resultValue.id = id;
             _resultValue.name = name;
             _resultValue.tags = tags;
