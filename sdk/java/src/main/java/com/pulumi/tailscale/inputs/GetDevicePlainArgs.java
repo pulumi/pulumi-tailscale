@@ -4,7 +4,6 @@
 package com.pulumi.tailscale.inputs;
 
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -16,18 +15,33 @@ public final class GetDevicePlainArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetDevicePlainArgs Empty = new GetDevicePlainArgs();
 
     /**
-     * The name of the device
+     * The short hostname of the device
      * 
      */
-    @Import(name="name", required=true)
-    private String name;
+    @Import(name="hostname")
+    private @Nullable String hostname;
 
     /**
-     * @return The name of the device
+     * @return The short hostname of the device
      * 
      */
-    public String name() {
-        return this.name;
+    public Optional<String> hostname() {
+        return Optional.ofNullable(this.hostname);
+    }
+
+    /**
+     * The full name of the device (e.g. `hostname.domain.ts.net`)
+     * 
+     */
+    @Import(name="name")
+    private @Nullable String name;
+
+    /**
+     * @return The full name of the device (e.g. `hostname.domain.ts.net`)
+     * 
+     */
+    public Optional<String> name() {
+        return Optional.ofNullable(this.name);
     }
 
     /**
@@ -48,6 +62,7 @@ public final class GetDevicePlainArgs extends com.pulumi.resources.InvokeArgs {
     private GetDevicePlainArgs() {}
 
     private GetDevicePlainArgs(GetDevicePlainArgs $) {
+        this.hostname = $.hostname;
         this.name = $.name;
         this.waitFor = $.waitFor;
     }
@@ -71,12 +86,23 @@ public final class GetDevicePlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param name The name of the device
+         * @param hostname The short hostname of the device
          * 
          * @return builder
          * 
          */
-        public Builder name(String name) {
+        public Builder hostname(@Nullable String hostname) {
+            $.hostname = hostname;
+            return this;
+        }
+
+        /**
+         * @param name The full name of the device (e.g. `hostname.domain.ts.net`)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder name(@Nullable String name) {
             $.name = name;
             return this;
         }
@@ -93,9 +119,6 @@ public final class GetDevicePlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetDevicePlainArgs build() {
-            if ($.name == null) {
-                throw new MissingRequiredPropertyException("GetDevicePlainArgs", "name");
-            }
             return $;
         }
     }

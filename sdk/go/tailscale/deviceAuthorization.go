@@ -29,7 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			sampleDevice, err := tailscale.GetDevice(ctx, &tailscale.GetDeviceArgs{
-//				Name: "device.example.com",
+//				Name: pulumi.StringRef("device.example.com"),
 //			}, nil)
 //			if err != nil {
 //				return err

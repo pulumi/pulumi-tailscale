@@ -38,6 +38,16 @@ namespace Pulumi.Tailscale
     ///         },
     ///     });
     /// 
+    ///     var sampleExitNode = new Tailscale.DeviceSubnetRoutes("sampleExitNode", new()
+    ///     {
+    ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.Id),
+    ///         Routes = new[]
+    ///         {
+    ///             "0.0.0.0/0",
+    ///             "::/0",
+    ///         },
+    ///     });
+    /// 
     /// });
     /// ```
     /// </summary>

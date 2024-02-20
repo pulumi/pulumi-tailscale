@@ -24,9 +24,11 @@ func LookupAcl(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*LookupAclResu
 
 // A collection of values returned by getAcl.
 type LookupAclResult struct {
+	// The contents of Tailscale ACL as a HuJSON string
+	Hujson string `pulumi:"hujson"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// The contents of Tailscale ACL as JSON
+	// The contents of Tailscale ACL as a JSON string
 	Json string `pulumi:"json"`
 }
 
@@ -56,12 +58,17 @@ func (o LookupAclResultOutput) ToLookupAclResultOutputWithContext(ctx context.Co
 	return o
 }
 
+// The contents of Tailscale ACL as a HuJSON string
+func (o LookupAclResultOutput) Hujson() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAclResult) string { return v.Hujson }).(pulumi.StringOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o LookupAclResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAclResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The contents of Tailscale ACL as JSON
+// The contents of Tailscale ACL as a JSON string
 func (o LookupAclResultOutput) Json() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAclResult) string { return v.Json }).(pulumi.StringOutput)
 }

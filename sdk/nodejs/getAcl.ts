@@ -19,11 +19,15 @@ export function getAcl(opts?: pulumi.InvokeOptions): Promise<GetAclResult> {
  */
 export interface GetAclResult {
     /**
+     * The contents of Tailscale ACL as a HuJSON string
+     */
+    readonly hujson: string;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     /**
-     * The contents of Tailscale ACL as JSON
+     * The contents of Tailscale ACL as a JSON string
      */
     readonly json: string;
 }

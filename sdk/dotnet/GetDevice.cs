@@ -28,7 +28,13 @@ namespace Pulumi.Tailscale
         /// {
         ///     var sampleDevice = Tailscale.GetDevice.Invoke(new()
         ///     {
-        ///         Name = "user1-device.example.com",
+        ///         Name = "device1.example.ts.net",
+        ///         WaitFor = "60s",
+        ///     });
+        /// 
+        ///     var sampleDevice2 = Tailscale.GetDevice.Invoke(new()
+        ///     {
+        ///         Hostname = "device2",
         ///         WaitFor = "60s",
         ///     });
         /// 
@@ -37,7 +43,7 @@ namespace Pulumi.Tailscale
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Task<GetDeviceResult> InvokeAsync(GetDeviceArgs args, InvokeOptions? options = null)
+        public static Task<GetDeviceResult> InvokeAsync(GetDeviceArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDeviceResult>("tailscale:index/getDevice:getDevice", args ?? new GetDeviceArgs(), options.WithDefaults());
 
         /// <summary>
@@ -57,7 +63,13 @@ namespace Pulumi.Tailscale
         /// {
         ///     var sampleDevice = Tailscale.GetDevice.Invoke(new()
         ///     {
-        ///         Name = "user1-device.example.com",
+        ///         Name = "device1.example.ts.net",
+        ///         WaitFor = "60s",
+        ///     });
+        /// 
+        ///     var sampleDevice2 = Tailscale.GetDevice.Invoke(new()
+        ///     {
+        ///         Hostname = "device2",
         ///         WaitFor = "60s",
         ///     });
         /// 
@@ -66,7 +78,7 @@ namespace Pulumi.Tailscale
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Output<GetDeviceResult> Invoke(GetDeviceInvokeArgs args, InvokeOptions? options = null)
+        public static Output<GetDeviceResult> Invoke(GetDeviceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDeviceResult>("tailscale:index/getDevice:getDevice", args ?? new GetDeviceInvokeArgs(), options.WithDefaults());
     }
 
@@ -74,10 +86,16 @@ namespace Pulumi.Tailscale
     public sealed class GetDeviceArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of the device
+        /// The short hostname of the device
         /// </summary>
-        [Input("name", required: true)]
-        public string Name { get; set; } = null!;
+        [Input("hostname")]
+        public string? Hostname { get; set; }
+
+        /// <summary>
+        /// The full name of the device (e.g. `hostname.domain.ts.net`)
+        /// </summary>
+        [Input("name")]
+        public string? Name { get; set; }
 
         /// <summary>
         /// If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
@@ -94,10 +112,16 @@ namespace Pulumi.Tailscale
     public sealed class GetDeviceInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of the device
+        /// The short hostname of the device
         /// </summary>
-        [Input("name", required: true)]
-        public Input<string> Name { get; set; } = null!;
+        [Input("hostname")]
+        public Input<string>? Hostname { get; set; }
+
+        /// <summary>
+        /// The full name of the device (e.g. `hostname.domain.ts.net`)
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
 
         /// <summary>
         /// If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
@@ -120,13 +144,17 @@ namespace Pulumi.Tailscale
         /// </summary>
         public readonly ImmutableArray<string> Addresses;
         /// <summary>
+        /// The short hostname of the device
+        /// </summary>
+        public readonly string? Hostname;
+        /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The name of the device
+        /// The full name of the device (e.g. `hostname.domain.ts.net`)
         /// </summary>
-        public readonly string Name;
+        public readonly string? Name;
         /// <summary>
         /// The tags applied to the device
         /// </summary>
@@ -144,9 +172,11 @@ namespace Pulumi.Tailscale
         private GetDeviceResult(
             ImmutableArray<string> addresses,
 
+            string? hostname,
+
             string id,
 
-            string name,
+            string? name,
 
             ImmutableArray<string> tags,
 
@@ -155,6 +185,7 @@ namespace Pulumi.Tailscale
             string? waitFor)
         {
             Addresses = addresses;
+            Hostname = hostname;
             Id = id;
             Name = name;
             Tags = tags;

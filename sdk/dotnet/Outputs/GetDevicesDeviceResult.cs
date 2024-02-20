@@ -18,11 +18,15 @@ namespace Pulumi.Tailscale.Outputs
         /// </summary>
         public readonly ImmutableArray<string> Addresses;
         /// <summary>
+        /// The short hostname of the device
+        /// </summary>
+        public readonly string Hostname;
+        /// <summary>
         /// The unique identifier of the device
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The name of the device
+        /// The full name of the device (e.g. `hostname.domain.ts.net`)
         /// </summary>
         public readonly string Name;
         /// <summary>
@@ -38,6 +42,8 @@ namespace Pulumi.Tailscale.Outputs
         private GetDevicesDeviceResult(
             ImmutableArray<string> addresses,
 
+            string hostname,
+
             string id,
 
             string name,
@@ -47,6 +53,7 @@ namespace Pulumi.Tailscale.Outputs
             string user)
         {
             Addresses = addresses;
+            Hostname = hostname;
             Id = id;
             Name = name;
             Tags = tags;

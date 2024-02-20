@@ -12,6 +12,8 @@ namespace Pulumi.Tailscale
     /// <summary>
     /// The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
     /// 
+    /// If tests are defined in the ACL (the top-level "tests" section), ACL validation will occur before creation and update operations are applied.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -23,7 +25,7 @@ namespace Pulumi.Tailscale
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var sampleAcl = new Tailscale.Acl("sampleAcl", new()
+    ///     var asJson = new Tailscale.Acl("asJson", new()
     ///     {
     ///         AclJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
@@ -45,6 +47,22 @@ namespace Pulumi.Tailscale
     ///         }),
     ///     });
     /// 
+    ///     var asHujson = new Tailscale.Acl("asHujson", new()
+    ///     {
+    ///         AclJson = @"  {
+    ///     // Comments in HuJSON policy are preserved when the policy is applied.
+    ///     ""acls"": [
+    ///       {
+    ///         // Allow all users access to all ports.
+    ///         action = ""accept"",
+    ///         users  = [""*""],
+    ///         ports  = [""*:*""],
+    ///       },
+    ///     ],
+    ///   }
+    /// ",
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -60,10 +78,16 @@ namespace Pulumi.Tailscale
     public partial class Acl : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The JSON-based policy that defines which devices and users are allowed to connect in your network
+        /// The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
         /// </summary>
         [Output("acl")]
         public Output<string> AclJson { get; private set; } = null!;
+
+        /// <summary>
+        /// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+        /// </summary>
+        [Output("overwriteExistingContent")]
+        public Output<bool?> OverwriteExistingContent { get; private set; } = null!;
 
 
         /// <summary>
@@ -112,10 +136,16 @@ namespace Pulumi.Tailscale
     public sealed class AclArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The JSON-based policy that defines which devices and users are allowed to connect in your network
+        /// The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
         /// </summary>
         [Input("acl", required: true)]
         public Input<string> AclJson { get; set; } = null!;
+
+        /// <summary>
+        /// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+        /// </summary>
+        [Input("overwriteExistingContent")]
+        public Input<bool>? OverwriteExistingContent { get; set; }
 
         public AclArgs()
         {
@@ -126,10 +156,16 @@ namespace Pulumi.Tailscale
     public sealed class AclState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The JSON-based policy that defines which devices and users are allowed to connect in your network
+        /// The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
         /// </summary>
         [Input("acl")]
         public Input<string>? AclJson { get; set; }
+
+        /// <summary>
+        /// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+        /// </summary>
+        [Input("overwriteExistingContent")]
+        public Input<bool>? OverwriteExistingContent { get; set; }
 
         public AclState()
         {

@@ -7,19 +7,33 @@ import * as utilities from "./utilities";
 /**
  * The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
  *
+ * If tests are defined in the ACL (the top-level "tests" section), ACL validation will occur before creation and update operations are applied.
+ *
  * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
  *
- * const sampleAcl = new tailscale.Acl("sampleAcl", {acl: JSON.stringify({
+ * const asJson = new tailscale.Acl("asJson", {acl: JSON.stringify({
  *     acls: [{
  *         action: "accept",
  *         users: ["*"],
  *         ports: ["*:*"],
  *     }],
  * })});
+ * const asHujson = new tailscale.Acl("asHujson", {acl: `  {
+ *     // Comments in HuJSON policy are preserved when the policy is applied.
+ *     "acls": [
+ *       {
+ *         // Allow all users access to all ports.
+ *         action = "accept",
+ *         users  = ["*"],
+ *         ports  = ["*:*"],
+ *       },
+ *     ],
+ *   }
+ * `});
  * ```
  *
  * ## Import
@@ -59,9 +73,13 @@ export class Acl extends pulumi.CustomResource {
     }
 
     /**
-     * The JSON-based policy that defines which devices and users are allowed to connect in your network
+     * The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
      */
     public readonly acl!: pulumi.Output<string>;
+    /**
+     * If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+     */
+    public readonly overwriteExistingContent!: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a Acl resource with the given unique name, arguments, and options.
@@ -77,12 +95,14 @@ export class Acl extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AclState | undefined;
             resourceInputs["acl"] = state ? state.acl : undefined;
+            resourceInputs["overwriteExistingContent"] = state ? state.overwriteExistingContent : undefined;
         } else {
             const args = argsOrState as AclArgs | undefined;
             if ((!args || args.acl === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'acl'");
             }
             resourceInputs["acl"] = args ? args.acl : undefined;
+            resourceInputs["overwriteExistingContent"] = args ? args.overwriteExistingContent : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Acl.__pulumiType, name, resourceInputs, opts);
@@ -94,9 +114,13 @@ export class Acl extends pulumi.CustomResource {
  */
 export interface AclState {
     /**
-     * The JSON-based policy that defines which devices and users are allowed to connect in your network
+     * The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
      */
     acl?: pulumi.Input<string>;
+    /**
+     * If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+     */
+    overwriteExistingContent?: pulumi.Input<boolean>;
 }
 
 /**
@@ -104,7 +128,11 @@ export interface AclState {
  */
 export interface AclArgs {
     /**
-     * The JSON-based policy that defines which devices and users are allowed to connect in your network
+     * The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
      */
     acl: pulumi.Input<string>;
+    /**
+     * If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+     */
+    overwriteExistingContent?: pulumi.Input<boolean>;
 }

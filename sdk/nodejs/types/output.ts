@@ -11,11 +11,15 @@ export interface GetDevicesDevice {
      */
     addresses: string[];
     /**
+     * The short hostname of the device
+     */
+    hostname: string;
+    /**
      * The unique identifier of the device
      */
     id: string;
     /**
-     * The name of the device
+     * The full name of the device (e.g. `hostname.domain.ts.net`)
      */
     name: string;
     /**

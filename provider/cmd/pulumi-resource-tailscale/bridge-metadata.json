@@ -112,6 +112,9 @@
             "tailscale:index/getDevices:getDevices": "tailscale_devices"
         },
         "renamedProperties": {
+            "tailscale:index/acl:Acl": {
+                "overwriteExistingContent": "overwrite_existing_content"
+            },
             "tailscale:index/deviceAuthorization:DeviceAuthorization": {
                 "deviceId": "device_id"
             },

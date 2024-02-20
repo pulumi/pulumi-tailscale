@@ -29,7 +29,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			sampleDevice, err := tailscale.GetDevice(ctx, &tailscale.GetDeviceArgs{
-//				Name: "device.example.com",
+//				Name: pulumi.StringRef("device.example.com"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -40,6 +40,16 @@ import (
 //					pulumi.String("10.0.1.0/24"),
 //					pulumi.String("1.2.0.0/16"),
 //					pulumi.String("2.0.0.0/24"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = tailscale.NewDeviceSubnetRoutes(ctx, "sampleExitNode", &tailscale.DeviceSubnetRoutesArgs{
+//				DeviceId: *pulumi.String(sampleDevice.Id),
+//				Routes: pulumi.StringArray{
+//					pulumi.String("0.0.0.0/0"),
+//					pulumi.String("::/0"),
 //				},
 //			})
 //			if err != nil {

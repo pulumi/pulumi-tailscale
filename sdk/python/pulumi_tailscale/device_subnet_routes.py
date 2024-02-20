@@ -114,6 +114,12 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
                 "1.2.0.0/16",
                 "2.0.0.0/24",
             ])
+        sample_exit_node = tailscale.DeviceSubnetRoutes("sampleExitNode",
+            device_id=sample_device.id,
+            routes=[
+                "0.0.0.0/0",
+                "::/0",
+            ])
         ```
 
         :param str resource_name: The name of the resource.
@@ -143,6 +149,12 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
                 "10.0.1.0/24",
                 "1.2.0.0/16",
                 "2.0.0.0/24",
+            ])
+        sample_exit_node = tailscale.DeviceSubnetRoutes("sampleExitNode",
+            device_id=sample_device.id,
+            routes=[
+                "0.0.0.0/0",
+                "::/0",
             ])
         ```
 

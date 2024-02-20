@@ -53,6 +53,13 @@ import javax.annotation.Nullable;
  *                 &#34;2.0.0.0/24&#34;)
  *             .build());
  * 
+ *         var sampleExitNode = new DeviceSubnetRoutes(&#34;sampleExitNode&#34;, DeviceSubnetRoutesArgs.builder()        
+ *             .deviceId(sampleDevice.applyValue(getDeviceResult -&gt; getDeviceResult.id()))
+ *             .routes(            
+ *                 &#34;0.0.0.0/0&#34;,
+ *                 &#34;::/0&#34;)
+ *             .build());
+ * 
  *     }
  * }
  * ```
