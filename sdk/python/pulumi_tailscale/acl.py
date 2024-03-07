@@ -105,6 +105,7 @@ class Acl(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -130,6 +131,7 @@ class Acl(pulumi.CustomResource):
           }
         \"\"\")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -157,6 +159,7 @@ class Acl(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -182,6 +185,7 @@ class Acl(pulumi.CustomResource):
           }
         \"\"\")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
