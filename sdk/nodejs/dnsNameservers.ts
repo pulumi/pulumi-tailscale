@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
@@ -18,6 +19,7 @@ import * as utilities from "./utilities";
  *     "8.8.4.4",
  * ]});
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class DnsNameservers extends pulumi.CustomResource {
     /**

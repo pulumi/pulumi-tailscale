@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
@@ -21,6 +22,7 @@ import * as utilities from "./utilities";
  *     keyExpiryDisabled: true,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class DeviceKey extends pulumi.CustomResource {
     /**

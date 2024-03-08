@@ -14,6 +14,7 @@ namespace Pulumi.Tailscale
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -38,6 +39,7 @@ namespace Pulumi.Tailscale
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [TailscaleResourceType("tailscale:index/deviceTags:DeviceTags")]
     public partial class DeviceTags : global::Pulumi.CustomResource

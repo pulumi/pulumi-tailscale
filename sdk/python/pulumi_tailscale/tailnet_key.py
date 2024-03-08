@@ -333,6 +333,7 @@ class TailnetKey(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_tailscale as tailscale
@@ -344,6 +345,7 @@ class TailnetKey(pulumi.CustomResource):
             preauthorized=True,
             reusable=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -366,6 +368,7 @@ class TailnetKey(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_tailscale as tailscale
@@ -377,6 +380,7 @@ class TailnetKey(pulumi.CustomResource):
             preauthorized=True,
             reusable=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param TailnetKeyArgs args: The arguments to use to populate this resource's properties.

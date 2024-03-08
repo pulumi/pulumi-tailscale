@@ -102,6 +102,7 @@ class DeviceAuthorization(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_tailscale as tailscale
@@ -111,6 +112,7 @@ class DeviceAuthorization(pulumi.CustomResource):
             device_id=sample_device.id,
             authorized=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -128,6 +130,7 @@ class DeviceAuthorization(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_tailscale as tailscale
@@ -137,6 +140,7 @@ class DeviceAuthorization(pulumi.CustomResource):
             device_id=sample_device.id,
             authorized=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param DeviceAuthorizationArgs args: The arguments to use to populate this resource's properties.

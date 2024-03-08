@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
@@ -22,6 +23,7 @@ import * as utilities from "./utilities";
  *     waitFor: "60s",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getDevice(args?: GetDeviceArgs, opts?: pulumi.InvokeOptions): Promise<GetDeviceResult> {
     args = args || {};
@@ -90,6 +92,7 @@ export interface GetDeviceResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
@@ -103,6 +106,7 @@ export interface GetDeviceResult {
  *     waitFor: "60s",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getDeviceOutput(args?: GetDeviceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeviceResult> {
     return pulumi.output(args).apply((a: any) => getDevice(a, opts))

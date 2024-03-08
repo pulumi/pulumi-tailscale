@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
@@ -18,6 +19,7 @@ import * as utilities from "./utilities";
  *     site: 7,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function get4Via6(args: Get4Via6Args, opts?: pulumi.InvokeOptions): Promise<Get4Via6Result> {
 
@@ -68,6 +70,7 @@ export interface Get4Via6Result {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
@@ -77,6 +80,7 @@ export interface Get4Via6Result {
  *     site: 7,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function get4Via6Output(args: Get4Via6OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<Get4Via6Result> {
     return pulumi.output(args).apply((a: any) => get4Via6(a, opts))
