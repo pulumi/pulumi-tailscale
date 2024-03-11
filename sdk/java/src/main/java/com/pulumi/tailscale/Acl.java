@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  * If tests are defined in the ACL (the top-level &#34;tests&#34; section), ACL validation will occur before creation and update operations are applied.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -73,6 +75,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
