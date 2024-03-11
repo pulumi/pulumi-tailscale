@@ -70,6 +70,7 @@ class DnsNameservers(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_tailscale as tailscale
@@ -79,6 +80,7 @@ class DnsNameservers(pulumi.CustomResource):
             "8.8.4.4",
         ])
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -95,6 +97,7 @@ class DnsNameservers(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_tailscale as tailscale
@@ -104,6 +107,7 @@ class DnsNameservers(pulumi.CustomResource):
             "8.8.4.4",
         ])
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param DnsNameserversArgs args: The arguments to use to populate this resource's properties.

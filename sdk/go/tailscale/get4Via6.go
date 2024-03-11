@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,6 +40,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func Get4Via6(ctx *pulumi.Context, args *Get4Via6Args, opts ...pulumi.InvokeOption) (*Get4Via6Result, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv Get4Via6Result

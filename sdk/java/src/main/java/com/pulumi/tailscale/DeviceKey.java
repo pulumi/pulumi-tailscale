@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
  * The device_key resource allows you to update the properties of a device&#39;s key
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -54,6 +56,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
 @ResourceType(type="tailscale:index/deviceKey:DeviceKey")
