@@ -36,7 +36,7 @@ import (
 //				return err
 //			}
 //			_, err = tailscale.NewDeviceKey(ctx, "exampleKey", &tailscale.DeviceKeyArgs{
-//				DeviceId:          *pulumi.String(exampleDevice.Id),
+//				DeviceId:          pulumi.String(exampleDevice.Id),
 //				KeyExpiryDisabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
