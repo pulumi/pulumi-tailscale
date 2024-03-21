@@ -36,7 +36,7 @@ import (
 //				return err
 //			}
 //			_, err = tailscale.NewDeviceSubnetRoutes(ctx, "sampleRoutes", &tailscale.DeviceSubnetRoutesArgs{
-//				DeviceId: *pulumi.String(sampleDevice.Id),
+//				DeviceId: pulumi.String(sampleDevice.Id),
 //				Routes: pulumi.StringArray{
 //					pulumi.String("10.0.1.0/24"),
 //					pulumi.String("1.2.0.0/16"),
@@ -47,7 +47,7 @@ import (
 //				return err
 //			}
 //			_, err = tailscale.NewDeviceSubnetRoutes(ctx, "sampleExitNode", &tailscale.DeviceSubnetRoutesArgs{
-//				DeviceId: *pulumi.String(sampleDevice.Id),
+//				DeviceId: pulumi.String(sampleDevice.Id),
 //				Routes: pulumi.StringArray{
 //					pulumi.String("0.0.0.0/0"),
 //					pulumi.String("::/0"),
