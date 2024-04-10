@@ -1,0 +1,60 @@
+{
+  "version": 3,
+  "deployment": {
+    "manifest": {
+      "time": "2024-04-10T11:56:59.265899+01:00",
+      "magic": "0e109972342b6ebd571fa6d2cffefcb95394f9c4f7bdd855463082d16126072c",
+      "version": "v3.111.1"
+    },
+    "secrets_providers": {
+      "type": "passphrase",
+      "state": {
+        "salt": "v1:1uhy2XhUOZs=:v1:DsksFmTR54LwxOj3:cXK2R/5+Q0YSJsgnp4FpoGkXdyAT5g=="
+      }
+    },
+    "resources": [
+      {
+        "urn": "urn:pulumi:test::index_dnsnameservers23sQ40jwXTpW::pulumi:pulumi:Stack::index_dnsnameservers23sQ40jwXTpW-test",
+        "custom": false,
+        "type": "pulumi:pulumi:Stack",
+        "created": "2024-04-10T10:56:59.098417Z",
+        "modified": "2024-04-10T10:56:59.098417Z"
+      },
+      {
+        "urn": "urn:pulumi:test::index_dnsnameservers23sQ40jwXTpW::pulumi:providers:tailscale::default",
+        "custom": true,
+        "id": "e460b886-3717-4424-9209-dc623bb040d2",
+        "type": "pulumi:providers:tailscale",
+        "created": "2024-04-10T10:56:59.153137Z",
+        "modified": "2024-04-10T10:56:59.153137Z"
+      },
+      {
+        "urn": "urn:pulumi:test::index_dnsnameservers23sQ40jwXTpW::tailscale:index/dnsNameservers:DnsNameservers::dnsNameservers",
+        "custom": true,
+        "id": "de8fc932-e78c-3ad7-757c-4b3656c221c4",
+        "type": "tailscale:index/dnsNameservers:DnsNameservers",
+        "inputs": {
+          "__defaults": [],
+          "nameservers": [
+            "1.1.1.1",
+            "8.8.8.8"
+          ]
+        },
+        "outputs": {
+          "id": "de8fc932-e78c-3ad7-757c-4b3656c221c4",
+          "nameservers": [
+            "1.1.1.1",
+            "8.8.8.8"
+          ]
+        },
+        "parent": "urn:pulumi:test::index_dnsnameservers23sQ40jwXTpW::pulumi:pulumi:Stack::index_dnsnameservers23sQ40jwXTpW-test",
+        "provider": "urn:pulumi:test::index_dnsnameservers23sQ40jwXTpW::pulumi:providers:tailscale::default::e460b886-3717-4424-9209-dc623bb040d2",
+        "propertyDependencies": {
+          "nameservers": []
+        },
+        "created": "2024-04-10T10:56:59.26586Z",
+        "modified": "2024-04-10T10:56:59.26586Z"
+      }
+    ]
+  }
+}
