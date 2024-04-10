@@ -1,0 +1,14 @@
+name: index_dnsnameservers23sQ40jwXTpW
+runtime: yaml
+description: ""
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/4d52c229-a008-4f65-b9f0-091d91e263cf.zip
+resources:
+  dnsNameservers:
+    properties:
+      nameservers:
+        - 1.1.1.1
+        - 8.8.8.8
+    type: tailscale:DnsNameservers

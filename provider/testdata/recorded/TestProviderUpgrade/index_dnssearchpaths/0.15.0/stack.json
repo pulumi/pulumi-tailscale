@@ -1,0 +1,60 @@
+{
+  "version": 3,
+  "deployment": {
+    "manifest": {
+      "time": "2024-04-10T11:56:54.261907+01:00",
+      "magic": "0e109972342b6ebd571fa6d2cffefcb95394f9c4f7bdd855463082d16126072c",
+      "version": "v3.111.1"
+    },
+    "secrets_providers": {
+      "type": "passphrase",
+      "state": {
+        "salt": "v1:dnM8BEh7gIs=:v1:0y6rYS7krMOEGp1b:K7b7tt/sss8hi7HgG50t9/AWp5nNYQ=="
+      }
+    },
+    "resources": [
+      {
+        "urn": "urn:pulumi:test::index_dnssearchpathsvfgQBZU4dbTj::pulumi:pulumi:Stack::index_dnssearchpathsvfgQBZU4dbTj-test",
+        "custom": false,
+        "type": "pulumi:pulumi:Stack",
+        "created": "2024-04-10T10:56:54.067805Z",
+        "modified": "2024-04-10T10:56:54.067805Z"
+      },
+      {
+        "urn": "urn:pulumi:test::index_dnssearchpathsvfgQBZU4dbTj::pulumi:providers:tailscale::default",
+        "custom": true,
+        "id": "18bbcb17-5140-4d29-8ec2-d9ac14ebdda4",
+        "type": "pulumi:providers:tailscale",
+        "created": "2024-04-10T10:56:54.148758Z",
+        "modified": "2024-04-10T10:56:54.148758Z"
+      },
+      {
+        "urn": "urn:pulumi:test::index_dnssearchpathsvfgQBZU4dbTj::tailscale:index/dnsSearchPaths:DnsSearchPaths::dnsSearchPaths",
+        "custom": true,
+        "id": "68abe6a9-b691-f743-a6e9-ea1060830a5a",
+        "type": "tailscale:index/dnsSearchPaths:DnsSearchPaths",
+        "inputs": {
+          "__defaults": [],
+          "searchPaths": [
+            "example.com",
+            "internal.example.com"
+          ]
+        },
+        "outputs": {
+          "id": "68abe6a9-b691-f743-a6e9-ea1060830a5a",
+          "searchPaths": [
+            "example.com",
+            "internal.example.com"
+          ]
+        },
+        "parent": "urn:pulumi:test::index_dnssearchpathsvfgQBZU4dbTj::pulumi:pulumi:Stack::index_dnssearchpathsvfgQBZU4dbTj-test",
+        "provider": "urn:pulumi:test::index_dnssearchpathsvfgQBZU4dbTj::pulumi:providers:tailscale::default::18bbcb17-5140-4d29-8ec2-d9ac14ebdda4",
+        "propertyDependencies": {
+          "searchPaths": []
+        },
+        "created": "2024-04-10T10:56:54.261853Z",
+        "modified": "2024-04-10T10:56:54.261853Z"
+      }
+    ]
+  }
+}

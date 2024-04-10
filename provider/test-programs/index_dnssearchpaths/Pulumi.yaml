@@ -1,0 +1,14 @@
+name: index_dnssearchpathsvfgQBZU4dbTj
+runtime: yaml
+description: ""
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/3890432d-0a4b-42f8-8820-9a11b7669307.zip
+resources:
+  dnsSearchPaths:
+    properties:
+      searchPaths:
+        - example.com
+        - internal.example.com
+    type: tailscale:DnsSearchPaths
