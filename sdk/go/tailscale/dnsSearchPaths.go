@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tailscale.NewDnsSearchPaths(ctx, "sampleSearchPaths", &tailscale.DnsSearchPathsArgs{
+//			_, err := tailscale.NewDnsSearchPaths(ctx, "sample_search_paths", &tailscale.DnsSearchPathsArgs{
 //				SearchPaths: pulumi.StringArray{
 //					pulumi.String("example.com"),
 //				},

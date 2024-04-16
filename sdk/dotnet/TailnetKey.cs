@@ -23,13 +23,13 @@ namespace Pulumi.Tailscale
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var sampleKey = new Tailscale.TailnetKey("sampleKey", new()
+    ///     var sampleKey = new Tailscale.TailnetKey("sample_key", new()
     ///     {
-    ///         Description = "Sample key",
-    ///         Ephemeral = false,
-    ///         Expiry = 3600,
-    ///         Preauthorized = true,
     ///         Reusable = true,
+    ///         Ephemeral = false,
+    ///         Preauthorized = true,
+    ///         Expiry = 3600,
+    ///         Description = "Sample key",
     ///     });
     /// 
     /// });

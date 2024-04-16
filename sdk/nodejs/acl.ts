@@ -16,14 +16,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
  *
- * const asJson = new tailscale.Acl("asJson", {acl: JSON.stringify({
+ * const asJson = new tailscale.Acl("as_json", {acl: JSON.stringify({
  *     acls: [{
  *         action: "accept",
  *         users: ["*"],
  *         ports: ["*:*"],
  *     }],
  * })});
- * const asHujson = new tailscale.Acl("asHujson", {acl: `  {
+ * const asHujson = new tailscale.Acl("as_hujson", {acl: `  {
  *     // Comments in HuJSON policy are preserved when the policy is applied.
  *     "acls": [
  *       {

@@ -93,8 +93,8 @@ def get4_via6(cidr: Optional[str] = None,
     import pulumi
     import pulumi_tailscale as tailscale
 
-    example = tailscale.get4_via6(cidr="10.1.1.0/24",
-        site=7)
+    example = tailscale.get4_via6(site=7,
+        cidr="10.1.1.0/24")
     ```
     <!--End PulumiCodeChooser -->
 
@@ -129,8 +129,8 @@ def get4_via6_output(cidr: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_tailscale as tailscale
 
-    example = tailscale.get4_via6(cidr="10.1.1.0/24",
-        site=7)
+    example = tailscale.get4_via6(site=7,
+        cidr="10.1.1.0/24")
     ```
     <!--End PulumiCodeChooser -->
 

@@ -108,7 +108,7 @@ class DeviceAuthorization(pulumi.CustomResource):
         import pulumi_tailscale as tailscale
 
         sample_device = tailscale.get_device(name="device.example.com")
-        sample_authorization = tailscale.DeviceAuthorization("sampleAuthorization",
+        sample_authorization = tailscale.DeviceAuthorization("sample_authorization",
             device_id=sample_device.id,
             authorized=True)
         ```
@@ -136,7 +136,7 @@ class DeviceAuthorization(pulumi.CustomResource):
         import pulumi_tailscale as tailscale
 
         sample_device = tailscale.get_device(name="device.example.com")
-        sample_authorization = tailscale.DeviceAuthorization("sampleAuthorization",
+        sample_authorization = tailscale.DeviceAuthorization("sample_authorization",
             device_id=sample_device.id,
             authorized=True)
         ```

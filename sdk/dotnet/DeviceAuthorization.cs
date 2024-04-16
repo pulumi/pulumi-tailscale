@@ -28,7 +28,7 @@ namespace Pulumi.Tailscale
     ///         Name = "device.example.com",
     ///     });
     /// 
-    ///     var sampleAuthorization = new Tailscale.DeviceAuthorization("sampleAuthorization", new()
+    ///     var sampleAuthorization = new Tailscale.DeviceAuthorization("sample_authorization", new()
     ///     {
     ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.Id),
     ///         Authorized = true,

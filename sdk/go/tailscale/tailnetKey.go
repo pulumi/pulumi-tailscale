@@ -28,12 +28,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tailscale.NewTailnetKey(ctx, "sampleKey", &tailscale.TailnetKeyArgs{
-//				Description:   pulumi.String("Sample key"),
-//				Ephemeral:     pulumi.Bool(false),
-//				Expiry:        pulumi.Int(3600),
-//				Preauthorized: pulumi.Bool(true),
+//			_, err := tailscale.NewTailnetKey(ctx, "sample_key", &tailscale.TailnetKeyArgs{
 //				Reusable:      pulumi.Bool(true),
+//				Ephemeral:     pulumi.Bool(false),
+//				Preauthorized: pulumi.Bool(true),
+//				Expiry:        pulumi.Int(3600),
+//				Description:   pulumi.String("Sample key"),
 //			})
 //			if err != nil {
 //				return err

@@ -23,7 +23,7 @@ namespace Pulumi.Tailscale
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var samplePreferences = new Tailscale.DnsPreferences("samplePreferences", new()
+    ///     var samplePreferences = new Tailscale.DnsPreferences("sample_preferences", new()
     ///     {
     ///         MagicDns = true,
     ///     });

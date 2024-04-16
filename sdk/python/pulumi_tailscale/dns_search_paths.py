@@ -75,7 +75,7 @@ class DnsSearchPaths(pulumi.CustomResource):
         import pulumi
         import pulumi_tailscale as tailscale
 
-        sample_search_paths = tailscale.DnsSearchPaths("sampleSearchPaths", search_paths=["example.com"])
+        sample_search_paths = tailscale.DnsSearchPaths("sample_search_paths", search_paths=["example.com"])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -99,7 +99,7 @@ class DnsSearchPaths(pulumi.CustomResource):
         import pulumi
         import pulumi_tailscale as tailscale
 
-        sample_search_paths = tailscale.DnsSearchPaths("sampleSearchPaths", search_paths=["example.com"])
+        sample_search_paths = tailscale.DnsSearchPaths("sample_search_paths", search_paths=["example.com"])
         ```
         <!--End PulumiCodeChooser -->
 

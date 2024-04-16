@@ -108,7 +108,7 @@ class DeviceTags(pulumi.CustomResource):
         import pulumi_tailscale as tailscale
 
         sample_device = tailscale.get_device(name="device.example.com")
-        sample_tags = tailscale.DeviceTags("sampleTags",
+        sample_tags = tailscale.DeviceTags("sample_tags",
             device_id=sample_device.id,
             tags=["room:bedroom"])
         ```
@@ -136,7 +136,7 @@ class DeviceTags(pulumi.CustomResource):
         import pulumi_tailscale as tailscale
 
         sample_device = tailscale.get_device(name="device.example.com")
-        sample_tags = tailscale.DeviceTags("sampleTags",
+        sample_tags = tailscale.DeviceTags("sample_tags",
             device_id=sample_device.id,
             tags=["room:bedroom"])
         ```

@@ -28,7 +28,7 @@ namespace Pulumi.Tailscale
     ///         Name = "device.example.com",
     ///     });
     /// 
-    ///     var sampleRoutes = new Tailscale.DeviceSubnetRoutes("sampleRoutes", new()
+    ///     var sampleRoutes = new Tailscale.DeviceSubnetRoutes("sample_routes", new()
     ///     {
     ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.Id),
     ///         Routes = new[]
@@ -39,7 +39,7 @@ namespace Pulumi.Tailscale
     ///         },
     ///     });
     /// 
-    ///     var sampleExitNode = new Tailscale.DeviceSubnetRoutes("sampleExitNode", new()
+    ///     var sampleExitNode = new Tailscale.DeviceSubnetRoutes("sample_exit_node", new()
     ///     {
     ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.Id),
     ///         Routes = new[]

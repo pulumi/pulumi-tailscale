@@ -50,13 +50,13 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			_, err = tailscale.NewAcl(ctx, "asJson", &tailscale.AclArgs{
+//			_, err = tailscale.NewAcl(ctx, "as_json", &tailscale.AclArgs{
 //				Acl: pulumi.String(json0),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = tailscale.NewAcl(ctx, "asHujson", &tailscale.AclArgs{
+//			_, err = tailscale.NewAcl(ctx, "as_hujson", &tailscale.AclArgs{
 //				Acl: pulumi.String(`  {
 //	    // Comments in HuJSON policy are preserved when the policy is applied.
 //	    "acls": [

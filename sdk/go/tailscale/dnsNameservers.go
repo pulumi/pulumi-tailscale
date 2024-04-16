@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tailscale.NewDnsNameservers(ctx, "sampleNameservers", &tailscale.DnsNameserversArgs{
+//			_, err := tailscale.NewDnsNameservers(ctx, "sample_nameservers", &tailscale.DnsNameserversArgs{
 //				Nameservers: pulumi.StringArray{
 //					pulumi.String("8.8.8.8"),
 //					pulumi.String("8.8.4.4"),

@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * const sampleDevice = tailscale.getDevice({
  *     name: "device.example.com",
  * });
- * const sampleAuthorization = new tailscale.DeviceAuthorization("sampleAuthorization", {
+ * const sampleAuthorization = new tailscale.DeviceAuthorization("sample_authorization", {
  *     deviceId: sampleDevice.then(sampleDevice => sampleDevice.id),
  *     authorized: true,
  * });

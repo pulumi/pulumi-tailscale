@@ -75,7 +75,7 @@ class DnsPreferences(pulumi.CustomResource):
         import pulumi
         import pulumi_tailscale as tailscale
 
-        sample_preferences = tailscale.DnsPreferences("samplePreferences", magic_dns=True)
+        sample_preferences = tailscale.DnsPreferences("sample_preferences", magic_dns=True)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -107,7 +107,7 @@ class DnsPreferences(pulumi.CustomResource):
         import pulumi
         import pulumi_tailscale as tailscale
 
-        sample_preferences = tailscale.DnsPreferences("samplePreferences", magic_dns=True)
+        sample_preferences = tailscale.DnsPreferences("sample_preferences", magic_dns=True)
         ```
         <!--End PulumiCodeChooser -->
 

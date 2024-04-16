@@ -27,8 +27,8 @@ namespace Pulumi.Tailscale
         /// {
         ///     var example = Tailscale.Get4Via6.Invoke(new()
         ///     {
-        ///         Cidr = "10.1.1.0/24",
         ///         Site = 7,
+        ///         Cidr = "10.1.1.0/24",
         ///     });
         /// 
         /// });
@@ -54,8 +54,8 @@ namespace Pulumi.Tailscale
         /// {
         ///     var example = Tailscale.Get4Via6.Invoke(new()
         ///     {
-        ///         Cidr = "10.1.1.0/24",
         ///         Site = 7,
+        ///         Cidr = "10.1.1.0/24",
         ///     });
         /// 
         /// });
