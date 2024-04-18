@@ -35,7 +35,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = tailscale.NewDeviceKey(ctx, "exampleKey", &tailscale.DeviceKeyArgs{
+//			_, err = tailscale.NewDeviceKey(ctx, "example_key", &tailscale.DeviceKeyArgs{
 //				DeviceId:          pulumi.String(exampleDevice.Id),
 //				KeyExpiryDisabled: pulumi.Bool(true),
 //			})

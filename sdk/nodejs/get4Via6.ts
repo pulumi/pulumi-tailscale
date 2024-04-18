@@ -15,8 +15,8 @@ import * as utilities from "./utilities";
  * import * as tailscale from "@pulumi/tailscale";
  *
  * const example = tailscale.get4Via6({
- *     cidr: "10.1.1.0/24",
  *     site: 7,
+ *     cidr: "10.1.1.0/24",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -76,8 +76,8 @@ export interface Get4Via6Result {
  * import * as tailscale from "@pulumi/tailscale";
  *
  * const example = tailscale.get4Via6({
- *     cidr: "10.1.1.0/24",
  *     site: 7,
+ *     cidr: "10.1.1.0/24",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

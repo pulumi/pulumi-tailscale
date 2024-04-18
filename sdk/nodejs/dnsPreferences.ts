@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
  *
- * const samplePreferences = new tailscale.DnsPreferences("samplePreferences", {magicDns: true});
+ * const samplePreferences = new tailscale.DnsPreferences("sample_preferences", {magicDns: true});
  * ```
  * <!--End PulumiCodeChooser -->
  *

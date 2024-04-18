@@ -45,11 +45,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var sampleKey = new TailnetKey(&#34;sampleKey&#34;, TailnetKeyArgs.builder()        
- *             .description(&#34;Sample key&#34;)
- *             .ephemeral(false)
- *             .expiry(3600)
- *             .preauthorized(true)
  *             .reusable(true)
+ *             .ephemeral(false)
+ *             .preauthorized(true)
+ *             .expiry(3600)
+ *             .description(&#34;Sample key&#34;)
  *             .build());
  * 
  *     }

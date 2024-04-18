@@ -338,12 +338,12 @@ class TailnetKey(pulumi.CustomResource):
         import pulumi
         import pulumi_tailscale as tailscale
 
-        sample_key = tailscale.TailnetKey("sampleKey",
-            description="Sample key",
+        sample_key = tailscale.TailnetKey("sample_key",
+            reusable=True,
             ephemeral=False,
-            expiry=3600,
             preauthorized=True,
-            reusable=True)
+            expiry=3600,
+            description="Sample key")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -373,12 +373,12 @@ class TailnetKey(pulumi.CustomResource):
         import pulumi
         import pulumi_tailscale as tailscale
 
-        sample_key = tailscale.TailnetKey("sampleKey",
-            description="Sample key",
+        sample_key = tailscale.TailnetKey("sample_key",
+            reusable=True,
             ephemeral=False,
-            expiry=3600,
             preauthorized=True,
-            reusable=True)
+            expiry=3600,
+            description="Sample key")
         ```
         <!--End PulumiCodeChooser -->
 

@@ -23,7 +23,7 @@ namespace Pulumi.Tailscale
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var sampleNameservers = new Tailscale.DnsNameservers("sampleNameservers", new()
+    ///     var sampleNameservers = new Tailscale.DnsNameservers("sample_nameservers", new()
     ///     {
     ///         Nameservers = new[]
     ///         {

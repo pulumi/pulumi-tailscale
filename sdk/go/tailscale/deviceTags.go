@@ -35,7 +35,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = tailscale.NewDeviceTags(ctx, "sampleTags", &tailscale.DeviceTagsArgs{
+//			_, err = tailscale.NewDeviceTags(ctx, "sample_tags", &tailscale.DeviceTagsArgs{
 //				DeviceId: pulumi.String(sampleDevice.Id),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("room:bedroom"),

@@ -109,7 +109,7 @@ class DeviceKey(pulumi.CustomResource):
         import pulumi_tailscale as tailscale
 
         example_device = tailscale.get_device(name="device.example.com")
-        example_key = tailscale.DeviceKey("exampleKey",
+        example_key = tailscale.DeviceKey("example_key",
             device_id=example_device.id,
             key_expiry_disabled=True)
         ```
@@ -137,7 +137,7 @@ class DeviceKey(pulumi.CustomResource):
         import pulumi_tailscale as tailscale
 
         example_device = tailscale.get_device(name="device.example.com")
-        example_key = tailscale.DeviceKey("exampleKey",
+        example_key = tailscale.DeviceKey("example_key",
             device_id=example_device.id,
             key_expiry_disabled=True)
         ```

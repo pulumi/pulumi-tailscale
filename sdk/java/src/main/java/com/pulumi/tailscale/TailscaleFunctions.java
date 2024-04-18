@@ -50,8 +50,8 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = TailscaleFunctions.get4Via6(Get4Via6Args.builder()
-     *             .cidr(&#34;10.1.1.0/24&#34;)
      *             .site(7)
+     *             .cidr(&#34;10.1.1.0/24&#34;)
      *             .build());
      * 
      *     }
@@ -91,8 +91,8 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = TailscaleFunctions.get4Via6(Get4Via6Args.builder()
-     *             .cidr(&#34;10.1.1.0/24&#34;)
      *             .site(7)
+     *             .cidr(&#34;10.1.1.0/24&#34;)
      *             .build());
      * 
      *     }
@@ -132,8 +132,8 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = TailscaleFunctions.get4Via6(Get4Via6Args.builder()
-     *             .cidr(&#34;10.1.1.0/24&#34;)
      *             .site(7)
+     *             .cidr(&#34;10.1.1.0/24&#34;)
      *             .build());
      * 
      *     }
@@ -173,8 +173,8 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = TailscaleFunctions.get4Via6(Get4Via6Args.builder()
-     *             .cidr(&#34;10.1.1.0/24&#34;)
      *             .site(7)
+     *             .cidr(&#34;10.1.1.0/24&#34;)
      *             .build());
      * 
      *     }

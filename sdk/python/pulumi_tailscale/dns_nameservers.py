@@ -75,7 +75,7 @@ class DnsNameservers(pulumi.CustomResource):
         import pulumi
         import pulumi_tailscale as tailscale
 
-        sample_nameservers = tailscale.DnsNameservers("sampleNameservers", nameservers=[
+        sample_nameservers = tailscale.DnsNameservers("sample_nameservers", nameservers=[
             "8.8.8.8",
             "8.8.4.4",
         ])
@@ -102,7 +102,7 @@ class DnsNameservers(pulumi.CustomResource):
         import pulumi
         import pulumi_tailscale as tailscale
 
-        sample_nameservers = tailscale.DnsNameservers("sampleNameservers", nameservers=[
+        sample_nameservers = tailscale.DnsNameservers("sample_nameservers", nameservers=[
             "8.8.8.8",
             "8.8.4.4",
         ])

@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * const exampleDevice = tailscale.getDevice({
  *     name: "device.example.com",
  * });
- * const exampleKey = new tailscale.DeviceKey("exampleKey", {
+ * const exampleKey = new tailscale.DeviceKey("example_key", {
  *     deviceId: exampleDevice.then(exampleDevice => exampleDevice.id),
  *     keyExpiryDisabled: true,
  * });

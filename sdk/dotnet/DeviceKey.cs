@@ -28,7 +28,7 @@ namespace Pulumi.Tailscale
     ///         Name = "device.example.com",
     ///     });
     /// 
-    ///     var exampleKey = new Tailscale.DeviceKey("exampleKey", new()
+    ///     var exampleKey = new Tailscale.DeviceKey("example_key", new()
     ///     {
     ///         DeviceId = exampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.Id),
     ///         KeyExpiryDisabled = true,

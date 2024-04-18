@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * const sampleDevice = tailscale.getDevice({
  *     name: "device.example.com",
  * });
- * const sampleTags = new tailscale.DeviceTags("sampleTags", {
+ * const sampleTags = new tailscale.DeviceTags("sample_tags", {
  *     deviceId: sampleDevice.then(sampleDevice => sampleDevice.id),
  *     tags: ["room:bedroom"],
  * });

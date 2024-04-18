@@ -111,14 +111,14 @@ class Acl(pulumi.CustomResource):
         import json
         import pulumi_tailscale as tailscale
 
-        as_json = tailscale.Acl("asJson", acl=json.dumps({
+        as_json = tailscale.Acl("as_json", acl=json.dumps({
             "acls": [{
                 "action": "accept",
                 "users": ["*"],
                 "ports": ["*:*"],
             }],
         }))
-        as_hujson = tailscale.Acl("asHujson", acl=\"\"\"  {
+        as_hujson = tailscale.Acl("as_hujson", acl=\"\"\"  {
             // Comments in HuJSON policy are preserved when the policy is applied.
             "acls": [
               {
@@ -165,14 +165,14 @@ class Acl(pulumi.CustomResource):
         import json
         import pulumi_tailscale as tailscale
 
-        as_json = tailscale.Acl("asJson", acl=json.dumps({
+        as_json = tailscale.Acl("as_json", acl=json.dumps({
             "acls": [{
                 "action": "accept",
                 "users": ["*"],
                 "ports": ["*:*"],
             }],
         }))
-        as_hujson = tailscale.Acl("asHujson", acl=\"\"\"  {
+        as_hujson = tailscale.Acl("as_hujson", acl=\"\"\"  {
             // Comments in HuJSON policy are preserved when the policy is applied.
             "acls": [
               {

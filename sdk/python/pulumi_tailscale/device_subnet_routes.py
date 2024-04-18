@@ -108,14 +108,14 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
         import pulumi_tailscale as tailscale
 
         sample_device = tailscale.get_device(name="device.example.com")
-        sample_routes = tailscale.DeviceSubnetRoutes("sampleRoutes",
+        sample_routes = tailscale.DeviceSubnetRoutes("sample_routes",
             device_id=sample_device.id,
             routes=[
                 "10.0.1.0/24",
                 "1.2.0.0/16",
                 "2.0.0.0/24",
             ])
-        sample_exit_node = tailscale.DeviceSubnetRoutes("sampleExitNode",
+        sample_exit_node = tailscale.DeviceSubnetRoutes("sample_exit_node",
             device_id=sample_device.id,
             routes=[
                 "0.0.0.0/0",
@@ -146,14 +146,14 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
         import pulumi_tailscale as tailscale
 
         sample_device = tailscale.get_device(name="device.example.com")
-        sample_routes = tailscale.DeviceSubnetRoutes("sampleRoutes",
+        sample_routes = tailscale.DeviceSubnetRoutes("sample_routes",
             device_id=sample_device.id,
             routes=[
                 "10.0.1.0/24",
                 "1.2.0.0/16",
                 "2.0.0.0/24",
             ])
-        sample_exit_node = tailscale.DeviceSubnetRoutes("sampleExitNode",
+        sample_exit_node = tailscale.DeviceSubnetRoutes("sample_exit_node",
             device_id=sample_device.id,
             routes=[
                 "0.0.0.0/0",

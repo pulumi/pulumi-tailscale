@@ -14,12 +14,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
  *
- * const sampleKey = new tailscale.TailnetKey("sampleKey", {
- *     description: "Sample key",
- *     ephemeral: false,
- *     expiry: 3600,
- *     preauthorized: true,
+ * const sampleKey = new tailscale.TailnetKey("sample_key", {
  *     reusable: true,
+ *     ephemeral: false,
+ *     preauthorized: true,
+ *     expiry: 3600,
+ *     description: "Sample key",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

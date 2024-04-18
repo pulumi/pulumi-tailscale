@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * const sampleDevice = tailscale.getDevice({
  *     name: "device.example.com",
  * });
- * const sampleRoutes = new tailscale.DeviceSubnetRoutes("sampleRoutes", {
+ * const sampleRoutes = new tailscale.DeviceSubnetRoutes("sample_routes", {
  *     deviceId: sampleDevice.then(sampleDevice => sampleDevice.id),
  *     routes: [
  *         "10.0.1.0/24",
@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  *         "2.0.0.0/24",
  *     ],
  * });
- * const sampleExitNode = new tailscale.DeviceSubnetRoutes("sampleExitNode", {
+ * const sampleExitNode = new tailscale.DeviceSubnetRoutes("sample_exit_node", {
  *     deviceId: sampleDevice.then(sampleDevice => sampleDevice.id),
  *     routes: [
  *         "0.0.0.0/0",

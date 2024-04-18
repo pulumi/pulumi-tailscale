@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tailscale.NewDnsPreferences(ctx, "samplePreferences", &tailscale.DnsPreferencesArgs{
+//			_, err := tailscale.NewDnsPreferences(ctx, "sample_preferences", &tailscale.DnsPreferencesArgs{
 //				MagicDns: pulumi.Bool(true),
 //			})
 //			if err != nil {
