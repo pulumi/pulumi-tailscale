@@ -76,14 +76,12 @@ def get_devices(name_prefix: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_tailscale as tailscale
 
     sample_devices = tailscale.get_devices(name_prefix="example-")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name_prefix: Filters the device list to elements whose name has the provided prefix
@@ -107,14 +105,12 @@ def get_devices_output(name_prefix: Optional[pulumi.Input[Optional[str]]] = None
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_tailscale as tailscale
 
     sample_devices = tailscale.get_devices(name_prefix="example-")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name_prefix: Filters the device list to elements whose name has the provided prefix
