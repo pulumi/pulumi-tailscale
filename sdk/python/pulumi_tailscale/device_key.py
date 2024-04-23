@@ -103,7 +103,6 @@ class DeviceKey(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_tailscale as tailscale
@@ -113,7 +112,6 @@ class DeviceKey(pulumi.CustomResource):
             device_id=example_device.id,
             key_expiry_disabled=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -131,7 +129,6 @@ class DeviceKey(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_tailscale as tailscale
@@ -141,7 +138,6 @@ class DeviceKey(pulumi.CustomResource):
             device_id=example_device.id,
             key_expiry_disabled=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param DeviceKeyArgs args: The arguments to use to populate this resource's properties.

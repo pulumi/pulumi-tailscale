@@ -16,7 +16,6 @@ namespace Pulumi.Tailscale
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -33,7 +32,6 @@ namespace Pulumi.Tailscale
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<Get4Via6Result> InvokeAsync(Get4Via6Args args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<Get4Via6Result>("tailscale:index/get4Via6:get4Via6", args ?? new Get4Via6Args(), options.WithDefaults());
@@ -43,7 +41,6 @@ namespace Pulumi.Tailscale
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -60,7 +57,6 @@ namespace Pulumi.Tailscale
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<Get4Via6Result> Invoke(Get4Via6InvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Get4Via6Result>("tailscale:index/get4Via6:get4Via6", args ?? new Get4Via6InvokeArgs(), options.WithDefaults());
