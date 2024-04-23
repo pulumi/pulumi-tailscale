@@ -88,7 +88,6 @@ def get4_via6(cidr: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_tailscale as tailscale
@@ -96,7 +95,6 @@ def get4_via6(cidr: Optional[str] = None,
     example = tailscale.get4_via6(site=7,
         cidr="10.1.1.0/24")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str cidr: The IPv4 CIDR to map
@@ -124,7 +122,6 @@ def get4_via6_output(cidr: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_tailscale as tailscale
@@ -132,7 +129,6 @@ def get4_via6_output(cidr: Optional[pulumi.Input[str]] = None,
     example = tailscale.get4_via6(site=7,
         cidr="10.1.1.0/24")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str cidr: The IPv4 CIDR to map

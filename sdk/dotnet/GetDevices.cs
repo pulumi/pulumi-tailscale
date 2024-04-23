@@ -16,7 +16,6 @@ namespace Pulumi.Tailscale
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -32,7 +31,6 @@ namespace Pulumi.Tailscale
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDevicesResult> InvokeAsync(GetDevicesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDevicesResult>("tailscale:index/getDevices:getDevices", args ?? new GetDevicesArgs(), options.WithDefaults());
@@ -42,7 +40,6 @@ namespace Pulumi.Tailscale
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -58,7 +55,6 @@ namespace Pulumi.Tailscale
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDevicesResult> Invoke(GetDevicesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDevicesResult>("tailscale:index/getDevices:getDevices", args ?? new GetDevicesInvokeArgs(), options.WithDefaults());

@@ -70,14 +70,12 @@ class DnsSearchPaths(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_tailscale as tailscale
 
         sample_search_paths = tailscale.DnsSearchPaths("sample_search_paths", search_paths=["example.com"])
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -94,14 +92,12 @@ class DnsSearchPaths(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_tailscale as tailscale
 
         sample_search_paths = tailscale.DnsSearchPaths("sample_search_paths", search_paths=["example.com"])
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param DnsSearchPathsArgs args: The arguments to use to populate this resource's properties.
