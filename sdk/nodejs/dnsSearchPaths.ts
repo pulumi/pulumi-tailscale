@@ -9,14 +9,12 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as tailscale from "@pulumi/tailscale";
  *
  * const sampleSearchPaths = new tailscale.DnsSearchPaths("sample_search_paths", {searchPaths: ["example.com"]});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class DnsSearchPaths extends pulumi.CustomResource {
     /**

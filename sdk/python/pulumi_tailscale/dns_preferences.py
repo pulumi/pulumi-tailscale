@@ -70,14 +70,12 @@ class DnsPreferences(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_tailscale as tailscale
 
         sample_preferences = tailscale.DnsPreferences("sample_preferences", magic_dns=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -102,14 +100,12 @@ class DnsPreferences(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_tailscale as tailscale
 
         sample_preferences = tailscale.DnsPreferences("sample_preferences", magic_dns=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

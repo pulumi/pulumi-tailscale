@@ -14,7 +14,6 @@ namespace Pulumi.Tailscale
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -34,7 +33,6 @@ namespace Pulumi.Tailscale
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [TailscaleResourceType("tailscale:index/tailnetKey:TailnetKey")]
     public partial class TailnetKey : global::Pulumi.CustomResource

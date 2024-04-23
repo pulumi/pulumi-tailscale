@@ -125,7 +125,6 @@ def get_device(hostname: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_tailscale as tailscale
@@ -135,7 +134,6 @@ def get_device(hostname: Optional[str] = None,
     sample_device2 = tailscale.get_device(hostname="device2",
         wait_for="60s")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str hostname: The short hostname of the device
@@ -169,7 +167,6 @@ def get_device_output(hostname: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_tailscale as tailscale
@@ -179,7 +176,6 @@ def get_device_output(hostname: Optional[pulumi.Input[Optional[str]]] = None,
     sample_device2 = tailscale.get_device(hostname="device2",
         wait_for="60s")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str hostname: The short hostname of the device
