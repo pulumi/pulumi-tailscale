@@ -575,6 +575,60 @@
                 "type": "object"
             }
         },
+        "tailscale:index/dnsSplitNameservers:DnsSplitNameservers": {
+            "description": "The dns_split_nameservers resource allows you to configure split DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleSplitNameservers = new tailscale.DnsSplitNameservers(\"sample_split_nameservers\", {\n    domain: \"foo.example.com\",\n    nameservers: [\"1.1.1.1\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_split_nameservers = tailscale.DnsSplitNameservers(\"sample_split_nameservers\",\n    domain=\"foo.example.com\",\n    nameservers=[\"1.1.1.1\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleSplitNameservers = new Tailscale.DnsSplitNameservers(\"sample_split_nameservers\", new()\n    {\n        Domain = \"foo.example.com\",\n        Nameservers = new[]\n        {\n            \"1.1.1.1\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewDnsSplitNameservers(ctx, \"sample_split_nameservers\", \u0026tailscale.DnsSplitNameserversArgs{\n\t\t\tDomain: pulumi.String(\"foo.example.com\"),\n\t\t\tNameservers: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"1.1.1.1\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.DnsSplitNameservers;\nimport com.pulumi.tailscale.DnsSplitNameserversArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var sampleSplitNameservers = new DnsSplitNameservers(\"sampleSplitNameservers\", DnsSplitNameserversArgs.builder()        \n            .domain(\"foo.example.com\")\n            .nameservers(\"1.1.1.1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  sampleSplitNameservers:\n    type: tailscale:DnsSplitNameservers\n    name: sample_split_nameservers\n    properties:\n      domain: foo.example.com\n      nameservers:\n        - 1.1.1.1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nSplit DNS nameservers can be imported using the domain name, e.g.\n\n```sh\n$ pulumi import tailscale:index/dnsSplitNameservers:DnsSplitNameservers sample_split_nameservers example.com\n```\n\n",
+            "properties": {
+                "domain": {
+                    "type": "string",
+                    "description": "Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.\n"
+                },
+                "nameservers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.\n"
+                }
+            },
+            "required": [
+                "domain",
+                "nameservers"
+            ],
+            "inputProperties": {
+                "domain": {
+                    "type": "string",
+                    "description": "Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.\n"
+                },
+                "nameservers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.\n"
+                }
+            },
+            "requiredInputs": [
+                "domain",
+                "nameservers"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DnsSplitNameservers resources.\n",
+                "properties": {
+                    "domain": {
+                        "type": "string",
+                        "description": "Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.\n"
+                    },
+                    "nameservers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "tailscale:index/tailnetKey:TailnetKey": {
             "description": "The tailnet_key resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleKey = new tailscale.TailnetKey(\"sample_key\", {\n    reusable: true,\n    ephemeral: false,\n    preauthorized: true,\n    expiry: 3600,\n    description: \"Sample key\",\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_key = tailscale.TailnetKey(\"sample_key\",\n    reusable=True,\n    ephemeral=False,\n    preauthorized=True,\n    expiry=3600,\n    description=\"Sample key\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleKey = new Tailscale.TailnetKey(\"sample_key\", new()\n    {\n        Reusable = true,\n        Ephemeral = false,\n        Preauthorized = true,\n        Expiry = 3600,\n        Description = \"Sample key\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewTailnetKey(ctx, \"sample_key\", \u0026tailscale.TailnetKeyArgs{\n\t\t\tReusable:      pulumi.Bool(true),\n\t\t\tEphemeral:     pulumi.Bool(false),\n\t\t\tPreauthorized: pulumi.Bool(true),\n\t\t\tExpiry:        pulumi.Int(3600),\n\t\t\tDescription:   pulumi.String(\"Sample key\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.TailnetKey;\nimport com.pulumi.tailscale.TailnetKeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var sampleKey = new TailnetKey(\"sampleKey\", TailnetKeyArgs.builder()        \n            .reusable(true)\n            .ephemeral(false)\n            .preauthorized(true)\n            .expiry(3600)\n            .description(\"Sample key\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  sampleKey:\n    type: tailscale:TailnetKey\n    name: sample_key\n    properties:\n      reusable: true\n      ephemeral: false\n      preauthorized: true\n      expiry: 3600\n      description: Sample key\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
@@ -746,7 +800,7 @@
                     },
                     "site": {
                         "type": "integer",
-                        "description": "Site ID (between 0 and 255)\n"
+                        "description": "Site ID (between 0 and 65535)\n"
                     }
                 },
                 "type": "object",
@@ -771,7 +825,7 @@
                         "type": "string"
                     },
                     "site": {
-                        "description": "Site ID (between 0 and 255)\n",
+                        "description": "Site ID (between 0 and 65535)\n",
                         "type": "integer"
                     }
                 },
