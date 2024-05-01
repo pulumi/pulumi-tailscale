@@ -37,6 +37,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DnsPreferences{}
 	case "tailscale:index/dnsSearchPaths:DnsSearchPaths":
 		r = &DnsSearchPaths{}
+	case "tailscale:index/dnsSplitNameservers:DnsSplitNameservers":
+		r = &DnsSplitNameservers{}
 	case "tailscale:index/tailnetKey:TailnetKey":
 		r = &TailnetKey{}
 	default:
@@ -108,6 +110,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"tailscale",
 		"index/dnsSearchPaths",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"tailscale",
+		"index/dnsSplitNameservers",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
