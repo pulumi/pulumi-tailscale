@@ -31,14 +31,14 @@ public final class Get4Via6Args extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * Site ID (between 0 and 255)
+     * Site ID (between 0 and 65535)
      * 
      */
     @Import(name="site", required=true)
     private Output<Integer> site;
 
     /**
-     * @return Site ID (between 0 and 255)
+     * @return Site ID (between 0 and 65535)
      * 
      */
     public Output<Integer> site() {
@@ -92,7 +92,7 @@ public final class Get4Via6Args extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param site Site ID (between 0 and 255)
+         * @param site Site ID (between 0 and 65535)
          * 
          * @return builder
          * 
@@ -103,7 +103,7 @@ public final class Get4Via6Args extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param site Site ID (between 0 and 255)
+         * @param site Site ID (between 0 and 65535)
          * 
          * @return builder
          * 

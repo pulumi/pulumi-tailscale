@@ -13,6 +13,7 @@ from .device_tags import *
 from .dns_nameservers import *
 from .dns_preferences import *
 from .dns_search_paths import *
+from .dns_split_nameservers import *
 from .get4_via6 import *
 from .get_acl import *
 from .get_device import *
@@ -93,6 +94,14 @@ _utilities.register(
   "fqn": "pulumi_tailscale",
   "classes": {
    "tailscale:index/dnsSearchPaths:DnsSearchPaths": "DnsSearchPaths"
+  }
+ },
+ {
+  "pkg": "tailscale",
+  "mod": "index/dnsSplitNameservers",
+  "fqn": "pulumi_tailscale",
+  "classes": {
+   "tailscale:index/dnsSplitNameservers:DnsSplitNameservers": "DnsSplitNameservers"
   }
  },
  {

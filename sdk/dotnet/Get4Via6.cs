@@ -72,7 +72,7 @@ namespace Pulumi.Tailscale
         public string Cidr { get; set; } = null!;
 
         /// <summary>
-        /// Site ID (between 0 and 255)
+        /// Site ID (between 0 and 65535)
         /// </summary>
         [Input("site", required: true)]
         public int Site { get; set; }
@@ -92,7 +92,7 @@ namespace Pulumi.Tailscale
         public Input<string> Cidr { get; set; } = null!;
 
         /// <summary>
-        /// Site ID (between 0 and 255)
+        /// Site ID (between 0 and 65535)
         /// </summary>
         [Input("site", required: true)]
         public Input<int> Site { get; set; } = null!;
@@ -120,7 +120,7 @@ namespace Pulumi.Tailscale
         /// </summary>
         public readonly string Ipv6;
         /// <summary>
-        /// Site ID (between 0 and 255)
+        /// Site ID (between 0 and 65535)
         /// </summary>
         public readonly int Site;
 
