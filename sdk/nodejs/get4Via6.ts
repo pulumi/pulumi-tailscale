@@ -37,7 +37,7 @@ export interface Get4Via6Args {
      */
     cidr: string;
     /**
-     * Site ID (between 0 and 255)
+     * Site ID (between 0 and 65535)
      */
     site: number;
 }
@@ -59,7 +59,7 @@ export interface Get4Via6Result {
      */
     readonly ipv6: string;
     /**
-     * Site ID (between 0 and 255)
+     * Site ID (between 0 and 65535)
      */
     readonly site: number;
 }
@@ -91,7 +91,7 @@ export interface Get4Via6OutputArgs {
      */
     cidr: pulumi.Input<string>;
     /**
-     * Site ID (between 0 and 255)
+     * Site ID (between 0 and 65535)
      */
     site: pulumi.Input<number>;
 }
