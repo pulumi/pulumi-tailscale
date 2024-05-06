@@ -53,7 +53,7 @@ func Get4Via6(ctx *pulumi.Context, args *Get4Via6Args, opts ...pulumi.InvokeOpti
 type Get4Via6Args struct {
 	// The IPv4 CIDR to map
 	Cidr string `pulumi:"cidr"`
-	// Site ID (between 0 and 255)
+	// Site ID (between 0 and 65535)
 	Site int `pulumi:"site"`
 }
 
@@ -65,7 +65,7 @@ type Get4Via6Result struct {
 	Id string `pulumi:"id"`
 	// The 4via6 mapped address
 	Ipv6 string `pulumi:"ipv6"`
-	// Site ID (between 0 and 255)
+	// Site ID (between 0 and 65535)
 	Site int `pulumi:"site"`
 }
 
@@ -86,7 +86,7 @@ func Get4Via6Output(ctx *pulumi.Context, args Get4Via6OutputArgs, opts ...pulumi
 type Get4Via6OutputArgs struct {
 	// The IPv4 CIDR to map
 	Cidr pulumi.StringInput `pulumi:"cidr"`
-	// Site ID (between 0 and 255)
+	// Site ID (between 0 and 65535)
 	Site pulumi.IntInput `pulumi:"site"`
 }
 
@@ -124,7 +124,7 @@ func (o Get4Via6ResultOutput) Ipv6() pulumi.StringOutput {
 	return o.ApplyT(func(v Get4Via6Result) string { return v.Ipv6 }).(pulumi.StringOutput)
 }
 
-// Site ID (between 0 and 255)
+// Site ID (between 0 and 65535)
 func (o Get4Via6ResultOutput) Site() pulumi.IntOutput {
 	return o.ApplyT(func(v Get4Via6Result) int { return v.Site }).(pulumi.IntOutput)
 }

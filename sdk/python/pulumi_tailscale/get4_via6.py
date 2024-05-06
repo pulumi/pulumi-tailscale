@@ -63,7 +63,7 @@ class Get4Via6Result:
     @pulumi.getter
     def site(self) -> int:
         """
-        Site ID (between 0 and 255)
+        Site ID (between 0 and 65535)
         """
         return pulumi.get(self, "site")
 
@@ -98,7 +98,7 @@ def get4_via6(cidr: Optional[str] = None,
 
 
     :param str cidr: The IPv4 CIDR to map
-    :param int site: Site ID (between 0 and 255)
+    :param int site: Site ID (between 0 and 65535)
     """
     __args__ = dict()
     __args__['cidr'] = cidr
@@ -132,6 +132,6 @@ def get4_via6_output(cidr: Optional[pulumi.Input[str]] = None,
 
 
     :param str cidr: The IPv4 CIDR to map
-    :param int site: Site ID (between 0 and 255)
+    :param int site: Site ID (between 0 and 65535)
     """
     ...

@@ -45,6 +45,14 @@
                     }
                 }
             },
+            "tailscale_dns_split_nameservers": {
+                "current": "tailscale:index/dnsSplitNameservers:DnsSplitNameservers",
+                "fields": {
+                    "nameservers": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "tailscale_tailnet_key": {
                 "current": "tailscale:index/tailnetKey:TailnetKey",
                 "fields": {

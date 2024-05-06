@@ -27,7 +27,7 @@ public final class Get4Via6Result {
      */
     private String ipv6;
     /**
-     * @return Site ID (between 0 and 255)
+     * @return Site ID (between 0 and 65535)
      * 
      */
     private Integer site;
@@ -55,7 +55,7 @@ public final class Get4Via6Result {
         return this.ipv6;
     }
     /**
-     * @return Site ID (between 0 and 255)
+     * @return Site ID (between 0 and 65535)
      * 
      */
     public Integer site() {
