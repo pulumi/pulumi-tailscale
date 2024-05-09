@@ -7,8 +7,8 @@ replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraf
 require (
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.33.0
 	github.com/pulumi/providertest v0.0.11
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.81.0
-	github.com/pulumi/pulumi/sdk/v3 v3.113.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.81.1-0.20240509180805-b3ecbf803ee0
+	github.com/pulumi/pulumi/sdk/v3 v3.114.0
 	github.com/stretchr/testify v1.9.0
 	github.com/tailscale/terraform-provider-tailscale v0.16.1
 )
@@ -124,7 +124,7 @@ require (
 	github.com/hashicorp/hcl/v2 v2.19.1 // indirect
 	github.com/hashicorp/hil v0.0.0-20190212132231-97b3a9cdfa93 // indirect
 	github.com/hashicorp/logutils v1.0.0 // indirect
-	github.com/hashicorp/terraform-plugin-go v0.22.2 // indirect
+	github.com/hashicorp/terraform-plugin-go v0.23.0 // indirect
 	github.com/hashicorp/terraform-plugin-log v0.9.0 // indirect
 	github.com/hashicorp/terraform-plugin-sdk v1.9.1 // indirect
 	github.com/hashicorp/terraform-svchost v0.1.1 // indirect
@@ -180,7 +180,7 @@ require (
 	github.com/pulumi/pulumi-java/pkg v0.10.0 // indirect
 	github.com/pulumi/pulumi-terraform-bridge/x/muxer v0.0.8 // indirect
 	github.com/pulumi/pulumi-yaml v1.6.0 // indirect
-	github.com/pulumi/pulumi/pkg/v3 v3.113.0 // indirect
+	github.com/pulumi/pulumi/pkg/v3 v3.114.0 // indirect
 	github.com/pulumi/schema-tools v0.1.2 // indirect
 	github.com/pulumi/terraform-diff-reader v0.0.2 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
@@ -242,7 +242,7 @@ require (
 	google.golang.org/genproto/googleapis/api v0.0.0-20240311173647-c811ad7063a7 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240311173647-c811ad7063a7 // indirect
 	google.golang.org/grpc v1.63.2 // indirect
-	google.golang.org/protobuf v1.33.0 // indirect
+	google.golang.org/protobuf v1.34.0 // indirect
 	gopkg.in/square/go-jose.v2 v2.6.0 // indirect
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
