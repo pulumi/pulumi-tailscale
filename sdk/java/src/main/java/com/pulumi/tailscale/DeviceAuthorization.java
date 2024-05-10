@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -44,17 +45,18 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
- *             .name(&#34;device.example.com&#34;)
+ *             .name("device.example.com")
  *             .build());
  * 
- *         var sampleAuthorization = new DeviceAuthorization(&#34;sampleAuthorization&#34;, DeviceAuthorizationArgs.builder()        
- *             .deviceId(sampleDevice.applyValue(getDeviceResult -&gt; getDeviceResult.id()))
+ *         var sampleAuthorization = new DeviceAuthorization("sampleAuthorization", DeviceAuthorizationArgs.builder()        
+ *             .deviceId(sampleDevice.applyValue(getDeviceResult -> getDeviceResult.id()))
  *             .authorized(true)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

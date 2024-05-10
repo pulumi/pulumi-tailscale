@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -45,36 +46,37 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var asJson = new Acl(&#34;asJson&#34;, AclArgs.builder()        
+ *         var asJson = new Acl("asJson", AclArgs.builder()        
  *             .acl(serializeJson(
  *                 jsonObject(
- *                     jsonProperty(&#34;acls&#34;, jsonArray(jsonObject(
- *                         jsonProperty(&#34;action&#34;, &#34;accept&#34;),
- *                         jsonProperty(&#34;users&#34;, jsonArray(&#34;*&#34;)),
- *                         jsonProperty(&#34;ports&#34;, jsonArray(&#34;*:*&#34;))
+ *                     jsonProperty("acls", jsonArray(jsonObject(
+ *                         jsonProperty("action", "accept"),
+ *                         jsonProperty("users", jsonArray("*")),
+ *                         jsonProperty("ports", jsonArray("*:*"))
  *                     )))
  *                 )))
  *             .build());
  * 
- *         var asHujson = new Acl(&#34;asHujson&#34;, AclArgs.builder()        
- *             .acl(&#34;&#34;&#34;
+ *         var asHujson = new Acl("asHujson", AclArgs.builder()        
+ *             .acl("""
  *   {
  *     // Comments in HuJSON policy are preserved when the policy is applied.
- *     &#34;acls&#34;: [
+ *     "acls": [
  *       {
  *         // Allow all users access to all ports.
- *         action = &#34;accept&#34;,
- *         users  = [&#34;*&#34;],
- *         ports  = [&#34;*:*&#34;],
+ *         action = "accept",
+ *         users  = ["*"],
+ *         ports  = ["*:*"],
  *       },
  *     ],
  *   }
- *             &#34;&#34;&#34;)
+ *             """)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -28,7 +28,8 @@ public final class TailscaleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -51,12 +52,13 @@ public final class TailscaleFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = TailscaleFunctions.get4Via6(Get4Via6Args.builder()
      *             .site(7)
-     *             .cidr(&#34;10.1.1.0/24&#34;)
+     *             .cidr("10.1.1.0/24")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -69,7 +71,8 @@ public final class TailscaleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -92,12 +95,13 @@ public final class TailscaleFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = TailscaleFunctions.get4Via6(Get4Via6Args.builder()
      *             .site(7)
-     *             .cidr(&#34;10.1.1.0/24&#34;)
+     *             .cidr("10.1.1.0/24")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -110,7 +114,8 @@ public final class TailscaleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -133,12 +138,13 @@ public final class TailscaleFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = TailscaleFunctions.get4Via6(Get4Via6Args.builder()
      *             .site(7)
-     *             .cidr(&#34;10.1.1.0/24&#34;)
+     *             .cidr("10.1.1.0/24")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -151,7 +157,8 @@ public final class TailscaleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -174,12 +181,13 @@ public final class TailscaleFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = TailscaleFunctions.get4Via6(Get4Via6Args.builder()
      *             .site(7)
-     *             .cidr(&#34;10.1.1.0/24&#34;)
+     *             .cidr("10.1.1.0/24")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -234,7 +242,8 @@ public final class TailscaleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -256,18 +265,19 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
-     *             .name(&#34;device1.example.ts.net&#34;)
-     *             .waitFor(&#34;60s&#34;)
+     *             .name("device1.example.ts.net")
+     *             .waitFor("60s")
      *             .build());
      * 
      *         final var sampleDevice2 = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
-     *             .hostname(&#34;device2&#34;)
-     *             .waitFor(&#34;60s&#34;)
+     *             .hostname("device2")
+     *             .waitFor("60s")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -280,7 +290,8 @@ public final class TailscaleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -302,18 +313,19 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
-     *             .name(&#34;device1.example.ts.net&#34;)
-     *             .waitFor(&#34;60s&#34;)
+     *             .name("device1.example.ts.net")
+     *             .waitFor("60s")
      *             .build());
      * 
      *         final var sampleDevice2 = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
-     *             .hostname(&#34;device2&#34;)
-     *             .waitFor(&#34;60s&#34;)
+     *             .hostname("device2")
+     *             .waitFor("60s")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -326,7 +338,8 @@ public final class TailscaleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -348,18 +361,19 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
-     *             .name(&#34;device1.example.ts.net&#34;)
-     *             .waitFor(&#34;60s&#34;)
+     *             .name("device1.example.ts.net")
+     *             .waitFor("60s")
      *             .build());
      * 
      *         final var sampleDevice2 = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
-     *             .hostname(&#34;device2&#34;)
-     *             .waitFor(&#34;60s&#34;)
+     *             .hostname("device2")
+     *             .waitFor("60s")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -372,7 +386,8 @@ public final class TailscaleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -394,18 +409,19 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
-     *             .name(&#34;device1.example.ts.net&#34;)
-     *             .waitFor(&#34;60s&#34;)
+     *             .name("device1.example.ts.net")
+     *             .waitFor("60s")
      *             .build());
      * 
      *         final var sampleDevice2 = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
-     *             .hostname(&#34;device2&#34;)
-     *             .waitFor(&#34;60s&#34;)
+     *             .hostname("device2")
+     *             .waitFor("60s")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -418,7 +434,8 @@ public final class TailscaleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -440,18 +457,19 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
-     *             .name(&#34;device1.example.ts.net&#34;)
-     *             .waitFor(&#34;60s&#34;)
+     *             .name("device1.example.ts.net")
+     *             .waitFor("60s")
      *             .build());
      * 
      *         final var sampleDevice2 = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
-     *             .hostname(&#34;device2&#34;)
-     *             .waitFor(&#34;60s&#34;)
+     *             .hostname("device2")
+     *             .waitFor("60s")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -464,7 +482,8 @@ public final class TailscaleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -486,18 +505,19 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
-     *             .name(&#34;device1.example.ts.net&#34;)
-     *             .waitFor(&#34;60s&#34;)
+     *             .name("device1.example.ts.net")
+     *             .waitFor("60s")
      *             .build());
      * 
      *         final var sampleDevice2 = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
-     *             .hostname(&#34;device2&#34;)
-     *             .waitFor(&#34;60s&#34;)
+     *             .hostname("device2")
+     *             .waitFor("60s")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -510,7 +530,8 @@ public final class TailscaleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -532,12 +553,13 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var sampleDevices = TailscaleFunctions.getDevices(GetDevicesArgs.builder()
-     *             .namePrefix(&#34;example-&#34;)
+     *             .namePrefix("example-")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -550,7 +572,8 @@ public final class TailscaleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -572,12 +595,13 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var sampleDevices = TailscaleFunctions.getDevices(GetDevicesArgs.builder()
-     *             .namePrefix(&#34;example-&#34;)
+     *             .namePrefix("example-")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -590,7 +614,8 @@ public final class TailscaleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -612,12 +637,13 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var sampleDevices = TailscaleFunctions.getDevices(GetDevicesArgs.builder()
-     *             .namePrefix(&#34;example-&#34;)
+     *             .namePrefix("example-")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -630,7 +656,8 @@ public final class TailscaleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -652,12 +679,13 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var sampleDevices = TailscaleFunctions.getDevices(GetDevicesArgs.builder()
-     *             .namePrefix(&#34;example-&#34;)
+     *             .namePrefix("example-")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -670,7 +698,8 @@ public final class TailscaleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -692,12 +721,13 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var sampleDevices = TailscaleFunctions.getDevices(GetDevicesArgs.builder()
-     *             .namePrefix(&#34;example-&#34;)
+     *             .namePrefix("example-")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -710,7 +740,8 @@ public final class TailscaleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -732,12 +763,13 @@ public final class TailscaleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var sampleDevices = TailscaleFunctions.getDevices(GetDevicesArgs.builder()
-     *             .namePrefix(&#34;example-&#34;)
+     *             .namePrefix("example-")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

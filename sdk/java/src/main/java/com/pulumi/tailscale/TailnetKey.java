@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -44,17 +45,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var sampleKey = new TailnetKey(&#34;sampleKey&#34;, TailnetKeyArgs.builder()        
+ *         var sampleKey = new TailnetKey("sampleKey", TailnetKeyArgs.builder()        
  *             .reusable(true)
  *             .ephemeral(false)
  *             .preauthorized(true)
  *             .expiry(3600)
- *             .description(&#34;Sample key&#34;)
+ *             .description("Sample key")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

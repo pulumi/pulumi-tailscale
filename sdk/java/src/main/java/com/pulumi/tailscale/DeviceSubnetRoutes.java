@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -44,27 +45,28 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
- *             .name(&#34;device.example.com&#34;)
+ *             .name("device.example.com")
  *             .build());
  * 
- *         var sampleRoutes = new DeviceSubnetRoutes(&#34;sampleRoutes&#34;, DeviceSubnetRoutesArgs.builder()        
- *             .deviceId(sampleDevice.applyValue(getDeviceResult -&gt; getDeviceResult.id()))
+ *         var sampleRoutes = new DeviceSubnetRoutes("sampleRoutes", DeviceSubnetRoutesArgs.builder()        
+ *             .deviceId(sampleDevice.applyValue(getDeviceResult -> getDeviceResult.id()))
  *             .routes(            
- *                 &#34;10.0.1.0/24&#34;,
- *                 &#34;1.2.0.0/16&#34;,
- *                 &#34;2.0.0.0/24&#34;)
+ *                 "10.0.1.0/24",
+ *                 "1.2.0.0/16",
+ *                 "2.0.0.0/24")
  *             .build());
  * 
- *         var sampleExitNode = new DeviceSubnetRoutes(&#34;sampleExitNode&#34;, DeviceSubnetRoutesArgs.builder()        
- *             .deviceId(sampleDevice.applyValue(getDeviceResult -&gt; getDeviceResult.id()))
+ *         var sampleExitNode = new DeviceSubnetRoutes("sampleExitNode", DeviceSubnetRoutesArgs.builder()        
+ *             .deviceId(sampleDevice.applyValue(getDeviceResult -> getDeviceResult.id()))
  *             .routes(            
- *                 &#34;0.0.0.0/0&#34;,
- *                 &#34;::/0&#34;)
+ *                 "0.0.0.0/0",
+ *                 "::/0")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
