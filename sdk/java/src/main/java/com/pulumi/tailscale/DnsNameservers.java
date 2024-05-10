@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -41,15 +42,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var sampleNameservers = new DnsNameservers(&#34;sampleNameservers&#34;, DnsNameserversArgs.builder()        
+ *         var sampleNameservers = new DnsNameservers("sampleNameservers", DnsNameserversArgs.builder()        
  *             .nameservers(            
- *                 &#34;8.8.8.8&#34;,
- *                 &#34;8.8.4.4&#34;)
+ *                 "8.8.8.8",
+ *                 "8.8.4.4")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -45,17 +46,18 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var exampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
- *             .name(&#34;device.example.com&#34;)
+ *             .name("device.example.com")
  *             .build());
  * 
- *         var exampleKey = new DeviceKey(&#34;exampleKey&#34;, DeviceKeyArgs.builder()        
- *             .deviceId(exampleDevice.applyValue(getDeviceResult -&gt; getDeviceResult.id()))
+ *         var exampleKey = new DeviceKey("exampleKey", DeviceKeyArgs.builder()        
+ *             .deviceId(exampleDevice.applyValue(getDeviceResult -> getDeviceResult.id()))
  *             .keyExpiryDisabled(true)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
