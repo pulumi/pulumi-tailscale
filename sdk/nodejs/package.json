@@ -1,6 +1,6 @@
 {
     "name": "@pulumi/tailscale",
-    "version": "${VERSION}",
+    "version": "1.0.0-alpha.0+dev",
     "description": "A Pulumi package for creating and managing Tailscale cloud resources.",
     "keywords": [
         "pulumi",
@@ -22,6 +22,7 @@
     },
     "pulumi": {
         "resource": true,
-        "name": "tailscale"
+        "name": "tailscale",
+        "version": "1.0.0-alpha.0+dev"
     }
 }
