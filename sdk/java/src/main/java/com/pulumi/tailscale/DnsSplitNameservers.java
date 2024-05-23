@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var sampleSplitNameservers = new DnsSplitNameservers("sampleSplitNameservers", DnsSplitNameserversArgs.builder()        
+ *         var sampleSplitNameservers = new DnsSplitNameservers("sampleSplitNameservers", DnsSplitNameserversArgs.builder()
  *             .domain("foo.example.com")
  *             .nameservers("1.1.1.1")
  *             .build());
