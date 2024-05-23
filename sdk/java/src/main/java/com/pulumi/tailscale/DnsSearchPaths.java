@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var sampleSearchPaths = new DnsSearchPaths("sampleSearchPaths", DnsSearchPathsArgs.builder()        
+ *         var sampleSearchPaths = new DnsSearchPaths("sampleSearchPaths", DnsSearchPathsArgs.builder()
  *             .searchPaths("example.com")
  *             .build());
  * 

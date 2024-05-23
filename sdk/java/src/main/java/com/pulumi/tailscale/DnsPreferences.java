@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var samplePreferences = new DnsPreferences("samplePreferences", DnsPreferencesArgs.builder()        
+ *         var samplePreferences = new DnsPreferences("samplePreferences", DnsPreferencesArgs.builder()
  *             .magicDns(true)
  *             .build());
  * 

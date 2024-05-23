@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var sampleNameservers = new DnsNameservers("sampleNameservers", DnsNameserversArgs.builder()        
+ *         var sampleNameservers = new DnsNameservers("sampleNameservers", DnsNameserversArgs.builder()
  *             .nameservers(            
  *                 "8.8.8.8",
  *                 "8.8.4.4")
