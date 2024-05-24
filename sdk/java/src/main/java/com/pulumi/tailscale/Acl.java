@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var asJson = new Acl("asJson", AclArgs.builder()        
+ *         var asJson = new Acl("asJson", AclArgs.builder()
  *             .acl(serializeJson(
  *                 jsonObject(
  *                     jsonProperty("acls", jsonArray(jsonObject(
@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  *                 )))
  *             .build());
  * 
- *         var asHujson = new Acl("asHujson", AclArgs.builder()        
+ *         var asHujson = new Acl("asHujson", AclArgs.builder()
  *             .acl("""
  *   {
  *     // Comments in HuJSON policy are preserved when the policy is applied.
