@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  *             .name("device.example.com")
  *             .build());
  * 
- *         var exampleKey = new DeviceKey("exampleKey", DeviceKeyArgs.builder()        
+ *         var exampleKey = new DeviceKey("exampleKey", DeviceKeyArgs.builder()
  *             .deviceId(exampleDevice.applyValue(getDeviceResult -> getDeviceResult.id()))
  *             .keyExpiryDisabled(true)
  *             .build());

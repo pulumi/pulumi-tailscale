@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  *             .name("device.example.com")
  *             .build());
  * 
- *         var sampleRoutes = new DeviceSubnetRoutes("sampleRoutes", DeviceSubnetRoutesArgs.builder()        
+ *         var sampleRoutes = new DeviceSubnetRoutes("sampleRoutes", DeviceSubnetRoutesArgs.builder()
  *             .deviceId(sampleDevice.applyValue(getDeviceResult -> getDeviceResult.id()))
  *             .routes(            
  *                 "10.0.1.0/24",
@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  *                 "2.0.0.0/24")
  *             .build());
  * 
- *         var sampleExitNode = new DeviceSubnetRoutes("sampleExitNode", DeviceSubnetRoutesArgs.builder()        
+ *         var sampleExitNode = new DeviceSubnetRoutes("sampleExitNode", DeviceSubnetRoutesArgs.builder()
  *             .deviceId(sampleDevice.applyValue(getDeviceResult -> getDeviceResult.id()))
  *             .routes(            
  *                 "0.0.0.0/0",

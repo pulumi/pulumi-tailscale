@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var sampleKey = new TailnetKey("sampleKey", TailnetKeyArgs.builder()        
+ *         var sampleKey = new TailnetKey("sampleKey", TailnetKeyArgs.builder()
  *             .reusable(true)
  *             .ephemeral(false)
  *             .preauthorized(true)
