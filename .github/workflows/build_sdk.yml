@@ -1,7 +1,11 @@
 name: "Build SDK"
 
 on:
-  workflow_call: {}
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -24,6 +28,7 @@ env:
   TAILSCALE_OAUTH_CLIENT_SECRET: ${{ secrets.TAILSCALE_OAUTH_CLIENT_SECRET }}
   TAILSCALE_TAILNET: ${{ secrets.TAILSCALE_TAILNET }}
   TF_APPEND_USER_AGENT: pulumi
+  PROVIDER_VERSION: ${{ inputs.version }}
 
 jobs:
   build_sdk:
@@ -41,9 +46,6 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
-      - uses: pulumi/provider-version-action@v1
-        with:
-          set-env: 'PROVIDER_VERSION'
       - name: Cache examples generation
         uses: actions/cache@v4
         with:
