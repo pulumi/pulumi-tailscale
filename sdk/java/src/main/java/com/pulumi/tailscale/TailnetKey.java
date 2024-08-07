@@ -239,11 +239,18 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public TailnetKey(String name, @Nullable TailnetKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("tailscale:index/tailnetKey:TailnetKey", name, args == null ? TailnetKeyArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("tailscale:index/tailnetKey:TailnetKey", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private TailnetKey(String name, Output<String> id, @Nullable TailnetKeyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("tailscale:index/tailnetKey:TailnetKey", name, state, makeResourceOptions(options, id));
+    }
+
+    private static TailnetKeyArgs makeArgs(@Nullable TailnetKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? TailnetKeyArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

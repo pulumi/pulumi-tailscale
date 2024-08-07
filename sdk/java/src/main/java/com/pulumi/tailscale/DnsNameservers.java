@@ -94,11 +94,18 @@ public class DnsNameservers extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public DnsNameservers(String name, DnsNameserversArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("tailscale:index/dnsNameservers:DnsNameservers", name, args == null ? DnsNameserversArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("tailscale:index/dnsNameservers:DnsNameservers", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private DnsNameservers(String name, Output<String> id, @Nullable DnsNameserversState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("tailscale:index/dnsNameservers:DnsNameservers", name, state, makeResourceOptions(options, id));
+    }
+
+    private static DnsNameserversArgs makeArgs(DnsNameserversArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? DnsNameserversArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

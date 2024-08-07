@@ -99,11 +99,18 @@ public class DnsPreferences extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public DnsPreferences(String name, DnsPreferencesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("tailscale:index/dnsPreferences:DnsPreferences", name, args == null ? DnsPreferencesArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("tailscale:index/dnsPreferences:DnsPreferences", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private DnsPreferences(String name, Output<String> id, @Nullable DnsPreferencesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("tailscale:index/dnsPreferences:DnsPreferences", name, state, makeResourceOptions(options, id));
+    }
+
+    private static DnsPreferencesArgs makeArgs(DnsPreferencesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? DnsPreferencesArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

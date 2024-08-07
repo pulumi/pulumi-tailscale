@@ -123,11 +123,18 @@ public class DeviceSubnetRoutes extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public DeviceSubnetRoutes(String name, DeviceSubnetRoutesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes", name, args == null ? DeviceSubnetRoutesArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private DeviceSubnetRoutes(String name, Output<String> id, @Nullable DeviceSubnetRoutesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes", name, state, makeResourceOptions(options, id));
+    }
+
+    private static DeviceSubnetRoutesArgs makeArgs(DeviceSubnetRoutesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? DeviceSubnetRoutesArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

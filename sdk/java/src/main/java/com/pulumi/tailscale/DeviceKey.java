@@ -114,11 +114,18 @@ public class DeviceKey extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public DeviceKey(String name, DeviceKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("tailscale:index/deviceKey:DeviceKey", name, args == null ? DeviceKeyArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("tailscale:index/deviceKey:DeviceKey", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private DeviceKey(String name, Output<String> id, @Nullable DeviceKeyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("tailscale:index/deviceKey:DeviceKey", name, state, makeResourceOptions(options, id));
+    }
+
+    private static DeviceKeyArgs makeArgs(DeviceKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? DeviceKeyArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
