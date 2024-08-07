@@ -113,11 +113,18 @@ public class DeviceTags extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public DeviceTags(String name, DeviceTagsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("tailscale:index/deviceTags:DeviceTags", name, args == null ? DeviceTagsArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("tailscale:index/deviceTags:DeviceTags", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private DeviceTags(String name, Output<String> id, @Nullable DeviceTagsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("tailscale:index/deviceTags:DeviceTags", name, state, makeResourceOptions(options, id));
+    }
+
+    private static DeviceTagsArgs makeArgs(DeviceTagsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? DeviceTagsArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

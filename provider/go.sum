@@ -2021,8 +2021,8 @@ github.com/tailscale/hujson v0.0.0-20221223112325-20486734a56a h1:SJy1Pu0eH1C29X
 github.com/tailscale/hujson v0.0.0-20221223112325-20486734a56a/go.mod h1:DFSS3NAGHthKo1gTlmEcSBiZrRJXi28rLNd/1udP1c8=
 github.com/tailscale/tailscale-client-go v1.17.0 h1:4ZTsfB2hiiiIcx7prcXapZHO5K+TXB5fTdhGxdKGR88=
 github.com/tailscale/tailscale-client-go v1.17.0/go.mod h1:Zxz9AWl4cNX8F+jE7iIeo6Me7dGPXNdCFIoVeovH6eI=
-github.com/tailscale/terraform-provider-tailscale v0.16.1 h1:HcznQSrVLtWtd2Rk4weGE+mJySJVruLSvevQEkSEpwk=
-github.com/tailscale/terraform-provider-tailscale v0.16.1/go.mod h1:ZxS0iVMjauIIA9JJYHK1JhcNdY1OUu5qiKQYiu3cSgc=
+github.com/tailscale/terraform-provider-tailscale v0.16.2 h1:c8SJQpsfiSSq8dQAWmUE9eXca5IchZCZdYwZK9wHtSY=
+github.com/tailscale/terraform-provider-tailscale v0.16.2/go.mod h1:ZxS0iVMjauIIA9JJYHK1JhcNdY1OUu5qiKQYiu3cSgc=
 github.com/texttheater/golang-levenshtein v1.0.1 h1:+cRNoVrfiwufQPhoMzB6N0Yf/Mqajr6t1lOv8GyGE2U=
 github.com/texttheater/golang-levenshtein v1.0.1/go.mod h1:PYAKrbF5sAiq9wd+H82hs7gNaen0CplQ9uvm6+enD/8=
 github.com/tidwall/gjson v1.17.0 h1:/Jocvlh98kcTfpN2+JzGQWQcqrPQwDrVEMApx/M5ZwM=
