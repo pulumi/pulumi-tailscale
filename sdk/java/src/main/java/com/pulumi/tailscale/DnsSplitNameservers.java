@@ -97,7 +97,7 @@ public class DnsSplitNameservers extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public DnsSplitNameservers(String name) {
+    public DnsSplitNameservers(java.lang.String name) {
         this(name, DnsSplitNameserversArgs.Empty);
     }
     /**
@@ -105,7 +105,7 @@ public class DnsSplitNameservers extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public DnsSplitNameservers(String name, DnsSplitNameserversArgs args) {
+    public DnsSplitNameservers(java.lang.String name, DnsSplitNameserversArgs args) {
         this(name, args, null);
     }
     /**
@@ -114,12 +114,12 @@ public class DnsSplitNameservers extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public DnsSplitNameservers(String name, DnsSplitNameserversArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("tailscale:index/dnsSplitNameservers:DnsSplitNameservers", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public DnsSplitNameservers(java.lang.String name, DnsSplitNameserversArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("tailscale:index/dnsSplitNameservers:DnsSplitNameservers", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private DnsSplitNameservers(String name, Output<String> id, @Nullable DnsSplitNameserversState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("tailscale:index/dnsSplitNameservers:DnsSplitNameservers", name, state, makeResourceOptions(options, id));
+    private DnsSplitNameservers(java.lang.String name, Output<java.lang.String> id, @Nullable DnsSplitNameserversState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("tailscale:index/dnsSplitNameservers:DnsSplitNameservers", name, state, makeResourceOptions(options, id), false);
     }
 
     private static DnsSplitNameserversArgs makeArgs(DnsSplitNameserversArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -129,7 +129,7 @@ public class DnsSplitNameservers extends com.pulumi.resources.CustomResource {
         return args == null ? DnsSplitNameserversArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -145,7 +145,7 @@ public class DnsSplitNameservers extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static DnsSplitNameservers get(String name, Output<String> id, @Nullable DnsSplitNameserversState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static DnsSplitNameservers get(java.lang.String name, Output<java.lang.String> id, @Nullable DnsSplitNameserversState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new DnsSplitNameservers(name, id, state, options);
     }
 }
