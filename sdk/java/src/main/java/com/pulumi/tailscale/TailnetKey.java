@@ -221,7 +221,7 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public TailnetKey(String name) {
+    public TailnetKey(java.lang.String name) {
         this(name, TailnetKeyArgs.Empty);
     }
     /**
@@ -229,7 +229,7 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public TailnetKey(String name, @Nullable TailnetKeyArgs args) {
+    public TailnetKey(java.lang.String name, @Nullable TailnetKeyArgs args) {
         this(name, args, null);
     }
     /**
@@ -238,12 +238,12 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public TailnetKey(String name, @Nullable TailnetKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("tailscale:index/tailnetKey:TailnetKey", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public TailnetKey(java.lang.String name, @Nullable TailnetKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("tailscale:index/tailnetKey:TailnetKey", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private TailnetKey(String name, Output<String> id, @Nullable TailnetKeyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("tailscale:index/tailnetKey:TailnetKey", name, state, makeResourceOptions(options, id));
+    private TailnetKey(java.lang.String name, Output<java.lang.String> id, @Nullable TailnetKeyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("tailscale:index/tailnetKey:TailnetKey", name, state, makeResourceOptions(options, id), false);
     }
 
     private static TailnetKeyArgs makeArgs(@Nullable TailnetKeyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -253,7 +253,7 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
         return args == null ? TailnetKeyArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -272,7 +272,7 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static TailnetKey get(String name, Output<String> id, @Nullable TailnetKeyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static TailnetKey get(java.lang.String name, Output<java.lang.String> id, @Nullable TailnetKeyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new TailnetKey(name, id, state, options);
     }
 }

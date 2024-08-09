@@ -105,7 +105,7 @@ public class DeviceSubnetRoutes extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public DeviceSubnetRoutes(String name) {
+    public DeviceSubnetRoutes(java.lang.String name) {
         this(name, DeviceSubnetRoutesArgs.Empty);
     }
     /**
@@ -113,7 +113,7 @@ public class DeviceSubnetRoutes extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public DeviceSubnetRoutes(String name, DeviceSubnetRoutesArgs args) {
+    public DeviceSubnetRoutes(java.lang.String name, DeviceSubnetRoutesArgs args) {
         this(name, args, null);
     }
     /**
@@ -122,12 +122,12 @@ public class DeviceSubnetRoutes extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public DeviceSubnetRoutes(String name, DeviceSubnetRoutesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public DeviceSubnetRoutes(java.lang.String name, DeviceSubnetRoutesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private DeviceSubnetRoutes(String name, Output<String> id, @Nullable DeviceSubnetRoutesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes", name, state, makeResourceOptions(options, id));
+    private DeviceSubnetRoutes(java.lang.String name, Output<java.lang.String> id, @Nullable DeviceSubnetRoutesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes", name, state, makeResourceOptions(options, id), false);
     }
 
     private static DeviceSubnetRoutesArgs makeArgs(DeviceSubnetRoutesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -137,7 +137,7 @@ public class DeviceSubnetRoutes extends com.pulumi.resources.CustomResource {
         return args == null ? DeviceSubnetRoutesArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -153,7 +153,7 @@ public class DeviceSubnetRoutes extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static DeviceSubnetRoutes get(String name, Output<String> id, @Nullable DeviceSubnetRoutesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static DeviceSubnetRoutes get(java.lang.String name, Output<java.lang.String> id, @Nullable DeviceSubnetRoutesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new DeviceSubnetRoutes(name, id, state, options);
     }
 }
