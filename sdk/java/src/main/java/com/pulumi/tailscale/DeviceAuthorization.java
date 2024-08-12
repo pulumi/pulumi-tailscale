@@ -95,7 +95,7 @@ public class DeviceAuthorization extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public DeviceAuthorization(String name) {
+    public DeviceAuthorization(java.lang.String name) {
         this(name, DeviceAuthorizationArgs.Empty);
     }
     /**
@@ -103,7 +103,7 @@ public class DeviceAuthorization extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public DeviceAuthorization(String name, DeviceAuthorizationArgs args) {
+    public DeviceAuthorization(java.lang.String name, DeviceAuthorizationArgs args) {
         this(name, args, null);
     }
     /**
@@ -112,12 +112,12 @@ public class DeviceAuthorization extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public DeviceAuthorization(String name, DeviceAuthorizationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("tailscale:index/deviceAuthorization:DeviceAuthorization", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public DeviceAuthorization(java.lang.String name, DeviceAuthorizationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("tailscale:index/deviceAuthorization:DeviceAuthorization", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private DeviceAuthorization(String name, Output<String> id, @Nullable DeviceAuthorizationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("tailscale:index/deviceAuthorization:DeviceAuthorization", name, state, makeResourceOptions(options, id));
+    private DeviceAuthorization(java.lang.String name, Output<java.lang.String> id, @Nullable DeviceAuthorizationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("tailscale:index/deviceAuthorization:DeviceAuthorization", name, state, makeResourceOptions(options, id), false);
     }
 
     private static DeviceAuthorizationArgs makeArgs(DeviceAuthorizationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -127,7 +127,7 @@ public class DeviceAuthorization extends com.pulumi.resources.CustomResource {
         return args == null ? DeviceAuthorizationArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -143,7 +143,7 @@ public class DeviceAuthorization extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static DeviceAuthorization get(String name, Output<String> id, @Nullable DeviceAuthorizationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static DeviceAuthorization get(java.lang.String name, Output<java.lang.String> id, @Nullable DeviceAuthorizationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new DeviceAuthorization(name, id, state, options);
     }
 }
