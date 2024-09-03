@@ -98,7 +98,7 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        The device_subnet_routes resource allows you to configure subnet routes for your Tailscale devices. See https://tailscale.com/kb/1019/subnets for more information.
+        The device_subnet_routes resource allows you to configure subnet routes for your Tailscale devices. See <https://tailscale.com/kb/1019/subnets> for more information.
 
         ## Example Usage
 
@@ -134,7 +134,7 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
                  args: DeviceSubnetRoutesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The device_subnet_routes resource allows you to configure subnet routes for your Tailscale devices. See https://tailscale.com/kb/1019/subnets for more information.
+        The device_subnet_routes resource allows you to configure subnet routes for your Tailscale devices. See <https://tailscale.com/kb/1019/subnets> for more information.
 
         ## Example Usage
 

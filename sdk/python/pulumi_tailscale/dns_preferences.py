@@ -66,7 +66,7 @@ class DnsPreferences(pulumi.CustomResource):
                  magic_dns: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        The dns_preferences resource allows you to configure DNS preferences for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
+        The dns_preferences resource allows you to configure DNS preferences for your Tailscale network. See <https://tailscale.com/kb/1054/dns> for more information.
 
         ## Example Usage
 
@@ -96,7 +96,7 @@ class DnsPreferences(pulumi.CustomResource):
                  args: DnsPreferencesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The dns_preferences resource allows you to configure DNS preferences for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
+        The dns_preferences resource allows you to configure DNS preferences for your Tailscale network. See <https://tailscale.com/kb/1054/dns> for more information.
 
         ## Example Usage
 

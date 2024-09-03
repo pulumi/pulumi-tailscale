@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The deviceTags resource is used to apply tags to Tailscale devices. See https://tailscale.com/kb/1068/acl-tags/ for more details.
+// The deviceTags resource is used to apply tags to Tailscale devices. See <https://tailscale.com/kb/1068/acl-tags/> for more details.
 //
 // ## Example Usage
 //

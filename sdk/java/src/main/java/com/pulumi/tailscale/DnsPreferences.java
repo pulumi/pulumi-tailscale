@@ -14,7 +14,7 @@ import java.lang.Boolean;
 import javax.annotation.Nullable;
 
 /**
- * The dns_preferences resource allows you to configure DNS preferences for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
+ * The dns_preferences resource allows you to configure DNS preferences for your Tailscale network. See &lt;https://tailscale.com/kb/1054/dns&gt; for more information.
  * 
  * ## Example Usage
  * 

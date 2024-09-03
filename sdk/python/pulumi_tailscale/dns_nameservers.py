@@ -66,7 +66,7 @@ class DnsNameservers(pulumi.CustomResource):
                  nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
+        The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See <https://tailscale.com/kb/1054/dns> for more information.
 
         ## Example Usage
 
@@ -91,7 +91,7 @@ class DnsNameservers(pulumi.CustomResource):
                  args: DnsNameserversArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
+        The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See <https://tailscale.com/kb/1054/dns> for more information.
 
         ## Example Usage
 

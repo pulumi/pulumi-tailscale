@@ -98,7 +98,7 @@ class DeviceAuthorization(pulumi.CustomResource):
                  device_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The device_authorization resource is used to approve new devices before they can join the tailnet. See https://tailscale.com/kb/1099/device-authorization/ for more details.
+        The device_authorization resource is used to approve new devices before they can join the tailnet. See <https://tailscale.com/kb/1099/device-authorization/> for more details.
 
         ## Example Usage
 
@@ -124,7 +124,7 @@ class DeviceAuthorization(pulumi.CustomResource):
                  args: DeviceAuthorizationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The device_authorization resource is used to approve new devices before they can join the tailnet. See https://tailscale.com/kb/1099/device-authorization/ for more details.
+        The device_authorization resource is used to approve new devices before they can join the tailnet. See <https://tailscale.com/kb/1099/device-authorization/> for more details.
 
         ## Example Usage
 

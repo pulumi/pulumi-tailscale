@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The dnsSplitNameservers resource allows you to configure split DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
+// The dnsSplitNameservers resource allows you to configure split DNS nameservers for your Tailscale network. See <https://tailscale.com/kb/1054/dns> for more information.
 //
 // ## Example Usage
 //

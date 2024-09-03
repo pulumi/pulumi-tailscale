@@ -15,7 +15,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * The device_tags resource is used to apply tags to Tailscale devices. See https://tailscale.com/kb/1068/acl-tags/ for more details.
+ * The device_tags resource is used to apply tags to Tailscale devices. See &lt;https://tailscale.com/kb/1068/acl-tags/&gt; for more details.
  * 
  * ## Example Usage
  * 
