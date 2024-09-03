@@ -15,7 +15,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * The dns_split_nameservers resource allows you to configure split DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
+ * The dns_split_nameservers resource allows you to configure split DNS nameservers for your Tailscale network. See &lt;https://tailscale.com/kb/1054/dns&gt; for more information.
  * 
  * ## Example Usage
  * 

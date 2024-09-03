@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The deviceTags resource is used to apply tags to Tailscale devices. See https://tailscale.com/kb/1068/acl-tags/ for more details.
+ * The deviceTags resource is used to apply tags to Tailscale devices. See <https://tailscale.com/kb/1068/acl-tags/> for more details.
  *
  * ## Example Usage
  *

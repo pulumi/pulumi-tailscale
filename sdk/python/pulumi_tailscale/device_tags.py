@@ -98,7 +98,7 @@ class DeviceTags(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        The device_tags resource is used to apply tags to Tailscale devices. See https://tailscale.com/kb/1068/acl-tags/ for more details.
+        The device_tags resource is used to apply tags to Tailscale devices. See <https://tailscale.com/kb/1068/acl-tags/> for more details.
 
         ## Example Usage
 
@@ -124,7 +124,7 @@ class DeviceTags(pulumi.CustomResource):
                  args: DeviceTagsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The device_tags resource is used to apply tags to Tailscale devices. See https://tailscale.com/kb/1068/acl-tags/ for more details.
+        The device_tags resource is used to apply tags to Tailscale devices. See <https://tailscale.com/kb/1068/acl-tags/> for more details.
 
         ## Example Usage
 

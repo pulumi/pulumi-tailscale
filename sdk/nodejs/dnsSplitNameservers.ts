@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The dnsSplitNameservers resource allows you to configure split DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
+ * The dnsSplitNameservers resource allows you to configure split DNS nameservers for your Tailscale network. See <https://tailscale.com/kb/1054/dns> for more information.
  *
  * ## Example Usage
  *

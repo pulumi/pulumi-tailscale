@@ -99,7 +99,7 @@ class Acl(pulumi.CustomResource):
                  overwrite_existing_content: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
+        The acl resource allows you to configure a Tailscale ACL. See <https://tailscale.com/kb/1018/acls> for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
 
         If tests are defined in the ACL (the top-level "tests" section), ACL validation will occur before creation and update operations are applied.
 
@@ -151,7 +151,7 @@ class Acl(pulumi.CustomResource):
                  args: AclArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
+        The acl resource allows you to configure a Tailscale ACL. See <https://tailscale.com/kb/1018/acls> for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
 
         If tests are defined in the ACL (the top-level "tests" section), ACL validation will occur before creation and update operations are applied.
 

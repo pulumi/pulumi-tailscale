@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The deviceAuthorization resource is used to approve new devices before they can join the tailnet. See https://tailscale.com/kb/1099/device-authorization/ for more details.
+ * The deviceAuthorization resource is used to approve new devices before they can join the tailnet. See <https://tailscale.com/kb/1099/device-authorization/> for more details.
  *
  * ## Example Usage
  *

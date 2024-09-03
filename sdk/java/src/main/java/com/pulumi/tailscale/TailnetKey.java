@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * The tailnet_key resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information
+ * The tailnet_key resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See &lt;https://tailscale.com/kb/1085/auth-keys&gt; for more information
  * 
  * ## Example Usage
  * 
