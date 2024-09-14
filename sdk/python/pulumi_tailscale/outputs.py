@@ -10,8 +10,66 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
+    'ContactsAccount',
+    'ContactsSecurity',
+    'ContactsSupport',
     'GetDevicesDeviceResult',
+    'GetUsersUserResult',
 ]
+
+@pulumi.output_type
+class ContactsAccount(dict):
+    def __init__(__self__, *,
+                 email: str):
+        """
+        :param str email: Email address to send communications to
+        """
+        pulumi.set(__self__, "email", email)
+
+    @property
+    @pulumi.getter
+    def email(self) -> str:
+        """
+        Email address to send communications to
+        """
+        return pulumi.get(self, "email")
+
+
+@pulumi.output_type
+class ContactsSecurity(dict):
+    def __init__(__self__, *,
+                 email: str):
+        """
+        :param str email: Email address to send communications to
+        """
+        pulumi.set(__self__, "email", email)
+
+    @property
+    @pulumi.getter
+    def email(self) -> str:
+        """
+        Email address to send communications to
+        """
+        return pulumi.get(self, "email")
+
+
+@pulumi.output_type
+class ContactsSupport(dict):
+    def __init__(__self__, *,
+                 email: str):
+        """
+        :param str email: Email address to send communications to
+        """
+        pulumi.set(__self__, "email", email)
+
+    @property
+    @pulumi.getter
+    def email(self) -> str:
+        """
+        Email address to send communications to
+        """
+        return pulumi.get(self, "email")
+
 
 @pulumi.output_type
 class GetDevicesDeviceResult(dict):
@@ -84,5 +142,144 @@ class GetDevicesDeviceResult(dict):
         The user associated with the device
         """
         return pulumi.get(self, "user")
+
+
+@pulumi.output_type
+class GetUsersUserResult(dict):
+    def __init__(__self__, *,
+                 created: str,
+                 currently_connected: bool,
+                 device_count: int,
+                 display_name: str,
+                 id: str,
+                 last_seen: str,
+                 login_name: str,
+                 profile_pic_url: str,
+                 role: str,
+                 status: str,
+                 tailnet_id: str,
+                 type: str):
+        """
+        :param str created: The time the user joined their tailnet.
+        :param bool currently_connected: true when the user has a node currently connected to the control server.
+        :param int device_count: Number of devices the user owns.
+        :param str display_name: The name of the user.
+        :param str id: The unique identifier for the user.
+        :param str last_seen: The later of either: a) The last time any of the user's nodes were connected to the network or b) The last time the user authenticated to any tailscale service, including the admin panel.
+        :param str login_name: The emailish login name of the user.
+        :param str profile_pic_url: The profile pic URL for the user.
+        :param str role: The role of the user.
+        :param str status: The status of the user.
+        :param str tailnet_id: The tailnet that owns the user.
+        :param str type: The type of relation this user has to the tailnet associated with the request.
+        """
+        pulumi.set(__self__, "created", created)
+        pulumi.set(__self__, "currently_connected", currently_connected)
+        pulumi.set(__self__, "device_count", device_count)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "last_seen", last_seen)
+        pulumi.set(__self__, "login_name", login_name)
+        pulumi.set(__self__, "profile_pic_url", profile_pic_url)
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tailnet_id", tailnet_id)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def created(self) -> str:
+        """
+        The time the user joined their tailnet.
+        """
+        return pulumi.get(self, "created")
+
+    @property
+    @pulumi.getter(name="currentlyConnected")
+    def currently_connected(self) -> bool:
+        """
+        true when the user has a node currently connected to the control server.
+        """
+        return pulumi.get(self, "currently_connected")
+
+    @property
+    @pulumi.getter(name="deviceCount")
+    def device_count(self) -> int:
+        """
+        Number of devices the user owns.
+        """
+        return pulumi.get(self, "device_count")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The name of the user.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The unique identifier for the user.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="lastSeen")
+    def last_seen(self) -> str:
+        """
+        The later of either: a) The last time any of the user's nodes were connected to the network or b) The last time the user authenticated to any tailscale service, including the admin panel.
+        """
+        return pulumi.get(self, "last_seen")
+
+    @property
+    @pulumi.getter(name="loginName")
+    def login_name(self) -> str:
+        """
+        The emailish login name of the user.
+        """
+        return pulumi.get(self, "login_name")
+
+    @property
+    @pulumi.getter(name="profilePicUrl")
+    def profile_pic_url(self) -> str:
+        """
+        The profile pic URL for the user.
+        """
+        return pulumi.get(self, "profile_pic_url")
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The role of the user.
+        """
+        return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the user.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="tailnetId")
+    def tailnet_id(self) -> str:
+        """
+        The tailnet that owns the user.
+        """
+        return pulumi.get(self, "tailnet_id")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of relation this user has to the tailnet associated with the request.
+        """
+        return pulumi.get(self, "type")
 
 

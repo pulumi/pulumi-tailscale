@@ -21,6 +21,14 @@ import * as utilities from "./utilities";
  *     authorized: true,
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Device authorization can be imported using the device id, e.g.,
+ *
+ * ```sh
+ * $ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization 123456789
+ * ```
  */
 export class DeviceAuthorization extends pulumi.CustomResource {
     /**

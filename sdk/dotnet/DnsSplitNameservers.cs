@@ -46,7 +46,7 @@ namespace Pulumi.Tailscale
     public partial class DnsSplitNameservers : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+        /// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
         /// </summary>
         [Output("domain")]
         public Output<string> Domain { get; private set; } = null!;
@@ -104,7 +104,7 @@ namespace Pulumi.Tailscale
     public sealed class DnsSplitNameserversArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+        /// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
         /// </summary>
         [Input("domain", required: true)]
         public Input<string> Domain { get; set; } = null!;
@@ -130,7 +130,7 @@ namespace Pulumi.Tailscale
     public sealed class DnsSplitNameserversState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+        /// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
         /// </summary>
         [Input("domain")]
         public Input<string>? Domain { get; set; }
