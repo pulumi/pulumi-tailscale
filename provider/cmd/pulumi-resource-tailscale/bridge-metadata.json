@@ -4,6 +4,20 @@
             "tailscale_acl": {
                 "current": "tailscale:index/acl:Acl"
             },
+            "tailscale_contacts": {
+                "current": "tailscale:index/contacts:Contacts",
+                "fields": {
+                    "account": {
+                        "maxItemsOne": true
+                    },
+                    "security": {
+                        "maxItemsOne": true
+                    },
+                    "support": {
+                        "maxItemsOne": true
+                    }
+                }
+            },
             "tailscale_device_authorization": {
                 "current": "tailscale:index/deviceAuthorization:DeviceAuthorization"
             },
@@ -53,10 +67,27 @@
                     }
                 }
             },
+            "tailscale_logstream_configuration": {
+                "current": "tailscale:index/logstreamConfiguration:LogstreamConfiguration"
+            },
+            "tailscale_posture_integration": {
+                "current": "tailscale:index/postureIntegration:PostureIntegration"
+            },
             "tailscale_tailnet_key": {
                 "current": "tailscale:index/tailnetKey:TailnetKey",
                 "fields": {
                     "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "tailscale_tailnet_settings": {
+                "current": "tailscale:index/tailnetSettings:TailnetSettings"
+            },
+            "tailscale_webhook": {
+                "current": "tailscale:index/webhook:Webhook",
+                "fields": {
+                    "subscriptions": {
                         "maxItemsOne": false
                     }
                 }
@@ -95,6 +126,17 @@
                                 }
                             }
                         }
+                    }
+                }
+            },
+            "tailscale_user": {
+                "current": "tailscale:index/getUser:getUser"
+            },
+            "tailscale_users": {
+                "current": "tailscale:index/getUsers:getUsers",
+                "fields": {
+                    "users": {
+                        "maxItemsOne": false
                     }
                 }
             }
