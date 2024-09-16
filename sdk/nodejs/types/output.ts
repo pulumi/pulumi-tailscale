@@ -5,6 +5,27 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface ContactsAccount {
+    /**
+     * Email address to send communications to
+     */
+    email: string;
+}
+
+export interface ContactsSecurity {
+    /**
+     * Email address to send communications to
+     */
+    email: string;
+}
+
+export interface ContactsSupport {
+    /**
+     * Email address to send communications to
+     */
+    email: string;
+}
+
 export interface GetDevicesDevice {
     /**
      * The list of device's IPs
@@ -30,5 +51,56 @@ export interface GetDevicesDevice {
      * The user associated with the device
      */
     user: string;
+}
+
+export interface GetUsersUser {
+    /**
+     * The time the user joined their tailnet.
+     */
+    created: string;
+    /**
+     * true when the user has a node currently connected to the control server.
+     */
+    currentlyConnected: boolean;
+    /**
+     * Number of devices the user owns.
+     */
+    deviceCount: number;
+    /**
+     * The name of the user.
+     */
+    displayName: string;
+    /**
+     * The unique identifier for the user.
+     */
+    id: string;
+    /**
+     * The later of either: a) The last time any of the user's nodes were connected to the network or b) The last time the user authenticated to any tailscale service, including the admin panel.
+     */
+    lastSeen: string;
+    /**
+     * The emailish login name of the user.
+     */
+    loginName: string;
+    /**
+     * The profile pic URL for the user.
+     */
+    profilePicUrl: string;
+    /**
+     * The role of the user.
+     */
+    role: string;
+    /**
+     * The status of the user.
+     */
+    status: string;
+    /**
+     * The tailnet that owns the user.
+     */
+    tailnetId: string;
+    /**
+     * The type of relation this user has to the tailnet associated with the request.
+     */
+    type: string;
 }
 

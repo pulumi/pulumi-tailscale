@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Tailscale
 {
     /// <summary>
-    /// The device_subnet_routes resource allows you to configure subnet routes for your Tailscale devices. See https://tailscale.com/kb/1019/subnets for more information.
-    /// 
     /// ## Example Usage
     /// 
     /// ```csharp

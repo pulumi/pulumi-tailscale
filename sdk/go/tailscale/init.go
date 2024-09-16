@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "tailscale:index/acl:Acl":
 		r = &Acl{}
+	case "tailscale:index/contacts:Contacts":
+		r = &Contacts{}
 	case "tailscale:index/deviceAuthorization:DeviceAuthorization":
 		r = &DeviceAuthorization{}
 	case "tailscale:index/deviceKey:DeviceKey":
@@ -39,8 +41,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DnsSearchPaths{}
 	case "tailscale:index/dnsSplitNameservers:DnsSplitNameservers":
 		r = &DnsSplitNameservers{}
+	case "tailscale:index/logstreamConfiguration:LogstreamConfiguration":
+		r = &LogstreamConfiguration{}
+	case "tailscale:index/postureIntegration:PostureIntegration":
+		r = &PostureIntegration{}
 	case "tailscale:index/tailnetKey:TailnetKey":
 		r = &TailnetKey{}
+	case "tailscale:index/tailnetSettings:TailnetSettings":
+		r = &TailnetSettings{}
+	case "tailscale:index/webhook:Webhook":
+		r = &Webhook{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -75,6 +85,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"tailscale",
 		"index/acl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"tailscale",
+		"index/contacts",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -119,7 +134,27 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"tailscale",
+		"index/logstreamConfiguration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"tailscale",
+		"index/postureIntegration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"tailscale",
 		"index/tailnetKey",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"tailscale",
+		"index/tailnetSettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"tailscale",
+		"index/webhook",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

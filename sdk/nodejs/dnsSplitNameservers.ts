@@ -56,7 +56,7 @@ export class DnsSplitNameservers extends pulumi.CustomResource {
     }
 
     /**
-     * Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+     * Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
      */
     public readonly domain!: pulumi.Output<string>;
     /**
@@ -100,7 +100,7 @@ export class DnsSplitNameservers extends pulumi.CustomResource {
  */
 export interface DnsSplitNameserversState {
     /**
-     * Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+     * Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
      */
     domain?: pulumi.Input<string>;
     /**
@@ -114,7 +114,7 @@ export interface DnsSplitNameserversState {
  */
 export interface DnsSplitNameserversArgs {
     /**
-     * Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+     * Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
      */
     domain: pulumi.Input<string>;
     /**

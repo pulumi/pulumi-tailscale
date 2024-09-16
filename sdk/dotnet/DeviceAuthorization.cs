@@ -35,6 +35,14 @@ namespace Pulumi.Tailscale
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Device authorization can be imported using the device id, e.g.,
+    /// 
+    /// ```sh
+    /// $ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization 123456789
+    /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/deviceAuthorization:DeviceAuthorization")]
     public partial class DeviceAuthorization : global::Pulumi.CustomResource

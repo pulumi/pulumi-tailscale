@@ -46,6 +46,14 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// Device authorization can be imported using the device id, e.g.,
+//
+// ```sh
+// $ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization 123456789
+// ```
 type DeviceAuthorization struct {
 	pulumi.CustomResourceState
 

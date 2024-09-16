@@ -112,6 +112,14 @@ class DeviceAuthorization(pulumi.CustomResource):
             authorized=True)
         ```
 
+        ## Import
+
+        Device authorization can be imported using the device id, e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization 123456789
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] authorized: Whether or not the device is authorized
@@ -136,6 +144,14 @@ class DeviceAuthorization(pulumi.CustomResource):
         sample_authorization = tailscale.DeviceAuthorization("sample_authorization",
             device_id=sample_device.id,
             authorized=True)
+        ```
+
+        ## Import
+
+        Device authorization can be imported using the device id, e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization 123456789
         ```
 
         :param str resource_name: The name of the resource.

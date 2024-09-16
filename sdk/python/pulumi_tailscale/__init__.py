@@ -6,6 +6,7 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .acl import *
+from .contacts import *
 from .device_authorization import *
 from .device_key import *
 from .device_subnet_routes import *
@@ -18,8 +19,15 @@ from .get4_via6 import *
 from .get_acl import *
 from .get_device import *
 from .get_devices import *
+from .get_user import *
+from .get_users import *
+from .logstream_configuration import *
+from .posture_integration import *
 from .provider import *
 from .tailnet_key import *
+from .tailnet_settings import *
+from .webhook import *
+from ._inputs import *
 from . import outputs
 
 # Make subpackages available:
@@ -38,6 +46,14 @@ _utilities.register(
   "fqn": "pulumi_tailscale",
   "classes": {
    "tailscale:index/acl:Acl": "Acl"
+  }
+ },
+ {
+  "pkg": "tailscale",
+  "mod": "index/contacts",
+  "fqn": "pulumi_tailscale",
+  "classes": {
+   "tailscale:index/contacts:Contacts": "Contacts"
   }
  },
  {
@@ -106,10 +122,42 @@ _utilities.register(
  },
  {
   "pkg": "tailscale",
+  "mod": "index/logstreamConfiguration",
+  "fqn": "pulumi_tailscale",
+  "classes": {
+   "tailscale:index/logstreamConfiguration:LogstreamConfiguration": "LogstreamConfiguration"
+  }
+ },
+ {
+  "pkg": "tailscale",
+  "mod": "index/postureIntegration",
+  "fqn": "pulumi_tailscale",
+  "classes": {
+   "tailscale:index/postureIntegration:PostureIntegration": "PostureIntegration"
+  }
+ },
+ {
+  "pkg": "tailscale",
   "mod": "index/tailnetKey",
   "fqn": "pulumi_tailscale",
   "classes": {
    "tailscale:index/tailnetKey:TailnetKey": "TailnetKey"
+  }
+ },
+ {
+  "pkg": "tailscale",
+  "mod": "index/tailnetSettings",
+  "fqn": "pulumi_tailscale",
+  "classes": {
+   "tailscale:index/tailnetSettings:TailnetSettings": "TailnetSettings"
+  }
+ },
+ {
+  "pkg": "tailscale",
+  "mod": "index/webhook",
+  "fqn": "pulumi_tailscale",
+  "classes": {
+   "tailscale:index/webhook:Webhook": "Webhook"
   }
  }
 ]

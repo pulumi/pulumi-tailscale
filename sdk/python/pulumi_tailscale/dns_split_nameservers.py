@@ -18,7 +18,7 @@ class DnsSplitNameserversArgs:
                  nameservers: pulumi.Input[Sequence[pulumi.Input[str]]]):
         """
         The set of arguments for constructing a DnsSplitNameservers resource.
-        :param pulumi.Input[str] domain: Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+        :param pulumi.Input[str] domain: Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
         """
         pulumi.set(__self__, "domain", domain)
@@ -28,7 +28,7 @@ class DnsSplitNameserversArgs:
     @pulumi.getter
     def domain(self) -> pulumi.Input[str]:
         """
-        Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+        Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
         """
         return pulumi.get(self, "domain")
 
@@ -56,7 +56,7 @@ class _DnsSplitNameserversState:
                  nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering DnsSplitNameservers resources.
-        :param pulumi.Input[str] domain: Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+        :param pulumi.Input[str] domain: Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
         """
         if domain is not None:
@@ -68,7 +68,7 @@ class _DnsSplitNameserversState:
     @pulumi.getter
     def domain(self) -> Optional[pulumi.Input[str]]:
         """
-        Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+        Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
         """
         return pulumi.get(self, "domain")
 
@@ -121,7 +121,7 @@ class DnsSplitNameservers(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] domain: Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+        :param pulumi.Input[str] domain: Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
         """
         ...
@@ -203,7 +203,7 @@ class DnsSplitNameservers(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] domain: Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+        :param pulumi.Input[str] domain: Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -218,7 +218,7 @@ class DnsSplitNameservers(pulumi.CustomResource):
     @pulumi.getter
     def domain(self) -> pulumi.Output[str]:
         """
-        Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+        Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
         """
         return pulumi.get(self, "domain")
 

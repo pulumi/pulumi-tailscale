@@ -10,6 +10,11 @@ export type Acl = import("./acl").Acl;
 export const Acl: typeof import("./acl").Acl = null as any;
 utilities.lazyLoad(exports, ["Acl"], () => require("./acl"));
 
+export { ContactsArgs, ContactsState } from "./contacts";
+export type Contacts = import("./contacts").Contacts;
+export const Contacts: typeof import("./contacts").Contacts = null as any;
+utilities.lazyLoad(exports, ["Contacts"], () => require("./contacts"));
+
 export { DeviceAuthorizationArgs, DeviceAuthorizationState } from "./deviceAuthorization";
 export type DeviceAuthorization = import("./deviceAuthorization").DeviceAuthorization;
 export const DeviceAuthorization: typeof import("./deviceAuthorization").DeviceAuthorization = null as any;
@@ -70,6 +75,26 @@ export const getDevices: typeof import("./getDevices").getDevices = null as any;
 export const getDevicesOutput: typeof import("./getDevices").getDevicesOutput = null as any;
 utilities.lazyLoad(exports, ["getDevices","getDevicesOutput"], () => require("./getDevices"));
 
+export { GetUserArgs, GetUserResult, GetUserOutputArgs } from "./getUser";
+export const getUser: typeof import("./getUser").getUser = null as any;
+export const getUserOutput: typeof import("./getUser").getUserOutput = null as any;
+utilities.lazyLoad(exports, ["getUser","getUserOutput"], () => require("./getUser"));
+
+export { GetUsersArgs, GetUsersResult, GetUsersOutputArgs } from "./getUsers";
+export const getUsers: typeof import("./getUsers").getUsers = null as any;
+export const getUsersOutput: typeof import("./getUsers").getUsersOutput = null as any;
+utilities.lazyLoad(exports, ["getUsers","getUsersOutput"], () => require("./getUsers"));
+
+export { LogstreamConfigurationArgs, LogstreamConfigurationState } from "./logstreamConfiguration";
+export type LogstreamConfiguration = import("./logstreamConfiguration").LogstreamConfiguration;
+export const LogstreamConfiguration: typeof import("./logstreamConfiguration").LogstreamConfiguration = null as any;
+utilities.lazyLoad(exports, ["LogstreamConfiguration"], () => require("./logstreamConfiguration"));
+
+export { PostureIntegrationArgs, PostureIntegrationState } from "./postureIntegration";
+export type PostureIntegration = import("./postureIntegration").PostureIntegration;
+export const PostureIntegration: typeof import("./postureIntegration").PostureIntegration = null as any;
+utilities.lazyLoad(exports, ["PostureIntegration"], () => require("./postureIntegration"));
+
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
@@ -79,6 +104,16 @@ export { TailnetKeyArgs, TailnetKeyState } from "./tailnetKey";
 export type TailnetKey = import("./tailnetKey").TailnetKey;
 export const TailnetKey: typeof import("./tailnetKey").TailnetKey = null as any;
 utilities.lazyLoad(exports, ["TailnetKey"], () => require("./tailnetKey"));
+
+export { TailnetSettingsArgs, TailnetSettingsState } from "./tailnetSettings";
+export type TailnetSettings = import("./tailnetSettings").TailnetSettings;
+export const TailnetSettings: typeof import("./tailnetSettings").TailnetSettings = null as any;
+utilities.lazyLoad(exports, ["TailnetSettings"], () => require("./tailnetSettings"));
+
+export { WebhookArgs, WebhookState } from "./webhook";
+export type Webhook = import("./webhook").Webhook;
+export const Webhook: typeof import("./webhook").Webhook = null as any;
+utilities.lazyLoad(exports, ["Webhook"], () => require("./webhook"));
 
 
 // Export sub-modules:
@@ -96,6 +131,8 @@ const _module = {
         switch (type) {
             case "tailscale:index/acl:Acl":
                 return new Acl(name, <any>undefined, { urn })
+            case "tailscale:index/contacts:Contacts":
+                return new Contacts(name, <any>undefined, { urn })
             case "tailscale:index/deviceAuthorization:DeviceAuthorization":
                 return new DeviceAuthorization(name, <any>undefined, { urn })
             case "tailscale:index/deviceKey:DeviceKey":
@@ -112,14 +149,23 @@ const _module = {
                 return new DnsSearchPaths(name, <any>undefined, { urn })
             case "tailscale:index/dnsSplitNameservers:DnsSplitNameservers":
                 return new DnsSplitNameservers(name, <any>undefined, { urn })
+            case "tailscale:index/logstreamConfiguration:LogstreamConfiguration":
+                return new LogstreamConfiguration(name, <any>undefined, { urn })
+            case "tailscale:index/postureIntegration:PostureIntegration":
+                return new PostureIntegration(name, <any>undefined, { urn })
             case "tailscale:index/tailnetKey:TailnetKey":
                 return new TailnetKey(name, <any>undefined, { urn })
+            case "tailscale:index/tailnetSettings:TailnetSettings":
+                return new TailnetSettings(name, <any>undefined, { urn })
+            case "tailscale:index/webhook:Webhook":
+                return new Webhook(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
 pulumi.runtime.registerResourceModule("tailscale", "index/acl", _module)
+pulumi.runtime.registerResourceModule("tailscale", "index/contacts", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/deviceAuthorization", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/deviceKey", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/deviceSubnetRoutes", _module)
@@ -128,7 +174,11 @@ pulumi.runtime.registerResourceModule("tailscale", "index/dnsNameservers", _modu
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsPreferences", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsSearchPaths", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsSplitNameservers", _module)
+pulumi.runtime.registerResourceModule("tailscale", "index/logstreamConfiguration", _module)
+pulumi.runtime.registerResourceModule("tailscale", "index/postureIntegration", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/tailnetKey", _module)
+pulumi.runtime.registerResourceModule("tailscale", "index/tailnetSettings", _module)
+pulumi.runtime.registerResourceModule("tailscale", "index/webhook", _module)
 pulumi.runtime.registerResourcePackage("tailscale", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

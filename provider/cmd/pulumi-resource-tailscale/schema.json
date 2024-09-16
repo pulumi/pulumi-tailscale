@@ -91,6 +91,42 @@
         }
     },
     "types": {
+        "tailscale:index/ContactsAccount:ContactsAccount": {
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "Email address to send communications to\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "email"
+            ]
+        },
+        "tailscale:index/ContactsSecurity:ContactsSecurity": {
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "Email address to send communications to\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "email"
+            ]
+        },
+        "tailscale:index/ContactsSupport:ContactsSupport": {
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "Email address to send communications to\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "email"
+            ]
+        },
         "tailscale:index/getDevicesDevice:getDevicesDevice": {
             "properties": {
                 "addresses": {
@@ -132,6 +168,78 @@
                 "name",
                 "tags",
                 "user"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "tailscale:index/getUsersUser:getUsersUser": {
+            "properties": {
+                "created": {
+                    "type": "string",
+                    "description": "The time the user joined their tailnet.\n"
+                },
+                "currentlyConnected": {
+                    "type": "boolean",
+                    "description": "true when the user has a node currently connected to the control server.\n"
+                },
+                "deviceCount": {
+                    "type": "integer",
+                    "description": "Number of devices the user owns.\n"
+                },
+                "displayName": {
+                    "type": "string",
+                    "description": "The name of the user.\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The unique identifier for the user.\n"
+                },
+                "lastSeen": {
+                    "type": "string",
+                    "description": "The later of either: a) The last time any of the user's nodes were connected to the network or b) The last time the user authenticated to any tailscale service, including the admin panel.\n"
+                },
+                "loginName": {
+                    "type": "string",
+                    "description": "The emailish login name of the user.\n"
+                },
+                "profilePicUrl": {
+                    "type": "string",
+                    "description": "The profile pic URL for the user.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "The role of the user.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of the user.\n"
+                },
+                "tailnetId": {
+                    "type": "string",
+                    "description": "The tailnet that owns the user.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of relation this user has to the tailnet associated with the request.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "created",
+                "currentlyConnected",
+                "deviceCount",
+                "displayName",
+                "id",
+                "lastSeen",
+                "loginName",
+                "profilePicUrl",
+                "role",
+                "status",
+                "tailnetId",
+                "type"
             ],
             "language": {
                 "nodejs": {
@@ -272,8 +380,67 @@
                 "type": "object"
             }
         },
+        "tailscale:index/contacts:Contacts": {
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleContacts = new tailscale.Contacts(\"sample_contacts\", {\n    account: {\n        email: \"account@example.com\",\n    },\n    support: {\n        email: \"support@example.com\",\n    },\n    security: {\n        email: \"security@example.com\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_contacts = tailscale.Contacts(\"sample_contacts\",\n    account={\n        \"email\": \"account@example.com\",\n    },\n    support={\n        \"email\": \"support@example.com\",\n    },\n    security={\n        \"email\": \"security@example.com\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleContacts = new Tailscale.Contacts(\"sample_contacts\", new()\n    {\n        Account = new Tailscale.Inputs.ContactsAccountArgs\n        {\n            Email = \"account@example.com\",\n        },\n        Support = new Tailscale.Inputs.ContactsSupportArgs\n        {\n            Email = \"support@example.com\",\n        },\n        Security = new Tailscale.Inputs.ContactsSecurityArgs\n        {\n            Email = \"security@example.com\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewContacts(ctx, \"sample_contacts\", \u0026tailscale.ContactsArgs{\n\t\t\tAccount: \u0026tailscale.ContactsAccountArgs{\n\t\t\t\tEmail: pulumi.String(\"account@example.com\"),\n\t\t\t},\n\t\t\tSupport: \u0026tailscale.ContactsSupportArgs{\n\t\t\t\tEmail: pulumi.String(\"support@example.com\"),\n\t\t\t},\n\t\t\tSecurity: \u0026tailscale.ContactsSecurityArgs{\n\t\t\t\tEmail: pulumi.String(\"security@example.com\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.Contacts;\nimport com.pulumi.tailscale.ContactsArgs;\nimport com.pulumi.tailscale.inputs.ContactsAccountArgs;\nimport com.pulumi.tailscale.inputs.ContactsSupportArgs;\nimport com.pulumi.tailscale.inputs.ContactsSecurityArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var sampleContacts = new Contacts(\"sampleContacts\", ContactsArgs.builder()\n            .account(ContactsAccountArgs.builder()\n                .email(\"account@example.com\")\n                .build())\n            .support(ContactsSupportArgs.builder()\n                .email(\"support@example.com\")\n                .build())\n            .security(ContactsSecurityArgs.builder()\n                .email(\"security@example.com\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  sampleContacts:\n    type: tailscale:Contacts\n    name: sample_contacts\n    properties:\n      account:\n        email: account@example.com\n      support:\n        email: support@example.com\n      security:\n        email: security@example.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nID doesn't matter.\n\n```sh\n$ pulumi import tailscale:index/contacts:Contacts sample_contacts contacts\n```\n\n",
+            "properties": {
+                "account": {
+                    "$ref": "#/types/tailscale:index/ContactsAccount:ContactsAccount",
+                    "description": "Configuration for communications about important changes to your tailnet\n"
+                },
+                "security": {
+                    "$ref": "#/types/tailscale:index/ContactsSecurity:ContactsSecurity",
+                    "description": "Configuration for communications about security issues affecting your tailnet\n"
+                },
+                "support": {
+                    "$ref": "#/types/tailscale:index/ContactsSupport:ContactsSupport",
+                    "description": "Configuration for communications about misconfigurations in your tailnet\n"
+                }
+            },
+            "required": [
+                "account",
+                "security",
+                "support"
+            ],
+            "inputProperties": {
+                "account": {
+                    "$ref": "#/types/tailscale:index/ContactsAccount:ContactsAccount",
+                    "description": "Configuration for communications about important changes to your tailnet\n"
+                },
+                "security": {
+                    "$ref": "#/types/tailscale:index/ContactsSecurity:ContactsSecurity",
+                    "description": "Configuration for communications about security issues affecting your tailnet\n"
+                },
+                "support": {
+                    "$ref": "#/types/tailscale:index/ContactsSupport:ContactsSupport",
+                    "description": "Configuration for communications about misconfigurations in your tailnet\n"
+                }
+            },
+            "requiredInputs": [
+                "account",
+                "security",
+                "support"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Contacts resources.\n",
+                "properties": {
+                    "account": {
+                        "$ref": "#/types/tailscale:index/ContactsAccount:ContactsAccount",
+                        "description": "Configuration for communications about important changes to your tailnet\n"
+                    },
+                    "security": {
+                        "$ref": "#/types/tailscale:index/ContactsSecurity:ContactsSecurity",
+                        "description": "Configuration for communications about security issues affecting your tailnet\n"
+                    },
+                    "support": {
+                        "$ref": "#/types/tailscale:index/ContactsSupport:ContactsSupport",
+                        "description": "Configuration for communications about misconfigurations in your tailnet\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "tailscale:index/deviceAuthorization:DeviceAuthorization": {
-            "description": "The device_authorization resource is used to approve new devices before they can join the tailnet. See https://tailscale.com/kb/1099/device-authorization/ for more details.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleDevice = tailscale.getDevice({\n    name: \"device.example.com\",\n});\nconst sampleAuthorization = new tailscale.DeviceAuthorization(\"sample_authorization\", {\n    deviceId: sampleDevice.then(sampleDevice =\u003e sampleDevice.id),\n    authorized: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_device = tailscale.get_device(name=\"device.example.com\")\nsample_authorization = tailscale.DeviceAuthorization(\"sample_authorization\",\n    device_id=sample_device.id,\n    authorized=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleDevice = Tailscale.GetDevice.Invoke(new()\n    {\n        Name = \"device.example.com\",\n    });\n\n    var sampleAuthorization = new Tailscale.DeviceAuthorization(\"sample_authorization\", new()\n    {\n        DeviceId = sampleDevice.Apply(getDeviceResult =\u003e getDeviceResult.Id),\n        Authorized = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tsampleDevice, err := tailscale.GetDevice(ctx, \u0026tailscale.GetDeviceArgs{\n\t\t\tName: pulumi.StringRef(\"device.example.com\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = tailscale.NewDeviceAuthorization(ctx, \"sample_authorization\", \u0026tailscale.DeviceAuthorizationArgs{\n\t\t\tDeviceId:   pulumi.String(sampleDevice.Id),\n\t\t\tAuthorized: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.TailscaleFunctions;\nimport com.pulumi.tailscale.inputs.GetDeviceArgs;\nimport com.pulumi.tailscale.DeviceAuthorization;\nimport com.pulumi.tailscale.DeviceAuthorizationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()\n            .name(\"device.example.com\")\n            .build());\n\n        var sampleAuthorization = new DeviceAuthorization(\"sampleAuthorization\", DeviceAuthorizationArgs.builder()\n            .deviceId(sampleDevice.applyValue(getDeviceResult -\u003e getDeviceResult.id()))\n            .authorized(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  sampleAuthorization:\n    type: tailscale:DeviceAuthorization\n    name: sample_authorization\n    properties:\n      deviceId: ${sampleDevice.id}\n      authorized: true\nvariables:\n  sampleDevice:\n    fn::invoke:\n      Function: tailscale:getDevice\n      Arguments:\n        name: device.example.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "The device_authorization resource is used to approve new devices before they can join the tailnet. See https://tailscale.com/kb/1099/device-authorization/ for more details.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleDevice = tailscale.getDevice({\n    name: \"device.example.com\",\n});\nconst sampleAuthorization = new tailscale.DeviceAuthorization(\"sample_authorization\", {\n    deviceId: sampleDevice.then(sampleDevice =\u003e sampleDevice.id),\n    authorized: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_device = tailscale.get_device(name=\"device.example.com\")\nsample_authorization = tailscale.DeviceAuthorization(\"sample_authorization\",\n    device_id=sample_device.id,\n    authorized=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleDevice = Tailscale.GetDevice.Invoke(new()\n    {\n        Name = \"device.example.com\",\n    });\n\n    var sampleAuthorization = new Tailscale.DeviceAuthorization(\"sample_authorization\", new()\n    {\n        DeviceId = sampleDevice.Apply(getDeviceResult =\u003e getDeviceResult.Id),\n        Authorized = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tsampleDevice, err := tailscale.GetDevice(ctx, \u0026tailscale.GetDeviceArgs{\n\t\t\tName: pulumi.StringRef(\"device.example.com\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = tailscale.NewDeviceAuthorization(ctx, \"sample_authorization\", \u0026tailscale.DeviceAuthorizationArgs{\n\t\t\tDeviceId:   pulumi.String(sampleDevice.Id),\n\t\t\tAuthorized: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.TailscaleFunctions;\nimport com.pulumi.tailscale.inputs.GetDeviceArgs;\nimport com.pulumi.tailscale.DeviceAuthorization;\nimport com.pulumi.tailscale.DeviceAuthorizationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()\n            .name(\"device.example.com\")\n            .build());\n\n        var sampleAuthorization = new DeviceAuthorization(\"sampleAuthorization\", DeviceAuthorizationArgs.builder()\n            .deviceId(sampleDevice.applyValue(getDeviceResult -\u003e getDeviceResult.id()))\n            .authorized(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  sampleAuthorization:\n    type: tailscale:DeviceAuthorization\n    name: sample_authorization\n    properties:\n      deviceId: ${sampleDevice.id}\n      authorized: true\nvariables:\n  sampleDevice:\n    fn::invoke:\n      Function: tailscale:getDevice\n      Arguments:\n        name: device.example.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nDevice authorization can be imported using the device id, e.g.,\n\n```sh\n$ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization 123456789\n```\n\n",
             "properties": {
                 "authorized": {
                     "type": "boolean",
@@ -361,7 +528,7 @@
             }
         },
         "tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes": {
-            "description": "The device_subnet_routes resource allows you to configure subnet routes for your Tailscale devices. See https://tailscale.com/kb/1019/subnets for more information.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleDevice = tailscale.getDevice({\n    name: \"device.example.com\",\n});\nconst sampleRoutes = new tailscale.DeviceSubnetRoutes(\"sample_routes\", {\n    deviceId: sampleDevice.then(sampleDevice =\u003e sampleDevice.id),\n    routes: [\n        \"10.0.1.0/24\",\n        \"1.2.0.0/16\",\n        \"2.0.0.0/24\",\n    ],\n});\nconst sampleExitNode = new tailscale.DeviceSubnetRoutes(\"sample_exit_node\", {\n    deviceId: sampleDevice.then(sampleDevice =\u003e sampleDevice.id),\n    routes: [\n        \"0.0.0.0/0\",\n        \"::/0\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_device = tailscale.get_device(name=\"device.example.com\")\nsample_routes = tailscale.DeviceSubnetRoutes(\"sample_routes\",\n    device_id=sample_device.id,\n    routes=[\n        \"10.0.1.0/24\",\n        \"1.2.0.0/16\",\n        \"2.0.0.0/24\",\n    ])\nsample_exit_node = tailscale.DeviceSubnetRoutes(\"sample_exit_node\",\n    device_id=sample_device.id,\n    routes=[\n        \"0.0.0.0/0\",\n        \"::/0\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleDevice = Tailscale.GetDevice.Invoke(new()\n    {\n        Name = \"device.example.com\",\n    });\n\n    var sampleRoutes = new Tailscale.DeviceSubnetRoutes(\"sample_routes\", new()\n    {\n        DeviceId = sampleDevice.Apply(getDeviceResult =\u003e getDeviceResult.Id),\n        Routes = new[]\n        {\n            \"10.0.1.0/24\",\n            \"1.2.0.0/16\",\n            \"2.0.0.0/24\",\n        },\n    });\n\n    var sampleExitNode = new Tailscale.DeviceSubnetRoutes(\"sample_exit_node\", new()\n    {\n        DeviceId = sampleDevice.Apply(getDeviceResult =\u003e getDeviceResult.Id),\n        Routes = new[]\n        {\n            \"0.0.0.0/0\",\n            \"::/0\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tsampleDevice, err := tailscale.GetDevice(ctx, \u0026tailscale.GetDeviceArgs{\n\t\t\tName: pulumi.StringRef(\"device.example.com\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = tailscale.NewDeviceSubnetRoutes(ctx, \"sample_routes\", \u0026tailscale.DeviceSubnetRoutesArgs{\n\t\t\tDeviceId: pulumi.String(sampleDevice.Id),\n\t\t\tRoutes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"10.0.1.0/24\"),\n\t\t\t\tpulumi.String(\"1.2.0.0/16\"),\n\t\t\t\tpulumi.String(\"2.0.0.0/24\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = tailscale.NewDeviceSubnetRoutes(ctx, \"sample_exit_node\", \u0026tailscale.DeviceSubnetRoutesArgs{\n\t\t\tDeviceId: pulumi.String(sampleDevice.Id),\n\t\t\tRoutes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"0.0.0.0/0\"),\n\t\t\t\tpulumi.String(\"::/0\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.TailscaleFunctions;\nimport com.pulumi.tailscale.inputs.GetDeviceArgs;\nimport com.pulumi.tailscale.DeviceSubnetRoutes;\nimport com.pulumi.tailscale.DeviceSubnetRoutesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()\n            .name(\"device.example.com\")\n            .build());\n\n        var sampleRoutes = new DeviceSubnetRoutes(\"sampleRoutes\", DeviceSubnetRoutesArgs.builder()\n            .deviceId(sampleDevice.applyValue(getDeviceResult -\u003e getDeviceResult.id()))\n            .routes(            \n                \"10.0.1.0/24\",\n                \"1.2.0.0/16\",\n                \"2.0.0.0/24\")\n            .build());\n\n        var sampleExitNode = new DeviceSubnetRoutes(\"sampleExitNode\", DeviceSubnetRoutesArgs.builder()\n            .deviceId(sampleDevice.applyValue(getDeviceResult -\u003e getDeviceResult.id()))\n            .routes(            \n                \"0.0.0.0/0\",\n                \"::/0\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  sampleRoutes:\n    type: tailscale:DeviceSubnetRoutes\n    name: sample_routes\n    properties:\n      deviceId: ${sampleDevice.id}\n      routes:\n        - 10.0.1.0/24\n        - 1.2.0.0/16\n        - 2.0.0.0/24\n  sampleExitNode:\n    type: tailscale:DeviceSubnetRoutes\n    name: sample_exit_node\n    properties:\n      deviceId: ${sampleDevice.id}\n      routes:\n        - 0.0.0.0/0\n        - ::/0\nvariables:\n  sampleDevice:\n    fn::invoke:\n      Function: tailscale:getDevice\n      Arguments:\n        name: device.example.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleDevice = tailscale.getDevice({\n    name: \"device.example.com\",\n});\nconst sampleRoutes = new tailscale.DeviceSubnetRoutes(\"sample_routes\", {\n    deviceId: sampleDevice.then(sampleDevice =\u003e sampleDevice.id),\n    routes: [\n        \"10.0.1.0/24\",\n        \"1.2.0.0/16\",\n        \"2.0.0.0/24\",\n    ],\n});\nconst sampleExitNode = new tailscale.DeviceSubnetRoutes(\"sample_exit_node\", {\n    deviceId: sampleDevice.then(sampleDevice =\u003e sampleDevice.id),\n    routes: [\n        \"0.0.0.0/0\",\n        \"::/0\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_device = tailscale.get_device(name=\"device.example.com\")\nsample_routes = tailscale.DeviceSubnetRoutes(\"sample_routes\",\n    device_id=sample_device.id,\n    routes=[\n        \"10.0.1.0/24\",\n        \"1.2.0.0/16\",\n        \"2.0.0.0/24\",\n    ])\nsample_exit_node = tailscale.DeviceSubnetRoutes(\"sample_exit_node\",\n    device_id=sample_device.id,\n    routes=[\n        \"0.0.0.0/0\",\n        \"::/0\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleDevice = Tailscale.GetDevice.Invoke(new()\n    {\n        Name = \"device.example.com\",\n    });\n\n    var sampleRoutes = new Tailscale.DeviceSubnetRoutes(\"sample_routes\", new()\n    {\n        DeviceId = sampleDevice.Apply(getDeviceResult =\u003e getDeviceResult.Id),\n        Routes = new[]\n        {\n            \"10.0.1.0/24\",\n            \"1.2.0.0/16\",\n            \"2.0.0.0/24\",\n        },\n    });\n\n    var sampleExitNode = new Tailscale.DeviceSubnetRoutes(\"sample_exit_node\", new()\n    {\n        DeviceId = sampleDevice.Apply(getDeviceResult =\u003e getDeviceResult.Id),\n        Routes = new[]\n        {\n            \"0.0.0.0/0\",\n            \"::/0\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tsampleDevice, err := tailscale.GetDevice(ctx, \u0026tailscale.GetDeviceArgs{\n\t\t\tName: pulumi.StringRef(\"device.example.com\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = tailscale.NewDeviceSubnetRoutes(ctx, \"sample_routes\", \u0026tailscale.DeviceSubnetRoutesArgs{\n\t\t\tDeviceId: pulumi.String(sampleDevice.Id),\n\t\t\tRoutes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"10.0.1.0/24\"),\n\t\t\t\tpulumi.String(\"1.2.0.0/16\"),\n\t\t\t\tpulumi.String(\"2.0.0.0/24\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = tailscale.NewDeviceSubnetRoutes(ctx, \"sample_exit_node\", \u0026tailscale.DeviceSubnetRoutesArgs{\n\t\t\tDeviceId: pulumi.String(sampleDevice.Id),\n\t\t\tRoutes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"0.0.0.0/0\"),\n\t\t\t\tpulumi.String(\"::/0\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.TailscaleFunctions;\nimport com.pulumi.tailscale.inputs.GetDeviceArgs;\nimport com.pulumi.tailscale.DeviceSubnetRoutes;\nimport com.pulumi.tailscale.DeviceSubnetRoutesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()\n            .name(\"device.example.com\")\n            .build());\n\n        var sampleRoutes = new DeviceSubnetRoutes(\"sampleRoutes\", DeviceSubnetRoutesArgs.builder()\n            .deviceId(sampleDevice.applyValue(getDeviceResult -\u003e getDeviceResult.id()))\n            .routes(            \n                \"10.0.1.0/24\",\n                \"1.2.0.0/16\",\n                \"2.0.0.0/24\")\n            .build());\n\n        var sampleExitNode = new DeviceSubnetRoutes(\"sampleExitNode\", DeviceSubnetRoutesArgs.builder()\n            .deviceId(sampleDevice.applyValue(getDeviceResult -\u003e getDeviceResult.id()))\n            .routes(            \n                \"0.0.0.0/0\",\n                \"::/0\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  sampleRoutes:\n    type: tailscale:DeviceSubnetRoutes\n    name: sample_routes\n    properties:\n      deviceId: ${sampleDevice.id}\n      routes:\n        - 10.0.1.0/24\n        - 1.2.0.0/16\n        - 2.0.0.0/24\n  sampleExitNode:\n    type: tailscale:DeviceSubnetRoutes\n    name: sample_exit_node\n    properties:\n      deviceId: ${sampleDevice.id}\n      routes:\n        - 0.0.0.0/0\n        - ::/0\nvariables:\n  sampleDevice:\n    fn::invoke:\n      Function: tailscale:getDevice\n      Arguments:\n        name: device.example.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "deviceId": {
                     "type": "string",
@@ -584,7 +751,7 @@
             "properties": {
                 "domain": {
                     "type": "string",
-                    "description": "Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.\n"
+                    "description": "Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.\n"
                 },
                 "nameservers": {
                     "type": "array",
@@ -601,7 +768,8 @@
             "inputProperties": {
                 "domain": {
                     "type": "string",
-                    "description": "Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.\n"
+                    "description": "Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.\n",
+                    "willReplaceOnChanges": true
                 },
                 "nameservers": {
                     "type": "array",
@@ -620,7 +788,8 @@
                 "properties": {
                     "domain": {
                         "type": "string",
-                        "description": "Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.\n"
+                        "description": "Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.\n",
+                        "willReplaceOnChanges": true
                     },
                     "nameservers": {
                         "type": "array",
@@ -628,6 +797,179 @@
                             "type": "string"
                         },
                         "description": "Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "tailscale:index/logstreamConfiguration:LogstreamConfiguration": {
+            "description": "The logstream_configuration resource allows you to configure streaming configuration or network flow logs to a supported security information and event management (SIEM) system. See https://tailscale.com/kb/1255/log-streaming for more information.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleLogstreamConfiguration = new tailscale.LogstreamConfiguration(\"sample_logstream_configuration\", {\n    logType: \"configuration\",\n    destinationType: \"panther\",\n    url: \"https://example.com\",\n    token: \"some-token\",\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_logstream_configuration = tailscale.LogstreamConfiguration(\"sample_logstream_configuration\",\n    log_type=\"configuration\",\n    destination_type=\"panther\",\n    url=\"https://example.com\",\n    token=\"some-token\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleLogstreamConfiguration = new Tailscale.LogstreamConfiguration(\"sample_logstream_configuration\", new()\n    {\n        LogType = \"configuration\",\n        DestinationType = \"panther\",\n        Url = \"https://example.com\",\n        Token = \"some-token\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewLogstreamConfiguration(ctx, \"sample_logstream_configuration\", \u0026tailscale.LogstreamConfigurationArgs{\n\t\t\tLogType:         pulumi.String(\"configuration\"),\n\t\t\tDestinationType: pulumi.String(\"panther\"),\n\t\t\tUrl:             pulumi.String(\"https://example.com\"),\n\t\t\tToken:           pulumi.String(\"some-token\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.LogstreamConfiguration;\nimport com.pulumi.tailscale.LogstreamConfigurationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var sampleLogstreamConfiguration = new LogstreamConfiguration(\"sampleLogstreamConfiguration\", LogstreamConfigurationArgs.builder()\n            .logType(\"configuration\")\n            .destinationType(\"panther\")\n            .url(\"https://example.com\")\n            .token(\"some-token\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  sampleLogstreamConfiguration:\n    type: tailscale:LogstreamConfiguration\n    name: sample_logstream_configuration\n    properties:\n      logType: configuration\n      destinationType: panther\n      url: https://example.com\n      token: some-token\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "destinationType": {
+                    "type": "string",
+                    "description": "The type of system to which logs are being streamed.\n"
+                },
+                "logType": {
+                    "type": "string",
+                    "description": "The type of log that is streamed to this endpoint.\n"
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The token/password with which log streams to this endpoint should be authenticated.\n",
+                    "secret": true
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The URL to which log streams are being posted.\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.\n"
+                }
+            },
+            "required": [
+                "destinationType",
+                "logType",
+                "token",
+                "url"
+            ],
+            "inputProperties": {
+                "destinationType": {
+                    "type": "string",
+                    "description": "The type of system to which logs are being streamed.\n"
+                },
+                "logType": {
+                    "type": "string",
+                    "description": "The type of log that is streamed to this endpoint.\n",
+                    "willReplaceOnChanges": true
+                },
+                "token": {
+                    "type": "string",
+                    "description": "The token/password with which log streams to this endpoint should be authenticated.\n",
+                    "secret": true
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The URL to which log streams are being posted.\n"
+                },
+                "user": {
+                    "type": "string",
+                    "description": "The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.\n"
+                }
+            },
+            "requiredInputs": [
+                "destinationType",
+                "logType",
+                "token",
+                "url"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering LogstreamConfiguration resources.\n",
+                "properties": {
+                    "destinationType": {
+                        "type": "string",
+                        "description": "The type of system to which logs are being streamed.\n"
+                    },
+                    "logType": {
+                        "type": "string",
+                        "description": "The type of log that is streamed to this endpoint.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "token": {
+                        "type": "string",
+                        "description": "The token/password with which log streams to this endpoint should be authenticated.\n",
+                        "secret": true
+                    },
+                    "url": {
+                        "type": "string",
+                        "description": "The URL to which log streams are being posted.\n"
+                    },
+                    "user": {
+                        "type": "string",
+                        "description": "The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "tailscale:index/postureIntegration:PostureIntegration": {
+            "description": "The posture_integration resource allows you to manage integrations with device posture data providers. See https://tailscale.com/kb/1288/device-posture for more information.\n",
+            "properties": {
+                "clientId": {
+                    "type": "string",
+                    "description": "Unique identifier for your client.\n"
+                },
+                "clientSecret": {
+                    "type": "string",
+                    "description": "The secret (auth key, token, etc.) used to authenticate with the provider.\n"
+                },
+                "cloudId": {
+                    "type": "string",
+                    "description": "Identifies which of the provider's clouds to integrate with.\n"
+                },
+                "postureProvider": {
+                    "type": "string",
+                    "description": "The type of posture integration data provider.\n"
+                },
+                "tenantId": {
+                    "type": "string",
+                    "description": "The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.\n"
+                }
+            },
+            "required": [
+                "clientSecret",
+                "postureProvider"
+            ],
+            "inputProperties": {
+                "clientId": {
+                    "type": "string",
+                    "description": "Unique identifier for your client.\n"
+                },
+                "clientSecret": {
+                    "type": "string",
+                    "description": "The secret (auth key, token, etc.) used to authenticate with the provider.\n"
+                },
+                "cloudId": {
+                    "type": "string",
+                    "description": "Identifies which of the provider's clouds to integrate with.\n"
+                },
+                "postureProvider": {
+                    "type": "string",
+                    "description": "The type of posture integration data provider.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tenantId": {
+                    "type": "string",
+                    "description": "The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.\n"
+                }
+            },
+            "requiredInputs": [
+                "clientSecret",
+                "postureProvider"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering PostureIntegration resources.\n",
+                "properties": {
+                    "clientId": {
+                        "type": "string",
+                        "description": "Unique identifier for your client.\n"
+                    },
+                    "clientSecret": {
+                        "type": "string",
+                        "description": "The secret (auth key, token, etc.) used to authenticate with the provider.\n"
+                    },
+                    "cloudId": {
+                        "type": "string",
+                        "description": "Identifies which of the provider's clouds to integrate with.\n"
+                    },
+                    "postureProvider": {
+                        "type": "string",
+                        "description": "The type of posture integration data provider.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "tenantId": {
+                        "type": "string",
+                        "description": "The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.\n"
                     }
                 },
                 "type": "object"
@@ -786,6 +1128,196 @@
                         },
                         "description": "List of tags to apply to the machines authenticated by the key.\n",
                         "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "tailscale:index/tailnetSettings:TailnetSettings": {
+            "description": "The tailnet_settings resource allows you to configure settings for your tailnet. See https://tailscale.com/api#tag/tailnetsettings for more information.\n",
+            "properties": {
+                "devicesApprovalOn": {
+                    "type": "boolean",
+                    "description": "Whether device approval is enabled for the tailnet\n"
+                },
+                "devicesAutoUpdatesOn": {
+                    "type": "boolean",
+                    "description": "Whether auto updates are enabled for devices that belong to this tailnet\n"
+                },
+                "devicesKeyDurationDays": {
+                    "type": "integer",
+                    "description": "The key expiry duration for devices on this tailnet\n"
+                },
+                "networkFlowLoggingOn": {
+                    "type": "boolean",
+                    "description": "Whether network flog logs are enabled for the tailnet\n"
+                },
+                "postureIdentityCollectionOn": {
+                    "type": "boolean",
+                    "description": "Whether identity collection is enabled for device posture integrations for the tailnet\n"
+                },
+                "regionalRoutingOn": {
+                    "type": "boolean",
+                    "description": "Whether regional routing is enabled for the tailnet\n"
+                },
+                "usersApprovalOn": {
+                    "type": "boolean",
+                    "description": "Whether user approval is enabled for this tailnet\n"
+                },
+                "usersRoleAllowedToJoinExternalTailnet": {
+                    "type": "string",
+                    "description": "Which user roles are allowed to join external tailnets\n"
+                }
+            },
+            "inputProperties": {
+                "devicesApprovalOn": {
+                    "type": "boolean",
+                    "description": "Whether device approval is enabled for the tailnet\n"
+                },
+                "devicesAutoUpdatesOn": {
+                    "type": "boolean",
+                    "description": "Whether auto updates are enabled for devices that belong to this tailnet\n"
+                },
+                "devicesKeyDurationDays": {
+                    "type": "integer",
+                    "description": "The key expiry duration for devices on this tailnet\n"
+                },
+                "networkFlowLoggingOn": {
+                    "type": "boolean",
+                    "description": "Whether network flog logs are enabled for the tailnet\n"
+                },
+                "postureIdentityCollectionOn": {
+                    "type": "boolean",
+                    "description": "Whether identity collection is enabled for device posture integrations for the tailnet\n"
+                },
+                "regionalRoutingOn": {
+                    "type": "boolean",
+                    "description": "Whether regional routing is enabled for the tailnet\n"
+                },
+                "usersApprovalOn": {
+                    "type": "boolean",
+                    "description": "Whether user approval is enabled for this tailnet\n"
+                },
+                "usersRoleAllowedToJoinExternalTailnet": {
+                    "type": "string",
+                    "description": "Which user roles are allowed to join external tailnets\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering TailnetSettings resources.\n",
+                "properties": {
+                    "devicesApprovalOn": {
+                        "type": "boolean",
+                        "description": "Whether device approval is enabled for the tailnet\n"
+                    },
+                    "devicesAutoUpdatesOn": {
+                        "type": "boolean",
+                        "description": "Whether auto updates are enabled for devices that belong to this tailnet\n"
+                    },
+                    "devicesKeyDurationDays": {
+                        "type": "integer",
+                        "description": "The key expiry duration for devices on this tailnet\n"
+                    },
+                    "networkFlowLoggingOn": {
+                        "type": "boolean",
+                        "description": "Whether network flog logs are enabled for the tailnet\n"
+                    },
+                    "postureIdentityCollectionOn": {
+                        "type": "boolean",
+                        "description": "Whether identity collection is enabled for device posture integrations for the tailnet\n"
+                    },
+                    "regionalRoutingOn": {
+                        "type": "boolean",
+                        "description": "Whether regional routing is enabled for the tailnet\n"
+                    },
+                    "usersApprovalOn": {
+                        "type": "boolean",
+                        "description": "Whether user approval is enabled for this tailnet\n"
+                    },
+                    "usersRoleAllowedToJoinExternalTailnet": {
+                        "type": "string",
+                        "description": "Which user roles are allowed to join external tailnets\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "tailscale:index/webhook:Webhook": {
+            "description": "The webhook resource allows you to configure webhook endpoints for your Tailscale network. See https://tailscale.com/kb/1213/webhooks for more information.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleWebhook = new tailscale.Webhook(\"sample_webhook\", {\n    endpointUrl: \"https://example.com/webhook/endpoint\",\n    providerType: \"slack\",\n    subscriptions: [\n        \"nodeCreated\",\n        \"userDeleted\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_webhook = tailscale.Webhook(\"sample_webhook\",\n    endpoint_url=\"https://example.com/webhook/endpoint\",\n    provider_type=\"slack\",\n    subscriptions=[\n        \"nodeCreated\",\n        \"userDeleted\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleWebhook = new Tailscale.Webhook(\"sample_webhook\", new()\n    {\n        EndpointUrl = \"https://example.com/webhook/endpoint\",\n        ProviderType = \"slack\",\n        Subscriptions = new[]\n        {\n            \"nodeCreated\",\n            \"userDeleted\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewWebhook(ctx, \"sample_webhook\", \u0026tailscale.WebhookArgs{\n\t\t\tEndpointUrl:  pulumi.String(\"https://example.com/webhook/endpoint\"),\n\t\t\tProviderType: pulumi.String(\"slack\"),\n\t\t\tSubscriptions: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"nodeCreated\"),\n\t\t\t\tpulumi.String(\"userDeleted\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.Webhook;\nimport com.pulumi.tailscale.WebhookArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var sampleWebhook = new Webhook(\"sampleWebhook\", WebhookArgs.builder()\n            .endpointUrl(\"https://example.com/webhook/endpoint\")\n            .providerType(\"slack\")\n            .subscriptions(            \n                \"nodeCreated\",\n                \"userDeleted\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  sampleWebhook:\n    type: tailscale:Webhook\n    name: sample_webhook\n    properties:\n      endpointUrl: https://example.com/webhook/endpoint\n      providerType: slack\n      subscriptions:\n        - nodeCreated\n        - userDeleted\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nWebhooks can be imported using the endpoint id, e.g.,\n\n```sh\n$ pulumi import tailscale:index/webhook:Webhook sample_webhook 123456789\n```\n\n",
+            "properties": {
+                "endpointUrl": {
+                    "type": "string",
+                    "description": "The endpoint to send webhook events to.\n"
+                },
+                "providerType": {
+                    "type": "string",
+                    "description": "The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.\n"
+                },
+                "secret": {
+                    "type": "string",
+                    "description": "The secret used for signing webhook payloads. Only set on resource creation. See https://tailscale.com/kb/1213/webhooks#webhook-secret for more information.\n",
+                    "secret": true
+                },
+                "subscriptions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.\n"
+                }
+            },
+            "required": [
+                "endpointUrl",
+                "secret",
+                "subscriptions"
+            ],
+            "inputProperties": {
+                "endpointUrl": {
+                    "type": "string",
+                    "description": "The endpoint to send webhook events to.\n",
+                    "willReplaceOnChanges": true
+                },
+                "providerType": {
+                    "type": "string",
+                    "description": "The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.\n",
+                    "willReplaceOnChanges": true
+                },
+                "subscriptions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.\n"
+                }
+            },
+            "requiredInputs": [
+                "endpointUrl",
+                "subscriptions"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Webhook resources.\n",
+                "properties": {
+                    "endpointUrl": {
+                        "type": "string",
+                        "description": "The endpoint to send webhook events to.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "providerType": {
+                        "type": "string",
+                        "description": "The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "secret": {
+                        "type": "string",
+                        "description": "The secret used for signing webhook payloads. Only set on resource creation. See https://tailscale.com/kb/1213/webhooks#webhook-secret for more information.\n",
+                        "secret": true
+                    },
+                    "subscriptions": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.\n"
                     }
                 },
                 "type": "object"
@@ -968,6 +1500,135 @@
                 },
                 "required": [
                     "devices",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "tailscale:index/getUser:getUser": {
+            "description": "The user data source describes a single user in a tailnet\n\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getUser.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The unique identifier for the user.\n"
+                    },
+                    "loginName": {
+                        "type": "string",
+                        "description": "The emailish login name of the user.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getUser.\n",
+                "properties": {
+                    "created": {
+                        "description": "The time the user joined their tailnet.\n",
+                        "type": "string"
+                    },
+                    "currentlyConnected": {
+                        "description": "true when the user has a node currently connected to the control server.\n",
+                        "type": "boolean"
+                    },
+                    "deviceCount": {
+                        "description": "Number of devices the user owns.\n",
+                        "type": "integer"
+                    },
+                    "displayName": {
+                        "description": "The name of the user.\n",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "The unique identifier for the user.\n",
+                        "type": "string"
+                    },
+                    "lastSeen": {
+                        "description": "The later of either: a) The last time any of the user's nodes were connected to the network or b) The last time the user authenticated to any tailscale service, including the admin panel.\n",
+                        "type": "string"
+                    },
+                    "loginName": {
+                        "description": "The emailish login name of the user.\n",
+                        "type": "string"
+                    },
+                    "profilePicUrl": {
+                        "description": "The profile pic URL for the user.\n",
+                        "type": "string"
+                    },
+                    "role": {
+                        "description": "The role of the user.\n",
+                        "type": "string"
+                    },
+                    "status": {
+                        "description": "The status of the user.\n",
+                        "type": "string"
+                    },
+                    "tailnetId": {
+                        "description": "The tailnet that owns the user.\n",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "The type of relation this user has to the tailnet associated with the request.\n",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "created",
+                    "currentlyConnected",
+                    "deviceCount",
+                    "displayName",
+                    "lastSeen",
+                    "profilePicUrl",
+                    "role",
+                    "status",
+                    "tailnetId",
+                    "type"
+                ],
+                "type": "object"
+            }
+        },
+        "tailscale:index/getUsers:getUsers": {
+            "description": "The users data source describes a list of users in a tailnet\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst all-users = tailscale.getUsers({});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nall_users = tailscale.get_users()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var all_users = Tailscale.GetUsers.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.GetUsers(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.TailscaleFunctions;\nimport com.pulumi.tailscale.inputs.GetUsersArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var all-users = TailscaleFunctions.getUsers();\n\n    }\n}\n```\n```yaml\nvariables:\n  all-users:\n    fn::invoke:\n      Function: tailscale:getUsers\n      Arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getUsers.\n",
+                "properties": {
+                    "role": {
+                        "type": "string",
+                        "description": "Filters the users list to elements whose role is the provided value.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Filters the users list to elements whose type is the provided value.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getUsers.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "role": {
+                        "description": "Filters the users list to elements whose role is the provided value.\n",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "Filters the users list to elements whose type is the provided value.\n",
+                        "type": "string"
+                    },
+                    "users": {
+                        "description": "The list of users in the tailnet\n",
+                        "items": {
+                            "$ref": "#/types/tailscale:index/getUsersUser:getUsersUser"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "users",
                     "id"
                 ],
                 "type": "object"

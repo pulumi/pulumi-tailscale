@@ -65,14 +65,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="tailscale:index/dnsSplitNameservers:DnsSplitNameservers")
 public class DnsSplitNameservers extends com.pulumi.resources.CustomResource {
     /**
-     * Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+     * Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
      * 
      */
     @Export(name="domain", refs={String.class}, tree="[0]")
     private Output<String> domain;
 
     /**
-     * @return Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+     * @return Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
      * 
      */
     public Output<String> domain() {

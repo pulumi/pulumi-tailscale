@@ -13,6 +13,417 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type ContactsAccount struct {
+	// Email address to send communications to
+	Email string `pulumi:"email"`
+}
+
+// ContactsAccountInput is an input type that accepts ContactsAccountArgs and ContactsAccountOutput values.
+// You can construct a concrete instance of `ContactsAccountInput` via:
+//
+//	ContactsAccountArgs{...}
+type ContactsAccountInput interface {
+	pulumi.Input
+
+	ToContactsAccountOutput() ContactsAccountOutput
+	ToContactsAccountOutputWithContext(context.Context) ContactsAccountOutput
+}
+
+type ContactsAccountArgs struct {
+	// Email address to send communications to
+	Email pulumi.StringInput `pulumi:"email"`
+}
+
+func (ContactsAccountArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactsAccount)(nil)).Elem()
+}
+
+func (i ContactsAccountArgs) ToContactsAccountOutput() ContactsAccountOutput {
+	return i.ToContactsAccountOutputWithContext(context.Background())
+}
+
+func (i ContactsAccountArgs) ToContactsAccountOutputWithContext(ctx context.Context) ContactsAccountOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactsAccountOutput)
+}
+
+func (i ContactsAccountArgs) ToContactsAccountPtrOutput() ContactsAccountPtrOutput {
+	return i.ToContactsAccountPtrOutputWithContext(context.Background())
+}
+
+func (i ContactsAccountArgs) ToContactsAccountPtrOutputWithContext(ctx context.Context) ContactsAccountPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactsAccountOutput).ToContactsAccountPtrOutputWithContext(ctx)
+}
+
+// ContactsAccountPtrInput is an input type that accepts ContactsAccountArgs, ContactsAccountPtr and ContactsAccountPtrOutput values.
+// You can construct a concrete instance of `ContactsAccountPtrInput` via:
+//
+//	        ContactsAccountArgs{...}
+//
+//	or:
+//
+//	        nil
+type ContactsAccountPtrInput interface {
+	pulumi.Input
+
+	ToContactsAccountPtrOutput() ContactsAccountPtrOutput
+	ToContactsAccountPtrOutputWithContext(context.Context) ContactsAccountPtrOutput
+}
+
+type contactsAccountPtrType ContactsAccountArgs
+
+func ContactsAccountPtr(v *ContactsAccountArgs) ContactsAccountPtrInput {
+	return (*contactsAccountPtrType)(v)
+}
+
+func (*contactsAccountPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContactsAccount)(nil)).Elem()
+}
+
+func (i *contactsAccountPtrType) ToContactsAccountPtrOutput() ContactsAccountPtrOutput {
+	return i.ToContactsAccountPtrOutputWithContext(context.Background())
+}
+
+func (i *contactsAccountPtrType) ToContactsAccountPtrOutputWithContext(ctx context.Context) ContactsAccountPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactsAccountPtrOutput)
+}
+
+type ContactsAccountOutput struct{ *pulumi.OutputState }
+
+func (ContactsAccountOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactsAccount)(nil)).Elem()
+}
+
+func (o ContactsAccountOutput) ToContactsAccountOutput() ContactsAccountOutput {
+	return o
+}
+
+func (o ContactsAccountOutput) ToContactsAccountOutputWithContext(ctx context.Context) ContactsAccountOutput {
+	return o
+}
+
+func (o ContactsAccountOutput) ToContactsAccountPtrOutput() ContactsAccountPtrOutput {
+	return o.ToContactsAccountPtrOutputWithContext(context.Background())
+}
+
+func (o ContactsAccountOutput) ToContactsAccountPtrOutputWithContext(ctx context.Context) ContactsAccountPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContactsAccount) *ContactsAccount {
+		return &v
+	}).(ContactsAccountPtrOutput)
+}
+
+// Email address to send communications to
+func (o ContactsAccountOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactsAccount) string { return v.Email }).(pulumi.StringOutput)
+}
+
+type ContactsAccountPtrOutput struct{ *pulumi.OutputState }
+
+func (ContactsAccountPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContactsAccount)(nil)).Elem()
+}
+
+func (o ContactsAccountPtrOutput) ToContactsAccountPtrOutput() ContactsAccountPtrOutput {
+	return o
+}
+
+func (o ContactsAccountPtrOutput) ToContactsAccountPtrOutputWithContext(ctx context.Context) ContactsAccountPtrOutput {
+	return o
+}
+
+func (o ContactsAccountPtrOutput) Elem() ContactsAccountOutput {
+	return o.ApplyT(func(v *ContactsAccount) ContactsAccount {
+		if v != nil {
+			return *v
+		}
+		var ret ContactsAccount
+		return ret
+	}).(ContactsAccountOutput)
+}
+
+// Email address to send communications to
+func (o ContactsAccountPtrOutput) Email() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContactsAccount) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Email
+	}).(pulumi.StringPtrOutput)
+}
+
+type ContactsSecurity struct {
+	// Email address to send communications to
+	Email string `pulumi:"email"`
+}
+
+// ContactsSecurityInput is an input type that accepts ContactsSecurityArgs and ContactsSecurityOutput values.
+// You can construct a concrete instance of `ContactsSecurityInput` via:
+//
+//	ContactsSecurityArgs{...}
+type ContactsSecurityInput interface {
+	pulumi.Input
+
+	ToContactsSecurityOutput() ContactsSecurityOutput
+	ToContactsSecurityOutputWithContext(context.Context) ContactsSecurityOutput
+}
+
+type ContactsSecurityArgs struct {
+	// Email address to send communications to
+	Email pulumi.StringInput `pulumi:"email"`
+}
+
+func (ContactsSecurityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactsSecurity)(nil)).Elem()
+}
+
+func (i ContactsSecurityArgs) ToContactsSecurityOutput() ContactsSecurityOutput {
+	return i.ToContactsSecurityOutputWithContext(context.Background())
+}
+
+func (i ContactsSecurityArgs) ToContactsSecurityOutputWithContext(ctx context.Context) ContactsSecurityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactsSecurityOutput)
+}
+
+func (i ContactsSecurityArgs) ToContactsSecurityPtrOutput() ContactsSecurityPtrOutput {
+	return i.ToContactsSecurityPtrOutputWithContext(context.Background())
+}
+
+func (i ContactsSecurityArgs) ToContactsSecurityPtrOutputWithContext(ctx context.Context) ContactsSecurityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactsSecurityOutput).ToContactsSecurityPtrOutputWithContext(ctx)
+}
+
+// ContactsSecurityPtrInput is an input type that accepts ContactsSecurityArgs, ContactsSecurityPtr and ContactsSecurityPtrOutput values.
+// You can construct a concrete instance of `ContactsSecurityPtrInput` via:
+//
+//	        ContactsSecurityArgs{...}
+//
+//	or:
+//
+//	        nil
+type ContactsSecurityPtrInput interface {
+	pulumi.Input
+
+	ToContactsSecurityPtrOutput() ContactsSecurityPtrOutput
+	ToContactsSecurityPtrOutputWithContext(context.Context) ContactsSecurityPtrOutput
+}
+
+type contactsSecurityPtrType ContactsSecurityArgs
+
+func ContactsSecurityPtr(v *ContactsSecurityArgs) ContactsSecurityPtrInput {
+	return (*contactsSecurityPtrType)(v)
+}
+
+func (*contactsSecurityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContactsSecurity)(nil)).Elem()
+}
+
+func (i *contactsSecurityPtrType) ToContactsSecurityPtrOutput() ContactsSecurityPtrOutput {
+	return i.ToContactsSecurityPtrOutputWithContext(context.Background())
+}
+
+func (i *contactsSecurityPtrType) ToContactsSecurityPtrOutputWithContext(ctx context.Context) ContactsSecurityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactsSecurityPtrOutput)
+}
+
+type ContactsSecurityOutput struct{ *pulumi.OutputState }
+
+func (ContactsSecurityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactsSecurity)(nil)).Elem()
+}
+
+func (o ContactsSecurityOutput) ToContactsSecurityOutput() ContactsSecurityOutput {
+	return o
+}
+
+func (o ContactsSecurityOutput) ToContactsSecurityOutputWithContext(ctx context.Context) ContactsSecurityOutput {
+	return o
+}
+
+func (o ContactsSecurityOutput) ToContactsSecurityPtrOutput() ContactsSecurityPtrOutput {
+	return o.ToContactsSecurityPtrOutputWithContext(context.Background())
+}
+
+func (o ContactsSecurityOutput) ToContactsSecurityPtrOutputWithContext(ctx context.Context) ContactsSecurityPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContactsSecurity) *ContactsSecurity {
+		return &v
+	}).(ContactsSecurityPtrOutput)
+}
+
+// Email address to send communications to
+func (o ContactsSecurityOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactsSecurity) string { return v.Email }).(pulumi.StringOutput)
+}
+
+type ContactsSecurityPtrOutput struct{ *pulumi.OutputState }
+
+func (ContactsSecurityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContactsSecurity)(nil)).Elem()
+}
+
+func (o ContactsSecurityPtrOutput) ToContactsSecurityPtrOutput() ContactsSecurityPtrOutput {
+	return o
+}
+
+func (o ContactsSecurityPtrOutput) ToContactsSecurityPtrOutputWithContext(ctx context.Context) ContactsSecurityPtrOutput {
+	return o
+}
+
+func (o ContactsSecurityPtrOutput) Elem() ContactsSecurityOutput {
+	return o.ApplyT(func(v *ContactsSecurity) ContactsSecurity {
+		if v != nil {
+			return *v
+		}
+		var ret ContactsSecurity
+		return ret
+	}).(ContactsSecurityOutput)
+}
+
+// Email address to send communications to
+func (o ContactsSecurityPtrOutput) Email() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContactsSecurity) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Email
+	}).(pulumi.StringPtrOutput)
+}
+
+type ContactsSupport struct {
+	// Email address to send communications to
+	Email string `pulumi:"email"`
+}
+
+// ContactsSupportInput is an input type that accepts ContactsSupportArgs and ContactsSupportOutput values.
+// You can construct a concrete instance of `ContactsSupportInput` via:
+//
+//	ContactsSupportArgs{...}
+type ContactsSupportInput interface {
+	pulumi.Input
+
+	ToContactsSupportOutput() ContactsSupportOutput
+	ToContactsSupportOutputWithContext(context.Context) ContactsSupportOutput
+}
+
+type ContactsSupportArgs struct {
+	// Email address to send communications to
+	Email pulumi.StringInput `pulumi:"email"`
+}
+
+func (ContactsSupportArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactsSupport)(nil)).Elem()
+}
+
+func (i ContactsSupportArgs) ToContactsSupportOutput() ContactsSupportOutput {
+	return i.ToContactsSupportOutputWithContext(context.Background())
+}
+
+func (i ContactsSupportArgs) ToContactsSupportOutputWithContext(ctx context.Context) ContactsSupportOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactsSupportOutput)
+}
+
+func (i ContactsSupportArgs) ToContactsSupportPtrOutput() ContactsSupportPtrOutput {
+	return i.ToContactsSupportPtrOutputWithContext(context.Background())
+}
+
+func (i ContactsSupportArgs) ToContactsSupportPtrOutputWithContext(ctx context.Context) ContactsSupportPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactsSupportOutput).ToContactsSupportPtrOutputWithContext(ctx)
+}
+
+// ContactsSupportPtrInput is an input type that accepts ContactsSupportArgs, ContactsSupportPtr and ContactsSupportPtrOutput values.
+// You can construct a concrete instance of `ContactsSupportPtrInput` via:
+//
+//	        ContactsSupportArgs{...}
+//
+//	or:
+//
+//	        nil
+type ContactsSupportPtrInput interface {
+	pulumi.Input
+
+	ToContactsSupportPtrOutput() ContactsSupportPtrOutput
+	ToContactsSupportPtrOutputWithContext(context.Context) ContactsSupportPtrOutput
+}
+
+type contactsSupportPtrType ContactsSupportArgs
+
+func ContactsSupportPtr(v *ContactsSupportArgs) ContactsSupportPtrInput {
+	return (*contactsSupportPtrType)(v)
+}
+
+func (*contactsSupportPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContactsSupport)(nil)).Elem()
+}
+
+func (i *contactsSupportPtrType) ToContactsSupportPtrOutput() ContactsSupportPtrOutput {
+	return i.ToContactsSupportPtrOutputWithContext(context.Background())
+}
+
+func (i *contactsSupportPtrType) ToContactsSupportPtrOutputWithContext(ctx context.Context) ContactsSupportPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactsSupportPtrOutput)
+}
+
+type ContactsSupportOutput struct{ *pulumi.OutputState }
+
+func (ContactsSupportOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ContactsSupport)(nil)).Elem()
+}
+
+func (o ContactsSupportOutput) ToContactsSupportOutput() ContactsSupportOutput {
+	return o
+}
+
+func (o ContactsSupportOutput) ToContactsSupportOutputWithContext(ctx context.Context) ContactsSupportOutput {
+	return o
+}
+
+func (o ContactsSupportOutput) ToContactsSupportPtrOutput() ContactsSupportPtrOutput {
+	return o.ToContactsSupportPtrOutputWithContext(context.Background())
+}
+
+func (o ContactsSupportOutput) ToContactsSupportPtrOutputWithContext(ctx context.Context) ContactsSupportPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContactsSupport) *ContactsSupport {
+		return &v
+	}).(ContactsSupportPtrOutput)
+}
+
+// Email address to send communications to
+func (o ContactsSupportOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v ContactsSupport) string { return v.Email }).(pulumi.StringOutput)
+}
+
+type ContactsSupportPtrOutput struct{ *pulumi.OutputState }
+
+func (ContactsSupportPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ContactsSupport)(nil)).Elem()
+}
+
+func (o ContactsSupportPtrOutput) ToContactsSupportPtrOutput() ContactsSupportPtrOutput {
+	return o
+}
+
+func (o ContactsSupportPtrOutput) ToContactsSupportPtrOutputWithContext(ctx context.Context) ContactsSupportPtrOutput {
+	return o
+}
+
+func (o ContactsSupportPtrOutput) Elem() ContactsSupportOutput {
+	return o.ApplyT(func(v *ContactsSupport) ContactsSupport {
+		if v != nil {
+			return *v
+		}
+		var ret ContactsSupport
+		return ret
+	}).(ContactsSupportOutput)
+}
+
+// Email address to send communications to
+func (o ContactsSupportPtrOutput) Email() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContactsSupport) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Email
+	}).(pulumi.StringPtrOutput)
+}
+
 type GetDevicesDevice struct {
 	// The list of device's IPs
 	Addresses []string `pulumi:"addresses"`
@@ -155,9 +566,221 @@ func (o GetDevicesDeviceArrayOutput) Index(i pulumi.IntInput) GetDevicesDeviceOu
 	}).(GetDevicesDeviceOutput)
 }
 
+type GetUsersUser struct {
+	// The time the user joined their tailnet.
+	Created string `pulumi:"created"`
+	// true when the user has a node currently connected to the control server.
+	CurrentlyConnected bool `pulumi:"currentlyConnected"`
+	// Number of devices the user owns.
+	DeviceCount int `pulumi:"deviceCount"`
+	// The name of the user.
+	DisplayName string `pulumi:"displayName"`
+	// The unique identifier for the user.
+	Id string `pulumi:"id"`
+	// The later of either: a) The last time any of the user's nodes were connected to the network or b) The last time the user authenticated to any tailscale service, including the admin panel.
+	LastSeen string `pulumi:"lastSeen"`
+	// The emailish login name of the user.
+	LoginName string `pulumi:"loginName"`
+	// The profile pic URL for the user.
+	ProfilePicUrl string `pulumi:"profilePicUrl"`
+	// The role of the user.
+	Role string `pulumi:"role"`
+	// The status of the user.
+	Status string `pulumi:"status"`
+	// The tailnet that owns the user.
+	TailnetId string `pulumi:"tailnetId"`
+	// The type of relation this user has to the tailnet associated with the request.
+	Type string `pulumi:"type"`
+}
+
+// GetUsersUserInput is an input type that accepts GetUsersUserArgs and GetUsersUserOutput values.
+// You can construct a concrete instance of `GetUsersUserInput` via:
+//
+//	GetUsersUserArgs{...}
+type GetUsersUserInput interface {
+	pulumi.Input
+
+	ToGetUsersUserOutput() GetUsersUserOutput
+	ToGetUsersUserOutputWithContext(context.Context) GetUsersUserOutput
+}
+
+type GetUsersUserArgs struct {
+	// The time the user joined their tailnet.
+	Created pulumi.StringInput `pulumi:"created"`
+	// true when the user has a node currently connected to the control server.
+	CurrentlyConnected pulumi.BoolInput `pulumi:"currentlyConnected"`
+	// Number of devices the user owns.
+	DeviceCount pulumi.IntInput `pulumi:"deviceCount"`
+	// The name of the user.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The unique identifier for the user.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The later of either: a) The last time any of the user's nodes were connected to the network or b) The last time the user authenticated to any tailscale service, including the admin panel.
+	LastSeen pulumi.StringInput `pulumi:"lastSeen"`
+	// The emailish login name of the user.
+	LoginName pulumi.StringInput `pulumi:"loginName"`
+	// The profile pic URL for the user.
+	ProfilePicUrl pulumi.StringInput `pulumi:"profilePicUrl"`
+	// The role of the user.
+	Role pulumi.StringInput `pulumi:"role"`
+	// The status of the user.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The tailnet that owns the user.
+	TailnetId pulumi.StringInput `pulumi:"tailnetId"`
+	// The type of relation this user has to the tailnet associated with the request.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetUsersUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUser)(nil)).Elem()
+}
+
+func (i GetUsersUserArgs) ToGetUsersUserOutput() GetUsersUserOutput {
+	return i.ToGetUsersUserOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserArgs) ToGetUsersUserOutputWithContext(ctx context.Context) GetUsersUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserOutput)
+}
+
+// GetUsersUserArrayInput is an input type that accepts GetUsersUserArray and GetUsersUserArrayOutput values.
+// You can construct a concrete instance of `GetUsersUserArrayInput` via:
+//
+//	GetUsersUserArray{ GetUsersUserArgs{...} }
+type GetUsersUserArrayInput interface {
+	pulumi.Input
+
+	ToGetUsersUserArrayOutput() GetUsersUserArrayOutput
+	ToGetUsersUserArrayOutputWithContext(context.Context) GetUsersUserArrayOutput
+}
+
+type GetUsersUserArray []GetUsersUserInput
+
+func (GetUsersUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUser)(nil)).Elem()
+}
+
+func (i GetUsersUserArray) ToGetUsersUserArrayOutput() GetUsersUserArrayOutput {
+	return i.ToGetUsersUserArrayOutputWithContext(context.Background())
+}
+
+func (i GetUsersUserArray) ToGetUsersUserArrayOutputWithContext(ctx context.Context) GetUsersUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetUsersUserArrayOutput)
+}
+
+type GetUsersUserOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUsersUser)(nil)).Elem()
+}
+
+func (o GetUsersUserOutput) ToGetUsersUserOutput() GetUsersUserOutput {
+	return o
+}
+
+func (o GetUsersUserOutput) ToGetUsersUserOutputWithContext(ctx context.Context) GetUsersUserOutput {
+	return o
+}
+
+// The time the user joined their tailnet.
+func (o GetUsersUserOutput) Created() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Created }).(pulumi.StringOutput)
+}
+
+// true when the user has a node currently connected to the control server.
+func (o GetUsersUserOutput) CurrentlyConnected() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetUsersUser) bool { return v.CurrentlyConnected }).(pulumi.BoolOutput)
+}
+
+// Number of devices the user owns.
+func (o GetUsersUserOutput) DeviceCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetUsersUser) int { return v.DeviceCount }).(pulumi.IntOutput)
+}
+
+// The name of the user.
+func (o GetUsersUserOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The unique identifier for the user.
+func (o GetUsersUserOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The later of either: a) The last time any of the user's nodes were connected to the network or b) The last time the user authenticated to any tailscale service, including the admin panel.
+func (o GetUsersUserOutput) LastSeen() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.LastSeen }).(pulumi.StringOutput)
+}
+
+// The emailish login name of the user.
+func (o GetUsersUserOutput) LoginName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.LoginName }).(pulumi.StringOutput)
+}
+
+// The profile pic URL for the user.
+func (o GetUsersUserOutput) ProfilePicUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.ProfilePicUrl }).(pulumi.StringOutput)
+}
+
+// The role of the user.
+func (o GetUsersUserOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// The status of the user.
+func (o GetUsersUserOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The tailnet that owns the user.
+func (o GetUsersUserOutput) TailnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.TailnetId }).(pulumi.StringOutput)
+}
+
+// The type of relation this user has to the tailnet associated with the request.
+func (o GetUsersUserOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUsersUser) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetUsersUserArrayOutput struct{ *pulumi.OutputState }
+
+func (GetUsersUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetUsersUser)(nil)).Elem()
+}
+
+func (o GetUsersUserArrayOutput) ToGetUsersUserArrayOutput() GetUsersUserArrayOutput {
+	return o
+}
+
+func (o GetUsersUserArrayOutput) ToGetUsersUserArrayOutputWithContext(ctx context.Context) GetUsersUserArrayOutput {
+	return o
+}
+
+func (o GetUsersUserArrayOutput) Index(i pulumi.IntInput) GetUsersUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetUsersUser {
+		return vs[0].([]GetUsersUser)[vs[1].(int)]
+	}).(GetUsersUserOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactsAccountInput)(nil)).Elem(), ContactsAccountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactsAccountPtrInput)(nil)).Elem(), ContactsAccountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactsSecurityInput)(nil)).Elem(), ContactsSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactsSecurityPtrInput)(nil)).Elem(), ContactsSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactsSupportInput)(nil)).Elem(), ContactsSupportArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactsSupportPtrInput)(nil)).Elem(), ContactsSupportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDevicesDeviceInput)(nil)).Elem(), GetDevicesDeviceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDevicesDeviceArrayInput)(nil)).Elem(), GetDevicesDeviceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
+	pulumi.RegisterOutputType(ContactsAccountOutput{})
+	pulumi.RegisterOutputType(ContactsAccountPtrOutput{})
+	pulumi.RegisterOutputType(ContactsSecurityOutput{})
+	pulumi.RegisterOutputType(ContactsSecurityPtrOutput{})
+	pulumi.RegisterOutputType(ContactsSupportOutput{})
+	pulumi.RegisterOutputType(ContactsSupportPtrOutput{})
 	pulumi.RegisterOutputType(GetDevicesDeviceOutput{})
 	pulumi.RegisterOutputType(GetDevicesDeviceArrayOutput{})
+	pulumi.RegisterOutputType(GetUsersUserOutput{})
+	pulumi.RegisterOutputType(GetUsersUserArrayOutput{})
 }

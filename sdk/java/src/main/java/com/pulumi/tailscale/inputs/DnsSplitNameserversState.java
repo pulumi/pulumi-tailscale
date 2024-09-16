@@ -17,14 +17,14 @@ public final class DnsSplitNameserversState extends com.pulumi.resources.Resourc
     public static final DnsSplitNameserversState Empty = new DnsSplitNameserversState();
 
     /**
-     * Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+     * Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
      * 
      */
     @Import(name="domain")
     private @Nullable Output<String> domain;
 
     /**
-     * @return Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+     * @return Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
      * 
      */
     public Optional<Output<String>> domain() {
@@ -72,7 +72,7 @@ public final class DnsSplitNameserversState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param domain Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+         * @param domain Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
          * 
          * @return builder
          * 
@@ -83,7 +83,7 @@ public final class DnsSplitNameserversState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param domain Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+         * @param domain Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
          * 
          * @return builder
          * 

@@ -59,6 +59,14 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * ## Import
+ * 
+ * Device authorization can be imported using the device id, e.g.,
+ * 
+ * ```sh
+ * $ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization 123456789
+ * ```
+ * 
  */
 @ResourceType(type="tailscale:index/deviceAuthorization:DeviceAuthorization")
 public class DeviceAuthorization extends com.pulumi.resources.CustomResource {

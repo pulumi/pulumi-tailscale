@@ -53,7 +53,7 @@ import (
 type DnsSplitNameservers struct {
 	pulumi.CustomResourceState
 
-	// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+	// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
 	Domain pulumi.StringOutput `pulumi:"domain"`
 	// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
 	Nameservers pulumi.StringArrayOutput `pulumi:"nameservers"`
@@ -95,14 +95,14 @@ func GetDnsSplitNameservers(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DnsSplitNameservers resources.
 type dnsSplitNameserversState struct {
-	// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+	// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
 	Domain *string `pulumi:"domain"`
 	// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
 	Nameservers []string `pulumi:"nameservers"`
 }
 
 type DnsSplitNameserversState struct {
-	// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+	// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
 	Domain pulumi.StringPtrInput
 	// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
 	Nameservers pulumi.StringArrayInput
@@ -113,7 +113,7 @@ func (DnsSplitNameserversState) ElementType() reflect.Type {
 }
 
 type dnsSplitNameserversArgs struct {
-	// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+	// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
 	Domain string `pulumi:"domain"`
 	// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
 	Nameservers []string `pulumi:"nameservers"`
@@ -121,7 +121,7 @@ type dnsSplitNameserversArgs struct {
 
 // The set of arguments for constructing a DnsSplitNameservers resource.
 type DnsSplitNameserversArgs struct {
-	// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+	// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
 	Domain pulumi.StringInput
 	// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
 	Nameservers pulumi.StringArrayInput
@@ -214,7 +214,7 @@ func (o DnsSplitNameserversOutput) ToDnsSplitNameserversOutputWithContext(ctx co
 	return o
 }
 
-// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers.
+// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
 func (o DnsSplitNameserversOutput) Domain() pulumi.StringOutput {
 	return o.ApplyT(func(v *DnsSplitNameservers) pulumi.StringOutput { return v.Domain }).(pulumi.StringOutput)
 }

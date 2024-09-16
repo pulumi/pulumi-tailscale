@@ -5,3 +5,24 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface ContactsAccount {
+    /**
+     * Email address to send communications to
+     */
+    email: pulumi.Input<string>;
+}
+
+export interface ContactsSecurity {
+    /**
+     * Email address to send communications to
+     */
+    email: pulumi.Input<string>;
+}
+
+export interface ContactsSupport {
+    /**
+     * Email address to send communications to
+     */
+    email: pulumi.Input<string>;
+}
+
