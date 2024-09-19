@@ -8,7 +8,6 @@ import * as utilities from "./utilities";
  * The acl data source gets the Tailscale ACL for a tailnet
  */
 export function getAcl(opts?: pulumi.InvokeOptions): Promise<GetAclResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale:index/getAcl:getAcl", {
     }, opts);
@@ -35,5 +34,7 @@ export interface GetAclResult {
  * The acl data source gets the Tailscale ACL for a tailnet
  */
 export function getAclOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetAclResult> {
-    return pulumi.output(getAcl(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("tailscale:index/getAcl:getAcl", {
+    }, opts);
 }

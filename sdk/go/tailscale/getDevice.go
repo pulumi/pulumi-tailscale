@@ -86,14 +86,20 @@ type GetDeviceResult struct {
 
 func GetDeviceOutput(ctx *pulumi.Context, args GetDeviceOutputArgs, opts ...pulumi.InvokeOption) GetDeviceResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetDeviceResult, error) {
+		ApplyT(func(v interface{}) (GetDeviceResultOutput, error) {
 			args := v.(GetDeviceArgs)
-			r, err := GetDevice(ctx, &args, opts...)
-			var s GetDeviceResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetDeviceResult
+			secret, err := ctx.InvokePackageRaw("tailscale:index/getDevice:getDevice", args, &rv, "", opts...)
+			if err != nil {
+				return GetDeviceResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetDeviceResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetDeviceResultOutput), nil
+			}
+			return output, nil
 		}).(GetDeviceResultOutput)
 }
 
