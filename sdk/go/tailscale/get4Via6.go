@@ -71,14 +71,20 @@ type Get4Via6Result struct {
 
 func Get4Via6Output(ctx *pulumi.Context, args Get4Via6OutputArgs, opts ...pulumi.InvokeOption) Get4Via6ResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (Get4Via6Result, error) {
+		ApplyT(func(v interface{}) (Get4Via6ResultOutput, error) {
 			args := v.(Get4Via6Args)
-			r, err := Get4Via6(ctx, &args, opts...)
-			var s Get4Via6Result
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv Get4Via6Result
+			secret, err := ctx.InvokePackageRaw("tailscale:index/get4Via6:get4Via6", args, &rv, "", opts...)
+			if err != nil {
+				return Get4Via6ResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(Get4Via6ResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(Get4Via6ResultOutput), nil
+			}
+			return output, nil
 		}).(Get4Via6ResultOutput)
 }
 

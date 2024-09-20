@@ -20,7 +20,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function get4Via6(args: Get4Via6Args, opts?: pulumi.InvokeOptions): Promise<Get4Via6Result> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale:index/get4Via6:get4Via6", {
         "cidr": args.cidr,
@@ -79,7 +78,11 @@ export interface Get4Via6Result {
  * ```
  */
 export function get4Via6Output(args: Get4Via6OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<Get4Via6Result> {
-    return pulumi.output(args).apply((a: any) => get4Via6(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("tailscale:index/get4Via6:get4Via6", {
+        "cidr": args.cidr,
+        "site": args.site,
+    }, opts);
 }
 
 /**
