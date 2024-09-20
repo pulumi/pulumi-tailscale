@@ -25,7 +25,6 @@ import * as utilities from "./utilities";
  */
 export function getDevice(args?: GetDeviceArgs, opts?: pulumi.InvokeOptions): Promise<GetDeviceResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale:index/getDevice:getDevice", {
         "hostname": args.hostname,
@@ -105,7 +104,13 @@ export interface GetDeviceResult {
  * ```
  */
 export function getDeviceOutput(args?: GetDeviceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDeviceResult> {
-    return pulumi.output(args).apply((a: any) => getDevice(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("tailscale:index/getDevice:getDevice", {
+        "hostname": args.hostname,
+        "name": args.name,
+        "waitFor": args.waitFor,
+    }, opts);
 }
 
 /**
