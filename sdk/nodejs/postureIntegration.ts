@@ -6,6 +6,20 @@ import * as utilities from "./utilities";
 
 /**
  * The postureIntegration resource allows you to manage integrations with device posture data providers. See https://tailscale.com/kb/1288/device-posture for more information.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as tailscale from "@pulumi/tailscale";
+ *
+ * const samplePostureIntegration = new tailscale.PostureIntegration("sample_posture_integration", {
+ *     postureProvider: "falcon",
+ *     cloudId: "us-1",
+ *     clientId: "clientid1",
+ *     clientSecret: "test-secret1",
+ * });
+ * ```
  */
 export class PostureIntegration extends pulumi.CustomResource {
     /**

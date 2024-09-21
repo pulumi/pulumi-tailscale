@@ -11,6 +11,27 @@ namespace Pulumi.Tailscale
 {
     /// <summary>
     /// The posture_integration resource allows you to manage integrations with device posture data providers. See https://tailscale.com/kb/1288/device-posture for more information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Tailscale = Pulumi.Tailscale;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var samplePostureIntegration = new Tailscale.PostureIntegration("sample_posture_integration", new()
+    ///     {
+    ///         PostureProvider = "falcon",
+    ///         CloudId = "us-1",
+    ///         ClientId = "clientid1",
+    ///         ClientSecret = "test-secret1",
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/postureIntegration:PostureIntegration")]
     public partial class PostureIntegration : global::Pulumi.CustomResource

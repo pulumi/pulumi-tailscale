@@ -13,6 +13,35 @@ import (
 )
 
 // The postureIntegration resource allows you to manage integrations with device posture data providers. See https://tailscale.com/kb/1288/device-posture for more information.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := tailscale.NewPostureIntegration(ctx, "sample_posture_integration", &tailscale.PostureIntegrationArgs{
+//				PostureProvider: pulumi.String("falcon"),
+//				CloudId:         pulumi.String("us-1"),
+//				ClientId:        pulumi.String("clientid1"),
+//				ClientSecret:    pulumi.String("test-secret1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type PostureIntegration struct {
 	pulumi.CustomResourceState
 

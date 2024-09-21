@@ -12,6 +12,45 @@ import (
 )
 
 // The tailnetSettings resource allows you to configure settings for your tailnet. See https://tailscale.com/api#tag/tailnetsettings for more information.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := tailscale.NewTailnetSettings(ctx, "sample_tailnet_settings", &tailscale.TailnetSettingsArgs{
+//				DevicesApprovalOn:                     pulumi.Bool(true),
+//				DevicesAutoUpdatesOn:                  pulumi.Bool(true),
+//				DevicesKeyDurationDays:                pulumi.Int(5),
+//				UsersApprovalOn:                       pulumi.Bool(true),
+//				UsersRoleAllowedToJoinExternalTailnet: pulumi.String("member"),
+//				PostureIdentityCollectionOn:           pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// ID doesn't matter.
+//
+// ```sh
+// $ pulumi import tailscale:index/tailnetSettings:TailnetSettings sample_preferences tailnet_settings
+// ```
 type TailnetSettings struct {
 	pulumi.CustomResourceState
 

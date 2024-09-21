@@ -11,6 +11,37 @@ namespace Pulumi.Tailscale
 {
     /// <summary>
     /// The tailnet_settings resource allows you to configure settings for your tailnet. See https://tailscale.com/api#tag/tailnetsettings for more information.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Tailscale = Pulumi.Tailscale;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var sampleTailnetSettings = new Tailscale.TailnetSettings("sample_tailnet_settings", new()
+    ///     {
+    ///         DevicesApprovalOn = true,
+    ///         DevicesAutoUpdatesOn = true,
+    ///         DevicesKeyDurationDays = 5,
+    ///         UsersApprovalOn = true,
+    ///         UsersRoleAllowedToJoinExternalTailnet = "member",
+    ///         PostureIdentityCollectionOn = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ID doesn't matter.
+    /// 
+    /// ```sh
+    /// $ pulumi import tailscale:index/tailnetSettings:TailnetSettings sample_preferences tailnet_settings
+    /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/tailnetSettings:TailnetSettings")]
     public partial class TailnetSettings : global::Pulumi.CustomResource
