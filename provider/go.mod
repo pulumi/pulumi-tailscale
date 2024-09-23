@@ -10,7 +10,7 @@ require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.91.0
 	github.com/pulumi/pulumi/sdk/v3 v3.133.0
 	github.com/stretchr/testify v1.9.0
-	github.com/tailscale/terraform-provider-tailscale v0.17.0
+	github.com/tailscale/terraform-provider-tailscale v0.17.1
 )
 
 require (
@@ -189,7 +189,7 @@ require (
 	github.com/spf13/cobra v1.8.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/tailscale/hujson v0.0.0-20221223112325-20486734a56a // indirect
-	github.com/tailscale/tailscale-client-go/v2 v2.0.0-20240826162147-08f128738726 // indirect
+	github.com/tailscale/tailscale-client-go/v2 v2.0.0-20240916214524-e89a1ab786c8 // indirect
 	github.com/teekennedy/goldmark-markdown v0.3.0 // indirect
 	github.com/texttheater/golang-levenshtein v1.0.1 // indirect
 	github.com/uber/jaeger-client-go v2.30.0+incompatible // indirect

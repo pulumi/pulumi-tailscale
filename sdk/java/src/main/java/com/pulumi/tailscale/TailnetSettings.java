@@ -19,6 +19,54 @@ import javax.annotation.Nullable;
 /**
  * The tailnet_settings resource allows you to configure settings for your tailnet. See https://tailscale.com/api#tag/tailnetsettings for more information.
  * 
+ * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.tailscale.TailnetSettings;
+ * import com.pulumi.tailscale.TailnetSettingsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var sampleTailnetSettings = new TailnetSettings("sampleTailnetSettings", TailnetSettingsArgs.builder()
+ *             .devicesApprovalOn(true)
+ *             .devicesAutoUpdatesOn(true)
+ *             .devicesKeyDurationDays(5)
+ *             .usersApprovalOn(true)
+ *             .usersRoleAllowedToJoinExternalTailnet("member")
+ *             .postureIdentityCollectionOn(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ## Import
+ * 
+ * ID doesn&#39;t matter.
+ * 
+ * ```sh
+ * $ pulumi import tailscale:index/tailnetSettings:TailnetSettings sample_preferences tailnet_settings
+ * ```
+ * 
  */
 @ResourceType(type="tailscale:index/tailnetSettings:TailnetSettings")
 public class TailnetSettings extends com.pulumi.resources.CustomResource {

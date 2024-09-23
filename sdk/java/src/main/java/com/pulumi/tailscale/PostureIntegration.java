@@ -17,6 +17,44 @@ import javax.annotation.Nullable;
 /**
  * The posture_integration resource allows you to manage integrations with device posture data providers. See https://tailscale.com/kb/1288/device-posture for more information.
  * 
+ * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.tailscale.PostureIntegration;
+ * import com.pulumi.tailscale.PostureIntegrationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var samplePostureIntegration = new PostureIntegration("samplePostureIntegration", PostureIntegrationArgs.builder()
+ *             .postureProvider("falcon")
+ *             .cloudId("us-1")
+ *             .clientId("clientid1")
+ *             .clientSecret("test-secret1")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  */
 @ResourceType(type="tailscale:index/postureIntegration:PostureIntegration")
 public class PostureIntegration extends com.pulumi.resources.CustomResource {

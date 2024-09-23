@@ -6,6 +6,30 @@ import * as utilities from "./utilities";
 
 /**
  * The tailnetSettings resource allows you to configure settings for your tailnet. See https://tailscale.com/api#tag/tailnetsettings for more information.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as tailscale from "@pulumi/tailscale";
+ *
+ * const sampleTailnetSettings = new tailscale.TailnetSettings("sample_tailnet_settings", {
+ *     devicesApprovalOn: true,
+ *     devicesAutoUpdatesOn: true,
+ *     devicesKeyDurationDays: 5,
+ *     usersApprovalOn: true,
+ *     usersRoleAllowedToJoinExternalTailnet: "member",
+ *     postureIdentityCollectionOn: true,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * ID doesn't matter.
+ *
+ * ```sh
+ * $ pulumi import tailscale:index/tailnetSettings:TailnetSettings sample_preferences tailnet_settings
+ * ```
  */
 export class TailnetSettings extends pulumi.CustomResource {
     /**

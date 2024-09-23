@@ -300,6 +300,29 @@ class TailnetSettings(pulumi.CustomResource):
         """
         The tailnet_settings resource allows you to configure settings for your tailnet. See https://tailscale.com/api#tag/tailnetsettings for more information.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_tailscale as tailscale
+
+        sample_tailnet_settings = tailscale.TailnetSettings("sample_tailnet_settings",
+            devices_approval_on=True,
+            devices_auto_updates_on=True,
+            devices_key_duration_days=5,
+            users_approval_on=True,
+            users_role_allowed_to_join_external_tailnet="member",
+            posture_identity_collection_on=True)
+        ```
+
+        ## Import
+
+        ID doesn't matter.
+
+        ```sh
+        $ pulumi import tailscale:index/tailnetSettings:TailnetSettings sample_preferences tailnet_settings
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] devices_approval_on: Whether device approval is enabled for the tailnet
@@ -319,6 +342,29 @@ class TailnetSettings(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The tailnet_settings resource allows you to configure settings for your tailnet. See https://tailscale.com/api#tag/tailnetsettings for more information.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_tailscale as tailscale
+
+        sample_tailnet_settings = tailscale.TailnetSettings("sample_tailnet_settings",
+            devices_approval_on=True,
+            devices_auto_updates_on=True,
+            devices_key_duration_days=5,
+            users_approval_on=True,
+            users_role_allowed_to_join_external_tailnet="member",
+            posture_identity_collection_on=True)
+        ```
+
+        ## Import
+
+        ID doesn't matter.
+
+        ```sh
+        $ pulumi import tailscale:index/tailnetSettings:TailnetSettings sample_preferences tailnet_settings
+        ```
 
         :param str resource_name: The name of the resource.
         :param TailnetSettingsArgs args: The arguments to use to populate this resource's properties.

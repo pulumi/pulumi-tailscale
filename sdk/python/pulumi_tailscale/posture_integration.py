@@ -199,6 +199,19 @@ class PostureIntegration(pulumi.CustomResource):
         """
         The posture_integration resource allows you to manage integrations with device posture data providers. See https://tailscale.com/kb/1288/device-posture for more information.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_tailscale as tailscale
+
+        sample_posture_integration = tailscale.PostureIntegration("sample_posture_integration",
+            posture_provider="falcon",
+            cloud_id="us-1",
+            client_id="clientid1",
+            client_secret="test-secret1")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_id: Unique identifier for your client.
@@ -215,6 +228,19 @@ class PostureIntegration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The posture_integration resource allows you to manage integrations with device posture data providers. See https://tailscale.com/kb/1288/device-posture for more information.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_tailscale as tailscale
+
+        sample_posture_integration = tailscale.PostureIntegration("sample_posture_integration",
+            posture_provider="falcon",
+            cloud_id="us-1",
+            client_id="clientid1",
+            client_secret="test-secret1")
+        ```
 
         :param str resource_name: The name of the resource.
         :param PostureIntegrationArgs args: The arguments to use to populate this resource's properties.
