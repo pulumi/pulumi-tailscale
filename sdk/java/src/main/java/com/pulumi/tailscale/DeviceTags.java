@@ -59,6 +59,14 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * ## Import
+ * 
+ * Device tags can be imported using the device id, e.g.,
+ * 
+ * ```sh
+ * $ pulumi import tailscale:index/deviceTags:DeviceTags sample 123456789
+ * ```
+ * 
  */
 @ResourceType(type="tailscale:index/deviceTags:DeviceTags")
 public class DeviceTags extends com.pulumi.resources.CustomResource {

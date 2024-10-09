@@ -210,6 +210,14 @@ class LogstreamConfiguration(pulumi.CustomResource):
             token="some-token")
         ```
 
+        ## Import
+
+        Logstream configuration can be imported using the logstream configuration id, e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/logstreamConfiguration:LogstreamConfiguration sample_logstream_configuration 123456789
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] destination_type: The type of system to which logs are being streamed.
@@ -238,6 +246,14 @@ class LogstreamConfiguration(pulumi.CustomResource):
             destination_type="panther",
             url="https://example.com",
             token="some-token")
+        ```
+
+        ## Import
+
+        Logstream configuration can be imported using the logstream configuration id, e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/logstreamConfiguration:LogstreamConfiguration sample_logstream_configuration 123456789
         ```
 
         :param str resource_name: The name of the resource.

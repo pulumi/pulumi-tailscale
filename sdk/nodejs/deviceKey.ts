@@ -21,6 +21,14 @@ import * as utilities from "./utilities";
  *     keyExpiryDisabled: true,
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Device key can be imported using the device id, e.g.,
+ *
+ * ```sh
+ * $ pulumi import tailscale:index/deviceKey:DeviceKey sample 123456789
+ * ```
  */
 export class DeviceKey extends pulumi.CustomResource {
     /**

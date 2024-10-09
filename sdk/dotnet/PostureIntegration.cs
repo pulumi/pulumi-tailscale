@@ -32,6 +32,14 @@ namespace Pulumi.Tailscale
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Posture integration can be imported using the posture integration id, e.g.,
+    /// 
+    /// ```sh
+    /// $ pulumi import tailscale:index/postureIntegration:PostureIntegration sample_posture_integration 123456789
+    /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/postureIntegration:PostureIntegration")]
     public partial class PostureIntegration : global::Pulumi.CustomResource

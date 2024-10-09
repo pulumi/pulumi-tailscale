@@ -46,6 +46,14 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// Device key can be imported using the device id, e.g.,
+//
+// ```sh
+// $ pulumi import tailscale:index/deviceKey:DeviceKey sample 123456789
+// ```
 type DeviceKey struct {
 	pulumi.CustomResourceState
 

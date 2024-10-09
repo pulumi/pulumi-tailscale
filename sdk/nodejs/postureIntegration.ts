@@ -20,6 +20,14 @@ import * as utilities from "./utilities";
  *     clientSecret: "test-secret1",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Posture integration can be imported using the posture integration id, e.g.,
+ *
+ * ```sh
+ * $ pulumi import tailscale:index/postureIntegration:PostureIntegration sample_posture_integration 123456789
+ * ```
  */
 export class PostureIntegration extends pulumi.CustomResource {
     /**

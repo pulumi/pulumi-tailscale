@@ -32,6 +32,14 @@ namespace Pulumi.Tailscale
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ID doesn't matter.
+    /// 
+    /// ```sh
+    /// $ pulumi import tailscale:index/dnsSearchPaths:DnsSearchPaths sample dns_search_paths
+    /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/dnsSearchPaths:DnsSearchPaths")]
     public partial class DnsSearchPaths : global::Pulumi.CustomResource

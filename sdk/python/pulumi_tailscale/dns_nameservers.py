@@ -80,6 +80,14 @@ class DnsNameservers(pulumi.CustomResource):
         ])
         ```
 
+        ## Import
+
+        ID doesn't matter.
+
+        ```sh
+        $ pulumi import tailscale:index/dnsNameservers:DnsNameservers sample dns_nameservers
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers: Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
@@ -103,6 +111,14 @@ class DnsNameservers(pulumi.CustomResource):
             "8.8.8.8",
             "8.8.4.4",
         ])
+        ```
+
+        ## Import
+
+        ID doesn't matter.
+
+        ```sh
+        $ pulumi import tailscale:index/dnsNameservers:DnsNameservers sample dns_nameservers
         ```
 
         :param str resource_name: The name of the resource.

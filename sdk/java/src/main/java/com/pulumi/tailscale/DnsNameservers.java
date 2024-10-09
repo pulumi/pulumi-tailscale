@@ -54,6 +54,14 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * ## Import
+ * 
+ * ID doesn&#39;t matter.
+ * 
+ * ```sh
+ * $ pulumi import tailscale:index/dnsNameservers:DnsNameservers sample dns_nameservers
+ * ```
+ * 
  */
 @ResourceType(type="tailscale:index/dnsNameservers:DnsNameservers")
 public class DnsNameservers extends com.pulumi.resources.CustomResource {

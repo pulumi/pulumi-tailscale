@@ -120,6 +120,14 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
             ])
         ```
 
+        ## Import
+
+        Device subnet rules can be imported using the device id, e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes sample 123456789
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_id: The device to set subnet routes for
@@ -152,6 +160,14 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
                 "0.0.0.0/0",
                 "::/0",
             ])
+        ```
+
+        ## Import
+
+        Device subnet rules can be imported using the device id, e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes sample 123456789
         ```
 
         :param str resource_name: The name of the resource.

@@ -33,6 +33,14 @@ namespace Pulumi.Tailscale
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// ID doesn't matter.
+    /// 
+    /// ```sh
+    /// $ pulumi import tailscale:index/dnsNameservers:DnsNameservers sample dns_nameservers
+    /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/dnsNameservers:DnsNameservers")]
     public partial class DnsNameservers : global::Pulumi.CustomResource

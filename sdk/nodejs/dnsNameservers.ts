@@ -18,6 +18,14 @@ import * as utilities from "./utilities";
  *     "8.8.4.4",
  * ]});
  * ```
+ *
+ * ## Import
+ *
+ * ID doesn't matter.
+ *
+ * ```sh
+ * $ pulumi import tailscale:index/dnsNameservers:DnsNameservers sample dns_nameservers
+ * ```
  */
 export class DnsNameservers extends pulumi.CustomResource {
     /**

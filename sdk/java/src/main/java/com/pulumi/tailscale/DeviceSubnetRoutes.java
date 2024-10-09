@@ -67,6 +67,14 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * ## Import
+ * 
+ * Device subnet rules can be imported using the device id, e.g.,
+ * 
+ * ```sh
+ * $ pulumi import tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes sample 123456789
+ * ```
+ * 
  */
 @ResourceType(type="tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes")
 public class DeviceSubnetRoutes extends com.pulumi.resources.CustomResource {

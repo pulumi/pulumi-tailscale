@@ -35,6 +35,14 @@ namespace Pulumi.Tailscale
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Device key can be imported using the device id, e.g.,
+    /// 
+    /// ```sh
+    /// $ pulumi import tailscale:index/deviceKey:DeviceKey sample 123456789
+    /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/deviceKey:DeviceKey")]
     public partial class DeviceKey : global::Pulumi.CustomResource

@@ -15,6 +15,14 @@ import * as utilities from "./utilities";
  *
  * const sampleSearchPaths = new tailscale.DnsSearchPaths("sample_search_paths", {searchPaths: ["example.com"]});
  * ```
+ *
+ * ## Import
+ *
+ * ID doesn't matter.
+ *
+ * ```sh
+ * $ pulumi import tailscale:index/dnsSearchPaths:DnsSearchPaths sample dns_search_paths
+ * ```
  */
 export class DnsSearchPaths extends pulumi.CustomResource {
     /**

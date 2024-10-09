@@ -41,6 +41,14 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// ID doesn't matter.
+//
+// ```sh
+// $ pulumi import tailscale:index/dnsSearchPaths:DnsSearchPaths sample dns_search_paths
+// ```
 type DnsSearchPaths struct {
 	pulumi.CustomResourceState
 

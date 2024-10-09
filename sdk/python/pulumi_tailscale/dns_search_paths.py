@@ -77,6 +77,14 @@ class DnsSearchPaths(pulumi.CustomResource):
         sample_search_paths = tailscale.DnsSearchPaths("sample_search_paths", search_paths=["example.com"])
         ```
 
+        ## Import
+
+        ID doesn't matter.
+
+        ```sh
+        $ pulumi import tailscale:index/dnsSearchPaths:DnsSearchPaths sample dns_search_paths
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] search_paths: Devices on your network will use these domain suffixes to resolve DNS names.
@@ -97,6 +105,14 @@ class DnsSearchPaths(pulumi.CustomResource):
         import pulumi_tailscale as tailscale
 
         sample_search_paths = tailscale.DnsSearchPaths("sample_search_paths", search_paths=["example.com"])
+        ```
+
+        ## Import
+
+        ID doesn't matter.
+
+        ```sh
+        $ pulumi import tailscale:index/dnsSearchPaths:DnsSearchPaths sample dns_search_paths
         ```
 
         :param str resource_name: The name of the resource.

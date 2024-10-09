@@ -55,6 +55,14 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * ## Import
+ * 
+ * Posture integration can be imported using the posture integration id, e.g.,
+ * 
+ * ```sh
+ * $ pulumi import tailscale:index/postureIntegration:PostureIntegration sample_posture_integration 123456789
+ * ```
+ * 
  */
 @ResourceType(type="tailscale:index/postureIntegration:PostureIntegration")
 public class PostureIntegration extends com.pulumi.resources.CustomResource {

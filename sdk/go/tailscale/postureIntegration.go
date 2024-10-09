@@ -42,6 +42,14 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// Posture integration can be imported using the posture integration id, e.g.,
+//
+// ```sh
+// $ pulumi import tailscale:index/postureIntegration:PostureIntegration sample_posture_integration 123456789
+// ```
 type PostureIntegration struct {
 	pulumi.CustomResourceState
 
