@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tailscale.GetUsers(ctx, nil, nil)
+//			_, err := tailscale.GetUsers(ctx, &tailscale.GetUsersArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
