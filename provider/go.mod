@@ -10,7 +10,7 @@ require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.91.1
 	github.com/pulumi/pulumi/sdk/v3 v3.133.0
 	github.com/stretchr/testify v1.9.0
-	github.com/tailscale/terraform-provider-tailscale v0.17.1
+	github.com/tailscale/terraform-provider-tailscale v0.17.2
 )
 
 require (
