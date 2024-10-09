@@ -42,6 +42,14 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// ID doesn't matter.
+//
+// ```sh
+// $ pulumi import tailscale:index/dnsNameservers:DnsNameservers sample dns_nameservers
+// ```
 type DnsNameservers struct {
 	pulumi.CustomResourceState
 

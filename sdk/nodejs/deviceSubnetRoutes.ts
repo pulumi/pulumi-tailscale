@@ -30,6 +30,14 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Device subnet rules can be imported using the device id, e.g.,
+ *
+ * ```sh
+ * $ pulumi import tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes sample 123456789
+ * ```
  */
 export class DeviceSubnetRoutes extends pulumi.CustomResource {
     /**

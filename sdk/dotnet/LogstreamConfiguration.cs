@@ -32,6 +32,14 @@ namespace Pulumi.Tailscale
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Logstream configuration can be imported using the logstream configuration id, e.g.,
+    /// 
+    /// ```sh
+    /// $ pulumi import tailscale:index/logstreamConfiguration:LogstreamConfiguration sample_logstream_configuration 123456789
+    /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/logstreamConfiguration:LogstreamConfiguration")]
     public partial class LogstreamConfiguration : global::Pulumi.CustomResource

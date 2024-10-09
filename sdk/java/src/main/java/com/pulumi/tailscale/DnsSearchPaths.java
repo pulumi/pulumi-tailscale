@@ -52,6 +52,14 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * ## Import
+ * 
+ * ID doesn&#39;t matter.
+ * 
+ * ```sh
+ * $ pulumi import tailscale:index/dnsSearchPaths:DnsSearchPaths sample dns_search_paths
+ * ```
+ * 
  */
 @ResourceType(type="tailscale:index/dnsSearchPaths:DnsSearchPaths")
 public class DnsSearchPaths extends com.pulumi.resources.CustomResource {

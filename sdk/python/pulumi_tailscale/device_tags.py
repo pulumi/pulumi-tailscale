@@ -112,6 +112,14 @@ class DeviceTags(pulumi.CustomResource):
             tags=["room:bedroom"])
         ```
 
+        ## Import
+
+        Device tags can be imported using the device id, e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/deviceTags:DeviceTags sample 123456789
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_id: The device to set tags for
@@ -136,6 +144,14 @@ class DeviceTags(pulumi.CustomResource):
         sample_tags = tailscale.DeviceTags("sample_tags",
             device_id=sample_device.id,
             tags=["room:bedroom"])
+        ```
+
+        ## Import
+
+        Device tags can be imported using the device id, e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/deviceTags:DeviceTags sample 123456789
         ```
 
         :param str resource_name: The name of the resource.

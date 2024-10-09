@@ -212,6 +212,14 @@ class PostureIntegration(pulumi.CustomResource):
             client_secret="test-secret1")
         ```
 
+        ## Import
+
+        Posture integration can be imported using the posture integration id, e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/postureIntegration:PostureIntegration sample_posture_integration 123456789
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_id: Unique identifier for your client.
@@ -240,6 +248,14 @@ class PostureIntegration(pulumi.CustomResource):
             cloud_id="us-1",
             client_id="clientid1",
             client_secret="test-secret1")
+        ```
+
+        ## Import
+
+        Posture integration can be imported using the posture integration id, e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/postureIntegration:PostureIntegration sample_posture_integration 123456789
         ```
 
         :param str resource_name: The name of the resource.

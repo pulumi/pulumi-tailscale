@@ -48,6 +48,14 @@ namespace Pulumi.Tailscale
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Device subnet rules can be imported using the device id, e.g.,
+    /// 
+    /// ```sh
+    /// $ pulumi import tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes sample 123456789
+    /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes")]
     public partial class DeviceSubnetRoutes : global::Pulumi.CustomResource

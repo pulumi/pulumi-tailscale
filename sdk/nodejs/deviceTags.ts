@@ -21,6 +21,14 @@ import * as utilities from "./utilities";
  *     tags: ["room:bedroom"],
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Device tags can be imported using the device id, e.g.,
+ *
+ * ```sh
+ * $ pulumi import tailscale:index/deviceTags:DeviceTags sample 123456789
+ * ```
  */
 export class DeviceTags extends pulumi.CustomResource {
     /**

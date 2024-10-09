@@ -56,6 +56,14 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * ## Import
+ * 
+ * Logstream configuration can be imported using the logstream configuration id, e.g.,
+ * 
+ * ```sh
+ * $ pulumi import tailscale:index/logstreamConfiguration:LogstreamConfiguration sample_logstream_configuration 123456789
+ * ```
+ * 
  */
 @ResourceType(type="tailscale:index/logstreamConfiguration:LogstreamConfiguration")
 public class LogstreamConfiguration extends com.pulumi.resources.CustomResource {

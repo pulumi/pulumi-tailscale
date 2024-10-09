@@ -113,6 +113,14 @@ class DeviceKey(pulumi.CustomResource):
             key_expiry_disabled=True)
         ```
 
+        ## Import
+
+        Device key can be imported using the device id, e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/deviceKey:DeviceKey sample 123456789
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_id: The device to update the key properties of
@@ -137,6 +145,14 @@ class DeviceKey(pulumi.CustomResource):
         example_key = tailscale.DeviceKey("example_key",
             device_id=example_device.id,
             key_expiry_disabled=True)
+        ```
+
+        ## Import
+
+        Device key can be imported using the device id, e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/deviceKey:DeviceKey sample 123456789
         ```
 
         :param str resource_name: The name of the resource.

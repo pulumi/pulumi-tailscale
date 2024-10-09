@@ -20,6 +20,14 @@ import * as utilities from "./utilities";
  *     token: "some-token",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Logstream configuration can be imported using the logstream configuration id, e.g.,
+ *
+ * ```sh
+ * $ pulumi import tailscale:index/logstreamConfiguration:LogstreamConfiguration sample_logstream_configuration 123456789
+ * ```
  */
 export class LogstreamConfiguration extends pulumi.CustomResource {
     /**

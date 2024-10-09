@@ -2029,8 +2029,8 @@ github.com/tailscale/hujson v0.0.0-20221223112325-20486734a56a h1:SJy1Pu0eH1C29X
 github.com/tailscale/hujson v0.0.0-20221223112325-20486734a56a/go.mod h1:DFSS3NAGHthKo1gTlmEcSBiZrRJXi28rLNd/1udP1c8=
 github.com/tailscale/tailscale-client-go/v2 v2.0.0-20240916214524-e89a1ab786c8 h1:TWFePmmkhpLyR/HK4Y4eA+WQE/AkQLLYoDkGh5MvBTA=
 github.com/tailscale/tailscale-client-go/v2 v2.0.0-20240916214524-e89a1ab786c8/go.mod h1:i/MSgQ71kdyh1Wdp50XxrIgtsyO4uZ2SZSPd83lGKHM=
-github.com/tailscale/terraform-provider-tailscale v0.17.1 h1:nSDr4F8jw/Fh7rMB48H/P4WcAdPU6nLNg0NupFfrtVY=
-github.com/tailscale/terraform-provider-tailscale v0.17.1/go.mod h1:KYM6ORvfoNqYQ817POm+J8MNBOpsRFAh9ZJiuISjR8U=
+github.com/tailscale/terraform-provider-tailscale v0.17.2 h1:MomNup+XfW6yra+kUFSGlsFURR5nN/BwihKsu1tADhw=
+github.com/tailscale/terraform-provider-tailscale v0.17.2/go.mod h1:KYM6ORvfoNqYQ817POm+J8MNBOpsRFAh9ZJiuISjR8U=
 github.com/teekennedy/goldmark-markdown v0.3.0 h1:ik9/biVGCwGWFg8dQ3KVm2pQ/wiiG0whYiUcz9xH0W8=
 github.com/teekennedy/goldmark-markdown v0.3.0/go.mod h1:kMhDz8La77A9UHvJGsxejd0QUflN9sS+QXCqnhmxmNo=
 github.com/texttheater/golang-levenshtein v1.0.1 h1:+cRNoVrfiwufQPhoMzB6N0Yf/Mqajr6t1lOv8GyGE2U=

@@ -60,6 +60,14 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * ## Import
+ * 
+ * Device key can be imported using the device id, e.g.,
+ * 
+ * ```sh
+ * $ pulumi import tailscale:index/deviceKey:DeviceKey sample 123456789
+ * ```
+ * 
  */
 @ResourceType(type="tailscale:index/deviceKey:DeviceKey")
 public class DeviceKey extends com.pulumi.resources.CustomResource {
