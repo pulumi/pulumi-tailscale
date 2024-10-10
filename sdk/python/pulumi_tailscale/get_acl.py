@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -80,11 +85,14 @@ def get_acl(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAclResul
         hujson=pulumi.get(__ret__, 'hujson'),
         id=pulumi.get(__ret__, 'id'),
         json=pulumi.get(__ret__, 'json'))
-
-
-@_utilities.lift_output_func(get_acl)
 def get_acl_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAclResult]:
     """
     The acl data source gets the Tailscale ACL for a tailnet
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('tailscale:index/getAcl:getAcl', __args__, opts=opts, typ=GetAclResult)
+    return __ret__.apply(lambda __response__: GetAclResult(
+        hujson=pulumi.get(__response__, 'hujson'),
+        id=pulumi.get(__response__, 'id'),
+        json=pulumi.get(__response__, 'json')))

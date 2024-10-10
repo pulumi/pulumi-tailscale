@@ -4,16 +4,35 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
     'ContactsAccountArgs',
+    'ContactsAccountArgsDict',
     'ContactsSecurityArgs',
+    'ContactsSecurityArgsDict',
     'ContactsSupportArgs',
+    'ContactsSupportArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class ContactsAccountArgsDict(TypedDict):
+        email: pulumi.Input[str]
+        """
+        Email address to send communications to
+        """
+elif False:
+    ContactsAccountArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ContactsAccountArgs:
@@ -37,6 +56,15 @@ class ContactsAccountArgs:
         pulumi.set(self, "email", value)
 
 
+if not MYPY:
+    class ContactsSecurityArgsDict(TypedDict):
+        email: pulumi.Input[str]
+        """
+        Email address to send communications to
+        """
+elif False:
+    ContactsSecurityArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ContactsSecurityArgs:
     def __init__(__self__, *,
@@ -58,6 +86,15 @@ class ContactsSecurityArgs:
     def email(self, value: pulumi.Input[str]):
         pulumi.set(self, "email", value)
 
+
+if not MYPY:
+    class ContactsSupportArgsDict(TypedDict):
+        email: pulumi.Input[str]
+        """
+        Email address to send communications to
+        """
+elif False:
+    ContactsSupportArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ContactsSupportArgs:
