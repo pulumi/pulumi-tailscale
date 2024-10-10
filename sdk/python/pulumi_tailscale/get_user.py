@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -205,9 +210,6 @@ def get_user(id: Optional[str] = None,
         status=pulumi.get(__ret__, 'status'),
         tailnet_id=pulumi.get(__ret__, 'tailnet_id'),
         type=pulumi.get(__ret__, 'type'))
-
-
-@_utilities.lift_output_func(get_user)
 def get_user_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                     login_name: Optional[pulumi.Input[Optional[str]]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUserResult]:
@@ -218,4 +220,21 @@ def get_user_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str id: The unique identifier for the user.
     :param str login_name: The emailish login name of the user.
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['loginName'] = login_name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('tailscale:index/getUser:getUser', __args__, opts=opts, typ=GetUserResult)
+    return __ret__.apply(lambda __response__: GetUserResult(
+        created=pulumi.get(__response__, 'created'),
+        currently_connected=pulumi.get(__response__, 'currently_connected'),
+        device_count=pulumi.get(__response__, 'device_count'),
+        display_name=pulumi.get(__response__, 'display_name'),
+        id=pulumi.get(__response__, 'id'),
+        last_seen=pulumi.get(__response__, 'last_seen'),
+        login_name=pulumi.get(__response__, 'login_name'),
+        profile_pic_url=pulumi.get(__response__, 'profile_pic_url'),
+        role=pulumi.get(__response__, 'role'),
+        status=pulumi.get(__response__, 'status'),
+        tailnet_id=pulumi.get(__response__, 'tailnet_id'),
+        type=pulumi.get(__response__, 'type')))
