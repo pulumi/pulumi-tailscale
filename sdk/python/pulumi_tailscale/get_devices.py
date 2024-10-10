@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -95,9 +100,6 @@ def get_devices(name_prefix: Optional[str] = None,
         devices=pulumi.get(__ret__, 'devices'),
         id=pulumi.get(__ret__, 'id'),
         name_prefix=pulumi.get(__ret__, 'name_prefix'))
-
-
-@_utilities.lift_output_func(get_devices)
 def get_devices_output(name_prefix: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDevicesResult]:
     """
@@ -115,4 +117,11 @@ def get_devices_output(name_prefix: Optional[pulumi.Input[Optional[str]]] = None
 
     :param str name_prefix: Filters the device list to elements whose name has the provided prefix
     """
-    ...
+    __args__ = dict()
+    __args__['namePrefix'] = name_prefix
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('tailscale:index/getDevices:getDevices', __args__, opts=opts, typ=GetDevicesResult)
+    return __ret__.apply(lambda __response__: GetDevicesResult(
+        devices=pulumi.get(__response__, 'devices'),
+        id=pulumi.get(__response__, 'id'),
+        name_prefix=pulumi.get(__response__, 'name_prefix')))

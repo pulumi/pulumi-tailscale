@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -111,9 +116,6 @@ def get4_via6(cidr: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         ipv6=pulumi.get(__ret__, 'ipv6'),
         site=pulumi.get(__ret__, 'site'))
-
-
-@_utilities.lift_output_func(get4_via6)
 def get4_via6_output(cidr: Optional[pulumi.Input[str]] = None,
                      site: Optional[pulumi.Input[int]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[Get4Via6Result]:
@@ -134,4 +136,13 @@ def get4_via6_output(cidr: Optional[pulumi.Input[str]] = None,
     :param str cidr: The IPv4 CIDR to map
     :param int site: Site ID (between 0 and 65535)
     """
-    ...
+    __args__ = dict()
+    __args__['cidr'] = cidr
+    __args__['site'] = site
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('tailscale:index/get4Via6:get4Via6', __args__, opts=opts, typ=Get4Via6Result)
+    return __ret__.apply(lambda __response__: Get4Via6Result(
+        cidr=pulumi.get(__response__, 'cidr'),
+        id=pulumi.get(__response__, 'id'),
+        ipv6=pulumi.get(__response__, 'ipv6'),
+        site=pulumi.get(__response__, 'site')))
