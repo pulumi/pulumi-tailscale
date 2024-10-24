@@ -15,7 +15,9 @@
 package tailscale
 
 import (
+	"bytes"
 	"fmt"
+	"os"
 	"path"
 
 	// Allow embedding metadata
@@ -60,6 +62,7 @@ func Provider() tfbridge.ProviderInfo {
 		Repository:   "https://github.com/pulumi/pulumi-tailscale",
 		Config:       map[string]*tfbridge.SchemaInfo{},
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
+		DocRules:     &tfbridge.DocRuleInfo{EditRules: editRules},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"tailscale_acl": {
 				Fields: map[string]*tfbridge.SchemaInfo{
@@ -119,4 +122,32 @@ func addUserAgent(p *schema.Provider) {
 		Optional:    true,
 		Description: "User-Agent header for API requests.",
 	}
+}
+
+func editRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
+	return append(
+		defaults,
+		fixInstallationExample,
+	)
+}
+
+// In the upstream example, there is an invalid value set, which prevents `pulumi convert` from converting.
+// This rule rewrites `"my-api-key"` to `12345`.
+var fixInstallationExample = tfbridge.DocsEdit{
+	Path: "index.md",
+	Edit: func(_ string, content []byte) ([]byte, error) {
+		input, err := os.ReadFile("provider/installation-replaces/example-input.md")
+		if err != nil {
+			return nil, err
+		}
+		replace, err := os.ReadFile("provider/installation-replaces/example-desired.md")
+		if err != nil {
+			return nil, err
+		}
+		b := bytes.ReplaceAll(
+			content,
+			input,
+			replace)
+		return b, nil
+	},
 }
