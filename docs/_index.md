@@ -6,7 +6,7 @@ layout: package
 ---
 ## Installation
 
-The tailscale provider is available as a package in all Pulumi languages:
+The Tailscale provider is available as a package in all Pulumi languages:
 
 * JavaScript/TypeScript: [`@pulumi/tailscale`](https://www.npmjs.com/package/@pulumi/tailscale)
 * Python: [`pulumi-tailscale`](https://pypi.org/project/pulumi-tailscale/)
