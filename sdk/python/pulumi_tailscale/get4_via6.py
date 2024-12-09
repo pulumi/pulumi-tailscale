@@ -118,7 +118,7 @@ def get4_via6(cidr: Optional[str] = None,
         site=pulumi.get(__ret__, 'site'))
 def get4_via6_output(cidr: Optional[pulumi.Input[str]] = None,
                      site: Optional[pulumi.Input[int]] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[Get4Via6Result]:
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[Get4Via6Result]:
     """
     The 4via6 data source is calculates an IPv6 prefix for a given site ID and IPv4 CIDR. See Tailscale documentation for [4via6 subnets](https://tailscale.com/kb/1201/4via6-subnets/) for more details.
 
@@ -139,7 +139,7 @@ def get4_via6_output(cidr: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['cidr'] = cidr
     __args__['site'] = site
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('tailscale:index/get4Via6:get4Via6', __args__, opts=opts, typ=Get4Via6Result)
     return __ret__.apply(lambda __response__: Get4Via6Result(
         cidr=pulumi.get(__response__, 'cidr'),
