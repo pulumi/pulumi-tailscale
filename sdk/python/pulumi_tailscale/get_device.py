@@ -163,7 +163,7 @@ def get_device(hostname: Optional[str] = None,
 def get_device_output(hostname: Optional[pulumi.Input[Optional[str]]] = None,
                       name: Optional[pulumi.Input[Optional[str]]] = None,
                       wait_for: Optional[pulumi.Input[Optional[str]]] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDeviceResult]:
+                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDeviceResult]:
     """
     The device data source describes a single device in a tailnet
 
@@ -188,7 +188,7 @@ def get_device_output(hostname: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['hostname'] = hostname
     __args__['name'] = name
     __args__['waitFor'] = wait_for
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('tailscale:index/getDevice:getDevice', __args__, opts=opts, typ=GetDeviceResult)
     return __ret__.apply(lambda __response__: GetDeviceResult(
         addresses=pulumi.get(__response__, 'addresses'),

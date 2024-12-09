@@ -118,7 +118,7 @@ def get_users(role: Optional[str] = None,
         users=pulumi.get(__ret__, 'users'))
 def get_users_output(role: Optional[pulumi.Input[Optional[str]]] = None,
                      type: Optional[pulumi.Input[Optional[str]]] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUsersResult]:
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUsersResult]:
     """
     The users data source describes a list of users in a tailnet
 
@@ -138,7 +138,7 @@ def get_users_output(role: Optional[pulumi.Input[Optional[str]]] = None,
     __args__ = dict()
     __args__['role'] = role
     __args__['type'] = type
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('tailscale:index/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult)
     return __ret__.apply(lambda __response__: GetUsersResult(
         id=pulumi.get(__response__, 'id'),
