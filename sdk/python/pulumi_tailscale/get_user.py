@@ -212,7 +212,7 @@ def get_user(id: Optional[str] = None,
         type=pulumi.get(__ret__, 'type'))
 def get_user_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                     login_name: Optional[pulumi.Input[Optional[str]]] = None,
-                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUserResult]:
+                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserResult]:
     """
     The user data source describes a single user in a tailnet
 
@@ -223,7 +223,7 @@ def get_user_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     __args__ = dict()
     __args__['id'] = id
     __args__['loginName'] = login_name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('tailscale:index/getUser:getUser', __args__, opts=opts, typ=GetUserResult)
     return __ret__.apply(lambda __response__: GetUserResult(
         created=pulumi.get(__response__, 'created'),
