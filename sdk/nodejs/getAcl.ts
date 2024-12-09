@@ -33,7 +33,7 @@ export interface GetAclResult {
 /**
  * The acl data source gets the Tailscale ACL for a tailnet
  */
-export function getAclOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetAclResult> {
+export function getAclOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAclResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("tailscale:index/getAcl:getAcl", {
     }, opts);

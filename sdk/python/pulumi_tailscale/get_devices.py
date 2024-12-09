@@ -101,7 +101,7 @@ def get_devices(name_prefix: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         name_prefix=pulumi.get(__ret__, 'name_prefix'))
 def get_devices_output(name_prefix: Optional[pulumi.Input[Optional[str]]] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDevicesResult]:
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDevicesResult]:
     """
     The devices data source describes a list of devices in a tailnet
 
@@ -119,7 +119,7 @@ def get_devices_output(name_prefix: Optional[pulumi.Input[Optional[str]]] = None
     """
     __args__ = dict()
     __args__['namePrefix'] = name_prefix
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('tailscale:index/getDevices:getDevices', __args__, opts=opts, typ=GetDevicesResult)
     return __ret__.apply(lambda __response__: GetDevicesResult(
         devices=pulumi.get(__response__, 'devices'),

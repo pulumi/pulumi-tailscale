@@ -85,12 +85,12 @@ def get_acl(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAclResul
         hujson=pulumi.get(__ret__, 'hujson'),
         id=pulumi.get(__ret__, 'id'),
         json=pulumi.get(__ret__, 'json'))
-def get_acl_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAclResult]:
+def get_acl_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAclResult]:
     """
     The acl data source gets the Tailscale ACL for a tailnet
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('tailscale:index/getAcl:getAcl', __args__, opts=opts, typ=GetAclResult)
     return __ret__.apply(lambda __response__: GetAclResult(
         hujson=pulumi.get(__response__, 'hujson'),
