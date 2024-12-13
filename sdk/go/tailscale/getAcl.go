@@ -34,18 +34,8 @@ type LookupAclResult struct {
 
 func LookupAclOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) LookupAclResultOutput {
 	return pulumi.ToOutput(0).ApplyT(func(int) (LookupAclResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv LookupAclResult
-		secret, err := ctx.InvokePackageRaw("tailscale:index/getAcl:getAcl", nil, &rv, "", opts...)
-		if err != nil {
-			return LookupAclResultOutput{}, err
-		}
-
-		output := pulumi.ToOutput(rv).(LookupAclResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(LookupAclResultOutput), nil
-		}
-		return output, nil
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("tailscale:index/getAcl:getAcl", nil, LookupAclResultOutput{}, options).(LookupAclResultOutput), nil
 	}).(LookupAclResultOutput)
 }
 

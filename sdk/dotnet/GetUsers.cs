@@ -52,6 +52,27 @@ namespace Pulumi.Tailscale
         /// </summary>
         public static Output<GetUsersResult> Invoke(GetUsersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetUsersResult>("tailscale:index/getUsers:getUsers", args ?? new GetUsersInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The users data source describes a list of users in a tailnet
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Tailscale = Pulumi.Tailscale;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var all_users = Tailscale.GetUsers.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetUsersResult> Invoke(GetUsersInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetUsersResult>("tailscale:index/getUsers:getUsers", args ?? new GetUsersInvokeArgs(), options.WithDefaults());
     }
 
 

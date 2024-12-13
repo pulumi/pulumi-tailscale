@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.resources.InvokeArgs;
 import com.pulumi.tailscale.Utilities;
 import com.pulumi.tailscale.inputs.Get4Via6Args;
@@ -197,6 +198,49 @@ public final class TailscaleFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<Get4Via6Result> get4Via6(Get4Via6Args args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("tailscale:index/get4Via6:get4Via6", TypeShape.of(Get4Via6Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The 4via6 data source is calculates an IPv6 prefix for a given site ID and IPv4 CIDR. See Tailscale documentation for [4via6 subnets](https://tailscale.com/kb/1201/4via6-subnets/) for more details.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.tailscale.TailscaleFunctions;
+     * import com.pulumi.tailscale.inputs.Get4Via6Args;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = TailscaleFunctions.get4Via6(Get4Via6Args.builder()
+     *             .site(7)
+     *             .cidr("10.1.1.0/24")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<Get4Via6Result> get4Via6Plain(Get4Via6PlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("tailscale:index/get4Via6:get4Via6", TypeShape.of(Get4Via6Result.class), args, Utilities.withVersion(options));
     }
@@ -233,6 +277,13 @@ public final class TailscaleFunctions {
      * 
      */
     public static Output<GetAclResult> getAcl(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("tailscale:index/getAcl:getAcl", TypeShape.of(GetAclResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The acl data source gets the Tailscale ACL for a tailnet
+     * 
+     */
+    public static Output<GetAclResult> getAcl(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("tailscale:index/getAcl:getAcl", TypeShape.of(GetAclResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -480,6 +531,54 @@ public final class TailscaleFunctions {
      * 
      */
     public static Output<GetDeviceResult> getDevice(GetDeviceArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("tailscale:index/getDevice:getDevice", TypeShape.of(GetDeviceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The device data source describes a single device in a tailnet
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.tailscale.TailscaleFunctions;
+     * import com.pulumi.tailscale.inputs.GetDeviceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var sampleDevice = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
+     *             .name("device1.example.ts.net")
+     *             .waitFor("60s")
+     *             .build());
+     * 
+     *         final var sampleDevice2 = TailscaleFunctions.getDevice(GetDeviceArgs.builder()
+     *             .hostname("device2")
+     *             .waitFor("60s")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetDeviceResult> getDevice(GetDeviceArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("tailscale:index/getDevice:getDevice", TypeShape.of(GetDeviceResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -779,6 +878,48 @@ public final class TailscaleFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetDevicesResult> getDevices(GetDevicesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("tailscale:index/getDevices:getDevices", TypeShape.of(GetDevicesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The devices data source describes a list of devices in a tailnet
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.tailscale.TailscaleFunctions;
+     * import com.pulumi.tailscale.inputs.GetDevicesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var sampleDevices = TailscaleFunctions.getDevices(GetDevicesArgs.builder()
+     *             .namePrefix("example-")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetDevicesResult> getDevicesPlain(GetDevicesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("tailscale:index/getDevices:getDevices", TypeShape.of(GetDevicesResult.class), args, Utilities.withVersion(options));
     }
@@ -815,6 +956,13 @@ public final class TailscaleFunctions {
      * 
      */
     public static Output<GetUserResult> getUser(GetUserArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("tailscale:index/getUser:getUser", TypeShape.of(GetUserResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The user data source describes a single user in a tailnet
+     * 
+     */
+    public static Output<GetUserResult> getUser(GetUserArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("tailscale:index/getUser:getUser", TypeShape.of(GetUserResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -1022,6 +1170,46 @@ public final class TailscaleFunctions {
      * 
      */
     public static Output<GetUsersResult> getUsers(GetUsersArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("tailscale:index/getUsers:getUsers", TypeShape.of(GetUsersResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The users data source describes a list of users in a tailnet
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.tailscale.TailscaleFunctions;
+     * import com.pulumi.tailscale.inputs.GetUsersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all-users = TailscaleFunctions.getUsers();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetUsersResult> getUsers(GetUsersArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("tailscale:index/getUsers:getUsers", TypeShape.of(GetUsersResult.class), args, Utilities.withVersion(options));
     }
     /**
