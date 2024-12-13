@@ -72,6 +72,37 @@ namespace Pulumi.Tailscale
         /// </summary>
         public static Output<GetDeviceResult> Invoke(GetDeviceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDeviceResult>("tailscale:index/getDevice:getDevice", args ?? new GetDeviceInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// The device data source describes a single device in a tailnet
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Tailscale = Pulumi.Tailscale;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var sampleDevice = Tailscale.GetDevice.Invoke(new()
+        ///     {
+        ///         Name = "device1.example.ts.net",
+        ///         WaitFor = "60s",
+        ///     });
+        /// 
+        ///     var sampleDevice2 = Tailscale.GetDevice.Invoke(new()
+        ///     {
+        ///         Hostname = "device2",
+        ///         WaitFor = "60s",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetDeviceResult> Invoke(GetDeviceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDeviceResult>("tailscale:index/getDevice:getDevice", args ?? new GetDeviceInvokeArgs(), options.WithDefaults());
     }
 
 

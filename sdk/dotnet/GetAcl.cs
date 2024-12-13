@@ -22,6 +22,12 @@ namespace Pulumi.Tailscale
         /// </summary>
         public static Output<GetAclResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAclResult>("tailscale:index/getAcl:getAcl", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// The acl data source gets the Tailscale ACL for a tailnet
+        /// </summary>
+        public static Output<GetAclResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAclResult>("tailscale:index/getAcl:getAcl", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
