@@ -33,6 +33,18 @@ namespace Pulumi.Tailscale
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Tailnet key can be imported using the key id, e.g.,
+    /// 
+    /// ```sh
+    /// $ pulumi import tailscale:index/tailnetKey:TailnetKey sample_key 123456789
+    /// ```
+    /// 
+    /// -&gt; ** Note ** the `key` attribute will not be populated on import as this attribute is only populated
+    /// 
+    /// on resource creation.
     /// </summary>
     [TailscaleResourceType("tailscale:index/tailnetKey:TailnetKey")]
     public partial class TailnetKey : global::Pulumi.CustomResource
@@ -102,6 +114,12 @@ namespace Pulumi.Tailscale
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
+
+        /// <summary>
+        /// ID of the user who created this key, empty for keys created by OAuth clients.
+        /// </summary>
+        [Output("userId")]
+        public Output<string> UserId { get; private set; } = null!;
 
 
         /// <summary>
@@ -201,6 +219,12 @@ namespace Pulumi.Tailscale
             set => _tags = value;
         }
 
+        /// <summary>
+        /// ID of the user who created this key, empty for keys created by OAuth clients.
+        /// </summary>
+        [Input("userId")]
+        public Input<string>? UserId { get; set; }
+
         public TailnetKeyArgs()
         {
         }
@@ -290,6 +314,12 @@ namespace Pulumi.Tailscale
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
+
+        /// <summary>
+        /// ID of the user who created this key, empty for keys created by OAuth clients.
+        /// </summary>
+        [Input("userId")]
+        public Input<string>? UserId { get; set; }
 
         public TailnetKeyState()
         {

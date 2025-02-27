@@ -42,6 +42,18 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// Tailnet key can be imported using the key id, e.g.,
+//
+// ```sh
+// $ pulumi import tailscale:index/tailnetKey:TailnetKey sample_key 123456789
+// ```
+//
+// -> ** Note ** the `key` attribute will not be populated on import as this attribute is only populated
+//
+// on resource creation.
 type TailnetKey struct {
 	pulumi.CustomResourceState
 
@@ -67,6 +79,8 @@ type TailnetKey struct {
 	Reusable pulumi.BoolPtrOutput `pulumi:"reusable"`
 	// List of tags to apply to the machines authenticated by the key.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
+	// ID of the user who created this key, empty for keys created by OAuth clients.
+	UserId pulumi.StringOutput `pulumi:"userId"`
 }
 
 // NewTailnetKey registers a new resource with the given unique name, arguments, and options.
@@ -125,6 +139,8 @@ type tailnetKeyState struct {
 	Reusable *bool `pulumi:"reusable"`
 	// List of tags to apply to the machines authenticated by the key.
 	Tags []string `pulumi:"tags"`
+	// ID of the user who created this key, empty for keys created by OAuth clients.
+	UserId *string `pulumi:"userId"`
 }
 
 type TailnetKeyState struct {
@@ -150,6 +166,8 @@ type TailnetKeyState struct {
 	Reusable pulumi.BoolPtrInput
 	// List of tags to apply to the machines authenticated by the key.
 	Tags pulumi.StringArrayInput
+	// ID of the user who created this key, empty for keys created by OAuth clients.
+	UserId pulumi.StringPtrInput
 }
 
 func (TailnetKeyState) ElementType() reflect.Type {
@@ -171,6 +189,8 @@ type tailnetKeyArgs struct {
 	Reusable *bool `pulumi:"reusable"`
 	// List of tags to apply to the machines authenticated by the key.
 	Tags []string `pulumi:"tags"`
+	// ID of the user who created this key, empty for keys created by OAuth clients.
+	UserId *string `pulumi:"userId"`
 }
 
 // The set of arguments for constructing a TailnetKey resource.
@@ -189,6 +209,8 @@ type TailnetKeyArgs struct {
 	Reusable pulumi.BoolPtrInput
 	// List of tags to apply to the machines authenticated by the key.
 	Tags pulumi.StringArrayInput
+	// ID of the user who created this key, empty for keys created by OAuth clients.
+	UserId pulumi.StringPtrInput
 }
 
 func (TailnetKeyArgs) ElementType() reflect.Type {
@@ -331,6 +353,11 @@ func (o TailnetKeyOutput) Reusable() pulumi.BoolPtrOutput {
 // List of tags to apply to the machines authenticated by the key.
 func (o TailnetKeyOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *TailnetKey) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// ID of the user who created this key, empty for keys created by OAuth clients.
+func (o TailnetKeyOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v *TailnetKey) pulumi.StringOutput { return v.UserId }).(pulumi.StringOutput)
 }
 
 type TailnetKeyArrayOutput struct{ *pulumi.OutputState }

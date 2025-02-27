@@ -80,6 +80,10 @@ export class Acl extends pulumi.CustomResource {
      * If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
      */
     public readonly overwriteExistingContent!: pulumi.Output<boolean | undefined>;
+    /**
+     * If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+     */
+    public readonly resetAclOnDestroy!: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a Acl resource with the given unique name, arguments, and options.
@@ -96,6 +100,7 @@ export class Acl extends pulumi.CustomResource {
             const state = argsOrState as AclState | undefined;
             resourceInputs["acl"] = state ? state.acl : undefined;
             resourceInputs["overwriteExistingContent"] = state ? state.overwriteExistingContent : undefined;
+            resourceInputs["resetAclOnDestroy"] = state ? state.resetAclOnDestroy : undefined;
         } else {
             const args = argsOrState as AclArgs | undefined;
             if ((!args || args.acl === undefined) && !opts.urn) {
@@ -103,6 +108,7 @@ export class Acl extends pulumi.CustomResource {
             }
             resourceInputs["acl"] = args ? args.acl : undefined;
             resourceInputs["overwriteExistingContent"] = args ? args.overwriteExistingContent : undefined;
+            resourceInputs["resetAclOnDestroy"] = args ? args.resetAclOnDestroy : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Acl.__pulumiType, name, resourceInputs, opts);
@@ -121,6 +127,10 @@ export interface AclState {
      * If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
      */
     overwriteExistingContent?: pulumi.Input<boolean>;
+    /**
+     * If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+     */
+    resetAclOnDestroy?: pulumi.Input<boolean>;
 }
 
 /**
@@ -135,4 +145,8 @@ export interface AclArgs {
      * If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
      */
     overwriteExistingContent?: pulumi.Input<boolean>;
+    /**
+     * If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+     */
+    resetAclOnDestroy?: pulumi.Input<boolean>;
 }

@@ -28,11 +28,39 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Example configuration for a non-S3 logstreaming endpoint
 //			_, err := tailscale.NewLogstreamConfiguration(ctx, "sample_logstream_configuration", &tailscale.LogstreamConfigurationArgs{
 //				LogType:         pulumi.String("configuration"),
 //				DestinationType: pulumi.String("panther"),
 //				Url:             pulumi.String("https://example.com"),
 //				Token:           pulumi.String("some-token"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Example configuration for an AWS S3 logstreaming endpoint
+//			_, err = tailscale.NewLogstreamConfiguration(ctx, "sample_logstream_configuration_s3", &tailscale.LogstreamConfigurationArgs{
+//				LogType:              pulumi.String("configuration"),
+//				DestinationType:      pulumi.String("s3"),
+//				S3Bucket:             pulumi.Any(tailscaleLogs.Id),
+//				S3Region:             pulumi.String("us-west-2"),
+//				S3AuthenticationType: pulumi.String("rolearn"),
+//				S3RoleArn:            pulumi.Any(tailscaleLogsWriter.Arn),
+//				S3ExternalId:         pulumi.Any(prod.ExternalId),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Example configuration for an S3-compatible logstreaming endpoint
+//			_, err = tailscale.NewLogstreamConfiguration(ctx, "sample_logstream_configuration_s3_compatible", &tailscale.LogstreamConfigurationArgs{
+//				LogType:              pulumi.String("configuration"),
+//				DestinationType:      pulumi.String("s3"),
+//				Url:                  pulumi.String("https://s3.example.com"),
+//				S3Bucket:             pulumi.String("example-bucket"),
+//				S3Region:             pulumi.String("us-west-2"),
+//				S3AuthenticationType: pulumi.String("accesskey"),
+//				S3AccessKeyId:        pulumi.String("some-access-key"),
+//				S3SecretAccessKey:    pulumi.String("some-secret-key"),
 //			})
 //			if err != nil {
 //				return err
@@ -57,10 +85,26 @@ type LogstreamConfiguration struct {
 	DestinationType pulumi.StringOutput `pulumi:"destinationType"`
 	// The type of log that is streamed to this endpoint.
 	LogType pulumi.StringOutput `pulumi:"logType"`
-	// The token/password with which log streams to this endpoint should be authenticated.
-	Token pulumi.StringOutput `pulumi:"token"`
-	// The URL to which log streams are being posted.
-	Url pulumi.StringOutput `pulumi:"url"`
+	// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
+	S3AccessKeyId pulumi.StringPtrOutput `pulumi:"s3AccessKeyId"`
+	// What type of authentication to use for S3. Required if destinationType is 's3'. Tailscale recommends using 'rolearn'.
+	S3AuthenticationType pulumi.StringPtrOutput `pulumi:"s3AuthenticationType"`
+	// The S3 bucket name. Required if destinationType is 's3'.
+	S3Bucket pulumi.StringPtrOutput `pulumi:"s3Bucket"`
+	// The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
+	S3ExternalId pulumi.StringPtrOutput `pulumi:"s3ExternalId"`
+	// An optional S3 key prefix to prepend to the auto-generated S3 key name.
+	S3KeyPrefix pulumi.StringPtrOutput `pulumi:"s3KeyPrefix"`
+	// The region in which the S3 bucket is located. Required if destinationType is 's3'.
+	S3Region pulumi.StringPtrOutput `pulumi:"s3Region"`
+	// ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
+	S3RoleArn pulumi.StringPtrOutput `pulumi:"s3RoleArn"`
+	// The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
+	S3SecretAccessKey pulumi.StringPtrOutput `pulumi:"s3SecretAccessKey"`
+	// The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is 's3'.
+	Token pulumi.StringPtrOutput `pulumi:"token"`
+	// The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
+	Url pulumi.StringPtrOutput `pulumi:"url"`
 	// The username with which log streams to this endpoint are authenticated. Only required if destinationType is 'elastic', defaults to 'user' if not set.
 	User pulumi.StringPtrOutput `pulumi:"user"`
 }
@@ -78,16 +122,14 @@ func NewLogstreamConfiguration(ctx *pulumi.Context,
 	if args.LogType == nil {
 		return nil, errors.New("invalid value for required argument 'LogType'")
 	}
-	if args.Token == nil {
-		return nil, errors.New("invalid value for required argument 'Token'")
-	}
-	if args.Url == nil {
-		return nil, errors.New("invalid value for required argument 'Url'")
+	if args.S3SecretAccessKey != nil {
+		args.S3SecretAccessKey = pulumi.ToSecret(args.S3SecretAccessKey).(pulumi.StringPtrInput)
 	}
 	if args.Token != nil {
-		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringInput)
+		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"s3SecretAccessKey",
 		"token",
 	})
 	opts = append(opts, secrets)
@@ -118,9 +160,25 @@ type logstreamConfigurationState struct {
 	DestinationType *string `pulumi:"destinationType"`
 	// The type of log that is streamed to this endpoint.
 	LogType *string `pulumi:"logType"`
-	// The token/password with which log streams to this endpoint should be authenticated.
+	// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
+	S3AccessKeyId *string `pulumi:"s3AccessKeyId"`
+	// What type of authentication to use for S3. Required if destinationType is 's3'. Tailscale recommends using 'rolearn'.
+	S3AuthenticationType *string `pulumi:"s3AuthenticationType"`
+	// The S3 bucket name. Required if destinationType is 's3'.
+	S3Bucket *string `pulumi:"s3Bucket"`
+	// The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
+	S3ExternalId *string `pulumi:"s3ExternalId"`
+	// An optional S3 key prefix to prepend to the auto-generated S3 key name.
+	S3KeyPrefix *string `pulumi:"s3KeyPrefix"`
+	// The region in which the S3 bucket is located. Required if destinationType is 's3'.
+	S3Region *string `pulumi:"s3Region"`
+	// ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
+	S3RoleArn *string `pulumi:"s3RoleArn"`
+	// The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
+	S3SecretAccessKey *string `pulumi:"s3SecretAccessKey"`
+	// The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is 's3'.
 	Token *string `pulumi:"token"`
-	// The URL to which log streams are being posted.
+	// The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
 	Url *string `pulumi:"url"`
 	// The username with which log streams to this endpoint are authenticated. Only required if destinationType is 'elastic', defaults to 'user' if not set.
 	User *string `pulumi:"user"`
@@ -131,9 +189,25 @@ type LogstreamConfigurationState struct {
 	DestinationType pulumi.StringPtrInput
 	// The type of log that is streamed to this endpoint.
 	LogType pulumi.StringPtrInput
-	// The token/password with which log streams to this endpoint should be authenticated.
+	// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
+	S3AccessKeyId pulumi.StringPtrInput
+	// What type of authentication to use for S3. Required if destinationType is 's3'. Tailscale recommends using 'rolearn'.
+	S3AuthenticationType pulumi.StringPtrInput
+	// The S3 bucket name. Required if destinationType is 's3'.
+	S3Bucket pulumi.StringPtrInput
+	// The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
+	S3ExternalId pulumi.StringPtrInput
+	// An optional S3 key prefix to prepend to the auto-generated S3 key name.
+	S3KeyPrefix pulumi.StringPtrInput
+	// The region in which the S3 bucket is located. Required if destinationType is 's3'.
+	S3Region pulumi.StringPtrInput
+	// ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
+	S3RoleArn pulumi.StringPtrInput
+	// The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
+	S3SecretAccessKey pulumi.StringPtrInput
+	// The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is 's3'.
 	Token pulumi.StringPtrInput
-	// The URL to which log streams are being posted.
+	// The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
 	Url pulumi.StringPtrInput
 	// The username with which log streams to this endpoint are authenticated. Only required if destinationType is 'elastic', defaults to 'user' if not set.
 	User pulumi.StringPtrInput
@@ -148,10 +222,26 @@ type logstreamConfigurationArgs struct {
 	DestinationType string `pulumi:"destinationType"`
 	// The type of log that is streamed to this endpoint.
 	LogType string `pulumi:"logType"`
-	// The token/password with which log streams to this endpoint should be authenticated.
-	Token string `pulumi:"token"`
-	// The URL to which log streams are being posted.
-	Url string `pulumi:"url"`
+	// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
+	S3AccessKeyId *string `pulumi:"s3AccessKeyId"`
+	// What type of authentication to use for S3. Required if destinationType is 's3'. Tailscale recommends using 'rolearn'.
+	S3AuthenticationType *string `pulumi:"s3AuthenticationType"`
+	// The S3 bucket name. Required if destinationType is 's3'.
+	S3Bucket *string `pulumi:"s3Bucket"`
+	// The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
+	S3ExternalId *string `pulumi:"s3ExternalId"`
+	// An optional S3 key prefix to prepend to the auto-generated S3 key name.
+	S3KeyPrefix *string `pulumi:"s3KeyPrefix"`
+	// The region in which the S3 bucket is located. Required if destinationType is 's3'.
+	S3Region *string `pulumi:"s3Region"`
+	// ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
+	S3RoleArn *string `pulumi:"s3RoleArn"`
+	// The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
+	S3SecretAccessKey *string `pulumi:"s3SecretAccessKey"`
+	// The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is 's3'.
+	Token *string `pulumi:"token"`
+	// The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
+	Url *string `pulumi:"url"`
 	// The username with which log streams to this endpoint are authenticated. Only required if destinationType is 'elastic', defaults to 'user' if not set.
 	User *string `pulumi:"user"`
 }
@@ -162,10 +252,26 @@ type LogstreamConfigurationArgs struct {
 	DestinationType pulumi.StringInput
 	// The type of log that is streamed to this endpoint.
 	LogType pulumi.StringInput
-	// The token/password with which log streams to this endpoint should be authenticated.
-	Token pulumi.StringInput
-	// The URL to which log streams are being posted.
-	Url pulumi.StringInput
+	// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
+	S3AccessKeyId pulumi.StringPtrInput
+	// What type of authentication to use for S3. Required if destinationType is 's3'. Tailscale recommends using 'rolearn'.
+	S3AuthenticationType pulumi.StringPtrInput
+	// The S3 bucket name. Required if destinationType is 's3'.
+	S3Bucket pulumi.StringPtrInput
+	// The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
+	S3ExternalId pulumi.StringPtrInput
+	// An optional S3 key prefix to prepend to the auto-generated S3 key name.
+	S3KeyPrefix pulumi.StringPtrInput
+	// The region in which the S3 bucket is located. Required if destinationType is 's3'.
+	S3Region pulumi.StringPtrInput
+	// ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
+	S3RoleArn pulumi.StringPtrInput
+	// The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
+	S3SecretAccessKey pulumi.StringPtrInput
+	// The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is 's3'.
+	Token pulumi.StringPtrInput
+	// The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
+	Url pulumi.StringPtrInput
 	// The username with which log streams to this endpoint are authenticated. Only required if destinationType is 'elastic', defaults to 'user' if not set.
 	User pulumi.StringPtrInput
 }
@@ -267,14 +373,54 @@ func (o LogstreamConfigurationOutput) LogType() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.LogType }).(pulumi.StringOutput)
 }
 
-// The token/password with which log streams to this endpoint should be authenticated.
-func (o LogstreamConfigurationOutput) Token() pulumi.StringOutput {
-	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.Token }).(pulumi.StringOutput)
+// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
+func (o LogstreamConfigurationOutput) S3AccessKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.S3AccessKeyId }).(pulumi.StringPtrOutput)
 }
 
-// The URL to which log streams are being posted.
-func (o LogstreamConfigurationOutput) Url() pulumi.StringOutput {
-	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
+// What type of authentication to use for S3. Required if destinationType is 's3'. Tailscale recommends using 'rolearn'.
+func (o LogstreamConfigurationOutput) S3AuthenticationType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.S3AuthenticationType }).(pulumi.StringPtrOutput)
+}
+
+// The S3 bucket name. Required if destinationType is 's3'.
+func (o LogstreamConfigurationOutput) S3Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.S3Bucket }).(pulumi.StringPtrOutput)
+}
+
+// The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
+func (o LogstreamConfigurationOutput) S3ExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.S3ExternalId }).(pulumi.StringPtrOutput)
+}
+
+// An optional S3 key prefix to prepend to the auto-generated S3 key name.
+func (o LogstreamConfigurationOutput) S3KeyPrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.S3KeyPrefix }).(pulumi.StringPtrOutput)
+}
+
+// The region in which the S3 bucket is located. Required if destinationType is 's3'.
+func (o LogstreamConfigurationOutput) S3Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.S3Region }).(pulumi.StringPtrOutput)
+}
+
+// ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
+func (o LogstreamConfigurationOutput) S3RoleArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.S3RoleArn }).(pulumi.StringPtrOutput)
+}
+
+// The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
+func (o LogstreamConfigurationOutput) S3SecretAccessKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.S3SecretAccessKey }).(pulumi.StringPtrOutput)
+}
+
+// The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is 's3'.
+func (o LogstreamConfigurationOutput) Token() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
+}
+
+// The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
+func (o LogstreamConfigurationOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.Url }).(pulumi.StringPtrOutput)
 }
 
 // The username with which log streams to this endpoint are authenticated. Only required if destinationType is 'elastic', defaults to 'user' if not set.

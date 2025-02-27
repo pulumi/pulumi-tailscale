@@ -123,6 +123,21 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.tags);
     }
 
+    /**
+     * ID of the user who created this key, empty for keys created by OAuth clients.
+     * 
+     */
+    @Import(name="userId")
+    private @Nullable Output<String> userId;
+
+    /**
+     * @return ID of the user who created this key, empty for keys created by OAuth clients.
+     * 
+     */
+    public Optional<Output<String>> userId() {
+        return Optional.ofNullable(this.userId);
+    }
+
     private TailnetKeyArgs() {}
 
     private TailnetKeyArgs(TailnetKeyArgs $) {
@@ -133,6 +148,7 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
         this.recreateIfInvalid = $.recreateIfInvalid;
         this.reusable = $.reusable;
         this.tags = $.tags;
+        this.userId = $.userId;
     }
 
     public static Builder builder() {
@@ -308,6 +324,27 @@ public final class TailnetKeyArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder tags(String... tags) {
             return tags(List.of(tags));
+        }
+
+        /**
+         * @param userId ID of the user who created this key, empty for keys created by OAuth clients.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder userId(@Nullable Output<String> userId) {
+            $.userId = userId;
+            return this;
+        }
+
+        /**
+         * @param userId ID of the user who created this key, empty for keys created by OAuth clients.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder userId(String userId) {
+            return userId(Output.of(userId));
         }
 
         public TailnetKeyArgs build() {

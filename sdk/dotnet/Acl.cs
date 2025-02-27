@@ -89,6 +89,12 @@ namespace Pulumi.Tailscale
         [Output("overwriteExistingContent")]
         public Output<bool?> OverwriteExistingContent { get; private set; } = null!;
 
+        /// <summary>
+        /// If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+        /// </summary>
+        [Output("resetAclOnDestroy")]
+        public Output<bool?> ResetAclOnDestroy { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Acl resource with the given unique name, arguments, and options.
@@ -147,6 +153,12 @@ namespace Pulumi.Tailscale
         [Input("overwriteExistingContent")]
         public Input<bool>? OverwriteExistingContent { get; set; }
 
+        /// <summary>
+        /// If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+        /// </summary>
+        [Input("resetAclOnDestroy")]
+        public Input<bool>? ResetAclOnDestroy { get; set; }
+
         public AclArgs()
         {
         }
@@ -166,6 +178,12 @@ namespace Pulumi.Tailscale
         /// </summary>
         [Input("overwriteExistingContent")]
         public Input<bool>? OverwriteExistingContent { get; set; }
+
+        /// <summary>
+        /// If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+        /// </summary>
+        [Input("resetAclOnDestroy")]
+        public Input<bool>? ResetAclOnDestroy { get; set; }
 
         public AclState()
         {

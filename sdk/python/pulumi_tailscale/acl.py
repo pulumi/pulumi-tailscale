@@ -20,15 +20,19 @@ __all__ = ['AclArgs', 'Acl']
 class AclArgs:
     def __init__(__self__, *,
                  acl: pulumi.Input[str],
-                 overwrite_existing_content: Optional[pulumi.Input[bool]] = None):
+                 overwrite_existing_content: Optional[pulumi.Input[bool]] = None,
+                 reset_acl_on_destroy: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Acl resource.
         :param pulumi.Input[str] acl: The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
         :param pulumi.Input[bool] overwrite_existing_content: If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+        :param pulumi.Input[bool] reset_acl_on_destroy: If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
         """
         pulumi.set(__self__, "acl", acl)
         if overwrite_existing_content is not None:
             pulumi.set(__self__, "overwrite_existing_content", overwrite_existing_content)
+        if reset_acl_on_destroy is not None:
+            pulumi.set(__self__, "reset_acl_on_destroy", reset_acl_on_destroy)
 
     @property
     @pulumi.getter
@@ -54,21 +58,37 @@ class AclArgs:
     def overwrite_existing_content(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "overwrite_existing_content", value)
 
+    @property
+    @pulumi.getter(name="resetAclOnDestroy")
+    def reset_acl_on_destroy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+        """
+        return pulumi.get(self, "reset_acl_on_destroy")
+
+    @reset_acl_on_destroy.setter
+    def reset_acl_on_destroy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "reset_acl_on_destroy", value)
+
 
 @pulumi.input_type
 class _AclState:
     def __init__(__self__, *,
                  acl: Optional[pulumi.Input[str]] = None,
-                 overwrite_existing_content: Optional[pulumi.Input[bool]] = None):
+                 overwrite_existing_content: Optional[pulumi.Input[bool]] = None,
+                 reset_acl_on_destroy: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering Acl resources.
         :param pulumi.Input[str] acl: The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
         :param pulumi.Input[bool] overwrite_existing_content: If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+        :param pulumi.Input[bool] reset_acl_on_destroy: If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
         """
         if acl is not None:
             pulumi.set(__self__, "acl", acl)
         if overwrite_existing_content is not None:
             pulumi.set(__self__, "overwrite_existing_content", overwrite_existing_content)
+        if reset_acl_on_destroy is not None:
+            pulumi.set(__self__, "reset_acl_on_destroy", reset_acl_on_destroy)
 
     @property
     @pulumi.getter
@@ -94,6 +114,18 @@ class _AclState:
     def overwrite_existing_content(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "overwrite_existing_content", value)
 
+    @property
+    @pulumi.getter(name="resetAclOnDestroy")
+    def reset_acl_on_destroy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+        """
+        return pulumi.get(self, "reset_acl_on_destroy")
+
+    @reset_acl_on_destroy.setter
+    def reset_acl_on_destroy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "reset_acl_on_destroy", value)
+
 
 class Acl(pulumi.CustomResource):
     @overload
@@ -102,6 +134,7 @@ class Acl(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  acl: Optional[pulumi.Input[str]] = None,
                  overwrite_existing_content: Optional[pulumi.Input[bool]] = None,
+                 reset_acl_on_destroy: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
@@ -148,6 +181,7 @@ class Acl(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl: The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
         :param pulumi.Input[bool] overwrite_existing_content: If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+        :param pulumi.Input[bool] reset_acl_on_destroy: If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
         """
         ...
     @overload
@@ -213,6 +247,7 @@ class Acl(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  acl: Optional[pulumi.Input[str]] = None,
                  overwrite_existing_content: Optional[pulumi.Input[bool]] = None,
+                 reset_acl_on_destroy: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -226,6 +261,7 @@ class Acl(pulumi.CustomResource):
                 raise TypeError("Missing required property 'acl'")
             __props__.__dict__["acl"] = acl
             __props__.__dict__["overwrite_existing_content"] = overwrite_existing_content
+            __props__.__dict__["reset_acl_on_destroy"] = reset_acl_on_destroy
         super(Acl, __self__).__init__(
             'tailscale:index/acl:Acl',
             resource_name,
@@ -237,7 +273,8 @@ class Acl(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             acl: Optional[pulumi.Input[str]] = None,
-            overwrite_existing_content: Optional[pulumi.Input[bool]] = None) -> 'Acl':
+            overwrite_existing_content: Optional[pulumi.Input[bool]] = None,
+            reset_acl_on_destroy: Optional[pulumi.Input[bool]] = None) -> 'Acl':
         """
         Get an existing Acl resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -247,6 +284,7 @@ class Acl(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl: The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
         :param pulumi.Input[bool] overwrite_existing_content: If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+        :param pulumi.Input[bool] reset_acl_on_destroy: If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -254,6 +292,7 @@ class Acl(pulumi.CustomResource):
 
         __props__.__dict__["acl"] = acl
         __props__.__dict__["overwrite_existing_content"] = overwrite_existing_content
+        __props__.__dict__["reset_acl_on_destroy"] = reset_acl_on_destroy
         return Acl(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -271,4 +310,12 @@ class Acl(pulumi.CustomResource):
         If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
         """
         return pulumi.get(self, "overwrite_existing_content")
+
+    @property
+    @pulumi.getter(name="resetAclOnDestroy")
+    def reset_acl_on_destroy(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+        """
+        return pulumi.get(self, "reset_acl_on_destroy")
 
