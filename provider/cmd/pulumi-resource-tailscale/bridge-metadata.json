@@ -4,6 +4,9 @@
             "tailscale_acl": {
                 "current": "tailscale:index/acl:Acl"
             },
+            "tailscale_aws_external_id": {
+                "current": "tailscale:index/awsExternalId:AwsExternalId"
+            },
             "tailscale_contacts": {
                 "current": "tailscale:index/contacts:Contacts",
                 "fields": {

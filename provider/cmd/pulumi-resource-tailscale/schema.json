@@ -331,6 +331,10 @@
                 "overwriteExistingContent": {
                     "type": "boolean",
                     "description": "If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten\n"
+                },
+                "resetAclOnDestroy": {
+                    "type": "boolean",
+                    "description": "If true, will reset the ACL for the Tailnet to the default when this resource is destroyed\n"
                 }
             },
             "required": [
@@ -349,6 +353,10 @@
                 "overwriteExistingContent": {
                     "type": "boolean",
                     "description": "If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten\n"
+                },
+                "resetAclOnDestroy": {
+                    "type": "boolean",
+                    "description": "If true, will reset the ACL for the Tailnet to the default when this resource is destroyed\n"
                 }
             },
             "requiredInputs": [
@@ -369,6 +377,41 @@
                     "overwriteExistingContent": {
                         "type": "boolean",
                         "description": "If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten\n"
+                    },
+                    "resetAclOnDestroy": {
+                        "type": "boolean",
+                        "description": "If true, will reset the ACL for the Tailnet to the default when this resource is destroyed\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "tailscale:index/awsExternalId:AwsExternalId": {
+            "description": "The aws_external_id resource allows you to mint an AWS External ID that Tailscale can use to assume an AWS IAM role that you create for the purposes of allowing Tailscale to stream logs to your S3 bucket. See the logstream_configuration resource for more details.\n\n",
+            "properties": {
+                "externalId": {
+                    "type": "string",
+                    "description": "The External ID that Tailscale will supply when assuming your role. You must reference this in your IAM role's trust policy. See https://docs.aws.amazon.com/IAM/latest/UserGuide/id*roles*common-scenarios_third-party.html for more information on external IDs.\n"
+                },
+                "tailscaleAwsAccountId": {
+                    "type": "string",
+                    "description": "The AWS account from which Tailscale will assume your role. You must reference this in your IAM role's trust policy. See https://docs.aws.amazon.com/IAM/latest/UserGuide/id*roles*common-scenarios_third-party.html for more information on external IDs.\n"
+                }
+            },
+            "required": [
+                "externalId",
+                "tailscaleAwsAccountId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AwsExternalId resources.\n",
+                "properties": {
+                    "externalId": {
+                        "type": "string",
+                        "description": "The External ID that Tailscale will supply when assuming your role. You must reference this in your IAM role's trust policy. See https://docs.aws.amazon.com/IAM/latest/UserGuide/id*roles*common-scenarios_third-party.html for more information on external IDs.\n"
+                    },
+                    "tailscaleAwsAccountId": {
+                        "type": "string",
+                        "description": "The AWS account from which Tailscale will assume your role. You must reference this in your IAM role's trust policy. See https://docs.aws.amazon.com/IAM/latest/UserGuide/id*roles*common-scenarios_third-party.html for more information on external IDs.\n"
                     }
                 },
                 "type": "object"
@@ -797,7 +840,7 @@
             }
         },
         "tailscale:index/logstreamConfiguration:LogstreamConfiguration": {
-            "description": "The logstream_configuration resource allows you to configure streaming configuration or network flow logs to a supported security information and event management (SIEM) system. See https://tailscale.com/kb/1255/log-streaming for more information.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleLogstreamConfiguration = new tailscale.LogstreamConfiguration(\"sample_logstream_configuration\", {\n    logType: \"configuration\",\n    destinationType: \"panther\",\n    url: \"https://example.com\",\n    token: \"some-token\",\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_logstream_configuration = tailscale.LogstreamConfiguration(\"sample_logstream_configuration\",\n    log_type=\"configuration\",\n    destination_type=\"panther\",\n    url=\"https://example.com\",\n    token=\"some-token\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleLogstreamConfiguration = new Tailscale.LogstreamConfiguration(\"sample_logstream_configuration\", new()\n    {\n        LogType = \"configuration\",\n        DestinationType = \"panther\",\n        Url = \"https://example.com\",\n        Token = \"some-token\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewLogstreamConfiguration(ctx, \"sample_logstream_configuration\", \u0026tailscale.LogstreamConfigurationArgs{\n\t\t\tLogType:         pulumi.String(\"configuration\"),\n\t\t\tDestinationType: pulumi.String(\"panther\"),\n\t\t\tUrl:             pulumi.String(\"https://example.com\"),\n\t\t\tToken:           pulumi.String(\"some-token\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.LogstreamConfiguration;\nimport com.pulumi.tailscale.LogstreamConfigurationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var sampleLogstreamConfiguration = new LogstreamConfiguration(\"sampleLogstreamConfiguration\", LogstreamConfigurationArgs.builder()\n            .logType(\"configuration\")\n            .destinationType(\"panther\")\n            .url(\"https://example.com\")\n            .token(\"some-token\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  sampleLogstreamConfiguration:\n    type: tailscale:LogstreamConfiguration\n    name: sample_logstream_configuration\n    properties:\n      logType: configuration\n      destinationType: panther\n      url: https://example.com\n      token: some-token\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nLogstream configuration can be imported using the logstream configuration id, e.g.,\n\n```sh\n$ pulumi import tailscale:index/logstreamConfiguration:LogstreamConfiguration sample_logstream_configuration 123456789\n```\n\n",
+            "description": "The logstream_configuration resource allows you to configure streaming configuration or network flow logs to a supported security information and event management (SIEM) system. See https://tailscale.com/kb/1255/log-streaming for more information.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\n// Example configuration for a non-S3 logstreaming endpoint\nconst sampleLogstreamConfiguration = new tailscale.LogstreamConfiguration(\"sample_logstream_configuration\", {\n    logType: \"configuration\",\n    destinationType: \"panther\",\n    url: \"https://example.com\",\n    token: \"some-token\",\n});\n// Example configuration for an AWS S3 logstreaming endpoint\nconst sampleLogstreamConfigurationS3 = new tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3\", {\n    logType: \"configuration\",\n    destinationType: \"s3\",\n    s3Bucket: tailscaleLogs.id,\n    s3Region: \"us-west-2\",\n    s3AuthenticationType: \"rolearn\",\n    s3RoleArn: tailscaleLogsWriter.arn,\n    s3ExternalId: prod.externalId,\n});\n// Example configuration for an S3-compatible logstreaming endpoint\nconst sampleLogstreamConfigurationS3Compatible = new tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3_compatible\", {\n    logType: \"configuration\",\n    destinationType: \"s3\",\n    url: \"https://s3.example.com\",\n    s3Bucket: \"example-bucket\",\n    s3Region: \"us-west-2\",\n    s3AuthenticationType: \"accesskey\",\n    s3AccessKeyId: \"some-access-key\",\n    s3SecretAccessKey: \"some-secret-key\",\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\n# Example configuration for a non-S3 logstreaming endpoint\nsample_logstream_configuration = tailscale.LogstreamConfiguration(\"sample_logstream_configuration\",\n    log_type=\"configuration\",\n    destination_type=\"panther\",\n    url=\"https://example.com\",\n    token=\"some-token\")\n# Example configuration for an AWS S3 logstreaming endpoint\nsample_logstream_configuration_s3 = tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3\",\n    log_type=\"configuration\",\n    destination_type=\"s3\",\n    s3_bucket=tailscale_logs[\"id\"],\n    s3_region=\"us-west-2\",\n    s3_authentication_type=\"rolearn\",\n    s3_role_arn=tailscale_logs_writer[\"arn\"],\n    s3_external_id=prod[\"externalId\"])\n# Example configuration for an S3-compatible logstreaming endpoint\nsample_logstream_configuration_s3_compatible = tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3_compatible\",\n    log_type=\"configuration\",\n    destination_type=\"s3\",\n    url=\"https://s3.example.com\",\n    s3_bucket=\"example-bucket\",\n    s3_region=\"us-west-2\",\n    s3_authentication_type=\"accesskey\",\n    s3_access_key_id=\"some-access-key\",\n    s3_secret_access_key=\"some-secret-key\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Example configuration for a non-S3 logstreaming endpoint\n    var sampleLogstreamConfiguration = new Tailscale.LogstreamConfiguration(\"sample_logstream_configuration\", new()\n    {\n        LogType = \"configuration\",\n        DestinationType = \"panther\",\n        Url = \"https://example.com\",\n        Token = \"some-token\",\n    });\n\n    // Example configuration for an AWS S3 logstreaming endpoint\n    var sampleLogstreamConfigurationS3 = new Tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3\", new()\n    {\n        LogType = \"configuration\",\n        DestinationType = \"s3\",\n        S3Bucket = tailscaleLogs.Id,\n        S3Region = \"us-west-2\",\n        S3AuthenticationType = \"rolearn\",\n        S3RoleArn = tailscaleLogsWriter.Arn,\n        S3ExternalId = prod.ExternalId,\n    });\n\n    // Example configuration for an S3-compatible logstreaming endpoint\n    var sampleLogstreamConfigurationS3Compatible = new Tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3_compatible\", new()\n    {\n        LogType = \"configuration\",\n        DestinationType = \"s3\",\n        Url = \"https://s3.example.com\",\n        S3Bucket = \"example-bucket\",\n        S3Region = \"us-west-2\",\n        S3AuthenticationType = \"accesskey\",\n        S3AccessKeyId = \"some-access-key\",\n        S3SecretAccessKey = \"some-secret-key\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Example configuration for a non-S3 logstreaming endpoint\n\t\t_, err := tailscale.NewLogstreamConfiguration(ctx, \"sample_logstream_configuration\", \u0026tailscale.LogstreamConfigurationArgs{\n\t\t\tLogType:         pulumi.String(\"configuration\"),\n\t\t\tDestinationType: pulumi.String(\"panther\"),\n\t\t\tUrl:             pulumi.String(\"https://example.com\"),\n\t\t\tToken:           pulumi.String(\"some-token\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Example configuration for an AWS S3 logstreaming endpoint\n\t\t_, err = tailscale.NewLogstreamConfiguration(ctx, \"sample_logstream_configuration_s3\", \u0026tailscale.LogstreamConfigurationArgs{\n\t\t\tLogType:              pulumi.String(\"configuration\"),\n\t\t\tDestinationType:      pulumi.String(\"s3\"),\n\t\t\tS3Bucket:             pulumi.Any(tailscaleLogs.Id),\n\t\t\tS3Region:             pulumi.String(\"us-west-2\"),\n\t\t\tS3AuthenticationType: pulumi.String(\"rolearn\"),\n\t\t\tS3RoleArn:            pulumi.Any(tailscaleLogsWriter.Arn),\n\t\t\tS3ExternalId:         pulumi.Any(prod.ExternalId),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Example configuration for an S3-compatible logstreaming endpoint\n\t\t_, err = tailscale.NewLogstreamConfiguration(ctx, \"sample_logstream_configuration_s3_compatible\", \u0026tailscale.LogstreamConfigurationArgs{\n\t\t\tLogType:              pulumi.String(\"configuration\"),\n\t\t\tDestinationType:      pulumi.String(\"s3\"),\n\t\t\tUrl:                  pulumi.String(\"https://s3.example.com\"),\n\t\t\tS3Bucket:             pulumi.String(\"example-bucket\"),\n\t\t\tS3Region:             pulumi.String(\"us-west-2\"),\n\t\t\tS3AuthenticationType: pulumi.String(\"accesskey\"),\n\t\t\tS3AccessKeyId:        pulumi.String(\"some-access-key\"),\n\t\t\tS3SecretAccessKey:    pulumi.String(\"some-secret-key\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.LogstreamConfiguration;\nimport com.pulumi.tailscale.LogstreamConfigurationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Example configuration for a non-S3 logstreaming endpoint\n        var sampleLogstreamConfiguration = new LogstreamConfiguration(\"sampleLogstreamConfiguration\", LogstreamConfigurationArgs.builder()\n            .logType(\"configuration\")\n            .destinationType(\"panther\")\n            .url(\"https://example.com\")\n            .token(\"some-token\")\n            .build());\n\n        // Example configuration for an AWS S3 logstreaming endpoint\n        var sampleLogstreamConfigurationS3 = new LogstreamConfiguration(\"sampleLogstreamConfigurationS3\", LogstreamConfigurationArgs.builder()\n            .logType(\"configuration\")\n            .destinationType(\"s3\")\n            .s3Bucket(tailscaleLogs.id())\n            .s3Region(\"us-west-2\")\n            .s3AuthenticationType(\"rolearn\")\n            .s3RoleArn(tailscaleLogsWriter.arn())\n            .s3ExternalId(prod.externalId())\n            .build());\n\n        // Example configuration for an S3-compatible logstreaming endpoint\n        var sampleLogstreamConfigurationS3Compatible = new LogstreamConfiguration(\"sampleLogstreamConfigurationS3Compatible\", LogstreamConfigurationArgs.builder()\n            .logType(\"configuration\")\n            .destinationType(\"s3\")\n            .url(\"https://s3.example.com\")\n            .s3Bucket(\"example-bucket\")\n            .s3Region(\"us-west-2\")\n            .s3AuthenticationType(\"accesskey\")\n            .s3AccessKeyId(\"some-access-key\")\n            .s3SecretAccessKey(\"some-secret-key\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Example configuration for a non-S3 logstreaming endpoint\n  sampleLogstreamConfiguration:\n    type: tailscale:LogstreamConfiguration\n    name: sample_logstream_configuration\n    properties:\n      logType: configuration\n      destinationType: panther\n      url: https://example.com\n      token: some-token\n  # Example configuration for an AWS S3 logstreaming endpoint\n  sampleLogstreamConfigurationS3:\n    type: tailscale:LogstreamConfiguration\n    name: sample_logstream_configuration_s3\n    properties:\n      logType: configuration\n      destinationType: s3\n      s3Bucket: ${tailscaleLogs.id}\n      s3Region: us-west-2\n      s3AuthenticationType: rolearn\n      s3RoleArn: ${tailscaleLogsWriter.arn}\n      s3ExternalId: ${prod.externalId}\n  # Example configuration for an S3-compatible logstreaming endpoint\n  sampleLogstreamConfigurationS3Compatible:\n    type: tailscale:LogstreamConfiguration\n    name: sample_logstream_configuration_s3_compatible\n    properties:\n      logType: configuration\n      destinationType: s3\n      url: https://s3.example.com\n      s3Bucket: example-bucket\n      s3Region: us-west-2\n      s3AuthenticationType: accesskey\n      s3AccessKeyId: some-access-key\n      s3SecretAccessKey: some-secret-key\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nLogstream configuration can be imported using the logstream configuration id, e.g.,\n\n```sh\n$ pulumi import tailscale:index/logstreamConfiguration:LogstreamConfiguration sample_logstream_configuration 123456789\n```\n\n",
             "properties": {
                 "destinationType": {
                     "type": "string",
@@ -807,14 +850,47 @@
                     "type": "string",
                     "description": "The type of log that is streamed to this endpoint.\n"
                 },
+                "s3AccessKeyId": {
+                    "type": "string",
+                    "description": "The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.\n"
+                },
+                "s3AuthenticationType": {
+                    "type": "string",
+                    "description": "What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.\n"
+                },
+                "s3Bucket": {
+                    "type": "string",
+                    "description": "The S3 bucket name. Required if destination_type is 's3'.\n"
+                },
+                "s3ExternalId": {
+                    "type": "string",
+                    "description": "The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.\n"
+                },
+                "s3KeyPrefix": {
+                    "type": "string",
+                    "description": "An optional S3 key prefix to prepend to the auto-generated S3 key name.\n"
+                },
+                "s3Region": {
+                    "type": "string",
+                    "description": "The region in which the S3 bucket is located. Required if destination_type is 's3'.\n"
+                },
+                "s3RoleArn": {
+                    "type": "string",
+                    "description": "ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.\n"
+                },
+                "s3SecretAccessKey": {
+                    "type": "string",
+                    "description": "The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.\n",
+                    "secret": true
+                },
                 "token": {
                     "type": "string",
-                    "description": "The token/password with which log streams to this endpoint should be authenticated.\n",
+                    "description": "The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.\n",
                     "secret": true
                 },
                 "url": {
                     "type": "string",
-                    "description": "The URL to which log streams are being posted.\n"
+                    "description": "The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.\n"
                 },
                 "user": {
                     "type": "string",
@@ -823,9 +899,7 @@
             },
             "required": [
                 "destinationType",
-                "logType",
-                "token",
-                "url"
+                "logType"
             ],
             "inputProperties": {
                 "destinationType": {
@@ -837,14 +911,47 @@
                     "description": "The type of log that is streamed to this endpoint.\n",
                     "willReplaceOnChanges": true
                 },
+                "s3AccessKeyId": {
+                    "type": "string",
+                    "description": "The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.\n"
+                },
+                "s3AuthenticationType": {
+                    "type": "string",
+                    "description": "What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.\n"
+                },
+                "s3Bucket": {
+                    "type": "string",
+                    "description": "The S3 bucket name. Required if destination_type is 's3'.\n"
+                },
+                "s3ExternalId": {
+                    "type": "string",
+                    "description": "The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.\n"
+                },
+                "s3KeyPrefix": {
+                    "type": "string",
+                    "description": "An optional S3 key prefix to prepend to the auto-generated S3 key name.\n"
+                },
+                "s3Region": {
+                    "type": "string",
+                    "description": "The region in which the S3 bucket is located. Required if destination_type is 's3'.\n"
+                },
+                "s3RoleArn": {
+                    "type": "string",
+                    "description": "ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.\n"
+                },
+                "s3SecretAccessKey": {
+                    "type": "string",
+                    "description": "The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.\n",
+                    "secret": true
+                },
                 "token": {
                     "type": "string",
-                    "description": "The token/password with which log streams to this endpoint should be authenticated.\n",
+                    "description": "The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.\n",
                     "secret": true
                 },
                 "url": {
                     "type": "string",
-                    "description": "The URL to which log streams are being posted.\n"
+                    "description": "The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.\n"
                 },
                 "user": {
                     "type": "string",
@@ -853,9 +960,7 @@
             },
             "requiredInputs": [
                 "destinationType",
-                "logType",
-                "token",
-                "url"
+                "logType"
             ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering LogstreamConfiguration resources.\n",
@@ -869,14 +974,47 @@
                         "description": "The type of log that is streamed to this endpoint.\n",
                         "willReplaceOnChanges": true
                     },
+                    "s3AccessKeyId": {
+                        "type": "string",
+                        "description": "The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.\n"
+                    },
+                    "s3AuthenticationType": {
+                        "type": "string",
+                        "description": "What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.\n"
+                    },
+                    "s3Bucket": {
+                        "type": "string",
+                        "description": "The S3 bucket name. Required if destination_type is 's3'.\n"
+                    },
+                    "s3ExternalId": {
+                        "type": "string",
+                        "description": "The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.\n"
+                    },
+                    "s3KeyPrefix": {
+                        "type": "string",
+                        "description": "An optional S3 key prefix to prepend to the auto-generated S3 key name.\n"
+                    },
+                    "s3Region": {
+                        "type": "string",
+                        "description": "The region in which the S3 bucket is located. Required if destination_type is 's3'.\n"
+                    },
+                    "s3RoleArn": {
+                        "type": "string",
+                        "description": "ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.\n"
+                    },
+                    "s3SecretAccessKey": {
+                        "type": "string",
+                        "description": "The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.\n",
+                        "secret": true
+                    },
                     "token": {
                         "type": "string",
-                        "description": "The token/password with which log streams to this endpoint should be authenticated.\n",
+                        "description": "The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.\n",
                         "secret": true
                     },
                     "url": {
                         "type": "string",
-                        "description": "The URL to which log streams are being posted.\n"
+                        "description": "The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.\n"
                     },
                     "user": {
                         "type": "string",
@@ -970,7 +1108,7 @@
             }
         },
         "tailscale:index/tailnetKey:TailnetKey": {
-            "description": "The tailnet_key resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleKey = new tailscale.TailnetKey(\"sample_key\", {\n    reusable: true,\n    ephemeral: false,\n    preauthorized: true,\n    expiry: 3600,\n    description: \"Sample key\",\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_key = tailscale.TailnetKey(\"sample_key\",\n    reusable=True,\n    ephemeral=False,\n    preauthorized=True,\n    expiry=3600,\n    description=\"Sample key\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleKey = new Tailscale.TailnetKey(\"sample_key\", new()\n    {\n        Reusable = true,\n        Ephemeral = false,\n        Preauthorized = true,\n        Expiry = 3600,\n        Description = \"Sample key\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewTailnetKey(ctx, \"sample_key\", \u0026tailscale.TailnetKeyArgs{\n\t\t\tReusable:      pulumi.Bool(true),\n\t\t\tEphemeral:     pulumi.Bool(false),\n\t\t\tPreauthorized: pulumi.Bool(true),\n\t\t\tExpiry:        pulumi.Int(3600),\n\t\t\tDescription:   pulumi.String(\"Sample key\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.TailnetKey;\nimport com.pulumi.tailscale.TailnetKeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var sampleKey = new TailnetKey(\"sampleKey\", TailnetKeyArgs.builder()\n            .reusable(true)\n            .ephemeral(false)\n            .preauthorized(true)\n            .expiry(3600)\n            .description(\"Sample key\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  sampleKey:\n    type: tailscale:TailnetKey\n    name: sample_key\n    properties:\n      reusable: true\n      ephemeral: false\n      preauthorized: true\n      expiry: 3600\n      description: Sample key\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "The tailnet_key resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleKey = new tailscale.TailnetKey(\"sample_key\", {\n    reusable: true,\n    ephemeral: false,\n    preauthorized: true,\n    expiry: 3600,\n    description: \"Sample key\",\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_key = tailscale.TailnetKey(\"sample_key\",\n    reusable=True,\n    ephemeral=False,\n    preauthorized=True,\n    expiry=3600,\n    description=\"Sample key\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleKey = new Tailscale.TailnetKey(\"sample_key\", new()\n    {\n        Reusable = true,\n        Ephemeral = false,\n        Preauthorized = true,\n        Expiry = 3600,\n        Description = \"Sample key\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewTailnetKey(ctx, \"sample_key\", \u0026tailscale.TailnetKeyArgs{\n\t\t\tReusable:      pulumi.Bool(true),\n\t\t\tEphemeral:     pulumi.Bool(false),\n\t\t\tPreauthorized: pulumi.Bool(true),\n\t\t\tExpiry:        pulumi.Int(3600),\n\t\t\tDescription:   pulumi.String(\"Sample key\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.TailnetKey;\nimport com.pulumi.tailscale.TailnetKeyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var sampleKey = new TailnetKey(\"sampleKey\", TailnetKeyArgs.builder()\n            .reusable(true)\n            .ephemeral(false)\n            .preauthorized(true)\n            .expiry(3600)\n            .description(\"Sample key\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  sampleKey:\n    type: tailscale:TailnetKey\n    name: sample_key\n    properties:\n      reusable: true\n      ephemeral: false\n      preauthorized: true\n      expiry: 3600\n      description: Sample key\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nTailnet key can be imported using the key id, e.g.,\n\n```sh\n$ pulumi import tailscale:index/tailnetKey:TailnetKey sample_key 123456789\n```\n\n-\u003e ** Note ** the `key` attribute will not be populated on import as this attribute is only populated\n\non resource creation.\n\n",
             "properties": {
                 "createdAt": {
                     "type": "string",
@@ -1019,13 +1157,18 @@
                         "type": "string"
                     },
                     "description": "List of tags to apply to the machines authenticated by the key.\n"
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "ID of the user who created this key, empty for keys created by OAuth clients.\n"
                 }
             },
             "required": [
                 "createdAt",
                 "expiresAt",
                 "invalid",
-                "key"
+                "key",
+                "userId"
             ],
             "inputProperties": {
                 "description": {
@@ -1064,6 +1207,10 @@
                     },
                     "description": "List of tags to apply to the machines authenticated by the key.\n",
                     "willReplaceOnChanges": true
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "ID of the user who created this key, empty for keys created by OAuth clients.\n"
                 }
             },
             "stateInputs": {
@@ -1122,6 +1269,10 @@
                         },
                         "description": "List of tags to apply to the machines authenticated by the key.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "userId": {
+                        "type": "string",
+                        "description": "ID of the user who created this key, empty for keys created by OAuth clients.\n"
                     }
                 },
                 "type": "object"

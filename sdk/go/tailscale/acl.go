@@ -94,6 +94,8 @@ type Acl struct {
 	Acl pulumi.StringOutput `pulumi:"acl"`
 	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
 	OverwriteExistingContent pulumi.BoolPtrOutput `pulumi:"overwriteExistingContent"`
+	// If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+	ResetAclOnDestroy pulumi.BoolPtrOutput `pulumi:"resetAclOnDestroy"`
 }
 
 // NewAcl registers a new resource with the given unique name, arguments, and options.
@@ -133,6 +135,8 @@ type aclState struct {
 	Acl *string `pulumi:"acl"`
 	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
 	OverwriteExistingContent *bool `pulumi:"overwriteExistingContent"`
+	// If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+	ResetAclOnDestroy *bool `pulumi:"resetAclOnDestroy"`
 }
 
 type AclState struct {
@@ -140,6 +144,8 @@ type AclState struct {
 	Acl pulumi.StringPtrInput
 	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
 	OverwriteExistingContent pulumi.BoolPtrInput
+	// If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+	ResetAclOnDestroy pulumi.BoolPtrInput
 }
 
 func (AclState) ElementType() reflect.Type {
@@ -151,6 +157,8 @@ type aclArgs struct {
 	Acl string `pulumi:"acl"`
 	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
 	OverwriteExistingContent *bool `pulumi:"overwriteExistingContent"`
+	// If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+	ResetAclOnDestroy *bool `pulumi:"resetAclOnDestroy"`
 }
 
 // The set of arguments for constructing a Acl resource.
@@ -159,6 +167,8 @@ type AclArgs struct {
 	Acl pulumi.StringInput
 	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
 	OverwriteExistingContent pulumi.BoolPtrInput
+	// If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+	ResetAclOnDestroy pulumi.BoolPtrInput
 }
 
 func (AclArgs) ElementType() reflect.Type {
@@ -256,6 +266,11 @@ func (o AclOutput) Acl() pulumi.StringOutput {
 // If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
 func (o AclOutput) OverwriteExistingContent() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Acl) pulumi.BoolPtrOutput { return v.OverwriteExistingContent }).(pulumi.BoolPtrOutput)
+}
+
+// If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+func (o AclOutput) ResetAclOnDestroy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Acl) pulumi.BoolPtrOutput { return v.ResetAclOnDestroy }).(pulumi.BoolPtrOutput)
 }
 
 type AclArrayOutput struct{ *pulumi.OutputState }

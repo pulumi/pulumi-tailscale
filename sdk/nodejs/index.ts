@@ -10,6 +10,11 @@ export type Acl = import("./acl").Acl;
 export const Acl: typeof import("./acl").Acl = null as any;
 utilities.lazyLoad(exports, ["Acl"], () => require("./acl"));
 
+export { AwsExternalIdArgs, AwsExternalIdState } from "./awsExternalId";
+export type AwsExternalId = import("./awsExternalId").AwsExternalId;
+export const AwsExternalId: typeof import("./awsExternalId").AwsExternalId = null as any;
+utilities.lazyLoad(exports, ["AwsExternalId"], () => require("./awsExternalId"));
+
 export { ContactsArgs, ContactsState } from "./contacts";
 export type Contacts = import("./contacts").Contacts;
 export const Contacts: typeof import("./contacts").Contacts = null as any;
@@ -131,6 +136,8 @@ const _module = {
         switch (type) {
             case "tailscale:index/acl:Acl":
                 return new Acl(name, <any>undefined, { urn })
+            case "tailscale:index/awsExternalId:AwsExternalId":
+                return new AwsExternalId(name, <any>undefined, { urn })
             case "tailscale:index/contacts:Contacts":
                 return new Contacts(name, <any>undefined, { urn })
             case "tailscale:index/deviceAuthorization:DeviceAuthorization":
@@ -165,6 +172,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("tailscale", "index/acl", _module)
+pulumi.runtime.registerResourceModule("tailscale", "index/awsExternalId", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/contacts", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/deviceAuthorization", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/deviceKey", _module)

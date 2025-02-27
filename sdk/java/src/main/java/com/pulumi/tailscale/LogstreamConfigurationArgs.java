@@ -47,33 +47,153 @@ public final class LogstreamConfigurationArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * The token/password with which log streams to this endpoint should be authenticated.
+     * The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is &#39;accesskey&#39;.
      * 
      */
-    @Import(name="token", required=true)
-    private Output<String> token;
+    @Import(name="s3AccessKeyId")
+    private @Nullable Output<String> s3AccessKeyId;
 
     /**
-     * @return The token/password with which log streams to this endpoint should be authenticated.
+     * @return The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is &#39;accesskey&#39;.
      * 
      */
-    public Output<String> token() {
-        return this.token;
+    public Optional<Output<String>> s3AccessKeyId() {
+        return Optional.ofNullable(this.s3AccessKeyId);
     }
 
     /**
-     * The URL to which log streams are being posted.
+     * What type of authentication to use for S3. Required if destination_type is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
      * 
      */
-    @Import(name="url", required=true)
-    private Output<String> url;
+    @Import(name="s3AuthenticationType")
+    private @Nullable Output<String> s3AuthenticationType;
 
     /**
-     * @return The URL to which log streams are being posted.
+     * @return What type of authentication to use for S3. Required if destination_type is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
      * 
      */
-    public Output<String> url() {
-        return this.url;
+    public Optional<Output<String>> s3AuthenticationType() {
+        return Optional.ofNullable(this.s3AuthenticationType);
+    }
+
+    /**
+     * The S3 bucket name. Required if destination_type is &#39;s3&#39;.
+     * 
+     */
+    @Import(name="s3Bucket")
+    private @Nullable Output<String> s3Bucket;
+
+    /**
+     * @return The S3 bucket name. Required if destination_type is &#39;s3&#39;.
+     * 
+     */
+    public Optional<Output<String>> s3Bucket() {
+        return Optional.ofNullable(this.s3Bucket);
+    }
+
+    /**
+     * The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is &#39;s3&#39; and s3*authentication*type is &#39;rolearn&#39;. This can be obtained via the tailscale*aws*external*id resource.
+     * 
+     */
+    @Import(name="s3ExternalId")
+    private @Nullable Output<String> s3ExternalId;
+
+    /**
+     * @return The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is &#39;s3&#39; and s3*authentication*type is &#39;rolearn&#39;. This can be obtained via the tailscale*aws*external*id resource.
+     * 
+     */
+    public Optional<Output<String>> s3ExternalId() {
+        return Optional.ofNullable(this.s3ExternalId);
+    }
+
+    /**
+     * An optional S3 key prefix to prepend to the auto-generated S3 key name.
+     * 
+     */
+    @Import(name="s3KeyPrefix")
+    private @Nullable Output<String> s3KeyPrefix;
+
+    /**
+     * @return An optional S3 key prefix to prepend to the auto-generated S3 key name.
+     * 
+     */
+    public Optional<Output<String>> s3KeyPrefix() {
+        return Optional.ofNullable(this.s3KeyPrefix);
+    }
+
+    /**
+     * The region in which the S3 bucket is located. Required if destination_type is &#39;s3&#39;.
+     * 
+     */
+    @Import(name="s3Region")
+    private @Nullable Output<String> s3Region;
+
+    /**
+     * @return The region in which the S3 bucket is located. Required if destination_type is &#39;s3&#39;.
+     * 
+     */
+    public Optional<Output<String>> s3Region() {
+        return Optional.ofNullable(this.s3Region);
+    }
+
+    /**
+     * ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is &#39;s3&#39; and s3*authentication_type is &#39;rolearn&#39;.
+     * 
+     */
+    @Import(name="s3RoleArn")
+    private @Nullable Output<String> s3RoleArn;
+
+    /**
+     * @return ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is &#39;s3&#39; and s3*authentication_type is &#39;rolearn&#39;.
+     * 
+     */
+    public Optional<Output<String>> s3RoleArn() {
+        return Optional.ofNullable(this.s3RoleArn);
+    }
+
+    /**
+     * The S3 secret access key. Required if destination*type is &#39;s3&#39; and s3*authentication_type is &#39;accesskey&#39;.
+     * 
+     */
+    @Import(name="s3SecretAccessKey")
+    private @Nullable Output<String> s3SecretAccessKey;
+
+    /**
+     * @return The S3 secret access key. Required if destination*type is &#39;s3&#39; and s3*authentication_type is &#39;accesskey&#39;.
+     * 
+     */
+    public Optional<Output<String>> s3SecretAccessKey() {
+        return Optional.ofNullable(this.s3SecretAccessKey);
+    }
+
+    /**
+     * The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is &#39;s3&#39;.
+     * 
+     */
+    @Import(name="token")
+    private @Nullable Output<String> token;
+
+    /**
+     * @return The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is &#39;s3&#39;.
+     * 
+     */
+    public Optional<Output<String>> token() {
+        return Optional.ofNullable(this.token);
+    }
+
+    /**
+     * The URL to which log streams are being posted. If destination_type is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
+     * 
+     */
+    @Import(name="url")
+    private @Nullable Output<String> url;
+
+    /**
+     * @return The URL to which log streams are being posted. If destination_type is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
+     * 
+     */
+    public Optional<Output<String>> url() {
+        return Optional.ofNullable(this.url);
     }
 
     /**
@@ -96,6 +216,14 @@ public final class LogstreamConfigurationArgs extends com.pulumi.resources.Resou
     private LogstreamConfigurationArgs(LogstreamConfigurationArgs $) {
         this.destinationType = $.destinationType;
         this.logType = $.logType;
+        this.s3AccessKeyId = $.s3AccessKeyId;
+        this.s3AuthenticationType = $.s3AuthenticationType;
+        this.s3Bucket = $.s3Bucket;
+        this.s3ExternalId = $.s3ExternalId;
+        this.s3KeyPrefix = $.s3KeyPrefix;
+        this.s3Region = $.s3Region;
+        this.s3RoleArn = $.s3RoleArn;
+        this.s3SecretAccessKey = $.s3SecretAccessKey;
         this.token = $.token;
         this.url = $.url;
         this.user = $.user;
@@ -162,18 +290,186 @@ public final class LogstreamConfigurationArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param token The token/password with which log streams to this endpoint should be authenticated.
+         * @param s3AccessKeyId The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is &#39;accesskey&#39;.
          * 
          * @return builder
          * 
          */
-        public Builder token(Output<String> token) {
+        public Builder s3AccessKeyId(@Nullable Output<String> s3AccessKeyId) {
+            $.s3AccessKeyId = s3AccessKeyId;
+            return this;
+        }
+
+        /**
+         * @param s3AccessKeyId The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is &#39;accesskey&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder s3AccessKeyId(String s3AccessKeyId) {
+            return s3AccessKeyId(Output.of(s3AccessKeyId));
+        }
+
+        /**
+         * @param s3AuthenticationType What type of authentication to use for S3. Required if destination_type is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder s3AuthenticationType(@Nullable Output<String> s3AuthenticationType) {
+            $.s3AuthenticationType = s3AuthenticationType;
+            return this;
+        }
+
+        /**
+         * @param s3AuthenticationType What type of authentication to use for S3. Required if destination_type is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder s3AuthenticationType(String s3AuthenticationType) {
+            return s3AuthenticationType(Output.of(s3AuthenticationType));
+        }
+
+        /**
+         * @param s3Bucket The S3 bucket name. Required if destination_type is &#39;s3&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder s3Bucket(@Nullable Output<String> s3Bucket) {
+            $.s3Bucket = s3Bucket;
+            return this;
+        }
+
+        /**
+         * @param s3Bucket The S3 bucket name. Required if destination_type is &#39;s3&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder s3Bucket(String s3Bucket) {
+            return s3Bucket(Output.of(s3Bucket));
+        }
+
+        /**
+         * @param s3ExternalId The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is &#39;s3&#39; and s3*authentication*type is &#39;rolearn&#39;. This can be obtained via the tailscale*aws*external*id resource.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder s3ExternalId(@Nullable Output<String> s3ExternalId) {
+            $.s3ExternalId = s3ExternalId;
+            return this;
+        }
+
+        /**
+         * @param s3ExternalId The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is &#39;s3&#39; and s3*authentication*type is &#39;rolearn&#39;. This can be obtained via the tailscale*aws*external*id resource.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder s3ExternalId(String s3ExternalId) {
+            return s3ExternalId(Output.of(s3ExternalId));
+        }
+
+        /**
+         * @param s3KeyPrefix An optional S3 key prefix to prepend to the auto-generated S3 key name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder s3KeyPrefix(@Nullable Output<String> s3KeyPrefix) {
+            $.s3KeyPrefix = s3KeyPrefix;
+            return this;
+        }
+
+        /**
+         * @param s3KeyPrefix An optional S3 key prefix to prepend to the auto-generated S3 key name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder s3KeyPrefix(String s3KeyPrefix) {
+            return s3KeyPrefix(Output.of(s3KeyPrefix));
+        }
+
+        /**
+         * @param s3Region The region in which the S3 bucket is located. Required if destination_type is &#39;s3&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder s3Region(@Nullable Output<String> s3Region) {
+            $.s3Region = s3Region;
+            return this;
+        }
+
+        /**
+         * @param s3Region The region in which the S3 bucket is located. Required if destination_type is &#39;s3&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder s3Region(String s3Region) {
+            return s3Region(Output.of(s3Region));
+        }
+
+        /**
+         * @param s3RoleArn ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is &#39;s3&#39; and s3*authentication_type is &#39;rolearn&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder s3RoleArn(@Nullable Output<String> s3RoleArn) {
+            $.s3RoleArn = s3RoleArn;
+            return this;
+        }
+
+        /**
+         * @param s3RoleArn ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is &#39;s3&#39; and s3*authentication_type is &#39;rolearn&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder s3RoleArn(String s3RoleArn) {
+            return s3RoleArn(Output.of(s3RoleArn));
+        }
+
+        /**
+         * @param s3SecretAccessKey The S3 secret access key. Required if destination*type is &#39;s3&#39; and s3*authentication_type is &#39;accesskey&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder s3SecretAccessKey(@Nullable Output<String> s3SecretAccessKey) {
+            $.s3SecretAccessKey = s3SecretAccessKey;
+            return this;
+        }
+
+        /**
+         * @param s3SecretAccessKey The S3 secret access key. Required if destination*type is &#39;s3&#39; and s3*authentication_type is &#39;accesskey&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder s3SecretAccessKey(String s3SecretAccessKey) {
+            return s3SecretAccessKey(Output.of(s3SecretAccessKey));
+        }
+
+        /**
+         * @param token The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is &#39;s3&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder token(@Nullable Output<String> token) {
             $.token = token;
             return this;
         }
 
         /**
-         * @param token The token/password with which log streams to this endpoint should be authenticated.
+         * @param token The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is &#39;s3&#39;.
          * 
          * @return builder
          * 
@@ -183,18 +479,18 @@ public final class LogstreamConfigurationArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param url The URL to which log streams are being posted.
+         * @param url The URL to which log streams are being posted. If destination_type is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
          * 
          * @return builder
          * 
          */
-        public Builder url(Output<String> url) {
+        public Builder url(@Nullable Output<String> url) {
             $.url = url;
             return this;
         }
 
         /**
-         * @param url The URL to which log streams are being posted.
+         * @param url The URL to which log streams are being posted. If destination_type is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
          * 
          * @return builder
          * 
@@ -230,12 +526,6 @@ public final class LogstreamConfigurationArgs extends com.pulumi.resources.Resou
             }
             if ($.logType == null) {
                 throw new MissingRequiredPropertyException("LogstreamConfigurationArgs", "logType");
-            }
-            if ($.token == null) {
-                throw new MissingRequiredPropertyException("LogstreamConfigurationArgs", "token");
-            }
-            if ($.url == null) {
-                throw new MissingRequiredPropertyException("LogstreamConfigurationArgs", "url");
             }
             return $;
         }

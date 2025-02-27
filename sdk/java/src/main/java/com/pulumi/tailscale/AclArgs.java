@@ -47,11 +47,27 @@ public final class AclArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.overwriteExistingContent);
     }
 
+    /**
+     * If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+     * 
+     */
+    @Import(name="resetAclOnDestroy")
+    private @Nullable Output<Boolean> resetAclOnDestroy;
+
+    /**
+     * @return If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+     * 
+     */
+    public Optional<Output<Boolean>> resetAclOnDestroy() {
+        return Optional.ofNullable(this.resetAclOnDestroy);
+    }
+
     private AclArgs() {}
 
     private AclArgs(AclArgs $) {
         this.acl = $.acl;
         this.overwriteExistingContent = $.overwriteExistingContent;
+        this.resetAclOnDestroy = $.resetAclOnDestroy;
     }
 
     public static Builder builder() {
@@ -112,6 +128,27 @@ public final class AclArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder overwriteExistingContent(Boolean overwriteExistingContent) {
             return overwriteExistingContent(Output.of(overwriteExistingContent));
+        }
+
+        /**
+         * @param resetAclOnDestroy If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+         * 
+         * @return builder
+         * 
+         */
+        public Builder resetAclOnDestroy(@Nullable Output<Boolean> resetAclOnDestroy) {
+            $.resetAclOnDestroy = resetAclOnDestroy;
+            return this;
+        }
+
+        /**
+         * @param resetAclOnDestroy If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+         * 
+         * @return builder
+         * 
+         */
+        public Builder resetAclOnDestroy(Boolean resetAclOnDestroy) {
+            return resetAclOnDestroy(Output.of(resetAclOnDestroy));
         }
 
         public AclArgs build() {

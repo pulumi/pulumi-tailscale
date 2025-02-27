@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "tailscale:index/acl:Acl":
 		r = &Acl{}
+	case "tailscale:index/awsExternalId:AwsExternalId":
+		r = &AwsExternalId{}
 	case "tailscale:index/contacts:Contacts":
 		r = &Contacts{}
 	case "tailscale:index/deviceAuthorization:DeviceAuthorization":
@@ -85,6 +87,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"tailscale",
 		"index/acl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"tailscale",
+		"index/awsExternalId",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

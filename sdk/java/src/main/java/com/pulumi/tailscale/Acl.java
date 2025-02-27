@@ -118,6 +118,20 @@ public class Acl extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> overwriteExistingContent() {
         return Codegen.optional(this.overwriteExistingContent);
     }
+    /**
+     * If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+     * 
+     */
+    @Export(name="resetAclOnDestroy", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> resetAclOnDestroy;
+
+    /**
+     * @return If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+     * 
+     */
+    public Output<Optional<Boolean>> resetAclOnDestroy() {
+        return Codegen.optional(this.resetAclOnDestroy);
+    }
 
     /**
      *

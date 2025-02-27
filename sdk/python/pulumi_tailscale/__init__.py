@@ -6,6 +6,7 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .acl import *
+from .aws_external_id import *
 from .contacts import *
 from .device_authorization import *
 from .device_key import *
@@ -46,6 +47,14 @@ _utilities.register(
   "fqn": "pulumi_tailscale",
   "classes": {
    "tailscale:index/acl:Acl": "Acl"
+  }
+ },
+ {
+  "pkg": "tailscale",
+  "mod": "index/awsExternalId",
+  "fqn": "pulumi_tailscale",
+  "classes": {
+   "tailscale:index/awsExternalId:AwsExternalId": "AwsExternalId"
   }
  },
  {

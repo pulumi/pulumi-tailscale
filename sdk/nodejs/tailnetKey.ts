@@ -21,6 +21,18 @@ import * as utilities from "./utilities";
  *     description: "Sample key",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Tailnet key can be imported using the key id, e.g.,
+ *
+ * ```sh
+ * $ pulumi import tailscale:index/tailnetKey:TailnetKey sample_key 123456789
+ * ```
+ *
+ * -> ** Note ** the `key` attribute will not be populated on import as this attribute is only populated
+ *
+ * on resource creation.
  */
 export class TailnetKey extends pulumi.CustomResource {
     /**
@@ -94,6 +106,10 @@ export class TailnetKey extends pulumi.CustomResource {
      * List of tags to apply to the machines authenticated by the key.
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
+    /**
+     * ID of the user who created this key, empty for keys created by OAuth clients.
+     */
+    public readonly userId!: pulumi.Output<string>;
 
     /**
      * Create a TailnetKey resource with the given unique name, arguments, and options.
@@ -119,6 +135,7 @@ export class TailnetKey extends pulumi.CustomResource {
             resourceInputs["recreateIfInvalid"] = state ? state.recreateIfInvalid : undefined;
             resourceInputs["reusable"] = state ? state.reusable : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["userId"] = state ? state.userId : undefined;
         } else {
             const args = argsOrState as TailnetKeyArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
@@ -128,6 +145,7 @@ export class TailnetKey extends pulumi.CustomResource {
             resourceInputs["recreateIfInvalid"] = args ? args.recreateIfInvalid : undefined;
             resourceInputs["reusable"] = args ? args.reusable : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["userId"] = args ? args.userId : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["expiresAt"] = undefined /*out*/;
             resourceInputs["invalid"] = undefined /*out*/;
@@ -188,6 +206,10 @@ export interface TailnetKeyState {
      * List of tags to apply to the machines authenticated by the key.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * ID of the user who created this key, empty for keys created by OAuth clients.
+     */
+    userId?: pulumi.Input<string>;
 }
 
 /**
@@ -222,4 +244,8 @@ export interface TailnetKeyArgs {
      * List of tags to apply to the machines authenticated by the key.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * ID of the user who created this key, empty for keys created by OAuth clients.
+     */
+    userId?: pulumi.Input<string>;
 }

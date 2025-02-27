@@ -25,7 +25,8 @@ class TailnetKeyArgs:
                  preauthorized: Optional[pulumi.Input[bool]] = None,
                  recreate_if_invalid: Optional[pulumi.Input[str]] = None,
                  reusable: Optional[pulumi.Input[bool]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a TailnetKey resource.
         :param pulumi.Input[str] description: A description of the key consisting of alphanumeric characters. Defaults to `""`.
@@ -35,6 +36,7 @@ class TailnetKeyArgs:
         :param pulumi.Input[str] recreate_if_invalid: Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
+        :param pulumi.Input[str] user_id: ID of the user who created this key, empty for keys created by OAuth clients.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -50,6 +52,8 @@ class TailnetKeyArgs:
             pulumi.set(__self__, "reusable", reusable)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
 
     @property
     @pulumi.getter
@@ -135,6 +139,18 @@ class TailnetKeyArgs:
     def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "tags", value)
 
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the user who created this key, empty for keys created by OAuth clients.
+        """
+        return pulumi.get(self, "user_id")
+
+    @user_id.setter
+    def user_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_id", value)
+
 
 @pulumi.input_type
 class _TailnetKeyState:
@@ -149,7 +165,8 @@ class _TailnetKeyState:
                  preauthorized: Optional[pulumi.Input[bool]] = None,
                  recreate_if_invalid: Optional[pulumi.Input[str]] = None,
                  reusable: Optional[pulumi.Input[bool]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering TailnetKey resources.
         :param pulumi.Input[str] created_at: The creation timestamp of the key in RFC3339 format
@@ -163,6 +180,7 @@ class _TailnetKeyState:
         :param pulumi.Input[str] recreate_if_invalid: Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
+        :param pulumi.Input[str] user_id: ID of the user who created this key, empty for keys created by OAuth clients.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -186,6 +204,8 @@ class _TailnetKeyState:
             pulumi.set(__self__, "reusable", reusable)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -319,6 +339,18 @@ class _TailnetKeyState:
     def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "tags", value)
 
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the user who created this key, empty for keys created by OAuth clients.
+        """
+        return pulumi.get(self, "user_id")
+
+    @user_id.setter
+    def user_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_id", value)
+
 
 class TailnetKey(pulumi.CustomResource):
     @overload
@@ -332,6 +364,7 @@ class TailnetKey(pulumi.CustomResource):
                  recreate_if_invalid: Optional[pulumi.Input[str]] = None,
                  reusable: Optional[pulumi.Input[bool]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         The tailnet_key resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information
@@ -350,6 +383,18 @@ class TailnetKey(pulumi.CustomResource):
             description="Sample key")
         ```
 
+        ## Import
+
+        Tailnet key can be imported using the key id, e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/tailnetKey:TailnetKey sample_key 123456789
+        ```
+
+        -> ** Note ** the `key` attribute will not be populated on import as this attribute is only populated
+
+        on resource creation.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A description of the key consisting of alphanumeric characters. Defaults to `""`.
@@ -359,6 +404,7 @@ class TailnetKey(pulumi.CustomResource):
         :param pulumi.Input[str] recreate_if_invalid: Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
+        :param pulumi.Input[str] user_id: ID of the user who created this key, empty for keys created by OAuth clients.
         """
         ...
     @overload
@@ -383,6 +429,18 @@ class TailnetKey(pulumi.CustomResource):
             description="Sample key")
         ```
 
+        ## Import
+
+        Tailnet key can be imported using the key id, e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/tailnetKey:TailnetKey sample_key 123456789
+        ```
+
+        -> ** Note ** the `key` attribute will not be populated on import as this attribute is only populated
+
+        on resource creation.
+
         :param str resource_name: The name of the resource.
         :param TailnetKeyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -405,6 +463,7 @@ class TailnetKey(pulumi.CustomResource):
                  recreate_if_invalid: Optional[pulumi.Input[str]] = None,
                  reusable: Optional[pulumi.Input[bool]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -421,6 +480,7 @@ class TailnetKey(pulumi.CustomResource):
             __props__.__dict__["recreate_if_invalid"] = recreate_if_invalid
             __props__.__dict__["reusable"] = reusable
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["user_id"] = user_id
             __props__.__dict__["created_at"] = None
             __props__.__dict__["expires_at"] = None
             __props__.__dict__["invalid"] = None
@@ -447,7 +507,8 @@ class TailnetKey(pulumi.CustomResource):
             preauthorized: Optional[pulumi.Input[bool]] = None,
             recreate_if_invalid: Optional[pulumi.Input[str]] = None,
             reusable: Optional[pulumi.Input[bool]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'TailnetKey':
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            user_id: Optional[pulumi.Input[str]] = None) -> 'TailnetKey':
         """
         Get an existing TailnetKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -466,6 +527,7 @@ class TailnetKey(pulumi.CustomResource):
         :param pulumi.Input[str] recreate_if_invalid: Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
         :param pulumi.Input[bool] reusable: Indicates if the key is reusable or single-use. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags to apply to the machines authenticated by the key.
+        :param pulumi.Input[str] user_id: ID of the user who created this key, empty for keys created by OAuth clients.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -482,6 +544,7 @@ class TailnetKey(pulumi.CustomResource):
         __props__.__dict__["recreate_if_invalid"] = recreate_if_invalid
         __props__.__dict__["reusable"] = reusable
         __props__.__dict__["tags"] = tags
+        __props__.__dict__["user_id"] = user_id
         return TailnetKey(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -571,4 +634,12 @@ class TailnetKey(pulumi.CustomResource):
         List of tags to apply to the machines authenticated by the key.
         """
         return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> pulumi.Output[str]:
+        """
+        ID of the user who created this key, empty for keys created by OAuth clients.
+        """
+        return pulumi.get(self, "user_id")
 

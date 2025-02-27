@@ -21,21 +21,55 @@ class LogstreamConfigurationArgs:
     def __init__(__self__, *,
                  destination_type: pulumi.Input[str],
                  log_type: pulumi.Input[str],
-                 token: pulumi.Input[str],
-                 url: pulumi.Input[str],
+                 s3_access_key_id: Optional[pulumi.Input[str]] = None,
+                 s3_authentication_type: Optional[pulumi.Input[str]] = None,
+                 s3_bucket: Optional[pulumi.Input[str]] = None,
+                 s3_external_id: Optional[pulumi.Input[str]] = None,
+                 s3_key_prefix: Optional[pulumi.Input[str]] = None,
+                 s3_region: Optional[pulumi.Input[str]] = None,
+                 s3_role_arn: Optional[pulumi.Input[str]] = None,
+                 s3_secret_access_key: Optional[pulumi.Input[str]] = None,
+                 token: Optional[pulumi.Input[str]] = None,
+                 url: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LogstreamConfiguration resource.
         :param pulumi.Input[str] destination_type: The type of system to which logs are being streamed.
         :param pulumi.Input[str] log_type: The type of log that is streamed to this endpoint.
-        :param pulumi.Input[str] token: The token/password with which log streams to this endpoint should be authenticated.
-        :param pulumi.Input[str] url: The URL to which log streams are being posted.
+        :param pulumi.Input[str] s3_access_key_id: The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
+        :param pulumi.Input[str] s3_authentication_type: What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        :param pulumi.Input[str] s3_bucket: The S3 bucket name. Required if destination_type is 's3'.
+        :param pulumi.Input[str] s3_external_id: The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
+        :param pulumi.Input[str] s3_key_prefix: An optional S3 key prefix to prepend to the auto-generated S3 key name.
+        :param pulumi.Input[str] s3_region: The region in which the S3 bucket is located. Required if destination_type is 's3'.
+        :param pulumi.Input[str] s3_role_arn: ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
+        :param pulumi.Input[str] s3_secret_access_key: The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
+        :param pulumi.Input[str] token: The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
+        :param pulumi.Input[str] url: The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         :param pulumi.Input[str] user: The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.
         """
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "log_type", log_type)
-        pulumi.set(__self__, "token", token)
-        pulumi.set(__self__, "url", url)
+        if s3_access_key_id is not None:
+            pulumi.set(__self__, "s3_access_key_id", s3_access_key_id)
+        if s3_authentication_type is not None:
+            pulumi.set(__self__, "s3_authentication_type", s3_authentication_type)
+        if s3_bucket is not None:
+            pulumi.set(__self__, "s3_bucket", s3_bucket)
+        if s3_external_id is not None:
+            pulumi.set(__self__, "s3_external_id", s3_external_id)
+        if s3_key_prefix is not None:
+            pulumi.set(__self__, "s3_key_prefix", s3_key_prefix)
+        if s3_region is not None:
+            pulumi.set(__self__, "s3_region", s3_region)
+        if s3_role_arn is not None:
+            pulumi.set(__self__, "s3_role_arn", s3_role_arn)
+        if s3_secret_access_key is not None:
+            pulumi.set(__self__, "s3_secret_access_key", s3_secret_access_key)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
         if user is not None:
             pulumi.set(__self__, "user", user)
 
@@ -64,27 +98,123 @@ class LogstreamConfigurationArgs:
         pulumi.set(self, "log_type", value)
 
     @property
-    @pulumi.getter
-    def token(self) -> pulumi.Input[str]:
+    @pulumi.getter(name="s3AccessKeyId")
+    def s3_access_key_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The token/password with which log streams to this endpoint should be authenticated.
+        The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
+        """
+        return pulumi.get(self, "s3_access_key_id")
+
+    @s3_access_key_id.setter
+    def s3_access_key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_access_key_id", value)
+
+    @property
+    @pulumi.getter(name="s3AuthenticationType")
+    def s3_authentication_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        """
+        return pulumi.get(self, "s3_authentication_type")
+
+    @s3_authentication_type.setter
+    def s3_authentication_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_authentication_type", value)
+
+    @property
+    @pulumi.getter(name="s3Bucket")
+    def s3_bucket(self) -> Optional[pulumi.Input[str]]:
+        """
+        The S3 bucket name. Required if destination_type is 's3'.
+        """
+        return pulumi.get(self, "s3_bucket")
+
+    @s3_bucket.setter
+    def s3_bucket(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_bucket", value)
+
+    @property
+    @pulumi.getter(name="s3ExternalId")
+    def s3_external_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
+        """
+        return pulumi.get(self, "s3_external_id")
+
+    @s3_external_id.setter
+    def s3_external_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_external_id", value)
+
+    @property
+    @pulumi.getter(name="s3KeyPrefix")
+    def s3_key_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional S3 key prefix to prepend to the auto-generated S3 key name.
+        """
+        return pulumi.get(self, "s3_key_prefix")
+
+    @s3_key_prefix.setter
+    def s3_key_prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_key_prefix", value)
+
+    @property
+    @pulumi.getter(name="s3Region")
+    def s3_region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region in which the S3 bucket is located. Required if destination_type is 's3'.
+        """
+        return pulumi.get(self, "s3_region")
+
+    @s3_region.setter
+    def s3_region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_region", value)
+
+    @property
+    @pulumi.getter(name="s3RoleArn")
+    def s3_role_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
+        """
+        return pulumi.get(self, "s3_role_arn")
+
+    @s3_role_arn.setter
+    def s3_role_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_role_arn", value)
+
+    @property
+    @pulumi.getter(name="s3SecretAccessKey")
+    def s3_secret_access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
+        """
+        return pulumi.get(self, "s3_secret_access_key")
+
+    @s3_secret_access_key.setter
+    def s3_secret_access_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_secret_access_key", value)
+
+    @property
+    @pulumi.getter
+    def token(self) -> Optional[pulumi.Input[str]]:
+        """
+        The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: pulumi.Input[str]):
+    def token(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "token", value)
 
     @property
     @pulumi.getter
-    def url(self) -> pulumi.Input[str]:
+    def url(self) -> Optional[pulumi.Input[str]]:
         """
-        The URL to which log streams are being posted.
+        The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         """
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: pulumi.Input[str]):
+    def url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "url", value)
 
     @property
@@ -105,6 +235,14 @@ class _LogstreamConfigurationState:
     def __init__(__self__, *,
                  destination_type: Optional[pulumi.Input[str]] = None,
                  log_type: Optional[pulumi.Input[str]] = None,
+                 s3_access_key_id: Optional[pulumi.Input[str]] = None,
+                 s3_authentication_type: Optional[pulumi.Input[str]] = None,
+                 s3_bucket: Optional[pulumi.Input[str]] = None,
+                 s3_external_id: Optional[pulumi.Input[str]] = None,
+                 s3_key_prefix: Optional[pulumi.Input[str]] = None,
+                 s3_region: Optional[pulumi.Input[str]] = None,
+                 s3_role_arn: Optional[pulumi.Input[str]] = None,
+                 s3_secret_access_key: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None):
@@ -112,14 +250,38 @@ class _LogstreamConfigurationState:
         Input properties used for looking up and filtering LogstreamConfiguration resources.
         :param pulumi.Input[str] destination_type: The type of system to which logs are being streamed.
         :param pulumi.Input[str] log_type: The type of log that is streamed to this endpoint.
-        :param pulumi.Input[str] token: The token/password with which log streams to this endpoint should be authenticated.
-        :param pulumi.Input[str] url: The URL to which log streams are being posted.
+        :param pulumi.Input[str] s3_access_key_id: The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
+        :param pulumi.Input[str] s3_authentication_type: What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        :param pulumi.Input[str] s3_bucket: The S3 bucket name. Required if destination_type is 's3'.
+        :param pulumi.Input[str] s3_external_id: The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
+        :param pulumi.Input[str] s3_key_prefix: An optional S3 key prefix to prepend to the auto-generated S3 key name.
+        :param pulumi.Input[str] s3_region: The region in which the S3 bucket is located. Required if destination_type is 's3'.
+        :param pulumi.Input[str] s3_role_arn: ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
+        :param pulumi.Input[str] s3_secret_access_key: The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
+        :param pulumi.Input[str] token: The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
+        :param pulumi.Input[str] url: The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         :param pulumi.Input[str] user: The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.
         """
         if destination_type is not None:
             pulumi.set(__self__, "destination_type", destination_type)
         if log_type is not None:
             pulumi.set(__self__, "log_type", log_type)
+        if s3_access_key_id is not None:
+            pulumi.set(__self__, "s3_access_key_id", s3_access_key_id)
+        if s3_authentication_type is not None:
+            pulumi.set(__self__, "s3_authentication_type", s3_authentication_type)
+        if s3_bucket is not None:
+            pulumi.set(__self__, "s3_bucket", s3_bucket)
+        if s3_external_id is not None:
+            pulumi.set(__self__, "s3_external_id", s3_external_id)
+        if s3_key_prefix is not None:
+            pulumi.set(__self__, "s3_key_prefix", s3_key_prefix)
+        if s3_region is not None:
+            pulumi.set(__self__, "s3_region", s3_region)
+        if s3_role_arn is not None:
+            pulumi.set(__self__, "s3_role_arn", s3_role_arn)
+        if s3_secret_access_key is not None:
+            pulumi.set(__self__, "s3_secret_access_key", s3_secret_access_key)
         if token is not None:
             pulumi.set(__self__, "token", token)
         if url is not None:
@@ -152,10 +314,106 @@ class _LogstreamConfigurationState:
         pulumi.set(self, "log_type", value)
 
     @property
+    @pulumi.getter(name="s3AccessKeyId")
+    def s3_access_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
+        """
+        return pulumi.get(self, "s3_access_key_id")
+
+    @s3_access_key_id.setter
+    def s3_access_key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_access_key_id", value)
+
+    @property
+    @pulumi.getter(name="s3AuthenticationType")
+    def s3_authentication_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        """
+        return pulumi.get(self, "s3_authentication_type")
+
+    @s3_authentication_type.setter
+    def s3_authentication_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_authentication_type", value)
+
+    @property
+    @pulumi.getter(name="s3Bucket")
+    def s3_bucket(self) -> Optional[pulumi.Input[str]]:
+        """
+        The S3 bucket name. Required if destination_type is 's3'.
+        """
+        return pulumi.get(self, "s3_bucket")
+
+    @s3_bucket.setter
+    def s3_bucket(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_bucket", value)
+
+    @property
+    @pulumi.getter(name="s3ExternalId")
+    def s3_external_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
+        """
+        return pulumi.get(self, "s3_external_id")
+
+    @s3_external_id.setter
+    def s3_external_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_external_id", value)
+
+    @property
+    @pulumi.getter(name="s3KeyPrefix")
+    def s3_key_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional S3 key prefix to prepend to the auto-generated S3 key name.
+        """
+        return pulumi.get(self, "s3_key_prefix")
+
+    @s3_key_prefix.setter
+    def s3_key_prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_key_prefix", value)
+
+    @property
+    @pulumi.getter(name="s3Region")
+    def s3_region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region in which the S3 bucket is located. Required if destination_type is 's3'.
+        """
+        return pulumi.get(self, "s3_region")
+
+    @s3_region.setter
+    def s3_region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_region", value)
+
+    @property
+    @pulumi.getter(name="s3RoleArn")
+    def s3_role_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
+        """
+        return pulumi.get(self, "s3_role_arn")
+
+    @s3_role_arn.setter
+    def s3_role_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_role_arn", value)
+
+    @property
+    @pulumi.getter(name="s3SecretAccessKey")
+    def s3_secret_access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
+        """
+        return pulumi.get(self, "s3_secret_access_key")
+
+    @s3_secret_access_key.setter
+    def s3_secret_access_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "s3_secret_access_key", value)
+
+    @property
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[str]]:
         """
-        The token/password with which log streams to this endpoint should be authenticated.
+        The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
         """
         return pulumi.get(self, "token")
 
@@ -167,7 +425,7 @@ class _LogstreamConfigurationState:
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[str]]:
         """
-        The URL to which log streams are being posted.
+        The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         """
         return pulumi.get(self, "url")
 
@@ -195,6 +453,14 @@ class LogstreamConfiguration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  destination_type: Optional[pulumi.Input[str]] = None,
                  log_type: Optional[pulumi.Input[str]] = None,
+                 s3_access_key_id: Optional[pulumi.Input[str]] = None,
+                 s3_authentication_type: Optional[pulumi.Input[str]] = None,
+                 s3_bucket: Optional[pulumi.Input[str]] = None,
+                 s3_external_id: Optional[pulumi.Input[str]] = None,
+                 s3_key_prefix: Optional[pulumi.Input[str]] = None,
+                 s3_region: Optional[pulumi.Input[str]] = None,
+                 s3_role_arn: Optional[pulumi.Input[str]] = None,
+                 s3_secret_access_key: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None,
@@ -208,11 +474,31 @@ class LogstreamConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumi_tailscale as tailscale
 
+        # Example configuration for a non-S3 logstreaming endpoint
         sample_logstream_configuration = tailscale.LogstreamConfiguration("sample_logstream_configuration",
             log_type="configuration",
             destination_type="panther",
             url="https://example.com",
             token="some-token")
+        # Example configuration for an AWS S3 logstreaming endpoint
+        sample_logstream_configuration_s3 = tailscale.LogstreamConfiguration("sample_logstream_configuration_s3",
+            log_type="configuration",
+            destination_type="s3",
+            s3_bucket=tailscale_logs["id"],
+            s3_region="us-west-2",
+            s3_authentication_type="rolearn",
+            s3_role_arn=tailscale_logs_writer["arn"],
+            s3_external_id=prod["externalId"])
+        # Example configuration for an S3-compatible logstreaming endpoint
+        sample_logstream_configuration_s3_compatible = tailscale.LogstreamConfiguration("sample_logstream_configuration_s3_compatible",
+            log_type="configuration",
+            destination_type="s3",
+            url="https://s3.example.com",
+            s3_bucket="example-bucket",
+            s3_region="us-west-2",
+            s3_authentication_type="accesskey",
+            s3_access_key_id="some-access-key",
+            s3_secret_access_key="some-secret-key")
         ```
 
         ## Import
@@ -227,8 +513,16 @@ class LogstreamConfiguration(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] destination_type: The type of system to which logs are being streamed.
         :param pulumi.Input[str] log_type: The type of log that is streamed to this endpoint.
-        :param pulumi.Input[str] token: The token/password with which log streams to this endpoint should be authenticated.
-        :param pulumi.Input[str] url: The URL to which log streams are being posted.
+        :param pulumi.Input[str] s3_access_key_id: The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
+        :param pulumi.Input[str] s3_authentication_type: What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        :param pulumi.Input[str] s3_bucket: The S3 bucket name. Required if destination_type is 's3'.
+        :param pulumi.Input[str] s3_external_id: The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
+        :param pulumi.Input[str] s3_key_prefix: An optional S3 key prefix to prepend to the auto-generated S3 key name.
+        :param pulumi.Input[str] s3_region: The region in which the S3 bucket is located. Required if destination_type is 's3'.
+        :param pulumi.Input[str] s3_role_arn: ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
+        :param pulumi.Input[str] s3_secret_access_key: The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
+        :param pulumi.Input[str] token: The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
+        :param pulumi.Input[str] url: The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         :param pulumi.Input[str] user: The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.
         """
         ...
@@ -246,11 +540,31 @@ class LogstreamConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumi_tailscale as tailscale
 
+        # Example configuration for a non-S3 logstreaming endpoint
         sample_logstream_configuration = tailscale.LogstreamConfiguration("sample_logstream_configuration",
             log_type="configuration",
             destination_type="panther",
             url="https://example.com",
             token="some-token")
+        # Example configuration for an AWS S3 logstreaming endpoint
+        sample_logstream_configuration_s3 = tailscale.LogstreamConfiguration("sample_logstream_configuration_s3",
+            log_type="configuration",
+            destination_type="s3",
+            s3_bucket=tailscale_logs["id"],
+            s3_region="us-west-2",
+            s3_authentication_type="rolearn",
+            s3_role_arn=tailscale_logs_writer["arn"],
+            s3_external_id=prod["externalId"])
+        # Example configuration for an S3-compatible logstreaming endpoint
+        sample_logstream_configuration_s3_compatible = tailscale.LogstreamConfiguration("sample_logstream_configuration_s3_compatible",
+            log_type="configuration",
+            destination_type="s3",
+            url="https://s3.example.com",
+            s3_bucket="example-bucket",
+            s3_region="us-west-2",
+            s3_authentication_type="accesskey",
+            s3_access_key_id="some-access-key",
+            s3_secret_access_key="some-secret-key")
         ```
 
         ## Import
@@ -278,6 +592,14 @@ class LogstreamConfiguration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  destination_type: Optional[pulumi.Input[str]] = None,
                  log_type: Optional[pulumi.Input[str]] = None,
+                 s3_access_key_id: Optional[pulumi.Input[str]] = None,
+                 s3_authentication_type: Optional[pulumi.Input[str]] = None,
+                 s3_bucket: Optional[pulumi.Input[str]] = None,
+                 s3_external_id: Optional[pulumi.Input[str]] = None,
+                 s3_key_prefix: Optional[pulumi.Input[str]] = None,
+                 s3_region: Optional[pulumi.Input[str]] = None,
+                 s3_role_arn: Optional[pulumi.Input[str]] = None,
+                 s3_secret_access_key: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None,
@@ -296,14 +618,18 @@ class LogstreamConfiguration(pulumi.CustomResource):
             if log_type is None and not opts.urn:
                 raise TypeError("Missing required property 'log_type'")
             __props__.__dict__["log_type"] = log_type
-            if token is None and not opts.urn:
-                raise TypeError("Missing required property 'token'")
+            __props__.__dict__["s3_access_key_id"] = s3_access_key_id
+            __props__.__dict__["s3_authentication_type"] = s3_authentication_type
+            __props__.__dict__["s3_bucket"] = s3_bucket
+            __props__.__dict__["s3_external_id"] = s3_external_id
+            __props__.__dict__["s3_key_prefix"] = s3_key_prefix
+            __props__.__dict__["s3_region"] = s3_region
+            __props__.__dict__["s3_role_arn"] = s3_role_arn
+            __props__.__dict__["s3_secret_access_key"] = None if s3_secret_access_key is None else pulumi.Output.secret(s3_secret_access_key)
             __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
-            if url is None and not opts.urn:
-                raise TypeError("Missing required property 'url'")
             __props__.__dict__["url"] = url
             __props__.__dict__["user"] = user
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["s3SecretAccessKey", "token"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(LogstreamConfiguration, __self__).__init__(
             'tailscale:index/logstreamConfiguration:LogstreamConfiguration',
@@ -317,6 +643,14 @@ class LogstreamConfiguration(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             destination_type: Optional[pulumi.Input[str]] = None,
             log_type: Optional[pulumi.Input[str]] = None,
+            s3_access_key_id: Optional[pulumi.Input[str]] = None,
+            s3_authentication_type: Optional[pulumi.Input[str]] = None,
+            s3_bucket: Optional[pulumi.Input[str]] = None,
+            s3_external_id: Optional[pulumi.Input[str]] = None,
+            s3_key_prefix: Optional[pulumi.Input[str]] = None,
+            s3_region: Optional[pulumi.Input[str]] = None,
+            s3_role_arn: Optional[pulumi.Input[str]] = None,
+            s3_secret_access_key: Optional[pulumi.Input[str]] = None,
             token: Optional[pulumi.Input[str]] = None,
             url: Optional[pulumi.Input[str]] = None,
             user: Optional[pulumi.Input[str]] = None) -> 'LogstreamConfiguration':
@@ -329,8 +663,16 @@ class LogstreamConfiguration(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] destination_type: The type of system to which logs are being streamed.
         :param pulumi.Input[str] log_type: The type of log that is streamed to this endpoint.
-        :param pulumi.Input[str] token: The token/password with which log streams to this endpoint should be authenticated.
-        :param pulumi.Input[str] url: The URL to which log streams are being posted.
+        :param pulumi.Input[str] s3_access_key_id: The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
+        :param pulumi.Input[str] s3_authentication_type: What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        :param pulumi.Input[str] s3_bucket: The S3 bucket name. Required if destination_type is 's3'.
+        :param pulumi.Input[str] s3_external_id: The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
+        :param pulumi.Input[str] s3_key_prefix: An optional S3 key prefix to prepend to the auto-generated S3 key name.
+        :param pulumi.Input[str] s3_region: The region in which the S3 bucket is located. Required if destination_type is 's3'.
+        :param pulumi.Input[str] s3_role_arn: ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
+        :param pulumi.Input[str] s3_secret_access_key: The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
+        :param pulumi.Input[str] token: The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
+        :param pulumi.Input[str] url: The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         :param pulumi.Input[str] user: The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -339,6 +681,14 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
         __props__.__dict__["destination_type"] = destination_type
         __props__.__dict__["log_type"] = log_type
+        __props__.__dict__["s3_access_key_id"] = s3_access_key_id
+        __props__.__dict__["s3_authentication_type"] = s3_authentication_type
+        __props__.__dict__["s3_bucket"] = s3_bucket
+        __props__.__dict__["s3_external_id"] = s3_external_id
+        __props__.__dict__["s3_key_prefix"] = s3_key_prefix
+        __props__.__dict__["s3_region"] = s3_region
+        __props__.__dict__["s3_role_arn"] = s3_role_arn
+        __props__.__dict__["s3_secret_access_key"] = s3_secret_access_key
         __props__.__dict__["token"] = token
         __props__.__dict__["url"] = url
         __props__.__dict__["user"] = user
@@ -361,18 +711,82 @@ class LogstreamConfiguration(pulumi.CustomResource):
         return pulumi.get(self, "log_type")
 
     @property
-    @pulumi.getter
-    def token(self) -> pulumi.Output[str]:
+    @pulumi.getter(name="s3AccessKeyId")
+    def s3_access_key_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The token/password with which log streams to this endpoint should be authenticated.
+        The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
+        """
+        return pulumi.get(self, "s3_access_key_id")
+
+    @property
+    @pulumi.getter(name="s3AuthenticationType")
+    def s3_authentication_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        """
+        return pulumi.get(self, "s3_authentication_type")
+
+    @property
+    @pulumi.getter(name="s3Bucket")
+    def s3_bucket(self) -> pulumi.Output[Optional[str]]:
+        """
+        The S3 bucket name. Required if destination_type is 's3'.
+        """
+        return pulumi.get(self, "s3_bucket")
+
+    @property
+    @pulumi.getter(name="s3ExternalId")
+    def s3_external_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
+        """
+        return pulumi.get(self, "s3_external_id")
+
+    @property
+    @pulumi.getter(name="s3KeyPrefix")
+    def s3_key_prefix(self) -> pulumi.Output[Optional[str]]:
+        """
+        An optional S3 key prefix to prepend to the auto-generated S3 key name.
+        """
+        return pulumi.get(self, "s3_key_prefix")
+
+    @property
+    @pulumi.getter(name="s3Region")
+    def s3_region(self) -> pulumi.Output[Optional[str]]:
+        """
+        The region in which the S3 bucket is located. Required if destination_type is 's3'.
+        """
+        return pulumi.get(self, "s3_region")
+
+    @property
+    @pulumi.getter(name="s3RoleArn")
+    def s3_role_arn(self) -> pulumi.Output[Optional[str]]:
+        """
+        ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
+        """
+        return pulumi.get(self, "s3_role_arn")
+
+    @property
+    @pulumi.getter(name="s3SecretAccessKey")
+    def s3_secret_access_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
+        """
+        return pulumi.get(self, "s3_secret_access_key")
+
+    @property
+    @pulumi.getter
+    def token(self) -> pulumi.Output[Optional[str]]:
+        """
+        The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
         """
         return pulumi.get(self, "token")
 
     @property
     @pulumi.getter
-    def url(self) -> pulumi.Output[str]:
+    def url(self) -> pulumi.Output[Optional[str]]:
         """
-        The URL to which log streams are being posted.
+        The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         """
         return pulumi.get(self, "url")
 

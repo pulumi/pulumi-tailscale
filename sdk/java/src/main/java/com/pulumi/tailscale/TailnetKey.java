@@ -59,6 +59,18 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
+ * ## Import
+ * 
+ * Tailnet key can be imported using the key id, e.g.,
+ * 
+ * ```sh
+ * $ pulumi import tailscale:index/tailnetKey:TailnetKey sample_key 123456789
+ * ```
+ * 
+ * -&gt; ** Note ** the `key` attribute will not be populated on import as this attribute is only populated
+ * 
+ * on resource creation.
+ * 
  */
 @ResourceType(type="tailscale:index/tailnetKey:TailnetKey")
 public class TailnetKey extends com.pulumi.resources.CustomResource {
@@ -215,6 +227,20 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> tags() {
         return Codegen.optional(this.tags);
+    }
+    /**
+     * ID of the user who created this key, empty for keys created by OAuth clients.
+     * 
+     */
+    @Export(name="userId", refs={String.class}, tree="[0]")
+    private Output<String> userId;
+
+    /**
+     * @return ID of the user who created this key, empty for keys created by OAuth clients.
+     * 
+     */
+    public Output<String> userId() {
+        return this.userId;
     }
 
     /**

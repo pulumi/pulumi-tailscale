@@ -22,12 +22,38 @@ namespace Pulumi.Tailscale
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     // Example configuration for a non-S3 logstreaming endpoint
     ///     var sampleLogstreamConfiguration = new Tailscale.LogstreamConfiguration("sample_logstream_configuration", new()
     ///     {
     ///         LogType = "configuration",
     ///         DestinationType = "panther",
     ///         Url = "https://example.com",
     ///         Token = "some-token",
+    ///     });
+    /// 
+    ///     // Example configuration for an AWS S3 logstreaming endpoint
+    ///     var sampleLogstreamConfigurationS3 = new Tailscale.LogstreamConfiguration("sample_logstream_configuration_s3", new()
+    ///     {
+    ///         LogType = "configuration",
+    ///         DestinationType = "s3",
+    ///         S3Bucket = tailscaleLogs.Id,
+    ///         S3Region = "us-west-2",
+    ///         S3AuthenticationType = "rolearn",
+    ///         S3RoleArn = tailscaleLogsWriter.Arn,
+    ///         S3ExternalId = prod.ExternalId,
+    ///     });
+    /// 
+    ///     // Example configuration for an S3-compatible logstreaming endpoint
+    ///     var sampleLogstreamConfigurationS3Compatible = new Tailscale.LogstreamConfiguration("sample_logstream_configuration_s3_compatible", new()
+    ///     {
+    ///         LogType = "configuration",
+    ///         DestinationType = "s3",
+    ///         Url = "https://s3.example.com",
+    ///         S3Bucket = "example-bucket",
+    ///         S3Region = "us-west-2",
+    ///         S3AuthenticationType = "accesskey",
+    ///         S3AccessKeyId = "some-access-key",
+    ///         S3SecretAccessKey = "some-secret-key",
     ///     });
     /// 
     /// });
@@ -57,16 +83,64 @@ namespace Pulumi.Tailscale
         public Output<string> LogType { get; private set; } = null!;
 
         /// <summary>
-        /// The token/password with which log streams to this endpoint should be authenticated.
+        /// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
         /// </summary>
-        [Output("token")]
-        public Output<string> Token { get; private set; } = null!;
+        [Output("s3AccessKeyId")]
+        public Output<string?> S3AccessKeyId { get; private set; } = null!;
 
         /// <summary>
-        /// The URL to which log streams are being posted.
+        /// What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        /// </summary>
+        [Output("s3AuthenticationType")]
+        public Output<string?> S3AuthenticationType { get; private set; } = null!;
+
+        /// <summary>
+        /// The S3 bucket name. Required if destination_type is 's3'.
+        /// </summary>
+        [Output("s3Bucket")]
+        public Output<string?> S3Bucket { get; private set; } = null!;
+
+        /// <summary>
+        /// The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
+        /// </summary>
+        [Output("s3ExternalId")]
+        public Output<string?> S3ExternalId { get; private set; } = null!;
+
+        /// <summary>
+        /// An optional S3 key prefix to prepend to the auto-generated S3 key name.
+        /// </summary>
+        [Output("s3KeyPrefix")]
+        public Output<string?> S3KeyPrefix { get; private set; } = null!;
+
+        /// <summary>
+        /// The region in which the S3 bucket is located. Required if destination_type is 's3'.
+        /// </summary>
+        [Output("s3Region")]
+        public Output<string?> S3Region { get; private set; } = null!;
+
+        /// <summary>
+        /// ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
+        /// </summary>
+        [Output("s3RoleArn")]
+        public Output<string?> S3RoleArn { get; private set; } = null!;
+
+        /// <summary>
+        /// The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
+        /// </summary>
+        [Output("s3SecretAccessKey")]
+        public Output<string?> S3SecretAccessKey { get; private set; } = null!;
+
+        /// <summary>
+        /// The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
+        /// </summary>
+        [Output("token")]
+        public Output<string?> Token { get; private set; } = null!;
+
+        /// <summary>
+        /// The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         /// </summary>
         [Output("url")]
-        public Output<string> Url { get; private set; } = null!;
+        public Output<string?> Url { get; private set; } = null!;
 
         /// <summary>
         /// The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.
@@ -99,6 +173,7 @@ namespace Pulumi.Tailscale
                 Version = Utilities.Version,
                 AdditionalSecretOutputs =
                 {
+                    "s3SecretAccessKey",
                     "token",
                 },
             };
@@ -136,11 +211,69 @@ namespace Pulumi.Tailscale
         [Input("logType", required: true)]
         public Input<string> LogType { get; set; } = null!;
 
-        [Input("token", required: true)]
+        /// <summary>
+        /// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
+        /// </summary>
+        [Input("s3AccessKeyId")]
+        public Input<string>? S3AccessKeyId { get; set; }
+
+        /// <summary>
+        /// What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        /// </summary>
+        [Input("s3AuthenticationType")]
+        public Input<string>? S3AuthenticationType { get; set; }
+
+        /// <summary>
+        /// The S3 bucket name. Required if destination_type is 's3'.
+        /// </summary>
+        [Input("s3Bucket")]
+        public Input<string>? S3Bucket { get; set; }
+
+        /// <summary>
+        /// The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
+        /// </summary>
+        [Input("s3ExternalId")]
+        public Input<string>? S3ExternalId { get; set; }
+
+        /// <summary>
+        /// An optional S3 key prefix to prepend to the auto-generated S3 key name.
+        /// </summary>
+        [Input("s3KeyPrefix")]
+        public Input<string>? S3KeyPrefix { get; set; }
+
+        /// <summary>
+        /// The region in which the S3 bucket is located. Required if destination_type is 's3'.
+        /// </summary>
+        [Input("s3Region")]
+        public Input<string>? S3Region { get; set; }
+
+        /// <summary>
+        /// ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
+        /// </summary>
+        [Input("s3RoleArn")]
+        public Input<string>? S3RoleArn { get; set; }
+
+        [Input("s3SecretAccessKey")]
+        private Input<string>? _s3SecretAccessKey;
+
+        /// <summary>
+        /// The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
+        /// </summary>
+        public Input<string>? S3SecretAccessKey
+        {
+            get => _s3SecretAccessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _s3SecretAccessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("token")]
         private Input<string>? _token;
 
         /// <summary>
-        /// The token/password with which log streams to this endpoint should be authenticated.
+        /// The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
         /// </summary>
         public Input<string>? Token
         {
@@ -153,10 +286,10 @@ namespace Pulumi.Tailscale
         }
 
         /// <summary>
-        /// The URL to which log streams are being posted.
+        /// The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         /// </summary>
-        [Input("url", required: true)]
-        public Input<string> Url { get; set; } = null!;
+        [Input("url")]
+        public Input<string>? Url { get; set; }
 
         /// <summary>
         /// The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.
@@ -184,11 +317,69 @@ namespace Pulumi.Tailscale
         [Input("logType")]
         public Input<string>? LogType { get; set; }
 
+        /// <summary>
+        /// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
+        /// </summary>
+        [Input("s3AccessKeyId")]
+        public Input<string>? S3AccessKeyId { get; set; }
+
+        /// <summary>
+        /// What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        /// </summary>
+        [Input("s3AuthenticationType")]
+        public Input<string>? S3AuthenticationType { get; set; }
+
+        /// <summary>
+        /// The S3 bucket name. Required if destination_type is 's3'.
+        /// </summary>
+        [Input("s3Bucket")]
+        public Input<string>? S3Bucket { get; set; }
+
+        /// <summary>
+        /// The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
+        /// </summary>
+        [Input("s3ExternalId")]
+        public Input<string>? S3ExternalId { get; set; }
+
+        /// <summary>
+        /// An optional S3 key prefix to prepend to the auto-generated S3 key name.
+        /// </summary>
+        [Input("s3KeyPrefix")]
+        public Input<string>? S3KeyPrefix { get; set; }
+
+        /// <summary>
+        /// The region in which the S3 bucket is located. Required if destination_type is 's3'.
+        /// </summary>
+        [Input("s3Region")]
+        public Input<string>? S3Region { get; set; }
+
+        /// <summary>
+        /// ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
+        /// </summary>
+        [Input("s3RoleArn")]
+        public Input<string>? S3RoleArn { get; set; }
+
+        [Input("s3SecretAccessKey")]
+        private Input<string>? _s3SecretAccessKey;
+
+        /// <summary>
+        /// The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
+        /// </summary>
+        public Input<string>? S3SecretAccessKey
+        {
+            get => _s3SecretAccessKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _s3SecretAccessKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         [Input("token")]
         private Input<string>? _token;
 
         /// <summary>
-        /// The token/password with which log streams to this endpoint should be authenticated.
+        /// The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
         /// </summary>
         public Input<string>? Token
         {
@@ -201,7 +392,7 @@ namespace Pulumi.Tailscale
         }
 
         /// <summary>
-        /// The URL to which log streams are being posted.
+        /// The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }

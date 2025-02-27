@@ -43,11 +43,35 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Example configuration for a non-S3 logstreaming endpoint
  *         var sampleLogstreamConfiguration = new LogstreamConfiguration("sampleLogstreamConfiguration", LogstreamConfigurationArgs.builder()
  *             .logType("configuration")
  *             .destinationType("panther")
  *             .url("https://example.com")
  *             .token("some-token")
+ *             .build());
+ * 
+ *         // Example configuration for an AWS S3 logstreaming endpoint
+ *         var sampleLogstreamConfigurationS3 = new LogstreamConfiguration("sampleLogstreamConfigurationS3", LogstreamConfigurationArgs.builder()
+ *             .logType("configuration")
+ *             .destinationType("s3")
+ *             .s3Bucket(tailscaleLogs.id())
+ *             .s3Region("us-west-2")
+ *             .s3AuthenticationType("rolearn")
+ *             .s3RoleArn(tailscaleLogsWriter.arn())
+ *             .s3ExternalId(prod.externalId())
+ *             .build());
+ * 
+ *         // Example configuration for an S3-compatible logstreaming endpoint
+ *         var sampleLogstreamConfigurationS3Compatible = new LogstreamConfiguration("sampleLogstreamConfigurationS3Compatible", LogstreamConfigurationArgs.builder()
+ *             .logType("configuration")
+ *             .destinationType("s3")
+ *             .url("https://s3.example.com")
+ *             .s3Bucket("example-bucket")
+ *             .s3Region("us-west-2")
+ *             .s3AuthenticationType("accesskey")
+ *             .s3AccessKeyId("some-access-key")
+ *             .s3SecretAccessKey("some-secret-key")
  *             .build());
  * 
  *     }
@@ -96,32 +120,144 @@ public class LogstreamConfiguration extends com.pulumi.resources.CustomResource 
         return this.logType;
     }
     /**
-     * The token/password with which log streams to this endpoint should be authenticated.
+     * The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is &#39;accesskey&#39;.
+     * 
+     */
+    @Export(name="s3AccessKeyId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> s3AccessKeyId;
+
+    /**
+     * @return The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is &#39;accesskey&#39;.
+     * 
+     */
+    public Output<Optional<String>> s3AccessKeyId() {
+        return Codegen.optional(this.s3AccessKeyId);
+    }
+    /**
+     * What type of authentication to use for S3. Required if destination_type is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
+     * 
+     */
+    @Export(name="s3AuthenticationType", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> s3AuthenticationType;
+
+    /**
+     * @return What type of authentication to use for S3. Required if destination_type is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
+     * 
+     */
+    public Output<Optional<String>> s3AuthenticationType() {
+        return Codegen.optional(this.s3AuthenticationType);
+    }
+    /**
+     * The S3 bucket name. Required if destination_type is &#39;s3&#39;.
+     * 
+     */
+    @Export(name="s3Bucket", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> s3Bucket;
+
+    /**
+     * @return The S3 bucket name. Required if destination_type is &#39;s3&#39;.
+     * 
+     */
+    public Output<Optional<String>> s3Bucket() {
+        return Codegen.optional(this.s3Bucket);
+    }
+    /**
+     * The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is &#39;s3&#39; and s3*authentication*type is &#39;rolearn&#39;. This can be obtained via the tailscale*aws*external*id resource.
+     * 
+     */
+    @Export(name="s3ExternalId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> s3ExternalId;
+
+    /**
+     * @return The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is &#39;s3&#39; and s3*authentication*type is &#39;rolearn&#39;. This can be obtained via the tailscale*aws*external*id resource.
+     * 
+     */
+    public Output<Optional<String>> s3ExternalId() {
+        return Codegen.optional(this.s3ExternalId);
+    }
+    /**
+     * An optional S3 key prefix to prepend to the auto-generated S3 key name.
+     * 
+     */
+    @Export(name="s3KeyPrefix", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> s3KeyPrefix;
+
+    /**
+     * @return An optional S3 key prefix to prepend to the auto-generated S3 key name.
+     * 
+     */
+    public Output<Optional<String>> s3KeyPrefix() {
+        return Codegen.optional(this.s3KeyPrefix);
+    }
+    /**
+     * The region in which the S3 bucket is located. Required if destination_type is &#39;s3&#39;.
+     * 
+     */
+    @Export(name="s3Region", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> s3Region;
+
+    /**
+     * @return The region in which the S3 bucket is located. Required if destination_type is &#39;s3&#39;.
+     * 
+     */
+    public Output<Optional<String>> s3Region() {
+        return Codegen.optional(this.s3Region);
+    }
+    /**
+     * ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is &#39;s3&#39; and s3*authentication_type is &#39;rolearn&#39;.
+     * 
+     */
+    @Export(name="s3RoleArn", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> s3RoleArn;
+
+    /**
+     * @return ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is &#39;s3&#39; and s3*authentication_type is &#39;rolearn&#39;.
+     * 
+     */
+    public Output<Optional<String>> s3RoleArn() {
+        return Codegen.optional(this.s3RoleArn);
+    }
+    /**
+     * The S3 secret access key. Required if destination*type is &#39;s3&#39; and s3*authentication_type is &#39;accesskey&#39;.
+     * 
+     */
+    @Export(name="s3SecretAccessKey", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> s3SecretAccessKey;
+
+    /**
+     * @return The S3 secret access key. Required if destination*type is &#39;s3&#39; and s3*authentication_type is &#39;accesskey&#39;.
+     * 
+     */
+    public Output<Optional<String>> s3SecretAccessKey() {
+        return Codegen.optional(this.s3SecretAccessKey);
+    }
+    /**
+     * The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is &#39;s3&#39;.
      * 
      */
     @Export(name="token", refs={String.class}, tree="[0]")
-    private Output<String> token;
+    private Output</* @Nullable */ String> token;
 
     /**
-     * @return The token/password with which log streams to this endpoint should be authenticated.
+     * @return The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is &#39;s3&#39;.
      * 
      */
-    public Output<String> token() {
-        return this.token;
+    public Output<Optional<String>> token() {
+        return Codegen.optional(this.token);
     }
     /**
-     * The URL to which log streams are being posted.
+     * The URL to which log streams are being posted. If destination_type is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
      * 
      */
     @Export(name="url", refs={String.class}, tree="[0]")
-    private Output<String> url;
+    private Output</* @Nullable */ String> url;
 
     /**
-     * @return The URL to which log streams are being posted.
+     * @return The URL to which log streams are being posted. If destination_type is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
      * 
      */
-    public Output<String> url() {
-        return this.url;
+    public Output<Optional<String>> url() {
+        return Codegen.optional(this.url);
     }
     /**
      * The username with which log streams to this endpoint are authenticated. Only required if destination_type is &#39;elastic&#39;, defaults to &#39;user&#39; if not set.
@@ -178,6 +314,7 @@ public class LogstreamConfiguration extends com.pulumi.resources.CustomResource 
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
+                "s3SecretAccessKey",
                 "token"
             ))
             .build();
