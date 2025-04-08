@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var exampleKey = new DeviceKey("exampleKey", DeviceKeyArgs.builder()
- *             .deviceId(exampleDevice.applyValue(getDeviceResult -> getDeviceResult.id()))
+ *             .deviceId(exampleDevice.id())
  *             .keyExpiryDisabled(true)
  *             .build());
  * 

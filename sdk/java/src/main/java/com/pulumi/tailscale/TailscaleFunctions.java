@@ -1000,7 +1000,8 @@ public final class TailscaleFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var all-users = TailscaleFunctions.getUsers();
+     *         final var all-users = TailscaleFunctions.getUsers(GetUsersArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -1040,7 +1041,8 @@ public final class TailscaleFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var all-users = TailscaleFunctions.getUsers();
+     *         final var all-users = TailscaleFunctions.getUsers(GetUsersArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -1080,7 +1082,8 @@ public final class TailscaleFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var all-users = TailscaleFunctions.getUsers();
+     *         final var all-users = TailscaleFunctions.getUsers(GetUsersArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -1120,7 +1123,8 @@ public final class TailscaleFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var all-users = TailscaleFunctions.getUsers();
+     *         final var all-users = TailscaleFunctions.getUsers(GetUsersArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -1160,7 +1164,8 @@ public final class TailscaleFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var all-users = TailscaleFunctions.getUsers();
+     *         final var all-users = TailscaleFunctions.getUsers(GetUsersArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -1200,7 +1205,8 @@ public final class TailscaleFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var all-users = TailscaleFunctions.getUsers();
+     *         final var all-users = TailscaleFunctions.getUsers(GetUsersArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -1240,7 +1246,8 @@ public final class TailscaleFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var all-users = TailscaleFunctions.getUsers();
+     *         final var all-users = TailscaleFunctions.getUsers(GetUsersArgs.builder()
+     *             .build());
      * 
      *     }
      * }
