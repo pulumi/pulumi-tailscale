@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var sampleTags = new DeviceTags("sampleTags", DeviceTagsArgs.builder()
- *             .deviceId(sampleDevice.applyValue(getDeviceResult -> getDeviceResult.id()))
+ *             .deviceId(sampleDevice.id())
  *             .tags("room:bedroom")
  *             .build());
  * 

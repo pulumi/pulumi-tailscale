@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var sampleAuthorization = new DeviceAuthorization("sampleAuthorization", DeviceAuthorizationArgs.builder()
- *             .deviceId(sampleDevice.applyValue(getDeviceResult -> getDeviceResult.id()))
+ *             .deviceId(sampleDevice.id())
  *             .authorized(true)
  *             .build());
  * 
