@@ -71,13 +71,19 @@ namespace Pulumi.Tailscale
     public partial class LogstreamConfiguration : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+        /// </summary>
+        [Output("compressionFormat")]
+        public Output<string?> CompressionFormat { get; private set; } = null!;
+
+        /// <summary>
         /// The type of system to which logs are being streamed.
         /// </summary>
         [Output("destinationType")]
         public Output<string> DestinationType { get; private set; } = null!;
 
         /// <summary>
-        /// The type of log that is streamed to this endpoint.
+        /// The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
         /// </summary>
         [Output("logType")]
         public Output<string> LogType { get; private set; } = null!;
@@ -135,6 +141,12 @@ namespace Pulumi.Tailscale
         /// </summary>
         [Output("token")]
         public Output<string?> Token { get; private set; } = null!;
+
+        /// <summary>
+        /// An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+        /// </summary>
+        [Output("uploadPeriodMinutes")]
+        public Output<int?> UploadPeriodMinutes { get; private set; } = null!;
 
         /// <summary>
         /// The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
@@ -200,13 +212,19 @@ namespace Pulumi.Tailscale
     public sealed class LogstreamConfigurationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+        /// </summary>
+        [Input("compressionFormat")]
+        public Input<string>? CompressionFormat { get; set; }
+
+        /// <summary>
         /// The type of system to which logs are being streamed.
         /// </summary>
         [Input("destinationType", required: true)]
         public Input<string> DestinationType { get; set; } = null!;
 
         /// <summary>
-        /// The type of log that is streamed to this endpoint.
+        /// The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
         /// </summary>
         [Input("logType", required: true)]
         public Input<string> LogType { get; set; } = null!;
@@ -286,6 +304,12 @@ namespace Pulumi.Tailscale
         }
 
         /// <summary>
+        /// An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+        /// </summary>
+        [Input("uploadPeriodMinutes")]
+        public Input<int>? UploadPeriodMinutes { get; set; }
+
+        /// <summary>
         /// The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         /// </summary>
         [Input("url")]
@@ -306,13 +330,19 @@ namespace Pulumi.Tailscale
     public sealed class LogstreamConfigurationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+        /// </summary>
+        [Input("compressionFormat")]
+        public Input<string>? CompressionFormat { get; set; }
+
+        /// <summary>
         /// The type of system to which logs are being streamed.
         /// </summary>
         [Input("destinationType")]
         public Input<string>? DestinationType { get; set; }
 
         /// <summary>
-        /// The type of log that is streamed to this endpoint.
+        /// The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
         /// </summary>
         [Input("logType")]
         public Input<string>? LogType { get; set; }
@@ -390,6 +420,12 @@ namespace Pulumi.Tailscale
                 _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+        /// </summary>
+        [Input("uploadPeriodMinutes")]
+        public Input<int>? UploadPeriodMinutes { get; set; }
 
         /// <summary>
         /// The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.

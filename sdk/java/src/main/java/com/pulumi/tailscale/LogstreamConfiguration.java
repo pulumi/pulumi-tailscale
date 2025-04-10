@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.tailscale.LogstreamConfigurationArgs;
 import com.pulumi.tailscale.Utilities;
 import com.pulumi.tailscale.inputs.LogstreamConfigurationState;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -92,6 +93,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="tailscale:index/logstreamConfiguration:LogstreamConfiguration")
 public class LogstreamConfiguration extends com.pulumi.resources.CustomResource {
     /**
+     * The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+     * 
+     */
+    @Export(name="compressionFormat", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> compressionFormat;
+
+    /**
+     * @return The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+     * 
+     */
+    public Output<Optional<String>> compressionFormat() {
+        return Codegen.optional(this.compressionFormat);
+    }
+    /**
      * The type of system to which logs are being streamed.
      * 
      */
@@ -106,14 +121,14 @@ public class LogstreamConfiguration extends com.pulumi.resources.CustomResource 
         return this.destinationType;
     }
     /**
-     * The type of log that is streamed to this endpoint.
+     * The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
      * 
      */
     @Export(name="logType", refs={String.class}, tree="[0]")
     private Output<String> logType;
 
     /**
-     * @return The type of log that is streamed to this endpoint.
+     * @return The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
      * 
      */
     public Output<String> logType() {
@@ -244,6 +259,20 @@ public class LogstreamConfiguration extends com.pulumi.resources.CustomResource 
      */
     public Output<Optional<String>> token() {
         return Codegen.optional(this.token);
+    }
+    /**
+     * An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+     * 
+     */
+    @Export(name="uploadPeriodMinutes", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> uploadPeriodMinutes;
+
+    /**
+     * @return An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+     * 
+     */
+    public Output<Optional<Integer>> uploadPeriodMinutes() {
+        return Codegen.optional(this.uploadPeriodMinutes);
     }
     /**
      * The URL to which log streams are being posted. If destination_type is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.

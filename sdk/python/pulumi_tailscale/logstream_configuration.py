@@ -22,6 +22,7 @@ class LogstreamConfigurationArgs:
     def __init__(__self__, *,
                  destination_type: pulumi.Input[builtins.str],
                  log_type: pulumi.Input[builtins.str],
+                 compression_format: Optional[pulumi.Input[builtins.str]] = None,
                  s3_access_key_id: Optional[pulumi.Input[builtins.str]] = None,
                  s3_authentication_type: Optional[pulumi.Input[builtins.str]] = None,
                  s3_bucket: Optional[pulumi.Input[builtins.str]] = None,
@@ -31,12 +32,14 @@ class LogstreamConfigurationArgs:
                  s3_role_arn: Optional[pulumi.Input[builtins.str]] = None,
                  s3_secret_access_key: Optional[pulumi.Input[builtins.str]] = None,
                  token: Optional[pulumi.Input[builtins.str]] = None,
+                 upload_period_minutes: Optional[pulumi.Input[builtins.int]] = None,
                  url: Optional[pulumi.Input[builtins.str]] = None,
                  user: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a LogstreamConfiguration resource.
         :param pulumi.Input[builtins.str] destination_type: The type of system to which logs are being streamed.
-        :param pulumi.Input[builtins.str] log_type: The type of log that is streamed to this endpoint.
+        :param pulumi.Input[builtins.str] log_type: The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+        :param pulumi.Input[builtins.str] compression_format: The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
         :param pulumi.Input[builtins.str] s3_access_key_id: The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
         :param pulumi.Input[builtins.str] s3_authentication_type: What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
         :param pulumi.Input[builtins.str] s3_bucket: The S3 bucket name. Required if destination_type is 's3'.
@@ -46,11 +49,14 @@ class LogstreamConfigurationArgs:
         :param pulumi.Input[builtins.str] s3_role_arn: ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
         :param pulumi.Input[builtins.str] s3_secret_access_key: The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
         :param pulumi.Input[builtins.str] token: The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
+        :param pulumi.Input[builtins.int] upload_period_minutes: An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
         :param pulumi.Input[builtins.str] url: The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         :param pulumi.Input[builtins.str] user: The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.
         """
         pulumi.set(__self__, "destination_type", destination_type)
         pulumi.set(__self__, "log_type", log_type)
+        if compression_format is not None:
+            pulumi.set(__self__, "compression_format", compression_format)
         if s3_access_key_id is not None:
             pulumi.set(__self__, "s3_access_key_id", s3_access_key_id)
         if s3_authentication_type is not None:
@@ -69,6 +75,8 @@ class LogstreamConfigurationArgs:
             pulumi.set(__self__, "s3_secret_access_key", s3_secret_access_key)
         if token is not None:
             pulumi.set(__self__, "token", token)
+        if upload_period_minutes is not None:
+            pulumi.set(__self__, "upload_period_minutes", upload_period_minutes)
         if url is not None:
             pulumi.set(__self__, "url", url)
         if user is not None:
@@ -90,13 +98,25 @@ class LogstreamConfigurationArgs:
     @pulumi.getter(name="logType")
     def log_type(self) -> pulumi.Input[builtins.str]:
         """
-        The type of log that is streamed to this endpoint.
+        The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
         """
         return pulumi.get(self, "log_type")
 
     @log_type.setter
     def log_type(self, value: pulumi.Input[builtins.str]):
         pulumi.set(self, "log_type", value)
+
+    @property
+    @pulumi.getter(name="compressionFormat")
+    def compression_format(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+        """
+        return pulumi.get(self, "compression_format")
+
+    @compression_format.setter
+    def compression_format(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "compression_format", value)
 
     @property
     @pulumi.getter(name="s3AccessKeyId")
@@ -207,6 +227,18 @@ class LogstreamConfigurationArgs:
         pulumi.set(self, "token", value)
 
     @property
+    @pulumi.getter(name="uploadPeriodMinutes")
+    def upload_period_minutes(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+        """
+        return pulumi.get(self, "upload_period_minutes")
+
+    @upload_period_minutes.setter
+    def upload_period_minutes(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "upload_period_minutes", value)
+
+    @property
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -234,6 +266,7 @@ class LogstreamConfigurationArgs:
 @pulumi.input_type
 class _LogstreamConfigurationState:
     def __init__(__self__, *,
+                 compression_format: Optional[pulumi.Input[builtins.str]] = None,
                  destination_type: Optional[pulumi.Input[builtins.str]] = None,
                  log_type: Optional[pulumi.Input[builtins.str]] = None,
                  s3_access_key_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -245,12 +278,14 @@ class _LogstreamConfigurationState:
                  s3_role_arn: Optional[pulumi.Input[builtins.str]] = None,
                  s3_secret_access_key: Optional[pulumi.Input[builtins.str]] = None,
                  token: Optional[pulumi.Input[builtins.str]] = None,
+                 upload_period_minutes: Optional[pulumi.Input[builtins.int]] = None,
                  url: Optional[pulumi.Input[builtins.str]] = None,
                  user: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering LogstreamConfiguration resources.
+        :param pulumi.Input[builtins.str] compression_format: The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
         :param pulumi.Input[builtins.str] destination_type: The type of system to which logs are being streamed.
-        :param pulumi.Input[builtins.str] log_type: The type of log that is streamed to this endpoint.
+        :param pulumi.Input[builtins.str] log_type: The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
         :param pulumi.Input[builtins.str] s3_access_key_id: The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
         :param pulumi.Input[builtins.str] s3_authentication_type: What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
         :param pulumi.Input[builtins.str] s3_bucket: The S3 bucket name. Required if destination_type is 's3'.
@@ -260,9 +295,12 @@ class _LogstreamConfigurationState:
         :param pulumi.Input[builtins.str] s3_role_arn: ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
         :param pulumi.Input[builtins.str] s3_secret_access_key: The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
         :param pulumi.Input[builtins.str] token: The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
+        :param pulumi.Input[builtins.int] upload_period_minutes: An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
         :param pulumi.Input[builtins.str] url: The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         :param pulumi.Input[builtins.str] user: The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.
         """
+        if compression_format is not None:
+            pulumi.set(__self__, "compression_format", compression_format)
         if destination_type is not None:
             pulumi.set(__self__, "destination_type", destination_type)
         if log_type is not None:
@@ -285,10 +323,24 @@ class _LogstreamConfigurationState:
             pulumi.set(__self__, "s3_secret_access_key", s3_secret_access_key)
         if token is not None:
             pulumi.set(__self__, "token", token)
+        if upload_period_minutes is not None:
+            pulumi.set(__self__, "upload_period_minutes", upload_period_minutes)
         if url is not None:
             pulumi.set(__self__, "url", url)
         if user is not None:
             pulumi.set(__self__, "user", user)
+
+    @property
+    @pulumi.getter(name="compressionFormat")
+    def compression_format(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+        """
+        return pulumi.get(self, "compression_format")
+
+    @compression_format.setter
+    def compression_format(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "compression_format", value)
 
     @property
     @pulumi.getter(name="destinationType")
@@ -306,7 +358,7 @@ class _LogstreamConfigurationState:
     @pulumi.getter(name="logType")
     def log_type(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The type of log that is streamed to this endpoint.
+        The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
         """
         return pulumi.get(self, "log_type")
 
@@ -423,6 +475,18 @@ class _LogstreamConfigurationState:
         pulumi.set(self, "token", value)
 
     @property
+    @pulumi.getter(name="uploadPeriodMinutes")
+    def upload_period_minutes(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+        """
+        return pulumi.get(self, "upload_period_minutes")
+
+    @upload_period_minutes.setter
+    def upload_period_minutes(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "upload_period_minutes", value)
+
+    @property
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -452,6 +516,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 compression_format: Optional[pulumi.Input[builtins.str]] = None,
                  destination_type: Optional[pulumi.Input[builtins.str]] = None,
                  log_type: Optional[pulumi.Input[builtins.str]] = None,
                  s3_access_key_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -463,6 +528,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
                  s3_role_arn: Optional[pulumi.Input[builtins.str]] = None,
                  s3_secret_access_key: Optional[pulumi.Input[builtins.str]] = None,
                  token: Optional[pulumi.Input[builtins.str]] = None,
+                 upload_period_minutes: Optional[pulumi.Input[builtins.int]] = None,
                  url: Optional[pulumi.Input[builtins.str]] = None,
                  user: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
@@ -512,8 +578,9 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[builtins.str] compression_format: The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
         :param pulumi.Input[builtins.str] destination_type: The type of system to which logs are being streamed.
-        :param pulumi.Input[builtins.str] log_type: The type of log that is streamed to this endpoint.
+        :param pulumi.Input[builtins.str] log_type: The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
         :param pulumi.Input[builtins.str] s3_access_key_id: The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
         :param pulumi.Input[builtins.str] s3_authentication_type: What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
         :param pulumi.Input[builtins.str] s3_bucket: The S3 bucket name. Required if destination_type is 's3'.
@@ -523,6 +590,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] s3_role_arn: ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
         :param pulumi.Input[builtins.str] s3_secret_access_key: The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
         :param pulumi.Input[builtins.str] token: The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
+        :param pulumi.Input[builtins.int] upload_period_minutes: An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
         :param pulumi.Input[builtins.str] url: The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         :param pulumi.Input[builtins.str] user: The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.
         """
@@ -591,6 +659,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 compression_format: Optional[pulumi.Input[builtins.str]] = None,
                  destination_type: Optional[pulumi.Input[builtins.str]] = None,
                  log_type: Optional[pulumi.Input[builtins.str]] = None,
                  s3_access_key_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -602,6 +671,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
                  s3_role_arn: Optional[pulumi.Input[builtins.str]] = None,
                  s3_secret_access_key: Optional[pulumi.Input[builtins.str]] = None,
                  token: Optional[pulumi.Input[builtins.str]] = None,
+                 upload_period_minutes: Optional[pulumi.Input[builtins.int]] = None,
                  url: Optional[pulumi.Input[builtins.str]] = None,
                  user: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
@@ -613,6 +683,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = LogstreamConfigurationArgs.__new__(LogstreamConfigurationArgs)
 
+            __props__.__dict__["compression_format"] = compression_format
             if destination_type is None and not opts.urn:
                 raise TypeError("Missing required property 'destination_type'")
             __props__.__dict__["destination_type"] = destination_type
@@ -628,6 +699,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
             __props__.__dict__["s3_role_arn"] = s3_role_arn
             __props__.__dict__["s3_secret_access_key"] = None if s3_secret_access_key is None else pulumi.Output.secret(s3_secret_access_key)
             __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
+            __props__.__dict__["upload_period_minutes"] = upload_period_minutes
             __props__.__dict__["url"] = url
             __props__.__dict__["user"] = user
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["s3SecretAccessKey", "token"])
@@ -642,6 +714,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            compression_format: Optional[pulumi.Input[builtins.str]] = None,
             destination_type: Optional[pulumi.Input[builtins.str]] = None,
             log_type: Optional[pulumi.Input[builtins.str]] = None,
             s3_access_key_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -653,6 +726,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
             s3_role_arn: Optional[pulumi.Input[builtins.str]] = None,
             s3_secret_access_key: Optional[pulumi.Input[builtins.str]] = None,
             token: Optional[pulumi.Input[builtins.str]] = None,
+            upload_period_minutes: Optional[pulumi.Input[builtins.int]] = None,
             url: Optional[pulumi.Input[builtins.str]] = None,
             user: Optional[pulumi.Input[builtins.str]] = None) -> 'LogstreamConfiguration':
         """
@@ -662,8 +736,9 @@ class LogstreamConfiguration(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[builtins.str] compression_format: The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
         :param pulumi.Input[builtins.str] destination_type: The type of system to which logs are being streamed.
-        :param pulumi.Input[builtins.str] log_type: The type of log that is streamed to this endpoint.
+        :param pulumi.Input[builtins.str] log_type: The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
         :param pulumi.Input[builtins.str] s3_access_key_id: The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
         :param pulumi.Input[builtins.str] s3_authentication_type: What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
         :param pulumi.Input[builtins.str] s3_bucket: The S3 bucket name. Required if destination_type is 's3'.
@@ -673,6 +748,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] s3_role_arn: ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
         :param pulumi.Input[builtins.str] s3_secret_access_key: The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
         :param pulumi.Input[builtins.str] token: The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
+        :param pulumi.Input[builtins.int] upload_period_minutes: An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
         :param pulumi.Input[builtins.str] url: The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         :param pulumi.Input[builtins.str] user: The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.
         """
@@ -680,6 +756,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
         __props__ = _LogstreamConfigurationState.__new__(_LogstreamConfigurationState)
 
+        __props__.__dict__["compression_format"] = compression_format
         __props__.__dict__["destination_type"] = destination_type
         __props__.__dict__["log_type"] = log_type
         __props__.__dict__["s3_access_key_id"] = s3_access_key_id
@@ -691,9 +768,18 @@ class LogstreamConfiguration(pulumi.CustomResource):
         __props__.__dict__["s3_role_arn"] = s3_role_arn
         __props__.__dict__["s3_secret_access_key"] = s3_secret_access_key
         __props__.__dict__["token"] = token
+        __props__.__dict__["upload_period_minutes"] = upload_period_minutes
         __props__.__dict__["url"] = url
         __props__.__dict__["user"] = user
         return LogstreamConfiguration(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="compressionFormat")
+    def compression_format(self) -> pulumi.Output[Optional[builtins.str]]:
+        """
+        The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+        """
+        return pulumi.get(self, "compression_format")
 
     @property
     @pulumi.getter(name="destinationType")
@@ -707,7 +793,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="logType")
     def log_type(self) -> pulumi.Output[builtins.str]:
         """
-        The type of log that is streamed to this endpoint.
+        The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
         """
         return pulumi.get(self, "log_type")
 
@@ -782,6 +868,14 @@ class LogstreamConfiguration(pulumi.CustomResource):
         The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
         """
         return pulumi.get(self, "token")
+
+    @property
+    @pulumi.getter(name="uploadPeriodMinutes")
+    def upload_period_minutes(self) -> pulumi.Output[Optional[builtins.int]]:
+        """
+        An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+        """
+        return pulumi.get(self, "upload_period_minutes")
 
     @property
     @pulumi.getter

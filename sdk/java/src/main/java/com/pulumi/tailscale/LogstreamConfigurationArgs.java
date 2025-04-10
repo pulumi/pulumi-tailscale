@@ -6,6 +6,7 @@ package com.pulumi.tailscale;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,6 +16,21 @@ import javax.annotation.Nullable;
 public final class LogstreamConfigurationArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final LogstreamConfigurationArgs Empty = new LogstreamConfigurationArgs();
+
+    /**
+     * The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+     * 
+     */
+    @Import(name="compressionFormat")
+    private @Nullable Output<String> compressionFormat;
+
+    /**
+     * @return The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+     * 
+     */
+    public Optional<Output<String>> compressionFormat() {
+        return Optional.ofNullable(this.compressionFormat);
+    }
 
     /**
      * The type of system to which logs are being streamed.
@@ -32,14 +48,14 @@ public final class LogstreamConfigurationArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * The type of log that is streamed to this endpoint.
+     * The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
      * 
      */
     @Import(name="logType", required=true)
     private Output<String> logType;
 
     /**
-     * @return The type of log that is streamed to this endpoint.
+     * @return The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
      * 
      */
     public Output<String> logType() {
@@ -182,6 +198,21 @@ public final class LogstreamConfigurationArgs extends com.pulumi.resources.Resou
     }
 
     /**
+     * An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+     * 
+     */
+    @Import(name="uploadPeriodMinutes")
+    private @Nullable Output<Integer> uploadPeriodMinutes;
+
+    /**
+     * @return An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+     * 
+     */
+    public Optional<Output<Integer>> uploadPeriodMinutes() {
+        return Optional.ofNullable(this.uploadPeriodMinutes);
+    }
+
+    /**
      * The URL to which log streams are being posted. If destination_type is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
      * 
      */
@@ -214,6 +245,7 @@ public final class LogstreamConfigurationArgs extends com.pulumi.resources.Resou
     private LogstreamConfigurationArgs() {}
 
     private LogstreamConfigurationArgs(LogstreamConfigurationArgs $) {
+        this.compressionFormat = $.compressionFormat;
         this.destinationType = $.destinationType;
         this.logType = $.logType;
         this.s3AccessKeyId = $.s3AccessKeyId;
@@ -225,6 +257,7 @@ public final class LogstreamConfigurationArgs extends com.pulumi.resources.Resou
         this.s3RoleArn = $.s3RoleArn;
         this.s3SecretAccessKey = $.s3SecretAccessKey;
         this.token = $.token;
+        this.uploadPeriodMinutes = $.uploadPeriodMinutes;
         this.url = $.url;
         this.user = $.user;
     }
@@ -245,6 +278,27 @@ public final class LogstreamConfigurationArgs extends com.pulumi.resources.Resou
 
         public Builder(LogstreamConfigurationArgs defaults) {
             $ = new LogstreamConfigurationArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param compressionFormat The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder compressionFormat(@Nullable Output<String> compressionFormat) {
+            $.compressionFormat = compressionFormat;
+            return this;
+        }
+
+        /**
+         * @param compressionFormat The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder compressionFormat(String compressionFormat) {
+            return compressionFormat(Output.of(compressionFormat));
         }
 
         /**
@@ -269,7 +323,7 @@ public final class LogstreamConfigurationArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param logType The type of log that is streamed to this endpoint.
+         * @param logType The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
          * 
          * @return builder
          * 
@@ -280,7 +334,7 @@ public final class LogstreamConfigurationArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param logType The type of log that is streamed to this endpoint.
+         * @param logType The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
          * 
          * @return builder
          * 
@@ -476,6 +530,27 @@ public final class LogstreamConfigurationArgs extends com.pulumi.resources.Resou
          */
         public Builder token(String token) {
             return token(Output.of(token));
+        }
+
+        /**
+         * @param uploadPeriodMinutes An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder uploadPeriodMinutes(@Nullable Output<Integer> uploadPeriodMinutes) {
+            $.uploadPeriodMinutes = uploadPeriodMinutes;
+            return this;
+        }
+
+        /**
+         * @param uploadPeriodMinutes An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder uploadPeriodMinutes(Integer uploadPeriodMinutes) {
+            return uploadPeriodMinutes(Output.of(uploadPeriodMinutes));
         }
 
         /**

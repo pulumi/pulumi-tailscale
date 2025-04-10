@@ -80,11 +80,15 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
     }
 
     /**
+     * The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+     */
+    public readonly compressionFormat!: pulumi.Output<string | undefined>;
+    /**
      * The type of system to which logs are being streamed.
      */
     public readonly destinationType!: pulumi.Output<string>;
     /**
-     * The type of log that is streamed to this endpoint.
+     * The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
      */
     public readonly logType!: pulumi.Output<string>;
     /**
@@ -124,6 +128,10 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
      */
     public readonly token!: pulumi.Output<string | undefined>;
     /**
+     * An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+     */
+    public readonly uploadPeriodMinutes!: pulumi.Output<number | undefined>;
+    /**
      * The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
      */
     public readonly url!: pulumi.Output<string | undefined>;
@@ -145,6 +153,7 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogstreamConfigurationState | undefined;
+            resourceInputs["compressionFormat"] = state ? state.compressionFormat : undefined;
             resourceInputs["destinationType"] = state ? state.destinationType : undefined;
             resourceInputs["logType"] = state ? state.logType : undefined;
             resourceInputs["s3AccessKeyId"] = state ? state.s3AccessKeyId : undefined;
@@ -156,6 +165,7 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
             resourceInputs["s3RoleArn"] = state ? state.s3RoleArn : undefined;
             resourceInputs["s3SecretAccessKey"] = state ? state.s3SecretAccessKey : undefined;
             resourceInputs["token"] = state ? state.token : undefined;
+            resourceInputs["uploadPeriodMinutes"] = state ? state.uploadPeriodMinutes : undefined;
             resourceInputs["url"] = state ? state.url : undefined;
             resourceInputs["user"] = state ? state.user : undefined;
         } else {
@@ -166,6 +176,7 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
             if ((!args || args.logType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'logType'");
             }
+            resourceInputs["compressionFormat"] = args ? args.compressionFormat : undefined;
             resourceInputs["destinationType"] = args ? args.destinationType : undefined;
             resourceInputs["logType"] = args ? args.logType : undefined;
             resourceInputs["s3AccessKeyId"] = args ? args.s3AccessKeyId : undefined;
@@ -177,6 +188,7 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
             resourceInputs["s3RoleArn"] = args ? args.s3RoleArn : undefined;
             resourceInputs["s3SecretAccessKey"] = args?.s3SecretAccessKey ? pulumi.secret(args.s3SecretAccessKey) : undefined;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
+            resourceInputs["uploadPeriodMinutes"] = args ? args.uploadPeriodMinutes : undefined;
             resourceInputs["url"] = args ? args.url : undefined;
             resourceInputs["user"] = args ? args.user : undefined;
         }
@@ -192,11 +204,15 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
  */
 export interface LogstreamConfigurationState {
     /**
+     * The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+     */
+    compressionFormat?: pulumi.Input<string>;
+    /**
      * The type of system to which logs are being streamed.
      */
     destinationType?: pulumi.Input<string>;
     /**
-     * The type of log that is streamed to this endpoint.
+     * The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
      */
     logType?: pulumi.Input<string>;
     /**
@@ -236,6 +252,10 @@ export interface LogstreamConfigurationState {
      */
     token?: pulumi.Input<string>;
     /**
+     * An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+     */
+    uploadPeriodMinutes?: pulumi.Input<number>;
+    /**
      * The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
      */
     url?: pulumi.Input<string>;
@@ -250,11 +270,15 @@ export interface LogstreamConfigurationState {
  */
 export interface LogstreamConfigurationArgs {
     /**
+     * The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+     */
+    compressionFormat?: pulumi.Input<string>;
+    /**
      * The type of system to which logs are being streamed.
      */
     destinationType: pulumi.Input<string>;
     /**
-     * The type of log that is streamed to this endpoint.
+     * The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
      */
     logType: pulumi.Input<string>;
     /**
@@ -293,6 +317,10 @@ export interface LogstreamConfigurationArgs {
      * The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is 's3'.
      */
     token?: pulumi.Input<string>;
+    /**
+     * An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+     */
+    uploadPeriodMinutes?: pulumi.Input<number>;
     /**
      * The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
      */

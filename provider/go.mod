@@ -11,7 +11,7 @@ require (
 	github.com/pulumi/providertest v0.1.3
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.106.0
 	github.com/stretchr/testify v1.10.0
-	github.com/tailscale/terraform-provider-tailscale v0.18.0
+	github.com/tailscale/terraform-provider-tailscale v0.19.0
 )
 
 require (
@@ -135,7 +135,7 @@ require (
 	github.com/klauspost/compress v1.17.11 // indirect
 	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
-	github.com/mattn/go-colorable v0.1.13 // indirect
+	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mattn/go-localereader v0.0.1 // indirect
 	github.com/mattn/go-runewidth v0.0.15 // indirect
@@ -242,5 +242,5 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	lukechampine.com/frand v1.4.2 // indirect
 	tailscale.com v1.80.2 // indirect
-	tailscale.com/client/tailscale/v2 v2.0.0-20250206193525-299d9b122796 // indirect
+	tailscale.com/client/tailscale/v2 v2.0.0-20250304200718-97b5675952df // indirect
 )
