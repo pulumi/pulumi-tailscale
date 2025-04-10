@@ -81,9 +81,11 @@ import (
 type LogstreamConfiguration struct {
 	pulumi.CustomResourceState
 
+	// The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+	CompressionFormat pulumi.StringPtrOutput `pulumi:"compressionFormat"`
 	// The type of system to which logs are being streamed.
 	DestinationType pulumi.StringOutput `pulumi:"destinationType"`
-	// The type of log that is streamed to this endpoint.
+	// The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
 	LogType pulumi.StringOutput `pulumi:"logType"`
 	// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
 	S3AccessKeyId pulumi.StringPtrOutput `pulumi:"s3AccessKeyId"`
@@ -103,6 +105,8 @@ type LogstreamConfiguration struct {
 	S3SecretAccessKey pulumi.StringPtrOutput `pulumi:"s3SecretAccessKey"`
 	// The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is 's3'.
 	Token pulumi.StringPtrOutput `pulumi:"token"`
+	// An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+	UploadPeriodMinutes pulumi.IntPtrOutput `pulumi:"uploadPeriodMinutes"`
 	// The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
 	Url pulumi.StringPtrOutput `pulumi:"url"`
 	// The username with which log streams to this endpoint are authenticated. Only required if destinationType is 'elastic', defaults to 'user' if not set.
@@ -156,9 +160,11 @@ func GetLogstreamConfiguration(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogstreamConfiguration resources.
 type logstreamConfigurationState struct {
+	// The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+	CompressionFormat *string `pulumi:"compressionFormat"`
 	// The type of system to which logs are being streamed.
 	DestinationType *string `pulumi:"destinationType"`
-	// The type of log that is streamed to this endpoint.
+	// The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
 	LogType *string `pulumi:"logType"`
 	// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
 	S3AccessKeyId *string `pulumi:"s3AccessKeyId"`
@@ -178,6 +184,8 @@ type logstreamConfigurationState struct {
 	S3SecretAccessKey *string `pulumi:"s3SecretAccessKey"`
 	// The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is 's3'.
 	Token *string `pulumi:"token"`
+	// An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+	UploadPeriodMinutes *int `pulumi:"uploadPeriodMinutes"`
 	// The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
 	Url *string `pulumi:"url"`
 	// The username with which log streams to this endpoint are authenticated. Only required if destinationType is 'elastic', defaults to 'user' if not set.
@@ -185,9 +193,11 @@ type logstreamConfigurationState struct {
 }
 
 type LogstreamConfigurationState struct {
+	// The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+	CompressionFormat pulumi.StringPtrInput
 	// The type of system to which logs are being streamed.
 	DestinationType pulumi.StringPtrInput
-	// The type of log that is streamed to this endpoint.
+	// The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
 	LogType pulumi.StringPtrInput
 	// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
 	S3AccessKeyId pulumi.StringPtrInput
@@ -207,6 +217,8 @@ type LogstreamConfigurationState struct {
 	S3SecretAccessKey pulumi.StringPtrInput
 	// The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is 's3'.
 	Token pulumi.StringPtrInput
+	// An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+	UploadPeriodMinutes pulumi.IntPtrInput
 	// The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
 	Url pulumi.StringPtrInput
 	// The username with which log streams to this endpoint are authenticated. Only required if destinationType is 'elastic', defaults to 'user' if not set.
@@ -218,9 +230,11 @@ func (LogstreamConfigurationState) ElementType() reflect.Type {
 }
 
 type logstreamConfigurationArgs struct {
+	// The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+	CompressionFormat *string `pulumi:"compressionFormat"`
 	// The type of system to which logs are being streamed.
 	DestinationType string `pulumi:"destinationType"`
-	// The type of log that is streamed to this endpoint.
+	// The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
 	LogType string `pulumi:"logType"`
 	// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
 	S3AccessKeyId *string `pulumi:"s3AccessKeyId"`
@@ -240,6 +254,8 @@ type logstreamConfigurationArgs struct {
 	S3SecretAccessKey *string `pulumi:"s3SecretAccessKey"`
 	// The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is 's3'.
 	Token *string `pulumi:"token"`
+	// An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+	UploadPeriodMinutes *int `pulumi:"uploadPeriodMinutes"`
 	// The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
 	Url *string `pulumi:"url"`
 	// The username with which log streams to this endpoint are authenticated. Only required if destinationType is 'elastic', defaults to 'user' if not set.
@@ -248,9 +264,11 @@ type logstreamConfigurationArgs struct {
 
 // The set of arguments for constructing a LogstreamConfiguration resource.
 type LogstreamConfigurationArgs struct {
+	// The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+	CompressionFormat pulumi.StringPtrInput
 	// The type of system to which logs are being streamed.
 	DestinationType pulumi.StringInput
-	// The type of log that is streamed to this endpoint.
+	// The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
 	LogType pulumi.StringInput
 	// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
 	S3AccessKeyId pulumi.StringPtrInput
@@ -270,6 +288,8 @@ type LogstreamConfigurationArgs struct {
 	S3SecretAccessKey pulumi.StringPtrInput
 	// The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is 's3'.
 	Token pulumi.StringPtrInput
+	// An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+	UploadPeriodMinutes pulumi.IntPtrInput
 	// The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
 	Url pulumi.StringPtrInput
 	// The username with which log streams to this endpoint are authenticated. Only required if destinationType is 'elastic', defaults to 'user' if not set.
@@ -363,12 +383,17 @@ func (o LogstreamConfigurationOutput) ToLogstreamConfigurationOutputWithContext(
 	return o
 }
 
+// The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+func (o LogstreamConfigurationOutput) CompressionFormat() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.CompressionFormat }).(pulumi.StringPtrOutput)
+}
+
 // The type of system to which logs are being streamed.
 func (o LogstreamConfigurationOutput) DestinationType() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.DestinationType }).(pulumi.StringOutput)
 }
 
-// The type of log that is streamed to this endpoint.
+// The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
 func (o LogstreamConfigurationOutput) LogType() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.LogType }).(pulumi.StringOutput)
 }
@@ -416,6 +441,11 @@ func (o LogstreamConfigurationOutput) S3SecretAccessKey() pulumi.StringPtrOutput
 // The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is 's3'.
 func (o LogstreamConfigurationOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
+}
+
+// An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
+func (o LogstreamConfigurationOutput) UploadPeriodMinutes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.IntPtrOutput { return v.UploadPeriodMinutes }).(pulumi.IntPtrOutput)
 }
 
 // The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
