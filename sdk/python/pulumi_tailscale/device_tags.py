@@ -96,6 +96,9 @@ class _DeviceTagsState:
 
 
 class DeviceTags(pulumi.CustomResource):
+
+    pulumi_type = "tailscale:index/deviceTags:DeviceTags"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

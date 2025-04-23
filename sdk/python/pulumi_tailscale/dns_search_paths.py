@@ -65,6 +65,9 @@ class _DnsSearchPathsState:
 
 
 class DnsSearchPaths(pulumi.CustomResource):
+
+    pulumi_type = "tailscale:index/dnsSearchPaths:DnsSearchPaths"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -97,6 +97,9 @@ class _DeviceKeyState:
 
 
 class DeviceKey(pulumi.CustomResource):
+
+    pulumi_type = "tailscale:index/deviceKey:DeviceKey"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
