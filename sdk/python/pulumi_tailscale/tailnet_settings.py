@@ -290,6 +290,9 @@ class _TailnetSettingsState:
 
 
 class TailnetSettings(pulumi.CustomResource):
+
+    pulumi_type = "tailscale:index/tailnetSettings:TailnetSettings"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

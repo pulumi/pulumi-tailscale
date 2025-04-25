@@ -96,6 +96,9 @@ class _DeviceAuthorizationState:
 
 
 class DeviceAuthorization(pulumi.CustomResource):
+
+    pulumi_type = "tailscale:index/deviceAuthorization:DeviceAuthorization"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
