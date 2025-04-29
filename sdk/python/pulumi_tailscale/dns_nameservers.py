@@ -65,6 +65,9 @@ class _DnsNameserversState:
 
 
 class DnsNameservers(pulumi.CustomResource):
+
+    pulumi_type = "tailscale:index/dnsNameservers:DnsNameservers"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

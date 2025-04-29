@@ -129,6 +129,9 @@ class _ContactsState:
 
 
 class Contacts(pulumi.CustomResource):
+
+    pulumi_type = "tailscale:index/contacts:Contacts"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
