@@ -65,6 +65,9 @@ class _DnsPreferencesState:
 
 
 class DnsPreferences(pulumi.CustomResource):
+
+    pulumi_type = "tailscale:index/dnsPreferences:DnsPreferences"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
