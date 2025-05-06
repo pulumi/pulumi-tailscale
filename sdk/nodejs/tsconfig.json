@@ -34,6 +34,7 @@
         "getUsers.ts",
         "index.ts",
         "logstreamConfiguration.ts",
+        "oauthClient.ts",
         "postureIntegration.ts",
         "provider.ts",
         "tailnetKey.ts",
