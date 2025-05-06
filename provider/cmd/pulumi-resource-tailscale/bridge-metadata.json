@@ -73,6 +73,17 @@
             "tailscale_logstream_configuration": {
                 "current": "tailscale:index/logstreamConfiguration:LogstreamConfiguration"
             },
+            "tailscale_oauth_client": {
+                "current": "tailscale:index/oauthClient:OauthClient",
+                "fields": {
+                    "scopes": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "tailscale_posture_integration": {
                 "current": "tailscale:index/postureIntegration:PostureIntegration"
             },
