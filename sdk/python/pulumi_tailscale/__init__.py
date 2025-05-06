@@ -24,6 +24,7 @@ from .get_devices import *
 from .get_user import *
 from .get_users import *
 from .logstream_configuration import *
+from .oauth_client import *
 from .posture_integration import *
 from .provider import *
 from .tailnet_key import *
@@ -136,6 +137,14 @@ _utilities.register(
   "fqn": "pulumi_tailscale",
   "classes": {
    "tailscale:index/logstreamConfiguration:LogstreamConfiguration": "LogstreamConfiguration"
+  }
+ },
+ {
+  "pkg": "tailscale",
+  "mod": "index/oauthClient",
+  "fqn": "pulumi_tailscale",
+  "classes": {
+   "tailscale:index/oauthClient:OauthClient": "OauthClient"
   }
  },
  {

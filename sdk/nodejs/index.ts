@@ -95,6 +95,11 @@ export type LogstreamConfiguration = import("./logstreamConfiguration").Logstrea
 export const LogstreamConfiguration: typeof import("./logstreamConfiguration").LogstreamConfiguration = null as any;
 utilities.lazyLoad(exports, ["LogstreamConfiguration"], () => require("./logstreamConfiguration"));
 
+export { OauthClientArgs, OauthClientState } from "./oauthClient";
+export type OauthClient = import("./oauthClient").OauthClient;
+export const OauthClient: typeof import("./oauthClient").OauthClient = null as any;
+utilities.lazyLoad(exports, ["OauthClient"], () => require("./oauthClient"));
+
 export { PostureIntegrationArgs, PostureIntegrationState } from "./postureIntegration";
 export type PostureIntegration = import("./postureIntegration").PostureIntegration;
 export const PostureIntegration: typeof import("./postureIntegration").PostureIntegration = null as any;
@@ -158,6 +163,8 @@ const _module = {
                 return new DnsSplitNameservers(name, <any>undefined, { urn })
             case "tailscale:index/logstreamConfiguration:LogstreamConfiguration":
                 return new LogstreamConfiguration(name, <any>undefined, { urn })
+            case "tailscale:index/oauthClient:OauthClient":
+                return new OauthClient(name, <any>undefined, { urn })
             case "tailscale:index/postureIntegration:PostureIntegration":
                 return new PostureIntegration(name, <any>undefined, { urn })
             case "tailscale:index/tailnetKey:TailnetKey":
@@ -183,6 +190,7 @@ pulumi.runtime.registerResourceModule("tailscale", "index/dnsPreferences", _modu
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsSearchPaths", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsSplitNameservers", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/logstreamConfiguration", _module)
+pulumi.runtime.registerResourceModule("tailscale", "index/oauthClient", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/postureIntegration", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/tailnetKey", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/tailnetSettings", _module)
