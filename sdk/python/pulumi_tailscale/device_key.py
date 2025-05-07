@@ -96,10 +96,8 @@ class _DeviceKeyState:
         pulumi.set(self, "key_expiry_disabled", value)
 
 
+@pulumi.type_token("tailscale:index/deviceKey:DeviceKey")
 class DeviceKey(pulumi.CustomResource):
-
-    pulumi_type = "tailscale:index/deviceKey:DeviceKey"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

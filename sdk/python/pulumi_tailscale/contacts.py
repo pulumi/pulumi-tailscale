@@ -128,10 +128,8 @@ class _ContactsState:
         pulumi.set(self, "support", value)
 
 
+@pulumi.type_token("tailscale:index/contacts:Contacts")
 class Contacts(pulumi.CustomResource):
-
-    pulumi_type = "tailscale:index/contacts:Contacts"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

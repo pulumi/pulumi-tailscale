@@ -289,10 +289,8 @@ class _TailnetSettingsState:
         pulumi.set(self, "users_role_allowed_to_join_external_tailnet", value)
 
 
+@pulumi.type_token("tailscale:index/tailnetSettings:TailnetSettings")
 class TailnetSettings(pulumi.CustomResource):
-
-    pulumi_type = "tailscale:index/tailnetSettings:TailnetSettings"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

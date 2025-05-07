@@ -191,10 +191,8 @@ class _PostureIntegrationState:
         pulumi.set(self, "tenant_id", value)
 
 
+@pulumi.type_token("tailscale:index/postureIntegration:PostureIntegration")
 class PostureIntegration(pulumi.CustomResource):
-
-    pulumi_type = "tailscale:index/postureIntegration:PostureIntegration"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -192,10 +192,8 @@ class _OauthClientState:
         pulumi.set(self, "user_id", value)
 
 
+@pulumi.type_token("tailscale:index/oauthClient:OauthClient")
 class OauthClient(pulumi.CustomResource):
-
-    pulumi_type = "tailscale:index/oauthClient:OauthClient"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
