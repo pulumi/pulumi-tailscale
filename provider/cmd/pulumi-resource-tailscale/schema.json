@@ -313,6 +313,9 @@
                 "type": "string",
                 "description": "User-Agent header for API requests.\n"
             }
+        },
+        "methods": {
+            "terraformConfig": "pulumi:providers:tailscale/terraformConfig"
         }
     },
     "resources": {
@@ -1606,6 +1609,35 @@
         }
     },
     "functions": {
+        "pulumi:providers:tailscale/terraformConfig": {
+            "description": "This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.",
+            "inputs": {
+                "properties": {
+                    "__self__": {
+                        "type": "ref",
+                        "$ref": "#/resources/pulumi:providers:tailscale"
+                    }
+                },
+                "type": "pulumi:providers:tailscale/terraformConfig",
+                "required": [
+                    "__self__"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "result": {
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "result"
+                ],
+                "type": "object"
+            }
+        },
         "tailscale:index/get4Via6:get4Via6": {
             "description": "The 4via6 data source is calculates an IPv6 prefix for a given site ID and IPv4 CIDR. See Tailscale documentation for [4via6 subnets](https://tailscale.com/kb/1201/4via6-subnets/) for more details.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst example = tailscale.get4Via6({\n    site: 7,\n    cidr: \"10.1.1.0/24\",\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nexample = tailscale.get4_via6(site=7,\n    cidr=\"10.1.1.0/24\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Tailscale.Get4Via6.Invoke(new()\n    {\n        Site = 7,\n        Cidr = \"10.1.1.0/24\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.Get4Via6(ctx, \u0026tailscale.Get4Via6Args{\n\t\t\tSite: 7,\n\t\t\tCidr: \"10.1.1.0/24\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.TailscaleFunctions;\nimport com.pulumi.tailscale.inputs.Get4Via6Args;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = TailscaleFunctions.get4Via6(Get4Via6Args.builder()\n            .site(7)\n            .cidr(\"10.1.1.0/24\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: tailscale:get4Via6\n      arguments:\n        site: 7\n        cidr: 10.1.1.0/24\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
