@@ -64,10 +64,8 @@ class _DnsPreferencesState:
         pulumi.set(self, "magic_dns", value)
 
 
+@pulumi.type_token("tailscale:index/dnsPreferences:DnsPreferences")
 class DnsPreferences(pulumi.CustomResource):
-
-    pulumi_type = "tailscale:index/dnsPreferences:DnsPreferences"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

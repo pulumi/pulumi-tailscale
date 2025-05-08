@@ -143,10 +143,8 @@ class _WebhookState:
         pulumi.set(self, "subscriptions", value)
 
 
+@pulumi.type_token("tailscale:index/webhook:Webhook")
 class Webhook(pulumi.CustomResource):
-
-    pulumi_type = "tailscale:index/webhook:Webhook"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

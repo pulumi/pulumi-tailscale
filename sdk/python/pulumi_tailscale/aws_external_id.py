@@ -66,10 +66,8 @@ class _AwsExternalIdState:
         pulumi.set(self, "tailscale_aws_account_id", value)
 
 
+@pulumi.type_token("tailscale:index/awsExternalId:AwsExternalId")
 class AwsExternalId(pulumi.CustomResource):
-
-    pulumi_type = "tailscale:index/awsExternalId:AwsExternalId"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

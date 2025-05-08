@@ -128,10 +128,8 @@ class _AclState:
         pulumi.set(self, "reset_acl_on_destroy", value)
 
 
+@pulumi.type_token("tailscale:index/acl:Acl")
 class Acl(pulumi.CustomResource):
-
-    pulumi_type = "tailscale:index/acl:Acl"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
