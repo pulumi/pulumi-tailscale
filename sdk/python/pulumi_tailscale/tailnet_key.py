@@ -353,10 +353,8 @@ class _TailnetKeyState:
         pulumi.set(self, "user_id", value)
 
 
+@pulumi.type_token("tailscale:index/tailnetKey:TailnetKey")
 class TailnetKey(pulumi.CustomResource):
-
-    pulumi_type = "tailscale:index/tailnetKey:TailnetKey"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

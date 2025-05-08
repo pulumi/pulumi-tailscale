@@ -95,10 +95,8 @@ class _DeviceSubnetRoutesState:
         pulumi.set(self, "routes", value)
 
 
+@pulumi.type_token("tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes")
 class DeviceSubnetRoutes(pulumi.CustomResource):
-
-    pulumi_type = "tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

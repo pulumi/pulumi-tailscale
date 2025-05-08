@@ -511,10 +511,8 @@ class _LogstreamConfigurationState:
         pulumi.set(self, "user", value)
 
 
+@pulumi.type_token("tailscale:index/logstreamConfiguration:LogstreamConfiguration")
 class LogstreamConfiguration(pulumi.CustomResource):
-
-    pulumi_type = "tailscale:index/logstreamConfiguration:LogstreamConfiguration"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
