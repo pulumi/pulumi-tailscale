@@ -22,22 +22,18 @@ class OauthClientArgs:
     def __init__(__self__, *,
                  scopes: pulumi.Input[Sequence[pulumi.Input[builtins.str]]],
                  description: Optional[pulumi.Input[builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
-                 user_id: Optional[pulumi.Input[builtins.str]] = None):
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None):
         """
         The set of arguments for constructing a OauthClient resource.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] scopes: Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
         :param pulumi.Input[builtins.str] description: A description of the key consisting of alphanumeric characters. Defaults to `""`.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] tags: A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "auth_keys".
-        :param pulumi.Input[builtins.str] user_id: ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
         """
         pulumi.set(__self__, "scopes", scopes)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
-        if user_id is not None:
-            pulumi.set(__self__, "user_id", user_id)
 
     @property
     @pulumi.getter
@@ -74,18 +70,6 @@ class OauthClientArgs:
     @tags.setter
     def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]):
         pulumi.set(self, "tags", value)
-
-    @property
-    @pulumi.getter(name="userId")
-    def user_id(self) -> Optional[pulumi.Input[builtins.str]]:
-        """
-        ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
-        """
-        return pulumi.get(self, "user_id")
-
-    @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[builtins.str]]):
-        pulumi.set(self, "user_id", value)
 
 
 @pulumi.input_type
@@ -201,7 +185,6 @@ class OauthClient(pulumi.CustomResource):
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
-                 user_id: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
         """
         The oauth_client resource allows you to create OAuth clients to programmatically interact with the Tailscale API.
@@ -214,8 +197,16 @@ class OauthClient(pulumi.CustomResource):
 
         sample_client = tailscale.OauthClient("sample_client",
             description="sample client",
-            scopes=["read:all"],
+            scopes=["all:read"],
             tags=["tag:test"])
+        ```
+
+        ## Import
+
+        Note: Sensitive fields such as the secret key are not returned by the API and will be unset in the Terraform state after import.
+
+        ```sh
+        $ pulumi import tailscale:index/oauthClient:OauthClient example k1234511CNTRL
         ```
 
         :param str resource_name: The name of the resource.
@@ -223,7 +214,6 @@ class OauthClient(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] description: A description of the key consisting of alphanumeric characters. Defaults to `""`.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] scopes: Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] tags: A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "auth_keys".
-        :param pulumi.Input[builtins.str] user_id: ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
         """
         ...
     @overload
@@ -242,8 +232,16 @@ class OauthClient(pulumi.CustomResource):
 
         sample_client = tailscale.OauthClient("sample_client",
             description="sample client",
-            scopes=["read:all"],
+            scopes=["all:read"],
             tags=["tag:test"])
+        ```
+
+        ## Import
+
+        Note: Sensitive fields such as the secret key are not returned by the API and will be unset in the Terraform state after import.
+
+        ```sh
+        $ pulumi import tailscale:index/oauthClient:OauthClient example k1234511CNTRL
         ```
 
         :param str resource_name: The name of the resource.
@@ -264,7 +262,6 @@ class OauthClient(pulumi.CustomResource):
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
-                 user_id: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -279,9 +276,9 @@ class OauthClient(pulumi.CustomResource):
                 raise TypeError("Missing required property 'scopes'")
             __props__.__dict__["scopes"] = scopes
             __props__.__dict__["tags"] = tags
-            __props__.__dict__["user_id"] = user_id
             __props__.__dict__["created_at"] = None
             __props__.__dict__["key"] = None
+            __props__.__dict__["user_id"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["key"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(OauthClient, __self__).__init__(

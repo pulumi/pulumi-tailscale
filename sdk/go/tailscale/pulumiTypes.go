@@ -429,10 +429,12 @@ type GetDevicesDevice struct {
 	Addresses []string `pulumi:"addresses"`
 	// The short hostname of the device
 	Hostname string `pulumi:"hostname"`
-	// The unique identifier of the device
+	// The legacy identifier of the device. Use nodeId instead for new resources.
 	Id string `pulumi:"id"`
 	// The full name of the device (e.g. `hostname.domain.ts.net`)
 	Name string `pulumi:"name"`
+	// The preferred indentifier for a device.
+	NodeId string `pulumi:"nodeId"`
 	// The tags applied to the device
 	Tags []string `pulumi:"tags"`
 	// The user associated with the device
@@ -455,10 +457,12 @@ type GetDevicesDeviceArgs struct {
 	Addresses pulumi.StringArrayInput `pulumi:"addresses"`
 	// The short hostname of the device
 	Hostname pulumi.StringInput `pulumi:"hostname"`
-	// The unique identifier of the device
+	// The legacy identifier of the device. Use nodeId instead for new resources.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The full name of the device (e.g. `hostname.domain.ts.net`)
 	Name pulumi.StringInput `pulumi:"name"`
+	// The preferred indentifier for a device.
+	NodeId pulumi.StringInput `pulumi:"nodeId"`
 	// The tags applied to the device
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 	// The user associated with the device
@@ -526,7 +530,7 @@ func (o GetDevicesDeviceOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDevicesDevice) string { return v.Hostname }).(pulumi.StringOutput)
 }
 
-// The unique identifier of the device
+// The legacy identifier of the device. Use nodeId instead for new resources.
 func (o GetDevicesDeviceOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDevicesDevice) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -534,6 +538,11 @@ func (o GetDevicesDeviceOutput) Id() pulumi.StringOutput {
 // The full name of the device (e.g. `hostname.domain.ts.net`)
 func (o GetDevicesDeviceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDevicesDevice) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The preferred indentifier for a device.
+func (o GetDevicesDeviceOutput) NodeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDevicesDevice) string { return v.NodeId }).(pulumi.StringOutput)
 }
 
 // The tags applied to the device

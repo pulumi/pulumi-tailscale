@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var sampleClient = new OauthClient("sampleClient", OauthClientArgs.builder()
  *             .description("sample client")
- *             .scopes("read:all")
+ *             .scopes("all:read")
  *             .tags("tag:test")
  *             .build());
  * 
@@ -54,6 +54,14 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ## Import
+ * 
+ * Note: Sensitive fields such as the secret key are not returned by the API and will be unset in the Terraform state after import.
+ * 
+ * ```sh
+ * $ pulumi import tailscale:index/oauthClient:OauthClient example k1234511CNTRL
+ * ```
  * 
  */
 @ResourceType(type="tailscale:index/oauthClient:OauthClient")

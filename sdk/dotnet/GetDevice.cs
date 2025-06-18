@@ -179,6 +179,10 @@ namespace Pulumi.Tailscale
         /// </summary>
         public readonly string? Name;
         /// <summary>
+        /// The preferred indentifier for a device.
+        /// </summary>
+        public readonly string NodeId;
+        /// <summary>
         /// The tags applied to the device
         /// </summary>
         public readonly ImmutableArray<string> Tags;
@@ -201,6 +205,8 @@ namespace Pulumi.Tailscale
 
             string? name,
 
+            string nodeId,
+
             ImmutableArray<string> tags,
 
             string user,
@@ -211,6 +217,7 @@ namespace Pulumi.Tailscale
             Hostname = hostname;
             Id = id;
             Name = name;
+            NodeId = nodeId;
             Tags = tags;
             User = user;
             WaitFor = waitFor;

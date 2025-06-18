@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var sampleAuthorization = new DeviceAuthorization("sampleAuthorization", DeviceAuthorizationArgs.builder()
- *             .deviceId(sampleDevice.id())
+ *             .deviceId(sampleDevice.nodeId())
  *             .authorized(true)
  *             .build());
  * 
@@ -61,7 +61,13 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Device authorization can be imported using the device id, e.g.,
+ * Device authorization can be imported using the node ID (preferred), e.g.,
+ * 
+ * ```sh
+ * $ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization nodeidCNTRL
+ * ```
+ * 
+ * Device authorization can be imported using the legacy ID, e.g.,
  * 
  * ```sh
  * $ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization 123456789

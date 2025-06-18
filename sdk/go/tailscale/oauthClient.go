@@ -31,7 +31,7 @@ import (
 //			_, err := tailscale.NewOauthClient(ctx, "sample_client", &tailscale.OauthClientArgs{
 //				Description: pulumi.String("sample client"),
 //				Scopes: pulumi.StringArray{
-//					pulumi.String("read:all"),
+//					pulumi.String("all:read"),
 //				},
 //				Tags: pulumi.StringArray{
 //					pulumi.String("tag:test"),
@@ -44,6 +44,14 @@ import (
 //		})
 //	}
 //
+// ```
+//
+// ## Import
+//
+// Note: Sensitive fields such as the secret key are not returned by the API and will be unset in the Terraform state after import.
+//
+// ```sh
+// $ pulumi import tailscale:index/oauthClient:OauthClient example k1234511CNTRL
 // ```
 type OauthClient struct {
 	pulumi.CustomResourceState
@@ -139,8 +147,6 @@ type oauthClientArgs struct {
 	Scopes []string `pulumi:"scopes"`
 	// A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "authKeys".
 	Tags []string `pulumi:"tags"`
-	// ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
-	UserId *string `pulumi:"userId"`
 }
 
 // The set of arguments for constructing a OauthClient resource.
@@ -151,8 +157,6 @@ type OauthClientArgs struct {
 	Scopes pulumi.StringArrayInput
 	// A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "authKeys".
 	Tags pulumi.StringArrayInput
-	// ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
-	UserId pulumi.StringPtrInput
 }
 
 func (OauthClientArgs) ElementType() reflect.Type {

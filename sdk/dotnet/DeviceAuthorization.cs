@@ -29,7 +29,7 @@ namespace Pulumi.Tailscale
     /// 
     ///     var sampleAuthorization = new Tailscale.DeviceAuthorization("sample_authorization", new()
     ///     {
-    ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.Id),
+    ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.NodeId),
     ///         Authorized = true,
     ///     });
     /// 
@@ -38,7 +38,13 @@ namespace Pulumi.Tailscale
     /// 
     /// ## Import
     /// 
-    /// Device authorization can be imported using the device id, e.g.,
+    /// Device authorization can be imported using the node ID (preferred), e.g.,
+    /// 
+    /// ```sh
+    /// $ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization nodeidCNTRL
+    /// ```
+    /// 
+    /// Device authorization can be imported using the legacy ID, e.g.,
     /// 
     /// ```sh
     /// $ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization 123456789
