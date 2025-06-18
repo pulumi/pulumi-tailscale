@@ -29,7 +29,7 @@ namespace Pulumi.Tailscale
     /// 
     ///     var sampleTags = new Tailscale.DeviceTags("sample_tags", new()
     ///     {
-    ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.Id),
+    ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.NodeId),
     ///         Tags = new[]
     ///         {
     ///             "room:bedroom",
@@ -41,7 +41,13 @@ namespace Pulumi.Tailscale
     /// 
     /// ## Import
     /// 
-    /// Device tags can be imported using the device id, e.g.,
+    /// Device tags can be imported using the node ID (preferred), e.g.,
+    /// 
+    /// ```sh
+    /// $ pulumi import tailscale:index/deviceTags:DeviceTags sample nodeidCNTRL
+    /// ```
+    /// 
+    /// Device tags can be imported using the legacy ID, e.g.,
     /// 
     /// ```sh
     /// $ pulumi import tailscale:index/deviceTags:DeviceTags sample 123456789

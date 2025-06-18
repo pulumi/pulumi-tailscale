@@ -29,7 +29,7 @@ namespace Pulumi.Tailscale
     /// 
     ///     var exampleKey = new Tailscale.DeviceKey("example_key", new()
     ///     {
-    ///         DeviceId = exampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.Id),
+    ///         DeviceId = exampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.NodeId),
     ///         KeyExpiryDisabled = true,
     ///     });
     /// 
@@ -38,7 +38,13 @@ namespace Pulumi.Tailscale
     /// 
     /// ## Import
     /// 
-    /// Device key can be imported using the device id, e.g.,
+    /// Device key can be imported using the node ID (preferred), e.g.,
+    /// 
+    /// ```sh
+    /// $ pulumi import tailscale:index/deviceKey:DeviceKey sample nodeidCNTRL
+    /// ```
+    /// 
+    /// Device key can be imported using the legacy ID, e.g.,
     /// 
     /// ```sh
     /// $ pulumi import tailscale:index/deviceKey:DeviceKey sample 123456789

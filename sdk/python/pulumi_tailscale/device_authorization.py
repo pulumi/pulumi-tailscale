@@ -115,13 +115,19 @@ class DeviceAuthorization(pulumi.CustomResource):
 
         sample_device = tailscale.get_device(name="device.example.com")
         sample_authorization = tailscale.DeviceAuthorization("sample_authorization",
-            device_id=sample_device.id,
+            device_id=sample_device.node_id,
             authorized=True)
         ```
 
         ## Import
 
-        Device authorization can be imported using the device id, e.g.,
+        Device authorization can be imported using the node ID (preferred), e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization nodeidCNTRL
+        ```
+
+        Device authorization can be imported using the legacy ID, e.g.,
 
         ```sh
         $ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization 123456789
@@ -149,13 +155,19 @@ class DeviceAuthorization(pulumi.CustomResource):
 
         sample_device = tailscale.get_device(name="device.example.com")
         sample_authorization = tailscale.DeviceAuthorization("sample_authorization",
-            device_id=sample_device.id,
+            device_id=sample_device.node_id,
             authorized=True)
         ```
 
         ## Import
 
-        Device authorization can be imported using the device id, e.g.,
+        Device authorization can be imported using the node ID (preferred), e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization nodeidCNTRL
+        ```
+
+        Device authorization can be imported using the legacy ID, e.g.,
 
         ```sh
         $ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization 123456789

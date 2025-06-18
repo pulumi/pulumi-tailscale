@@ -116,13 +116,19 @@ class DeviceKey(pulumi.CustomResource):
 
         example_device = tailscale.get_device(name="device.example.com")
         example_key = tailscale.DeviceKey("example_key",
-            device_id=example_device.id,
+            device_id=example_device.node_id,
             key_expiry_disabled=True)
         ```
 
         ## Import
 
-        Device key can be imported using the device id, e.g.,
+        Device key can be imported using the node ID (preferred), e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/deviceKey:DeviceKey sample nodeidCNTRL
+        ```
+
+        Device key can be imported using the legacy ID, e.g.,
 
         ```sh
         $ pulumi import tailscale:index/deviceKey:DeviceKey sample 123456789
@@ -150,13 +156,19 @@ class DeviceKey(pulumi.CustomResource):
 
         example_device = tailscale.get_device(name="device.example.com")
         example_key = tailscale.DeviceKey("example_key",
-            device_id=example_device.id,
+            device_id=example_device.node_id,
             key_expiry_disabled=True)
         ```
 
         ## Import
 
-        Device key can be imported using the device id, e.g.,
+        Device key can be imported using the node ID (preferred), e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/deviceKey:DeviceKey sample nodeidCNTRL
+        ```
+
+        Device key can be imported using the legacy ID, e.g.,
 
         ```sh
         $ pulumi import tailscale:index/deviceKey:DeviceKey sample 123456789

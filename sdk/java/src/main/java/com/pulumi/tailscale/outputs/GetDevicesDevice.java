@@ -22,7 +22,7 @@ public final class GetDevicesDevice {
      */
     private String hostname;
     /**
-     * @return The unique identifier of the device
+     * @return The legacy identifier of the device. Use node_id instead for new resources.
      * 
      */
     private String id;
@@ -31,6 +31,11 @@ public final class GetDevicesDevice {
      * 
      */
     private String name;
+    /**
+     * @return The preferred indentifier for a device.
+     * 
+     */
+    private String nodeId;
     /**
      * @return The tags applied to the device
      * 
@@ -58,7 +63,7 @@ public final class GetDevicesDevice {
         return this.hostname;
     }
     /**
-     * @return The unique identifier of the device
+     * @return The legacy identifier of the device. Use node_id instead for new resources.
      * 
      */
     public String id() {
@@ -70,6 +75,13 @@ public final class GetDevicesDevice {
      */
     public String name() {
         return this.name;
+    }
+    /**
+     * @return The preferred indentifier for a device.
+     * 
+     */
+    public String nodeId() {
+        return this.nodeId;
     }
     /**
      * @return The tags applied to the device
@@ -99,6 +111,7 @@ public final class GetDevicesDevice {
         private String hostname;
         private String id;
         private String name;
+        private String nodeId;
         private List<String> tags;
         private String user;
         public Builder() {}
@@ -108,6 +121,7 @@ public final class GetDevicesDevice {
     	      this.hostname = defaults.hostname;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
+    	      this.nodeId = defaults.nodeId;
     	      this.tags = defaults.tags;
     	      this.user = defaults.user;
         }
@@ -148,6 +162,14 @@ public final class GetDevicesDevice {
             return this;
         }
         @CustomType.Setter
+        public Builder nodeId(String nodeId) {
+            if (nodeId == null) {
+              throw new MissingRequiredPropertyException("GetDevicesDevice", "nodeId");
+            }
+            this.nodeId = nodeId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder tags(List<String> tags) {
             if (tags == null) {
               throw new MissingRequiredPropertyException("GetDevicesDevice", "tags");
@@ -172,6 +194,7 @@ public final class GetDevicesDevice {
             _resultValue.hostname = hostname;
             _resultValue.id = id;
             _resultValue.name = name;
+            _resultValue.nodeId = nodeId;
             _resultValue.tags = tags;
             _resultValue.user = user;
             return _resultValue;

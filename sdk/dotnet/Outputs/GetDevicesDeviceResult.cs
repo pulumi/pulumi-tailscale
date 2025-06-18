@@ -22,13 +22,17 @@ namespace Pulumi.Tailscale.Outputs
         /// </summary>
         public readonly string Hostname;
         /// <summary>
-        /// The unique identifier of the device
+        /// The legacy identifier of the device. Use node_id instead for new resources.
         /// </summary>
         public readonly string Id;
         /// <summary>
         /// The full name of the device (e.g. `hostname.domain.ts.net`)
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The preferred indentifier for a device.
+        /// </summary>
+        public readonly string NodeId;
         /// <summary>
         /// The tags applied to the device
         /// </summary>
@@ -48,6 +52,8 @@ namespace Pulumi.Tailscale.Outputs
 
             string name,
 
+            string nodeId,
+
             ImmutableArray<string> tags,
 
             string user)
@@ -56,6 +62,7 @@ namespace Pulumi.Tailscale.Outputs
             Hostname = hostname;
             Id = id;
             Name = name;
+            NodeId = nodeId;
             Tags = tags;
             User = user;
         }

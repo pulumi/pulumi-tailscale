@@ -27,7 +27,7 @@ namespace Pulumi.Tailscale
     /// 
     ///     var sampleRoutes = new Tailscale.DeviceSubnetRoutes("sample_routes", new()
     ///     {
-    ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.Id),
+    ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.NodeId),
     ///         Routes = new[]
     ///         {
     ///             "10.0.1.0/24",
@@ -38,7 +38,7 @@ namespace Pulumi.Tailscale
     /// 
     ///     var sampleExitNode = new Tailscale.DeviceSubnetRoutes("sample_exit_node", new()
     ///     {
-    ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.Id),
+    ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.NodeId),
     ///         Routes = new[]
     ///         {
     ///             "0.0.0.0/0",
@@ -51,7 +51,13 @@ namespace Pulumi.Tailscale
     /// 
     /// ## Import
     /// 
-    /// Device subnet rules can be imported using the device id, e.g.,
+    /// Device subnet rules can be imported using the node ID (preferred), e.g.,
+    /// 
+    /// ```sh
+    /// $ pulumi import tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes sample nodeidCNTRL
+    /// ```
+    /// 
+    /// Device subnet rules can be imported using the legacy ID, e.g.,
     /// 
     /// ```sh
     /// $ pulumi import tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes sample 123456789

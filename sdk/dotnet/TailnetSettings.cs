@@ -24,6 +24,8 @@ namespace Pulumi.Tailscale
     /// {
     ///     var sampleTailnetSettings = new Tailscale.TailnetSettings("sample_tailnet_settings", new()
     ///     {
+    ///         AclsExternallyManagedOn = true,
+    ///         AclsExternalLink = "https://github.com/octocat/Hello-World",
     ///         DevicesApprovalOn = true,
     ///         DevicesAutoUpdatesOn = true,
     ///         DevicesKeyDurationDays = 5,
@@ -47,52 +49,61 @@ namespace Pulumi.Tailscale
     public partial class TailnetSettings : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Link to your external ACL definition or management system. Must be a valid URL.
+        /// </summary>
+        [Output("aclsExternalLink")]
+        public Output<string> AclsExternalLink { get; private set; } = null!;
+
+        [Output("aclsExternallyManagedOn")]
+        public Output<bool> AclsExternallyManagedOn { get; private set; } = null!;
+
+        /// <summary>
         /// Whether device approval is enabled for the tailnet
         /// </summary>
         [Output("devicesApprovalOn")]
-        public Output<bool?> DevicesApprovalOn { get; private set; } = null!;
+        public Output<bool> DevicesApprovalOn { get; private set; } = null!;
 
         /// <summary>
         /// Whether auto updates are enabled for devices that belong to this tailnet
         /// </summary>
         [Output("devicesAutoUpdatesOn")]
-        public Output<bool?> DevicesAutoUpdatesOn { get; private set; } = null!;
+        public Output<bool> DevicesAutoUpdatesOn { get; private set; } = null!;
 
         /// <summary>
         /// The key expiry duration for devices on this tailnet
         /// </summary>
         [Output("devicesKeyDurationDays")]
-        public Output<int?> DevicesKeyDurationDays { get; private set; } = null!;
+        public Output<int> DevicesKeyDurationDays { get; private set; } = null!;
 
         /// <summary>
         /// Whether network flog logs are enabled for the tailnet
         /// </summary>
         [Output("networkFlowLoggingOn")]
-        public Output<bool?> NetworkFlowLoggingOn { get; private set; } = null!;
+        public Output<bool> NetworkFlowLoggingOn { get; private set; } = null!;
 
         /// <summary>
         /// Whether identity collection is enabled for device posture integrations for the tailnet
         /// </summary>
         [Output("postureIdentityCollectionOn")]
-        public Output<bool?> PostureIdentityCollectionOn { get; private set; } = null!;
+        public Output<bool> PostureIdentityCollectionOn { get; private set; } = null!;
 
         /// <summary>
         /// Whether regional routing is enabled for the tailnet
         /// </summary>
         [Output("regionalRoutingOn")]
-        public Output<bool?> RegionalRoutingOn { get; private set; } = null!;
+        public Output<bool> RegionalRoutingOn { get; private set; } = null!;
 
         /// <summary>
         /// Whether user approval is enabled for this tailnet
         /// </summary>
         [Output("usersApprovalOn")]
-        public Output<bool?> UsersApprovalOn { get; private set; } = null!;
+        public Output<bool> UsersApprovalOn { get; private set; } = null!;
 
         /// <summary>
         /// Which user roles are allowed to join external tailnets
         /// </summary>
         [Output("usersRoleAllowedToJoinExternalTailnet")]
-        public Output<string?> UsersRoleAllowedToJoinExternalTailnet { get; private set; } = null!;
+        public Output<string> UsersRoleAllowedToJoinExternalTailnet { get; private set; } = null!;
 
 
         /// <summary>
@@ -140,6 +151,15 @@ namespace Pulumi.Tailscale
 
     public sealed class TailnetSettingsArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Link to your external ACL definition or management system. Must be a valid URL.
+        /// </summary>
+        [Input("aclsExternalLink")]
+        public Input<string>? AclsExternalLink { get; set; }
+
+        [Input("aclsExternallyManagedOn")]
+        public Input<bool>? AclsExternallyManagedOn { get; set; }
+
         /// <summary>
         /// Whether device approval is enabled for the tailnet
         /// </summary>
@@ -196,6 +216,15 @@ namespace Pulumi.Tailscale
 
     public sealed class TailnetSettingsState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Link to your external ACL definition or management system. Must be a valid URL.
+        /// </summary>
+        [Input("aclsExternalLink")]
+        public Input<string>? AclsExternalLink { get; set; }
+
+        [Input("aclsExternallyManagedOn")]
+        public Input<bool>? AclsExternallyManagedOn { get; set; }
+
         /// <summary>
         /// Whether device approval is enabled for the tailnet
         /// </summary>

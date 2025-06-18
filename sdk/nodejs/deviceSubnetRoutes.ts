@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *     name: "device.example.com",
  * });
  * const sampleRoutes = new tailscale.DeviceSubnetRoutes("sample_routes", {
- *     deviceId: sampleDevice.then(sampleDevice => sampleDevice.id),
+ *     deviceId: sampleDevice.then(sampleDevice => sampleDevice.nodeId),
  *     routes: [
  *         "10.0.1.0/24",
  *         "1.2.0.0/16",
@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * const sampleExitNode = new tailscale.DeviceSubnetRoutes("sample_exit_node", {
- *     deviceId: sampleDevice.then(sampleDevice => sampleDevice.id),
+ *     deviceId: sampleDevice.then(sampleDevice => sampleDevice.nodeId),
  *     routes: [
  *         "0.0.0.0/0",
  *         "::/0",
@@ -33,7 +33,13 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Device subnet rules can be imported using the device id, e.g.,
+ * Device subnet rules can be imported using the node ID (preferred), e.g.,
+ *
+ * ```sh
+ * $ pulumi import tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes sample nodeidCNTRL
+ * ```
+ *
+ * Device subnet rules can be imported using the legacy ID, e.g.,
  *
  * ```sh
  * $ pulumi import tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes sample 123456789

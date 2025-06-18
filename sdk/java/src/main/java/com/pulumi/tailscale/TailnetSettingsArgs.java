@@ -18,6 +18,28 @@ public final class TailnetSettingsArgs extends com.pulumi.resources.ResourceArgs
     public static final TailnetSettingsArgs Empty = new TailnetSettingsArgs();
 
     /**
+     * Link to your external ACL definition or management system. Must be a valid URL.
+     * 
+     */
+    @Import(name="aclsExternalLink")
+    private @Nullable Output<String> aclsExternalLink;
+
+    /**
+     * @return Link to your external ACL definition or management system. Must be a valid URL.
+     * 
+     */
+    public Optional<Output<String>> aclsExternalLink() {
+        return Optional.ofNullable(this.aclsExternalLink);
+    }
+
+    @Import(name="aclsExternallyManagedOn")
+    private @Nullable Output<Boolean> aclsExternallyManagedOn;
+
+    public Optional<Output<Boolean>> aclsExternallyManagedOn() {
+        return Optional.ofNullable(this.aclsExternallyManagedOn);
+    }
+
+    /**
      * Whether device approval is enabled for the tailnet
      * 
      */
@@ -140,6 +162,8 @@ public final class TailnetSettingsArgs extends com.pulumi.resources.ResourceArgs
     private TailnetSettingsArgs() {}
 
     private TailnetSettingsArgs(TailnetSettingsArgs $) {
+        this.aclsExternalLink = $.aclsExternalLink;
+        this.aclsExternallyManagedOn = $.aclsExternallyManagedOn;
         this.devicesApprovalOn = $.devicesApprovalOn;
         this.devicesAutoUpdatesOn = $.devicesAutoUpdatesOn;
         this.devicesKeyDurationDays = $.devicesKeyDurationDays;
@@ -166,6 +190,36 @@ public final class TailnetSettingsArgs extends com.pulumi.resources.ResourceArgs
 
         public Builder(TailnetSettingsArgs defaults) {
             $ = new TailnetSettingsArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param aclsExternalLink Link to your external ACL definition or management system. Must be a valid URL.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder aclsExternalLink(@Nullable Output<String> aclsExternalLink) {
+            $.aclsExternalLink = aclsExternalLink;
+            return this;
+        }
+
+        /**
+         * @param aclsExternalLink Link to your external ACL definition or management system. Must be a valid URL.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder aclsExternalLink(String aclsExternalLink) {
+            return aclsExternalLink(Output.of(aclsExternalLink));
+        }
+
+        public Builder aclsExternallyManagedOn(@Nullable Output<Boolean> aclsExternallyManagedOn) {
+            $.aclsExternallyManagedOn = aclsExternallyManagedOn;
+            return this;
+        }
+
+        public Builder aclsExternallyManagedOn(Boolean aclsExternallyManagedOn) {
+            return aclsExternallyManagedOn(Output.of(aclsExternallyManagedOn));
         }
 
         /**

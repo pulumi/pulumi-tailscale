@@ -35,7 +35,7 @@ import (
 //				return err
 //			}
 //			_, err = tailscale.NewDeviceKey(ctx, "example_key", &tailscale.DeviceKeyArgs{
-//				DeviceId:          pulumi.String(exampleDevice.Id),
+//				DeviceId:          pulumi.String(exampleDevice.NodeId),
 //				KeyExpiryDisabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -49,7 +49,13 @@ import (
 //
 // ## Import
 //
-// Device key can be imported using the device id, e.g.,
+// Device key can be imported using the node ID (preferred), e.g.,
+//
+// ```sh
+// $ pulumi import tailscale:index/deviceKey:DeviceKey sample nodeidCNTRL
+// ```
+//
+// Device key can be imported using the legacy ID, e.g.,
 //
 // ```sh
 // $ pulumi import tailscale:index/deviceKey:DeviceKey sample 123456789

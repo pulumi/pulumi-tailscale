@@ -27,7 +27,7 @@ class GetDeviceResult:
     """
     A collection of values returned by getDevice.
     """
-    def __init__(__self__, addresses=None, hostname=None, id=None, name=None, tags=None, user=None, wait_for=None):
+    def __init__(__self__, addresses=None, hostname=None, id=None, name=None, node_id=None, tags=None, user=None, wait_for=None):
         if addresses and not isinstance(addresses, list):
             raise TypeError("Expected argument 'addresses' to be a list")
         pulumi.set(__self__, "addresses", addresses)
@@ -40,6 +40,9 @@ class GetDeviceResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if node_id and not isinstance(node_id, str):
+            raise TypeError("Expected argument 'node_id' to be a str")
+        pulumi.set(__self__, "node_id", node_id)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -83,6 +86,14 @@ class GetDeviceResult:
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> builtins.str:
+        """
+        The preferred indentifier for a device.
+        """
+        return pulumi.get(self, "node_id")
+
+    @property
     @pulumi.getter
     def tags(self) -> Sequence[builtins.str]:
         """
@@ -117,6 +128,7 @@ class AwaitableGetDeviceResult(GetDeviceResult):
             hostname=self.hostname,
             id=self.id,
             name=self.name,
+            node_id=self.node_id,
             tags=self.tags,
             user=self.user,
             wait_for=self.wait_for)
@@ -158,6 +170,7 @@ def get_device(hostname: Optional[builtins.str] = None,
         hostname=pulumi.get(__ret__, 'hostname'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
+        node_id=pulumi.get(__ret__, 'node_id'),
         tags=pulumi.get(__ret__, 'tags'),
         user=pulumi.get(__ret__, 'user'),
         wait_for=pulumi.get(__ret__, 'wait_for'))
@@ -196,6 +209,7 @@ def get_device_output(hostname: Optional[pulumi.Input[Optional[builtins.str]]] =
         hostname=pulumi.get(__response__, 'hostname'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
+        node_id=pulumi.get(__response__, 'node_id'),
         tags=pulumi.get(__response__, 'tags'),
         user=pulumi.get(__response__, 'user'),
         wait_for=pulumi.get(__response__, 'wait_for')))

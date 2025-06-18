@@ -13,7 +13,6 @@ import com.pulumi.tailscale.inputs.TailnetSettingsState;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -45,6 +44,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var sampleTailnetSettings = new TailnetSettings("sampleTailnetSettings", TailnetSettingsArgs.builder()
+ *             .aclsExternallyManagedOn(true)
+ *             .aclsExternalLink("https://github.com/octocat/Hello-World")
  *             .devicesApprovalOn(true)
  *             .devicesAutoUpdatesOn(true)
  *             .devicesKeyDurationDays(5)
@@ -71,116 +72,136 @@ import javax.annotation.Nullable;
 @ResourceType(type="tailscale:index/tailnetSettings:TailnetSettings")
 public class TailnetSettings extends com.pulumi.resources.CustomResource {
     /**
+     * Link to your external ACL definition or management system. Must be a valid URL.
+     * 
+     */
+    @Export(name="aclsExternalLink", refs={String.class}, tree="[0]")
+    private Output<String> aclsExternalLink;
+
+    /**
+     * @return Link to your external ACL definition or management system. Must be a valid URL.
+     * 
+     */
+    public Output<String> aclsExternalLink() {
+        return this.aclsExternalLink;
+    }
+    @Export(name="aclsExternallyManagedOn", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> aclsExternallyManagedOn;
+
+    public Output<Boolean> aclsExternallyManagedOn() {
+        return this.aclsExternallyManagedOn;
+    }
+    /**
      * Whether device approval is enabled for the tailnet
      * 
      */
     @Export(name="devicesApprovalOn", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> devicesApprovalOn;
+    private Output<Boolean> devicesApprovalOn;
 
     /**
      * @return Whether device approval is enabled for the tailnet
      * 
      */
-    public Output<Optional<Boolean>> devicesApprovalOn() {
-        return Codegen.optional(this.devicesApprovalOn);
+    public Output<Boolean> devicesApprovalOn() {
+        return this.devicesApprovalOn;
     }
     /**
      * Whether auto updates are enabled for devices that belong to this tailnet
      * 
      */
     @Export(name="devicesAutoUpdatesOn", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> devicesAutoUpdatesOn;
+    private Output<Boolean> devicesAutoUpdatesOn;
 
     /**
      * @return Whether auto updates are enabled for devices that belong to this tailnet
      * 
      */
-    public Output<Optional<Boolean>> devicesAutoUpdatesOn() {
-        return Codegen.optional(this.devicesAutoUpdatesOn);
+    public Output<Boolean> devicesAutoUpdatesOn() {
+        return this.devicesAutoUpdatesOn;
     }
     /**
      * The key expiry duration for devices on this tailnet
      * 
      */
     @Export(name="devicesKeyDurationDays", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> devicesKeyDurationDays;
+    private Output<Integer> devicesKeyDurationDays;
 
     /**
      * @return The key expiry duration for devices on this tailnet
      * 
      */
-    public Output<Optional<Integer>> devicesKeyDurationDays() {
-        return Codegen.optional(this.devicesKeyDurationDays);
+    public Output<Integer> devicesKeyDurationDays() {
+        return this.devicesKeyDurationDays;
     }
     /**
      * Whether network flog logs are enabled for the tailnet
      * 
      */
     @Export(name="networkFlowLoggingOn", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> networkFlowLoggingOn;
+    private Output<Boolean> networkFlowLoggingOn;
 
     /**
      * @return Whether network flog logs are enabled for the tailnet
      * 
      */
-    public Output<Optional<Boolean>> networkFlowLoggingOn() {
-        return Codegen.optional(this.networkFlowLoggingOn);
+    public Output<Boolean> networkFlowLoggingOn() {
+        return this.networkFlowLoggingOn;
     }
     /**
      * Whether identity collection is enabled for device posture integrations for the tailnet
      * 
      */
     @Export(name="postureIdentityCollectionOn", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> postureIdentityCollectionOn;
+    private Output<Boolean> postureIdentityCollectionOn;
 
     /**
      * @return Whether identity collection is enabled for device posture integrations for the tailnet
      * 
      */
-    public Output<Optional<Boolean>> postureIdentityCollectionOn() {
-        return Codegen.optional(this.postureIdentityCollectionOn);
+    public Output<Boolean> postureIdentityCollectionOn() {
+        return this.postureIdentityCollectionOn;
     }
     /**
      * Whether regional routing is enabled for the tailnet
      * 
      */
     @Export(name="regionalRoutingOn", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> regionalRoutingOn;
+    private Output<Boolean> regionalRoutingOn;
 
     /**
      * @return Whether regional routing is enabled for the tailnet
      * 
      */
-    public Output<Optional<Boolean>> regionalRoutingOn() {
-        return Codegen.optional(this.regionalRoutingOn);
+    public Output<Boolean> regionalRoutingOn() {
+        return this.regionalRoutingOn;
     }
     /**
      * Whether user approval is enabled for this tailnet
      * 
      */
     @Export(name="usersApprovalOn", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> usersApprovalOn;
+    private Output<Boolean> usersApprovalOn;
 
     /**
      * @return Whether user approval is enabled for this tailnet
      * 
      */
-    public Output<Optional<Boolean>> usersApprovalOn() {
-        return Codegen.optional(this.usersApprovalOn);
+    public Output<Boolean> usersApprovalOn() {
+        return this.usersApprovalOn;
     }
     /**
      * Which user roles are allowed to join external tailnets
      * 
      */
     @Export(name="usersRoleAllowedToJoinExternalTailnet", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> usersRoleAllowedToJoinExternalTailnet;
+    private Output<String> usersRoleAllowedToJoinExternalTailnet;
 
     /**
      * @return Which user roles are allowed to join external tailnets
      * 
      */
-    public Output<Optional<String>> usersRoleAllowedToJoinExternalTailnet() {
-        return Codegen.optional(this.usersRoleAllowedToJoinExternalTailnet);
+    public Output<String> usersRoleAllowedToJoinExternalTailnet() {
+        return this.usersRoleAllowedToJoinExternalTailnet;
     }
 
     /**

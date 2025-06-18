@@ -35,7 +35,7 @@ import (
 //				return err
 //			}
 //			_, err = tailscale.NewDeviceAuthorization(ctx, "sample_authorization", &tailscale.DeviceAuthorizationArgs{
-//				DeviceId:   pulumi.String(sampleDevice.Id),
+//				DeviceId:   pulumi.String(sampleDevice.NodeId),
 //				Authorized: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -49,7 +49,13 @@ import (
 //
 // ## Import
 //
-// Device authorization can be imported using the device id, e.g.,
+// Device authorization can be imported using the node ID (preferred), e.g.,
+//
+// ```sh
+// $ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization nodeidCNTRL
+// ```
+//
+// Device authorization can be imported using the legacy ID, e.g.,
 //
 // ```sh
 // $ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization 123456789

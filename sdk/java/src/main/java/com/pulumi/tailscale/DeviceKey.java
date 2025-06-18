@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var exampleKey = new DeviceKey("exampleKey", DeviceKeyArgs.builder()
- *             .deviceId(exampleDevice.id())
+ *             .deviceId(exampleDevice.nodeId())
  *             .keyExpiryDisabled(true)
  *             .build());
  * 
@@ -62,7 +62,13 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Device key can be imported using the device id, e.g.,
+ * Device key can be imported using the node ID (preferred), e.g.,
+ * 
+ * ```sh
+ * $ pulumi import tailscale:index/deviceKey:DeviceKey sample nodeidCNTRL
+ * ```
+ * 
+ * Device key can be imported using the legacy ID, e.g.,
  * 
  * ```sh
  * $ pulumi import tailscale:index/deviceKey:DeviceKey sample 123456789

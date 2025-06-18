@@ -27,7 +27,7 @@ namespace Pulumi.Tailscale
     ///         Description = "sample client",
     ///         Scopes = new[]
     ///         {
-    ///             "read:all",
+    ///             "all:read",
     ///         },
     ///         Tags = new[]
     ///         {
@@ -36,6 +36,14 @@ namespace Pulumi.Tailscale
     ///     });
     /// 
     /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Note: Sensitive fields such as the secret key are not returned by the API and will be unset in the Terraform state after import.
+    /// 
+    /// ```sh
+    /// $ pulumi import tailscale:index/oauthClient:OauthClient example k1234511CNTRL
     /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/oauthClient:OauthClient")]
@@ -156,12 +164,6 @@ namespace Pulumi.Tailscale
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
-
-        /// <summary>
-        /// ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
-        /// </summary>
-        [Input("userId")]
-        public Input<string>? UserId { get; set; }
 
         public OauthClientArgs()
         {

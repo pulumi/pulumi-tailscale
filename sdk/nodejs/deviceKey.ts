@@ -17,14 +17,20 @@ import * as utilities from "./utilities";
  *     name: "device.example.com",
  * });
  * const exampleKey = new tailscale.DeviceKey("example_key", {
- *     deviceId: exampleDevice.then(exampleDevice => exampleDevice.id),
+ *     deviceId: exampleDevice.then(exampleDevice => exampleDevice.nodeId),
  *     keyExpiryDisabled: true,
  * });
  * ```
  *
  * ## Import
  *
- * Device key can be imported using the device id, e.g.,
+ * Device key can be imported using the node ID (preferred), e.g.,
+ *
+ * ```sh
+ * $ pulumi import tailscale:index/deviceKey:DeviceKey sample nodeidCNTRL
+ * ```
+ *
+ * Device key can be imported using the legacy ID, e.g.,
  *
  * ```sh
  * $ pulumi import tailscale:index/deviceKey:DeviceKey sample 123456789
