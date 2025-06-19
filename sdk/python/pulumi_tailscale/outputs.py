@@ -84,13 +84,15 @@ class GetDevicesDeviceResult(dict):
                  hostname: builtins.str,
                  id: builtins.str,
                  name: builtins.str,
+                 node_id: builtins.str,
                  tags: Sequence[builtins.str],
                  user: builtins.str):
         """
         :param Sequence[builtins.str] addresses: The list of device's IPs
         :param builtins.str hostname: The short hostname of the device
-        :param builtins.str id: The unique identifier of the device
+        :param builtins.str id: The legacy identifier of the device. Use node_id instead for new resources.
         :param builtins.str name: The full name of the device (e.g. `hostname.domain.ts.net`)
+        :param builtins.str node_id: The preferred indentifier for a device.
         :param Sequence[builtins.str] tags: The tags applied to the device
         :param builtins.str user: The user associated with the device
         """
@@ -98,6 +100,7 @@ class GetDevicesDeviceResult(dict):
         pulumi.set(__self__, "hostname", hostname)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "node_id", node_id)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "user", user)
 
@@ -121,7 +124,7 @@ class GetDevicesDeviceResult(dict):
     @pulumi.getter
     def id(self) -> builtins.str:
         """
-        The unique identifier of the device
+        The legacy identifier of the device. Use node_id instead for new resources.
         """
         return pulumi.get(self, "id")
 
@@ -132,6 +135,14 @@ class GetDevicesDeviceResult(dict):
         The full name of the device (e.g. `hostname.domain.ts.net`)
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> builtins.str:
+        """
+        The preferred indentifier for a device.
+        """
+        return pulumi.get(self, "node_id")
 
     @property
     @pulumi.getter

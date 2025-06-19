@@ -28,6 +28,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tailscale.NewTailnetSettings(ctx, "sample_tailnet_settings", &tailscale.TailnetSettingsArgs{
+//				AclsExternallyManagedOn:               pulumi.Bool(true),
+//				AclsExternalLink:                      pulumi.String("https://github.com/octocat/Hello-World"),
 //				DevicesApprovalOn:                     pulumi.Bool(true),
 //				DevicesAutoUpdatesOn:                  pulumi.Bool(true),
 //				DevicesKeyDurationDays:                pulumi.Int(5),
@@ -54,22 +56,25 @@ import (
 type TailnetSettings struct {
 	pulumi.CustomResourceState
 
+	// Link to your external ACL definition or management system. Must be a valid URL.
+	AclsExternalLink        pulumi.StringOutput `pulumi:"aclsExternalLink"`
+	AclsExternallyManagedOn pulumi.BoolOutput   `pulumi:"aclsExternallyManagedOn"`
 	// Whether device approval is enabled for the tailnet
-	DevicesApprovalOn pulumi.BoolPtrOutput `pulumi:"devicesApprovalOn"`
+	DevicesApprovalOn pulumi.BoolOutput `pulumi:"devicesApprovalOn"`
 	// Whether auto updates are enabled for devices that belong to this tailnet
-	DevicesAutoUpdatesOn pulumi.BoolPtrOutput `pulumi:"devicesAutoUpdatesOn"`
+	DevicesAutoUpdatesOn pulumi.BoolOutput `pulumi:"devicesAutoUpdatesOn"`
 	// The key expiry duration for devices on this tailnet
-	DevicesKeyDurationDays pulumi.IntPtrOutput `pulumi:"devicesKeyDurationDays"`
+	DevicesKeyDurationDays pulumi.IntOutput `pulumi:"devicesKeyDurationDays"`
 	// Whether network flog logs are enabled for the tailnet
-	NetworkFlowLoggingOn pulumi.BoolPtrOutput `pulumi:"networkFlowLoggingOn"`
+	NetworkFlowLoggingOn pulumi.BoolOutput `pulumi:"networkFlowLoggingOn"`
 	// Whether identity collection is enabled for device posture integrations for the tailnet
-	PostureIdentityCollectionOn pulumi.BoolPtrOutput `pulumi:"postureIdentityCollectionOn"`
+	PostureIdentityCollectionOn pulumi.BoolOutput `pulumi:"postureIdentityCollectionOn"`
 	// Whether regional routing is enabled for the tailnet
-	RegionalRoutingOn pulumi.BoolPtrOutput `pulumi:"regionalRoutingOn"`
+	RegionalRoutingOn pulumi.BoolOutput `pulumi:"regionalRoutingOn"`
 	// Whether user approval is enabled for this tailnet
-	UsersApprovalOn pulumi.BoolPtrOutput `pulumi:"usersApprovalOn"`
+	UsersApprovalOn pulumi.BoolOutput `pulumi:"usersApprovalOn"`
 	// Which user roles are allowed to join external tailnets
-	UsersRoleAllowedToJoinExternalTailnet pulumi.StringPtrOutput `pulumi:"usersRoleAllowedToJoinExternalTailnet"`
+	UsersRoleAllowedToJoinExternalTailnet pulumi.StringOutput `pulumi:"usersRoleAllowedToJoinExternalTailnet"`
 }
 
 // NewTailnetSettings registers a new resource with the given unique name, arguments, and options.
@@ -102,6 +107,9 @@ func GetTailnetSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TailnetSettings resources.
 type tailnetSettingsState struct {
+	// Link to your external ACL definition or management system. Must be a valid URL.
+	AclsExternalLink        *string `pulumi:"aclsExternalLink"`
+	AclsExternallyManagedOn *bool   `pulumi:"aclsExternallyManagedOn"`
 	// Whether device approval is enabled for the tailnet
 	DevicesApprovalOn *bool `pulumi:"devicesApprovalOn"`
 	// Whether auto updates are enabled for devices that belong to this tailnet
@@ -121,6 +129,9 @@ type tailnetSettingsState struct {
 }
 
 type TailnetSettingsState struct {
+	// Link to your external ACL definition or management system. Must be a valid URL.
+	AclsExternalLink        pulumi.StringPtrInput
+	AclsExternallyManagedOn pulumi.BoolPtrInput
 	// Whether device approval is enabled for the tailnet
 	DevicesApprovalOn pulumi.BoolPtrInput
 	// Whether auto updates are enabled for devices that belong to this tailnet
@@ -144,6 +155,9 @@ func (TailnetSettingsState) ElementType() reflect.Type {
 }
 
 type tailnetSettingsArgs struct {
+	// Link to your external ACL definition or management system. Must be a valid URL.
+	AclsExternalLink        *string `pulumi:"aclsExternalLink"`
+	AclsExternallyManagedOn *bool   `pulumi:"aclsExternallyManagedOn"`
 	// Whether device approval is enabled for the tailnet
 	DevicesApprovalOn *bool `pulumi:"devicesApprovalOn"`
 	// Whether auto updates are enabled for devices that belong to this tailnet
@@ -164,6 +178,9 @@ type tailnetSettingsArgs struct {
 
 // The set of arguments for constructing a TailnetSettings resource.
 type TailnetSettingsArgs struct {
+	// Link to your external ACL definition or management system. Must be a valid URL.
+	AclsExternalLink        pulumi.StringPtrInput
+	AclsExternallyManagedOn pulumi.BoolPtrInput
 	// Whether device approval is enabled for the tailnet
 	DevicesApprovalOn pulumi.BoolPtrInput
 	// Whether auto updates are enabled for devices that belong to this tailnet
@@ -269,44 +286,53 @@ func (o TailnetSettingsOutput) ToTailnetSettingsOutputWithContext(ctx context.Co
 	return o
 }
 
+// Link to your external ACL definition or management system. Must be a valid URL.
+func (o TailnetSettingsOutput) AclsExternalLink() pulumi.StringOutput {
+	return o.ApplyT(func(v *TailnetSettings) pulumi.StringOutput { return v.AclsExternalLink }).(pulumi.StringOutput)
+}
+
+func (o TailnetSettingsOutput) AclsExternallyManagedOn() pulumi.BoolOutput {
+	return o.ApplyT(func(v *TailnetSettings) pulumi.BoolOutput { return v.AclsExternallyManagedOn }).(pulumi.BoolOutput)
+}
+
 // Whether device approval is enabled for the tailnet
-func (o TailnetSettingsOutput) DevicesApprovalOn() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *TailnetSettings) pulumi.BoolPtrOutput { return v.DevicesApprovalOn }).(pulumi.BoolPtrOutput)
+func (o TailnetSettingsOutput) DevicesApprovalOn() pulumi.BoolOutput {
+	return o.ApplyT(func(v *TailnetSettings) pulumi.BoolOutput { return v.DevicesApprovalOn }).(pulumi.BoolOutput)
 }
 
 // Whether auto updates are enabled for devices that belong to this tailnet
-func (o TailnetSettingsOutput) DevicesAutoUpdatesOn() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *TailnetSettings) pulumi.BoolPtrOutput { return v.DevicesAutoUpdatesOn }).(pulumi.BoolPtrOutput)
+func (o TailnetSettingsOutput) DevicesAutoUpdatesOn() pulumi.BoolOutput {
+	return o.ApplyT(func(v *TailnetSettings) pulumi.BoolOutput { return v.DevicesAutoUpdatesOn }).(pulumi.BoolOutput)
 }
 
 // The key expiry duration for devices on this tailnet
-func (o TailnetSettingsOutput) DevicesKeyDurationDays() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *TailnetSettings) pulumi.IntPtrOutput { return v.DevicesKeyDurationDays }).(pulumi.IntPtrOutput)
+func (o TailnetSettingsOutput) DevicesKeyDurationDays() pulumi.IntOutput {
+	return o.ApplyT(func(v *TailnetSettings) pulumi.IntOutput { return v.DevicesKeyDurationDays }).(pulumi.IntOutput)
 }
 
 // Whether network flog logs are enabled for the tailnet
-func (o TailnetSettingsOutput) NetworkFlowLoggingOn() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *TailnetSettings) pulumi.BoolPtrOutput { return v.NetworkFlowLoggingOn }).(pulumi.BoolPtrOutput)
+func (o TailnetSettingsOutput) NetworkFlowLoggingOn() pulumi.BoolOutput {
+	return o.ApplyT(func(v *TailnetSettings) pulumi.BoolOutput { return v.NetworkFlowLoggingOn }).(pulumi.BoolOutput)
 }
 
 // Whether identity collection is enabled for device posture integrations for the tailnet
-func (o TailnetSettingsOutput) PostureIdentityCollectionOn() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *TailnetSettings) pulumi.BoolPtrOutput { return v.PostureIdentityCollectionOn }).(pulumi.BoolPtrOutput)
+func (o TailnetSettingsOutput) PostureIdentityCollectionOn() pulumi.BoolOutput {
+	return o.ApplyT(func(v *TailnetSettings) pulumi.BoolOutput { return v.PostureIdentityCollectionOn }).(pulumi.BoolOutput)
 }
 
 // Whether regional routing is enabled for the tailnet
-func (o TailnetSettingsOutput) RegionalRoutingOn() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *TailnetSettings) pulumi.BoolPtrOutput { return v.RegionalRoutingOn }).(pulumi.BoolPtrOutput)
+func (o TailnetSettingsOutput) RegionalRoutingOn() pulumi.BoolOutput {
+	return o.ApplyT(func(v *TailnetSettings) pulumi.BoolOutput { return v.RegionalRoutingOn }).(pulumi.BoolOutput)
 }
 
 // Whether user approval is enabled for this tailnet
-func (o TailnetSettingsOutput) UsersApprovalOn() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *TailnetSettings) pulumi.BoolPtrOutput { return v.UsersApprovalOn }).(pulumi.BoolPtrOutput)
+func (o TailnetSettingsOutput) UsersApprovalOn() pulumi.BoolOutput {
+	return o.ApplyT(func(v *TailnetSettings) pulumi.BoolOutput { return v.UsersApprovalOn }).(pulumi.BoolOutput)
 }
 
 // Which user roles are allowed to join external tailnets
-func (o TailnetSettingsOutput) UsersRoleAllowedToJoinExternalTailnet() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *TailnetSettings) pulumi.StringPtrOutput { return v.UsersRoleAllowedToJoinExternalTailnet }).(pulumi.StringPtrOutput)
+func (o TailnetSettingsOutput) UsersRoleAllowedToJoinExternalTailnet() pulumi.StringOutput {
+	return o.ApplyT(func(v *TailnetSettings) pulumi.StringOutput { return v.UsersRoleAllowedToJoinExternalTailnet }).(pulumi.StringOutput)
 }
 
 type TailnetSettingsArrayOutput struct{ *pulumi.OutputState }

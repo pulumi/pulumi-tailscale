@@ -72,6 +72,10 @@ export interface GetDeviceResult {
      */
     readonly name?: string;
     /**
+     * The preferred indentifier for a device.
+     */
+    readonly nodeId: string;
+    /**
      * The tags applied to the device
      */
     readonly tags: string[];

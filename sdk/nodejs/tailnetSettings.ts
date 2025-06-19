@@ -14,6 +14,8 @@ import * as utilities from "./utilities";
  * import * as tailscale from "@pulumi/tailscale";
  *
  * const sampleTailnetSettings = new tailscale.TailnetSettings("sample_tailnet_settings", {
+ *     aclsExternallyManagedOn: true,
+ *     aclsExternalLink: "https://github.com/octocat/Hello-World",
  *     devicesApprovalOn: true,
  *     devicesAutoUpdatesOn: true,
  *     devicesKeyDurationDays: 5,
@@ -60,37 +62,42 @@ export class TailnetSettings extends pulumi.CustomResource {
     }
 
     /**
+     * Link to your external ACL definition or management system. Must be a valid URL.
+     */
+    public readonly aclsExternalLink!: pulumi.Output<string>;
+    public readonly aclsExternallyManagedOn!: pulumi.Output<boolean>;
+    /**
      * Whether device approval is enabled for the tailnet
      */
-    public readonly devicesApprovalOn!: pulumi.Output<boolean | undefined>;
+    public readonly devicesApprovalOn!: pulumi.Output<boolean>;
     /**
      * Whether auto updates are enabled for devices that belong to this tailnet
      */
-    public readonly devicesAutoUpdatesOn!: pulumi.Output<boolean | undefined>;
+    public readonly devicesAutoUpdatesOn!: pulumi.Output<boolean>;
     /**
      * The key expiry duration for devices on this tailnet
      */
-    public readonly devicesKeyDurationDays!: pulumi.Output<number | undefined>;
+    public readonly devicesKeyDurationDays!: pulumi.Output<number>;
     /**
      * Whether network flog logs are enabled for the tailnet
      */
-    public readonly networkFlowLoggingOn!: pulumi.Output<boolean | undefined>;
+    public readonly networkFlowLoggingOn!: pulumi.Output<boolean>;
     /**
      * Whether identity collection is enabled for device posture integrations for the tailnet
      */
-    public readonly postureIdentityCollectionOn!: pulumi.Output<boolean | undefined>;
+    public readonly postureIdentityCollectionOn!: pulumi.Output<boolean>;
     /**
      * Whether regional routing is enabled for the tailnet
      */
-    public readonly regionalRoutingOn!: pulumi.Output<boolean | undefined>;
+    public readonly regionalRoutingOn!: pulumi.Output<boolean>;
     /**
      * Whether user approval is enabled for this tailnet
      */
-    public readonly usersApprovalOn!: pulumi.Output<boolean | undefined>;
+    public readonly usersApprovalOn!: pulumi.Output<boolean>;
     /**
      * Which user roles are allowed to join external tailnets
      */
-    public readonly usersRoleAllowedToJoinExternalTailnet!: pulumi.Output<string | undefined>;
+    public readonly usersRoleAllowedToJoinExternalTailnet!: pulumi.Output<string>;
 
     /**
      * Create a TailnetSettings resource with the given unique name, arguments, and options.
@@ -105,6 +112,8 @@ export class TailnetSettings extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TailnetSettingsState | undefined;
+            resourceInputs["aclsExternalLink"] = state ? state.aclsExternalLink : undefined;
+            resourceInputs["aclsExternallyManagedOn"] = state ? state.aclsExternallyManagedOn : undefined;
             resourceInputs["devicesApprovalOn"] = state ? state.devicesApprovalOn : undefined;
             resourceInputs["devicesAutoUpdatesOn"] = state ? state.devicesAutoUpdatesOn : undefined;
             resourceInputs["devicesKeyDurationDays"] = state ? state.devicesKeyDurationDays : undefined;
@@ -115,6 +124,8 @@ export class TailnetSettings extends pulumi.CustomResource {
             resourceInputs["usersRoleAllowedToJoinExternalTailnet"] = state ? state.usersRoleAllowedToJoinExternalTailnet : undefined;
         } else {
             const args = argsOrState as TailnetSettingsArgs | undefined;
+            resourceInputs["aclsExternalLink"] = args ? args.aclsExternalLink : undefined;
+            resourceInputs["aclsExternallyManagedOn"] = args ? args.aclsExternallyManagedOn : undefined;
             resourceInputs["devicesApprovalOn"] = args ? args.devicesApprovalOn : undefined;
             resourceInputs["devicesAutoUpdatesOn"] = args ? args.devicesAutoUpdatesOn : undefined;
             resourceInputs["devicesKeyDurationDays"] = args ? args.devicesKeyDurationDays : undefined;
@@ -133,6 +144,11 @@ export class TailnetSettings extends pulumi.CustomResource {
  * Input properties used for looking up and filtering TailnetSettings resources.
  */
 export interface TailnetSettingsState {
+    /**
+     * Link to your external ACL definition or management system. Must be a valid URL.
+     */
+    aclsExternalLink?: pulumi.Input<string>;
+    aclsExternallyManagedOn?: pulumi.Input<boolean>;
     /**
      * Whether device approval is enabled for the tailnet
      */
@@ -171,6 +187,11 @@ export interface TailnetSettingsState {
  * The set of arguments for constructing a TailnetSettings resource.
  */
 export interface TailnetSettingsArgs {
+    /**
+     * Link to your external ACL definition or management system. Must be a valid URL.
+     */
+    aclsExternalLink?: pulumi.Input<string>;
+    aclsExternallyManagedOn?: pulumi.Input<boolean>;
     /**
      * Whether device approval is enabled for the tailnet
      */

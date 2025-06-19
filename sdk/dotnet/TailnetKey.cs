@@ -77,7 +77,7 @@ namespace Pulumi.Tailscale
         /// The expiry of the key in seconds. Defaults to `7776000` (90 days).
         /// </summary>
         [Output("expiry")]
-        public Output<int?> Expiry { get; private set; } = null!;
+        public Output<int> Expiry { get; private set; } = null!;
 
         /// <summary>
         /// Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).

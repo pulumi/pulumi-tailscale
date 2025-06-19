@@ -36,13 +36,17 @@ export interface GetDevicesDevice {
      */
     hostname: string;
     /**
-     * The unique identifier of the device
+     * The legacy identifier of the device. Use nodeId instead for new resources.
      */
     id: string;
     /**
      * The full name of the device (e.g. `hostname.domain.ts.net`)
      */
     name: string;
+    /**
+     * The preferred indentifier for a device.
+     */
+    nodeId: string;
     /**
      * The tags applied to the device
      */

@@ -583,7 +583,7 @@ class TailnetKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def expiry(self) -> pulumi.Output[Optional[builtins.int]]:
+    def expiry(self) -> pulumi.Output[builtins.int]:
         """
         The expiry of the key in seconds. Defaults to `7776000` (90 days).
         """

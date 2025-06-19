@@ -76,6 +76,8 @@ type GetDeviceResult struct {
 	Id string `pulumi:"id"`
 	// The full name of the device (e.g. `hostname.domain.ts.net`)
 	Name *string `pulumi:"name"`
+	// The preferred indentifier for a device.
+	NodeId string `pulumi:"nodeId"`
 	// The tags applied to the device
 	Tags []string `pulumi:"tags"`
 	// The user associated with the device
@@ -140,6 +142,11 @@ func (o GetDeviceResultOutput) Id() pulumi.StringOutput {
 // The full name of the device (e.g. `hostname.domain.ts.net`)
 func (o GetDeviceResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeviceResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The preferred indentifier for a device.
+func (o GetDeviceResultOutput) NodeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.NodeId }).(pulumi.StringOutput)
 }
 
 // The tags applied to the device

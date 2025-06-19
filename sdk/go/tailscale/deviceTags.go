@@ -35,7 +35,7 @@ import (
 //				return err
 //			}
 //			_, err = tailscale.NewDeviceTags(ctx, "sample_tags", &tailscale.DeviceTagsArgs{
-//				DeviceId: pulumi.String(sampleDevice.Id),
+//				DeviceId: pulumi.String(sampleDevice.NodeId),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("room:bedroom"),
 //				},
@@ -51,7 +51,13 @@ import (
 //
 // ## Import
 //
-// Device tags can be imported using the device id, e.g.,
+// Device tags can be imported using the node ID (preferred), e.g.,
+//
+// ```sh
+// $ pulumi import tailscale:index/deviceTags:DeviceTags sample nodeidCNTRL
+// ```
+//
+// Device tags can be imported using the legacy ID, e.g.,
 //
 // ```sh
 // $ pulumi import tailscale:index/deviceTags:DeviceTags sample 123456789

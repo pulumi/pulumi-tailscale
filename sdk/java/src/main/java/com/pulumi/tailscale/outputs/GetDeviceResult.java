@@ -34,6 +34,11 @@ public final class GetDeviceResult {
      */
     private @Nullable String name;
     /**
+     * @return The preferred indentifier for a device.
+     * 
+     */
+    private String nodeId;
+    /**
      * @return The tags applied to the device
      * 
      */
@@ -79,6 +84,13 @@ public final class GetDeviceResult {
         return Optional.ofNullable(this.name);
     }
     /**
+     * @return The preferred indentifier for a device.
+     * 
+     */
+    public String nodeId() {
+        return this.nodeId;
+    }
+    /**
      * @return The tags applied to the device
      * 
      */
@@ -113,6 +125,7 @@ public final class GetDeviceResult {
         private @Nullable String hostname;
         private String id;
         private @Nullable String name;
+        private String nodeId;
         private List<String> tags;
         private String user;
         private @Nullable String waitFor;
@@ -123,6 +136,7 @@ public final class GetDeviceResult {
     	      this.hostname = defaults.hostname;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
+    	      this.nodeId = defaults.nodeId;
     	      this.tags = defaults.tags;
     	      this.user = defaults.user;
     	      this.waitFor = defaults.waitFor;
@@ -160,6 +174,14 @@ public final class GetDeviceResult {
             return this;
         }
         @CustomType.Setter
+        public Builder nodeId(String nodeId) {
+            if (nodeId == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "nodeId");
+            }
+            this.nodeId = nodeId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder tags(List<String> tags) {
             if (tags == null) {
               throw new MissingRequiredPropertyException("GetDeviceResult", "tags");
@@ -190,6 +212,7 @@ public final class GetDeviceResult {
             _resultValue.hostname = hostname;
             _resultValue.id = id;
             _resultValue.name = name;
+            _resultValue.nodeId = nodeId;
             _resultValue.tags = tags;
             _resultValue.user = user;
             _resultValue.waitFor = waitFor;

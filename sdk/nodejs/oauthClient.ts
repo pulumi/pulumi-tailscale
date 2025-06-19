@@ -15,9 +15,17 @@ import * as utilities from "./utilities";
  *
  * const sampleClient = new tailscale.OauthClient("sample_client", {
  *     description: "sample client",
- *     scopes: ["read:all"],
+ *     scopes: ["all:read"],
  *     tags: ["tag:test"],
  * });
+ * ```
+ *
+ * ## Import
+ *
+ * Note: Sensitive fields such as the secret key are not returned by the API and will be unset in the Terraform state after import.
+ *
+ * ```sh
+ * $ pulumi import tailscale:index/oauthClient:OauthClient example k1234511CNTRL
  * ```
  */
 export class OauthClient extends pulumi.CustomResource {
@@ -71,7 +79,7 @@ export class OauthClient extends pulumi.CustomResource {
     /**
      * ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
      */
-    public readonly userId!: pulumi.Output<string>;
+    public /*out*/ readonly userId!: pulumi.Output<string>;
 
     /**
      * Create a OauthClient resource with the given unique name, arguments, and options.
@@ -100,9 +108,9 @@ export class OauthClient extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["scopes"] = args ? args.scopes : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["userId"] = args ? args.userId : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["key"] = undefined /*out*/;
+            resourceInputs["userId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["key"] };
@@ -157,8 +165,4 @@ export interface OauthClientArgs {
      * A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "authKeys".
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
-     */
-    userId?: pulumi.Input<string>;
 }

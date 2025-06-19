@@ -66,7 +66,7 @@ type TailnetKey struct {
 	// The expiry timestamp of the key in RFC3339 format
 	ExpiresAt pulumi.StringOutput `pulumi:"expiresAt"`
 	// The expiry of the key in seconds. Defaults to `7776000` (90 days).
-	Expiry pulumi.IntPtrOutput `pulumi:"expiry"`
+	Expiry pulumi.IntOutput `pulumi:"expiry"`
 	// Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
 	Invalid pulumi.BoolOutput `pulumi:"invalid"`
 	// The authentication key
@@ -321,8 +321,8 @@ func (o TailnetKeyOutput) ExpiresAt() pulumi.StringOutput {
 }
 
 // The expiry of the key in seconds. Defaults to `7776000` (90 days).
-func (o TailnetKeyOutput) Expiry() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *TailnetKey) pulumi.IntPtrOutput { return v.Expiry }).(pulumi.IntPtrOutput)
+func (o TailnetKeyOutput) Expiry() pulumi.IntOutput {
+	return o.ApplyT(func(v *TailnetKey) pulumi.IntOutput { return v.Expiry }).(pulumi.IntOutput)
 }
 
 // Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
