@@ -135,14 +135,14 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="expiry", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> expiry;
+    private Output<Integer> expiry;
 
     /**
      * @return The expiry of the key in seconds. Defaults to `7776000` (90 days).
      * 
      */
-    public Output<Optional<Integer>> expiry() {
-        return Codegen.optional(this.expiry);
+    public Output<Integer> expiry() {
+        return this.expiry;
     }
     /**
      * Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).

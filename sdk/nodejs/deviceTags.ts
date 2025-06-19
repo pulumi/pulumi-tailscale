@@ -17,14 +17,20 @@ import * as utilities from "./utilities";
  *     name: "device.example.com",
  * });
  * const sampleTags = new tailscale.DeviceTags("sample_tags", {
- *     deviceId: sampleDevice.then(sampleDevice => sampleDevice.id),
+ *     deviceId: sampleDevice.then(sampleDevice => sampleDevice.nodeId),
  *     tags: ["room:bedroom"],
  * });
  * ```
  *
  * ## Import
  *
- * Device tags can be imported using the device id, e.g.,
+ * Device tags can be imported using the node ID (preferred), e.g.,
+ *
+ * ```sh
+ * $ pulumi import tailscale:index/deviceTags:DeviceTags sample nodeidCNTRL
+ * ```
+ *
+ * Device tags can be imported using the legacy ID, e.g.,
  *
  * ```sh
  * $ pulumi import tailscale:index/deviceTags:DeviceTags sample 123456789

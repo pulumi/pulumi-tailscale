@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var sampleRoutes = new DeviceSubnetRoutes("sampleRoutes", DeviceSubnetRoutesArgs.builder()
- *             .deviceId(sampleDevice.id())
+ *             .deviceId(sampleDevice.nodeId())
  *             .routes(            
  *                 "10.0.1.0/24",
  *                 "1.2.0.0/16",
@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var sampleExitNode = new DeviceSubnetRoutes("sampleExitNode", DeviceSubnetRoutesArgs.builder()
- *             .deviceId(sampleDevice.id())
+ *             .deviceId(sampleDevice.nodeId())
  *             .routes(            
  *                 "0.0.0.0/0",
  *                 "::/0")
@@ -69,7 +69,13 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Device subnet rules can be imported using the device id, e.g.,
+ * Device subnet rules can be imported using the node ID (preferred), e.g.,
+ * 
+ * ```sh
+ * $ pulumi import tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes sample nodeidCNTRL
+ * ```
+ * 
+ * Device subnet rules can be imported using the legacy ID, e.g.,
  * 
  * ```sh
  * $ pulumi import tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes sample 123456789

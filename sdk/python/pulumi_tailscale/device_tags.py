@@ -115,13 +115,19 @@ class DeviceTags(pulumi.CustomResource):
 
         sample_device = tailscale.get_device(name="device.example.com")
         sample_tags = tailscale.DeviceTags("sample_tags",
-            device_id=sample_device.id,
+            device_id=sample_device.node_id,
             tags=["room:bedroom"])
         ```
 
         ## Import
 
-        Device tags can be imported using the device id, e.g.,
+        Device tags can be imported using the node ID (preferred), e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/deviceTags:DeviceTags sample nodeidCNTRL
+        ```
+
+        Device tags can be imported using the legacy ID, e.g.,
 
         ```sh
         $ pulumi import tailscale:index/deviceTags:DeviceTags sample 123456789
@@ -149,13 +155,19 @@ class DeviceTags(pulumi.CustomResource):
 
         sample_device = tailscale.get_device(name="device.example.com")
         sample_tags = tailscale.DeviceTags("sample_tags",
-            device_id=sample_device.id,
+            device_id=sample_device.node_id,
             tags=["room:bedroom"])
         ```
 
         ## Import
 
-        Device tags can be imported using the device id, e.g.,
+        Device tags can be imported using the node ID (preferred), e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/deviceTags:DeviceTags sample nodeidCNTRL
+        ```
+
+        Device tags can be imported using the legacy ID, e.g.,
 
         ```sh
         $ pulumi import tailscale:index/deviceTags:DeviceTags sample 123456789

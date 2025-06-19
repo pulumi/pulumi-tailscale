@@ -17,14 +17,20 @@ import * as utilities from "./utilities";
  *     name: "device.example.com",
  * });
  * const sampleAuthorization = new tailscale.DeviceAuthorization("sample_authorization", {
- *     deviceId: sampleDevice.then(sampleDevice => sampleDevice.id),
+ *     deviceId: sampleDevice.then(sampleDevice => sampleDevice.nodeId),
  *     authorized: true,
  * });
  * ```
  *
  * ## Import
  *
- * Device authorization can be imported using the device id, e.g.,
+ * Device authorization can be imported using the node ID (preferred), e.g.,
+ *
+ * ```sh
+ * $ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization nodeidCNTRL
+ * ```
+ *
+ * Device authorization can be imported using the legacy ID, e.g.,
  *
  * ```sh
  * $ pulumi import tailscale:index/deviceAuthorization:DeviceAuthorization sample_authorization 123456789

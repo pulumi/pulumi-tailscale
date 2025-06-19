@@ -113,14 +113,14 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
 
         sample_device = tailscale.get_device(name="device.example.com")
         sample_routes = tailscale.DeviceSubnetRoutes("sample_routes",
-            device_id=sample_device.id,
+            device_id=sample_device.node_id,
             routes=[
                 "10.0.1.0/24",
                 "1.2.0.0/16",
                 "2.0.0.0/24",
             ])
         sample_exit_node = tailscale.DeviceSubnetRoutes("sample_exit_node",
-            device_id=sample_device.id,
+            device_id=sample_device.node_id,
             routes=[
                 "0.0.0.0/0",
                 "::/0",
@@ -129,7 +129,13 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
 
         ## Import
 
-        Device subnet rules can be imported using the device id, e.g.,
+        Device subnet rules can be imported using the node ID (preferred), e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes sample nodeidCNTRL
+        ```
+
+        Device subnet rules can be imported using the legacy ID, e.g.,
 
         ```sh
         $ pulumi import tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes sample 123456789
@@ -155,14 +161,14 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
 
         sample_device = tailscale.get_device(name="device.example.com")
         sample_routes = tailscale.DeviceSubnetRoutes("sample_routes",
-            device_id=sample_device.id,
+            device_id=sample_device.node_id,
             routes=[
                 "10.0.1.0/24",
                 "1.2.0.0/16",
                 "2.0.0.0/24",
             ])
         sample_exit_node = tailscale.DeviceSubnetRoutes("sample_exit_node",
-            device_id=sample_device.id,
+            device_id=sample_device.node_id,
             routes=[
                 "0.0.0.0/0",
                 "::/0",
@@ -171,7 +177,13 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
 
         ## Import
 
-        Device subnet rules can be imported using the device id, e.g.,
+        Device subnet rules can be imported using the node ID (preferred), e.g.,
+
+        ```sh
+        $ pulumi import tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes sample nodeidCNTRL
+        ```
+
+        Device subnet rules can be imported using the legacy ID, e.g.,
 
         ```sh
         $ pulumi import tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes sample 123456789

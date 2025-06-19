@@ -81,7 +81,7 @@ export class TailnetKey extends pulumi.CustomResource {
     /**
      * The expiry of the key in seconds. Defaults to `7776000` (90 days).
      */
-    public readonly expiry!: pulumi.Output<number | undefined>;
+    public readonly expiry!: pulumi.Output<number>;
     /**
      * Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
      */

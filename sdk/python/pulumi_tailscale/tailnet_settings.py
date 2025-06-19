@@ -20,6 +20,8 @@ __all__ = ['TailnetSettingsArgs', 'TailnetSettings']
 @pulumi.input_type
 class TailnetSettingsArgs:
     def __init__(__self__, *,
+                 acls_external_link: Optional[pulumi.Input[builtins.str]] = None,
+                 acls_externally_managed_on: Optional[pulumi.Input[builtins.bool]] = None,
                  devices_approval_on: Optional[pulumi.Input[builtins.bool]] = None,
                  devices_auto_updates_on: Optional[pulumi.Input[builtins.bool]] = None,
                  devices_key_duration_days: Optional[pulumi.Input[builtins.int]] = None,
@@ -30,6 +32,7 @@ class TailnetSettingsArgs:
                  users_role_allowed_to_join_external_tailnet: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a TailnetSettings resource.
+        :param pulumi.Input[builtins.str] acls_external_link: Link to your external ACL definition or management system. Must be a valid URL.
         :param pulumi.Input[builtins.bool] devices_approval_on: Whether device approval is enabled for the tailnet
         :param pulumi.Input[builtins.bool] devices_auto_updates_on: Whether auto updates are enabled for devices that belong to this tailnet
         :param pulumi.Input[builtins.int] devices_key_duration_days: The key expiry duration for devices on this tailnet
@@ -39,6 +42,10 @@ class TailnetSettingsArgs:
         :param pulumi.Input[builtins.bool] users_approval_on: Whether user approval is enabled for this tailnet
         :param pulumi.Input[builtins.str] users_role_allowed_to_join_external_tailnet: Which user roles are allowed to join external tailnets
         """
+        if acls_external_link is not None:
+            pulumi.set(__self__, "acls_external_link", acls_external_link)
+        if acls_externally_managed_on is not None:
+            pulumi.set(__self__, "acls_externally_managed_on", acls_externally_managed_on)
         if devices_approval_on is not None:
             pulumi.set(__self__, "devices_approval_on", devices_approval_on)
         if devices_auto_updates_on is not None:
@@ -55,6 +62,27 @@ class TailnetSettingsArgs:
             pulumi.set(__self__, "users_approval_on", users_approval_on)
         if users_role_allowed_to_join_external_tailnet is not None:
             pulumi.set(__self__, "users_role_allowed_to_join_external_tailnet", users_role_allowed_to_join_external_tailnet)
+
+    @property
+    @pulumi.getter(name="aclsExternalLink")
+    def acls_external_link(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Link to your external ACL definition or management system. Must be a valid URL.
+        """
+        return pulumi.get(self, "acls_external_link")
+
+    @acls_external_link.setter
+    def acls_external_link(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "acls_external_link", value)
+
+    @property
+    @pulumi.getter(name="aclsExternallyManagedOn")
+    def acls_externally_managed_on(self) -> Optional[pulumi.Input[builtins.bool]]:
+        return pulumi.get(self, "acls_externally_managed_on")
+
+    @acls_externally_managed_on.setter
+    def acls_externally_managed_on(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "acls_externally_managed_on", value)
 
     @property
     @pulumi.getter(name="devicesApprovalOn")
@@ -156,6 +184,8 @@ class TailnetSettingsArgs:
 @pulumi.input_type
 class _TailnetSettingsState:
     def __init__(__self__, *,
+                 acls_external_link: Optional[pulumi.Input[builtins.str]] = None,
+                 acls_externally_managed_on: Optional[pulumi.Input[builtins.bool]] = None,
                  devices_approval_on: Optional[pulumi.Input[builtins.bool]] = None,
                  devices_auto_updates_on: Optional[pulumi.Input[builtins.bool]] = None,
                  devices_key_duration_days: Optional[pulumi.Input[builtins.int]] = None,
@@ -166,6 +196,7 @@ class _TailnetSettingsState:
                  users_role_allowed_to_join_external_tailnet: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering TailnetSettings resources.
+        :param pulumi.Input[builtins.str] acls_external_link: Link to your external ACL definition or management system. Must be a valid URL.
         :param pulumi.Input[builtins.bool] devices_approval_on: Whether device approval is enabled for the tailnet
         :param pulumi.Input[builtins.bool] devices_auto_updates_on: Whether auto updates are enabled for devices that belong to this tailnet
         :param pulumi.Input[builtins.int] devices_key_duration_days: The key expiry duration for devices on this tailnet
@@ -175,6 +206,10 @@ class _TailnetSettingsState:
         :param pulumi.Input[builtins.bool] users_approval_on: Whether user approval is enabled for this tailnet
         :param pulumi.Input[builtins.str] users_role_allowed_to_join_external_tailnet: Which user roles are allowed to join external tailnets
         """
+        if acls_external_link is not None:
+            pulumi.set(__self__, "acls_external_link", acls_external_link)
+        if acls_externally_managed_on is not None:
+            pulumi.set(__self__, "acls_externally_managed_on", acls_externally_managed_on)
         if devices_approval_on is not None:
             pulumi.set(__self__, "devices_approval_on", devices_approval_on)
         if devices_auto_updates_on is not None:
@@ -191,6 +226,27 @@ class _TailnetSettingsState:
             pulumi.set(__self__, "users_approval_on", users_approval_on)
         if users_role_allowed_to_join_external_tailnet is not None:
             pulumi.set(__self__, "users_role_allowed_to_join_external_tailnet", users_role_allowed_to_join_external_tailnet)
+
+    @property
+    @pulumi.getter(name="aclsExternalLink")
+    def acls_external_link(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Link to your external ACL definition or management system. Must be a valid URL.
+        """
+        return pulumi.get(self, "acls_external_link")
+
+    @acls_external_link.setter
+    def acls_external_link(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "acls_external_link", value)
+
+    @property
+    @pulumi.getter(name="aclsExternallyManagedOn")
+    def acls_externally_managed_on(self) -> Optional[pulumi.Input[builtins.bool]]:
+        return pulumi.get(self, "acls_externally_managed_on")
+
+    @acls_externally_managed_on.setter
+    def acls_externally_managed_on(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "acls_externally_managed_on", value)
 
     @property
     @pulumi.getter(name="devicesApprovalOn")
@@ -295,6 +351,8 @@ class TailnetSettings(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 acls_external_link: Optional[pulumi.Input[builtins.str]] = None,
+                 acls_externally_managed_on: Optional[pulumi.Input[builtins.bool]] = None,
                  devices_approval_on: Optional[pulumi.Input[builtins.bool]] = None,
                  devices_auto_updates_on: Optional[pulumi.Input[builtins.bool]] = None,
                  devices_key_duration_days: Optional[pulumi.Input[builtins.int]] = None,
@@ -314,6 +372,8 @@ class TailnetSettings(pulumi.CustomResource):
         import pulumi_tailscale as tailscale
 
         sample_tailnet_settings = tailscale.TailnetSettings("sample_tailnet_settings",
+            acls_externally_managed_on=True,
+            acls_external_link="https://github.com/octocat/Hello-World",
             devices_approval_on=True,
             devices_auto_updates_on=True,
             devices_key_duration_days=5,
@@ -332,6 +392,7 @@ class TailnetSettings(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[builtins.str] acls_external_link: Link to your external ACL definition or management system. Must be a valid URL.
         :param pulumi.Input[builtins.bool] devices_approval_on: Whether device approval is enabled for the tailnet
         :param pulumi.Input[builtins.bool] devices_auto_updates_on: Whether auto updates are enabled for devices that belong to this tailnet
         :param pulumi.Input[builtins.int] devices_key_duration_days: The key expiry duration for devices on this tailnet
@@ -357,6 +418,8 @@ class TailnetSettings(pulumi.CustomResource):
         import pulumi_tailscale as tailscale
 
         sample_tailnet_settings = tailscale.TailnetSettings("sample_tailnet_settings",
+            acls_externally_managed_on=True,
+            acls_external_link="https://github.com/octocat/Hello-World",
             devices_approval_on=True,
             devices_auto_updates_on=True,
             devices_key_duration_days=5,
@@ -388,6 +451,8 @@ class TailnetSettings(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 acls_external_link: Optional[pulumi.Input[builtins.str]] = None,
+                 acls_externally_managed_on: Optional[pulumi.Input[builtins.bool]] = None,
                  devices_approval_on: Optional[pulumi.Input[builtins.bool]] = None,
                  devices_auto_updates_on: Optional[pulumi.Input[builtins.bool]] = None,
                  devices_key_duration_days: Optional[pulumi.Input[builtins.int]] = None,
@@ -405,6 +470,8 @@ class TailnetSettings(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = TailnetSettingsArgs.__new__(TailnetSettingsArgs)
 
+            __props__.__dict__["acls_external_link"] = acls_external_link
+            __props__.__dict__["acls_externally_managed_on"] = acls_externally_managed_on
             __props__.__dict__["devices_approval_on"] = devices_approval_on
             __props__.__dict__["devices_auto_updates_on"] = devices_auto_updates_on
             __props__.__dict__["devices_key_duration_days"] = devices_key_duration_days
@@ -423,6 +490,8 @@ class TailnetSettings(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            acls_external_link: Optional[pulumi.Input[builtins.str]] = None,
+            acls_externally_managed_on: Optional[pulumi.Input[builtins.bool]] = None,
             devices_approval_on: Optional[pulumi.Input[builtins.bool]] = None,
             devices_auto_updates_on: Optional[pulumi.Input[builtins.bool]] = None,
             devices_key_duration_days: Optional[pulumi.Input[builtins.int]] = None,
@@ -438,6 +507,7 @@ class TailnetSettings(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[builtins.str] acls_external_link: Link to your external ACL definition or management system. Must be a valid URL.
         :param pulumi.Input[builtins.bool] devices_approval_on: Whether device approval is enabled for the tailnet
         :param pulumi.Input[builtins.bool] devices_auto_updates_on: Whether auto updates are enabled for devices that belong to this tailnet
         :param pulumi.Input[builtins.int] devices_key_duration_days: The key expiry duration for devices on this tailnet
@@ -451,6 +521,8 @@ class TailnetSettings(pulumi.CustomResource):
 
         __props__ = _TailnetSettingsState.__new__(_TailnetSettingsState)
 
+        __props__.__dict__["acls_external_link"] = acls_external_link
+        __props__.__dict__["acls_externally_managed_on"] = acls_externally_managed_on
         __props__.__dict__["devices_approval_on"] = devices_approval_on
         __props__.__dict__["devices_auto_updates_on"] = devices_auto_updates_on
         __props__.__dict__["devices_key_duration_days"] = devices_key_duration_days
@@ -462,8 +534,21 @@ class TailnetSettings(pulumi.CustomResource):
         return TailnetSettings(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter(name="aclsExternalLink")
+    def acls_external_link(self) -> pulumi.Output[builtins.str]:
+        """
+        Link to your external ACL definition or management system. Must be a valid URL.
+        """
+        return pulumi.get(self, "acls_external_link")
+
+    @property
+    @pulumi.getter(name="aclsExternallyManagedOn")
+    def acls_externally_managed_on(self) -> pulumi.Output[builtins.bool]:
+        return pulumi.get(self, "acls_externally_managed_on")
+
+    @property
     @pulumi.getter(name="devicesApprovalOn")
-    def devices_approval_on(self) -> pulumi.Output[Optional[builtins.bool]]:
+    def devices_approval_on(self) -> pulumi.Output[builtins.bool]:
         """
         Whether device approval is enabled for the tailnet
         """
@@ -471,7 +556,7 @@ class TailnetSettings(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="devicesAutoUpdatesOn")
-    def devices_auto_updates_on(self) -> pulumi.Output[Optional[builtins.bool]]:
+    def devices_auto_updates_on(self) -> pulumi.Output[builtins.bool]:
         """
         Whether auto updates are enabled for devices that belong to this tailnet
         """
@@ -479,7 +564,7 @@ class TailnetSettings(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="devicesKeyDurationDays")
-    def devices_key_duration_days(self) -> pulumi.Output[Optional[builtins.int]]:
+    def devices_key_duration_days(self) -> pulumi.Output[builtins.int]:
         """
         The key expiry duration for devices on this tailnet
         """
@@ -487,7 +572,7 @@ class TailnetSettings(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="networkFlowLoggingOn")
-    def network_flow_logging_on(self) -> pulumi.Output[Optional[builtins.bool]]:
+    def network_flow_logging_on(self) -> pulumi.Output[builtins.bool]:
         """
         Whether network flog logs are enabled for the tailnet
         """
@@ -495,7 +580,7 @@ class TailnetSettings(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="postureIdentityCollectionOn")
-    def posture_identity_collection_on(self) -> pulumi.Output[Optional[builtins.bool]]:
+    def posture_identity_collection_on(self) -> pulumi.Output[builtins.bool]:
         """
         Whether identity collection is enabled for device posture integrations for the tailnet
         """
@@ -503,7 +588,7 @@ class TailnetSettings(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="regionalRoutingOn")
-    def regional_routing_on(self) -> pulumi.Output[Optional[builtins.bool]]:
+    def regional_routing_on(self) -> pulumi.Output[builtins.bool]:
         """
         Whether regional routing is enabled for the tailnet
         """
@@ -511,7 +596,7 @@ class TailnetSettings(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="usersApprovalOn")
-    def users_approval_on(self) -> pulumi.Output[Optional[builtins.bool]]:
+    def users_approval_on(self) -> pulumi.Output[builtins.bool]:
         """
         Whether user approval is enabled for this tailnet
         """
@@ -519,7 +604,7 @@ class TailnetSettings(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="usersRoleAllowedToJoinExternalTailnet")
-    def users_role_allowed_to_join_external_tailnet(self) -> pulumi.Output[Optional[builtins.str]]:
+    def users_role_allowed_to_join_external_tailnet(self) -> pulumi.Output[builtins.str]:
         """
         Which user roles are allowed to join external tailnets
         """
