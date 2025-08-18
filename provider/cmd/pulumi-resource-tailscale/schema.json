@@ -1650,7 +1650,7 @@
                 "properties": {
                     "__self__": {
                         "type": "ref",
-                        "$ref": "#/resources/pulumi:providers:tailscale"
+                        "$ref": "#/provider"
                     }
                 },
                 "type": "pulumi:providers:tailscale/terraformConfig",
