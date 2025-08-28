@@ -58,7 +58,7 @@ export class DnsNameservers extends pulumi.CustomResource {
     /**
      * Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
      */
-    public readonly nameservers!: pulumi.Output<string[]>;
+    declare public readonly nameservers: pulumi.Output<string[]>;
 
     /**
      * Create a DnsNameservers resource with the given unique name, arguments, and options.
@@ -73,13 +73,13 @@ export class DnsNameservers extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DnsNameserversState | undefined;
-            resourceInputs["nameservers"] = state ? state.nameservers : undefined;
+            resourceInputs["nameservers"] = state?.nameservers;
         } else {
             const args = argsOrState as DnsNameserversArgs | undefined;
-            if ((!args || args.nameservers === undefined) && !opts.urn) {
+            if (args?.nameservers === undefined && !opts.urn) {
                 throw new Error("Missing required property 'nameservers'");
             }
-            resourceInputs["nameservers"] = args ? args.nameservers : undefined;
+            resourceInputs["nameservers"] = args?.nameservers;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DnsNameservers.__pulumiType, name, resourceInputs, opts);

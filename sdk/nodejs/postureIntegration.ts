@@ -60,23 +60,23 @@ export class PostureIntegration extends pulumi.CustomResource {
     /**
      * Unique identifier for your client.
      */
-    public readonly clientId!: pulumi.Output<string | undefined>;
+    declare public readonly clientId: pulumi.Output<string | undefined>;
     /**
      * The secret (auth key, token, etc.) used to authenticate with the provider.
      */
-    public readonly clientSecret!: pulumi.Output<string>;
+    declare public readonly clientSecret: pulumi.Output<string>;
     /**
      * Identifies which of the provider's clouds to integrate with.
      */
-    public readonly cloudId!: pulumi.Output<string | undefined>;
+    declare public readonly cloudId: pulumi.Output<string | undefined>;
     /**
      * The type of posture integration data provider.
      */
-    public readonly postureProvider!: pulumi.Output<string>;
+    declare public readonly postureProvider: pulumi.Output<string>;
     /**
      * The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
      */
-    public readonly tenantId!: pulumi.Output<string | undefined>;
+    declare public readonly tenantId: pulumi.Output<string | undefined>;
 
     /**
      * Create a PostureIntegration resource with the given unique name, arguments, and options.
@@ -91,24 +91,24 @@ export class PostureIntegration extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PostureIntegrationState | undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
-            resourceInputs["cloudId"] = state ? state.cloudId : undefined;
-            resourceInputs["postureProvider"] = state ? state.postureProvider : undefined;
-            resourceInputs["tenantId"] = state ? state.tenantId : undefined;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientSecret"] = state?.clientSecret;
+            resourceInputs["cloudId"] = state?.cloudId;
+            resourceInputs["postureProvider"] = state?.postureProvider;
+            resourceInputs["tenantId"] = state?.tenantId;
         } else {
             const args = argsOrState as PostureIntegrationArgs | undefined;
-            if ((!args || args.clientSecret === undefined) && !opts.urn) {
+            if (args?.clientSecret === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clientSecret'");
             }
-            if ((!args || args.postureProvider === undefined) && !opts.urn) {
+            if (args?.postureProvider === undefined && !opts.urn) {
                 throw new Error("Missing required property 'postureProvider'");
             }
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["clientSecret"] = args ? args.clientSecret : undefined;
-            resourceInputs["cloudId"] = args ? args.cloudId : undefined;
-            resourceInputs["postureProvider"] = args ? args.postureProvider : undefined;
-            resourceInputs["tenantId"] = args ? args.tenantId : undefined;
+            resourceInputs["clientId"] = args?.clientId;
+            resourceInputs["clientSecret"] = args?.clientSecret;
+            resourceInputs["cloudId"] = args?.cloudId;
+            resourceInputs["postureProvider"] = args?.postureProvider;
+            resourceInputs["tenantId"] = args?.tenantId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(PostureIntegration.__pulumiType, name, resourceInputs, opts);

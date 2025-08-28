@@ -55,7 +55,7 @@ export class DnsPreferences extends pulumi.CustomResource {
     /**
      * Whether or not to enable magic DNS
      */
-    public readonly magicDns!: pulumi.Output<boolean>;
+    declare public readonly magicDns: pulumi.Output<boolean>;
 
     /**
      * Create a DnsPreferences resource with the given unique name, arguments, and options.
@@ -70,13 +70,13 @@ export class DnsPreferences extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DnsPreferencesState | undefined;
-            resourceInputs["magicDns"] = state ? state.magicDns : undefined;
+            resourceInputs["magicDns"] = state?.magicDns;
         } else {
             const args = argsOrState as DnsPreferencesArgs | undefined;
-            if ((!args || args.magicDns === undefined) && !opts.urn) {
+            if (args?.magicDns === undefined && !opts.urn) {
                 throw new Error("Missing required property 'magicDns'");
             }
-            resourceInputs["magicDns"] = args ? args.magicDns : undefined;
+            resourceInputs["magicDns"] = args?.magicDns;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DnsPreferences.__pulumiType, name, resourceInputs, opts);

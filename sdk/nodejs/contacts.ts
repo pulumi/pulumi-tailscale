@@ -65,15 +65,15 @@ export class Contacts extends pulumi.CustomResource {
     /**
      * Configuration for communications about important changes to your tailnet
      */
-    public readonly account!: pulumi.Output<outputs.ContactsAccount>;
+    declare public readonly account: pulumi.Output<outputs.ContactsAccount>;
     /**
      * Configuration for communications about security issues affecting your tailnet
      */
-    public readonly security!: pulumi.Output<outputs.ContactsSecurity>;
+    declare public readonly security: pulumi.Output<outputs.ContactsSecurity>;
     /**
      * Configuration for communications about misconfigurations in your tailnet
      */
-    public readonly support!: pulumi.Output<outputs.ContactsSupport>;
+    declare public readonly support: pulumi.Output<outputs.ContactsSupport>;
 
     /**
      * Create a Contacts resource with the given unique name, arguments, and options.
@@ -88,23 +88,23 @@ export class Contacts extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ContactsState | undefined;
-            resourceInputs["account"] = state ? state.account : undefined;
-            resourceInputs["security"] = state ? state.security : undefined;
-            resourceInputs["support"] = state ? state.support : undefined;
+            resourceInputs["account"] = state?.account;
+            resourceInputs["security"] = state?.security;
+            resourceInputs["support"] = state?.support;
         } else {
             const args = argsOrState as ContactsArgs | undefined;
-            if ((!args || args.account === undefined) && !opts.urn) {
+            if (args?.account === undefined && !opts.urn) {
                 throw new Error("Missing required property 'account'");
             }
-            if ((!args || args.security === undefined) && !opts.urn) {
+            if (args?.security === undefined && !opts.urn) {
                 throw new Error("Missing required property 'security'");
             }
-            if ((!args || args.support === undefined) && !opts.urn) {
+            if (args?.support === undefined && !opts.urn) {
                 throw new Error("Missing required property 'support'");
             }
-            resourceInputs["account"] = args ? args.account : undefined;
-            resourceInputs["security"] = args ? args.security : undefined;
-            resourceInputs["support"] = args ? args.support : undefined;
+            resourceInputs["account"] = args?.account;
+            resourceInputs["security"] = args?.security;
+            resourceInputs["support"] = args?.support;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Contacts.__pulumiType, name, resourceInputs, opts);

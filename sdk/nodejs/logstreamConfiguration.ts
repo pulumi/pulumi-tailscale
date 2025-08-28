@@ -82,63 +82,63 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
     /**
      * The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
      */
-    public readonly compressionFormat!: pulumi.Output<string | undefined>;
+    declare public readonly compressionFormat: pulumi.Output<string | undefined>;
     /**
      * The type of system to which logs are being streamed.
      */
-    public readonly destinationType!: pulumi.Output<string>;
+    declare public readonly destinationType: pulumi.Output<string>;
     /**
      * The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
      */
-    public readonly logType!: pulumi.Output<string>;
+    declare public readonly logType: pulumi.Output<string>;
     /**
      * The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
      */
-    public readonly s3AccessKeyId!: pulumi.Output<string | undefined>;
+    declare public readonly s3AccessKeyId: pulumi.Output<string | undefined>;
     /**
      * What type of authentication to use for S3. Required if destinationType is 's3'. Tailscale recommends using 'rolearn'.
      */
-    public readonly s3AuthenticationType!: pulumi.Output<string | undefined>;
+    declare public readonly s3AuthenticationType: pulumi.Output<string | undefined>;
     /**
      * The S3 bucket name. Required if destinationType is 's3'.
      */
-    public readonly s3Bucket!: pulumi.Output<string | undefined>;
+    declare public readonly s3Bucket: pulumi.Output<string | undefined>;
     /**
      * The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
      */
-    public readonly s3ExternalId!: pulumi.Output<string | undefined>;
+    declare public readonly s3ExternalId: pulumi.Output<string | undefined>;
     /**
      * An optional S3 key prefix to prepend to the auto-generated S3 key name.
      */
-    public readonly s3KeyPrefix!: pulumi.Output<string | undefined>;
+    declare public readonly s3KeyPrefix: pulumi.Output<string | undefined>;
     /**
      * The region in which the S3 bucket is located. Required if destinationType is 's3'.
      */
-    public readonly s3Region!: pulumi.Output<string | undefined>;
+    declare public readonly s3Region: pulumi.Output<string | undefined>;
     /**
      * ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
      */
-    public readonly s3RoleArn!: pulumi.Output<string | undefined>;
+    declare public readonly s3RoleArn: pulumi.Output<string | undefined>;
     /**
      * The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
      */
-    public readonly s3SecretAccessKey!: pulumi.Output<string | undefined>;
+    declare public readonly s3SecretAccessKey: pulumi.Output<string | undefined>;
     /**
      * The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is 's3'.
      */
-    public readonly token!: pulumi.Output<string | undefined>;
+    declare public readonly token: pulumi.Output<string | undefined>;
     /**
      * An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
      */
-    public readonly uploadPeriodMinutes!: pulumi.Output<number | undefined>;
+    declare public readonly uploadPeriodMinutes: pulumi.Output<number | undefined>;
     /**
      * The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
      */
-    public readonly url!: pulumi.Output<string | undefined>;
+    declare public readonly url: pulumi.Output<string | undefined>;
     /**
      * The username with which log streams to this endpoint are authenticated. Only required if destinationType is 'elastic', defaults to 'user' if not set.
      */
-    public readonly user!: pulumi.Output<string | undefined>;
+    declare public readonly user: pulumi.Output<string | undefined>;
 
     /**
      * Create a LogstreamConfiguration resource with the given unique name, arguments, and options.
@@ -153,44 +153,44 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogstreamConfigurationState | undefined;
-            resourceInputs["compressionFormat"] = state ? state.compressionFormat : undefined;
-            resourceInputs["destinationType"] = state ? state.destinationType : undefined;
-            resourceInputs["logType"] = state ? state.logType : undefined;
-            resourceInputs["s3AccessKeyId"] = state ? state.s3AccessKeyId : undefined;
-            resourceInputs["s3AuthenticationType"] = state ? state.s3AuthenticationType : undefined;
-            resourceInputs["s3Bucket"] = state ? state.s3Bucket : undefined;
-            resourceInputs["s3ExternalId"] = state ? state.s3ExternalId : undefined;
-            resourceInputs["s3KeyPrefix"] = state ? state.s3KeyPrefix : undefined;
-            resourceInputs["s3Region"] = state ? state.s3Region : undefined;
-            resourceInputs["s3RoleArn"] = state ? state.s3RoleArn : undefined;
-            resourceInputs["s3SecretAccessKey"] = state ? state.s3SecretAccessKey : undefined;
-            resourceInputs["token"] = state ? state.token : undefined;
-            resourceInputs["uploadPeriodMinutes"] = state ? state.uploadPeriodMinutes : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
-            resourceInputs["user"] = state ? state.user : undefined;
+            resourceInputs["compressionFormat"] = state?.compressionFormat;
+            resourceInputs["destinationType"] = state?.destinationType;
+            resourceInputs["logType"] = state?.logType;
+            resourceInputs["s3AccessKeyId"] = state?.s3AccessKeyId;
+            resourceInputs["s3AuthenticationType"] = state?.s3AuthenticationType;
+            resourceInputs["s3Bucket"] = state?.s3Bucket;
+            resourceInputs["s3ExternalId"] = state?.s3ExternalId;
+            resourceInputs["s3KeyPrefix"] = state?.s3KeyPrefix;
+            resourceInputs["s3Region"] = state?.s3Region;
+            resourceInputs["s3RoleArn"] = state?.s3RoleArn;
+            resourceInputs["s3SecretAccessKey"] = state?.s3SecretAccessKey;
+            resourceInputs["token"] = state?.token;
+            resourceInputs["uploadPeriodMinutes"] = state?.uploadPeriodMinutes;
+            resourceInputs["url"] = state?.url;
+            resourceInputs["user"] = state?.user;
         } else {
             const args = argsOrState as LogstreamConfigurationArgs | undefined;
-            if ((!args || args.destinationType === undefined) && !opts.urn) {
+            if (args?.destinationType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'destinationType'");
             }
-            if ((!args || args.logType === undefined) && !opts.urn) {
+            if (args?.logType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'logType'");
             }
-            resourceInputs["compressionFormat"] = args ? args.compressionFormat : undefined;
-            resourceInputs["destinationType"] = args ? args.destinationType : undefined;
-            resourceInputs["logType"] = args ? args.logType : undefined;
-            resourceInputs["s3AccessKeyId"] = args ? args.s3AccessKeyId : undefined;
-            resourceInputs["s3AuthenticationType"] = args ? args.s3AuthenticationType : undefined;
-            resourceInputs["s3Bucket"] = args ? args.s3Bucket : undefined;
-            resourceInputs["s3ExternalId"] = args ? args.s3ExternalId : undefined;
-            resourceInputs["s3KeyPrefix"] = args ? args.s3KeyPrefix : undefined;
-            resourceInputs["s3Region"] = args ? args.s3Region : undefined;
-            resourceInputs["s3RoleArn"] = args ? args.s3RoleArn : undefined;
+            resourceInputs["compressionFormat"] = args?.compressionFormat;
+            resourceInputs["destinationType"] = args?.destinationType;
+            resourceInputs["logType"] = args?.logType;
+            resourceInputs["s3AccessKeyId"] = args?.s3AccessKeyId;
+            resourceInputs["s3AuthenticationType"] = args?.s3AuthenticationType;
+            resourceInputs["s3Bucket"] = args?.s3Bucket;
+            resourceInputs["s3ExternalId"] = args?.s3ExternalId;
+            resourceInputs["s3KeyPrefix"] = args?.s3KeyPrefix;
+            resourceInputs["s3Region"] = args?.s3Region;
+            resourceInputs["s3RoleArn"] = args?.s3RoleArn;
             resourceInputs["s3SecretAccessKey"] = args?.s3SecretAccessKey ? pulumi.secret(args.s3SecretAccessKey) : undefined;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
-            resourceInputs["uploadPeriodMinutes"] = args ? args.uploadPeriodMinutes : undefined;
-            resourceInputs["url"] = args ? args.url : undefined;
-            resourceInputs["user"] = args ? args.user : undefined;
+            resourceInputs["uploadPeriodMinutes"] = args?.uploadPeriodMinutes;
+            resourceInputs["url"] = args?.url;
+            resourceInputs["user"] = args?.user;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["s3SecretAccessKey", "token"] };

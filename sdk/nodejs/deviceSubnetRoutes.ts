@@ -76,11 +76,11 @@ export class DeviceSubnetRoutes extends pulumi.CustomResource {
     /**
      * The device to set subnet routes for
      */
-    public readonly deviceId!: pulumi.Output<string>;
+    declare public readonly deviceId: pulumi.Output<string>;
     /**
      * The subnet routes that are enabled to be routed by a device
      */
-    public readonly routes!: pulumi.Output<string[]>;
+    declare public readonly routes: pulumi.Output<string[]>;
 
     /**
      * Create a DeviceSubnetRoutes resource with the given unique name, arguments, and options.
@@ -95,18 +95,18 @@ export class DeviceSubnetRoutes extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeviceSubnetRoutesState | undefined;
-            resourceInputs["deviceId"] = state ? state.deviceId : undefined;
-            resourceInputs["routes"] = state ? state.routes : undefined;
+            resourceInputs["deviceId"] = state?.deviceId;
+            resourceInputs["routes"] = state?.routes;
         } else {
             const args = argsOrState as DeviceSubnetRoutesArgs | undefined;
-            if ((!args || args.deviceId === undefined) && !opts.urn) {
+            if (args?.deviceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'deviceId'");
             }
-            if ((!args || args.routes === undefined) && !opts.urn) {
+            if (args?.routes === undefined && !opts.urn) {
                 throw new Error("Missing required property 'routes'");
             }
-            resourceInputs["deviceId"] = args ? args.deviceId : undefined;
-            resourceInputs["routes"] = args ? args.routes : undefined;
+            resourceInputs["deviceId"] = args?.deviceId;
+            resourceInputs["routes"] = args?.routes;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DeviceSubnetRoutes.__pulumiType, name, resourceInputs, opts);

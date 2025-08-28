@@ -65,51 +65,51 @@ export class TailnetKey extends pulumi.CustomResource {
     /**
      * The creation timestamp of the key in RFC3339 format
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * A description of the key consisting of alphanumeric characters. Defaults to `""`.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Indicates if the key is ephemeral. Defaults to `false`.
      */
-    public readonly ephemeral!: pulumi.Output<boolean | undefined>;
+    declare public readonly ephemeral: pulumi.Output<boolean | undefined>;
     /**
      * The expiry timestamp of the key in RFC3339 format
      */
-    public /*out*/ readonly expiresAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly expiresAt: pulumi.Output<string>;
     /**
      * The expiry of the key in seconds. Defaults to `7776000` (90 days).
      */
-    public readonly expiry!: pulumi.Output<number>;
+    declare public readonly expiry: pulumi.Output<number>;
     /**
      * Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
      */
-    public /*out*/ readonly invalid!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly invalid: pulumi.Output<boolean>;
     /**
      * The authentication key
      */
-    public /*out*/ readonly key!: pulumi.Output<string>;
+    declare public /*out*/ readonly key: pulumi.Output<string>;
     /**
      * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
      */
-    public readonly preauthorized!: pulumi.Output<boolean | undefined>;
+    declare public readonly preauthorized: pulumi.Output<boolean | undefined>;
     /**
      * Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
      */
-    public readonly recreateIfInvalid!: pulumi.Output<string | undefined>;
+    declare public readonly recreateIfInvalid: pulumi.Output<string | undefined>;
     /**
      * Indicates if the key is reusable or single-use. Defaults to `false`.
      */
-    public readonly reusable!: pulumi.Output<boolean | undefined>;
+    declare public readonly reusable: pulumi.Output<boolean | undefined>;
     /**
      * List of tags to apply to the machines authenticated by the key.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * ID of the user who created this key, empty for keys created by OAuth clients.
      */
-    public readonly userId!: pulumi.Output<string>;
+    declare public readonly userId: pulumi.Output<string>;
 
     /**
      * Create a TailnetKey resource with the given unique name, arguments, and options.
@@ -124,28 +124,28 @@ export class TailnetKey extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TailnetKeyState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["ephemeral"] = state ? state.ephemeral : undefined;
-            resourceInputs["expiresAt"] = state ? state.expiresAt : undefined;
-            resourceInputs["expiry"] = state ? state.expiry : undefined;
-            resourceInputs["invalid"] = state ? state.invalid : undefined;
-            resourceInputs["key"] = state ? state.key : undefined;
-            resourceInputs["preauthorized"] = state ? state.preauthorized : undefined;
-            resourceInputs["recreateIfInvalid"] = state ? state.recreateIfInvalid : undefined;
-            resourceInputs["reusable"] = state ? state.reusable : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["userId"] = state ? state.userId : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["ephemeral"] = state?.ephemeral;
+            resourceInputs["expiresAt"] = state?.expiresAt;
+            resourceInputs["expiry"] = state?.expiry;
+            resourceInputs["invalid"] = state?.invalid;
+            resourceInputs["key"] = state?.key;
+            resourceInputs["preauthorized"] = state?.preauthorized;
+            resourceInputs["recreateIfInvalid"] = state?.recreateIfInvalid;
+            resourceInputs["reusable"] = state?.reusable;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["userId"] = state?.userId;
         } else {
             const args = argsOrState as TailnetKeyArgs | undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["ephemeral"] = args ? args.ephemeral : undefined;
-            resourceInputs["expiry"] = args ? args.expiry : undefined;
-            resourceInputs["preauthorized"] = args ? args.preauthorized : undefined;
-            resourceInputs["recreateIfInvalid"] = args ? args.recreateIfInvalid : undefined;
-            resourceInputs["reusable"] = args ? args.reusable : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["userId"] = args ? args.userId : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["ephemeral"] = args?.ephemeral;
+            resourceInputs["expiry"] = args?.expiry;
+            resourceInputs["preauthorized"] = args?.preauthorized;
+            resourceInputs["recreateIfInvalid"] = args?.recreateIfInvalid;
+            resourceInputs["reusable"] = args?.reusable;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["userId"] = args?.userId;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["expiresAt"] = undefined /*out*/;
             resourceInputs["invalid"] = undefined /*out*/;
