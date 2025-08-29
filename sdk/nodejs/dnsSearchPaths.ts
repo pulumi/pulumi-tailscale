@@ -55,7 +55,7 @@ export class DnsSearchPaths extends pulumi.CustomResource {
     /**
      * Devices on your network will use these domain suffixes to resolve DNS names.
      */
-    public readonly searchPaths!: pulumi.Output<string[]>;
+    declare public readonly searchPaths: pulumi.Output<string[]>;
 
     /**
      * Create a DnsSearchPaths resource with the given unique name, arguments, and options.
@@ -70,13 +70,13 @@ export class DnsSearchPaths extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DnsSearchPathsState | undefined;
-            resourceInputs["searchPaths"] = state ? state.searchPaths : undefined;
+            resourceInputs["searchPaths"] = state?.searchPaths;
         } else {
             const args = argsOrState as DnsSearchPathsArgs | undefined;
-            if ((!args || args.searchPaths === undefined) && !opts.urn) {
+            if (args?.searchPaths === undefined && !opts.urn) {
                 throw new Error("Missing required property 'searchPaths'");
             }
-            resourceInputs["searchPaths"] = args ? args.searchPaths : undefined;
+            resourceInputs["searchPaths"] = args?.searchPaths;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DnsSearchPaths.__pulumiType, name, resourceInputs, opts);

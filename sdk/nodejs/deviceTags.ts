@@ -67,11 +67,11 @@ export class DeviceTags extends pulumi.CustomResource {
     /**
      * The device to set tags for
      */
-    public readonly deviceId!: pulumi.Output<string>;
+    declare public readonly deviceId: pulumi.Output<string>;
     /**
      * The tags to apply to the device
      */
-    public readonly tags!: pulumi.Output<string[]>;
+    declare public readonly tags: pulumi.Output<string[]>;
 
     /**
      * Create a DeviceTags resource with the given unique name, arguments, and options.
@@ -86,18 +86,18 @@ export class DeviceTags extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeviceTagsState | undefined;
-            resourceInputs["deviceId"] = state ? state.deviceId : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["deviceId"] = state?.deviceId;
+            resourceInputs["tags"] = state?.tags;
         } else {
             const args = argsOrState as DeviceTagsArgs | undefined;
-            if ((!args || args.deviceId === undefined) && !opts.urn) {
+            if (args?.deviceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'deviceId'");
             }
-            if ((!args || args.tags === undefined) && !opts.urn) {
+            if (args?.tags === undefined && !opts.urn) {
                 throw new Error("Missing required property 'tags'");
             }
-            resourceInputs["deviceId"] = args ? args.deviceId : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["deviceId"] = args?.deviceId;
+            resourceInputs["tags"] = args?.tags;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DeviceTags.__pulumiType, name, resourceInputs, opts);

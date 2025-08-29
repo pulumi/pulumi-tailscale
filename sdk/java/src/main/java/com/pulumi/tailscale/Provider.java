@@ -24,80 +24,70 @@ import javax.annotation.Nullable;
 @ResourceType(type="pulumi:providers:tailscale")
 public class Provider extends com.pulumi.resources.ProviderResource {
     /**
-     * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
-     * Conflicts with &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;.
+     * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. Conflicts with &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;.
      * 
      */
     @Export(name="apiKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiKey;
 
     /**
-     * @return The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
-     * Conflicts with &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;.
+     * @return The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. Conflicts with &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;.
      * 
      */
     public Output<Optional<String>> apiKey() {
         return Codegen.optional(this.apiKey);
     }
     /**
-     * The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
-     * environment variable.
+     * The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL environment variable.
      * 
      */
     @Export(name="baseUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> baseUrl;
 
     /**
-     * @return The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
-     * environment variable.
+     * @return The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL environment variable.
      * 
      */
     public Output<Optional<String>> baseUrl() {
         return Codegen.optional(this.baseUrl);
     }
     /**
-     * The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment
-     * variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+     * The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
      * 
      */
     @Export(name="oauthClientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oauthClientId;
 
     /**
-     * @return The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment
-     * variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+     * @return The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
      * 
      */
     public Output<Optional<String>> oauthClientId() {
         return Codegen.optional(this.oauthClientId);
     }
     /**
-     * The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET
-     * environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+     * The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
      * 
      */
     @Export(name="oauthClientSecret", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oauthClientSecret;
 
     /**
-     * @return The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET
-     * environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+     * @return The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
      * 
      */
     public Output<Optional<String>> oauthClientSecret() {
         return Codegen.optional(this.oauthClientSecret);
     }
     /**
-     * The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
-     * variable. Default is the tailnet that owns API credentials passed to the provider.
+     * The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
      * 
      */
     @Export(name="tailnet", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tailnet;
 
     /**
-     * @return The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
-     * variable. Default is the tailnet that owns API credentials passed to the provider.
+     * @return The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
      * 
      */
     public Output<Optional<String>> tailnet() {

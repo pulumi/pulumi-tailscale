@@ -26,34 +26,29 @@ export class Provider extends pulumi.ProviderResource {
     }
 
     /**
-     * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
-     * Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
+     * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
      */
-    public readonly apiKey!: pulumi.Output<string | undefined>;
+    declare public readonly apiKey: pulumi.Output<string | undefined>;
     /**
-     * The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
-     * environment variable.
+     * The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL environment variable.
      */
-    public readonly baseUrl!: pulumi.Output<string | undefined>;
+    declare public readonly baseUrl: pulumi.Output<string | undefined>;
     /**
-     * The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment
-     * variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+     * The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
      */
-    public readonly oauthClientId!: pulumi.Output<string | undefined>;
+    declare public readonly oauthClientId: pulumi.Output<string | undefined>;
     /**
-     * The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET
-     * environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+     * The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
      */
-    public readonly oauthClientSecret!: pulumi.Output<string | undefined>;
+    declare public readonly oauthClientSecret: pulumi.Output<string | undefined>;
     /**
-     * The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
-     * variable. Default is the tailnet that owns API credentials passed to the provider.
+     * The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
      */
-    public readonly tailnet!: pulumi.Output<string | undefined>;
+    declare public readonly tailnet: pulumi.Output<string | undefined>;
     /**
      * User-Agent header for API requests.
      */
-    public readonly userAgent!: pulumi.Output<string | undefined>;
+    declare public readonly userAgent: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -67,12 +62,12 @@ export class Provider extends pulumi.ProviderResource {
         opts = opts || {};
         {
             resourceInputs["apiKey"] = args?.apiKey ? pulumi.secret(args.apiKey) : undefined;
-            resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
-            resourceInputs["oauthClientId"] = args ? args.oauthClientId : undefined;
+            resourceInputs["baseUrl"] = args?.baseUrl;
+            resourceInputs["oauthClientId"] = args?.oauthClientId;
             resourceInputs["oauthClientSecret"] = args?.oauthClientSecret ? pulumi.secret(args.oauthClientSecret) : undefined;
-            resourceInputs["scopes"] = pulumi.output(args ? args.scopes : undefined).apply(JSON.stringify);
-            resourceInputs["tailnet"] = args ? args.tailnet : undefined;
-            resourceInputs["userAgent"] = args ? args.userAgent : undefined;
+            resourceInputs["scopes"] = pulumi.output(args?.scopes).apply(JSON.stringify);
+            resourceInputs["tailnet"] = args?.tailnet;
+            resourceInputs["userAgent"] = args?.userAgent;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["apiKey", "oauthClientSecret"] };
@@ -95,34 +90,27 @@ export class Provider extends pulumi.ProviderResource {
  */
 export interface ProviderArgs {
     /**
-     * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
-     * Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
+     * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
      */
     apiKey?: pulumi.Input<string>;
     /**
-     * The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
-     * environment variable.
+     * The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL environment variable.
      */
     baseUrl?: pulumi.Input<string>;
     /**
-     * The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment
-     * variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+     * The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
      */
     oauthClientId?: pulumi.Input<string>;
     /**
-     * The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET
-     * environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+     * The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
      */
     oauthClientSecret?: pulumi.Input<string>;
     /**
-     * The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See
-     * https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and
-     * 'oauth_client_secret' are set.
+     * The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret' are set.
      */
     scopes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
-     * variable. Default is the tailnet that owns API credentials passed to the provider.
+     * The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
      */
     tailnet?: pulumi.Input<string>;
     /**

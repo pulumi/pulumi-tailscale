@@ -67,11 +67,11 @@ export class DeviceAuthorization extends pulumi.CustomResource {
     /**
      * Whether or not the device is authorized
      */
-    public readonly authorized!: pulumi.Output<boolean>;
+    declare public readonly authorized: pulumi.Output<boolean>;
     /**
      * The device to set as authorized
      */
-    public readonly deviceId!: pulumi.Output<string>;
+    declare public readonly deviceId: pulumi.Output<string>;
 
     /**
      * Create a DeviceAuthorization resource with the given unique name, arguments, and options.
@@ -86,18 +86,18 @@ export class DeviceAuthorization extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeviceAuthorizationState | undefined;
-            resourceInputs["authorized"] = state ? state.authorized : undefined;
-            resourceInputs["deviceId"] = state ? state.deviceId : undefined;
+            resourceInputs["authorized"] = state?.authorized;
+            resourceInputs["deviceId"] = state?.deviceId;
         } else {
             const args = argsOrState as DeviceAuthorizationArgs | undefined;
-            if ((!args || args.authorized === undefined) && !opts.urn) {
+            if (args?.authorized === undefined && !opts.urn) {
                 throw new Error("Missing required property 'authorized'");
             }
-            if ((!args || args.deviceId === undefined) && !opts.urn) {
+            if (args?.deviceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'deviceId'");
             }
-            resourceInputs["authorized"] = args ? args.authorized : undefined;
-            resourceInputs["deviceId"] = args ? args.deviceId : undefined;
+            resourceInputs["authorized"] = args?.authorized;
+            resourceInputs["deviceId"] = args?.deviceId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DeviceAuthorization.__pulumiType, name, resourceInputs, opts);

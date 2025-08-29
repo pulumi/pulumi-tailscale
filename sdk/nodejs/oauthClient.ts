@@ -59,27 +59,27 @@ export class OauthClient extends pulumi.CustomResource {
     /**
      * The creation timestamp of the key in RFC3339 format
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * A description of the key consisting of alphanumeric characters. Defaults to `""`.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The client secret, also known as the key. Used with the client ID to generate access tokens.
      */
-    public /*out*/ readonly key!: pulumi.Output<string>;
+    declare public /*out*/ readonly key: pulumi.Output<string>;
     /**
      * Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
      */
-    public readonly scopes!: pulumi.Output<string[]>;
+    declare public readonly scopes: pulumi.Output<string[]>;
     /**
      * A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "authKeys".
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
      */
-    public /*out*/ readonly userId!: pulumi.Output<string>;
+    declare public /*out*/ readonly userId: pulumi.Output<string>;
 
     /**
      * Create a OauthClient resource with the given unique name, arguments, and options.
@@ -94,20 +94,20 @@ export class OauthClient extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OauthClientState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["key"] = state ? state.key : undefined;
-            resourceInputs["scopes"] = state ? state.scopes : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["userId"] = state ? state.userId : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["key"] = state?.key;
+            resourceInputs["scopes"] = state?.scopes;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["userId"] = state?.userId;
         } else {
             const args = argsOrState as OauthClientArgs | undefined;
-            if ((!args || args.scopes === undefined) && !opts.urn) {
+            if (args?.scopes === undefined && !opts.urn) {
                 throw new Error("Missing required property 'scopes'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["scopes"] = args ? args.scopes : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["scopes"] = args?.scopes;
+            resourceInputs["tags"] = args?.tags;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["key"] = undefined /*out*/;
             resourceInputs["userId"] = undefined /*out*/;
