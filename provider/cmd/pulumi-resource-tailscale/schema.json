@@ -51,20 +51,20 @@
         "variables": {
             "apiKey": {
                 "type": "string",
-                "description": "The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.\nConflicts with 'oauth_client_id' and 'oauth_client_secret'.\n",
+                "description": "The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.",
                 "secret": true
             },
             "baseUrl": {
                 "type": "string",
-                "description": "The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL\nenvironment variable.\n"
+                "description": "The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL environment variable."
             },
             "oauthClientId": {
                 "type": "string",
-                "description": "The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment\nvariable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.\n"
+                "description": "The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'."
             },
             "oauthClientSecret": {
                 "type": "string",
-                "description": "The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET\nenvironment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.\n",
+                "description": "The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.",
                 "secret": true
             },
             "scopes": {
@@ -72,15 +72,15 @@
                 "items": {
                     "type": "string"
                 },
-                "description": "The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See\nhttps://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and\n'oauth_client_secret' are set.\n"
+                "description": "The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret' are set."
             },
             "tailnet": {
                 "type": "string",
-                "description": "The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment\nvariable. Default is the tailnet that owns API credentials passed to the provider.\n"
+                "description": "The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider."
             },
             "userAgent": {
                 "type": "string",
-                "description": "User-Agent header for API requests.\n"
+                "description": "User-Agent header for API requests."
             }
         }
     },
@@ -252,20 +252,20 @@
         "properties": {
             "apiKey": {
                 "type": "string",
-                "description": "The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.\nConflicts with 'oauth_client_id' and 'oauth_client_secret'.\n",
+                "description": "The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.",
                 "secret": true
             },
             "baseUrl": {
                 "type": "string",
-                "description": "The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL\nenvironment variable.\n"
+                "description": "The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL environment variable."
             },
             "oauthClientId": {
                 "type": "string",
-                "description": "The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment\nvariable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.\n"
+                "description": "The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'."
             },
             "oauthClientSecret": {
                 "type": "string",
-                "description": "The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET\nenvironment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.\n",
+                "description": "The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.",
                 "secret": true
             },
             "scopes": {
@@ -273,34 +273,34 @@
                 "items": {
                     "type": "string"
                 },
-                "description": "The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See\nhttps://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and\n'oauth_client_secret' are set.\n"
+                "description": "The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret' are set."
             },
             "tailnet": {
                 "type": "string",
-                "description": "The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment\nvariable. Default is the tailnet that owns API credentials passed to the provider.\n"
+                "description": "The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider."
             },
             "userAgent": {
                 "type": "string",
-                "description": "User-Agent header for API requests.\n"
+                "description": "User-Agent header for API requests."
             }
         },
         "inputProperties": {
             "apiKey": {
                 "type": "string",
-                "description": "The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.\nConflicts with 'oauth_client_id' and 'oauth_client_secret'.\n",
+                "description": "The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.",
                 "secret": true
             },
             "baseUrl": {
                 "type": "string",
-                "description": "The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL\nenvironment variable.\n"
+                "description": "The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL environment variable."
             },
             "oauthClientId": {
                 "type": "string",
-                "description": "The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment\nvariable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.\n"
+                "description": "The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'."
             },
             "oauthClientSecret": {
                 "type": "string",
-                "description": "The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET\nenvironment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.\n",
+                "description": "The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.",
                 "secret": true
             },
             "scopes": {
@@ -308,15 +308,15 @@
                 "items": {
                     "type": "string"
                 },
-                "description": "The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See\nhttps://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and\n'oauth_client_secret' are set.\n"
+                "description": "The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret' are set."
             },
             "tailnet": {
                 "type": "string",
-                "description": "The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment\nvariable. Default is the tailnet that owns API credentials passed to the provider.\n"
+                "description": "The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider."
             },
             "userAgent": {
                 "type": "string",
-                "description": "User-Agent header for API requests.\n"
+                "description": "User-Agent header for API requests."
             }
         },
         "methods": {
@@ -1701,7 +1701,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "ipv6": {
@@ -1732,7 +1732,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "json": {
@@ -1783,7 +1783,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "name": {
@@ -1843,7 +1843,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "namePrefix": {
@@ -1961,7 +1961,7 @@
                 "description": "A collection of values returned by getUsers.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "role": {
