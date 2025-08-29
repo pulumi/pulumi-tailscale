@@ -58,11 +58,11 @@ export class DnsSplitNameservers extends pulumi.CustomResource {
     /**
      * Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
      */
-    public readonly domain!: pulumi.Output<string>;
+    declare public readonly domain: pulumi.Output<string>;
     /**
      * Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
      */
-    public readonly nameservers!: pulumi.Output<string[]>;
+    declare public readonly nameservers: pulumi.Output<string[]>;
 
     /**
      * Create a DnsSplitNameservers resource with the given unique name, arguments, and options.
@@ -77,18 +77,18 @@ export class DnsSplitNameservers extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DnsSplitNameserversState | undefined;
-            resourceInputs["domain"] = state ? state.domain : undefined;
-            resourceInputs["nameservers"] = state ? state.nameservers : undefined;
+            resourceInputs["domain"] = state?.domain;
+            resourceInputs["nameservers"] = state?.nameservers;
         } else {
             const args = argsOrState as DnsSplitNameserversArgs | undefined;
-            if ((!args || args.domain === undefined) && !opts.urn) {
+            if (args?.domain === undefined && !opts.urn) {
                 throw new Error("Missing required property 'domain'");
             }
-            if ((!args || args.nameservers === undefined) && !opts.urn) {
+            if (args?.nameservers === undefined && !opts.urn) {
                 throw new Error("Missing required property 'nameservers'");
             }
-            resourceInputs["domain"] = args ? args.domain : undefined;
-            resourceInputs["nameservers"] = args ? args.nameservers : undefined;
+            resourceInputs["domain"] = args?.domain;
+            resourceInputs["nameservers"] = args?.nameservers;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DnsSplitNameservers.__pulumiType, name, resourceInputs, opts);

@@ -38,11 +38,11 @@ export class AwsExternalId extends pulumi.CustomResource {
     /**
      * The External ID that Tailscale will supply when assuming your role. You must reference this in your IAM role's trust policy. See https://docs.aws.amazon.com/IAM/latest/UserGuide/id*roles*common-scenarios_third-party.html for more information on external IDs.
      */
-    public /*out*/ readonly externalId!: pulumi.Output<string>;
+    declare public /*out*/ readonly externalId: pulumi.Output<string>;
     /**
      * The AWS account from which Tailscale will assume your role. You must reference this in your IAM role's trust policy. See https://docs.aws.amazon.com/IAM/latest/UserGuide/id*roles*common-scenarios_third-party.html for more information on external IDs.
      */
-    public /*out*/ readonly tailscaleAwsAccountId!: pulumi.Output<string>;
+    declare public /*out*/ readonly tailscaleAwsAccountId: pulumi.Output<string>;
 
     /**
      * Create a AwsExternalId resource with the given unique name, arguments, and options.
@@ -57,8 +57,8 @@ export class AwsExternalId extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AwsExternalIdState | undefined;
-            resourceInputs["externalId"] = state ? state.externalId : undefined;
-            resourceInputs["tailscaleAwsAccountId"] = state ? state.tailscaleAwsAccountId : undefined;
+            resourceInputs["externalId"] = state?.externalId;
+            resourceInputs["tailscaleAwsAccountId"] = state?.tailscaleAwsAccountId;
         } else {
             const args = argsOrState as AwsExternalIdArgs | undefined;
             resourceInputs["externalId"] = undefined /*out*/;

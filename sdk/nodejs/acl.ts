@@ -75,15 +75,15 @@ export class Acl extends pulumi.CustomResource {
     /**
      * The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
      */
-    public readonly acl!: pulumi.Output<string>;
+    declare public readonly acl: pulumi.Output<string>;
     /**
      * If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
      */
-    public readonly overwriteExistingContent!: pulumi.Output<boolean | undefined>;
+    declare public readonly overwriteExistingContent: pulumi.Output<boolean | undefined>;
     /**
      * If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
      */
-    public readonly resetAclOnDestroy!: pulumi.Output<boolean | undefined>;
+    declare public readonly resetAclOnDestroy: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a Acl resource with the given unique name, arguments, and options.
@@ -98,17 +98,17 @@ export class Acl extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AclState | undefined;
-            resourceInputs["acl"] = state ? state.acl : undefined;
-            resourceInputs["overwriteExistingContent"] = state ? state.overwriteExistingContent : undefined;
-            resourceInputs["resetAclOnDestroy"] = state ? state.resetAclOnDestroy : undefined;
+            resourceInputs["acl"] = state?.acl;
+            resourceInputs["overwriteExistingContent"] = state?.overwriteExistingContent;
+            resourceInputs["resetAclOnDestroy"] = state?.resetAclOnDestroy;
         } else {
             const args = argsOrState as AclArgs | undefined;
-            if ((!args || args.acl === undefined) && !opts.urn) {
+            if (args?.acl === undefined && !opts.urn) {
                 throw new Error("Missing required property 'acl'");
             }
-            resourceInputs["acl"] = args ? args.acl : undefined;
-            resourceInputs["overwriteExistingContent"] = args ? args.overwriteExistingContent : undefined;
-            resourceInputs["resetAclOnDestroy"] = args ? args.resetAclOnDestroy : undefined;
+            resourceInputs["acl"] = args?.acl;
+            resourceInputs["overwriteExistingContent"] = args?.overwriteExistingContent;
+            resourceInputs["resetAclOnDestroy"] = args?.resetAclOnDestroy;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Acl.__pulumiType, name, resourceInputs, opts);

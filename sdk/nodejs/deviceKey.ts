@@ -67,11 +67,11 @@ export class DeviceKey extends pulumi.CustomResource {
     /**
      * The device to update the key properties of
      */
-    public readonly deviceId!: pulumi.Output<string>;
+    declare public readonly deviceId: pulumi.Output<string>;
     /**
      * Determines whether or not the device's key will expire. Defaults to `false`.
      */
-    public readonly keyExpiryDisabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly keyExpiryDisabled: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a DeviceKey resource with the given unique name, arguments, and options.
@@ -86,15 +86,15 @@ export class DeviceKey extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeviceKeyState | undefined;
-            resourceInputs["deviceId"] = state ? state.deviceId : undefined;
-            resourceInputs["keyExpiryDisabled"] = state ? state.keyExpiryDisabled : undefined;
+            resourceInputs["deviceId"] = state?.deviceId;
+            resourceInputs["keyExpiryDisabled"] = state?.keyExpiryDisabled;
         } else {
             const args = argsOrState as DeviceKeyArgs | undefined;
-            if ((!args || args.deviceId === undefined) && !opts.urn) {
+            if (args?.deviceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'deviceId'");
             }
-            resourceInputs["deviceId"] = args ? args.deviceId : undefined;
-            resourceInputs["keyExpiryDisabled"] = args ? args.keyExpiryDisabled : undefined;
+            resourceInputs["deviceId"] = args?.deviceId;
+            resourceInputs["keyExpiryDisabled"] = args?.keyExpiryDisabled;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DeviceKey.__pulumiType, name, resourceInputs, opts);

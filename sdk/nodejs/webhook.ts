@@ -62,19 +62,19 @@ export class Webhook extends pulumi.CustomResource {
     /**
      * The endpoint to send webhook events to.
      */
-    public readonly endpointUrl!: pulumi.Output<string>;
+    declare public readonly endpointUrl: pulumi.Output<string>;
     /**
      * The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
      */
-    public readonly providerType!: pulumi.Output<string | undefined>;
+    declare public readonly providerType: pulumi.Output<string | undefined>;
     /**
      * The secret used for signing webhook payloads. Only set on resource creation. See https://tailscale.com/kb/1213/webhooks#webhook-secret for more information.
      */
-    public /*out*/ readonly secret!: pulumi.Output<string>;
+    declare public /*out*/ readonly secret: pulumi.Output<string>;
     /**
      * The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
      */
-    public readonly subscriptions!: pulumi.Output<string[]>;
+    declare public readonly subscriptions: pulumi.Output<string[]>;
 
     /**
      * Create a Webhook resource with the given unique name, arguments, and options.
@@ -89,21 +89,21 @@ export class Webhook extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WebhookState | undefined;
-            resourceInputs["endpointUrl"] = state ? state.endpointUrl : undefined;
-            resourceInputs["providerType"] = state ? state.providerType : undefined;
-            resourceInputs["secret"] = state ? state.secret : undefined;
-            resourceInputs["subscriptions"] = state ? state.subscriptions : undefined;
+            resourceInputs["endpointUrl"] = state?.endpointUrl;
+            resourceInputs["providerType"] = state?.providerType;
+            resourceInputs["secret"] = state?.secret;
+            resourceInputs["subscriptions"] = state?.subscriptions;
         } else {
             const args = argsOrState as WebhookArgs | undefined;
-            if ((!args || args.endpointUrl === undefined) && !opts.urn) {
+            if (args?.endpointUrl === undefined && !opts.urn) {
                 throw new Error("Missing required property 'endpointUrl'");
             }
-            if ((!args || args.subscriptions === undefined) && !opts.urn) {
+            if (args?.subscriptions === undefined && !opts.urn) {
                 throw new Error("Missing required property 'subscriptions'");
             }
-            resourceInputs["endpointUrl"] = args ? args.endpointUrl : undefined;
-            resourceInputs["providerType"] = args ? args.providerType : undefined;
-            resourceInputs["subscriptions"] = args ? args.subscriptions : undefined;
+            resourceInputs["endpointUrl"] = args?.endpointUrl;
+            resourceInputs["providerType"] = args?.providerType;
+            resourceInputs["subscriptions"] = args?.subscriptions;
             resourceInputs["secret"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

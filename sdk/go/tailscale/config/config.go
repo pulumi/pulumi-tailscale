@@ -11,39 +11,32 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
-// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable.
-// Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
+// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
 func GetApiKey(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:apiKey")
 }
 
-// The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL
-// environment variable.
+// The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL environment variable.
 func GetBaseUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:baseUrl")
 }
 
-// The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment
-// variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+// The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
 func GetOauthClientId(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:oauthClientId")
 }
 
-// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET
-// environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
 func GetOauthClientSecret(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:oauthClientSecret")
 }
 
-// The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See
-// https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and
-// 'oauth_client_secret' are set.
+// The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret' are set.
 func GetScopes(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:scopes")
 }
 
-// The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment
-// variable. Default is the tailnet that owns API credentials passed to the provider.
+// The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
 func GetTailnet(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:tailnet")
 }

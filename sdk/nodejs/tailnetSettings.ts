@@ -64,40 +64,40 @@ export class TailnetSettings extends pulumi.CustomResource {
     /**
      * Link to your external ACL definition or management system. Must be a valid URL.
      */
-    public readonly aclsExternalLink!: pulumi.Output<string>;
-    public readonly aclsExternallyManagedOn!: pulumi.Output<boolean>;
+    declare public readonly aclsExternalLink: pulumi.Output<string>;
+    declare public readonly aclsExternallyManagedOn: pulumi.Output<boolean>;
     /**
      * Whether device approval is enabled for the tailnet
      */
-    public readonly devicesApprovalOn!: pulumi.Output<boolean>;
+    declare public readonly devicesApprovalOn: pulumi.Output<boolean>;
     /**
      * Whether auto updates are enabled for devices that belong to this tailnet
      */
-    public readonly devicesAutoUpdatesOn!: pulumi.Output<boolean>;
+    declare public readonly devicesAutoUpdatesOn: pulumi.Output<boolean>;
     /**
      * The key expiry duration for devices on this tailnet
      */
-    public readonly devicesKeyDurationDays!: pulumi.Output<number>;
+    declare public readonly devicesKeyDurationDays: pulumi.Output<number>;
     /**
      * Whether network flog logs are enabled for the tailnet
      */
-    public readonly networkFlowLoggingOn!: pulumi.Output<boolean>;
+    declare public readonly networkFlowLoggingOn: pulumi.Output<boolean>;
     /**
      * Whether identity collection is enabled for device posture integrations for the tailnet
      */
-    public readonly postureIdentityCollectionOn!: pulumi.Output<boolean>;
+    declare public readonly postureIdentityCollectionOn: pulumi.Output<boolean>;
     /**
      * Whether regional routing is enabled for the tailnet
      */
-    public readonly regionalRoutingOn!: pulumi.Output<boolean>;
+    declare public readonly regionalRoutingOn: pulumi.Output<boolean>;
     /**
      * Whether user approval is enabled for this tailnet
      */
-    public readonly usersApprovalOn!: pulumi.Output<boolean>;
+    declare public readonly usersApprovalOn: pulumi.Output<boolean>;
     /**
      * Which user roles are allowed to join external tailnets
      */
-    public readonly usersRoleAllowedToJoinExternalTailnet!: pulumi.Output<string>;
+    declare public readonly usersRoleAllowedToJoinExternalTailnet: pulumi.Output<string>;
 
     /**
      * Create a TailnetSettings resource with the given unique name, arguments, and options.
@@ -112,28 +112,28 @@ export class TailnetSettings extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TailnetSettingsState | undefined;
-            resourceInputs["aclsExternalLink"] = state ? state.aclsExternalLink : undefined;
-            resourceInputs["aclsExternallyManagedOn"] = state ? state.aclsExternallyManagedOn : undefined;
-            resourceInputs["devicesApprovalOn"] = state ? state.devicesApprovalOn : undefined;
-            resourceInputs["devicesAutoUpdatesOn"] = state ? state.devicesAutoUpdatesOn : undefined;
-            resourceInputs["devicesKeyDurationDays"] = state ? state.devicesKeyDurationDays : undefined;
-            resourceInputs["networkFlowLoggingOn"] = state ? state.networkFlowLoggingOn : undefined;
-            resourceInputs["postureIdentityCollectionOn"] = state ? state.postureIdentityCollectionOn : undefined;
-            resourceInputs["regionalRoutingOn"] = state ? state.regionalRoutingOn : undefined;
-            resourceInputs["usersApprovalOn"] = state ? state.usersApprovalOn : undefined;
-            resourceInputs["usersRoleAllowedToJoinExternalTailnet"] = state ? state.usersRoleAllowedToJoinExternalTailnet : undefined;
+            resourceInputs["aclsExternalLink"] = state?.aclsExternalLink;
+            resourceInputs["aclsExternallyManagedOn"] = state?.aclsExternallyManagedOn;
+            resourceInputs["devicesApprovalOn"] = state?.devicesApprovalOn;
+            resourceInputs["devicesAutoUpdatesOn"] = state?.devicesAutoUpdatesOn;
+            resourceInputs["devicesKeyDurationDays"] = state?.devicesKeyDurationDays;
+            resourceInputs["networkFlowLoggingOn"] = state?.networkFlowLoggingOn;
+            resourceInputs["postureIdentityCollectionOn"] = state?.postureIdentityCollectionOn;
+            resourceInputs["regionalRoutingOn"] = state?.regionalRoutingOn;
+            resourceInputs["usersApprovalOn"] = state?.usersApprovalOn;
+            resourceInputs["usersRoleAllowedToJoinExternalTailnet"] = state?.usersRoleAllowedToJoinExternalTailnet;
         } else {
             const args = argsOrState as TailnetSettingsArgs | undefined;
-            resourceInputs["aclsExternalLink"] = args ? args.aclsExternalLink : undefined;
-            resourceInputs["aclsExternallyManagedOn"] = args ? args.aclsExternallyManagedOn : undefined;
-            resourceInputs["devicesApprovalOn"] = args ? args.devicesApprovalOn : undefined;
-            resourceInputs["devicesAutoUpdatesOn"] = args ? args.devicesAutoUpdatesOn : undefined;
-            resourceInputs["devicesKeyDurationDays"] = args ? args.devicesKeyDurationDays : undefined;
-            resourceInputs["networkFlowLoggingOn"] = args ? args.networkFlowLoggingOn : undefined;
-            resourceInputs["postureIdentityCollectionOn"] = args ? args.postureIdentityCollectionOn : undefined;
-            resourceInputs["regionalRoutingOn"] = args ? args.regionalRoutingOn : undefined;
-            resourceInputs["usersApprovalOn"] = args ? args.usersApprovalOn : undefined;
-            resourceInputs["usersRoleAllowedToJoinExternalTailnet"] = args ? args.usersRoleAllowedToJoinExternalTailnet : undefined;
+            resourceInputs["aclsExternalLink"] = args?.aclsExternalLink;
+            resourceInputs["aclsExternallyManagedOn"] = args?.aclsExternallyManagedOn;
+            resourceInputs["devicesApprovalOn"] = args?.devicesApprovalOn;
+            resourceInputs["devicesAutoUpdatesOn"] = args?.devicesAutoUpdatesOn;
+            resourceInputs["devicesKeyDurationDays"] = args?.devicesKeyDurationDays;
+            resourceInputs["networkFlowLoggingOn"] = args?.networkFlowLoggingOn;
+            resourceInputs["postureIdentityCollectionOn"] = args?.postureIdentityCollectionOn;
+            resourceInputs["regionalRoutingOn"] = args?.regionalRoutingOn;
+            resourceInputs["usersApprovalOn"] = args?.usersApprovalOn;
+            resourceInputs["usersRoleAllowedToJoinExternalTailnet"] = args?.usersRoleAllowedToJoinExternalTailnet;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(TailnetSettings.__pulumiType, name, resourceInputs, opts);
