@@ -1,5 +1,7 @@
 provider: tailscale
 major-version: 1
+esc:
+  enabled: true
 env:
   TAILSCALE_OAUTH_CLIENT_SECRET: ${{ secrets.TAILSCALE_OAUTH_CLIENT_SECRET }}
   TAILSCALE_OAUTH_CLIENT_ID: ${{ secrets.TAILSCALE_OAUTH_CLIENT_ID }}
