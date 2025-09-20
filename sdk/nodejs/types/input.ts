@@ -26,3 +26,36 @@ export interface ContactsSupport {
     email: pulumi.Input<string>;
 }
 
+export interface DnsConfigurationNameserver {
+    /**
+     * The nameserver's IPv4 or IPv6 address
+     */
+    address: pulumi.Input<string>;
+    /**
+     * This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
+     */
+    useWithExitNode?: pulumi.Input<boolean>;
+}
+
+export interface DnsConfigurationSplitDn {
+    /**
+     * The nameservers will be used only for this domain.
+     */
+    domain: pulumi.Input<string>;
+    /**
+     * Set the nameservers used by devices on your network to resolve DNS queries.
+     */
+    nameservers: pulumi.Input<pulumi.Input<inputs.DnsConfigurationSplitDnNameserver>[]>;
+}
+
+export interface DnsConfigurationSplitDnNameserver {
+    /**
+     * The nameserver's IPv4 or IPv6 address.
+     */
+    address: pulumi.Input<string>;
+    /**
+     * This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
+     */
+    useWithExitNode?: pulumi.Input<boolean>;
+}
+

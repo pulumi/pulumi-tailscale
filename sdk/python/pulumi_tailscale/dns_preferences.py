@@ -85,6 +85,8 @@ class DnsPreferences(pulumi.CustomResource):
 
         ## Import
 
+        The `pulumi import` command can be used, for example:
+
         ID doesn't matter.
 
         ```sh
@@ -114,6 +116,8 @@ class DnsPreferences(pulumi.CustomResource):
         ```
 
         ## Import
+
+        The `pulumi import` command can be used, for example:
 
         ID doesn't matter.
 

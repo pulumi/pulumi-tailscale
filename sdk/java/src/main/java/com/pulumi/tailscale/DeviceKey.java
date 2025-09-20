@@ -60,6 +60,8 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
+ * The `pulumi import` command can be used, for example:
+ * 
  * Device key can be imported using the node ID (preferred), e.g.,
  * 
  * ```sh

@@ -51,6 +51,8 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
+ * The `pulumi import` command can be used, for example:
+ * 
  * ID doesn&#39;t matter.
  * 
  * ```sh

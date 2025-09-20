@@ -40,6 +40,11 @@ export type DeviceTags = import("./deviceTags").DeviceTags;
 export const DeviceTags: typeof import("./deviceTags").DeviceTags = null as any;
 utilities.lazyLoad(exports, ["DeviceTags"], () => require("./deviceTags"));
 
+export { DnsConfigurationArgs, DnsConfigurationState } from "./dnsConfiguration";
+export type DnsConfiguration = import("./dnsConfiguration").DnsConfiguration;
+export const DnsConfiguration: typeof import("./dnsConfiguration").DnsConfiguration = null as any;
+utilities.lazyLoad(exports, ["DnsConfiguration"], () => require("./dnsConfiguration"));
+
 export { DnsNameserversArgs, DnsNameserversState } from "./dnsNameservers";
 export type DnsNameservers = import("./dnsNameservers").DnsNameservers;
 export const DnsNameservers: typeof import("./dnsNameservers").DnsNameservers = null as any;
@@ -151,6 +156,8 @@ const _module = {
                 return new DeviceSubnetRoutes(name, <any>undefined, { urn })
             case "tailscale:index/deviceTags:DeviceTags":
                 return new DeviceTags(name, <any>undefined, { urn })
+            case "tailscale:index/dnsConfiguration:DnsConfiguration":
+                return new DnsConfiguration(name, <any>undefined, { urn })
             case "tailscale:index/dnsNameservers:DnsNameservers":
                 return new DnsNameservers(name, <any>undefined, { urn })
             case "tailscale:index/dnsPreferences:DnsPreferences":
@@ -183,6 +190,7 @@ pulumi.runtime.registerResourceModule("tailscale", "index/deviceAuthorization", 
 pulumi.runtime.registerResourceModule("tailscale", "index/deviceKey", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/deviceSubnetRoutes", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/deviceTags", _module)
+pulumi.runtime.registerResourceModule("tailscale", "index/dnsConfiguration", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsNameservers", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsPreferences", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsSearchPaths", _module)

@@ -61,6 +61,8 @@ namespace Pulumi.Tailscale
     /// 
     /// ## Import
     /// 
+    /// The `pulumi import` command can be used, for example:
+    /// 
     /// Logstream configuration can be imported using the logstream configuration id, e.g.,
     /// 
     /// ```sh

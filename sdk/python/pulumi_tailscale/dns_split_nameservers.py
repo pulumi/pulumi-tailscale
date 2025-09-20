@@ -119,6 +119,8 @@ class DnsSplitNameservers(pulumi.CustomResource):
 
         ## Import
 
+        The `pulumi import` command can be used, for example:
+
         Split DNS nameservers can be imported using the domain name, e.g.
 
         ```sh
@@ -151,6 +153,8 @@ class DnsSplitNameservers(pulumi.CustomResource):
         ```
 
         ## Import
+
+        The `pulumi import` command can be used, for example:
 
         Split DNS nameservers can be imported using the domain name, e.g.
 

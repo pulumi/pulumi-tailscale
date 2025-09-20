@@ -26,6 +26,39 @@ export interface ContactsSupport {
     email: string;
 }
 
+export interface DnsConfigurationNameserver {
+    /**
+     * The nameserver's IPv4 or IPv6 address
+     */
+    address: string;
+    /**
+     * This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
+     */
+    useWithExitNode?: boolean;
+}
+
+export interface DnsConfigurationSplitDn {
+    /**
+     * The nameservers will be used only for this domain.
+     */
+    domain: string;
+    /**
+     * Set the nameservers used by devices on your network to resolve DNS queries.
+     */
+    nameservers: outputs.DnsConfigurationSplitDnNameserver[];
+}
+
+export interface DnsConfigurationSplitDnNameserver {
+    /**
+     * The nameserver's IPv4 or IPv6 address.
+     */
+    address: string;
+    /**
+     * This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
+     */
+    useWithExitNode?: boolean;
+}
+
 export interface GetDevicesDevice {
     /**
      * The list of device's IPs

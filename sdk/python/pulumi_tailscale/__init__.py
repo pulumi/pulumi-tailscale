@@ -13,6 +13,7 @@ from .device_authorization import *
 from .device_key import *
 from .device_subnet_routes import *
 from .device_tags import *
+from .dns_configuration import *
 from .dns_nameservers import *
 from .dns_preferences import *
 from .dns_search_paths import *
@@ -97,6 +98,14 @@ _utilities.register(
   "fqn": "pulumi_tailscale",
   "classes": {
    "tailscale:index/deviceTags:DeviceTags": "DeviceTags"
+  }
+ },
+ {
+  "pkg": "tailscale",
+  "mod": "index/dnsConfiguration",
+  "fqn": "pulumi_tailscale",
+  "classes": {
+   "tailscale:index/dnsConfiguration:DnsConfiguration": "DnsConfiguration"
   }
  },
  {
