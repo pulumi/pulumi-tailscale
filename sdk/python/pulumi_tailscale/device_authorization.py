@@ -120,6 +120,8 @@ class DeviceAuthorization(pulumi.CustomResource):
 
         ## Import
 
+        The `pulumi import` command can be used, for example:
+
         Device authorization can be imported using the node ID (preferred), e.g.,
 
         ```sh
@@ -159,6 +161,8 @@ class DeviceAuthorization(pulumi.CustomResource):
         ```
 
         ## Import
+
+        The `pulumi import` command can be used, for example:
 
         Device authorization can be imported using the node ID (preferred), e.g.,
 

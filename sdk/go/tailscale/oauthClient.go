@@ -48,6 +48,8 @@ import (
 //
 // ## Import
 //
+// The `pulumi import` command can be used, for example:
+//
 // Note: Sensitive fields such as the secret key are not returned by the API and will be unset in the Terraform state after import.
 //
 // ```sh

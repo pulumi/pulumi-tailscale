@@ -424,6 +424,324 @@ func (o ContactsSupportPtrOutput) Email() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type DnsConfigurationNameserver struct {
+	// The nameserver's IPv4 or IPv6 address
+	Address string `pulumi:"address"`
+	// This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
+	UseWithExitNode *bool `pulumi:"useWithExitNode"`
+}
+
+// DnsConfigurationNameserverInput is an input type that accepts DnsConfigurationNameserverArgs and DnsConfigurationNameserverOutput values.
+// You can construct a concrete instance of `DnsConfigurationNameserverInput` via:
+//
+//	DnsConfigurationNameserverArgs{...}
+type DnsConfigurationNameserverInput interface {
+	pulumi.Input
+
+	ToDnsConfigurationNameserverOutput() DnsConfigurationNameserverOutput
+	ToDnsConfigurationNameserverOutputWithContext(context.Context) DnsConfigurationNameserverOutput
+}
+
+type DnsConfigurationNameserverArgs struct {
+	// The nameserver's IPv4 or IPv6 address
+	Address pulumi.StringInput `pulumi:"address"`
+	// This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
+	UseWithExitNode pulumi.BoolPtrInput `pulumi:"useWithExitNode"`
+}
+
+func (DnsConfigurationNameserverArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsConfigurationNameserver)(nil)).Elem()
+}
+
+func (i DnsConfigurationNameserverArgs) ToDnsConfigurationNameserverOutput() DnsConfigurationNameserverOutput {
+	return i.ToDnsConfigurationNameserverOutputWithContext(context.Background())
+}
+
+func (i DnsConfigurationNameserverArgs) ToDnsConfigurationNameserverOutputWithContext(ctx context.Context) DnsConfigurationNameserverOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsConfigurationNameserverOutput)
+}
+
+// DnsConfigurationNameserverArrayInput is an input type that accepts DnsConfigurationNameserverArray and DnsConfigurationNameserverArrayOutput values.
+// You can construct a concrete instance of `DnsConfigurationNameserverArrayInput` via:
+//
+//	DnsConfigurationNameserverArray{ DnsConfigurationNameserverArgs{...} }
+type DnsConfigurationNameserverArrayInput interface {
+	pulumi.Input
+
+	ToDnsConfigurationNameserverArrayOutput() DnsConfigurationNameserverArrayOutput
+	ToDnsConfigurationNameserverArrayOutputWithContext(context.Context) DnsConfigurationNameserverArrayOutput
+}
+
+type DnsConfigurationNameserverArray []DnsConfigurationNameserverInput
+
+func (DnsConfigurationNameserverArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DnsConfigurationNameserver)(nil)).Elem()
+}
+
+func (i DnsConfigurationNameserverArray) ToDnsConfigurationNameserverArrayOutput() DnsConfigurationNameserverArrayOutput {
+	return i.ToDnsConfigurationNameserverArrayOutputWithContext(context.Background())
+}
+
+func (i DnsConfigurationNameserverArray) ToDnsConfigurationNameserverArrayOutputWithContext(ctx context.Context) DnsConfigurationNameserverArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsConfigurationNameserverArrayOutput)
+}
+
+type DnsConfigurationNameserverOutput struct{ *pulumi.OutputState }
+
+func (DnsConfigurationNameserverOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsConfigurationNameserver)(nil)).Elem()
+}
+
+func (o DnsConfigurationNameserverOutput) ToDnsConfigurationNameserverOutput() DnsConfigurationNameserverOutput {
+	return o
+}
+
+func (o DnsConfigurationNameserverOutput) ToDnsConfigurationNameserverOutputWithContext(ctx context.Context) DnsConfigurationNameserverOutput {
+	return o
+}
+
+// The nameserver's IPv4 or IPv6 address
+func (o DnsConfigurationNameserverOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v DnsConfigurationNameserver) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
+func (o DnsConfigurationNameserverOutput) UseWithExitNode() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DnsConfigurationNameserver) *bool { return v.UseWithExitNode }).(pulumi.BoolPtrOutput)
+}
+
+type DnsConfigurationNameserverArrayOutput struct{ *pulumi.OutputState }
+
+func (DnsConfigurationNameserverArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DnsConfigurationNameserver)(nil)).Elem()
+}
+
+func (o DnsConfigurationNameserverArrayOutput) ToDnsConfigurationNameserverArrayOutput() DnsConfigurationNameserverArrayOutput {
+	return o
+}
+
+func (o DnsConfigurationNameserverArrayOutput) ToDnsConfigurationNameserverArrayOutputWithContext(ctx context.Context) DnsConfigurationNameserverArrayOutput {
+	return o
+}
+
+func (o DnsConfigurationNameserverArrayOutput) Index(i pulumi.IntInput) DnsConfigurationNameserverOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DnsConfigurationNameserver {
+		return vs[0].([]DnsConfigurationNameserver)[vs[1].(int)]
+	}).(DnsConfigurationNameserverOutput)
+}
+
+type DnsConfigurationSplitDn struct {
+	// The nameservers will be used only for this domain.
+	Domain string `pulumi:"domain"`
+	// Set the nameservers used by devices on your network to resolve DNS queries.
+	Nameservers []DnsConfigurationSplitDnNameserver `pulumi:"nameservers"`
+}
+
+// DnsConfigurationSplitDnInput is an input type that accepts DnsConfigurationSplitDnArgs and DnsConfigurationSplitDnOutput values.
+// You can construct a concrete instance of `DnsConfigurationSplitDnInput` via:
+//
+//	DnsConfigurationSplitDnArgs{...}
+type DnsConfigurationSplitDnInput interface {
+	pulumi.Input
+
+	ToDnsConfigurationSplitDnOutput() DnsConfigurationSplitDnOutput
+	ToDnsConfigurationSplitDnOutputWithContext(context.Context) DnsConfigurationSplitDnOutput
+}
+
+type DnsConfigurationSplitDnArgs struct {
+	// The nameservers will be used only for this domain.
+	Domain pulumi.StringInput `pulumi:"domain"`
+	// Set the nameservers used by devices on your network to resolve DNS queries.
+	Nameservers DnsConfigurationSplitDnNameserverArrayInput `pulumi:"nameservers"`
+}
+
+func (DnsConfigurationSplitDnArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsConfigurationSplitDn)(nil)).Elem()
+}
+
+func (i DnsConfigurationSplitDnArgs) ToDnsConfigurationSplitDnOutput() DnsConfigurationSplitDnOutput {
+	return i.ToDnsConfigurationSplitDnOutputWithContext(context.Background())
+}
+
+func (i DnsConfigurationSplitDnArgs) ToDnsConfigurationSplitDnOutputWithContext(ctx context.Context) DnsConfigurationSplitDnOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsConfigurationSplitDnOutput)
+}
+
+// DnsConfigurationSplitDnArrayInput is an input type that accepts DnsConfigurationSplitDnArray and DnsConfigurationSplitDnArrayOutput values.
+// You can construct a concrete instance of `DnsConfigurationSplitDnArrayInput` via:
+//
+//	DnsConfigurationSplitDnArray{ DnsConfigurationSplitDnArgs{...} }
+type DnsConfigurationSplitDnArrayInput interface {
+	pulumi.Input
+
+	ToDnsConfigurationSplitDnArrayOutput() DnsConfigurationSplitDnArrayOutput
+	ToDnsConfigurationSplitDnArrayOutputWithContext(context.Context) DnsConfigurationSplitDnArrayOutput
+}
+
+type DnsConfigurationSplitDnArray []DnsConfigurationSplitDnInput
+
+func (DnsConfigurationSplitDnArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DnsConfigurationSplitDn)(nil)).Elem()
+}
+
+func (i DnsConfigurationSplitDnArray) ToDnsConfigurationSplitDnArrayOutput() DnsConfigurationSplitDnArrayOutput {
+	return i.ToDnsConfigurationSplitDnArrayOutputWithContext(context.Background())
+}
+
+func (i DnsConfigurationSplitDnArray) ToDnsConfigurationSplitDnArrayOutputWithContext(ctx context.Context) DnsConfigurationSplitDnArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsConfigurationSplitDnArrayOutput)
+}
+
+type DnsConfigurationSplitDnOutput struct{ *pulumi.OutputState }
+
+func (DnsConfigurationSplitDnOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsConfigurationSplitDn)(nil)).Elem()
+}
+
+func (o DnsConfigurationSplitDnOutput) ToDnsConfigurationSplitDnOutput() DnsConfigurationSplitDnOutput {
+	return o
+}
+
+func (o DnsConfigurationSplitDnOutput) ToDnsConfigurationSplitDnOutputWithContext(ctx context.Context) DnsConfigurationSplitDnOutput {
+	return o
+}
+
+// The nameservers will be used only for this domain.
+func (o DnsConfigurationSplitDnOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v DnsConfigurationSplitDn) string { return v.Domain }).(pulumi.StringOutput)
+}
+
+// Set the nameservers used by devices on your network to resolve DNS queries.
+func (o DnsConfigurationSplitDnOutput) Nameservers() DnsConfigurationSplitDnNameserverArrayOutput {
+	return o.ApplyT(func(v DnsConfigurationSplitDn) []DnsConfigurationSplitDnNameserver { return v.Nameservers }).(DnsConfigurationSplitDnNameserverArrayOutput)
+}
+
+type DnsConfigurationSplitDnArrayOutput struct{ *pulumi.OutputState }
+
+func (DnsConfigurationSplitDnArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DnsConfigurationSplitDn)(nil)).Elem()
+}
+
+func (o DnsConfigurationSplitDnArrayOutput) ToDnsConfigurationSplitDnArrayOutput() DnsConfigurationSplitDnArrayOutput {
+	return o
+}
+
+func (o DnsConfigurationSplitDnArrayOutput) ToDnsConfigurationSplitDnArrayOutputWithContext(ctx context.Context) DnsConfigurationSplitDnArrayOutput {
+	return o
+}
+
+func (o DnsConfigurationSplitDnArrayOutput) Index(i pulumi.IntInput) DnsConfigurationSplitDnOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DnsConfigurationSplitDn {
+		return vs[0].([]DnsConfigurationSplitDn)[vs[1].(int)]
+	}).(DnsConfigurationSplitDnOutput)
+}
+
+type DnsConfigurationSplitDnNameserver struct {
+	// The nameserver's IPv4 or IPv6 address.
+	Address string `pulumi:"address"`
+	// This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
+	UseWithExitNode *bool `pulumi:"useWithExitNode"`
+}
+
+// DnsConfigurationSplitDnNameserverInput is an input type that accepts DnsConfigurationSplitDnNameserverArgs and DnsConfigurationSplitDnNameserverOutput values.
+// You can construct a concrete instance of `DnsConfigurationSplitDnNameserverInput` via:
+//
+//	DnsConfigurationSplitDnNameserverArgs{...}
+type DnsConfigurationSplitDnNameserverInput interface {
+	pulumi.Input
+
+	ToDnsConfigurationSplitDnNameserverOutput() DnsConfigurationSplitDnNameserverOutput
+	ToDnsConfigurationSplitDnNameserverOutputWithContext(context.Context) DnsConfigurationSplitDnNameserverOutput
+}
+
+type DnsConfigurationSplitDnNameserverArgs struct {
+	// The nameserver's IPv4 or IPv6 address.
+	Address pulumi.StringInput `pulumi:"address"`
+	// This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
+	UseWithExitNode pulumi.BoolPtrInput `pulumi:"useWithExitNode"`
+}
+
+func (DnsConfigurationSplitDnNameserverArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsConfigurationSplitDnNameserver)(nil)).Elem()
+}
+
+func (i DnsConfigurationSplitDnNameserverArgs) ToDnsConfigurationSplitDnNameserverOutput() DnsConfigurationSplitDnNameserverOutput {
+	return i.ToDnsConfigurationSplitDnNameserverOutputWithContext(context.Background())
+}
+
+func (i DnsConfigurationSplitDnNameserverArgs) ToDnsConfigurationSplitDnNameserverOutputWithContext(ctx context.Context) DnsConfigurationSplitDnNameserverOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsConfigurationSplitDnNameserverOutput)
+}
+
+// DnsConfigurationSplitDnNameserverArrayInput is an input type that accepts DnsConfigurationSplitDnNameserverArray and DnsConfigurationSplitDnNameserverArrayOutput values.
+// You can construct a concrete instance of `DnsConfigurationSplitDnNameserverArrayInput` via:
+//
+//	DnsConfigurationSplitDnNameserverArray{ DnsConfigurationSplitDnNameserverArgs{...} }
+type DnsConfigurationSplitDnNameserverArrayInput interface {
+	pulumi.Input
+
+	ToDnsConfigurationSplitDnNameserverArrayOutput() DnsConfigurationSplitDnNameserverArrayOutput
+	ToDnsConfigurationSplitDnNameserverArrayOutputWithContext(context.Context) DnsConfigurationSplitDnNameserverArrayOutput
+}
+
+type DnsConfigurationSplitDnNameserverArray []DnsConfigurationSplitDnNameserverInput
+
+func (DnsConfigurationSplitDnNameserverArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DnsConfigurationSplitDnNameserver)(nil)).Elem()
+}
+
+func (i DnsConfigurationSplitDnNameserverArray) ToDnsConfigurationSplitDnNameserverArrayOutput() DnsConfigurationSplitDnNameserverArrayOutput {
+	return i.ToDnsConfigurationSplitDnNameserverArrayOutputWithContext(context.Background())
+}
+
+func (i DnsConfigurationSplitDnNameserverArray) ToDnsConfigurationSplitDnNameserverArrayOutputWithContext(ctx context.Context) DnsConfigurationSplitDnNameserverArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsConfigurationSplitDnNameserverArrayOutput)
+}
+
+type DnsConfigurationSplitDnNameserverOutput struct{ *pulumi.OutputState }
+
+func (DnsConfigurationSplitDnNameserverOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsConfigurationSplitDnNameserver)(nil)).Elem()
+}
+
+func (o DnsConfigurationSplitDnNameserverOutput) ToDnsConfigurationSplitDnNameserverOutput() DnsConfigurationSplitDnNameserverOutput {
+	return o
+}
+
+func (o DnsConfigurationSplitDnNameserverOutput) ToDnsConfigurationSplitDnNameserverOutputWithContext(ctx context.Context) DnsConfigurationSplitDnNameserverOutput {
+	return o
+}
+
+// The nameserver's IPv4 or IPv6 address.
+func (o DnsConfigurationSplitDnNameserverOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v DnsConfigurationSplitDnNameserver) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
+func (o DnsConfigurationSplitDnNameserverOutput) UseWithExitNode() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DnsConfigurationSplitDnNameserver) *bool { return v.UseWithExitNode }).(pulumi.BoolPtrOutput)
+}
+
+type DnsConfigurationSplitDnNameserverArrayOutput struct{ *pulumi.OutputState }
+
+func (DnsConfigurationSplitDnNameserverArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DnsConfigurationSplitDnNameserver)(nil)).Elem()
+}
+
+func (o DnsConfigurationSplitDnNameserverArrayOutput) ToDnsConfigurationSplitDnNameserverArrayOutput() DnsConfigurationSplitDnNameserverArrayOutput {
+	return o
+}
+
+func (o DnsConfigurationSplitDnNameserverArrayOutput) ToDnsConfigurationSplitDnNameserverArrayOutputWithContext(ctx context.Context) DnsConfigurationSplitDnNameserverArrayOutput {
+	return o
+}
+
+func (o DnsConfigurationSplitDnNameserverArrayOutput) Index(i pulumi.IntInput) DnsConfigurationSplitDnNameserverOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DnsConfigurationSplitDnNameserver {
+		return vs[0].([]DnsConfigurationSplitDnNameserver)[vs[1].(int)]
+	}).(DnsConfigurationSplitDnNameserverOutput)
+}
+
 type GetDevicesDevice struct {
 	// The list of device's IPs
 	Addresses []string `pulumi:"addresses"`
@@ -778,6 +1096,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactsSecurityPtrInput)(nil)).Elem(), ContactsSecurityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactsSupportInput)(nil)).Elem(), ContactsSupportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactsSupportPtrInput)(nil)).Elem(), ContactsSupportArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsConfigurationNameserverInput)(nil)).Elem(), DnsConfigurationNameserverArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsConfigurationNameserverArrayInput)(nil)).Elem(), DnsConfigurationNameserverArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsConfigurationSplitDnInput)(nil)).Elem(), DnsConfigurationSplitDnArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsConfigurationSplitDnArrayInput)(nil)).Elem(), DnsConfigurationSplitDnArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsConfigurationSplitDnNameserverInput)(nil)).Elem(), DnsConfigurationSplitDnNameserverArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsConfigurationSplitDnNameserverArrayInput)(nil)).Elem(), DnsConfigurationSplitDnNameserverArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDevicesDeviceInput)(nil)).Elem(), GetDevicesDeviceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDevicesDeviceArrayInput)(nil)).Elem(), GetDevicesDeviceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
@@ -788,6 +1112,12 @@ func init() {
 	pulumi.RegisterOutputType(ContactsSecurityPtrOutput{})
 	pulumi.RegisterOutputType(ContactsSupportOutput{})
 	pulumi.RegisterOutputType(ContactsSupportPtrOutput{})
+	pulumi.RegisterOutputType(DnsConfigurationNameserverOutput{})
+	pulumi.RegisterOutputType(DnsConfigurationNameserverArrayOutput{})
+	pulumi.RegisterOutputType(DnsConfigurationSplitDnOutput{})
+	pulumi.RegisterOutputType(DnsConfigurationSplitDnArrayOutput{})
+	pulumi.RegisterOutputType(DnsConfigurationSplitDnNameserverOutput{})
+	pulumi.RegisterOutputType(DnsConfigurationSplitDnNameserverArrayOutput{})
 	pulumi.RegisterOutputType(GetDevicesDeviceOutput{})
 	pulumi.RegisterOutputType(GetDevicesDeviceArrayOutput{})
 	pulumi.RegisterOutputType(GetUsersUserOutput{})

@@ -13,11 +13,15 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'ContactsAccount',
     'ContactsSecurity',
     'ContactsSupport',
+    'DnsConfigurationNameserver',
+    'DnsConfigurationSplitDn',
+    'DnsConfigurationSplitDnNameserver',
     'GetDevicesDeviceResult',
     'GetUsersUserResult',
 ]
@@ -74,6 +78,129 @@ class ContactsSupport(dict):
         Email address to send communications to
         """
         return pulumi.get(self, "email")
+
+
+@pulumi.output_type
+class DnsConfigurationNameserver(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "useWithExitNode":
+            suggest = "use_with_exit_node"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DnsConfigurationNameserver. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DnsConfigurationNameserver.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DnsConfigurationNameserver.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 address: _builtins.str,
+                 use_with_exit_node: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.str address: The nameserver's IPv4 or IPv6 address
+        :param _builtins.bool use_with_exit_node: This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
+        """
+        pulumi.set(__self__, "address", address)
+        if use_with_exit_node is not None:
+            pulumi.set(__self__, "use_with_exit_node", use_with_exit_node)
+
+    @_builtins.property
+    @pulumi.getter
+    def address(self) -> _builtins.str:
+        """
+        The nameserver's IPv4 or IPv6 address
+        """
+        return pulumi.get(self, "address")
+
+    @_builtins.property
+    @pulumi.getter(name="useWithExitNode")
+    def use_with_exit_node(self) -> Optional[_builtins.bool]:
+        """
+        This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
+        """
+        return pulumi.get(self, "use_with_exit_node")
+
+
+@pulumi.output_type
+class DnsConfigurationSplitDn(dict):
+    def __init__(__self__, *,
+                 domain: _builtins.str,
+                 nameservers: Sequence['outputs.DnsConfigurationSplitDnNameserver']):
+        """
+        :param _builtins.str domain: The nameservers will be used only for this domain.
+        :param Sequence['DnsConfigurationSplitDnNameserverArgs'] nameservers: Set the nameservers used by devices on your network to resolve DNS queries.
+        """
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "nameservers", nameservers)
+
+    @_builtins.property
+    @pulumi.getter
+    def domain(self) -> _builtins.str:
+        """
+        The nameservers will be used only for this domain.
+        """
+        return pulumi.get(self, "domain")
+
+    @_builtins.property
+    @pulumi.getter
+    def nameservers(self) -> Sequence['outputs.DnsConfigurationSplitDnNameserver']:
+        """
+        Set the nameservers used by devices on your network to resolve DNS queries.
+        """
+        return pulumi.get(self, "nameservers")
+
+
+@pulumi.output_type
+class DnsConfigurationSplitDnNameserver(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "useWithExitNode":
+            suggest = "use_with_exit_node"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DnsConfigurationSplitDnNameserver. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DnsConfigurationSplitDnNameserver.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DnsConfigurationSplitDnNameserver.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 address: _builtins.str,
+                 use_with_exit_node: Optional[_builtins.bool] = None):
+        """
+        :param _builtins.str address: The nameserver's IPv4 or IPv6 address.
+        :param _builtins.bool use_with_exit_node: This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
+        """
+        pulumi.set(__self__, "address", address)
+        if use_with_exit_node is not None:
+            pulumi.set(__self__, "use_with_exit_node", use_with_exit_node)
+
+    @_builtins.property
+    @pulumi.getter
+    def address(self) -> _builtins.str:
+        """
+        The nameserver's IPv4 or IPv6 address.
+        """
+        return pulumi.get(self, "address")
+
+    @_builtins.property
+    @pulumi.getter(name="useWithExitNode")
+    def use_with_exit_node(self) -> Optional[_builtins.bool]:
+        """
+        This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
+        """
+        return pulumi.get(self, "use_with_exit_node")
 
 
 @pulumi.output_type

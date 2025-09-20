@@ -22,6 +22,7 @@
         "deviceKey.ts",
         "deviceSubnetRoutes.ts",
         "deviceTags.ts",
+        "dnsConfiguration.ts",
         "dnsNameservers.ts",
         "dnsPreferences.ts",
         "dnsSearchPaths.ts",

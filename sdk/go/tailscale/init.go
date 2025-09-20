@@ -35,6 +35,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DeviceSubnetRoutes{}
 	case "tailscale:index/deviceTags:DeviceTags":
 		r = &DeviceTags{}
+	case "tailscale:index/dnsConfiguration:DnsConfiguration":
+		r = &DnsConfiguration{}
 	case "tailscale:index/dnsNameservers:DnsNameservers":
 		r = &DnsNameservers{}
 	case "tailscale:index/dnsPreferences:DnsPreferences":
@@ -119,6 +121,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"tailscale",
 		"index/deviceTags",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"tailscale",
+		"index/dnsConfiguration",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

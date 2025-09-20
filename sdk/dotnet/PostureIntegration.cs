@@ -35,6 +35,8 @@ namespace Pulumi.Tailscale
     /// 
     /// ## Import
     /// 
+    /// The `pulumi import` command can be used, for example:
+    /// 
     /// Posture integration can be imported using the posture integration id, e.g.,
     /// 
     /// ```sh

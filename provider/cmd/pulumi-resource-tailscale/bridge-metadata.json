@@ -43,6 +43,27 @@
                     }
                 }
             },
+            "tailscale_dns_configuration": {
+                "current": "tailscale:index/dnsConfiguration:DnsConfiguration",
+                "fields": {
+                    "nameservers": {
+                        "maxItemsOne": false
+                    },
+                    "search_paths": {
+                        "maxItemsOne": false
+                    },
+                    "split_dns": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "nameservers": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "tailscale_dns_nameservers": {
                 "current": "tailscale:index/dnsNameservers:DnsNameservers",
                 "fields": {
