@@ -15,7 +15,7 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * The device_authorization resource is used to approve new devices before they can join the tailnet. See https://tailscale.com/kb/1099/device-authorization/ for more details.
+ * The deviceAuthorization resource is used to approve new devices before they can join the tailnet. See https://tailscale.com/kb/1099/device-authorization/ for more details.
  * 
  * ## Example Usage
  * 

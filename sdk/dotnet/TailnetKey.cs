@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Tailscale
 {
     /// <summary>
-    /// The tailnet_key resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information
+    /// The TailnetKey resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information
     /// 
     /// ## Example Usage
     /// 
@@ -62,7 +62,7 @@ namespace Pulumi.Tailscale
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates if the key is ephemeral. Defaults to `false`.
+        /// Indicates if the key is ephemeral. Defaults to `False`.
         /// </summary>
         [Output("ephemeral")]
         public Output<bool?> Ephemeral { get; private set; } = null!;
@@ -92,7 +92,7 @@ namespace Pulumi.Tailscale
         public Output<string> Key { get; private set; } = null!;
 
         /// <summary>
-        /// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
+        /// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `False`.
         /// </summary>
         [Output("preauthorized")]
         public Output<bool?> Preauthorized { get; private set; } = null!;
@@ -104,7 +104,7 @@ namespace Pulumi.Tailscale
         public Output<string?> RecreateIfInvalid { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates if the key is reusable or single-use. Defaults to `false`.
+        /// Indicates if the key is reusable or single-use. Defaults to `False`.
         /// </summary>
         [Output("reusable")]
         public Output<bool?> Reusable { get; private set; } = null!;
@@ -178,7 +178,7 @@ namespace Pulumi.Tailscale
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Indicates if the key is ephemeral. Defaults to `false`.
+        /// Indicates if the key is ephemeral. Defaults to `False`.
         /// </summary>
         [Input("ephemeral")]
         public Input<bool>? Ephemeral { get; set; }
@@ -190,7 +190,7 @@ namespace Pulumi.Tailscale
         public Input<int>? Expiry { get; set; }
 
         /// <summary>
-        /// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
+        /// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `False`.
         /// </summary>
         [Input("preauthorized")]
         public Input<bool>? Preauthorized { get; set; }
@@ -202,7 +202,7 @@ namespace Pulumi.Tailscale
         public Input<string>? RecreateIfInvalid { get; set; }
 
         /// <summary>
-        /// Indicates if the key is reusable or single-use. Defaults to `false`.
+        /// Indicates if the key is reusable or single-use. Defaults to `False`.
         /// </summary>
         [Input("reusable")]
         public Input<bool>? Reusable { get; set; }
@@ -246,7 +246,7 @@ namespace Pulumi.Tailscale
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Indicates if the key is ephemeral. Defaults to `false`.
+        /// Indicates if the key is ephemeral. Defaults to `False`.
         /// </summary>
         [Input("ephemeral")]
         public Input<bool>? Ephemeral { get; set; }
@@ -286,7 +286,7 @@ namespace Pulumi.Tailscale
         }
 
         /// <summary>
-        /// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
+        /// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `False`.
         /// </summary>
         [Input("preauthorized")]
         public Input<bool>? Preauthorized { get; set; }
@@ -298,7 +298,7 @@ namespace Pulumi.Tailscale
         public Input<string>? RecreateIfInvalid { get; set; }
 
         /// <summary>
-        /// Indicates if the key is reusable or single-use. Defaults to `false`.
+        /// Indicates if the key is reusable or single-use. Defaults to `False`.
         /// </summary>
         [Input("reusable")]
         public Input<bool>? Reusable { get; set; }
