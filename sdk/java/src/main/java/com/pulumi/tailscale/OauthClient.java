@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * The oauth_client resource allows you to create OAuth clients to programmatically interact with the Tailscale API.
+ * The oauthClient resource allows you to create OAuth clients to programmatically interact with the Tailscale API.
  * 
  * ## Example Usage
  * 
@@ -123,14 +123,14 @@ public class OauthClient extends com.pulumi.resources.CustomResource {
         return this.scopes;
     }
     /**
-     * A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include &#34;devices:core&#34; or &#34;auth_keys&#34;.
+     * A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include &#34;devices:core&#34; or &#34;authKeys&#34;.
      * 
      */
     @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
-     * @return A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include &#34;devices:core&#34; or &#34;auth_keys&#34;.
+     * @return A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include &#34;devices:core&#34; or &#34;authKeys&#34;.
      * 
      */
     public Output<Optional<List<String>>> tags() {
