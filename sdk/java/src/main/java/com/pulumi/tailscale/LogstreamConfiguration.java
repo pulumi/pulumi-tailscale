@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * The logstream_configuration resource allows you to configure streaming configuration or network flow logs to a supported security information and event management (SIEM) system. See https://tailscale.com/kb/1255/log-streaming for more information.
+ * The logstreamConfiguration resource allows you to configure streaming configuration or network flow logs to a supported security information and event management (SIEM) system. See https://tailscale.com/kb/1255/log-streaming for more information.
  * 
  * ## Example Usage
  * 
@@ -149,28 +149,28 @@ public class LogstreamConfiguration extends com.pulumi.resources.CustomResource 
         return Codegen.optional(this.s3AccessKeyId);
     }
     /**
-     * What type of authentication to use for S3. Required if destination_type is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
+     * What type of authentication to use for S3. Required if destinationType is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
      * 
      */
     @Export(name="s3AuthenticationType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> s3AuthenticationType;
 
     /**
-     * @return What type of authentication to use for S3. Required if destination_type is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
+     * @return What type of authentication to use for S3. Required if destinationType is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
      * 
      */
     public Output<Optional<String>> s3AuthenticationType() {
         return Codegen.optional(this.s3AuthenticationType);
     }
     /**
-     * The S3 bucket name. Required if destination_type is &#39;s3&#39;.
+     * The S3 bucket name. Required if destinationType is &#39;s3&#39;.
      * 
      */
     @Export(name="s3Bucket", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> s3Bucket;
 
     /**
-     * @return The S3 bucket name. Required if destination_type is &#39;s3&#39;.
+     * @return The S3 bucket name. Required if destinationType is &#39;s3&#39;.
      * 
      */
     public Output<Optional<String>> s3Bucket() {
@@ -205,14 +205,14 @@ public class LogstreamConfiguration extends com.pulumi.resources.CustomResource 
         return Codegen.optional(this.s3KeyPrefix);
     }
     /**
-     * The region in which the S3 bucket is located. Required if destination_type is &#39;s3&#39;.
+     * The region in which the S3 bucket is located. Required if destinationType is &#39;s3&#39;.
      * 
      */
     @Export(name="s3Region", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> s3Region;
 
     /**
-     * @return The region in which the S3 bucket is located. Required if destination_type is &#39;s3&#39;.
+     * @return The region in which the S3 bucket is located. Required if destinationType is &#39;s3&#39;.
      * 
      */
     public Output<Optional<String>> s3Region() {
@@ -247,14 +247,14 @@ public class LogstreamConfiguration extends com.pulumi.resources.CustomResource 
         return Codegen.optional(this.s3SecretAccessKey);
     }
     /**
-     * The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is &#39;s3&#39;.
+     * The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is &#39;s3&#39;.
      * 
      */
     @Export(name="token", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> token;
 
     /**
-     * @return The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is &#39;s3&#39;.
+     * @return The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is &#39;s3&#39;.
      * 
      */
     public Output<Optional<String>> token() {
@@ -275,28 +275,28 @@ public class LogstreamConfiguration extends com.pulumi.resources.CustomResource 
         return Codegen.optional(this.uploadPeriodMinutes);
     }
     /**
-     * The URL to which log streams are being posted. If destination_type is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
+     * The URL to which log streams are being posted. If destinationType is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
      * 
      */
     @Export(name="url", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> url;
 
     /**
-     * @return The URL to which log streams are being posted. If destination_type is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
+     * @return The URL to which log streams are being posted. If destinationType is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
      * 
      */
     public Output<Optional<String>> url() {
         return Codegen.optional(this.url);
     }
     /**
-     * The username with which log streams to this endpoint are authenticated. Only required if destination_type is &#39;elastic&#39;, defaults to &#39;user&#39; if not set.
+     * The username with which log streams to this endpoint are authenticated. Only required if destinationType is &#39;elastic&#39;, defaults to &#39;user&#39; if not set.
      * 
      */
     @Export(name="user", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> user;
 
     /**
-     * @return The username with which log streams to this endpoint are authenticated. Only required if destination_type is &#39;elastic&#39;, defaults to &#39;user&#39; if not set.
+     * @return The username with which log streams to this endpoint are authenticated. Only required if destinationType is &#39;elastic&#39;, defaults to &#39;user&#39; if not set.
      * 
      */
     public Output<Optional<String>> user() {

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Tailscale
 {
     /// <summary>
-    /// The aws_external_id resource allows you to mint an AWS External ID that Tailscale can use to assume an AWS IAM role that you create for the purposes of allowing Tailscale to stream logs to your S3 bucket. See the logstream_configuration resource for more details.
+    /// The AwsExternalId resource allows you to mint an AWS External ID that Tailscale can use to assume an AWS IAM role that you create for the purposes of allowing Tailscale to stream logs to your S3 bucket. See the LogstreamConfiguration resource for more details.
     /// </summary>
     [TailscaleResourceType("tailscale:index/awsExternalId:AwsExternalId")]
     public partial class AwsExternalId : global::Pulumi.CustomResource
