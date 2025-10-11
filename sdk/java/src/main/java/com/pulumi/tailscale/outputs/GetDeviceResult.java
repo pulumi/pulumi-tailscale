@@ -49,7 +49,7 @@ public final class GetDeviceResult {
      */
     private String user;
     /**
-     * @return If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
+     * @return If specified, the provider will make multiple attempts to obtain the data source until the waitFor duration is reached. Retries are made every second so this value should be greater than 1s
      * 
      */
     private @Nullable String waitFor;
@@ -105,7 +105,7 @@ public final class GetDeviceResult {
         return this.user;
     }
     /**
-     * @return If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
+     * @return If specified, the provider will make multiple attempts to obtain the data source until the waitFor duration is reached. Retries are made every second so this value should be greater than 1s
      * 
      */
     public Optional<String> waitFor() {

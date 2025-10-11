@@ -77,14 +77,14 @@ public final class OauthClientState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include &#34;devices:core&#34; or &#34;auth_keys&#34;.
+     * A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include &#34;devices:core&#34; or &#34;authKeys&#34;.
      * 
      */
     @Import(name="tags")
     private @Nullable Output<List<String>> tags;
 
     /**
-     * @return A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include &#34;devices:core&#34; or &#34;auth_keys&#34;.
+     * @return A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include &#34;devices:core&#34; or &#34;authKeys&#34;.
      * 
      */
     public Optional<Output<List<String>>> tags() {
@@ -230,7 +230,7 @@ public final class OauthClientState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tags A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include &#34;devices:core&#34; or &#34;auth_keys&#34;.
+         * @param tags A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include &#34;devices:core&#34; or &#34;authKeys&#34;.
          * 
          * @return builder
          * 
@@ -241,7 +241,7 @@ public final class OauthClientState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tags A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include &#34;devices:core&#34; or &#34;auth_keys&#34;.
+         * @param tags A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include &#34;devices:core&#34; or &#34;authKeys&#34;.
          * 
          * @return builder
          * 
@@ -251,7 +251,7 @@ public final class OauthClientState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tags A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include &#34;devices:core&#34; or &#34;auth_keys&#34;.
+         * @param tags A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include &#34;devices:core&#34; or &#34;authKeys&#34;.
          * 
          * @return builder
          * 

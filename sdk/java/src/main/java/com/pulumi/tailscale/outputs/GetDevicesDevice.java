@@ -22,7 +22,7 @@ public final class GetDevicesDevice {
      */
     private String hostname;
     /**
-     * @return The legacy identifier of the device. Use node_id instead for new resources.
+     * @return The legacy identifier of the device. Use nodeId instead for new resources.
      * 
      */
     private String id;
@@ -63,7 +63,7 @@ public final class GetDevicesDevice {
         return this.hostname;
     }
     /**
-     * @return The legacy identifier of the device. Use node_id instead for new resources.
+     * @return The legacy identifier of the device. Use nodeId instead for new resources.
      * 
      */
     public String id() {

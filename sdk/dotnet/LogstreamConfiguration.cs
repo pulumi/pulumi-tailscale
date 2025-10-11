@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Tailscale
 {
     /// <summary>
-    /// The logstream_configuration resource allows you to configure streaming configuration or network flow logs to a supported security information and event management (SIEM) system. See https://tailscale.com/kb/1255/log-streaming for more information.
+    /// The LogstreamConfiguration resource allows you to configure streaming configuration or network flow logs to a supported security information and event management (SIEM) system. See https://tailscale.com/kb/1255/log-streaming for more information.
     /// 
     /// ## Example Usage
     /// 
@@ -73,7 +73,7 @@ namespace Pulumi.Tailscale
     public partial class LogstreamConfiguration : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+        /// The compression algorithm with which to compress logs. One of `None`, `Zstd` or `Gzip`. Defaults to `None`.
         /// </summary>
         [Output("compressionFormat")]
         public Output<string?> CompressionFormat { get; private set; } = null!;
@@ -85,7 +85,7 @@ namespace Pulumi.Tailscale
         public Output<string> DestinationType { get; private set; } = null!;
 
         /// <summary>
-        /// The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+        /// The type of log that is streamed to this endpoint. Either `Configuration` for configuration audit logs, or `Network` for network flow logs.
         /// </summary>
         [Output("logType")]
         public Output<string> LogType { get; private set; } = null!;
@@ -97,13 +97,13 @@ namespace Pulumi.Tailscale
         public Output<string?> S3AccessKeyId { get; private set; } = null!;
 
         /// <summary>
-        /// What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        /// What type of authentication to use for S3. Required if DestinationType is 's3'. Tailscale recommends using 'rolearn'.
         /// </summary>
         [Output("s3AuthenticationType")]
         public Output<string?> S3AuthenticationType { get; private set; } = null!;
 
         /// <summary>
-        /// The S3 bucket name. Required if destination_type is 's3'.
+        /// The S3 bucket name. Required if DestinationType is 's3'.
         /// </summary>
         [Output("s3Bucket")]
         public Output<string?> S3Bucket { get; private set; } = null!;
@@ -121,7 +121,7 @@ namespace Pulumi.Tailscale
         public Output<string?> S3KeyPrefix { get; private set; } = null!;
 
         /// <summary>
-        /// The region in which the S3 bucket is located. Required if destination_type is 's3'.
+        /// The region in which the S3 bucket is located. Required if DestinationType is 's3'.
         /// </summary>
         [Output("s3Region")]
         public Output<string?> S3Region { get; private set; } = null!;
@@ -139,7 +139,7 @@ namespace Pulumi.Tailscale
         public Output<string?> S3SecretAccessKey { get; private set; } = null!;
 
         /// <summary>
-        /// The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
+        /// The token/password with which log streams to this endpoint should be authenticated, required unless DestinationType is 's3'.
         /// </summary>
         [Output("token")]
         public Output<string?> Token { get; private set; } = null!;
@@ -151,13 +151,13 @@ namespace Pulumi.Tailscale
         public Output<int?> UploadPeriodMinutes { get; private set; } = null!;
 
         /// <summary>
-        /// The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
+        /// The URL to which log streams are being posted. If DestinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         /// </summary>
         [Output("url")]
         public Output<string?> Url { get; private set; } = null!;
 
         /// <summary>
-        /// The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.
+        /// The username with which log streams to this endpoint are authenticated. Only required if DestinationType is 'elastic', defaults to 'user' if not set.
         /// </summary>
         [Output("user")]
         public Output<string?> User { get; private set; } = null!;
@@ -214,7 +214,7 @@ namespace Pulumi.Tailscale
     public sealed class LogstreamConfigurationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+        /// The compression algorithm with which to compress logs. One of `None`, `Zstd` or `Gzip`. Defaults to `None`.
         /// </summary>
         [Input("compressionFormat")]
         public Input<string>? CompressionFormat { get; set; }
@@ -226,7 +226,7 @@ namespace Pulumi.Tailscale
         public Input<string> DestinationType { get; set; } = null!;
 
         /// <summary>
-        /// The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+        /// The type of log that is streamed to this endpoint. Either `Configuration` for configuration audit logs, or `Network` for network flow logs.
         /// </summary>
         [Input("logType", required: true)]
         public Input<string> LogType { get; set; } = null!;
@@ -238,13 +238,13 @@ namespace Pulumi.Tailscale
         public Input<string>? S3AccessKeyId { get; set; }
 
         /// <summary>
-        /// What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        /// What type of authentication to use for S3. Required if DestinationType is 's3'. Tailscale recommends using 'rolearn'.
         /// </summary>
         [Input("s3AuthenticationType")]
         public Input<string>? S3AuthenticationType { get; set; }
 
         /// <summary>
-        /// The S3 bucket name. Required if destination_type is 's3'.
+        /// The S3 bucket name. Required if DestinationType is 's3'.
         /// </summary>
         [Input("s3Bucket")]
         public Input<string>? S3Bucket { get; set; }
@@ -262,7 +262,7 @@ namespace Pulumi.Tailscale
         public Input<string>? S3KeyPrefix { get; set; }
 
         /// <summary>
-        /// The region in which the S3 bucket is located. Required if destination_type is 's3'.
+        /// The region in which the S3 bucket is located. Required if DestinationType is 's3'.
         /// </summary>
         [Input("s3Region")]
         public Input<string>? S3Region { get; set; }
@@ -293,7 +293,7 @@ namespace Pulumi.Tailscale
         private Input<string>? _token;
 
         /// <summary>
-        /// The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
+        /// The token/password with which log streams to this endpoint should be authenticated, required unless DestinationType is 's3'.
         /// </summary>
         public Input<string>? Token
         {
@@ -312,13 +312,13 @@ namespace Pulumi.Tailscale
         public Input<int>? UploadPeriodMinutes { get; set; }
 
         /// <summary>
-        /// The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
+        /// The URL to which log streams are being posted. If DestinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.
+        /// The username with which log streams to this endpoint are authenticated. Only required if DestinationType is 'elastic', defaults to 'user' if not set.
         /// </summary>
         [Input("user")]
         public Input<string>? User { get; set; }
@@ -332,7 +332,7 @@ namespace Pulumi.Tailscale
     public sealed class LogstreamConfigurationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+        /// The compression algorithm with which to compress logs. One of `None`, `Zstd` or `Gzip`. Defaults to `None`.
         /// </summary>
         [Input("compressionFormat")]
         public Input<string>? CompressionFormat { get; set; }
@@ -344,7 +344,7 @@ namespace Pulumi.Tailscale
         public Input<string>? DestinationType { get; set; }
 
         /// <summary>
-        /// The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+        /// The type of log that is streamed to this endpoint. Either `Configuration` for configuration audit logs, or `Network` for network flow logs.
         /// </summary>
         [Input("logType")]
         public Input<string>? LogType { get; set; }
@@ -356,13 +356,13 @@ namespace Pulumi.Tailscale
         public Input<string>? S3AccessKeyId { get; set; }
 
         /// <summary>
-        /// What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        /// What type of authentication to use for S3. Required if DestinationType is 's3'. Tailscale recommends using 'rolearn'.
         /// </summary>
         [Input("s3AuthenticationType")]
         public Input<string>? S3AuthenticationType { get; set; }
 
         /// <summary>
-        /// The S3 bucket name. Required if destination_type is 's3'.
+        /// The S3 bucket name. Required if DestinationType is 's3'.
         /// </summary>
         [Input("s3Bucket")]
         public Input<string>? S3Bucket { get; set; }
@@ -380,7 +380,7 @@ namespace Pulumi.Tailscale
         public Input<string>? S3KeyPrefix { get; set; }
 
         /// <summary>
-        /// The region in which the S3 bucket is located. Required if destination_type is 's3'.
+        /// The region in which the S3 bucket is located. Required if DestinationType is 's3'.
         /// </summary>
         [Input("s3Region")]
         public Input<string>? S3Region { get; set; }
@@ -411,7 +411,7 @@ namespace Pulumi.Tailscale
         private Input<string>? _token;
 
         /// <summary>
-        /// The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
+        /// The token/password with which log streams to this endpoint should be authenticated, required unless DestinationType is 's3'.
         /// </summary>
         public Input<string>? Token
         {
@@ -430,13 +430,13 @@ namespace Pulumi.Tailscale
         public Input<int>? UploadPeriodMinutes { get; set; }
 
         /// <summary>
-        /// The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
+        /// The URL to which log streams are being posted. If DestinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.
+        /// The username with which log streams to this endpoint are authenticated. Only required if DestinationType is 'elastic', defaults to 'user' if not set.
         /// </summary>
         [Input("user")]
         public Input<string>? User { get; set; }

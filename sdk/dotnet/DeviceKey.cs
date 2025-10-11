@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Tailscale
 {
     /// <summary>
-    /// The device_key resource allows you to update the properties of a device's key
+    /// The DeviceKey resource allows you to update the properties of a device's key
     /// 
     /// ## Example Usage
     /// 
@@ -62,7 +62,7 @@ namespace Pulumi.Tailscale
         public Output<string> DeviceId { get; private set; } = null!;
 
         /// <summary>
-        /// Determines whether or not the device's key will expire. Defaults to `false`.
+        /// Determines whether or not the device's key will expire. Defaults to `False`.
         /// </summary>
         [Output("keyExpiryDisabled")]
         public Output<bool?> KeyExpiryDisabled { get; private set; } = null!;
@@ -120,7 +120,7 @@ namespace Pulumi.Tailscale
         public Input<string> DeviceId { get; set; } = null!;
 
         /// <summary>
-        /// Determines whether or not the device's key will expire. Defaults to `false`.
+        /// Determines whether or not the device's key will expire. Defaults to `False`.
         /// </summary>
         [Input("keyExpiryDisabled")]
         public Input<bool>? KeyExpiryDisabled { get; set; }
@@ -140,7 +140,7 @@ namespace Pulumi.Tailscale
         public Input<string>? DeviceId { get; set; }
 
         /// <summary>
-        /// Determines whether or not the device's key will expire. Defaults to `false`.
+        /// Determines whether or not the device's key will expire. Defaults to `False`.
         /// </summary>
         [Input("keyExpiryDisabled")]
         public Input<bool>? KeyExpiryDisabled { get; set; }

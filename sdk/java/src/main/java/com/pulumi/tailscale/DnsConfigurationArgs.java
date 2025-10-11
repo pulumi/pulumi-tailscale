@@ -35,14 +35,14 @@ public final class DnsConfigurationArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Set the nameservers used by devices on your network to resolve DNS queries. `override_local_dns` must also be true to prefer these nameservers over local DNS configuration.
+     * Set the nameservers used by devices on your network to resolve DNS queries. `overrideLocalDns` must also be true to prefer these nameservers over local DNS configuration.
      * 
      */
     @Import(name="nameservers")
     private @Nullable Output<List<DnsConfigurationNameserverArgs>> nameservers;
 
     /**
-     * @return Set the nameservers used by devices on your network to resolve DNS queries. `override_local_dns` must also be true to prefer these nameservers over local DNS configuration.
+     * @return Set the nameservers used by devices on your network to resolve DNS queries. `overrideLocalDns` must also be true to prefer these nameservers over local DNS configuration.
      * 
      */
     public Optional<Output<List<DnsConfigurationNameserverArgs>>> nameservers() {
@@ -80,14 +80,14 @@ public final class DnsConfigurationArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `override_local_dns`.
+     * Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `overrideLocalDns`.
      * 
      */
     @Import(name="splitDns")
     private @Nullable Output<List<DnsConfigurationSplitDnArgs>> splitDns;
 
     /**
-     * @return Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `override_local_dns`.
+     * @return Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `overrideLocalDns`.
      * 
      */
     public Optional<Output<List<DnsConfigurationSplitDnArgs>>> splitDns() {
@@ -144,7 +144,7 @@ public final class DnsConfigurationArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param nameservers Set the nameservers used by devices on your network to resolve DNS queries. `override_local_dns` must also be true to prefer these nameservers over local DNS configuration.
+         * @param nameservers Set the nameservers used by devices on your network to resolve DNS queries. `overrideLocalDns` must also be true to prefer these nameservers over local DNS configuration.
          * 
          * @return builder
          * 
@@ -155,7 +155,7 @@ public final class DnsConfigurationArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param nameservers Set the nameservers used by devices on your network to resolve DNS queries. `override_local_dns` must also be true to prefer these nameservers over local DNS configuration.
+         * @param nameservers Set the nameservers used by devices on your network to resolve DNS queries. `overrideLocalDns` must also be true to prefer these nameservers over local DNS configuration.
          * 
          * @return builder
          * 
@@ -165,7 +165,7 @@ public final class DnsConfigurationArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param nameservers Set the nameservers used by devices on your network to resolve DNS queries. `override_local_dns` must also be true to prefer these nameservers over local DNS configuration.
+         * @param nameservers Set the nameservers used by devices on your network to resolve DNS queries. `overrideLocalDns` must also be true to prefer these nameservers over local DNS configuration.
          * 
          * @return builder
          * 
@@ -227,7 +227,7 @@ public final class DnsConfigurationArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param splitDns Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `override_local_dns`.
+         * @param splitDns Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `overrideLocalDns`.
          * 
          * @return builder
          * 
@@ -238,7 +238,7 @@ public final class DnsConfigurationArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param splitDns Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `override_local_dns`.
+         * @param splitDns Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `overrideLocalDns`.
          * 
          * @return builder
          * 
@@ -248,7 +248,7 @@ public final class DnsConfigurationArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param splitDns Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `override_local_dns`.
+         * @param splitDns Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `overrideLocalDns`.
          * 
          * @return builder
          * 

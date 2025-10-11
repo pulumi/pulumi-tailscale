@@ -95,13 +95,13 @@ namespace Pulumi.Tailscale
         public Output<bool?> MagicDns { get; private set; } = null!;
 
         /// <summary>
-        /// Set the nameservers used by devices on your network to resolve DNS queries. `override_local_dns` must also be true to prefer these nameservers over local DNS configuration.
+        /// Set the nameservers used by devices on your network to resolve DNS queries. `OverrideLocalDns` must also be true to prefer these nameservers over local DNS configuration.
         /// </summary>
         [Output("nameservers")]
         public Output<ImmutableArray<Outputs.DnsConfigurationNameserver>> Nameservers { get; private set; } = null!;
 
         /// <summary>
-        /// When enabled, use the configured DNS servers in `nameservers` to resolve names outside the tailnet. When disabled, devices will prefer their local DNS configuration. Defaults to false.
+        /// When enabled, use the configured DNS servers in `Nameservers` to resolve names outside the tailnet. When disabled, devices will prefer their local DNS configuration. Defaults to false.
         /// </summary>
         [Output("overrideLocalDns")]
         public Output<bool?> OverrideLocalDns { get; private set; } = null!;
@@ -113,7 +113,7 @@ namespace Pulumi.Tailscale
         public Output<ImmutableArray<string>> SearchPaths { get; private set; } = null!;
 
         /// <summary>
-        /// Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `override_local_dns`.
+        /// Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `OverrideLocalDns`.
         /// </summary>
         [Output("splitDns")]
         public Output<ImmutableArray<Outputs.DnsConfigurationSplitDn>> SplitDns { get; private set; } = null!;
@@ -174,7 +174,7 @@ namespace Pulumi.Tailscale
         private InputList<Inputs.DnsConfigurationNameserverArgs>? _nameservers;
 
         /// <summary>
-        /// Set the nameservers used by devices on your network to resolve DNS queries. `override_local_dns` must also be true to prefer these nameservers over local DNS configuration.
+        /// Set the nameservers used by devices on your network to resolve DNS queries. `OverrideLocalDns` must also be true to prefer these nameservers over local DNS configuration.
         /// </summary>
         public InputList<Inputs.DnsConfigurationNameserverArgs> Nameservers
         {
@@ -183,7 +183,7 @@ namespace Pulumi.Tailscale
         }
 
         /// <summary>
-        /// When enabled, use the configured DNS servers in `nameservers` to resolve names outside the tailnet. When disabled, devices will prefer their local DNS configuration. Defaults to false.
+        /// When enabled, use the configured DNS servers in `Nameservers` to resolve names outside the tailnet. When disabled, devices will prefer their local DNS configuration. Defaults to false.
         /// </summary>
         [Input("overrideLocalDns")]
         public Input<bool>? OverrideLocalDns { get; set; }
@@ -204,7 +204,7 @@ namespace Pulumi.Tailscale
         private InputList<Inputs.DnsConfigurationSplitDnArgs>? _splitDns;
 
         /// <summary>
-        /// Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `override_local_dns`.
+        /// Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `OverrideLocalDns`.
         /// </summary>
         public InputList<Inputs.DnsConfigurationSplitDnArgs> SplitDns
         {
@@ -230,7 +230,7 @@ namespace Pulumi.Tailscale
         private InputList<Inputs.DnsConfigurationNameserverGetArgs>? _nameservers;
 
         /// <summary>
-        /// Set the nameservers used by devices on your network to resolve DNS queries. `override_local_dns` must also be true to prefer these nameservers over local DNS configuration.
+        /// Set the nameservers used by devices on your network to resolve DNS queries. `OverrideLocalDns` must also be true to prefer these nameservers over local DNS configuration.
         /// </summary>
         public InputList<Inputs.DnsConfigurationNameserverGetArgs> Nameservers
         {
@@ -239,7 +239,7 @@ namespace Pulumi.Tailscale
         }
 
         /// <summary>
-        /// When enabled, use the configured DNS servers in `nameservers` to resolve names outside the tailnet. When disabled, devices will prefer their local DNS configuration. Defaults to false.
+        /// When enabled, use the configured DNS servers in `Nameservers` to resolve names outside the tailnet. When disabled, devices will prefer their local DNS configuration. Defaults to false.
         /// </summary>
         [Input("overrideLocalDns")]
         public Input<bool>? OverrideLocalDns { get; set; }
@@ -260,7 +260,7 @@ namespace Pulumi.Tailscale
         private InputList<Inputs.DnsConfigurationSplitDnGetArgs>? _splitDns;
 
         /// <summary>
-        /// Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `override_local_dns`.
+        /// Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `OverrideLocalDns`.
         /// </summary>
         public InputList<Inputs.DnsConfigurationSplitDnGetArgs> SplitDns
         {
