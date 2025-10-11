@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Tailscale
 {
     /// <summary>
-    /// The oauth_client resource allows you to create OAuth clients to programmatically interact with the Tailscale API.
+    /// The OauthClient resource allows you to create OAuth clients to programmatically interact with the Tailscale API.
     /// 
     /// ## Example Usage
     /// 
@@ -76,7 +76,7 @@ namespace Pulumi.Tailscale
         public Output<ImmutableArray<string>> Scopes { get; private set; } = null!;
 
         /// <summary>
-        /// A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "auth_keys".
+        /// A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "AuthKeys".
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
@@ -159,7 +159,7 @@ namespace Pulumi.Tailscale
         private InputList<string>? _tags;
 
         /// <summary>
-        /// A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "auth_keys".
+        /// A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "AuthKeys".
         /// </summary>
         public InputList<string> Tags
         {
@@ -219,7 +219,7 @@ namespace Pulumi.Tailscale
         private InputList<string>? _tags;
 
         /// <summary>
-        /// A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "auth_keys".
+        /// A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "AuthKeys".
         /// </summary>
         public InputList<string> Tags
         {

@@ -22,7 +22,7 @@ namespace Pulumi.Tailscale.Outputs
         /// </summary>
         public readonly string Hostname;
         /// <summary>
-        /// The legacy identifier of the device. Use node_id instead for new resources.
+        /// The legacy identifier of the device. Use NodeId instead for new resources.
         /// </summary>
         public readonly string Id;
         /// <summary>
