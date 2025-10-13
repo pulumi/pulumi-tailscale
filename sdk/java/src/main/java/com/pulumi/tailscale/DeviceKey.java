@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * The device_key resource allows you to update the properties of a device&#39;s key
+ * The deviceKey resource allows you to update the properties of a device&#39;s key
  * 
  * ## Example Usage
  * 

@@ -56,7 +56,7 @@ namespace Pulumi.Tailscale
         public Output<string> EndpointUrl { get; private set; } = null!;
 
         /// <summary>
-        /// The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
+        /// The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `Slack`, `Mattermost`, `Googlechat`, or `Discord` if set.
         /// </summary>
         [Output("providerType")]
         public Output<string?> ProviderType { get; private set; } = null!;
@@ -130,7 +130,7 @@ namespace Pulumi.Tailscale
         public Input<string> EndpointUrl { get; set; } = null!;
 
         /// <summary>
-        /// The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
+        /// The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `Slack`, `Mattermost`, `Googlechat`, or `Discord` if set.
         /// </summary>
         [Input("providerType")]
         public Input<string>? ProviderType { get; set; }
@@ -162,7 +162,7 @@ namespace Pulumi.Tailscale
         public Input<string>? EndpointUrl { get; set; }
 
         /// <summary>
-        /// The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
+        /// The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `Slack`, `Mattermost`, `Googlechat`, or `Discord` if set.
         /// </summary>
         [Input("providerType")]
         public Input<string>? ProviderType { get; set; }
