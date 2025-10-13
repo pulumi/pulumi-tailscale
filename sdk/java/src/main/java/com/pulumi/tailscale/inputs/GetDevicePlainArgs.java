@@ -45,14 +45,14 @@ public final class GetDevicePlainArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
+     * If specified, the provider will make multiple attempts to obtain the data source until the waitFor duration is reached. Retries are made every second so this value should be greater than 1s
      * 
      */
     @Import(name="waitFor")
     private @Nullable String waitFor;
 
     /**
-     * @return If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
+     * @return If specified, the provider will make multiple attempts to obtain the data source until the waitFor duration is reached. Retries are made every second so this value should be greater than 1s
      * 
      */
     public Optional<String> waitFor() {
@@ -108,7 +108,7 @@ public final class GetDevicePlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param waitFor If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
+         * @param waitFor If specified, the provider will make multiple attempts to obtain the data source until the waitFor duration is reached. Retries are made every second so this value should be greater than 1s
          * 
          * @return builder
          * 

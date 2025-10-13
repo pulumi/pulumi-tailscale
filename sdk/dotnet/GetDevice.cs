@@ -121,7 +121,7 @@ namespace Pulumi.Tailscale
         public string? Name { get; set; }
 
         /// <summary>
-        /// If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
+        /// If specified, the provider will make multiple attempts to obtain the data source until the WaitFor duration is reached. Retries are made every second so this value should be greater than 1s
         /// </summary>
         [Input("waitFor")]
         public string? WaitFor { get; set; }
@@ -147,7 +147,7 @@ namespace Pulumi.Tailscale
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
+        /// If specified, the provider will make multiple attempts to obtain the data source until the WaitFor duration is reached. Retries are made every second so this value should be greater than 1s
         /// </summary>
         [Input("waitFor")]
         public Input<string>? WaitFor { get; set; }
@@ -191,7 +191,7 @@ namespace Pulumi.Tailscale
         /// </summary>
         public readonly string User;
         /// <summary>
-        /// If specified, the provider will make multiple attempts to obtain the data source until the wait_for duration is reached. Retries are made every second so this value should be greater than 1s
+        /// If specified, the provider will make multiple attempts to obtain the data source until the WaitFor duration is reached. Retries are made every second so this value should be greater than 1s
         /// </summary>
         public readonly string? WaitFor;
 

@@ -111,14 +111,14 @@ public class DnsConfiguration extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.magicDns);
     }
     /**
-     * Set the nameservers used by devices on your network to resolve DNS queries. `override_local_dns` must also be true to prefer these nameservers over local DNS configuration.
+     * Set the nameservers used by devices on your network to resolve DNS queries. `overrideLocalDns` must also be true to prefer these nameservers over local DNS configuration.
      * 
      */
     @Export(name="nameservers", refs={List.class,DnsConfigurationNameserver.class}, tree="[0,1]")
     private Output</* @Nullable */ List<DnsConfigurationNameserver>> nameservers;
 
     /**
-     * @return Set the nameservers used by devices on your network to resolve DNS queries. `override_local_dns` must also be true to prefer these nameservers over local DNS configuration.
+     * @return Set the nameservers used by devices on your network to resolve DNS queries. `overrideLocalDns` must also be true to prefer these nameservers over local DNS configuration.
      * 
      */
     public Output<Optional<List<DnsConfigurationNameserver>>> nameservers() {
@@ -153,14 +153,14 @@ public class DnsConfiguration extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.searchPaths);
     }
     /**
-     * Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `override_local_dns`.
+     * Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `overrideLocalDns`.
      * 
      */
     @Export(name="splitDns", refs={List.class,DnsConfigurationSplitDn.class}, tree="[0,1]")
     private Output</* @Nullable */ List<DnsConfigurationSplitDn>> splitDns;
 
     /**
-     * @return Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `override_local_dns`.
+     * @return Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `overrideLocalDns`.
      * 
      */
     public Output<Optional<List<DnsConfigurationSplitDn>>> splitDns() {

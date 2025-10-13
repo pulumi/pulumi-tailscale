@@ -77,14 +77,14 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * What type of authentication to use for S3. Required if destination_type is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
+     * What type of authentication to use for S3. Required if destinationType is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
      * 
      */
     @Import(name="s3AuthenticationType")
     private @Nullable Output<String> s3AuthenticationType;
 
     /**
-     * @return What type of authentication to use for S3. Required if destination_type is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
+     * @return What type of authentication to use for S3. Required if destinationType is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
      * 
      */
     public Optional<Output<String>> s3AuthenticationType() {
@@ -92,14 +92,14 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * The S3 bucket name. Required if destination_type is &#39;s3&#39;.
+     * The S3 bucket name. Required if destinationType is &#39;s3&#39;.
      * 
      */
     @Import(name="s3Bucket")
     private @Nullable Output<String> s3Bucket;
 
     /**
-     * @return The S3 bucket name. Required if destination_type is &#39;s3&#39;.
+     * @return The S3 bucket name. Required if destinationType is &#39;s3&#39;.
      * 
      */
     public Optional<Output<String>> s3Bucket() {
@@ -137,14 +137,14 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * The region in which the S3 bucket is located. Required if destination_type is &#39;s3&#39;.
+     * The region in which the S3 bucket is located. Required if destinationType is &#39;s3&#39;.
      * 
      */
     @Import(name="s3Region")
     private @Nullable Output<String> s3Region;
 
     /**
-     * @return The region in which the S3 bucket is located. Required if destination_type is &#39;s3&#39;.
+     * @return The region in which the S3 bucket is located. Required if destinationType is &#39;s3&#39;.
      * 
      */
     public Optional<Output<String>> s3Region() {
@@ -182,14 +182,14 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is &#39;s3&#39;.
+     * The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is &#39;s3&#39;.
      * 
      */
     @Import(name="token")
     private @Nullable Output<String> token;
 
     /**
-     * @return The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is &#39;s3&#39;.
+     * @return The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is &#39;s3&#39;.
      * 
      */
     public Optional<Output<String>> token() {
@@ -212,14 +212,14 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * The URL to which log streams are being posted. If destination_type is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
+     * The URL to which log streams are being posted. If destinationType is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
      * 
      */
     @Import(name="url")
     private @Nullable Output<String> url;
 
     /**
-     * @return The URL to which log streams are being posted. If destination_type is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
+     * @return The URL to which log streams are being posted. If destinationType is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
      * 
      */
     public Optional<Output<String>> url() {
@@ -227,14 +227,14 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * The username with which log streams to this endpoint are authenticated. Only required if destination_type is &#39;elastic&#39;, defaults to &#39;user&#39; if not set.
+     * The username with which log streams to this endpoint are authenticated. Only required if destinationType is &#39;elastic&#39;, defaults to &#39;user&#39; if not set.
      * 
      */
     @Import(name="user")
     private @Nullable Output<String> user;
 
     /**
-     * @return The username with which log streams to this endpoint are authenticated. Only required if destination_type is &#39;elastic&#39;, defaults to &#39;user&#39; if not set.
+     * @return The username with which log streams to this endpoint are authenticated. Only required if destinationType is &#39;elastic&#39;, defaults to &#39;user&#39; if not set.
      * 
      */
     public Optional<Output<String>> user() {
@@ -364,7 +364,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param s3AuthenticationType What type of authentication to use for S3. Required if destination_type is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
+         * @param s3AuthenticationType What type of authentication to use for S3. Required if destinationType is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
          * 
          * @return builder
          * 
@@ -375,7 +375,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param s3AuthenticationType What type of authentication to use for S3. Required if destination_type is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
+         * @param s3AuthenticationType What type of authentication to use for S3. Required if destinationType is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
          * 
          * @return builder
          * 
@@ -385,7 +385,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param s3Bucket The S3 bucket name. Required if destination_type is &#39;s3&#39;.
+         * @param s3Bucket The S3 bucket name. Required if destinationType is &#39;s3&#39;.
          * 
          * @return builder
          * 
@@ -396,7 +396,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param s3Bucket The S3 bucket name. Required if destination_type is &#39;s3&#39;.
+         * @param s3Bucket The S3 bucket name. Required if destinationType is &#39;s3&#39;.
          * 
          * @return builder
          * 
@@ -448,7 +448,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param s3Region The region in which the S3 bucket is located. Required if destination_type is &#39;s3&#39;.
+         * @param s3Region The region in which the S3 bucket is located. Required if destinationType is &#39;s3&#39;.
          * 
          * @return builder
          * 
@@ -459,7 +459,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param s3Region The region in which the S3 bucket is located. Required if destination_type is &#39;s3&#39;.
+         * @param s3Region The region in which the S3 bucket is located. Required if destinationType is &#39;s3&#39;.
          * 
          * @return builder
          * 
@@ -511,7 +511,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param token The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is &#39;s3&#39;.
+         * @param token The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is &#39;s3&#39;.
          * 
          * @return builder
          * 
@@ -522,7 +522,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param token The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is &#39;s3&#39;.
+         * @param token The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is &#39;s3&#39;.
          * 
          * @return builder
          * 
@@ -553,7 +553,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param url The URL to which log streams are being posted. If destination_type is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
+         * @param url The URL to which log streams are being posted. If destinationType is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
          * 
          * @return builder
          * 
@@ -564,7 +564,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param url The URL to which log streams are being posted. If destination_type is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
+         * @param url The URL to which log streams are being posted. If destinationType is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
          * 
          * @return builder
          * 
@@ -574,7 +574,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param user The username with which log streams to this endpoint are authenticated. Only required if destination_type is &#39;elastic&#39;, defaults to &#39;user&#39; if not set.
+         * @param user The username with which log streams to this endpoint are authenticated. Only required if destinationType is &#39;elastic&#39;, defaults to &#39;user&#39; if not set.
          * 
          * @return builder
          * 
@@ -585,7 +585,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param user The username with which log streams to this endpoint are authenticated. Only required if destination_type is &#39;elastic&#39;, defaults to &#39;user&#39; if not set.
+         * @param user The username with which log streams to this endpoint are authenticated. Only required if destinationType is &#39;elastic&#39;, defaults to &#39;user&#39; if not set.
          * 
          * @return builder
          * 
