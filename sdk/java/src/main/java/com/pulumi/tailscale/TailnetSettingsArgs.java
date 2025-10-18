@@ -85,6 +85,21 @@ public final class TailnetSettingsArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * Whether provisioning of HTTPS certificates is enabled for the tailnet
+     * 
+     */
+    @Import(name="httpsEnabled")
+    private @Nullable Output<Boolean> httpsEnabled;
+
+    /**
+     * @return Whether provisioning of HTTPS certificates is enabled for the tailnet
+     * 
+     */
+    public Optional<Output<Boolean>> httpsEnabled() {
+        return Optional.ofNullable(this.httpsEnabled);
+    }
+
+    /**
      * Whether network flog logs are enabled for the tailnet
      * 
      */
@@ -167,6 +182,7 @@ public final class TailnetSettingsArgs extends com.pulumi.resources.ResourceArgs
         this.devicesApprovalOn = $.devicesApprovalOn;
         this.devicesAutoUpdatesOn = $.devicesAutoUpdatesOn;
         this.devicesKeyDurationDays = $.devicesKeyDurationDays;
+        this.httpsEnabled = $.httpsEnabled;
         this.networkFlowLoggingOn = $.networkFlowLoggingOn;
         this.postureIdentityCollectionOn = $.postureIdentityCollectionOn;
         this.regionalRoutingOn = $.regionalRoutingOn;
@@ -283,6 +299,27 @@ public final class TailnetSettingsArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder devicesKeyDurationDays(Integer devicesKeyDurationDays) {
             return devicesKeyDurationDays(Output.of(devicesKeyDurationDays));
+        }
+
+        /**
+         * @param httpsEnabled Whether provisioning of HTTPS certificates is enabled for the tailnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpsEnabled(@Nullable Output<Boolean> httpsEnabled) {
+            $.httpsEnabled = httpsEnabled;
+            return this;
+        }
+
+        /**
+         * @param httpsEnabled Whether provisioning of HTTPS certificates is enabled for the tailnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpsEnabled(Boolean httpsEnabled) {
+            return httpsEnabled(Output.of(httpsEnabled));
         }
 
         /**

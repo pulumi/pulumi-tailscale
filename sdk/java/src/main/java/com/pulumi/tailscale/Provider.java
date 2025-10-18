@@ -80,14 +80,14 @@ public class Provider extends com.pulumi.resources.ProviderResource {
         return Codegen.optional(this.oauthClientSecret);
     }
     /**
-     * The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
+     * The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
      * 
      */
     @Export(name="tailnet", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tailnet;
 
     /**
-     * @return The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
+     * @return The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
      * 
      */
     public Output<Optional<String>> tailnet() {
