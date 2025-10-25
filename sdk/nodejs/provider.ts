@@ -42,7 +42,7 @@ export class Provider extends pulumi.ProviderResource {
      */
     declare public readonly oauthClientSecret: pulumi.Output<string | undefined>;
     /**
-     * The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
+     * The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
      */
     declare public readonly tailnet: pulumi.Output<string | undefined>;
     /**
@@ -110,7 +110,7 @@ export interface ProviderArgs {
      */
     scopes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
+     * The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
      */
     tailnet?: pulumi.Input<string>;
     /**
