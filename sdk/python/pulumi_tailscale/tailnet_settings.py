@@ -24,6 +24,7 @@ class TailnetSettingsArgs:
                  devices_approval_on: Optional[pulumi.Input[_builtins.bool]] = None,
                  devices_auto_updates_on: Optional[pulumi.Input[_builtins.bool]] = None,
                  devices_key_duration_days: Optional[pulumi.Input[_builtins.int]] = None,
+                 https_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  network_flow_logging_on: Optional[pulumi.Input[_builtins.bool]] = None,
                  posture_identity_collection_on: Optional[pulumi.Input[_builtins.bool]] = None,
                  regional_routing_on: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -35,6 +36,7 @@ class TailnetSettingsArgs:
         :param pulumi.Input[_builtins.bool] devices_approval_on: Whether device approval is enabled for the tailnet
         :param pulumi.Input[_builtins.bool] devices_auto_updates_on: Whether auto updates are enabled for devices that belong to this tailnet
         :param pulumi.Input[_builtins.int] devices_key_duration_days: The key expiry duration for devices on this tailnet
+        :param pulumi.Input[_builtins.bool] https_enabled: Whether provisioning of HTTPS certificates is enabled for the tailnet
         :param pulumi.Input[_builtins.bool] network_flow_logging_on: Whether network flog logs are enabled for the tailnet
         :param pulumi.Input[_builtins.bool] posture_identity_collection_on: Whether identity collection is enabled for device posture integrations for the tailnet
         :param pulumi.Input[_builtins.bool] regional_routing_on: Whether regional routing is enabled for the tailnet
@@ -51,6 +53,8 @@ class TailnetSettingsArgs:
             pulumi.set(__self__, "devices_auto_updates_on", devices_auto_updates_on)
         if devices_key_duration_days is not None:
             pulumi.set(__self__, "devices_key_duration_days", devices_key_duration_days)
+        if https_enabled is not None:
+            pulumi.set(__self__, "https_enabled", https_enabled)
         if network_flow_logging_on is not None:
             pulumi.set(__self__, "network_flow_logging_on", network_flow_logging_on)
         if posture_identity_collection_on is not None:
@@ -118,6 +122,18 @@ class TailnetSettingsArgs:
     @devices_key_duration_days.setter
     def devices_key_duration_days(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "devices_key_duration_days", value)
+
+    @_builtins.property
+    @pulumi.getter(name="httpsEnabled")
+    def https_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether provisioning of HTTPS certificates is enabled for the tailnet
+        """
+        return pulumi.get(self, "https_enabled")
+
+    @https_enabled.setter
+    def https_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "https_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="networkFlowLoggingOn")
@@ -188,6 +204,7 @@ class _TailnetSettingsState:
                  devices_approval_on: Optional[pulumi.Input[_builtins.bool]] = None,
                  devices_auto_updates_on: Optional[pulumi.Input[_builtins.bool]] = None,
                  devices_key_duration_days: Optional[pulumi.Input[_builtins.int]] = None,
+                 https_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  network_flow_logging_on: Optional[pulumi.Input[_builtins.bool]] = None,
                  posture_identity_collection_on: Optional[pulumi.Input[_builtins.bool]] = None,
                  regional_routing_on: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -199,6 +216,7 @@ class _TailnetSettingsState:
         :param pulumi.Input[_builtins.bool] devices_approval_on: Whether device approval is enabled for the tailnet
         :param pulumi.Input[_builtins.bool] devices_auto_updates_on: Whether auto updates are enabled for devices that belong to this tailnet
         :param pulumi.Input[_builtins.int] devices_key_duration_days: The key expiry duration for devices on this tailnet
+        :param pulumi.Input[_builtins.bool] https_enabled: Whether provisioning of HTTPS certificates is enabled for the tailnet
         :param pulumi.Input[_builtins.bool] network_flow_logging_on: Whether network flog logs are enabled for the tailnet
         :param pulumi.Input[_builtins.bool] posture_identity_collection_on: Whether identity collection is enabled for device posture integrations for the tailnet
         :param pulumi.Input[_builtins.bool] regional_routing_on: Whether regional routing is enabled for the tailnet
@@ -215,6 +233,8 @@ class _TailnetSettingsState:
             pulumi.set(__self__, "devices_auto_updates_on", devices_auto_updates_on)
         if devices_key_duration_days is not None:
             pulumi.set(__self__, "devices_key_duration_days", devices_key_duration_days)
+        if https_enabled is not None:
+            pulumi.set(__self__, "https_enabled", https_enabled)
         if network_flow_logging_on is not None:
             pulumi.set(__self__, "network_flow_logging_on", network_flow_logging_on)
         if posture_identity_collection_on is not None:
@@ -282,6 +302,18 @@ class _TailnetSettingsState:
     @devices_key_duration_days.setter
     def devices_key_duration_days(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "devices_key_duration_days", value)
+
+    @_builtins.property
+    @pulumi.getter(name="httpsEnabled")
+    def https_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether provisioning of HTTPS certificates is enabled for the tailnet
+        """
+        return pulumi.get(self, "https_enabled")
+
+    @https_enabled.setter
+    def https_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "https_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="networkFlowLoggingOn")
@@ -355,6 +387,7 @@ class TailnetSettings(pulumi.CustomResource):
                  devices_approval_on: Optional[pulumi.Input[_builtins.bool]] = None,
                  devices_auto_updates_on: Optional[pulumi.Input[_builtins.bool]] = None,
                  devices_key_duration_days: Optional[pulumi.Input[_builtins.int]] = None,
+                 https_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  network_flow_logging_on: Optional[pulumi.Input[_builtins.bool]] = None,
                  posture_identity_collection_on: Optional[pulumi.Input[_builtins.bool]] = None,
                  regional_routing_on: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -378,7 +411,8 @@ class TailnetSettings(pulumi.CustomResource):
             devices_key_duration_days=5,
             users_approval_on=True,
             users_role_allowed_to_join_external_tailnet="member",
-            posture_identity_collection_on=True)
+            posture_identity_collection_on=True,
+            https_enabled=True)
         ```
 
         ## Import
@@ -397,6 +431,7 @@ class TailnetSettings(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] devices_approval_on: Whether device approval is enabled for the tailnet
         :param pulumi.Input[_builtins.bool] devices_auto_updates_on: Whether auto updates are enabled for devices that belong to this tailnet
         :param pulumi.Input[_builtins.int] devices_key_duration_days: The key expiry duration for devices on this tailnet
+        :param pulumi.Input[_builtins.bool] https_enabled: Whether provisioning of HTTPS certificates is enabled for the tailnet
         :param pulumi.Input[_builtins.bool] network_flow_logging_on: Whether network flog logs are enabled for the tailnet
         :param pulumi.Input[_builtins.bool] posture_identity_collection_on: Whether identity collection is enabled for device posture integrations for the tailnet
         :param pulumi.Input[_builtins.bool] regional_routing_on: Whether regional routing is enabled for the tailnet
@@ -426,7 +461,8 @@ class TailnetSettings(pulumi.CustomResource):
             devices_key_duration_days=5,
             users_approval_on=True,
             users_role_allowed_to_join_external_tailnet="member",
-            posture_identity_collection_on=True)
+            posture_identity_collection_on=True,
+            https_enabled=True)
         ```
 
         ## Import
@@ -459,6 +495,7 @@ class TailnetSettings(pulumi.CustomResource):
                  devices_approval_on: Optional[pulumi.Input[_builtins.bool]] = None,
                  devices_auto_updates_on: Optional[pulumi.Input[_builtins.bool]] = None,
                  devices_key_duration_days: Optional[pulumi.Input[_builtins.int]] = None,
+                 https_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  network_flow_logging_on: Optional[pulumi.Input[_builtins.bool]] = None,
                  posture_identity_collection_on: Optional[pulumi.Input[_builtins.bool]] = None,
                  regional_routing_on: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -478,6 +515,7 @@ class TailnetSettings(pulumi.CustomResource):
             __props__.__dict__["devices_approval_on"] = devices_approval_on
             __props__.__dict__["devices_auto_updates_on"] = devices_auto_updates_on
             __props__.__dict__["devices_key_duration_days"] = devices_key_duration_days
+            __props__.__dict__["https_enabled"] = https_enabled
             __props__.__dict__["network_flow_logging_on"] = network_flow_logging_on
             __props__.__dict__["posture_identity_collection_on"] = posture_identity_collection_on
             __props__.__dict__["regional_routing_on"] = regional_routing_on
@@ -498,6 +536,7 @@ class TailnetSettings(pulumi.CustomResource):
             devices_approval_on: Optional[pulumi.Input[_builtins.bool]] = None,
             devices_auto_updates_on: Optional[pulumi.Input[_builtins.bool]] = None,
             devices_key_duration_days: Optional[pulumi.Input[_builtins.int]] = None,
+            https_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             network_flow_logging_on: Optional[pulumi.Input[_builtins.bool]] = None,
             posture_identity_collection_on: Optional[pulumi.Input[_builtins.bool]] = None,
             regional_routing_on: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -514,6 +553,7 @@ class TailnetSettings(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] devices_approval_on: Whether device approval is enabled for the tailnet
         :param pulumi.Input[_builtins.bool] devices_auto_updates_on: Whether auto updates are enabled for devices that belong to this tailnet
         :param pulumi.Input[_builtins.int] devices_key_duration_days: The key expiry duration for devices on this tailnet
+        :param pulumi.Input[_builtins.bool] https_enabled: Whether provisioning of HTTPS certificates is enabled for the tailnet
         :param pulumi.Input[_builtins.bool] network_flow_logging_on: Whether network flog logs are enabled for the tailnet
         :param pulumi.Input[_builtins.bool] posture_identity_collection_on: Whether identity collection is enabled for device posture integrations for the tailnet
         :param pulumi.Input[_builtins.bool] regional_routing_on: Whether regional routing is enabled for the tailnet
@@ -529,6 +569,7 @@ class TailnetSettings(pulumi.CustomResource):
         __props__.__dict__["devices_approval_on"] = devices_approval_on
         __props__.__dict__["devices_auto_updates_on"] = devices_auto_updates_on
         __props__.__dict__["devices_key_duration_days"] = devices_key_duration_days
+        __props__.__dict__["https_enabled"] = https_enabled
         __props__.__dict__["network_flow_logging_on"] = network_flow_logging_on
         __props__.__dict__["posture_identity_collection_on"] = posture_identity_collection_on
         __props__.__dict__["regional_routing_on"] = regional_routing_on
@@ -572,6 +613,14 @@ class TailnetSettings(pulumi.CustomResource):
         The key expiry duration for devices on this tailnet
         """
         return pulumi.get(self, "devices_key_duration_days")
+
+    @_builtins.property
+    @pulumi.getter(name="httpsEnabled")
+    def https_enabled(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Whether provisioning of HTTPS certificates is enabled for the tailnet
+        """
+        return pulumi.get(self, "https_enabled")
 
     @_builtins.property
     @pulumi.getter(name="networkFlowLoggingOn")
