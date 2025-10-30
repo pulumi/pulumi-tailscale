@@ -84,7 +84,7 @@ namespace Pulumi.Tailscale
 
         private static readonly __Value<string?> _tailnet = new __Value<string?>(() => __config.Get("tailnet"));
         /// <summary>
-        /// The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
+        /// The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
         /// </summary>
         public static string? Tailnet
         {

@@ -33,7 +33,7 @@ class ProviderArgs:
         :param pulumi.Input[_builtins.str] oauth_client_id: The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
         :param pulumi.Input[_builtins.str] oauth_client_secret: The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret' are set.
-        :param pulumi.Input[_builtins.str] tailnet: The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
+        :param pulumi.Input[_builtins.str] tailnet: The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
         :param pulumi.Input[_builtins.str] user_agent: User-Agent header for API requests.
         """
         if api_key is not None:
@@ -115,7 +115,7 @@ class ProviderArgs:
     @pulumi.getter
     def tailnet(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
+        The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
         """
         return pulumi.get(self, "tailnet")
 
@@ -163,7 +163,7 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[_builtins.str] oauth_client_id: The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
         :param pulumi.Input[_builtins.str] oauth_client_secret: The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret' are set.
-        :param pulumi.Input[_builtins.str] tailnet: The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
+        :param pulumi.Input[_builtins.str] tailnet: The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
         :param pulumi.Input[_builtins.str] user_agent: User-Agent header for API requests.
         """
         ...
@@ -260,7 +260,7 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter
     def tailnet(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
+        The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
         """
         return pulumi.get(self, "tailnet")
 

@@ -32,6 +32,7 @@ namespace Pulumi.Tailscale
     ///         UsersApprovalOn = true,
     ///         UsersRoleAllowedToJoinExternalTailnet = "member",
     ///         PostureIdentityCollectionOn = true,
+    ///         HttpsEnabled = true,
     ///     });
     /// 
     /// });
@@ -76,6 +77,12 @@ namespace Pulumi.Tailscale
         /// </summary>
         [Output("devicesKeyDurationDays")]
         public Output<int> DevicesKeyDurationDays { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether provisioning of HTTPS certificates is enabled for the tailnet
+        /// </summary>
+        [Output("httpsEnabled")]
+        public Output<bool> HttpsEnabled { get; private set; } = null!;
 
         /// <summary>
         /// Whether network flog logs are enabled for the tailnet
@@ -181,6 +188,12 @@ namespace Pulumi.Tailscale
         public Input<int>? DevicesKeyDurationDays { get; set; }
 
         /// <summary>
+        /// Whether provisioning of HTTPS certificates is enabled for the tailnet
+        /// </summary>
+        [Input("httpsEnabled")]
+        public Input<bool>? HttpsEnabled { get; set; }
+
+        /// <summary>
         /// Whether network flog logs are enabled for the tailnet
         /// </summary>
         [Input("networkFlowLoggingOn")]
@@ -244,6 +257,12 @@ namespace Pulumi.Tailscale
         /// </summary>
         [Input("devicesKeyDurationDays")]
         public Input<int>? DevicesKeyDurationDays { get; set; }
+
+        /// <summary>
+        /// Whether provisioning of HTTPS certificates is enabled for the tailnet
+        /// </summary>
+        [Input("httpsEnabled")]
+        public Input<bool>? HttpsEnabled { get; set; }
 
         /// <summary>
         /// Whether network flog logs are enabled for the tailnet
