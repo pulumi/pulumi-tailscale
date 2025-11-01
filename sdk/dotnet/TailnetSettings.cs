@@ -32,6 +32,7 @@ namespace Pulumi.Tailscale
     ///         UsersApprovalOn = true,
     ///         UsersRoleAllowedToJoinExternalTailnet = "member",
     ///         PostureIdentityCollectionOn = true,
+    ///         HttpsEnabled = true,
     ///     });
     /// 
     /// });
@@ -78,7 +79,13 @@ namespace Pulumi.Tailscale
         public Output<int> DevicesKeyDurationDays { get; private set; } = null!;
 
         /// <summary>
-        /// Whether network flog logs are enabled for the tailnet
+        /// Whether provisioning of HTTPS certificates is enabled for the tailnet
+        /// </summary>
+        [Output("httpsEnabled")]
+        public Output<bool> HttpsEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether network flow logs are enabled for the tailnet
         /// </summary>
         [Output("networkFlowLoggingOn")]
         public Output<bool> NetworkFlowLoggingOn { get; private set; } = null!;
@@ -181,7 +188,13 @@ namespace Pulumi.Tailscale
         public Input<int>? DevicesKeyDurationDays { get; set; }
 
         /// <summary>
-        /// Whether network flog logs are enabled for the tailnet
+        /// Whether provisioning of HTTPS certificates is enabled for the tailnet
+        /// </summary>
+        [Input("httpsEnabled")]
+        public Input<bool>? HttpsEnabled { get; set; }
+
+        /// <summary>
+        /// Whether network flow logs are enabled for the tailnet
         /// </summary>
         [Input("networkFlowLoggingOn")]
         public Input<bool>? NetworkFlowLoggingOn { get; set; }
@@ -246,7 +259,13 @@ namespace Pulumi.Tailscale
         public Input<int>? DevicesKeyDurationDays { get; set; }
 
         /// <summary>
-        /// Whether network flog logs are enabled for the tailnet
+        /// Whether provisioning of HTTPS certificates is enabled for the tailnet
+        /// </summary>
+        [Input("httpsEnabled")]
+        public Input<bool>? HttpsEnabled { get; set; }
+
+        /// <summary>
+        /// Whether network flow logs are enabled for the tailnet
         /// </summary>
         [Input("networkFlowLoggingOn")]
         public Input<bool>? NetworkFlowLoggingOn { get; set; }
