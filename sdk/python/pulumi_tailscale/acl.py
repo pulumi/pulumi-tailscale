@@ -158,12 +158,12 @@ class Acl(pulumi.CustomResource):
         }))
         as_hujson = tailscale.Acl("as_hujson", acl=\"\"\"  {
             // Comments in HuJSON policy are preserved when the policy is applied.
-            "acls": [
+            \\"acls\\": [
               {
                 // Allow all users access to all ports.
-                action = "accept",
-                users  = ["*"],
-                ports  = ["*:*"],
+                action = \\"accept\\",
+                users  = [\\"*\\"],
+                ports  = [\\"*:*\\"],
               },
             ],
           }
@@ -213,12 +213,12 @@ class Acl(pulumi.CustomResource):
         }))
         as_hujson = tailscale.Acl("as_hujson", acl=\"\"\"  {
             // Comments in HuJSON policy are preserved when the policy is applied.
-            "acls": [
+            \\"acls\\": [
               {
                 // Allow all users access to all ports.
-                action = "accept",
-                users  = ["*"],
-                ports  = ["*:*"],
+                action = \\"accept\\",
+                users  = [\\"*\\"],
+                ports  = [\\"*:*\\"],
               },
             ],
           }
