@@ -58,12 +58,12 @@ import (
 //			_, err = tailscale.NewAcl(ctx, "as_hujson", &tailscale.AclArgs{
 //				Acl: pulumi.String(`  {
 //	    // Comments in HuJSON policy are preserved when the policy is applied.
-//	    "acls": [
+//	    \"acls\": [
 //	      {
 //	        // Allow all users access to all ports.
-//	        action = "accept",
-//	        users  = ["*"],
-//	        ports  = ["*:*"],
+//	        action = \"accept\",
+//	        users  = [\"*\"],
+//	        ports  = [\"*:*\"],
 //	      },
 //	    ],
 //	  }
