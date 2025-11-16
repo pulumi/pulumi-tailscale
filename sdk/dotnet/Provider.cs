@@ -31,19 +31,25 @@ namespace Pulumi.Tailscale
         public Output<string?> BaseUrl { get; private set; } = null!;
 
         /// <summary>
-        /// The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+        /// The jwt identity token to exchange for a Tailscale API token when using a federated identity client. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with 'api_key' and 'oauth_client_secret'.
+        /// </summary>
+        [Output("identityToken")]
+        public Output<string?> IdentityToken { get; private set; } = null!;
+
+        /// <summary>
+        /// The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
         /// </summary>
         [Output("oauthClientId")]
         public Output<string?> OauthClientId { get; private set; } = null!;
 
         /// <summary>
-        /// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+        /// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Conflicts with 'api_key' and 'identity_token'.
         /// </summary>
         [Output("oauthClientSecret")]
         public Output<string?> OauthClientSecret { get; private set; } = null!;
 
         /// <summary>
-        /// The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
+        /// The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
         /// </summary>
         [Output("tailnet")]
         public Output<string?> Tailnet { get; private set; } = null!;
@@ -75,6 +81,7 @@ namespace Pulumi.Tailscale
                 AdditionalSecretOutputs =
                 {
                     "apiKey",
+                    "identityToken",
                     "oauthClientSecret",
                 },
             };
@@ -115,8 +122,24 @@ namespace Pulumi.Tailscale
         [Input("baseUrl")]
         public Input<string>? BaseUrl { get; set; }
 
+        [Input("identityToken")]
+        private Input<string>? _identityToken;
+
         /// <summary>
-        /// The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+        /// The jwt identity token to exchange for a Tailscale API token when using a federated identity client. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with 'api_key' and 'oauth_client_secret'.
+        /// </summary>
+        public Input<string>? IdentityToken
+        {
+            get => _identityToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _identityToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
         /// </summary>
         [Input("oauthClientId")]
         public Input<string>? OauthClientId { get; set; }
@@ -125,7 +148,7 @@ namespace Pulumi.Tailscale
         private Input<string>? _oauthClientSecret;
 
         /// <summary>
-        /// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Both 'oauth_client_id' and 'oauth_client_secret' must be set. Conflicts with 'api_key'.
+        /// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Conflicts with 'api_key' and 'identity_token'.
         /// </summary>
         public Input<string>? OauthClientSecret
         {
@@ -141,7 +164,7 @@ namespace Pulumi.Tailscale
         private InputList<string>? _scopes;
 
         /// <summary>
-        /// The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret' are set.
+        /// The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret' are set.
         /// </summary>
         public InputList<string> Scopes
         {
@@ -150,7 +173,7 @@ namespace Pulumi.Tailscale
         }
 
         /// <summary>
-        /// The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
+        /// The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
         /// </summary>
         [Input("tailnet")]
         public Input<string>? Tailnet { get; set; }

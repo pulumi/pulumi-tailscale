@@ -36,6 +36,7 @@ import (
 //				UsersApprovalOn:                       pulumi.Bool(true),
 //				UsersRoleAllowedToJoinExternalTailnet: pulumi.String("member"),
 //				PostureIdentityCollectionOn:           pulumi.Bool(true),
+//				HttpsEnabled:                          pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
@@ -67,7 +68,9 @@ type TailnetSettings struct {
 	DevicesAutoUpdatesOn pulumi.BoolOutput `pulumi:"devicesAutoUpdatesOn"`
 	// The key expiry duration for devices on this tailnet
 	DevicesKeyDurationDays pulumi.IntOutput `pulumi:"devicesKeyDurationDays"`
-	// Whether network flog logs are enabled for the tailnet
+	// Whether provisioning of HTTPS certificates is enabled for the tailnet
+	HttpsEnabled pulumi.BoolOutput `pulumi:"httpsEnabled"`
+	// Whether network flow logs are enabled for the tailnet
 	NetworkFlowLoggingOn pulumi.BoolOutput `pulumi:"networkFlowLoggingOn"`
 	// Whether identity collection is enabled for device posture integrations for the tailnet
 	PostureIdentityCollectionOn pulumi.BoolOutput `pulumi:"postureIdentityCollectionOn"`
@@ -118,7 +121,9 @@ type tailnetSettingsState struct {
 	DevicesAutoUpdatesOn *bool `pulumi:"devicesAutoUpdatesOn"`
 	// The key expiry duration for devices on this tailnet
 	DevicesKeyDurationDays *int `pulumi:"devicesKeyDurationDays"`
-	// Whether network flog logs are enabled for the tailnet
+	// Whether provisioning of HTTPS certificates is enabled for the tailnet
+	HttpsEnabled *bool `pulumi:"httpsEnabled"`
+	// Whether network flow logs are enabled for the tailnet
 	NetworkFlowLoggingOn *bool `pulumi:"networkFlowLoggingOn"`
 	// Whether identity collection is enabled for device posture integrations for the tailnet
 	PostureIdentityCollectionOn *bool `pulumi:"postureIdentityCollectionOn"`
@@ -140,7 +145,9 @@ type TailnetSettingsState struct {
 	DevicesAutoUpdatesOn pulumi.BoolPtrInput
 	// The key expiry duration for devices on this tailnet
 	DevicesKeyDurationDays pulumi.IntPtrInput
-	// Whether network flog logs are enabled for the tailnet
+	// Whether provisioning of HTTPS certificates is enabled for the tailnet
+	HttpsEnabled pulumi.BoolPtrInput
+	// Whether network flow logs are enabled for the tailnet
 	NetworkFlowLoggingOn pulumi.BoolPtrInput
 	// Whether identity collection is enabled for device posture integrations for the tailnet
 	PostureIdentityCollectionOn pulumi.BoolPtrInput
@@ -166,7 +173,9 @@ type tailnetSettingsArgs struct {
 	DevicesAutoUpdatesOn *bool `pulumi:"devicesAutoUpdatesOn"`
 	// The key expiry duration for devices on this tailnet
 	DevicesKeyDurationDays *int `pulumi:"devicesKeyDurationDays"`
-	// Whether network flog logs are enabled for the tailnet
+	// Whether provisioning of HTTPS certificates is enabled for the tailnet
+	HttpsEnabled *bool `pulumi:"httpsEnabled"`
+	// Whether network flow logs are enabled for the tailnet
 	NetworkFlowLoggingOn *bool `pulumi:"networkFlowLoggingOn"`
 	// Whether identity collection is enabled for device posture integrations for the tailnet
 	PostureIdentityCollectionOn *bool `pulumi:"postureIdentityCollectionOn"`
@@ -189,7 +198,9 @@ type TailnetSettingsArgs struct {
 	DevicesAutoUpdatesOn pulumi.BoolPtrInput
 	// The key expiry duration for devices on this tailnet
 	DevicesKeyDurationDays pulumi.IntPtrInput
-	// Whether network flog logs are enabled for the tailnet
+	// Whether provisioning of HTTPS certificates is enabled for the tailnet
+	HttpsEnabled pulumi.BoolPtrInput
+	// Whether network flow logs are enabled for the tailnet
 	NetworkFlowLoggingOn pulumi.BoolPtrInput
 	// Whether identity collection is enabled for device posture integrations for the tailnet
 	PostureIdentityCollectionOn pulumi.BoolPtrInput
@@ -312,7 +323,12 @@ func (o TailnetSettingsOutput) DevicesKeyDurationDays() pulumi.IntOutput {
 	return o.ApplyT(func(v *TailnetSettings) pulumi.IntOutput { return v.DevicesKeyDurationDays }).(pulumi.IntOutput)
 }
 
-// Whether network flog logs are enabled for the tailnet
+// Whether provisioning of HTTPS certificates is enabled for the tailnet
+func (o TailnetSettingsOutput) HttpsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *TailnetSettings) pulumi.BoolOutput { return v.HttpsEnabled }).(pulumi.BoolOutput)
+}
+
+// Whether network flow logs are enabled for the tailnet
 func (o TailnetSettingsOutput) NetworkFlowLoggingOn() pulumi.BoolOutput {
 	return o.ApplyT(func(v *TailnetSettings) pulumi.BoolOutput { return v.NetworkFlowLoggingOn }).(pulumi.BoolOutput)
 }
