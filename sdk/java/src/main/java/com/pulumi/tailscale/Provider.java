@@ -52,42 +52,56 @@ public class Provider extends com.pulumi.resources.ProviderResource {
         return Codegen.optional(this.baseUrl);
     }
     /**
-     * The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+     * The jwt identity token to exchange for a Tailscale API token when using a federated identity client. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with &#39;api_key&#39; and &#39;oauth_client_secret&#39;.
+     * 
+     */
+    @Export(name="identityToken", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityToken;
+
+    /**
+     * @return The jwt identity token to exchange for a Tailscale API token when using a federated identity client. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with &#39;api_key&#39; and &#39;oauth_client_secret&#39;.
+     * 
+     */
+    public Output<Optional<String>> identityToken() {
+        return Codegen.optional(this.identityToken);
+    }
+    /**
+     * The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either &#39;oauth_client_secret&#39; or &#39;identity_token&#39; must be set alongside &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;.
      * 
      */
     @Export(name="oauthClientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oauthClientId;
 
     /**
-     * @return The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+     * @return The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either &#39;oauth_client_secret&#39; or &#39;identity_token&#39; must be set alongside &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;.
      * 
      */
     public Output<Optional<String>> oauthClientId() {
         return Codegen.optional(this.oauthClientId);
     }
     /**
-     * The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+     * The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Conflicts with &#39;api_key&#39; and &#39;identity_token&#39;.
      * 
      */
     @Export(name="oauthClientSecret", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oauthClientSecret;
 
     /**
-     * @return The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+     * @return The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Conflicts with &#39;api_key&#39; and &#39;identity_token&#39;.
      * 
      */
     public Output<Optional<String>> oauthClientSecret() {
         return Codegen.optional(this.oauthClientSecret);
     }
     /**
-     * The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
+     * The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
      * 
      */
     @Export(name="tailnet", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tailnet;
 
     /**
-     * @return The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
+     * @return The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
      * 
      */
     public Output<Optional<String>> tailnet() {
@@ -145,6 +159,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
                 "apiKey",
+                "identityToken",
                 "oauthClientSecret"
             ))
             .build();
