@@ -51,6 +51,7 @@ import javax.annotation.Nullable;
  *             .usersApprovalOn(true)
  *             .usersRoleAllowedToJoinExternalTailnet("member")
  *             .postureIdentityCollectionOn(true)
+ *             .httpsEnabled(true)
  *             .build());
  * 
  *     }
@@ -134,14 +135,28 @@ public class TailnetSettings extends com.pulumi.resources.CustomResource {
         return this.devicesKeyDurationDays;
     }
     /**
-     * Whether network flog logs are enabled for the tailnet
+     * Whether provisioning of HTTPS certificates is enabled for the tailnet
+     * 
+     */
+    @Export(name="httpsEnabled", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> httpsEnabled;
+
+    /**
+     * @return Whether provisioning of HTTPS certificates is enabled for the tailnet
+     * 
+     */
+    public Output<Boolean> httpsEnabled() {
+        return this.httpsEnabled;
+    }
+    /**
+     * Whether network flow logs are enabled for the tailnet
      * 
      */
     @Export(name="networkFlowLoggingOn", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> networkFlowLoggingOn;
 
     /**
-     * @return Whether network flog logs are enabled for the tailnet
+     * @return Whether network flow logs are enabled for the tailnet
      * 
      */
     public Output<Boolean> networkFlowLoggingOn() {

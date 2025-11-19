@@ -85,14 +85,29 @@ public final class TailnetSettingsState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Whether network flog logs are enabled for the tailnet
+     * Whether provisioning of HTTPS certificates is enabled for the tailnet
+     * 
+     */
+    @Import(name="httpsEnabled")
+    private @Nullable Output<Boolean> httpsEnabled;
+
+    /**
+     * @return Whether provisioning of HTTPS certificates is enabled for the tailnet
+     * 
+     */
+    public Optional<Output<Boolean>> httpsEnabled() {
+        return Optional.ofNullable(this.httpsEnabled);
+    }
+
+    /**
+     * Whether network flow logs are enabled for the tailnet
      * 
      */
     @Import(name="networkFlowLoggingOn")
     private @Nullable Output<Boolean> networkFlowLoggingOn;
 
     /**
-     * @return Whether network flog logs are enabled for the tailnet
+     * @return Whether network flow logs are enabled for the tailnet
      * 
      */
     public Optional<Output<Boolean>> networkFlowLoggingOn() {
@@ -167,6 +182,7 @@ public final class TailnetSettingsState extends com.pulumi.resources.ResourceArg
         this.devicesApprovalOn = $.devicesApprovalOn;
         this.devicesAutoUpdatesOn = $.devicesAutoUpdatesOn;
         this.devicesKeyDurationDays = $.devicesKeyDurationDays;
+        this.httpsEnabled = $.httpsEnabled;
         this.networkFlowLoggingOn = $.networkFlowLoggingOn;
         this.postureIdentityCollectionOn = $.postureIdentityCollectionOn;
         this.regionalRoutingOn = $.regionalRoutingOn;
@@ -286,7 +302,28 @@ public final class TailnetSettingsState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param networkFlowLoggingOn Whether network flog logs are enabled for the tailnet
+         * @param httpsEnabled Whether provisioning of HTTPS certificates is enabled for the tailnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpsEnabled(@Nullable Output<Boolean> httpsEnabled) {
+            $.httpsEnabled = httpsEnabled;
+            return this;
+        }
+
+        /**
+         * @param httpsEnabled Whether provisioning of HTTPS certificates is enabled for the tailnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpsEnabled(Boolean httpsEnabled) {
+            return httpsEnabled(Output.of(httpsEnabled));
+        }
+
+        /**
+         * @param networkFlowLoggingOn Whether network flow logs are enabled for the tailnet
          * 
          * @return builder
          * 
@@ -297,7 +334,7 @@ public final class TailnetSettingsState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param networkFlowLoggingOn Whether network flog logs are enabled for the tailnet
+         * @param networkFlowLoggingOn Whether network flow logs are enabled for the tailnet
          * 
          * @return builder
          * 

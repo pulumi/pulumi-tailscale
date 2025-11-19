@@ -47,14 +47,29 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+     * The jwt identity token to exchange for a Tailscale API token when using a federated identity client. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with &#39;api_key&#39; and &#39;oauth_client_secret&#39;.
+     * 
+     */
+    @Import(name="identityToken")
+    private @Nullable Output<String> identityToken;
+
+    /**
+     * @return The jwt identity token to exchange for a Tailscale API token when using a federated identity client. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with &#39;api_key&#39; and &#39;oauth_client_secret&#39;.
+     * 
+     */
+    public Optional<Output<String>> identityToken() {
+        return Optional.ofNullable(this.identityToken);
+    }
+
+    /**
+     * The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either &#39;oauth_client_secret&#39; or &#39;identity_token&#39; must be set alongside &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;.
      * 
      */
     @Import(name="oauthClientId")
     private @Nullable Output<String> oauthClientId;
 
     /**
-     * @return The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+     * @return The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either &#39;oauth_client_secret&#39; or &#39;identity_token&#39; must be set alongside &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;.
      * 
      */
     public Optional<Output<String>> oauthClientId() {
@@ -62,14 +77,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+     * The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Conflicts with &#39;api_key&#39; and &#39;identity_token&#39;.
      * 
      */
     @Import(name="oauthClientSecret")
     private @Nullable Output<String> oauthClientSecret;
 
     /**
-     * @return The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+     * @return The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Conflicts with &#39;api_key&#39; and &#39;identity_token&#39;.
      * 
      */
     public Optional<Output<String>> oauthClientSecret() {
@@ -77,14 +92,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; are set.
+     * The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; are set.
      * 
      */
     @Import(name="scopes", json=true)
     private @Nullable Output<List<String>> scopes;
 
     /**
-     * @return The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; are set.
+     * @return The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; are set.
      * 
      */
     public Optional<Output<List<String>>> scopes() {
@@ -92,14 +107,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
+     * The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
      * 
      */
     @Import(name="tailnet")
     private @Nullable Output<String> tailnet;
 
     /**
-     * @return The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
+     * @return The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
      * 
      */
     public Optional<Output<String>> tailnet() {
@@ -126,6 +141,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     private ProviderArgs(ProviderArgs $) {
         this.apiKey = $.apiKey;
         this.baseUrl = $.baseUrl;
+        this.identityToken = $.identityToken;
         this.oauthClientId = $.oauthClientId;
         this.oauthClientSecret = $.oauthClientSecret;
         this.scopes = $.scopes;
@@ -194,7 +210,28 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oauthClientId The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+         * @param identityToken The jwt identity token to exchange for a Tailscale API token when using a federated identity client. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with &#39;api_key&#39; and &#39;oauth_client_secret&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityToken(@Nullable Output<String> identityToken) {
+            $.identityToken = identityToken;
+            return this;
+        }
+
+        /**
+         * @param identityToken The jwt identity token to exchange for a Tailscale API token when using a federated identity client. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with &#39;api_key&#39; and &#39;oauth_client_secret&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityToken(String identityToken) {
+            return identityToken(Output.of(identityToken));
+        }
+
+        /**
+         * @param oauthClientId The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either &#39;oauth_client_secret&#39; or &#39;identity_token&#39; must be set alongside &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;.
          * 
          * @return builder
          * 
@@ -205,7 +242,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oauthClientId The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+         * @param oauthClientId The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either &#39;oauth_client_secret&#39; or &#39;identity_token&#39; must be set alongside &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;.
          * 
          * @return builder
          * 
@@ -215,7 +252,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oauthClientSecret The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+         * @param oauthClientSecret The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Conflicts with &#39;api_key&#39; and &#39;identity_token&#39;.
          * 
          * @return builder
          * 
@@ -226,7 +263,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oauthClientSecret The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; must be set. Conflicts with &#39;api_key&#39;.
+         * @param oauthClientSecret The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Conflicts with &#39;api_key&#39; and &#39;identity_token&#39;.
          * 
          * @return builder
          * 
@@ -236,7 +273,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; are set.
+         * @param scopes The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; are set.
          * 
          * @return builder
          * 
@@ -247,7 +284,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; are set.
+         * @param scopes The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; are set.
          * 
          * @return builder
          * 
@@ -257,7 +294,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; are set.
+         * @param scopes The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; are set.
          * 
          * @return builder
          * 
@@ -267,7 +304,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tailnet The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
+         * @param tailnet The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
          * 
          * @return builder
          * 
@@ -278,7 +315,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tailnet The organization name of the Tailnet in which to perform actions. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
+         * @param tailnet The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
          * 
          * @return builder
          * 

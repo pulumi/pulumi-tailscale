@@ -22,6 +22,7 @@ import * as utilities from "./utilities";
  *     usersApprovalOn: true,
  *     usersRoleAllowedToJoinExternalTailnet: "member",
  *     postureIdentityCollectionOn: true,
+ *     httpsEnabled: true,
  * });
  * ```
  *
@@ -81,7 +82,11 @@ export class TailnetSettings extends pulumi.CustomResource {
      */
     declare public readonly devicesKeyDurationDays: pulumi.Output<number>;
     /**
-     * Whether network flog logs are enabled for the tailnet
+     * Whether provisioning of HTTPS certificates is enabled for the tailnet
+     */
+    declare public readonly httpsEnabled: pulumi.Output<boolean>;
+    /**
+     * Whether network flow logs are enabled for the tailnet
      */
     declare public readonly networkFlowLoggingOn: pulumi.Output<boolean>;
     /**
@@ -119,6 +124,7 @@ export class TailnetSettings extends pulumi.CustomResource {
             resourceInputs["devicesApprovalOn"] = state?.devicesApprovalOn;
             resourceInputs["devicesAutoUpdatesOn"] = state?.devicesAutoUpdatesOn;
             resourceInputs["devicesKeyDurationDays"] = state?.devicesKeyDurationDays;
+            resourceInputs["httpsEnabled"] = state?.httpsEnabled;
             resourceInputs["networkFlowLoggingOn"] = state?.networkFlowLoggingOn;
             resourceInputs["postureIdentityCollectionOn"] = state?.postureIdentityCollectionOn;
             resourceInputs["regionalRoutingOn"] = state?.regionalRoutingOn;
@@ -131,6 +137,7 @@ export class TailnetSettings extends pulumi.CustomResource {
             resourceInputs["devicesApprovalOn"] = args?.devicesApprovalOn;
             resourceInputs["devicesAutoUpdatesOn"] = args?.devicesAutoUpdatesOn;
             resourceInputs["devicesKeyDurationDays"] = args?.devicesKeyDurationDays;
+            resourceInputs["httpsEnabled"] = args?.httpsEnabled;
             resourceInputs["networkFlowLoggingOn"] = args?.networkFlowLoggingOn;
             resourceInputs["postureIdentityCollectionOn"] = args?.postureIdentityCollectionOn;
             resourceInputs["regionalRoutingOn"] = args?.regionalRoutingOn;
@@ -164,7 +171,11 @@ export interface TailnetSettingsState {
      */
     devicesKeyDurationDays?: pulumi.Input<number>;
     /**
-     * Whether network flog logs are enabled for the tailnet
+     * Whether provisioning of HTTPS certificates is enabled for the tailnet
+     */
+    httpsEnabled?: pulumi.Input<boolean>;
+    /**
+     * Whether network flow logs are enabled for the tailnet
      */
     networkFlowLoggingOn?: pulumi.Input<boolean>;
     /**
@@ -207,7 +218,11 @@ export interface TailnetSettingsArgs {
      */
     devicesKeyDurationDays?: pulumi.Input<number>;
     /**
-     * Whether network flog logs are enabled for the tailnet
+     * Whether provisioning of HTTPS certificates is enabled for the tailnet
+     */
+    httpsEnabled?: pulumi.Input<boolean>;
+    /**
+     * Whether network flow logs are enabled for the tailnet
      */
     networkFlowLoggingOn?: pulumi.Input<boolean>;
     /**
