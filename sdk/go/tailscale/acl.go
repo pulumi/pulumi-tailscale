@@ -12,9 +12,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
+// The acl resource allows you to configure a Tailscale policy file. See https://tailscale.com/kb/1395/tailnet-policy-file for more information. Note that this resource will completely overwrite existing policy file contents for a given tailnet.
 //
-// If tests are defined in the ACL (the top-level "tests" section), ACL validation will occur before creation and update operations are applied.
+// If tests are defined in the policy file (the top-level "tests" section), policy file validation will occur before creation and update operations are applied.
+//
+// > **Note:** The naming of this resource predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This resource controls a tailnet's entire policy file and not just the ACLs section within it.
 //
 // ## Example Usage
 //
@@ -33,14 +35,16 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			tmpJSON0, err := json.Marshal(map[string]interface{}{
-//				"acls": []map[string]interface{}{
+//				"grants": []map[string]interface{}{
 //					map[string]interface{}{
-//						"action": "accept",
-//						"users": []string{
+//						"src": []string{
 //							"*",
 //						},
-//						"ports": []string{
-//							"*:*",
+//						"dst": []string{
+//							"*",
+//						},
+//						"ip": []string{
+//							"*",
 //						},
 //					},
 //				},
@@ -58,12 +62,12 @@ import (
 //			_, err = tailscale.NewAcl(ctx, "as_hujson", &tailscale.AclArgs{
 //				Acl: pulumi.String(`  {
 //	    // Comments in HuJSON policy are preserved when the policy is applied.
-//	    \"acls\": [
+//	    \"grants\": [
 //	      {
 //	        // Allow all users access to all ports.
-//	        action = \"accept\",
-//	        users  = [\"*\"],
-//	        ports  = [\"*:*\"],
+//	        \"src\" = [\"*\"],
+//	        \"dst\" = [\"*\"],
+//	        \"ip\"  = [\"*\"],
 //	      },
 //	    ],
 //	  }
@@ -82,8 +86,6 @@ import (
 //
 // ## Import
 //
-// The `pulumi import` command can be used, for example:
-//
 // ID doesn't matter.
 //
 // ```sh
@@ -94,9 +96,9 @@ type Acl struct {
 
 	// The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
 	Acl pulumi.StringOutput `pulumi:"acl"`
-	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
 	OverwriteExistingContent pulumi.BoolPtrOutput `pulumi:"overwriteExistingContent"`
-	// If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+	// If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
 	ResetAclOnDestroy pulumi.BoolPtrOutput `pulumi:"resetAclOnDestroy"`
 }
 
@@ -135,18 +137,18 @@ func GetAcl(ctx *pulumi.Context,
 type aclState struct {
 	// The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
 	Acl *string `pulumi:"acl"`
-	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
 	OverwriteExistingContent *bool `pulumi:"overwriteExistingContent"`
-	// If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+	// If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
 	ResetAclOnDestroy *bool `pulumi:"resetAclOnDestroy"`
 }
 
 type AclState struct {
 	// The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
 	Acl pulumi.StringPtrInput
-	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
 	OverwriteExistingContent pulumi.BoolPtrInput
-	// If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+	// If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
 	ResetAclOnDestroy pulumi.BoolPtrInput
 }
 
@@ -157,9 +159,9 @@ func (AclState) ElementType() reflect.Type {
 type aclArgs struct {
 	// The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
 	Acl string `pulumi:"acl"`
-	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
 	OverwriteExistingContent *bool `pulumi:"overwriteExistingContent"`
-	// If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+	// If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
 	ResetAclOnDestroy *bool `pulumi:"resetAclOnDestroy"`
 }
 
@@ -167,9 +169,9 @@ type aclArgs struct {
 type AclArgs struct {
 	// The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
 	Acl pulumi.StringInput
-	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+	// If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
 	OverwriteExistingContent pulumi.BoolPtrInput
-	// If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+	// If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
 	ResetAclOnDestroy pulumi.BoolPtrInput
 }
 
@@ -265,12 +267,12 @@ func (o AclOutput) Acl() pulumi.StringOutput {
 	return o.ApplyT(func(v *Acl) pulumi.StringOutput { return v.Acl }).(pulumi.StringOutput)
 }
 
-// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+// If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
 func (o AclOutput) OverwriteExistingContent() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Acl) pulumi.BoolPtrOutput { return v.OverwriteExistingContent }).(pulumi.BoolPtrOutput)
 }
 
-// If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+// If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
 func (o AclOutput) ResetAclOnDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Acl) pulumi.BoolPtrOutput { return v.ResetAclOnDestroy }).(pulumi.BoolPtrOutput)
 }

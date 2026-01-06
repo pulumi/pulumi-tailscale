@@ -235,49 +235,63 @@ public final class TailscaleFunctions {
         return Deployment.getInstance().invokeAsync("tailscale:index/get4Via6:get4Via6", TypeShape.of(Get4Via6Result.class), args, Utilities.withVersion(options));
     }
     /**
-     * The acl data source gets the Tailscale ACL for a tailnet
+     * The acl data source gets the Tailscale policy file for a tailnet
+     * 
+     * &gt; **Note:** The naming of this data source predates Tailscale&#39;s usage of the term &#34;policy file&#34; to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet&#39;s entire policy file and not just the ACLs section within it.
      * 
      */
     public static Output<GetAclResult> getAcl() {
         return getAcl(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * The acl data source gets the Tailscale ACL for a tailnet
+     * The acl data source gets the Tailscale policy file for a tailnet
+     * 
+     * &gt; **Note:** The naming of this data source predates Tailscale&#39;s usage of the term &#34;policy file&#34; to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet&#39;s entire policy file and not just the ACLs section within it.
      * 
      */
     public static CompletableFuture<GetAclResult> getAclPlain() {
         return getAclPlain(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * The acl data source gets the Tailscale ACL for a tailnet
+     * The acl data source gets the Tailscale policy file for a tailnet
+     * 
+     * &gt; **Note:** The naming of this data source predates Tailscale&#39;s usage of the term &#34;policy file&#34; to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet&#39;s entire policy file and not just the ACLs section within it.
      * 
      */
     public static Output<GetAclResult> getAcl(InvokeArgs args) {
         return getAcl(args, InvokeOptions.Empty);
     }
     /**
-     * The acl data source gets the Tailscale ACL for a tailnet
+     * The acl data source gets the Tailscale policy file for a tailnet
+     * 
+     * &gt; **Note:** The naming of this data source predates Tailscale&#39;s usage of the term &#34;policy file&#34; to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet&#39;s entire policy file and not just the ACLs section within it.
      * 
      */
     public static CompletableFuture<GetAclResult> getAclPlain(InvokeArgs args) {
         return getAclPlain(args, InvokeOptions.Empty);
     }
     /**
-     * The acl data source gets the Tailscale ACL for a tailnet
+     * The acl data source gets the Tailscale policy file for a tailnet
+     * 
+     * &gt; **Note:** The naming of this data source predates Tailscale&#39;s usage of the term &#34;policy file&#34; to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet&#39;s entire policy file and not just the ACLs section within it.
      * 
      */
     public static Output<GetAclResult> getAcl(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("tailscale:index/getAcl:getAcl", TypeShape.of(GetAclResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The acl data source gets the Tailscale ACL for a tailnet
+     * The acl data source gets the Tailscale policy file for a tailnet
+     * 
+     * &gt; **Note:** The naming of this data source predates Tailscale&#39;s usage of the term &#34;policy file&#34; to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet&#39;s entire policy file and not just the ACLs section within it.
      * 
      */
     public static Output<GetAclResult> getAcl(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("tailscale:index/getAcl:getAcl", TypeShape.of(GetAclResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The acl data source gets the Tailscale ACL for a tailnet
+     * The acl data source gets the Tailscale policy file for a tailnet
+     * 
+     * &gt; **Note:** The naming of this data source predates Tailscale&#39;s usage of the term &#34;policy file&#34; to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet&#39;s entire policy file and not just the ACLs section within it.
      * 
      */
     public static CompletableFuture<GetAclResult> getAclPlain(InvokeArgs args, InvokeOptions options) {

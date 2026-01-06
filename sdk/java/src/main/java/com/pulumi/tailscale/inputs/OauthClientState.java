@@ -32,14 +32,14 @@ public final class OauthClientState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A description of the key consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
+     * A description of the OAuth client consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
      * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
-     * @return A description of the key consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
+     * @return A description of the OAuth client consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
      * 
      */
     public Optional<Output<String>> description() {
@@ -62,14 +62,14 @@ public final class OauthClientState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+     * Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
      * 
      */
     @Import(name="scopes")
     private @Nullable Output<List<String>> scopes;
 
     /**
-     * @return Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+     * @return Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
      * 
      */
     public Optional<Output<List<String>>> scopes() {
@@ -92,14 +92,29 @@ public final class OauthClientState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
+     * The updated timestamp of the key in RFC3339 format
+     * 
+     */
+    @Import(name="updatedAt")
+    private @Nullable Output<String> updatedAt;
+
+    /**
+     * @return The updated timestamp of the key in RFC3339 format
+     * 
+     */
+    public Optional<Output<String>> updatedAt() {
+        return Optional.ofNullable(this.updatedAt);
+    }
+
+    /**
+     * ID of the user who created this key, empty for OAuth clients created by other trust credentials.
      * 
      */
     @Import(name="userId")
     private @Nullable Output<String> userId;
 
     /**
-     * @return ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
+     * @return ID of the user who created this key, empty for OAuth clients created by other trust credentials.
      * 
      */
     public Optional<Output<String>> userId() {
@@ -114,6 +129,7 @@ public final class OauthClientState extends com.pulumi.resources.ResourceArgs {
         this.key = $.key;
         this.scopes = $.scopes;
         this.tags = $.tags;
+        this.updatedAt = $.updatedAt;
         this.userId = $.userId;
     }
 
@@ -157,7 +173,7 @@ public final class OauthClientState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param description A description of the key consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
+         * @param description A description of the OAuth client consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
          * 
          * @return builder
          * 
@@ -168,7 +184,7 @@ public final class OauthClientState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param description A description of the key consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
+         * @param description A description of the OAuth client consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
          * 
          * @return builder
          * 
@@ -199,7 +215,7 @@ public final class OauthClientState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+         * @param scopes Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
          * 
          * @return builder
          * 
@@ -210,7 +226,7 @@ public final class OauthClientState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+         * @param scopes Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
          * 
          * @return builder
          * 
@@ -220,7 +236,7 @@ public final class OauthClientState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+         * @param scopes Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
          * 
          * @return builder
          * 
@@ -261,7 +277,28 @@ public final class OauthClientState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param userId ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
+         * @param updatedAt The updated timestamp of the key in RFC3339 format
+         * 
+         * @return builder
+         * 
+         */
+        public Builder updatedAt(@Nullable Output<String> updatedAt) {
+            $.updatedAt = updatedAt;
+            return this;
+        }
+
+        /**
+         * @param updatedAt The updated timestamp of the key in RFC3339 format
+         * 
+         * @return builder
+         * 
+         */
+        public Builder updatedAt(String updatedAt) {
+            return updatedAt(Output.of(updatedAt));
+        }
+
+        /**
+         * @param userId ID of the user who created this key, empty for OAuth clients created by other trust credentials.
          * 
          * @return builder
          * 
@@ -272,7 +309,7 @@ public final class OauthClientState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param userId ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
+         * @param userId ID of the user who created this key, empty for OAuth clients created by other trust credentials.
          * 
          * @return builder
          * 

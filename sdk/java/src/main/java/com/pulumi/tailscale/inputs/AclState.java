@@ -32,14 +32,14 @@ public final class AclState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+     * If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
      * 
      */
     @Import(name="overwriteExistingContent")
     private @Nullable Output<Boolean> overwriteExistingContent;
 
     /**
-     * @return If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+     * @return If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
      * 
      */
     public Optional<Output<Boolean>> overwriteExistingContent() {
@@ -47,14 +47,14 @@ public final class AclState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+     * If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
      * 
      */
     @Import(name="resetAclOnDestroy")
     private @Nullable Output<Boolean> resetAclOnDestroy;
 
     /**
-     * @return If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+     * @return If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
      * 
      */
     public Optional<Output<Boolean>> resetAclOnDestroy() {
@@ -109,7 +109,7 @@ public final class AclState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param overwriteExistingContent If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+         * @param overwriteExistingContent If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
          * 
          * @return builder
          * 
@@ -120,7 +120,7 @@ public final class AclState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param overwriteExistingContent If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+         * @param overwriteExistingContent If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
          * 
          * @return builder
          * 
@@ -130,7 +130,7 @@ public final class AclState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param resetAclOnDestroy If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+         * @param resetAclOnDestroy If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
          * 
          * @return builder
          * 
@@ -141,7 +141,7 @@ public final class AclState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param resetAclOnDestroy If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+         * @param resetAclOnDestroy If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
          * 
          * @return builder
          * 

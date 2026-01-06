@@ -24,8 +24,8 @@ class OauthClientArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a OauthClient resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
-        :param pulumi.Input[_builtins.str] description: A description of the key consisting of alphanumeric characters. Defaults to `""`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
+        :param pulumi.Input[_builtins.str] description: A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "auth_keys".
         """
         pulumi.set(__self__, "scopes", scopes)
@@ -38,7 +38,7 @@ class OauthClientArgs:
     @pulumi.getter
     def scopes(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
         """
-        Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+        Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
         """
         return pulumi.get(self, "scopes")
 
@@ -50,7 +50,7 @@ class OauthClientArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        A description of the key consisting of alphanumeric characters. Defaults to `""`.
+        A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
         """
         return pulumi.get(self, "description")
 
@@ -79,15 +79,17 @@ class _OauthClientState:
                  key: Optional[pulumi.Input[_builtins.str]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OauthClient resources.
         :param pulumi.Input[_builtins.str] created_at: The creation timestamp of the key in RFC3339 format
-        :param pulumi.Input[_builtins.str] description: A description of the key consisting of alphanumeric characters. Defaults to `""`.
+        :param pulumi.Input[_builtins.str] description: A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
         :param pulumi.Input[_builtins.str] key: The client secret, also known as the key. Used with the client ID to generate access tokens.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "auth_keys".
-        :param pulumi.Input[_builtins.str] user_id: ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
+        :param pulumi.Input[_builtins.str] updated_at: The updated timestamp of the key in RFC3339 format
+        :param pulumi.Input[_builtins.str] user_id: ID of the user who created this key, empty for OAuth clients created by other trust credentials.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -99,6 +101,8 @@ class _OauthClientState:
             pulumi.set(__self__, "scopes", scopes)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
         if user_id is not None:
             pulumi.set(__self__, "user_id", user_id)
 
@@ -118,7 +122,7 @@ class _OauthClientState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        A description of the key consisting of alphanumeric characters. Defaults to `""`.
+        A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
         """
         return pulumi.get(self, "description")
 
@@ -142,7 +146,7 @@ class _OauthClientState:
     @pulumi.getter
     def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+        Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
         """
         return pulumi.get(self, "scopes")
 
@@ -163,10 +167,22 @@ class _OauthClientState:
         pulumi.set(self, "tags", value)
 
     @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The updated timestamp of the key in RFC3339 format
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "updated_at", value)
+
+    @_builtins.property
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
+        ID of the user who created this key, empty for OAuth clients created by other trust credentials.
         """
         return pulumi.get(self, "user_id")
 
@@ -212,8 +228,8 @@ class OauthClient(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] description: A description of the key consisting of alphanumeric characters. Defaults to `""`.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+        :param pulumi.Input[_builtins.str] description: A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "auth_keys".
         """
         ...
@@ -281,6 +297,7 @@ class OauthClient(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["created_at"] = None
             __props__.__dict__["key"] = None
+            __props__.__dict__["updated_at"] = None
             __props__.__dict__["user_id"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["key"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -299,6 +316,7 @@ class OauthClient(pulumi.CustomResource):
             key: Optional[pulumi.Input[_builtins.str]] = None,
             scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
             user_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'OauthClient':
         """
         Get an existing OauthClient resource's state with the given name, id, and optional extra
@@ -308,11 +326,12 @@ class OauthClient(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] created_at: The creation timestamp of the key in RFC3339 format
-        :param pulumi.Input[_builtins.str] description: A description of the key consisting of alphanumeric characters. Defaults to `""`.
+        :param pulumi.Input[_builtins.str] description: A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
         :param pulumi.Input[_builtins.str] key: The client secret, also known as the key. Used with the client ID to generate access tokens.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "auth_keys".
-        :param pulumi.Input[_builtins.str] user_id: ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
+        :param pulumi.Input[_builtins.str] updated_at: The updated timestamp of the key in RFC3339 format
+        :param pulumi.Input[_builtins.str] user_id: ID of the user who created this key, empty for OAuth clients created by other trust credentials.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -323,6 +342,7 @@ class OauthClient(pulumi.CustomResource):
         __props__.__dict__["key"] = key
         __props__.__dict__["scopes"] = scopes
         __props__.__dict__["tags"] = tags
+        __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["user_id"] = user_id
         return OauthClient(resource_name, opts=opts, __props__=__props__)
 
@@ -338,7 +358,7 @@ class OauthClient(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        A description of the key consisting of alphanumeric characters. Defaults to `""`.
+        A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
         """
         return pulumi.get(self, "description")
 
@@ -354,7 +374,7 @@ class OauthClient(pulumi.CustomResource):
     @pulumi.getter
     def scopes(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+        Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
         """
         return pulumi.get(self, "scopes")
 
@@ -367,10 +387,18 @@ class OauthClient(pulumi.CustomResource):
         return pulumi.get(self, "tags")
 
     @_builtins.property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> pulumi.Output[_builtins.str]:
+        """
+        The updated timestamp of the key in RFC3339 format
+        """
+        return pulumi.get(self, "updated_at")
+
+    @_builtins.property
     @pulumi.getter(name="userId")
     def user_id(self) -> pulumi.Output[_builtins.str]:
         """
-        ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
+        ID of the user who created this key, empty for OAuth clients created by other trust credentials.
         """
         return pulumi.get(self, "user_id")
 

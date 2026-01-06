@@ -5,7 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The acl data source gets the Tailscale ACL for a tailnet
+ * The acl data source gets the Tailscale policy file for a tailnet
+ *
+ * > **Note:** The naming of this data source predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet's entire policy file and not just the ACLs section within it.
  */
 export function getAcl(opts?: pulumi.InvokeOptions): Promise<GetAclResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -31,7 +33,9 @@ export interface GetAclResult {
     readonly json: string;
 }
 /**
- * The acl data source gets the Tailscale ACL for a tailnet
+ * The acl data source gets the Tailscale policy file for a tailnet
+ *
+ * > **Note:** The naming of this data source predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet's entire policy file and not just the ACLs section within it.
  */
 export function getAclOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAclResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

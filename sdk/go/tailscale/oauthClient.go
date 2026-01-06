@@ -60,15 +60,17 @@ type OauthClient struct {
 
 	// The creation timestamp of the key in RFC3339 format
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// A description of the key consisting of alphanumeric characters. Defaults to `""`.
+	// A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The client secret, also known as the key. Used with the client ID to generate access tokens.
 	Key pulumi.StringOutput `pulumi:"key"`
-	// Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+	// Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
 	Scopes pulumi.StringArrayOutput `pulumi:"scopes"`
 	// A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "authKeys".
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
+	// The updated timestamp of the key in RFC3339 format
+	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
+	// ID of the user who created this key, empty for OAuth clients created by other trust credentials.
 	UserId pulumi.StringOutput `pulumi:"userId"`
 }
 
@@ -111,30 +113,34 @@ func GetOauthClient(ctx *pulumi.Context,
 type oauthClientState struct {
 	// The creation timestamp of the key in RFC3339 format
 	CreatedAt *string `pulumi:"createdAt"`
-	// A description of the key consisting of alphanumeric characters. Defaults to `""`.
+	// A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
 	Description *string `pulumi:"description"`
 	// The client secret, also known as the key. Used with the client ID to generate access tokens.
 	Key *string `pulumi:"key"`
-	// Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+	// Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
 	Scopes []string `pulumi:"scopes"`
 	// A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "authKeys".
 	Tags []string `pulumi:"tags"`
-	// ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
+	// The updated timestamp of the key in RFC3339 format
+	UpdatedAt *string `pulumi:"updatedAt"`
+	// ID of the user who created this key, empty for OAuth clients created by other trust credentials.
 	UserId *string `pulumi:"userId"`
 }
 
 type OauthClientState struct {
 	// The creation timestamp of the key in RFC3339 format
 	CreatedAt pulumi.StringPtrInput
-	// A description of the key consisting of alphanumeric characters. Defaults to `""`.
+	// A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
 	Description pulumi.StringPtrInput
 	// The client secret, also known as the key. Used with the client ID to generate access tokens.
 	Key pulumi.StringPtrInput
-	// Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+	// Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
 	Scopes pulumi.StringArrayInput
 	// A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "authKeys".
 	Tags pulumi.StringArrayInput
-	// ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
+	// The updated timestamp of the key in RFC3339 format
+	UpdatedAt pulumi.StringPtrInput
+	// ID of the user who created this key, empty for OAuth clients created by other trust credentials.
 	UserId pulumi.StringPtrInput
 }
 
@@ -143,9 +149,9 @@ func (OauthClientState) ElementType() reflect.Type {
 }
 
 type oauthClientArgs struct {
-	// A description of the key consisting of alphanumeric characters. Defaults to `""`.
+	// A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
 	Description *string `pulumi:"description"`
-	// Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+	// Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
 	Scopes []string `pulumi:"scopes"`
 	// A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "authKeys".
 	Tags []string `pulumi:"tags"`
@@ -153,9 +159,9 @@ type oauthClientArgs struct {
 
 // The set of arguments for constructing a OauthClient resource.
 type OauthClientArgs struct {
-	// A description of the key consisting of alphanumeric characters. Defaults to `""`.
+	// A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
 	Description pulumi.StringPtrInput
-	// Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+	// Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
 	Scopes pulumi.StringArrayInput
 	// A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "authKeys".
 	Tags pulumi.StringArrayInput
@@ -253,7 +259,7 @@ func (o OauthClientOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *OauthClient) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// A description of the key consisting of alphanumeric characters. Defaults to `""`.
+// A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
 func (o OauthClientOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OauthClient) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
@@ -263,7 +269,7 @@ func (o OauthClientOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v *OauthClient) pulumi.StringOutput { return v.Key }).(pulumi.StringOutput)
 }
 
-// Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+// Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
 func (o OauthClientOutput) Scopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *OauthClient) pulumi.StringArrayOutput { return v.Scopes }).(pulumi.StringArrayOutput)
 }
@@ -273,7 +279,12 @@ func (o OauthClientOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *OauthClient) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
+// The updated timestamp of the key in RFC3339 format
+func (o OauthClientOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *OauthClient) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// ID of the user who created this key, empty for OAuth clients created by other trust credentials.
 func (o OauthClientOutput) UserId() pulumi.StringOutput {
 	return o.ApplyT(func(v *OauthClient) pulumi.StringOutput { return v.UserId }).(pulumi.StringOutput)
 }

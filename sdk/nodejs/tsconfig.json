@@ -27,6 +27,7 @@
         "dnsPreferences.ts",
         "dnsSearchPaths.ts",
         "dnsSplitNameservers.ts",
+        "federatedIdentity.ts",
         "get4Via6.ts",
         "getAcl.ts",
         "getDevice.ts",

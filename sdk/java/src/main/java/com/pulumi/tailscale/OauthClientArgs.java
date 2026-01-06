@@ -18,14 +18,14 @@ public final class OauthClientArgs extends com.pulumi.resources.ResourceArgs {
     public static final OauthClientArgs Empty = new OauthClientArgs();
 
     /**
-     * A description of the key consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
+     * A description of the OAuth client consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
      * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
-     * @return A description of the key consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
+     * @return A description of the OAuth client consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
      * 
      */
     public Optional<Output<String>> description() {
@@ -33,14 +33,14 @@ public final class OauthClientArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+     * Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
      * 
      */
     @Import(name="scopes", required=true)
     private Output<List<String>> scopes;
 
     /**
-     * @return Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+     * @return Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
      * 
      */
     public Output<List<String>> scopes() {
@@ -89,7 +89,7 @@ public final class OauthClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param description A description of the key consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
+         * @param description A description of the OAuth client consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
          * 
          * @return builder
          * 
@@ -100,7 +100,7 @@ public final class OauthClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param description A description of the key consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
+         * @param description A description of the OAuth client consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
          * 
          * @return builder
          * 
@@ -110,7 +110,7 @@ public final class OauthClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+         * @param scopes Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
          * 
          * @return builder
          * 
@@ -121,7 +121,7 @@ public final class OauthClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+         * @param scopes Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
          * 
          * @return builder
          * 
@@ -131,7 +131,7 @@ public final class OauthClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+         * @param scopes Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
          * 
          * @return builder
          * 
