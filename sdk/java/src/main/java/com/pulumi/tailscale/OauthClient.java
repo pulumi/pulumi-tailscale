@@ -81,14 +81,14 @@ public class OauthClient extends com.pulumi.resources.CustomResource {
         return this.createdAt;
     }
     /**
-     * A description of the key consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
+     * A description of the OAuth client consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
-     * @return A description of the key consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
+     * @return A description of the OAuth client consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
      * 
      */
     public Output<Optional<String>> description() {
@@ -109,14 +109,14 @@ public class OauthClient extends com.pulumi.resources.CustomResource {
         return this.key;
     }
     /**
-     * Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+     * Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
      * 
      */
     @Export(name="scopes", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> scopes;
 
     /**
-     * @return Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+     * @return Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
      * 
      */
     public Output<List<String>> scopes() {
@@ -137,14 +137,28 @@ public class OauthClient extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.tags);
     }
     /**
-     * ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
+     * The updated timestamp of the key in RFC3339 format
+     * 
+     */
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
+    private Output<String> updatedAt;
+
+    /**
+     * @return The updated timestamp of the key in RFC3339 format
+     * 
+     */
+    public Output<String> updatedAt() {
+        return this.updatedAt;
+    }
+    /**
+     * ID of the user who created this key, empty for OAuth clients created by other trust credentials.
      * 
      */
     @Export(name="userId", refs={String.class}, tree="[0]")
     private Output<String> userId;
 
     /**
-     * @return ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
+     * @return ID of the user who created this key, empty for OAuth clients created by other trust credentials.
      * 
      */
     public Output<String> userId() {

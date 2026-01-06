@@ -10,9 +10,11 @@ using Pulumi.Serialization;
 namespace Pulumi.Tailscale
 {
     /// <summary>
-    /// The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
+    /// The acl resource allows you to configure a Tailscale policy file. See https://tailscale.com/kb/1395/tailnet-policy-file for more information. Note that this resource will completely overwrite existing policy file contents for a given tailnet.
     /// 
-    /// If tests are defined in the ACL (the top-level "tests" section), ACL validation will occur before creation and update operations are applied.
+    /// If tests are defined in the policy file (the top-level "tests" section), policy file validation will occur before creation and update operations are applied.
+    /// 
+    /// &gt; **Note:** The naming of this resource predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This resource controls a tailnet's entire policy file and not just the ACLs section within it.
     /// 
     /// ## Example Usage
     /// 
@@ -29,18 +31,21 @@ namespace Pulumi.Tailscale
     ///     {
     ///         AclJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             ["acls"] = new[]
+    ///             ["grants"] = new[]
     ///             {
     ///                 new Dictionary&lt;string, object?&gt;
     ///                 {
-    ///                     ["action"] = "accept",
-    ///                     ["users"] = new[]
+    ///                     ["src"] = new[]
     ///                     {
     ///                         "*",
     ///                     },
-    ///                     ["ports"] = new[]
+    ///                     ["dst"] = new[]
     ///                     {
-    ///                         "*:*",
+    ///                         "*",
+    ///                     },
+    ///                     ["ip"] = new[]
+    ///                     {
+    ///                         "*",
     ///                     },
     ///                 },
     ///             },
@@ -51,12 +56,12 @@ namespace Pulumi.Tailscale
     ///     {
     ///         AclJson = @"  {
     ///     // Comments in HuJSON policy are preserved when the policy is applied.
-    ///     \""acls\"": [
+    ///     \""grants\"": [
     ///       {
     ///         // Allow all users access to all ports.
-    ///         action = \""accept\"",
-    ///         users  = [\""*\""],
-    ///         ports  = [\""*:*\""],
+    ///         \""src\"" = [\""*\""],
+    ///         \""dst\"" = [\""*\""],
+    ///         \""ip\""  = [\""*\""],
     ///       },
     ///     ],
     ///   }
@@ -67,8 +72,6 @@ namespace Pulumi.Tailscale
     /// ```
     /// 
     /// ## Import
-    /// 
-    /// The `pulumi import` command can be used, for example:
     /// 
     /// ID doesn't matter.
     /// 
@@ -86,13 +89,13 @@ namespace Pulumi.Tailscale
         public Output<string> AclJson { get; private set; } = null!;
 
         /// <summary>
-        /// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+        /// If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
         /// </summary>
         [Output("overwriteExistingContent")]
         public Output<bool?> OverwriteExistingContent { get; private set; } = null!;
 
         /// <summary>
-        /// If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+        /// If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
         /// </summary>
         [Output("resetAclOnDestroy")]
         public Output<bool?> ResetAclOnDestroy { get; private set; } = null!;
@@ -150,13 +153,13 @@ namespace Pulumi.Tailscale
         public Input<string> AclJson { get; set; } = null!;
 
         /// <summary>
-        /// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+        /// If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
         /// </summary>
         [Input("overwriteExistingContent")]
         public Input<bool>? OverwriteExistingContent { get; set; }
 
         /// <summary>
-        /// If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+        /// If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
         /// </summary>
         [Input("resetAclOnDestroy")]
         public Input<bool>? ResetAclOnDestroy { get; set; }
@@ -176,13 +179,13 @@ namespace Pulumi.Tailscale
         public Input<string>? AclJson { get; set; }
 
         /// <summary>
-        /// If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+        /// If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
         /// </summary>
         [Input("overwriteExistingContent")]
         public Input<bool>? OverwriteExistingContent { get; set; }
 
         /// <summary>
-        /// If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+        /// If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
         /// </summary>
         [Input("resetAclOnDestroy")]
         public Input<bool>? ResetAclOnDestroy { get; set; }

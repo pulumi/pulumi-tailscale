@@ -25,8 +25,8 @@ class AclArgs:
         """
         The set of arguments for constructing a Acl resource.
         :param pulumi.Input[_builtins.str] acl: The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
-        :param pulumi.Input[_builtins.bool] overwrite_existing_content: If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
-        :param pulumi.Input[_builtins.bool] reset_acl_on_destroy: If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+        :param pulumi.Input[_builtins.bool] overwrite_existing_content: If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
+        :param pulumi.Input[_builtins.bool] reset_acl_on_destroy: If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
         """
         pulumi.set(__self__, "acl", acl)
         if overwrite_existing_content is not None:
@@ -50,7 +50,7 @@ class AclArgs:
     @pulumi.getter(name="overwriteExistingContent")
     def overwrite_existing_content(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+        If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
         """
         return pulumi.get(self, "overwrite_existing_content")
 
@@ -62,7 +62,7 @@ class AclArgs:
     @pulumi.getter(name="resetAclOnDestroy")
     def reset_acl_on_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+        If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
         """
         return pulumi.get(self, "reset_acl_on_destroy")
 
@@ -80,8 +80,8 @@ class _AclState:
         """
         Input properties used for looking up and filtering Acl resources.
         :param pulumi.Input[_builtins.str] acl: The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
-        :param pulumi.Input[_builtins.bool] overwrite_existing_content: If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
-        :param pulumi.Input[_builtins.bool] reset_acl_on_destroy: If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+        :param pulumi.Input[_builtins.bool] overwrite_existing_content: If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
+        :param pulumi.Input[_builtins.bool] reset_acl_on_destroy: If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
         """
         if acl is not None:
             pulumi.set(__self__, "acl", acl)
@@ -106,7 +106,7 @@ class _AclState:
     @pulumi.getter(name="overwriteExistingContent")
     def overwrite_existing_content(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+        If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
         """
         return pulumi.get(self, "overwrite_existing_content")
 
@@ -118,7 +118,7 @@ class _AclState:
     @pulumi.getter(name="resetAclOnDestroy")
     def reset_acl_on_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+        If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
         """
         return pulumi.get(self, "reset_acl_on_destroy")
 
@@ -138,9 +138,11 @@ class Acl(pulumi.CustomResource):
                  reset_acl_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
-        The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
+        The acl resource allows you to configure a Tailscale policy file. See https://tailscale.com/kb/1395/tailnet-policy-file for more information. Note that this resource will completely overwrite existing policy file contents for a given tailnet.
 
-        If tests are defined in the ACL (the top-level "tests" section), ACL validation will occur before creation and update operations are applied.
+        If tests are defined in the policy file (the top-level "tests" section), policy file validation will occur before creation and update operations are applied.
+
+        > **Note:** The naming of this resource predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This resource controls a tailnet's entire policy file and not just the ACLs section within it.
 
         ## Example Usage
 
@@ -150,20 +152,20 @@ class Acl(pulumi.CustomResource):
         import pulumi_tailscale as tailscale
 
         as_json = tailscale.Acl("as_json", acl=json.dumps({
-            "acls": [{
-                "action": "accept",
-                "users": ["*"],
-                "ports": ["*:*"],
+            "grants": [{
+                "src": ["*"],
+                "dst": ["*"],
+                "ip": ["*"],
             }],
         }))
         as_hujson = tailscale.Acl("as_hujson", acl=\"\"\"  {
             // Comments in HuJSON policy are preserved when the policy is applied.
-            \\"acls\\": [
+            \\"grants\\": [
               {
                 // Allow all users access to all ports.
-                action = \\"accept\\",
-                users  = [\\"*\\"],
-                ports  = [\\"*:*\\"],
+                \\"src\\" = [\\"*\\"],
+                \\"dst\\" = [\\"*\\"],
+                \\"ip\\"  = [\\"*\\"],
               },
             ],
           }
@@ -171,8 +173,6 @@ class Acl(pulumi.CustomResource):
         ```
 
         ## Import
-
-        The `pulumi import` command can be used, for example:
 
         ID doesn't matter.
 
@@ -183,8 +183,8 @@ class Acl(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] acl: The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
-        :param pulumi.Input[_builtins.bool] overwrite_existing_content: If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
-        :param pulumi.Input[_builtins.bool] reset_acl_on_destroy: If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+        :param pulumi.Input[_builtins.bool] overwrite_existing_content: If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
+        :param pulumi.Input[_builtins.bool] reset_acl_on_destroy: If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
         """
         ...
     @overload
@@ -193,9 +193,11 @@ class Acl(pulumi.CustomResource):
                  args: AclArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
+        The acl resource allows you to configure a Tailscale policy file. See https://tailscale.com/kb/1395/tailnet-policy-file for more information. Note that this resource will completely overwrite existing policy file contents for a given tailnet.
 
-        If tests are defined in the ACL (the top-level "tests" section), ACL validation will occur before creation and update operations are applied.
+        If tests are defined in the policy file (the top-level "tests" section), policy file validation will occur before creation and update operations are applied.
+
+        > **Note:** The naming of this resource predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This resource controls a tailnet's entire policy file and not just the ACLs section within it.
 
         ## Example Usage
 
@@ -205,20 +207,20 @@ class Acl(pulumi.CustomResource):
         import pulumi_tailscale as tailscale
 
         as_json = tailscale.Acl("as_json", acl=json.dumps({
-            "acls": [{
-                "action": "accept",
-                "users": ["*"],
-                "ports": ["*:*"],
+            "grants": [{
+                "src": ["*"],
+                "dst": ["*"],
+                "ip": ["*"],
             }],
         }))
         as_hujson = tailscale.Acl("as_hujson", acl=\"\"\"  {
             // Comments in HuJSON policy are preserved when the policy is applied.
-            \\"acls\\": [
+            \\"grants\\": [
               {
                 // Allow all users access to all ports.
-                action = \\"accept\\",
-                users  = [\\"*\\"],
-                ports  = [\\"*:*\\"],
+                \\"src\\" = [\\"*\\"],
+                \\"dst\\" = [\\"*\\"],
+                \\"ip\\"  = [\\"*\\"],
               },
             ],
           }
@@ -226,8 +228,6 @@ class Acl(pulumi.CustomResource):
         ```
 
         ## Import
-
-        The `pulumi import` command can be used, for example:
 
         ID doesn't matter.
 
@@ -288,8 +288,8 @@ class Acl(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] acl: The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
-        :param pulumi.Input[_builtins.bool] overwrite_existing_content: If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
-        :param pulumi.Input[_builtins.bool] reset_acl_on_destroy: If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+        :param pulumi.Input[_builtins.bool] overwrite_existing_content: If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
+        :param pulumi.Input[_builtins.bool] reset_acl_on_destroy: If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -312,7 +312,7 @@ class Acl(pulumi.CustomResource):
     @pulumi.getter(name="overwriteExistingContent")
     def overwrite_existing_content(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+        If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
         """
         return pulumi.get(self, "overwrite_existing_content")
 
@@ -320,7 +320,7 @@ class Acl(pulumi.CustomResource):
     @pulumi.getter(name="resetAclOnDestroy")
     def reset_acl_on_destroy(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+        If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
         """
         return pulumi.get(self, "reset_acl_on_destroy")
 

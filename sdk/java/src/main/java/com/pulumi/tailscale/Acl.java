@@ -16,9 +16,11 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
+ * The acl resource allows you to configure a Tailscale policy file. See https://tailscale.com/kb/1395/tailnet-policy-file for more information. Note that this resource will completely overwrite existing policy file contents for a given tailnet.
  * 
- * If tests are defined in the ACL (the top-level &#34;tests&#34; section), ACL validation will occur before creation and update operations are applied.
+ * If tests are defined in the policy file (the top-level &#34;tests&#34; section), policy file validation will occur before creation and update operations are applied.
+ * 
+ * &gt; **Note:** The naming of this resource predates Tailscale&#39;s usage of the term &#34;policy file&#34; to refer to the centralized configuration file for a tailnet. This resource controls a tailnet&#39;s entire policy file and not just the ACLs section within it.
  * 
  * ## Example Usage
  * 
@@ -48,10 +50,10 @@ import javax.annotation.Nullable;
  *         var asJson = new Acl("asJson", AclArgs.builder()
  *             .acl(serializeJson(
  *                 jsonObject(
- *                     jsonProperty("acls", jsonArray(jsonObject(
- *                         jsonProperty("action", "accept"),
- *                         jsonProperty("users", jsonArray("*")),
- *                         jsonProperty("ports", jsonArray("*:*"))
+ *                     jsonProperty("grants", jsonArray(jsonObject(
+ *                         jsonProperty("src", jsonArray("*")),
+ *                         jsonProperty("dst", jsonArray("*")),
+ *                         jsonProperty("ip", jsonArray("*"))
  *                     )))
  *                 )))
  *             .build());
@@ -60,12 +62,12 @@ import javax.annotation.Nullable;
  *             .acl("""
  *   {
  *     // Comments in HuJSON policy are preserved when the policy is applied.
- *     \"acls\": [
+ *     \"grants\": [
  *       {
  *         // Allow all users access to all ports.
- *         action = \"accept\",
- *         users  = [\"*\"],
- *         ports  = [\"*:*\"],
+ *         \"src\" = [\"*\"],
+ *         \"dst\" = [\"*\"],
+ *         \"ip\"  = [\"*\"],
  *       },
  *     ],
  *   }
@@ -78,8 +80,6 @@ import javax.annotation.Nullable;
  * </pre>
  * 
  * ## Import
- * 
- * The `pulumi import` command can be used, for example:
  * 
  * ID doesn&#39;t matter.
  * 
@@ -105,28 +105,28 @@ public class Acl extends com.pulumi.resources.CustomResource {
         return this.acl;
     }
     /**
-     * If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+     * If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
      * 
      */
     @Export(name="overwriteExistingContent", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> overwriteExistingContent;
 
     /**
-     * @return If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+     * @return If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
      * 
      */
     public Output<Optional<Boolean>> overwriteExistingContent() {
         return Codegen.optional(this.overwriteExistingContent);
     }
     /**
-     * If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+     * If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
      * 
      */
     @Export(name="resetAclOnDestroy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> resetAclOnDestroy;
 
     /**
-     * @return If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+     * @return If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
      * 
      */
     public Output<Optional<Boolean>> resetAclOnDestroy() {

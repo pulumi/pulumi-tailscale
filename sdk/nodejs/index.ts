@@ -65,6 +65,11 @@ export type DnsSplitNameservers = import("./dnsSplitNameservers").DnsSplitNamese
 export const DnsSplitNameservers: typeof import("./dnsSplitNameservers").DnsSplitNameservers = null as any;
 utilities.lazyLoad(exports, ["DnsSplitNameservers"], () => require("./dnsSplitNameservers"));
 
+export { FederatedIdentityArgs, FederatedIdentityState } from "./federatedIdentity";
+export type FederatedIdentity = import("./federatedIdentity").FederatedIdentity;
+export const FederatedIdentity: typeof import("./federatedIdentity").FederatedIdentity = null as any;
+utilities.lazyLoad(exports, ["FederatedIdentity"], () => require("./federatedIdentity"));
+
 export { Get4Via6Args, Get4Via6Result, Get4Via6OutputArgs } from "./get4Via6";
 export const get4Via6: typeof import("./get4Via6").get4Via6 = null as any;
 export const get4Via6Output: typeof import("./get4Via6").get4Via6Output = null as any;
@@ -166,6 +171,8 @@ const _module = {
                 return new DnsSearchPaths(name, <any>undefined, { urn })
             case "tailscale:index/dnsSplitNameservers:DnsSplitNameservers":
                 return new DnsSplitNameservers(name, <any>undefined, { urn })
+            case "tailscale:index/federatedIdentity:FederatedIdentity":
+                return new FederatedIdentity(name, <any>undefined, { urn })
             case "tailscale:index/logstreamConfiguration:LogstreamConfiguration":
                 return new LogstreamConfiguration(name, <any>undefined, { urn })
             case "tailscale:index/oauthClient:OauthClient":
@@ -195,6 +202,7 @@ pulumi.runtime.registerResourceModule("tailscale", "index/dnsNameservers", _modu
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsPreferences", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsSearchPaths", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/dnsSplitNameservers", _module)
+pulumi.runtime.registerResourceModule("tailscale", "index/federatedIdentity", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/logstreamConfiguration", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/oauthClient", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/postureIntegration", _module)

@@ -12,19 +12,25 @@ namespace Pulumi.Tailscale
     public static class GetAcl
     {
         /// <summary>
-        /// The acl data source gets the Tailscale ACL for a tailnet
+        /// The acl data source gets the Tailscale policy file for a tailnet
+        /// 
+        /// &gt; **Note:** The naming of this data source predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet's entire policy file and not just the ACLs section within it.
         /// </summary>
         public static Task<GetAclResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAclResult>("tailscale:index/getAcl:getAcl", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// The acl data source gets the Tailscale ACL for a tailnet
+        /// The acl data source gets the Tailscale policy file for a tailnet
+        /// 
+        /// &gt; **Note:** The naming of this data source predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet's entire policy file and not just the ACLs section within it.
         /// </summary>
         public static Output<GetAclResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAclResult>("tailscale:index/getAcl:getAcl", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// The acl data source gets the Tailscale ACL for a tailnet
+        /// The acl data source gets the Tailscale policy file for a tailnet
+        /// 
+        /// &gt; **Note:** The naming of this data source predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet's entire policy file and not just the ACLs section within it.
         /// </summary>
         public static Output<GetAclResult> Invoke(InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetAclResult>("tailscale:index/getAcl:getAcl", InvokeArgs.Empty, options.WithDefaults());

@@ -18,6 +18,7 @@ from .dns_nameservers import *
 from .dns_preferences import *
 from .dns_search_paths import *
 from .dns_split_nameservers import *
+from .federated_identity import *
 from .get4_via6 import *
 from .get_acl import *
 from .get_device import *
@@ -138,6 +139,14 @@ _utilities.register(
   "fqn": "pulumi_tailscale",
   "classes": {
    "tailscale:index/dnsSplitNameservers:DnsSplitNameservers": "DnsSplitNameservers"
+  }
+ },
+ {
+  "pkg": "tailscale",
+  "mod": "index/federatedIdentity",
+  "fqn": "pulumi_tailscale",
+  "classes": {
+   "tailscale:index/federatedIdentity:FederatedIdentity": "FederatedIdentity"
   }
  },
  {

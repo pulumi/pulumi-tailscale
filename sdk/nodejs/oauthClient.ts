@@ -63,7 +63,7 @@ export class OauthClient extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
-     * A description of the key consisting of alphanumeric characters. Defaults to `""`.
+     * A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
      */
     declare public readonly description: pulumi.Output<string | undefined>;
     /**
@@ -71,7 +71,7 @@ export class OauthClient extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly key: pulumi.Output<string>;
     /**
-     * Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+     * Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
      */
     declare public readonly scopes: pulumi.Output<string[]>;
     /**
@@ -79,7 +79,11 @@ export class OauthClient extends pulumi.CustomResource {
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
-     * ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
+     * The updated timestamp of the key in RFC3339 format
+     */
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
+    /**
+     * ID of the user who created this key, empty for OAuth clients created by other trust credentials.
      */
     declare public /*out*/ readonly userId: pulumi.Output<string>;
 
@@ -101,6 +105,7 @@ export class OauthClient extends pulumi.CustomResource {
             resourceInputs["key"] = state?.key;
             resourceInputs["scopes"] = state?.scopes;
             resourceInputs["tags"] = state?.tags;
+            resourceInputs["updatedAt"] = state?.updatedAt;
             resourceInputs["userId"] = state?.userId;
         } else {
             const args = argsOrState as OauthClientArgs | undefined;
@@ -112,6 +117,7 @@ export class OauthClient extends pulumi.CustomResource {
             resourceInputs["tags"] = args?.tags;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["key"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["userId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -130,7 +136,7 @@ export interface OauthClientState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * A description of the key consisting of alphanumeric characters. Defaults to `""`.
+     * A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
      */
     description?: pulumi.Input<string>;
     /**
@@ -138,7 +144,7 @@ export interface OauthClientState {
      */
     key?: pulumi.Input<string>;
     /**
-     * Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+     * Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
      */
     scopes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -146,7 +152,11 @@ export interface OauthClientState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
+     * The updated timestamp of the key in RFC3339 format
+     */
+    updatedAt?: pulumi.Input<string>;
+    /**
+     * ID of the user who created this key, empty for OAuth clients created by other trust credentials.
      */
     userId?: pulumi.Input<string>;
 }
@@ -156,11 +166,11 @@ export interface OauthClientState {
  */
 export interface OauthClientArgs {
     /**
-     * A description of the key consisting of alphanumeric characters. Defaults to `""`.
+     * A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
      */
     description?: pulumi.Input<string>;
     /**
-     * Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+     * Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
      */
     scopes: pulumi.Input<pulumi.Input<string>[]>;
     /**

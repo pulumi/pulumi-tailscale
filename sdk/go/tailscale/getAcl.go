@@ -11,7 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The acl data source gets the Tailscale ACL for a tailnet
+// The acl data source gets the Tailscale policy file for a tailnet
+//
+// > **Note:** The naming of this data source predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet's entire policy file and not just the ACLs section within it.
 func LookupAcl(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*LookupAclResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAclResult

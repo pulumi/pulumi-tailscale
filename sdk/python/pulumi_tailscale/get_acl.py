@@ -75,7 +75,9 @@ class AwaitableGetAclResult(GetAclResult):
 
 def get_acl(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAclResult:
     """
-    The acl data source gets the Tailscale ACL for a tailnet
+    The acl data source gets the Tailscale policy file for a tailnet
+
+    > **Note:** The naming of this data source predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet's entire policy file and not just the ACLs section within it.
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -87,7 +89,9 @@ def get_acl(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAclResul
         json=pulumi.get(__ret__, 'json'))
 def get_acl_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAclResult]:
     """
-    The acl data source gets the Tailscale ACL for a tailnet
+    The acl data source gets the Tailscale policy file for a tailnet
+
+    > **Note:** The naming of this data source predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet's entire policy file and not just the ACLs section within it.
     """
     __args__ = dict()
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

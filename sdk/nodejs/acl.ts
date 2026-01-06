@@ -5,9 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.
+ * The acl resource allows you to configure a Tailscale policy file. See https://tailscale.com/kb/1395/tailnet-policy-file for more information. Note that this resource will completely overwrite existing policy file contents for a given tailnet.
  *
- * If tests are defined in the ACL (the top-level "tests" section), ACL validation will occur before creation and update operations are applied.
+ * If tests are defined in the policy file (the top-level "tests" section), policy file validation will occur before creation and update operations are applied.
+ *
+ * > **Note:** The naming of this resource predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This resource controls a tailnet's entire policy file and not just the ACLs section within it.
  *
  * ## Example Usage
  *
@@ -16,20 +18,20 @@ import * as utilities from "./utilities";
  * import * as tailscale from "@pulumi/tailscale";
  *
  * const asJson = new tailscale.Acl("as_json", {acl: JSON.stringify({
- *     acls: [{
- *         action: "accept",
- *         users: ["*"],
- *         ports: ["*:*"],
+ *     grants: [{
+ *         src: ["*"],
+ *         dst: ["*"],
+ *         ip: ["*"],
  *     }],
  * })});
  * const asHujson = new tailscale.Acl("as_hujson", {acl: `  {
  *     // Comments in HuJSON policy are preserved when the policy is applied.
- *     \\"acls\\": [
+ *     \\"grants\\": [
  *       {
  *         // Allow all users access to all ports.
- *         action = \\"accept\\",
- *         users  = [\\"*\\"],
- *         ports  = [\\"*:*\\"],
+ *         \\"src\\" = [\\"*\\"],
+ *         \\"dst\\" = [\\"*\\"],
+ *         \\"ip\\"  = [\\"*\\"],
  *       },
  *     ],
  *   }
@@ -37,8 +39,6 @@ import * as utilities from "./utilities";
  * ```
  *
  * ## Import
- *
- * The `pulumi import` command can be used, for example:
  *
  * ID doesn't matter.
  *
@@ -79,11 +79,11 @@ export class Acl extends pulumi.CustomResource {
      */
     declare public readonly acl: pulumi.Output<string>;
     /**
-     * If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+     * If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
      */
     declare public readonly overwriteExistingContent: pulumi.Output<boolean | undefined>;
     /**
-     * If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+     * If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
      */
     declare public readonly resetAclOnDestroy: pulumi.Output<boolean | undefined>;
 
@@ -126,11 +126,11 @@ export interface AclState {
      */
     acl?: pulumi.Input<string>;
     /**
-     * If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+     * If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
      */
     overwriteExistingContent?: pulumi.Input<boolean>;
     /**
-     * If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+     * If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
      */
     resetAclOnDestroy?: pulumi.Input<boolean>;
 }
@@ -144,11 +144,11 @@ export interface AclArgs {
      */
     acl: pulumi.Input<string>;
     /**
-     * If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten
+     * If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
      */
     overwriteExistingContent?: pulumi.Input<boolean>;
     /**
-     * If true, will reset the ACL for the Tailnet to the default when this resource is destroyed
+     * If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
      */
     resetAclOnDestroy?: pulumi.Input<boolean>;
 }

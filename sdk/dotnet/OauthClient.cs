@@ -58,7 +58,7 @@ namespace Pulumi.Tailscale
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// A description of the key consisting of alphanumeric characters. Defaults to `""`.
+        /// A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -70,7 +70,7 @@ namespace Pulumi.Tailscale
         public Output<string> Key { get; private set; } = null!;
 
         /// <summary>
-        /// Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+        /// Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
         /// </summary>
         [Output("scopes")]
         public Output<ImmutableArray<string>> Scopes { get; private set; } = null!;
@@ -82,7 +82,13 @@ namespace Pulumi.Tailscale
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
+        /// The updated timestamp of the key in RFC3339 format
+        /// </summary>
+        [Output("updatedAt")]
+        public Output<string> UpdatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// ID of the user who created this key, empty for OAuth clients created by other trust credentials.
         /// </summary>
         [Output("userId")]
         public Output<string> UserId { get; private set; } = null!;
@@ -138,7 +144,7 @@ namespace Pulumi.Tailscale
     public sealed class OauthClientArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A description of the key consisting of alphanumeric characters. Defaults to `""`.
+        /// A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -147,7 +153,7 @@ namespace Pulumi.Tailscale
         private InputList<string>? _scopes;
 
         /// <summary>
-        /// Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+        /// Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
         /// </summary>
         public InputList<string> Scopes
         {
@@ -182,7 +188,7 @@ namespace Pulumi.Tailscale
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// A description of the key consisting of alphanumeric characters. Defaults to `""`.
+        /// A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -207,7 +213,7 @@ namespace Pulumi.Tailscale
         private InputList<string>? _scopes;
 
         /// <summary>
-        /// Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.
+        /// Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
         /// </summary>
         public InputList<string> Scopes
         {
@@ -228,7 +234,13 @@ namespace Pulumi.Tailscale
         }
 
         /// <summary>
-        /// ID of the user who created this key, empty for OAuth clients created by other OAuth clients.
+        /// The updated timestamp of the key in RFC3339 format
+        /// </summary>
+        [Input("updatedAt")]
+        public Input<string>? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// ID of the user who created this key, empty for OAuth clients created by other trust credentials.
         /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }

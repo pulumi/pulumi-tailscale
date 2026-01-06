@@ -45,6 +45,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DnsSearchPaths{}
 	case "tailscale:index/dnsSplitNameservers:DnsSplitNameservers":
 		r = &DnsSplitNameservers{}
+	case "tailscale:index/federatedIdentity:FederatedIdentity":
+		r = &FederatedIdentity{}
 	case "tailscale:index/logstreamConfiguration:LogstreamConfiguration":
 		r = &LogstreamConfiguration{}
 	case "tailscale:index/oauthClient:OauthClient":
@@ -146,6 +148,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"tailscale",
 		"index/dnsSplitNameservers",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"tailscale",
+		"index/federatedIdentity",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
