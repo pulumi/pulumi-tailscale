@@ -392,7 +392,7 @@
     },
     "resources": {
         "tailscale:index/acl:Acl": {
-            "description": "The acl resource allows you to configure a Tailscale ACL. See https://tailscale.com/kb/1018/acls for more information. Note that this resource will completely overwrite existing ACL contents for a given tailnet.\n\nIf tests are defined in the ACL (the top-level \"tests\" section), ACL validation will occur before creation and update operations are applied.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst asJson = new tailscale.Acl(\"as_json\", {acl: JSON.stringify({\n    acls: [{\n        action: \"accept\",\n        users: [\"*\"],\n        ports: [\"*:*\"],\n    }],\n})});\nconst asHujson = new tailscale.Acl(\"as_hujson\", {acl: `  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\\\"acls\\\\\": [\n      {\n        // Allow all users access to all ports.\n        action = \\\\\"accept\\\\\",\n        users  = [\\\\\"*\\\\\"],\n        ports  = [\\\\\"*:*\\\\\"],\n      },\n    ],\n  }\n`});\n```\n```python\nimport pulumi\nimport json\nimport pulumi_tailscale as tailscale\n\nas_json = tailscale.Acl(\"as_json\", acl=json.dumps({\n    \"acls\": [{\n        \"action\": \"accept\",\n        \"users\": [\"*\"],\n        \"ports\": [\"*:*\"],\n    }],\n}))\nas_hujson = tailscale.Acl(\"as_hujson\", acl=\"\"\"  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\"acls\\\": [\n      {\n        // Allow all users access to all ports.\n        action = \\\"accept\\\",\n        users  = [\\\"*\\\"],\n        ports  = [\\\"*:*\\\"],\n      },\n    ],\n  }\n\"\"\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var asJson = new Tailscale.Acl(\"as_json\", new()\n    {\n        AclJson = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"acls\"] = new[]\n            {\n                new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"action\"] = \"accept\",\n                    [\"users\"] = new[]\n                    {\n                        \"*\",\n                    },\n                    [\"ports\"] = new[]\n                    {\n                        \"*:*\",\n                    },\n                },\n            },\n        }),\n    });\n\n    var asHujson = new Tailscale.Acl(\"as_hujson\", new()\n    {\n        AclJson = @\"  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\"\"acls\\\"\": [\n      {\n        // Allow all users access to all ports.\n        action = \\\"\"accept\\\"\",\n        users  = [\\\"\"*\\\"\"],\n        ports  = [\\\"\"*:*\\\"\"],\n      },\n    ],\n  }\n\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"acls\": []map[string]interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"action\": \"accept\",\n\t\t\t\t\t\"users\": []string{\n\t\t\t\t\t\t\"*\",\n\t\t\t\t\t},\n\t\t\t\t\t\"ports\": []string{\n\t\t\t\t\t\t\"*:*\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = tailscale.NewAcl(ctx, \"as_json\", \u0026tailscale.AclArgs{\n\t\t\tAcl: pulumi.String(json0),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = tailscale.NewAcl(ctx, \"as_hujson\", \u0026tailscale.AclArgs{\n\t\t\tAcl: pulumi.String(`  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\"acls\\\": [\n      {\n        // Allow all users access to all ports.\n        action = \\\"accept\\\",\n        users  = [\\\"*\\\"],\n        ports  = [\\\"*:*\\\"],\n      },\n    ],\n  }\n`),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.Acl;\nimport com.pulumi.tailscale.AclArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var asJson = new Acl(\"asJson\", AclArgs.builder()\n            .acl(serializeJson(\n                jsonObject(\n                    jsonProperty(\"acls\", jsonArray(jsonObject(\n                        jsonProperty(\"action\", \"accept\"),\n                        jsonProperty(\"users\", jsonArray(\"*\")),\n                        jsonProperty(\"ports\", jsonArray(\"*:*\"))\n                    )))\n                )))\n            .build());\n\n        var asHujson = new Acl(\"asHujson\", AclArgs.builder()\n            .acl(\"\"\"\n  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\"acls\\\": [\n      {\n        // Allow all users access to all ports.\n        action = \\\"accept\\\",\n        users  = [\\\"*\\\"],\n        ports  = [\\\"*:*\\\"],\n      },\n    ],\n  }\n            \"\"\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  asJson:\n    type: tailscale:Acl\n    name: as_json\n    properties:\n      acl:\n        fn::toJSON:\n          acls:\n            - action: accept\n              users:\n                - '*'\n              ports:\n                - '*:*'\n  asHujson:\n    type: tailscale:Acl\n    name: as_hujson\n    properties:\n      acl: |2\n          {\n            // Comments in HuJSON policy are preserved when the policy is applied.\n            \\\"acls\\\": [\n              {\n                // Allow all users access to all ports.\n                action = \\\"accept\\\",\n                users  = [\\\"*\\\"],\n                ports  = [\\\"*:*\\\"],\n              },\n            ],\n          }\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe `pulumi import` command can be used, for example:\n\nID doesn't matter.\n\n```sh\n$ pulumi import tailscale:index/acl:Acl sample_acl acl\n```\n\n",
+            "description": "The acl resource allows you to configure a Tailscale policy file. See https://tailscale.com/kb/1395/tailnet-policy-file for more information. Note that this resource will completely overwrite existing policy file contents for a given tailnet.\n\nIf tests are defined in the policy file (the top-level \"tests\" section), policy file validation will occur before creation and update operations are applied.\n\n\u003e **Note:** The naming of this resource predates Tailscale's usage of the term \"policy file\" to refer to the centralized configuration file for a tailnet. This resource controls a tailnet's entire policy file and not just the ACLs section within it.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst asJson = new tailscale.Acl(\"as_json\", {acl: JSON.stringify({\n    grants: [{\n        src: [\"*\"],\n        dst: [\"*\"],\n        ip: [\"*\"],\n    }],\n})});\nconst asHujson = new tailscale.Acl(\"as_hujson\", {acl: `  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\\\"grants\\\\\": [\n      {\n        // Allow all users access to all ports.\n        \\\\\"src\\\\\" = [\\\\\"*\\\\\"],\n        \\\\\"dst\\\\\" = [\\\\\"*\\\\\"],\n        \\\\\"ip\\\\\"  = [\\\\\"*\\\\\"],\n      },\n    ],\n  }\n`});\n```\n```python\nimport pulumi\nimport json\nimport pulumi_tailscale as tailscale\n\nas_json = tailscale.Acl(\"as_json\", acl=json.dumps({\n    \"grants\": [{\n        \"src\": [\"*\"],\n        \"dst\": [\"*\"],\n        \"ip\": [\"*\"],\n    }],\n}))\nas_hujson = tailscale.Acl(\"as_hujson\", acl=\"\"\"  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\"grants\\\": [\n      {\n        // Allow all users access to all ports.\n        \\\"src\\\" = [\\\"*\\\"],\n        \\\"dst\\\" = [\\\"*\\\"],\n        \\\"ip\\\"  = [\\\"*\\\"],\n      },\n    ],\n  }\n\"\"\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var asJson = new Tailscale.Acl(\"as_json\", new()\n    {\n        AclJson = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"grants\"] = new[]\n            {\n                new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"src\"] = new[]\n                    {\n                        \"*\",\n                    },\n                    [\"dst\"] = new[]\n                    {\n                        \"*\",\n                    },\n                    [\"ip\"] = new[]\n                    {\n                        \"*\",\n                    },\n                },\n            },\n        }),\n    });\n\n    var asHujson = new Tailscale.Acl(\"as_hujson\", new()\n    {\n        AclJson = @\"  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\"\"grants\\\"\": [\n      {\n        // Allow all users access to all ports.\n        \\\"\"src\\\"\" = [\\\"\"*\\\"\"],\n        \\\"\"dst\\\"\" = [\\\"\"*\\\"\"],\n        \\\"\"ip\\\"\"  = [\\\"\"*\\\"\"],\n      },\n    ],\n  }\n\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"grants\": []map[string]interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"src\": []string{\n\t\t\t\t\t\t\"*\",\n\t\t\t\t\t},\n\t\t\t\t\t\"dst\": []string{\n\t\t\t\t\t\t\"*\",\n\t\t\t\t\t},\n\t\t\t\t\t\"ip\": []string{\n\t\t\t\t\t\t\"*\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = tailscale.NewAcl(ctx, \"as_json\", \u0026tailscale.AclArgs{\n\t\t\tAcl: pulumi.String(json0),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = tailscale.NewAcl(ctx, \"as_hujson\", \u0026tailscale.AclArgs{\n\t\t\tAcl: pulumi.String(`  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\"grants\\\": [\n      {\n        // Allow all users access to all ports.\n        \\\"src\\\" = [\\\"*\\\"],\n        \\\"dst\\\" = [\\\"*\\\"],\n        \\\"ip\\\"  = [\\\"*\\\"],\n      },\n    ],\n  }\n`),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.Acl;\nimport com.pulumi.tailscale.AclArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var asJson = new Acl(\"asJson\", AclArgs.builder()\n            .acl(serializeJson(\n                jsonObject(\n                    jsonProperty(\"grants\", jsonArray(jsonObject(\n                        jsonProperty(\"src\", jsonArray(\"*\")),\n                        jsonProperty(\"dst\", jsonArray(\"*\")),\n                        jsonProperty(\"ip\", jsonArray(\"*\"))\n                    )))\n                )))\n            .build());\n\n        var asHujson = new Acl(\"asHujson\", AclArgs.builder()\n            .acl(\"\"\"\n  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\"grants\\\": [\n      {\n        // Allow all users access to all ports.\n        \\\"src\\\" = [\\\"*\\\"],\n        \\\"dst\\\" = [\\\"*\\\"],\n        \\\"ip\\\"  = [\\\"*\\\"],\n      },\n    ],\n  }\n            \"\"\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  asJson:\n    type: tailscale:Acl\n    name: as_json\n    properties:\n      acl:\n        fn::toJSON:\n          grants:\n            - src:\n                - '*'\n              dst:\n                - '*'\n              ip:\n                - '*'\n  asHujson:\n    type: tailscale:Acl\n    name: as_hujson\n    properties:\n      acl: |2\n          {\n            // Comments in HuJSON policy are preserved when the policy is applied.\n            \\\"grants\\\": [\n              {\n                // Allow all users access to all ports.\n                \\\"src\\\" = [\\\"*\\\"],\n                \\\"dst\\\" = [\\\"*\\\"],\n                \\\"ip\\\"  = [\\\"*\\\"],\n              },\n            ],\n          }\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nID doesn't matter.\n\n```sh\n$ pulumi import tailscale:index/acl:Acl sample_acl acl\n```\n\n",
             "properties": {
                 "acl": {
                     "type": "string",
@@ -405,11 +405,11 @@
                 },
                 "overwriteExistingContent": {
                     "type": "boolean",
-                    "description": "If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten\n"
+                    "description": "If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten\n"
                 },
                 "resetAclOnDestroy": {
                     "type": "boolean",
-                    "description": "If true, will reset the ACL for the Tailnet to the default when this resource is destroyed\n"
+                    "description": "If true, will reset the policy file for the Tailnet to the default when this resource is destroyed\n"
                 }
             },
             "required": [
@@ -427,11 +427,11 @@
                 },
                 "overwriteExistingContent": {
                     "type": "boolean",
-                    "description": "If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten\n"
+                    "description": "If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten\n"
                 },
                 "resetAclOnDestroy": {
                     "type": "boolean",
-                    "description": "If true, will reset the ACL for the Tailnet to the default when this resource is destroyed\n"
+                    "description": "If true, will reset the policy file for the Tailnet to the default when this resource is destroyed\n"
                 }
             },
             "requiredInputs": [
@@ -451,11 +451,11 @@
                     },
                     "overwriteExistingContent": {
                         "type": "boolean",
-                        "description": "If true, will skip requirement to import acl before allowing changes. Be careful, can cause ACL to be overwritten\n"
+                        "description": "If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten\n"
                     },
                     "resetAclOnDestroy": {
                         "type": "boolean",
-                        "description": "If true, will reset the ACL for the Tailnet to the default when this resource is destroyed\n"
+                        "description": "If true, will reset the policy file for the Tailnet to the default when this resource is destroyed\n"
                     }
                 },
                 "type": "object"
@@ -1016,6 +1016,168 @@
                 "type": "object"
             }
         },
+        "tailscale:index/federatedIdentity:FederatedIdentity": {
+            "description": "The\u003cspan pulumi-lang-nodejs=\" federatedIdentity \" pulumi-lang-dotnet=\" FederatedIdentity \" pulumi-lang-go=\" federatedIdentity \" pulumi-lang-python=\" federated_identity \" pulumi-lang-yaml=\" federatedIdentity \" pulumi-lang-java=\" federatedIdentity \"\u003e federated_identity \u003c/span\u003eresource allows you to create federated identities to programmatically interact with the Tailscale API using workload identity federation.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst exampleFederatedIdentity = new tailscale.FederatedIdentity(\"example_federated_identity\", {\n    description: \"Example federated identity\",\n    scopes: [\n        \"auth_keys\",\n        \"devices:core\",\n    ],\n    tags: [\"tag:test\"],\n    issuer: \"https://example.com\",\n    subject: \"example-sub-*\",\n    customClaimRules: {\n        repo_name: \"example-repo-name\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nexample_federated_identity = tailscale.FederatedIdentity(\"example_federated_identity\",\n    description=\"Example federated identity\",\n    scopes=[\n        \"auth_keys\",\n        \"devices:core\",\n    ],\n    tags=[\"tag:test\"],\n    issuer=\"https://example.com\",\n    subject=\"example-sub-*\",\n    custom_claim_rules={\n        \"repo_name\": \"example-repo-name\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleFederatedIdentity = new Tailscale.FederatedIdentity(\"example_federated_identity\", new()\n    {\n        Description = \"Example federated identity\",\n        Scopes = new[]\n        {\n            \"auth_keys\",\n            \"devices:core\",\n        },\n        Tags = new[]\n        {\n            \"tag:test\",\n        },\n        Issuer = \"https://example.com\",\n        Subject = \"example-sub-*\",\n        CustomClaimRules = \n        {\n            { \"repo_name\", \"example-repo-name\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewFederatedIdentity(ctx, \"example_federated_identity\", \u0026tailscale.FederatedIdentityArgs{\n\t\t\tDescription: pulumi.String(\"Example federated identity\"),\n\t\t\tScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"auth_keys\"),\n\t\t\t\tpulumi.String(\"devices:core\"),\n\t\t\t},\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"tag:test\"),\n\t\t\t},\n\t\t\tIssuer:  pulumi.String(\"https://example.com\"),\n\t\t\tSubject: pulumi.String(\"example-sub-*\"),\n\t\t\tCustomClaimRules: pulumi.StringMap{\n\t\t\t\t\"repo_name\": pulumi.String(\"example-repo-name\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.FederatedIdentity;\nimport com.pulumi.tailscale.FederatedIdentityArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleFederatedIdentity = new FederatedIdentity(\"exampleFederatedIdentity\", FederatedIdentityArgs.builder()\n            .description(\"Example federated identity\")\n            .scopes(            \n                \"auth_keys\",\n                \"devices:core\")\n            .tags(\"tag:test\")\n            .issuer(\"https://example.com\")\n            .subject(\"example-sub-*\")\n            .customClaimRules(Map.of(\"repo_name\", \"example-repo-name\"))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exampleFederatedIdentity:\n    type: tailscale:FederatedIdentity\n    name: example_federated_identity\n    properties:\n      description: Example federated identity\n      scopes:\n        - auth_keys\n        - devices:core\n      tags:\n        - tag:test\n      issuer: https://example.com\n      subject: example-sub-*\n      customClaimRules:\n        repo_name: example-repo-name\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe `pulumi import` command can be used, for example:\n\n```sh\n$ pulumi import tailscale:index/federatedIdentity:FederatedIdentity example k1234511CNTRL-kZDRvszg8621CNTRL\n```\n\n",
+            "properties": {
+                "audience": {
+                    "type": "string",
+                    "description": "The value used when matching against the \u003cspan pulumi-lang-nodejs=\"`aud`\" pulumi-lang-dotnet=\"`Aud`\" pulumi-lang-go=\"`aud`\" pulumi-lang-python=\"`aud`\" pulumi-lang-yaml=\"`aud`\" pulumi-lang-java=\"`aud`\"\u003e`aud`\u003c/span\u003e claim from an OIDC identity token. Specifying the audience is optional as Tailscale will generate a secure audience at creation time by default.   It is recommended to let Tailscale generate the audience unless the identity provider you are integrating with requires a specific audience format.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "The creation timestamp of the key in RFC3339 format\n"
+                },
+                "customClaimRules": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "A map of claim names to pattern strings used to match against arbitrary claims in the OIDC identity token. Patterns can include `*` characters to match against any character.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the federated identity consisting of alphanumeric characters. Defaults to `\"\"`.\n"
+                },
+                "issuer": {
+                    "type": "string",
+                    "description": "The issuer of the OIDC identity token used in the token exchange. Must be a valid and publicly reachable https:// URL.\n"
+                },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Scopes to grant to the federated identity. See https://tailscale.com/kb/1623/ for a list of available scopes.\n"
+                },
+                "subject": {
+                    "type": "string",
+                    "description": "The pattern used when matching against the \u003cspan pulumi-lang-nodejs=\"`sub`\" pulumi-lang-dotnet=\"`Sub`\" pulumi-lang-go=\"`sub`\" pulumi-lang-python=\"`sub`\" pulumi-lang-yaml=\"`sub`\" pulumi-lang-java=\"`sub`\"\u003e`sub`\u003c/span\u003e claim from an OIDC identity token. Patterns can include `*` characters to match against any character.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of tags that access tokens generated for the federated identity will be able to assign to devices. Mandatory if the scopes include \"devices:core\" or \u003cspan pulumi-lang-nodejs=\"\"authKeys\"\" pulumi-lang-dotnet=\"\"AuthKeys\"\" pulumi-lang-go=\"\"authKeys\"\" pulumi-lang-python=\"\"auth_keys\"\" pulumi-lang-yaml=\"\"authKeys\"\" pulumi-lang-java=\"\"authKeys\"\"\u003e\"auth_keys\"\u003c/span\u003e.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "The updated timestamp of the key in RFC3339 format\n"
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "ID of the user who created this federated identity, empty for federated identities created by other trust credentials.\n"
+                }
+            },
+            "required": [
+                "audience",
+                "createdAt",
+                "issuer",
+                "scopes",
+                "subject",
+                "updatedAt",
+                "userId"
+            ],
+            "inputProperties": {
+                "audience": {
+                    "type": "string",
+                    "description": "The value used when matching against the \u003cspan pulumi-lang-nodejs=\"`aud`\" pulumi-lang-dotnet=\"`Aud`\" pulumi-lang-go=\"`aud`\" pulumi-lang-python=\"`aud`\" pulumi-lang-yaml=\"`aud`\" pulumi-lang-java=\"`aud`\"\u003e`aud`\u003c/span\u003e claim from an OIDC identity token. Specifying the audience is optional as Tailscale will generate a secure audience at creation time by default.   It is recommended to let Tailscale generate the audience unless the identity provider you are integrating with requires a specific audience format.\n"
+                },
+                "customClaimRules": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "A map of claim names to pattern strings used to match against arbitrary claims in the OIDC identity token. Patterns can include `*` characters to match against any character.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the federated identity consisting of alphanumeric characters. Defaults to `\"\"`.\n"
+                },
+                "issuer": {
+                    "type": "string",
+                    "description": "The issuer of the OIDC identity token used in the token exchange. Must be a valid and publicly reachable https:// URL.\n"
+                },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Scopes to grant to the federated identity. See https://tailscale.com/kb/1623/ for a list of available scopes.\n"
+                },
+                "subject": {
+                    "type": "string",
+                    "description": "The pattern used when matching against the \u003cspan pulumi-lang-nodejs=\"`sub`\" pulumi-lang-dotnet=\"`Sub`\" pulumi-lang-go=\"`sub`\" pulumi-lang-python=\"`sub`\" pulumi-lang-yaml=\"`sub`\" pulumi-lang-java=\"`sub`\"\u003e`sub`\u003c/span\u003e claim from an OIDC identity token. Patterns can include `*` characters to match against any character.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of tags that access tokens generated for the federated identity will be able to assign to devices. Mandatory if the scopes include \"devices:core\" or \u003cspan pulumi-lang-nodejs=\"\"authKeys\"\" pulumi-lang-dotnet=\"\"AuthKeys\"\" pulumi-lang-go=\"\"authKeys\"\" pulumi-lang-python=\"\"auth_keys\"\" pulumi-lang-yaml=\"\"authKeys\"\" pulumi-lang-java=\"\"authKeys\"\"\u003e\"auth_keys\"\u003c/span\u003e.\n"
+                }
+            },
+            "requiredInputs": [
+                "issuer",
+                "scopes",
+                "subject"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering FederatedIdentity resources.\n",
+                "properties": {
+                    "audience": {
+                        "type": "string",
+                        "description": "The value used when matching against the \u003cspan pulumi-lang-nodejs=\"`aud`\" pulumi-lang-dotnet=\"`Aud`\" pulumi-lang-go=\"`aud`\" pulumi-lang-python=\"`aud`\" pulumi-lang-yaml=\"`aud`\" pulumi-lang-java=\"`aud`\"\u003e`aud`\u003c/span\u003e claim from an OIDC identity token. Specifying the audience is optional as Tailscale will generate a secure audience at creation time by default.   It is recommended to let Tailscale generate the audience unless the identity provider you are integrating with requires a specific audience format.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The creation timestamp of the key in RFC3339 format\n"
+                    },
+                    "customClaimRules": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "A map of claim names to pattern strings used to match against arbitrary claims in the OIDC identity token. Patterns can include `*` characters to match against any character.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "A description of the federated identity consisting of alphanumeric characters. Defaults to `\"\"`.\n"
+                    },
+                    "issuer": {
+                        "type": "string",
+                        "description": "The issuer of the OIDC identity token used in the token exchange. Must be a valid and publicly reachable https:// URL.\n"
+                    },
+                    "scopes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Scopes to grant to the federated identity. See https://tailscale.com/kb/1623/ for a list of available scopes.\n"
+                    },
+                    "subject": {
+                        "type": "string",
+                        "description": "The pattern used when matching against the \u003cspan pulumi-lang-nodejs=\"`sub`\" pulumi-lang-dotnet=\"`Sub`\" pulumi-lang-go=\"`sub`\" pulumi-lang-python=\"`sub`\" pulumi-lang-yaml=\"`sub`\" pulumi-lang-java=\"`sub`\"\u003e`sub`\u003c/span\u003e claim from an OIDC identity token. Patterns can include `*` characters to match against any character.\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A list of tags that access tokens generated for the federated identity will be able to assign to devices. Mandatory if the scopes include \"devices:core\" or \u003cspan pulumi-lang-nodejs=\"\"authKeys\"\" pulumi-lang-dotnet=\"\"AuthKeys\"\" pulumi-lang-go=\"\"authKeys\"\" pulumi-lang-python=\"\"auth_keys\"\" pulumi-lang-yaml=\"\"authKeys\"\" pulumi-lang-java=\"\"authKeys\"\"\u003e\"auth_keys\"\u003c/span\u003e.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "The updated timestamp of the key in RFC3339 format\n"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "description": "ID of the user who created this federated identity, empty for federated identities created by other trust credentials.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "tailscale:index/logstreamConfiguration:LogstreamConfiguration": {
             "description": "The\u003cspan pulumi-lang-nodejs=\" logstreamConfiguration \" pulumi-lang-dotnet=\" LogstreamConfiguration \" pulumi-lang-go=\" logstreamConfiguration \" pulumi-lang-python=\" logstream_configuration \" pulumi-lang-yaml=\" logstreamConfiguration \" pulumi-lang-java=\" logstreamConfiguration \"\u003e logstream_configuration \u003c/span\u003eresource allows you to configure streaming configuration or network flow logs to a supported security information and event management (SIEM) system. See https://tailscale.com/kb/1255/log-streaming for more information.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\n// Example configuration for a non-S3 logstreaming endpoint\nconst sampleLogstreamConfiguration = new tailscale.LogstreamConfiguration(\"sample_logstream_configuration\", {\n    logType: \"configuration\",\n    destinationType: \"panther\",\n    url: \"https://example.com\",\n    token: \"some-token\",\n});\n// Example configuration for an AWS S3 logstreaming endpoint\nconst sampleLogstreamConfigurationS3 = new tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3\", {\n    logType: \"configuration\",\n    destinationType: \"s3\",\n    s3Bucket: tailscaleLogs.id,\n    s3Region: \"us-west-2\",\n    s3AuthenticationType: \"rolearn\",\n    s3RoleArn: tailscaleLogsWriter.arn,\n    s3ExternalId: prod.externalId,\n});\n// Example configuration for an S3-compatible logstreaming endpoint\nconst sampleLogstreamConfigurationS3Compatible = new tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3_compatible\", {\n    logType: \"configuration\",\n    destinationType: \"s3\",\n    url: \"https://s3.example.com\",\n    s3Bucket: \"example-bucket\",\n    s3Region: \"us-west-2\",\n    s3AuthenticationType: \"accesskey\",\n    s3AccessKeyId: \"some-access-key\",\n    s3SecretAccessKey: \"some-secret-key\",\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\n# Example configuration for a non-S3 logstreaming endpoint\nsample_logstream_configuration = tailscale.LogstreamConfiguration(\"sample_logstream_configuration\",\n    log_type=\"configuration\",\n    destination_type=\"panther\",\n    url=\"https://example.com\",\n    token=\"some-token\")\n# Example configuration for an AWS S3 logstreaming endpoint\nsample_logstream_configuration_s3 = tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3\",\n    log_type=\"configuration\",\n    destination_type=\"s3\",\n    s3_bucket=tailscale_logs[\"id\"],\n    s3_region=\"us-west-2\",\n    s3_authentication_type=\"rolearn\",\n    s3_role_arn=tailscale_logs_writer[\"arn\"],\n    s3_external_id=prod[\"externalId\"])\n# Example configuration for an S3-compatible logstreaming endpoint\nsample_logstream_configuration_s3_compatible = tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3_compatible\",\n    log_type=\"configuration\",\n    destination_type=\"s3\",\n    url=\"https://s3.example.com\",\n    s3_bucket=\"example-bucket\",\n    s3_region=\"us-west-2\",\n    s3_authentication_type=\"accesskey\",\n    s3_access_key_id=\"some-access-key\",\n    s3_secret_access_key=\"some-secret-key\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Example configuration for a non-S3 logstreaming endpoint\n    var sampleLogstreamConfiguration = new Tailscale.LogstreamConfiguration(\"sample_logstream_configuration\", new()\n    {\n        LogType = \"configuration\",\n        DestinationType = \"panther\",\n        Url = \"https://example.com\",\n        Token = \"some-token\",\n    });\n\n    // Example configuration for an AWS S3 logstreaming endpoint\n    var sampleLogstreamConfigurationS3 = new Tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3\", new()\n    {\n        LogType = \"configuration\",\n        DestinationType = \"s3\",\n        S3Bucket = tailscaleLogs.Id,\n        S3Region = \"us-west-2\",\n        S3AuthenticationType = \"rolearn\",\n        S3RoleArn = tailscaleLogsWriter.Arn,\n        S3ExternalId = prod.ExternalId,\n    });\n\n    // Example configuration for an S3-compatible logstreaming endpoint\n    var sampleLogstreamConfigurationS3Compatible = new Tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3_compatible\", new()\n    {\n        LogType = \"configuration\",\n        DestinationType = \"s3\",\n        Url = \"https://s3.example.com\",\n        S3Bucket = \"example-bucket\",\n        S3Region = \"us-west-2\",\n        S3AuthenticationType = \"accesskey\",\n        S3AccessKeyId = \"some-access-key\",\n        S3SecretAccessKey = \"some-secret-key\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Example configuration for a non-S3 logstreaming endpoint\n\t\t_, err := tailscale.NewLogstreamConfiguration(ctx, \"sample_logstream_configuration\", \u0026tailscale.LogstreamConfigurationArgs{\n\t\t\tLogType:         pulumi.String(\"configuration\"),\n\t\t\tDestinationType: pulumi.String(\"panther\"),\n\t\t\tUrl:             pulumi.String(\"https://example.com\"),\n\t\t\tToken:           pulumi.String(\"some-token\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Example configuration for an AWS S3 logstreaming endpoint\n\t\t_, err = tailscale.NewLogstreamConfiguration(ctx, \"sample_logstream_configuration_s3\", \u0026tailscale.LogstreamConfigurationArgs{\n\t\t\tLogType:              pulumi.String(\"configuration\"),\n\t\t\tDestinationType:      pulumi.String(\"s3\"),\n\t\t\tS3Bucket:             pulumi.Any(tailscaleLogs.Id),\n\t\t\tS3Region:             pulumi.String(\"us-west-2\"),\n\t\t\tS3AuthenticationType: pulumi.String(\"rolearn\"),\n\t\t\tS3RoleArn:            pulumi.Any(tailscaleLogsWriter.Arn),\n\t\t\tS3ExternalId:         pulumi.Any(prod.ExternalId),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Example configuration for an S3-compatible logstreaming endpoint\n\t\t_, err = tailscale.NewLogstreamConfiguration(ctx, \"sample_logstream_configuration_s3_compatible\", \u0026tailscale.LogstreamConfigurationArgs{\n\t\t\tLogType:              pulumi.String(\"configuration\"),\n\t\t\tDestinationType:      pulumi.String(\"s3\"),\n\t\t\tUrl:                  pulumi.String(\"https://s3.example.com\"),\n\t\t\tS3Bucket:             pulumi.String(\"example-bucket\"),\n\t\t\tS3Region:             pulumi.String(\"us-west-2\"),\n\t\t\tS3AuthenticationType: pulumi.String(\"accesskey\"),\n\t\t\tS3AccessKeyId:        pulumi.String(\"some-access-key\"),\n\t\t\tS3SecretAccessKey:    pulumi.String(\"some-secret-key\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.LogstreamConfiguration;\nimport com.pulumi.tailscale.LogstreamConfigurationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Example configuration for a non-S3 logstreaming endpoint\n        var sampleLogstreamConfiguration = new LogstreamConfiguration(\"sampleLogstreamConfiguration\", LogstreamConfigurationArgs.builder()\n            .logType(\"configuration\")\n            .destinationType(\"panther\")\n            .url(\"https://example.com\")\n            .token(\"some-token\")\n            .build());\n\n        // Example configuration for an AWS S3 logstreaming endpoint\n        var sampleLogstreamConfigurationS3 = new LogstreamConfiguration(\"sampleLogstreamConfigurationS3\", LogstreamConfigurationArgs.builder()\n            .logType(\"configuration\")\n            .destinationType(\"s3\")\n            .s3Bucket(tailscaleLogs.id())\n            .s3Region(\"us-west-2\")\n            .s3AuthenticationType(\"rolearn\")\n            .s3RoleArn(tailscaleLogsWriter.arn())\n            .s3ExternalId(prod.externalId())\n            .build());\n\n        // Example configuration for an S3-compatible logstreaming endpoint\n        var sampleLogstreamConfigurationS3Compatible = new LogstreamConfiguration(\"sampleLogstreamConfigurationS3Compatible\", LogstreamConfigurationArgs.builder()\n            .logType(\"configuration\")\n            .destinationType(\"s3\")\n            .url(\"https://s3.example.com\")\n            .s3Bucket(\"example-bucket\")\n            .s3Region(\"us-west-2\")\n            .s3AuthenticationType(\"accesskey\")\n            .s3AccessKeyId(\"some-access-key\")\n            .s3SecretAccessKey(\"some-secret-key\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Example configuration for a non-S3 logstreaming endpoint\n  sampleLogstreamConfiguration:\n    type: tailscale:LogstreamConfiguration\n    name: sample_logstream_configuration\n    properties:\n      logType: configuration\n      destinationType: panther\n      url: https://example.com\n      token: some-token\n  # Example configuration for an AWS S3 logstreaming endpoint\n  sampleLogstreamConfigurationS3:\n    type: tailscale:LogstreamConfiguration\n    name: sample_logstream_configuration_s3\n    properties:\n      logType: configuration\n      destinationType: s3\n      s3Bucket: ${tailscaleLogs.id}\n      s3Region: us-west-2\n      s3AuthenticationType: rolearn\n      s3RoleArn: ${tailscaleLogsWriter.arn}\n      s3ExternalId: ${prod.externalId}\n  # Example configuration for an S3-compatible logstreaming endpoint\n  sampleLogstreamConfigurationS3Compatible:\n    type: tailscale:LogstreamConfiguration\n    name: sample_logstream_configuration_s3_compatible\n    properties:\n      logType: configuration\n      destinationType: s3\n      url: https://s3.example.com\n      s3Bucket: example-bucket\n      s3Region: us-west-2\n      s3AuthenticationType: accesskey\n      s3AccessKeyId: some-access-key\n      s3SecretAccessKey: some-secret-key\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe `pulumi import` command can be used, for example:\n\nLogstream configuration can be imported using the logstream configuration id, e.g.,\n\n```sh\n$ pulumi import tailscale:index/logstreamConfiguration:LogstreamConfiguration sample_logstream_configuration 123456789\n```\n\n",
             "properties": {
@@ -1234,7 +1396,7 @@
                 },
                 "description": {
                     "type": "string",
-                    "description": "A description of the key consisting of alphanumeric characters. Defaults to `\"\"`.\n"
+                    "description": "A description of the OAuth client consisting of alphanumeric characters. Defaults to `\"\"`.\n"
                 },
                 "key": {
                     "type": "string",
@@ -1246,7 +1408,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.\n"
+                    "description": "Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.\n"
                 },
                 "tags": {
                     "type": "array",
@@ -1255,38 +1417,40 @@
                     },
                     "description": "A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include \"devices:core\" or \u003cspan pulumi-lang-nodejs=\"\"authKeys\"\" pulumi-lang-dotnet=\"\"AuthKeys\"\" pulumi-lang-go=\"\"authKeys\"\" pulumi-lang-python=\"\"auth_keys\"\" pulumi-lang-yaml=\"\"authKeys\"\" pulumi-lang-java=\"\"authKeys\"\"\u003e\"auth_keys\"\u003c/span\u003e.\n"
                 },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "The updated timestamp of the key in RFC3339 format\n"
+                },
                 "userId": {
                     "type": "string",
-                    "description": "ID of the user who created this key, empty for OAuth clients created by other OAuth clients.\n"
+                    "description": "ID of the user who created this key, empty for OAuth clients created by other trust credentials.\n"
                 }
             },
             "required": [
                 "createdAt",
                 "key",
                 "scopes",
+                "updatedAt",
                 "userId"
             ],
             "inputProperties": {
                 "description": {
                     "type": "string",
-                    "description": "A description of the key consisting of alphanumeric characters. Defaults to `\"\"`.\n",
-                    "willReplaceOnChanges": true
+                    "description": "A description of the OAuth client consisting of alphanumeric characters. Defaults to `\"\"`.\n"
                 },
                 "scopes": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.\n",
-                    "willReplaceOnChanges": true
+                    "description": "Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.\n"
                 },
                 "tags": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include \"devices:core\" or \u003cspan pulumi-lang-nodejs=\"\"authKeys\"\" pulumi-lang-dotnet=\"\"AuthKeys\"\" pulumi-lang-go=\"\"authKeys\"\" pulumi-lang-python=\"\"auth_keys\"\" pulumi-lang-yaml=\"\"authKeys\"\" pulumi-lang-java=\"\"authKeys\"\"\u003e\"auth_keys\"\u003c/span\u003e.\n",
-                    "willReplaceOnChanges": true
+                    "description": "A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include \"devices:core\" or \u003cspan pulumi-lang-nodejs=\"\"authKeys\"\" pulumi-lang-dotnet=\"\"AuthKeys\"\" pulumi-lang-go=\"\"authKeys\"\" pulumi-lang-python=\"\"auth_keys\"\" pulumi-lang-yaml=\"\"authKeys\"\" pulumi-lang-java=\"\"authKeys\"\"\u003e\"auth_keys\"\u003c/span\u003e.\n"
                 }
             },
             "requiredInputs": [
@@ -1301,8 +1465,7 @@
                     },
                     "description": {
                         "type": "string",
-                        "description": "A description of the key consisting of alphanumeric characters. Defaults to `\"\"`.\n",
-                        "willReplaceOnChanges": true
+                        "description": "A description of the OAuth client consisting of alphanumeric characters. Defaults to `\"\"`.\n"
                     },
                     "key": {
                         "type": "string",
@@ -1314,20 +1477,22 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "Scopes to grant to the client. See https://tailscale.com/kb/1215/ for a list of available scopes.\n",
-                        "willReplaceOnChanges": true
+                        "description": "Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.\n"
                     },
                     "tags": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include \"devices:core\" or \u003cspan pulumi-lang-nodejs=\"\"authKeys\"\" pulumi-lang-dotnet=\"\"AuthKeys\"\" pulumi-lang-go=\"\"authKeys\"\" pulumi-lang-python=\"\"auth_keys\"\" pulumi-lang-yaml=\"\"authKeys\"\" pulumi-lang-java=\"\"authKeys\"\"\u003e\"auth_keys\"\u003c/span\u003e.\n",
-                        "willReplaceOnChanges": true
+                        "description": "A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include \"devices:core\" or \u003cspan pulumi-lang-nodejs=\"\"authKeys\"\" pulumi-lang-dotnet=\"\"AuthKeys\"\" pulumi-lang-go=\"\"authKeys\"\" pulumi-lang-python=\"\"auth_keys\"\" pulumi-lang-yaml=\"\"authKeys\"\" pulumi-lang-java=\"\"authKeys\"\"\u003e\"auth_keys\"\u003c/span\u003e.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "The updated timestamp of the key in RFC3339 format\n"
                     },
                     "userId": {
                         "type": "string",
-                        "description": "ID of the user who created this key, empty for OAuth clients created by other OAuth clients.\n"
+                        "description": "ID of the user who created this key, empty for OAuth clients created by other trust credentials.\n"
                     }
                 },
                 "type": "object"
@@ -1905,7 +2070,7 @@
             }
         },
         "tailscale:index/getAcl:getAcl": {
-            "description": "The acl data source gets the Tailscale ACL for a tailnet\n",
+            "description": "The acl data source gets the Tailscale policy file for a tailnet\n\n\u003e **Note:** The naming of this data source predates Tailscale's usage of the term \"policy file\" to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet's entire policy file and not just the ACLs section within it.\n",
             "outputs": {
                 "description": "A collection of values returned by getAcl.\n",
                 "properties": {

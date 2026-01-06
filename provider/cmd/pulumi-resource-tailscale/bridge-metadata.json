@@ -91,6 +91,17 @@
                     }
                 }
             },
+            "tailscale_federated_identity": {
+                "current": "tailscale:index/federatedIdentity:FederatedIdentity",
+                "fields": {
+                    "scopes": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "tailscale_logstream_configuration": {
                 "current": "tailscale:index/logstreamConfiguration:LogstreamConfiguration"
             },
