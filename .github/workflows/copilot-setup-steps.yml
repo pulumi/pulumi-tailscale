@@ -42,6 +42,7 @@ jobs:
           plugin_install: https://github.com/pulumi/vfox-pulumi
           # only saving the cache in the prerequisites job
           cache_save: false
+          install_args: -v
 
       - name: Prepare local workspace
         # this runs install_plugins and upstream
