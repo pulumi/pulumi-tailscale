@@ -12,6 +12,103 @@ import (
 )
 
 // The awsExternalId resource allows you to mint an AWS External ID that Tailscale can use to assume an AWS IAM role that you create for the purposes of allowing Tailscale to stream logs to your S3 bucket. See the logstreamConfiguration resource for more details.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-aws/sdk/go/aws"
+//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			prod, err := tailscale.NewAwsExternalId(ctx, "prod", nil)
+//			if err != nil {
+//				return err
+//			}
+//			tailscaleAssumeRole, err := aws.IamPolicyDocument(ctx, map[string]interface{}{
+//				"statement": []map[string]interface{}{
+//					map[string]interface{}{
+//						"actions": []string{
+//							"sts:AssumeRole",
+//						},
+//						"principals": []map[string]interface{}{
+//							map[string]interface{}{
+//								"type": "AWS",
+//								"identifiers": pulumi.StringArray{
+//									prod.TailscaleAwsAccountId,
+//								},
+//							},
+//						},
+//						"condition": []map[string]interface{}{
+//							map[string]interface{}{
+//								"test":     "StringEquals",
+//								"variable": "sts:ExternalId",
+//								"values": pulumi.StringArray{
+//									prod.ExternalId,
+//								},
+//							},
+//						},
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			logsWriterIamRole, err := aws.NewIamRole(ctx, "logs_writer", &aws.IamRoleArgs{
+//				Name:             "logs-writer",
+//				AssumeRolePolicy: tailscaleAssumeRole.Json,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = tailscale.NewLogstreamConfiguration(ctx, "configuration_logs", &tailscale.LogstreamConfigurationArgs{
+//				LogType:              pulumi.String("configuration"),
+//				DestinationType:      pulumi.String("s3"),
+//				S3Bucket:             pulumi.Any(tailscaleLogs.Id),
+//				S3Region:             pulumi.String("us-west-2"),
+//				S3AuthenticationType: pulumi.String("rolearn"),
+//				S3RoleArn:            logsWriterIamRole.Arn,
+//				S3ExternalId:         prod.ExternalId,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			logsWriter, err := aws.IamPolicyDocument(ctx, map[string]interface{}{
+//				"statement": []map[string]interface{}{
+//					map[string]interface{}{
+//						"effect": "Allow",
+//						"actions": []string{
+//							"s3:*",
+//						},
+//						"resources": []string{
+//							"arn:aws:s3:::example-bucket",
+//							"arn:aws:s3:::example-bucket/*",
+//						},
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = aws.NewIamRolePolicy(ctx, "logs_writer", &aws.IamRolePolicyArgs{
+//				Role:   logsWriterIamRole.Id,
+//				Policy: logsWriter.Json,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type AwsExternalId struct {
 	pulumi.CustomResourceState
 

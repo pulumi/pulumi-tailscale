@@ -11,6 +11,102 @@ namespace Pulumi.Tailscale
 {
     /// <summary>
     /// The AwsExternalId resource allows you to mint an AWS External ID that Tailscale can use to assume an AWS IAM role that you create for the purposes of allowing Tailscale to stream logs to your S3 bucket. See the LogstreamConfiguration resource for more details.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Tailscale = Pulumi.Tailscale;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var prod = new Tailscale.AwsExternalId("prod");
+    /// 
+    ///     var tailscaleAssumeRole = Aws.Index.IamPolicyDocument.Invoke(new()
+    ///     {
+    ///         Statement = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "actions", new[]
+    ///                 {
+    ///                     "sts:AssumeRole",
+    ///                 } },
+    ///                 { "principals", new[]
+    ///                 {
+    ///                     
+    ///                     {
+    ///                         { "type", "AWS" },
+    ///                         { "identifiers", new[]
+    ///                         {
+    ///                             prod.TailscaleAwsAccountId,
+    ///                         } },
+    ///                     },
+    ///                 } },
+    ///                 { "condition", new[]
+    ///                 {
+    ///                     
+    ///                     {
+    ///                         { "test", "StringEquals" },
+    ///                         { "variable", "sts:ExternalId" },
+    ///                         { "values", new[]
+    ///                         {
+    ///                             prod.ExternalId,
+    ///                         } },
+    ///                     },
+    ///                 } },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var logsWriterIamRole = new Aws.Index.IamRole("logs_writer", new()
+    ///     {
+    ///         Name = "logs-writer",
+    ///         AssumeRolePolicy = tailscaleAssumeRole.Json,
+    ///     });
+    /// 
+    ///     var configurationLogs = new Tailscale.LogstreamConfiguration("configuration_logs", new()
+    ///     {
+    ///         LogType = "configuration",
+    ///         DestinationType = "s3",
+    ///         S3Bucket = tailscaleLogs.Id,
+    ///         S3Region = "us-west-2",
+    ///         S3AuthenticationType = "rolearn",
+    ///         S3RoleArn = logsWriterIamRole.Arn,
+    ///         S3ExternalId = prod.ExternalId,
+    ///     });
+    /// 
+    ///     var logsWriter = Aws.Index.IamPolicyDocument.Invoke(new()
+    ///     {
+    ///         Statement = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "effect", "Allow" },
+    ///                 { "actions", new[]
+    ///                 {
+    ///                     "s3:*",
+    ///                 } },
+    ///                 { "resources", new[]
+    ///                 {
+    ///                     "arn:aws:s3:::example-bucket",
+    ///                     "arn:aws:s3:::example-bucket/*",
+    ///                 } },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var logsWriterIamRolePolicy = new Aws.Index.IamRolePolicy("logs_writer", new()
+    ///     {
+    ///         Role = logsWriterIamRole.Id,
+    ///         Policy = logsWriter.Json,
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [TailscaleResourceType("tailscale:index/awsExternalId:AwsExternalId")]
     public partial class AwsExternalId : global::Pulumi.CustomResource
