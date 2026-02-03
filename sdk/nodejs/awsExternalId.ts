@@ -6,6 +6,57 @@ import * as utilities from "./utilities";
 
 /**
  * The awsExternalId resource allows you to mint an AWS External ID that Tailscale can use to assume an AWS IAM role that you create for the purposes of allowing Tailscale to stream logs to your S3 bucket. See the logstreamConfiguration resource for more details.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as tailscale from "@pulumi/tailscale";
+ *
+ * const prod = new tailscale.AwsExternalId("prod", {});
+ * const tailscaleAssumeRole = aws.index.IamPolicyDocument({
+ *     statement: [{
+ *         actions: ["sts:AssumeRole"],
+ *         principals: [{
+ *             type: "AWS",
+ *             identifiers: [prod.tailscaleAwsAccountId],
+ *         }],
+ *         condition: [{
+ *             test: "StringEquals",
+ *             variable: "sts:ExternalId",
+ *             values: [prod.externalId],
+ *         }],
+ *     }],
+ * });
+ * const logsWriterIamRole = new aws.index.IamRole("logs_writer", {
+ *     name: "logs-writer",
+ *     assumeRolePolicy: tailscaleAssumeRole.json,
+ * });
+ * const configurationLogs = new tailscale.LogstreamConfiguration("configuration_logs", {
+ *     logType: "configuration",
+ *     destinationType: "s3",
+ *     s3Bucket: tailscaleLogs.id,
+ *     s3Region: "us-west-2",
+ *     s3AuthenticationType: "rolearn",
+ *     s3RoleArn: logsWriterIamRole.arn,
+ *     s3ExternalId: prod.externalId,
+ * });
+ * const logsWriter = aws.index.IamPolicyDocument({
+ *     statement: [{
+ *         effect: "Allow",
+ *         actions: ["s3:*"],
+ *         resources: [
+ *             "arn:aws:s3:::example-bucket",
+ *             "arn:aws:s3:::example-bucket/*",
+ *         ],
+ *     }],
+ * });
+ * const logsWriterIamRolePolicy = new aws.index.IamRolePolicy("logs_writer", {
+ *     role: logsWriterIamRole.id,
+ *     policy: logsWriter.json,
+ * });
+ * ```
  */
 export class AwsExternalId extends pulumi.CustomResource {
     /**
