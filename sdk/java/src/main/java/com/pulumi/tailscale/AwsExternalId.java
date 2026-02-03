@@ -16,6 +16,84 @@ import javax.annotation.Nullable;
 /**
  * The awsExternalId resource allows you to mint an AWS External ID that Tailscale can use to assume an AWS IAM role that you create for the purposes of allowing Tailscale to stream logs to your S3 bucket. See the logstreamConfiguration resource for more details.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.tailscale.AwsExternalId;
+ * import com.pulumi.aws.AwsFunctions;
+ * import com.pulumi.aws.IamRole;
+ * import com.pulumi.aws.IamRoleArgs;
+ * import com.pulumi.tailscale.LogstreamConfiguration;
+ * import com.pulumi.tailscale.LogstreamConfigurationArgs;
+ * import com.pulumi.aws.IamRolePolicy;
+ * import com.pulumi.aws.IamRolePolicyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var prod = new AwsExternalId("prod");
+ * 
+ *         final var tailscaleAssumeRole = AwsFunctions.IamPolicyDocument(Map.of("statement", List.of(Map.ofEntries(
+ *             Map.entry("actions", List.of("sts:AssumeRole")),
+ *             Map.entry("principals", List.of(Map.ofEntries(
+ *                 Map.entry("type", "AWS"),
+ *                 Map.entry("identifiers", List.of(prod.tailscaleAwsAccountId()))
+ *             ))),
+ *             Map.entry("condition", List.of(Map.ofEntries(
+ *                 Map.entry("test", "StringEquals"),
+ *                 Map.entry("variable", "sts:ExternalId"),
+ *                 Map.entry("values", List.of(prod.externalId()))
+ *             )))
+ *         ))));
+ * 
+ *         var logsWriterIamRole = new IamRole("logsWriterIamRole", IamRoleArgs.builder()
+ *             .name("logs-writer")
+ *             .assumeRolePolicy(tailscaleAssumeRole.json())
+ *             .build());
+ * 
+ *         var configurationLogs = new LogstreamConfiguration("configurationLogs", LogstreamConfigurationArgs.builder()
+ *             .logType("configuration")
+ *             .destinationType("s3")
+ *             .s3Bucket(tailscaleLogs.id())
+ *             .s3Region("us-west-2")
+ *             .s3AuthenticationType("rolearn")
+ *             .s3RoleArn(logsWriterIamRole.arn())
+ *             .s3ExternalId(prod.externalId())
+ *             .build());
+ * 
+ *         final var logsWriter = AwsFunctions.IamPolicyDocument(Map.of("statement", Map.ofEntries(
+ *             Map.entry("effect", "Allow"),
+ *             Map.entry("actions", "s3:*"),
+ *             Map.entry("resources",             
+ *                 "arn:aws:s3:::example-bucket",
+ *                 "arn:aws:s3:::example-bucket/*")
+ *         )));
+ * 
+ *         var logsWriterIamRolePolicy = new IamRolePolicy("logsWriterIamRolePolicy", IamRolePolicyArgs.builder()
+ *             .role(logsWriterIamRole.id())
+ *             .policy(logsWriter.json())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  */
 @ResourceType(type="tailscale:index/awsExternalId:AwsExternalId")
 public class AwsExternalId extends com.pulumi.resources.CustomResource {
