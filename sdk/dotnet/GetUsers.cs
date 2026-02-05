@@ -79,13 +79,13 @@ namespace Pulumi.Tailscale
     public sealed class GetUsersArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Filters the users list to elements whose role is the provided value.
+        /// Filter the results to only include users with a specific role. Valid values are `Owner`, `Member`, `Admin`, `it-admin`, `network-admin`, `billing-admin`, and `Auditor`.
         /// </summary>
         [Input("role")]
         public string? Role { get; set; }
 
         /// <summary>
-        /// Filters the users list to elements whose type is the provided value.
+        /// Filter the results to only include users of a specific type. Valid values are `Member` or `Shared`.
         /// </summary>
         [Input("type")]
         public string? Type { get; set; }
@@ -99,13 +99,13 @@ namespace Pulumi.Tailscale
     public sealed class GetUsersInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Filters the users list to elements whose role is the provided value.
+        /// Filter the results to only include users with a specific role. Valid values are `Owner`, `Member`, `Admin`, `it-admin`, `network-admin`, `billing-admin`, and `Auditor`.
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
 
         /// <summary>
-        /// Filters the users list to elements whose type is the provided value.
+        /// Filter the results to only include users of a specific type. Valid values are `Member` or `Shared`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -125,11 +125,11 @@ namespace Pulumi.Tailscale
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Filters the users list to elements whose role is the provided value.
+        /// Filter the results to only include users with a specific role. Valid values are `Owner`, `Member`, `Admin`, `it-admin`, `network-admin`, `billing-admin`, and `Auditor`.
         /// </summary>
         public readonly string? Role;
         /// <summary>
-        /// Filters the users list to elements whose type is the provided value.
+        /// Filter the results to only include users of a specific type. Valid values are `Member` or `Shared`.
         /// </summary>
         public readonly string? Type;
         /// <summary>

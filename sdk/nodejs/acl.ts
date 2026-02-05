@@ -29,9 +29,9 @@ import * as utilities from "./utilities";
  *     \\"grants\\": [
  *       {
  *         // Allow all users access to all ports.
- *         \\"src\\" = [\\"*\\"],
- *         \\"dst\\" = [\\"*\\"],
- *         \\"ip\\"  = [\\"*\\"],
+ *         \\"src\\": [\\"*\\"],
+ *         \\"dst\\": [\\"*\\"],
+ *         \\"ip\\": [\\"*\\"],
  *       },
  *     ],
  *   }

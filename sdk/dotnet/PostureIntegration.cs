@@ -65,7 +65,7 @@ namespace Pulumi.Tailscale
         public Output<string?> CloudId { get; private set; } = null!;
 
         /// <summary>
-        /// The type of posture integration data provider.
+        /// The third-party provider for posture data. Valid values are `Falcon`, `Intune`, `Jamfpro`, `Kandji`, `Kolide`, and `Sentinelone`.
         /// </summary>
         [Output("postureProvider")]
         public Output<string> PostureProvider { get; private set; } = null!;
@@ -99,6 +99,10 @@ namespace Pulumi.Tailscale
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "clientSecret",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -128,11 +132,21 @@ namespace Pulumi.Tailscale
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
+        [Input("clientSecret", required: true)]
+        private Input<string>? _clientSecret;
+
         /// <summary>
         /// The secret (auth key, token, etc.) used to authenticate with the provider.
         /// </summary>
-        [Input("clientSecret", required: true)]
-        public Input<string> ClientSecret { get; set; } = null!;
+        public Input<string>? ClientSecret
+        {
+            get => _clientSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Identifies which of the provider's clouds to integrate with.
@@ -141,7 +155,7 @@ namespace Pulumi.Tailscale
         public Input<string>? CloudId { get; set; }
 
         /// <summary>
-        /// The type of posture integration data provider.
+        /// The third-party provider for posture data. Valid values are `Falcon`, `Intune`, `Jamfpro`, `Kandji`, `Kolide`, and `Sentinelone`.
         /// </summary>
         [Input("postureProvider", required: true)]
         public Input<string> PostureProvider { get; set; } = null!;
@@ -166,11 +180,21 @@ namespace Pulumi.Tailscale
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
+        [Input("clientSecret")]
+        private Input<string>? _clientSecret;
+
         /// <summary>
         /// The secret (auth key, token, etc.) used to authenticate with the provider.
         /// </summary>
-        [Input("clientSecret")]
-        public Input<string>? ClientSecret { get; set; }
+        public Input<string>? ClientSecret
+        {
+            get => _clientSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Identifies which of the provider's clouds to integrate with.
@@ -179,7 +203,7 @@ namespace Pulumi.Tailscale
         public Input<string>? CloudId { get; set; }
 
         /// <summary>
-        /// The type of posture integration data provider.
+        /// The third-party provider for posture data. Valid values are `Falcon`, `Intune`, `Jamfpro`, `Kandji`, `Kolide`, and `Sentinelone`.
         /// </summary>
         [Input("postureProvider")]
         public Input<string>? PostureProvider { get; set; }

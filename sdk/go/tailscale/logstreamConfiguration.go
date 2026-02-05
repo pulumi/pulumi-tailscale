@@ -21,6 +21,8 @@ import (
 //
 // import (
 //
+//	"encoding/json"
+//
 //	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -65,6 +67,34 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"type":                              "external_account",
+//				"audience":                          "//iam.googleapis.com/projects/12345678/locations/global/workloadIdentityPools/example-pool/providers/example-provider",
+//				"subject_token_type":                "urn:ietf:params:aws:token-type:aws4_request",
+//				"service_account_impersonation_url": "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/example@example.iam.gserviceaccount.com:generateAccessToken",
+//				"token_url":                         "https://sts.googleapis.com/v1/token",
+//				"credential_source": map[string]interface{}{
+//					"environment_id":                 "aws1",
+//					"region_url":                     "http://169.254.169.254/latest/meta-data/placement/availability-zone",
+//					"url":                            "http://169.254.169.254/latest/meta-data/iam/security-credentials",
+//					"regional_cred_verification_url": "https://sts.{region}.amazonaws.com?Action=GetCallerIdentity&Version=2011-06-15",
+//					"imdsv2_session_token_url":       "http://169.254.169.254/latest/api/token",
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			// Example configuration for a GCS logstreaming endpoint using workload identity
+//			_, err = tailscale.NewLogstreamConfiguration(ctx, "sample_logstream_configuration_gcs_wif", &tailscale.LogstreamConfigurationArgs{
+//				LogType:         pulumi.String("configuration"),
+//				DestinationType: pulumi.String("gcs"),
+//				GcsBucket:       pulumi.String("example-gcs-bucket"),
+//				GcsCredentials:  pulumi.String(json0),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -83,15 +113,23 @@ import (
 type LogstreamConfiguration struct {
 	pulumi.CustomResourceState
 
-	// The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+	// The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
 	CompressionFormat pulumi.StringPtrOutput `pulumi:"compressionFormat"`
-	// The type of system to which logs are being streamed.
+	// The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
 	DestinationType pulumi.StringOutput `pulumi:"destinationType"`
-	// The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+	// The name of the GCS bucket
+	GcsBucket pulumi.StringPtrOutput `pulumi:"gcsBucket"`
+	// The encoded string of JSON that is used to authenticate for workload identity in GCS
+	GcsCredentials pulumi.StringPtrOutput `pulumi:"gcsCredentials"`
+	// The GCS key prefix for the bucket
+	GcsKeyPrefix pulumi.StringPtrOutput `pulumi:"gcsKeyPrefix"`
+	// The GCS scopes needed to be able to write in the bucket
+	GcsScopes pulumi.StringArrayOutput `pulumi:"gcsScopes"`
+	// The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
 	LogType pulumi.StringOutput `pulumi:"logType"`
 	// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
 	S3AccessKeyId pulumi.StringPtrOutput `pulumi:"s3AccessKeyId"`
-	// What type of authentication to use for S3. Required if destinationType is 's3'. Tailscale recommends using 'rolearn'.
+	// The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
 	S3AuthenticationType pulumi.StringPtrOutput `pulumi:"s3AuthenticationType"`
 	// The S3 bucket name. Required if destinationType is 's3'.
 	S3Bucket pulumi.StringPtrOutput `pulumi:"s3Bucket"`
@@ -162,15 +200,23 @@ func GetLogstreamConfiguration(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogstreamConfiguration resources.
 type logstreamConfigurationState struct {
-	// The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+	// The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
 	CompressionFormat *string `pulumi:"compressionFormat"`
-	// The type of system to which logs are being streamed.
+	// The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
 	DestinationType *string `pulumi:"destinationType"`
-	// The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+	// The name of the GCS bucket
+	GcsBucket *string `pulumi:"gcsBucket"`
+	// The encoded string of JSON that is used to authenticate for workload identity in GCS
+	GcsCredentials *string `pulumi:"gcsCredentials"`
+	// The GCS key prefix for the bucket
+	GcsKeyPrefix *string `pulumi:"gcsKeyPrefix"`
+	// The GCS scopes needed to be able to write in the bucket
+	GcsScopes []string `pulumi:"gcsScopes"`
+	// The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
 	LogType *string `pulumi:"logType"`
 	// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
 	S3AccessKeyId *string `pulumi:"s3AccessKeyId"`
-	// What type of authentication to use for S3. Required if destinationType is 's3'. Tailscale recommends using 'rolearn'.
+	// The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
 	S3AuthenticationType *string `pulumi:"s3AuthenticationType"`
 	// The S3 bucket name. Required if destinationType is 's3'.
 	S3Bucket *string `pulumi:"s3Bucket"`
@@ -195,15 +241,23 @@ type logstreamConfigurationState struct {
 }
 
 type LogstreamConfigurationState struct {
-	// The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+	// The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
 	CompressionFormat pulumi.StringPtrInput
-	// The type of system to which logs are being streamed.
+	// The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
 	DestinationType pulumi.StringPtrInput
-	// The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+	// The name of the GCS bucket
+	GcsBucket pulumi.StringPtrInput
+	// The encoded string of JSON that is used to authenticate for workload identity in GCS
+	GcsCredentials pulumi.StringPtrInput
+	// The GCS key prefix for the bucket
+	GcsKeyPrefix pulumi.StringPtrInput
+	// The GCS scopes needed to be able to write in the bucket
+	GcsScopes pulumi.StringArrayInput
+	// The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
 	LogType pulumi.StringPtrInput
 	// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
 	S3AccessKeyId pulumi.StringPtrInput
-	// What type of authentication to use for S3. Required if destinationType is 's3'. Tailscale recommends using 'rolearn'.
+	// The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
 	S3AuthenticationType pulumi.StringPtrInput
 	// The S3 bucket name. Required if destinationType is 's3'.
 	S3Bucket pulumi.StringPtrInput
@@ -232,15 +286,23 @@ func (LogstreamConfigurationState) ElementType() reflect.Type {
 }
 
 type logstreamConfigurationArgs struct {
-	// The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+	// The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
 	CompressionFormat *string `pulumi:"compressionFormat"`
-	// The type of system to which logs are being streamed.
+	// The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
 	DestinationType string `pulumi:"destinationType"`
-	// The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+	// The name of the GCS bucket
+	GcsBucket *string `pulumi:"gcsBucket"`
+	// The encoded string of JSON that is used to authenticate for workload identity in GCS
+	GcsCredentials *string `pulumi:"gcsCredentials"`
+	// The GCS key prefix for the bucket
+	GcsKeyPrefix *string `pulumi:"gcsKeyPrefix"`
+	// The GCS scopes needed to be able to write in the bucket
+	GcsScopes []string `pulumi:"gcsScopes"`
+	// The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
 	LogType string `pulumi:"logType"`
 	// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
 	S3AccessKeyId *string `pulumi:"s3AccessKeyId"`
-	// What type of authentication to use for S3. Required if destinationType is 's3'. Tailscale recommends using 'rolearn'.
+	// The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
 	S3AuthenticationType *string `pulumi:"s3AuthenticationType"`
 	// The S3 bucket name. Required if destinationType is 's3'.
 	S3Bucket *string `pulumi:"s3Bucket"`
@@ -266,15 +328,23 @@ type logstreamConfigurationArgs struct {
 
 // The set of arguments for constructing a LogstreamConfiguration resource.
 type LogstreamConfigurationArgs struct {
-	// The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+	// The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
 	CompressionFormat pulumi.StringPtrInput
-	// The type of system to which logs are being streamed.
+	// The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
 	DestinationType pulumi.StringInput
-	// The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+	// The name of the GCS bucket
+	GcsBucket pulumi.StringPtrInput
+	// The encoded string of JSON that is used to authenticate for workload identity in GCS
+	GcsCredentials pulumi.StringPtrInput
+	// The GCS key prefix for the bucket
+	GcsKeyPrefix pulumi.StringPtrInput
+	// The GCS scopes needed to be able to write in the bucket
+	GcsScopes pulumi.StringArrayInput
+	// The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
 	LogType pulumi.StringInput
 	// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
 	S3AccessKeyId pulumi.StringPtrInput
-	// What type of authentication to use for S3. Required if destinationType is 's3'. Tailscale recommends using 'rolearn'.
+	// The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
 	S3AuthenticationType pulumi.StringPtrInput
 	// The S3 bucket name. Required if destinationType is 's3'.
 	S3Bucket pulumi.StringPtrInput
@@ -385,17 +455,37 @@ func (o LogstreamConfigurationOutput) ToLogstreamConfigurationOutputWithContext(
 	return o
 }
 
-// The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+// The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
 func (o LogstreamConfigurationOutput) CompressionFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.CompressionFormat }).(pulumi.StringPtrOutput)
 }
 
-// The type of system to which logs are being streamed.
+// The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
 func (o LogstreamConfigurationOutput) DestinationType() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.DestinationType }).(pulumi.StringOutput)
 }
 
-// The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+// The name of the GCS bucket
+func (o LogstreamConfigurationOutput) GcsBucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.GcsBucket }).(pulumi.StringPtrOutput)
+}
+
+// The encoded string of JSON that is used to authenticate for workload identity in GCS
+func (o LogstreamConfigurationOutput) GcsCredentials() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.GcsCredentials }).(pulumi.StringPtrOutput)
+}
+
+// The GCS key prefix for the bucket
+func (o LogstreamConfigurationOutput) GcsKeyPrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.GcsKeyPrefix }).(pulumi.StringPtrOutput)
+}
+
+// The GCS scopes needed to be able to write in the bucket
+func (o LogstreamConfigurationOutput) GcsScopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringArrayOutput { return v.GcsScopes }).(pulumi.StringArrayOutput)
+}
+
+// The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
 func (o LogstreamConfigurationOutput) LogType() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.LogType }).(pulumi.StringOutput)
 }
@@ -405,7 +495,7 @@ func (o LogstreamConfigurationOutput) S3AccessKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.S3AccessKeyId }).(pulumi.StringPtrOutput)
 }
 
-// What type of authentication to use for S3. Required if destinationType is 's3'. Tailscale recommends using 'rolearn'.
+// The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
 func (o LogstreamConfigurationOutput) S3AuthenticationType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.S3AuthenticationType }).(pulumi.StringPtrOutput)
 }

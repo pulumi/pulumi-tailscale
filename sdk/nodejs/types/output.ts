@@ -65,6 +65,26 @@ export interface GetDevicesDevice {
      */
     addresses: string[];
     /**
+     * Whether the device is authorized to access the tailnet
+     */
+    authorized: boolean;
+    /**
+     * Whether the device blocks incoming connections
+     */
+    blocksIncomingConnections: boolean;
+    /**
+     * The Tailscale client version running on the device
+     */
+    clientVersion: string;
+    /**
+     * The creation time of the device
+     */
+    created: string;
+    /**
+     * The expiry time of the device's key
+     */
+    expires: string;
+    /**
      * The short hostname of the device
      */
     hostname: string;
@@ -72,6 +92,22 @@ export interface GetDevicesDevice {
      * The legacy identifier of the device. Use nodeId instead for new resources.
      */
     id: string;
+    /**
+     * Whether the device is marked as external
+     */
+    isExternal: boolean;
+    /**
+     * Whether the device's key expiry is disabled
+     */
+    keyExpiryDisabled: boolean;
+    /**
+     * The last seen time of the device
+     */
+    lastSeen: string;
+    /**
+     * The machine key of the device
+     */
+    machineKey: string;
     /**
      * The full name of the device (e.g. `hostname.domain.ts.net`)
      */
@@ -81,9 +117,29 @@ export interface GetDevicesDevice {
      */
     nodeId: string;
     /**
+     * The node key of the device
+     */
+    nodeKey: string;
+    /**
+     * The operating system of the device
+     */
+    os: string;
+    /**
      * The tags applied to the device
      */
     tags: string[];
+    /**
+     * The tailnet lock error for the device, if any
+     */
+    tailnetLockError: string;
+    /**
+     * The tailnet lock key for the device, if any
+     */
+    tailnetLockKey: string;
+    /**
+     * Whether an update is available for the device
+     */
+    updateAvailable: boolean;
     /**
      * The user associated with the device
      */

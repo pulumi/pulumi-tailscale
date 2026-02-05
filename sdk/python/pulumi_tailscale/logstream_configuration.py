@@ -22,6 +22,10 @@ class LogstreamConfigurationArgs:
                  destination_type: pulumi.Input[_builtins.str],
                  log_type: pulumi.Input[_builtins.str],
                  compression_format: Optional[pulumi.Input[_builtins.str]] = None,
+                 gcs_bucket: Optional[pulumi.Input[_builtins.str]] = None,
+                 gcs_credentials: Optional[pulumi.Input[_builtins.str]] = None,
+                 gcs_key_prefix: Optional[pulumi.Input[_builtins.str]] = None,
+                 gcs_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  s3_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  s3_authentication_type: Optional[pulumi.Input[_builtins.str]] = None,
                  s3_bucket: Optional[pulumi.Input[_builtins.str]] = None,
@@ -36,11 +40,15 @@ class LogstreamConfigurationArgs:
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LogstreamConfiguration resource.
-        :param pulumi.Input[_builtins.str] destination_type: The type of system to which logs are being streamed.
-        :param pulumi.Input[_builtins.str] log_type: The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
-        :param pulumi.Input[_builtins.str] compression_format: The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+        :param pulumi.Input[_builtins.str] destination_type: The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
+        :param pulumi.Input[_builtins.str] log_type: The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
+        :param pulumi.Input[_builtins.str] compression_format: The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
+        :param pulumi.Input[_builtins.str] gcs_bucket: The name of the GCS bucket
+        :param pulumi.Input[_builtins.str] gcs_credentials: The encoded string of JSON that is used to authenticate for workload identity in GCS
+        :param pulumi.Input[_builtins.str] gcs_key_prefix: The GCS key prefix for the bucket
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] gcs_scopes: The GCS scopes needed to be able to write in the bucket
         :param pulumi.Input[_builtins.str] s3_access_key_id: The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
-        :param pulumi.Input[_builtins.str] s3_authentication_type: What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        :param pulumi.Input[_builtins.str] s3_authentication_type: The type of authentication to use for S3. Required if destination_type is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
         :param pulumi.Input[_builtins.str] s3_bucket: The S3 bucket name. Required if destination_type is 's3'.
         :param pulumi.Input[_builtins.str] s3_external_id: The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
         :param pulumi.Input[_builtins.str] s3_key_prefix: An optional S3 key prefix to prepend to the auto-generated S3 key name.
@@ -56,6 +64,14 @@ class LogstreamConfigurationArgs:
         pulumi.set(__self__, "log_type", log_type)
         if compression_format is not None:
             pulumi.set(__self__, "compression_format", compression_format)
+        if gcs_bucket is not None:
+            pulumi.set(__self__, "gcs_bucket", gcs_bucket)
+        if gcs_credentials is not None:
+            pulumi.set(__self__, "gcs_credentials", gcs_credentials)
+        if gcs_key_prefix is not None:
+            pulumi.set(__self__, "gcs_key_prefix", gcs_key_prefix)
+        if gcs_scopes is not None:
+            pulumi.set(__self__, "gcs_scopes", gcs_scopes)
         if s3_access_key_id is not None:
             pulumi.set(__self__, "s3_access_key_id", s3_access_key_id)
         if s3_authentication_type is not None:
@@ -85,7 +101,7 @@ class LogstreamConfigurationArgs:
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Input[_builtins.str]:
         """
-        The type of system to which logs are being streamed.
+        The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
         """
         return pulumi.get(self, "destination_type")
 
@@ -97,7 +113,7 @@ class LogstreamConfigurationArgs:
     @pulumi.getter(name="logType")
     def log_type(self) -> pulumi.Input[_builtins.str]:
         """
-        The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+        The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
         """
         return pulumi.get(self, "log_type")
 
@@ -109,13 +125,61 @@ class LogstreamConfigurationArgs:
     @pulumi.getter(name="compressionFormat")
     def compression_format(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+        The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
         """
         return pulumi.get(self, "compression_format")
 
     @compression_format.setter
     def compression_format(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "compression_format", value)
+
+    @_builtins.property
+    @pulumi.getter(name="gcsBucket")
+    def gcs_bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the GCS bucket
+        """
+        return pulumi.get(self, "gcs_bucket")
+
+    @gcs_bucket.setter
+    def gcs_bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "gcs_bucket", value)
+
+    @_builtins.property
+    @pulumi.getter(name="gcsCredentials")
+    def gcs_credentials(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The encoded string of JSON that is used to authenticate for workload identity in GCS
+        """
+        return pulumi.get(self, "gcs_credentials")
+
+    @gcs_credentials.setter
+    def gcs_credentials(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "gcs_credentials", value)
+
+    @_builtins.property
+    @pulumi.getter(name="gcsKeyPrefix")
+    def gcs_key_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The GCS key prefix for the bucket
+        """
+        return pulumi.get(self, "gcs_key_prefix")
+
+    @gcs_key_prefix.setter
+    def gcs_key_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "gcs_key_prefix", value)
+
+    @_builtins.property
+    @pulumi.getter(name="gcsScopes")
+    def gcs_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The GCS scopes needed to be able to write in the bucket
+        """
+        return pulumi.get(self, "gcs_scopes")
+
+    @gcs_scopes.setter
+    def gcs_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "gcs_scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="s3AccessKeyId")
@@ -133,7 +197,7 @@ class LogstreamConfigurationArgs:
     @pulumi.getter(name="s3AuthenticationType")
     def s3_authentication_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        The type of authentication to use for S3. Required if destination_type is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
         """
         return pulumi.get(self, "s3_authentication_type")
 
@@ -267,6 +331,10 @@ class _LogstreamConfigurationState:
     def __init__(__self__, *,
                  compression_format: Optional[pulumi.Input[_builtins.str]] = None,
                  destination_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 gcs_bucket: Optional[pulumi.Input[_builtins.str]] = None,
+                 gcs_credentials: Optional[pulumi.Input[_builtins.str]] = None,
+                 gcs_key_prefix: Optional[pulumi.Input[_builtins.str]] = None,
+                 gcs_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  log_type: Optional[pulumi.Input[_builtins.str]] = None,
                  s3_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  s3_authentication_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -282,11 +350,15 @@ class _LogstreamConfigurationState:
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LogstreamConfiguration resources.
-        :param pulumi.Input[_builtins.str] compression_format: The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
-        :param pulumi.Input[_builtins.str] destination_type: The type of system to which logs are being streamed.
-        :param pulumi.Input[_builtins.str] log_type: The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+        :param pulumi.Input[_builtins.str] compression_format: The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
+        :param pulumi.Input[_builtins.str] destination_type: The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
+        :param pulumi.Input[_builtins.str] gcs_bucket: The name of the GCS bucket
+        :param pulumi.Input[_builtins.str] gcs_credentials: The encoded string of JSON that is used to authenticate for workload identity in GCS
+        :param pulumi.Input[_builtins.str] gcs_key_prefix: The GCS key prefix for the bucket
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] gcs_scopes: The GCS scopes needed to be able to write in the bucket
+        :param pulumi.Input[_builtins.str] log_type: The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
         :param pulumi.Input[_builtins.str] s3_access_key_id: The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
-        :param pulumi.Input[_builtins.str] s3_authentication_type: What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        :param pulumi.Input[_builtins.str] s3_authentication_type: The type of authentication to use for S3. Required if destination_type is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
         :param pulumi.Input[_builtins.str] s3_bucket: The S3 bucket name. Required if destination_type is 's3'.
         :param pulumi.Input[_builtins.str] s3_external_id: The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
         :param pulumi.Input[_builtins.str] s3_key_prefix: An optional S3 key prefix to prepend to the auto-generated S3 key name.
@@ -302,6 +374,14 @@ class _LogstreamConfigurationState:
             pulumi.set(__self__, "compression_format", compression_format)
         if destination_type is not None:
             pulumi.set(__self__, "destination_type", destination_type)
+        if gcs_bucket is not None:
+            pulumi.set(__self__, "gcs_bucket", gcs_bucket)
+        if gcs_credentials is not None:
+            pulumi.set(__self__, "gcs_credentials", gcs_credentials)
+        if gcs_key_prefix is not None:
+            pulumi.set(__self__, "gcs_key_prefix", gcs_key_prefix)
+        if gcs_scopes is not None:
+            pulumi.set(__self__, "gcs_scopes", gcs_scopes)
         if log_type is not None:
             pulumi.set(__self__, "log_type", log_type)
         if s3_access_key_id is not None:
@@ -333,7 +413,7 @@ class _LogstreamConfigurationState:
     @pulumi.getter(name="compressionFormat")
     def compression_format(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+        The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
         """
         return pulumi.get(self, "compression_format")
 
@@ -345,7 +425,7 @@ class _LogstreamConfigurationState:
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The type of system to which logs are being streamed.
+        The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
         """
         return pulumi.get(self, "destination_type")
 
@@ -354,10 +434,58 @@ class _LogstreamConfigurationState:
         pulumi.set(self, "destination_type", value)
 
     @_builtins.property
+    @pulumi.getter(name="gcsBucket")
+    def gcs_bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the GCS bucket
+        """
+        return pulumi.get(self, "gcs_bucket")
+
+    @gcs_bucket.setter
+    def gcs_bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "gcs_bucket", value)
+
+    @_builtins.property
+    @pulumi.getter(name="gcsCredentials")
+    def gcs_credentials(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The encoded string of JSON that is used to authenticate for workload identity in GCS
+        """
+        return pulumi.get(self, "gcs_credentials")
+
+    @gcs_credentials.setter
+    def gcs_credentials(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "gcs_credentials", value)
+
+    @_builtins.property
+    @pulumi.getter(name="gcsKeyPrefix")
+    def gcs_key_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The GCS key prefix for the bucket
+        """
+        return pulumi.get(self, "gcs_key_prefix")
+
+    @gcs_key_prefix.setter
+    def gcs_key_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "gcs_key_prefix", value)
+
+    @_builtins.property
+    @pulumi.getter(name="gcsScopes")
+    def gcs_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The GCS scopes needed to be able to write in the bucket
+        """
+        return pulumi.get(self, "gcs_scopes")
+
+    @gcs_scopes.setter
+    def gcs_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "gcs_scopes", value)
+
+    @_builtins.property
     @pulumi.getter(name="logType")
     def log_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+        The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
         """
         return pulumi.get(self, "log_type")
 
@@ -381,7 +509,7 @@ class _LogstreamConfigurationState:
     @pulumi.getter(name="s3AuthenticationType")
     def s3_authentication_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        The type of authentication to use for S3. Required if destination_type is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
         """
         return pulumi.get(self, "s3_authentication_type")
 
@@ -518,6 +646,10 @@ class LogstreamConfiguration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  compression_format: Optional[pulumi.Input[_builtins.str]] = None,
                  destination_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 gcs_bucket: Optional[pulumi.Input[_builtins.str]] = None,
+                 gcs_credentials: Optional[pulumi.Input[_builtins.str]] = None,
+                 gcs_key_prefix: Optional[pulumi.Input[_builtins.str]] = None,
+                 gcs_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  log_type: Optional[pulumi.Input[_builtins.str]] = None,
                  s3_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  s3_authentication_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -539,6 +671,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import json
         import pulumi_tailscale as tailscale
 
         # Example configuration for a non-S3 logstreaming endpoint
@@ -566,6 +699,25 @@ class LogstreamConfiguration(pulumi.CustomResource):
             s3_authentication_type="accesskey",
             s3_access_key_id="some-access-key",
             s3_secret_access_key="some-secret-key")
+        # Example configuration for a GCS logstreaming endpoint using workload identity
+        sample_logstream_configuration_gcs_wif = tailscale.LogstreamConfiguration("sample_logstream_configuration_gcs_wif",
+            log_type="configuration",
+            destination_type="gcs",
+            gcs_bucket="example-gcs-bucket",
+            gcs_credentials=json.dumps({
+                "type": "external_account",
+                "audience": "//iam.googleapis.com/projects/12345678/locations/global/workloadIdentityPools/example-pool/providers/example-provider",
+                "subject_token_type": "urn:ietf:params:aws:token-type:aws4_request",
+                "service_account_impersonation_url": "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/example@example.iam.gserviceaccount.com:generateAccessToken",
+                "token_url": "https://sts.googleapis.com/v1/token",
+                "credential_source": {
+                    "environment_id": "aws1",
+                    "region_url": "http://169.254.169.254/latest/meta-data/placement/availability-zone",
+                    "url": "http://169.254.169.254/latest/meta-data/iam/security-credentials",
+                    "regional_cred_verification_url": "https://sts.{region}.amazonaws.com?Action=GetCallerIdentity&Version=2011-06-15",
+                    "imdsv2_session_token_url": "http://169.254.169.254/latest/api/token",
+                },
+            }))
         ```
 
         ## Import
@@ -580,11 +732,15 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] compression_format: The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
-        :param pulumi.Input[_builtins.str] destination_type: The type of system to which logs are being streamed.
-        :param pulumi.Input[_builtins.str] log_type: The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+        :param pulumi.Input[_builtins.str] compression_format: The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
+        :param pulumi.Input[_builtins.str] destination_type: The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
+        :param pulumi.Input[_builtins.str] gcs_bucket: The name of the GCS bucket
+        :param pulumi.Input[_builtins.str] gcs_credentials: The encoded string of JSON that is used to authenticate for workload identity in GCS
+        :param pulumi.Input[_builtins.str] gcs_key_prefix: The GCS key prefix for the bucket
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] gcs_scopes: The GCS scopes needed to be able to write in the bucket
+        :param pulumi.Input[_builtins.str] log_type: The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
         :param pulumi.Input[_builtins.str] s3_access_key_id: The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
-        :param pulumi.Input[_builtins.str] s3_authentication_type: What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        :param pulumi.Input[_builtins.str] s3_authentication_type: The type of authentication to use for S3. Required if destination_type is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
         :param pulumi.Input[_builtins.str] s3_bucket: The S3 bucket name. Required if destination_type is 's3'.
         :param pulumi.Input[_builtins.str] s3_external_id: The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
         :param pulumi.Input[_builtins.str] s3_key_prefix: An optional S3 key prefix to prepend to the auto-generated S3 key name.
@@ -609,6 +765,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
         ```python
         import pulumi
+        import json
         import pulumi_tailscale as tailscale
 
         # Example configuration for a non-S3 logstreaming endpoint
@@ -636,6 +793,25 @@ class LogstreamConfiguration(pulumi.CustomResource):
             s3_authentication_type="accesskey",
             s3_access_key_id="some-access-key",
             s3_secret_access_key="some-secret-key")
+        # Example configuration for a GCS logstreaming endpoint using workload identity
+        sample_logstream_configuration_gcs_wif = tailscale.LogstreamConfiguration("sample_logstream_configuration_gcs_wif",
+            log_type="configuration",
+            destination_type="gcs",
+            gcs_bucket="example-gcs-bucket",
+            gcs_credentials=json.dumps({
+                "type": "external_account",
+                "audience": "//iam.googleapis.com/projects/12345678/locations/global/workloadIdentityPools/example-pool/providers/example-provider",
+                "subject_token_type": "urn:ietf:params:aws:token-type:aws4_request",
+                "service_account_impersonation_url": "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/example@example.iam.gserviceaccount.com:generateAccessToken",
+                "token_url": "https://sts.googleapis.com/v1/token",
+                "credential_source": {
+                    "environment_id": "aws1",
+                    "region_url": "http://169.254.169.254/latest/meta-data/placement/availability-zone",
+                    "url": "http://169.254.169.254/latest/meta-data/iam/security-credentials",
+                    "regional_cred_verification_url": "https://sts.{region}.amazonaws.com?Action=GetCallerIdentity&Version=2011-06-15",
+                    "imdsv2_session_token_url": "http://169.254.169.254/latest/api/token",
+                },
+            }))
         ```
 
         ## Import
@@ -665,6 +841,10 @@ class LogstreamConfiguration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  compression_format: Optional[pulumi.Input[_builtins.str]] = None,
                  destination_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 gcs_bucket: Optional[pulumi.Input[_builtins.str]] = None,
+                 gcs_credentials: Optional[pulumi.Input[_builtins.str]] = None,
+                 gcs_key_prefix: Optional[pulumi.Input[_builtins.str]] = None,
+                 gcs_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  log_type: Optional[pulumi.Input[_builtins.str]] = None,
                  s3_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  s3_authentication_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -691,6 +871,10 @@ class LogstreamConfiguration(pulumi.CustomResource):
             if destination_type is None and not opts.urn:
                 raise TypeError("Missing required property 'destination_type'")
             __props__.__dict__["destination_type"] = destination_type
+            __props__.__dict__["gcs_bucket"] = gcs_bucket
+            __props__.__dict__["gcs_credentials"] = gcs_credentials
+            __props__.__dict__["gcs_key_prefix"] = gcs_key_prefix
+            __props__.__dict__["gcs_scopes"] = gcs_scopes
             if log_type is None and not opts.urn:
                 raise TypeError("Missing required property 'log_type'")
             __props__.__dict__["log_type"] = log_type
@@ -720,6 +904,10 @@ class LogstreamConfiguration(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             compression_format: Optional[pulumi.Input[_builtins.str]] = None,
             destination_type: Optional[pulumi.Input[_builtins.str]] = None,
+            gcs_bucket: Optional[pulumi.Input[_builtins.str]] = None,
+            gcs_credentials: Optional[pulumi.Input[_builtins.str]] = None,
+            gcs_key_prefix: Optional[pulumi.Input[_builtins.str]] = None,
+            gcs_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             log_type: Optional[pulumi.Input[_builtins.str]] = None,
             s3_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
             s3_authentication_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -740,11 +928,15 @@ class LogstreamConfiguration(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] compression_format: The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
-        :param pulumi.Input[_builtins.str] destination_type: The type of system to which logs are being streamed.
-        :param pulumi.Input[_builtins.str] log_type: The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+        :param pulumi.Input[_builtins.str] compression_format: The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
+        :param pulumi.Input[_builtins.str] destination_type: The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
+        :param pulumi.Input[_builtins.str] gcs_bucket: The name of the GCS bucket
+        :param pulumi.Input[_builtins.str] gcs_credentials: The encoded string of JSON that is used to authenticate for workload identity in GCS
+        :param pulumi.Input[_builtins.str] gcs_key_prefix: The GCS key prefix for the bucket
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] gcs_scopes: The GCS scopes needed to be able to write in the bucket
+        :param pulumi.Input[_builtins.str] log_type: The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
         :param pulumi.Input[_builtins.str] s3_access_key_id: The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
-        :param pulumi.Input[_builtins.str] s3_authentication_type: What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        :param pulumi.Input[_builtins.str] s3_authentication_type: The type of authentication to use for S3. Required if destination_type is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
         :param pulumi.Input[_builtins.str] s3_bucket: The S3 bucket name. Required if destination_type is 's3'.
         :param pulumi.Input[_builtins.str] s3_external_id: The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
         :param pulumi.Input[_builtins.str] s3_key_prefix: An optional S3 key prefix to prepend to the auto-generated S3 key name.
@@ -762,6 +954,10 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
         __props__.__dict__["compression_format"] = compression_format
         __props__.__dict__["destination_type"] = destination_type
+        __props__.__dict__["gcs_bucket"] = gcs_bucket
+        __props__.__dict__["gcs_credentials"] = gcs_credentials
+        __props__.__dict__["gcs_key_prefix"] = gcs_key_prefix
+        __props__.__dict__["gcs_scopes"] = gcs_scopes
         __props__.__dict__["log_type"] = log_type
         __props__.__dict__["s3_access_key_id"] = s3_access_key_id
         __props__.__dict__["s3_authentication_type"] = s3_authentication_type
@@ -781,7 +977,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="compressionFormat")
     def compression_format(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+        The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
         """
         return pulumi.get(self, "compression_format")
 
@@ -789,15 +985,47 @@ class LogstreamConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="destinationType")
     def destination_type(self) -> pulumi.Output[_builtins.str]:
         """
-        The type of system to which logs are being streamed.
+        The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
         """
         return pulumi.get(self, "destination_type")
+
+    @_builtins.property
+    @pulumi.getter(name="gcsBucket")
+    def gcs_bucket(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The name of the GCS bucket
+        """
+        return pulumi.get(self, "gcs_bucket")
+
+    @_builtins.property
+    @pulumi.getter(name="gcsCredentials")
+    def gcs_credentials(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The encoded string of JSON that is used to authenticate for workload identity in GCS
+        """
+        return pulumi.get(self, "gcs_credentials")
+
+    @_builtins.property
+    @pulumi.getter(name="gcsKeyPrefix")
+    def gcs_key_prefix(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The GCS key prefix for the bucket
+        """
+        return pulumi.get(self, "gcs_key_prefix")
+
+    @_builtins.property
+    @pulumi.getter(name="gcsScopes")
+    def gcs_scopes(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        The GCS scopes needed to be able to write in the bucket
+        """
+        return pulumi.get(self, "gcs_scopes")
 
     @_builtins.property
     @pulumi.getter(name="logType")
     def log_type(self) -> pulumi.Output[_builtins.str]:
         """
-        The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+        The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
         """
         return pulumi.get(self, "log_type")
 
@@ -813,7 +1041,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="s3AuthenticationType")
     def s3_authentication_type(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        What type of authentication to use for S3. Required if destination_type is 's3'. Tailscale recommends using 'rolearn'.
+        The type of authentication to use for S3. Required if destination_type is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
         """
         return pulumi.get(self, "s3_authentication_type")
 

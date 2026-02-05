@@ -167,6 +167,26 @@ namespace Pulumi.Tailscale
         /// </summary>
         public readonly ImmutableArray<string> Addresses;
         /// <summary>
+        /// Whether the device is authorized to access the tailnet
+        /// </summary>
+        public readonly bool Authorized;
+        /// <summary>
+        /// Whether the device blocks incoming connections
+        /// </summary>
+        public readonly bool BlocksIncomingConnections;
+        /// <summary>
+        /// The Tailscale client version running on the device
+        /// </summary>
+        public readonly string ClientVersion;
+        /// <summary>
+        /// The creation time of the device
+        /// </summary>
+        public readonly string Created;
+        /// <summary>
+        /// The expiry time of the device's key
+        /// </summary>
+        public readonly string Expires;
+        /// <summary>
         /// The short hostname of the device
         /// </summary>
         public readonly string? Hostname;
@@ -174,6 +194,22 @@ namespace Pulumi.Tailscale
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Whether the device is marked as external
+        /// </summary>
+        public readonly bool IsExternal;
+        /// <summary>
+        /// Whether the device's key expiry is disabled
+        /// </summary>
+        public readonly bool KeyExpiryDisabled;
+        /// <summary>
+        /// The last seen time of the device
+        /// </summary>
+        public readonly string LastSeen;
+        /// <summary>
+        /// The machine key of the device
+        /// </summary>
+        public readonly string MachineKey;
         /// <summary>
         /// The full name of the device (e.g. `hostname.domain.ts.net`)
         /// </summary>
@@ -183,9 +219,29 @@ namespace Pulumi.Tailscale
         /// </summary>
         public readonly string NodeId;
         /// <summary>
+        /// The node key of the device
+        /// </summary>
+        public readonly string NodeKey;
+        /// <summary>
+        /// The operating system of the device
+        /// </summary>
+        public readonly string Os;
+        /// <summary>
         /// The tags applied to the device
         /// </summary>
         public readonly ImmutableArray<string> Tags;
+        /// <summary>
+        /// The tailnet lock error for the device, if any
+        /// </summary>
+        public readonly string TailnetLockError;
+        /// <summary>
+        /// The tailnet lock key for the device, if any
+        /// </summary>
+        public readonly string TailnetLockKey;
+        /// <summary>
+        /// Whether an update is available for the device
+        /// </summary>
+        public readonly bool UpdateAvailable;
         /// <summary>
         /// The user associated with the device
         /// </summary>
@@ -199,26 +255,68 @@ namespace Pulumi.Tailscale
         private GetDeviceResult(
             ImmutableArray<string> addresses,
 
+            bool authorized,
+
+            bool blocksIncomingConnections,
+
+            string clientVersion,
+
+            string created,
+
+            string expires,
+
             string? hostname,
 
             string id,
+
+            bool isExternal,
+
+            bool keyExpiryDisabled,
+
+            string lastSeen,
+
+            string machineKey,
 
             string? name,
 
             string nodeId,
 
+            string nodeKey,
+
+            string os,
+
             ImmutableArray<string> tags,
+
+            string tailnetLockError,
+
+            string tailnetLockKey,
+
+            bool updateAvailable,
 
             string user,
 
             string? waitFor)
         {
             Addresses = addresses;
+            Authorized = authorized;
+            BlocksIncomingConnections = blocksIncomingConnections;
+            ClientVersion = clientVersion;
+            Created = created;
+            Expires = expires;
             Hostname = hostname;
             Id = id;
+            IsExternal = isExternal;
+            KeyExpiryDisabled = keyExpiryDisabled;
+            LastSeen = lastSeen;
+            MachineKey = machineKey;
             Name = name;
             NodeId = nodeId;
+            NodeKey = nodeKey;
+            Os = os;
             Tags = tags;
+            TailnetLockError = tailnetLockError;
+            TailnetLockKey = tailnetLockKey;
+            UpdateAvailable = updateAvailable;
             User = user;
             WaitFor = waitFor;
         }

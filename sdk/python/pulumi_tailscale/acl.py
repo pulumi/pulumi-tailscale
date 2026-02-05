@@ -163,9 +163,9 @@ class Acl(pulumi.CustomResource):
             \\"grants\\": [
               {
                 // Allow all users access to all ports.
-                \\"src\\" = [\\"*\\"],
-                \\"dst\\" = [\\"*\\"],
-                \\"ip\\"  = [\\"*\\"],
+                \\"src\\": [\\"*\\"],
+                \\"dst\\": [\\"*\\"],
+                \\"ip\\": [\\"*\\"],
               },
             ],
           }
@@ -218,9 +218,9 @@ class Acl(pulumi.CustomResource):
             \\"grants\\": [
               {
                 // Allow all users access to all ports.
-                \\"src\\" = [\\"*\\"],
-                \\"dst\\" = [\\"*\\"],
-                \\"ip\\"  = [\\"*\\"],
+                \\"src\\": [\\"*\\"],
+                \\"dst\\": [\\"*\\"],
+                \\"ip\\": [\\"*\\"],
               },
             ],
           }

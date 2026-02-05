@@ -32,11 +32,11 @@ export function getUsers(args?: GetUsersArgs, opts?: pulumi.InvokeOptions): Prom
  */
 export interface GetUsersArgs {
     /**
-     * Filters the users list to elements whose role is the provided value.
+     * Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
      */
     role?: string;
     /**
-     * Filters the users list to elements whose type is the provided value.
+     * Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
      */
     type?: string;
 }
@@ -50,11 +50,11 @@ export interface GetUsersResult {
      */
     readonly id: string;
     /**
-     * Filters the users list to elements whose role is the provided value.
+     * Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
      */
     readonly role?: string;
     /**
-     * Filters the users list to elements whose type is the provided value.
+     * Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
      */
     readonly type?: string;
     /**
@@ -88,11 +88,11 @@ export function getUsersOutput(args?: GetUsersOutputArgs, opts?: pulumi.InvokeOu
  */
 export interface GetUsersOutputArgs {
     /**
-     * Filters the users list to elements whose role is the provided value.
+     * Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
      */
     role?: pulumi.Input<string>;
     /**
-     * Filters the users list to elements whose type is the provided value.
+     * Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
      */
     type?: pulumi.Input<string>;
 }

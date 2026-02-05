@@ -59,11 +59,11 @@ type Webhook struct {
 
 	// The endpoint to send webhook events to.
 	EndpointUrl pulumi.StringOutput `pulumi:"endpointUrl"`
-	// The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
+	// The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
 	ProviderType pulumi.StringPtrOutput `pulumi:"providerType"`
 	// The secret used for signing webhook payloads. Only set on resource creation. See https://tailscale.com/kb/1213/webhooks#webhook-secret for more information.
 	Secret pulumi.StringOutput `pulumi:"secret"`
-	// The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
+	// The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
 	Subscriptions pulumi.StringArrayOutput `pulumi:"subscriptions"`
 }
 
@@ -109,22 +109,22 @@ func GetWebhook(ctx *pulumi.Context,
 type webhookState struct {
 	// The endpoint to send webhook events to.
 	EndpointUrl *string `pulumi:"endpointUrl"`
-	// The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
+	// The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
 	ProviderType *string `pulumi:"providerType"`
 	// The secret used for signing webhook payloads. Only set on resource creation. See https://tailscale.com/kb/1213/webhooks#webhook-secret for more information.
 	Secret *string `pulumi:"secret"`
-	// The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
+	// The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
 	Subscriptions []string `pulumi:"subscriptions"`
 }
 
 type WebhookState struct {
 	// The endpoint to send webhook events to.
 	EndpointUrl pulumi.StringPtrInput
-	// The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
+	// The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
 	ProviderType pulumi.StringPtrInput
 	// The secret used for signing webhook payloads. Only set on resource creation. See https://tailscale.com/kb/1213/webhooks#webhook-secret for more information.
 	Secret pulumi.StringPtrInput
-	// The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
+	// The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
 	Subscriptions pulumi.StringArrayInput
 }
 
@@ -135,9 +135,9 @@ func (WebhookState) ElementType() reflect.Type {
 type webhookArgs struct {
 	// The endpoint to send webhook events to.
 	EndpointUrl string `pulumi:"endpointUrl"`
-	// The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
+	// The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
 	ProviderType *string `pulumi:"providerType"`
-	// The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
+	// The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
 	Subscriptions []string `pulumi:"subscriptions"`
 }
 
@@ -145,9 +145,9 @@ type webhookArgs struct {
 type WebhookArgs struct {
 	// The endpoint to send webhook events to.
 	EndpointUrl pulumi.StringInput
-	// The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
+	// The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
 	ProviderType pulumi.StringPtrInput
-	// The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
+	// The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
 	Subscriptions pulumi.StringArrayInput
 }
 
@@ -243,7 +243,7 @@ func (o WebhookOutput) EndpointUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *Webhook) pulumi.StringOutput { return v.EndpointUrl }).(pulumi.StringOutput)
 }
 
-// The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
+// The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
 func (o WebhookOutput) ProviderType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Webhook) pulumi.StringPtrOutput { return v.ProviderType }).(pulumi.StringPtrOutput)
 }
@@ -253,7 +253,7 @@ func (o WebhookOutput) Secret() pulumi.StringOutput {
 	return o.ApplyT(func(v *Webhook) pulumi.StringOutput { return v.Secret }).(pulumi.StringOutput)
 }
 
-// The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
+// The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
 func (o WebhookOutput) Subscriptions() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Webhook) pulumi.StringArrayOutput { return v.Subscriptions }).(pulumi.StringArrayOutput)
 }

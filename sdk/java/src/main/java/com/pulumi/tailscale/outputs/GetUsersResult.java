@@ -20,12 +20,12 @@ public final class GetUsersResult {
      */
     private String id;
     /**
-     * @return Filters the users list to elements whose role is the provided value.
+     * @return Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
      * 
      */
     private @Nullable String role;
     /**
-     * @return Filters the users list to elements whose type is the provided value.
+     * @return Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
      * 
      */
     private @Nullable String type;
@@ -44,14 +44,14 @@ public final class GetUsersResult {
         return this.id;
     }
     /**
-     * @return Filters the users list to elements whose role is the provided value.
+     * @return Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
      * 
      */
     public Optional<String> role() {
         return Optional.ofNullable(this.role);
     }
     /**
-     * @return Filters the users list to elements whose type is the provided value.
+     * @return Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
      * 
      */
     public Optional<String> type() {

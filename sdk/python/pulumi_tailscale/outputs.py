@@ -207,27 +207,69 @@ class DnsConfigurationSplitDnNameserver(dict):
 class GetDevicesDeviceResult(dict):
     def __init__(__self__, *,
                  addresses: Sequence[_builtins.str],
+                 authorized: _builtins.bool,
+                 blocks_incoming_connections: _builtins.bool,
+                 client_version: _builtins.str,
+                 created: _builtins.str,
+                 expires: _builtins.str,
                  hostname: _builtins.str,
                  id: _builtins.str,
+                 is_external: _builtins.bool,
+                 key_expiry_disabled: _builtins.bool,
+                 last_seen: _builtins.str,
+                 machine_key: _builtins.str,
                  name: _builtins.str,
                  node_id: _builtins.str,
+                 node_key: _builtins.str,
+                 os: _builtins.str,
                  tags: Sequence[_builtins.str],
+                 tailnet_lock_error: _builtins.str,
+                 tailnet_lock_key: _builtins.str,
+                 update_available: _builtins.bool,
                  user: _builtins.str):
         """
         :param Sequence[_builtins.str] addresses: The list of device's IPs
+        :param _builtins.bool authorized: Whether the device is authorized to access the tailnet
+        :param _builtins.bool blocks_incoming_connections: Whether the device blocks incoming connections
+        :param _builtins.str client_version: The Tailscale client version running on the device
+        :param _builtins.str created: The creation time of the device
+        :param _builtins.str expires: The expiry time of the device's key
         :param _builtins.str hostname: The short hostname of the device
         :param _builtins.str id: The legacy identifier of the device. Use node_id instead for new resources.
+        :param _builtins.bool is_external: Whether the device is marked as external
+        :param _builtins.bool key_expiry_disabled: Whether the device's key expiry is disabled
+        :param _builtins.str last_seen: The last seen time of the device
+        :param _builtins.str machine_key: The machine key of the device
         :param _builtins.str name: The full name of the device (e.g. `hostname.domain.ts.net`)
         :param _builtins.str node_id: The preferred indentifier for a device.
+        :param _builtins.str node_key: The node key of the device
+        :param _builtins.str os: The operating system of the device
         :param Sequence[_builtins.str] tags: The tags applied to the device
+        :param _builtins.str tailnet_lock_error: The tailnet lock error for the device, if any
+        :param _builtins.str tailnet_lock_key: The tailnet lock key for the device, if any
+        :param _builtins.bool update_available: Whether an update is available for the device
         :param _builtins.str user: The user associated with the device
         """
         pulumi.set(__self__, "addresses", addresses)
+        pulumi.set(__self__, "authorized", authorized)
+        pulumi.set(__self__, "blocks_incoming_connections", blocks_incoming_connections)
+        pulumi.set(__self__, "client_version", client_version)
+        pulumi.set(__self__, "created", created)
+        pulumi.set(__self__, "expires", expires)
         pulumi.set(__self__, "hostname", hostname)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_external", is_external)
+        pulumi.set(__self__, "key_expiry_disabled", key_expiry_disabled)
+        pulumi.set(__self__, "last_seen", last_seen)
+        pulumi.set(__self__, "machine_key", machine_key)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "node_id", node_id)
+        pulumi.set(__self__, "node_key", node_key)
+        pulumi.set(__self__, "os", os)
         pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "tailnet_lock_error", tailnet_lock_error)
+        pulumi.set(__self__, "tailnet_lock_key", tailnet_lock_key)
+        pulumi.set(__self__, "update_available", update_available)
         pulumi.set(__self__, "user", user)
 
     @_builtins.property
@@ -237,6 +279,46 @@ class GetDevicesDeviceResult(dict):
         The list of device's IPs
         """
         return pulumi.get(self, "addresses")
+
+    @_builtins.property
+    @pulumi.getter
+    def authorized(self) -> _builtins.bool:
+        """
+        Whether the device is authorized to access the tailnet
+        """
+        return pulumi.get(self, "authorized")
+
+    @_builtins.property
+    @pulumi.getter(name="blocksIncomingConnections")
+    def blocks_incoming_connections(self) -> _builtins.bool:
+        """
+        Whether the device blocks incoming connections
+        """
+        return pulumi.get(self, "blocks_incoming_connections")
+
+    @_builtins.property
+    @pulumi.getter(name="clientVersion")
+    def client_version(self) -> _builtins.str:
+        """
+        The Tailscale client version running on the device
+        """
+        return pulumi.get(self, "client_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def created(self) -> _builtins.str:
+        """
+        The creation time of the device
+        """
+        return pulumi.get(self, "created")
+
+    @_builtins.property
+    @pulumi.getter
+    def expires(self) -> _builtins.str:
+        """
+        The expiry time of the device's key
+        """
+        return pulumi.get(self, "expires")
 
     @_builtins.property
     @pulumi.getter
@@ -255,6 +337,38 @@ class GetDevicesDeviceResult(dict):
         return pulumi.get(self, "id")
 
     @_builtins.property
+    @pulumi.getter(name="isExternal")
+    def is_external(self) -> _builtins.bool:
+        """
+        Whether the device is marked as external
+        """
+        return pulumi.get(self, "is_external")
+
+    @_builtins.property
+    @pulumi.getter(name="keyExpiryDisabled")
+    def key_expiry_disabled(self) -> _builtins.bool:
+        """
+        Whether the device's key expiry is disabled
+        """
+        return pulumi.get(self, "key_expiry_disabled")
+
+    @_builtins.property
+    @pulumi.getter(name="lastSeen")
+    def last_seen(self) -> _builtins.str:
+        """
+        The last seen time of the device
+        """
+        return pulumi.get(self, "last_seen")
+
+    @_builtins.property
+    @pulumi.getter(name="machineKey")
+    def machine_key(self) -> _builtins.str:
+        """
+        The machine key of the device
+        """
+        return pulumi.get(self, "machine_key")
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
@@ -271,12 +385,52 @@ class GetDevicesDeviceResult(dict):
         return pulumi.get(self, "node_id")
 
     @_builtins.property
+    @pulumi.getter(name="nodeKey")
+    def node_key(self) -> _builtins.str:
+        """
+        The node key of the device
+        """
+        return pulumi.get(self, "node_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def os(self) -> _builtins.str:
+        """
+        The operating system of the device
+        """
+        return pulumi.get(self, "os")
+
+    @_builtins.property
     @pulumi.getter
     def tags(self) -> Sequence[_builtins.str]:
         """
         The tags applied to the device
         """
         return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter(name="tailnetLockError")
+    def tailnet_lock_error(self) -> _builtins.str:
+        """
+        The tailnet lock error for the device, if any
+        """
+        return pulumi.get(self, "tailnet_lock_error")
+
+    @_builtins.property
+    @pulumi.getter(name="tailnetLockKey")
+    def tailnet_lock_key(self) -> _builtins.str:
+        """
+        The tailnet lock key for the device, if any
+        """
+        return pulumi.get(self, "tailnet_lock_key")
+
+    @_builtins.property
+    @pulumi.getter(name="updateAvailable")
+    def update_available(self) -> _builtins.bool:
+        """
+        Whether an update is available for the device
+        """
+        return pulumi.get(self, "update_available")
 
     @_builtins.property
     @pulumi.getter
