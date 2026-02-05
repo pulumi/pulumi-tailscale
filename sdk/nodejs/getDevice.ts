@@ -60,6 +60,26 @@ export interface GetDeviceResult {
      */
     readonly addresses: string[];
     /**
+     * Whether the device is authorized to access the tailnet
+     */
+    readonly authorized: boolean;
+    /**
+     * Whether the device blocks incoming connections
+     */
+    readonly blocksIncomingConnections: boolean;
+    /**
+     * The Tailscale client version running on the device
+     */
+    readonly clientVersion: string;
+    /**
+     * The creation time of the device
+     */
+    readonly created: string;
+    /**
+     * The expiry time of the device's key
+     */
+    readonly expires: string;
+    /**
      * The short hostname of the device
      */
     readonly hostname?: string;
@@ -67,6 +87,22 @@ export interface GetDeviceResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Whether the device is marked as external
+     */
+    readonly isExternal: boolean;
+    /**
+     * Whether the device's key expiry is disabled
+     */
+    readonly keyExpiryDisabled: boolean;
+    /**
+     * The last seen time of the device
+     */
+    readonly lastSeen: string;
+    /**
+     * The machine key of the device
+     */
+    readonly machineKey: string;
     /**
      * The full name of the device (e.g. `hostname.domain.ts.net`)
      */
@@ -76,9 +112,29 @@ export interface GetDeviceResult {
      */
     readonly nodeId: string;
     /**
+     * The node key of the device
+     */
+    readonly nodeKey: string;
+    /**
+     * The operating system of the device
+     */
+    readonly os: string;
+    /**
      * The tags applied to the device
      */
     readonly tags: string[];
+    /**
+     * The tailnet lock error for the device, if any
+     */
+    readonly tailnetLockError: string;
+    /**
+     * The tailnet lock key for the device, if any
+     */
+    readonly tailnetLockKey: string;
+    /**
+     * Whether an update is available for the device
+     */
+    readonly updateAvailable: boolean;
     /**
      * The user associated with the device
      */

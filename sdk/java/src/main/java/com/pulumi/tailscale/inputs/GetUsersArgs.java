@@ -16,14 +16,14 @@ public final class GetUsersArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetUsersArgs Empty = new GetUsersArgs();
 
     /**
-     * Filters the users list to elements whose role is the provided value.
+     * Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
      * 
      */
     @Import(name="role")
     private @Nullable Output<String> role;
 
     /**
-     * @return Filters the users list to elements whose role is the provided value.
+     * @return Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
      * 
      */
     public Optional<Output<String>> role() {
@@ -31,14 +31,14 @@ public final class GetUsersArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * Filters the users list to elements whose type is the provided value.
+     * Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return Filters the users list to elements whose type is the provided value.
+     * @return Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
      * 
      */
     public Optional<Output<String>> type() {
@@ -71,7 +71,7 @@ public final class GetUsersArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param role Filters the users list to elements whose role is the provided value.
+         * @param role Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
          * 
          * @return builder
          * 
@@ -82,7 +82,7 @@ public final class GetUsersArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param role Filters the users list to elements whose role is the provided value.
+         * @param role Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
          * 
          * @return builder
          * 
@@ -92,7 +92,7 @@ public final class GetUsersArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param type Filters the users list to elements whose type is the provided value.
+         * @param type Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
          * 
          * @return builder
          * 
@@ -103,7 +103,7 @@ public final class GetUsersArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param type Filters the users list to elements whose type is the provided value.
+         * @param type Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
          * 
          * @return builder
          * 

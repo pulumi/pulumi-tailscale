@@ -48,9 +48,9 @@ func GetUsers(ctx *pulumi.Context, args *GetUsersArgs, opts ...pulumi.InvokeOpti
 
 // A collection of arguments for invoking getUsers.
 type GetUsersArgs struct {
-	// Filters the users list to elements whose role is the provided value.
+	// Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
 	Role *string `pulumi:"role"`
-	// Filters the users list to elements whose type is the provided value.
+	// Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
 	Type *string `pulumi:"type"`
 }
 
@@ -58,9 +58,9 @@ type GetUsersArgs struct {
 type GetUsersResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Filters the users list to elements whose role is the provided value.
+	// Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
 	Role *string `pulumi:"role"`
-	// Filters the users list to elements whose type is the provided value.
+	// Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
 	Type *string `pulumi:"type"`
 	// The list of users in the tailnet
 	Users []GetUsersUser `pulumi:"users"`
@@ -77,9 +77,9 @@ func GetUsersOutput(ctx *pulumi.Context, args GetUsersOutputArgs, opts ...pulumi
 
 // A collection of arguments for invoking getUsers.
 type GetUsersOutputArgs struct {
-	// Filters the users list to elements whose role is the provided value.
+	// Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
 	Role pulumi.StringPtrInput `pulumi:"role"`
-	// Filters the users list to elements whose type is the provided value.
+	// Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -107,12 +107,12 @@ func (o GetUsersResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUsersResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Filters the users list to elements whose role is the provided value.
+// Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
 func (o GetUsersResultOutput) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetUsersResult) *string { return v.Role }).(pulumi.StringPtrOutput)
 }
 
-// Filters the users list to elements whose type is the provided value.
+// Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
 func (o GetUsersResultOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetUsersResult) *string { return v.Type }).(pulumi.StringPtrOutput)
 }

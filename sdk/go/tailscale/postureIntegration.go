@@ -61,7 +61,7 @@ type PostureIntegration struct {
 	ClientSecret pulumi.StringOutput `pulumi:"clientSecret"`
 	// Identifies which of the provider's clouds to integrate with.
 	CloudId pulumi.StringPtrOutput `pulumi:"cloudId"`
-	// The type of posture integration data provider.
+	// The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
 	PostureProvider pulumi.StringOutput `pulumi:"postureProvider"`
 	// The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
 	TenantId pulumi.StringPtrOutput `pulumi:"tenantId"`
@@ -80,6 +80,13 @@ func NewPostureIntegration(ctx *pulumi.Context,
 	if args.PostureProvider == nil {
 		return nil, errors.New("invalid value for required argument 'PostureProvider'")
 	}
+	if args.ClientSecret != nil {
+		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"clientSecret",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource PostureIntegration
 	err := ctx.RegisterResource("tailscale:index/postureIntegration:PostureIntegration", name, args, &resource, opts...)
@@ -109,7 +116,7 @@ type postureIntegrationState struct {
 	ClientSecret *string `pulumi:"clientSecret"`
 	// Identifies which of the provider's clouds to integrate with.
 	CloudId *string `pulumi:"cloudId"`
-	// The type of posture integration data provider.
+	// The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
 	PostureProvider *string `pulumi:"postureProvider"`
 	// The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
 	TenantId *string `pulumi:"tenantId"`
@@ -122,7 +129,7 @@ type PostureIntegrationState struct {
 	ClientSecret pulumi.StringPtrInput
 	// Identifies which of the provider's clouds to integrate with.
 	CloudId pulumi.StringPtrInput
-	// The type of posture integration data provider.
+	// The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
 	PostureProvider pulumi.StringPtrInput
 	// The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
 	TenantId pulumi.StringPtrInput
@@ -139,7 +146,7 @@ type postureIntegrationArgs struct {
 	ClientSecret string `pulumi:"clientSecret"`
 	// Identifies which of the provider's clouds to integrate with.
 	CloudId *string `pulumi:"cloudId"`
-	// The type of posture integration data provider.
+	// The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
 	PostureProvider string `pulumi:"postureProvider"`
 	// The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
 	TenantId *string `pulumi:"tenantId"`
@@ -153,7 +160,7 @@ type PostureIntegrationArgs struct {
 	ClientSecret pulumi.StringInput
 	// Identifies which of the provider's clouds to integrate with.
 	CloudId pulumi.StringPtrInput
-	// The type of posture integration data provider.
+	// The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
 	PostureProvider pulumi.StringInput
 	// The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
 	TenantId pulumi.StringPtrInput
@@ -261,7 +268,7 @@ func (o PostureIntegrationOutput) CloudId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PostureIntegration) pulumi.StringPtrOutput { return v.CloudId }).(pulumi.StringPtrOutput)
 }
 
-// The type of posture integration data provider.
+// The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
 func (o PostureIntegrationOutput) PostureProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v *PostureIntegration) pulumi.StringOutput { return v.PostureProvider }).(pulumi.StringOutput)
 }

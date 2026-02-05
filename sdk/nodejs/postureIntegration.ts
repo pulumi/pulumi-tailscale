@@ -72,7 +72,7 @@ export class PostureIntegration extends pulumi.CustomResource {
      */
     declare public readonly cloudId: pulumi.Output<string | undefined>;
     /**
-     * The type of posture integration data provider.
+     * The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
      */
     declare public readonly postureProvider: pulumi.Output<string>;
     /**
@@ -107,12 +107,14 @@ export class PostureIntegration extends pulumi.CustomResource {
                 throw new Error("Missing required property 'postureProvider'");
             }
             resourceInputs["clientId"] = args?.clientId;
-            resourceInputs["clientSecret"] = args?.clientSecret;
+            resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
             resourceInputs["cloudId"] = args?.cloudId;
             resourceInputs["postureProvider"] = args?.postureProvider;
             resourceInputs["tenantId"] = args?.tenantId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["clientSecret"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(PostureIntegration.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -134,7 +136,7 @@ export interface PostureIntegrationState {
      */
     cloudId?: pulumi.Input<string>;
     /**
-     * The type of posture integration data provider.
+     * The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
      */
     postureProvider?: pulumi.Input<string>;
     /**
@@ -160,7 +162,7 @@ export interface PostureIntegrationArgs {
      */
     cloudId?: pulumi.Input<string>;
     /**
-     * The type of posture integration data provider.
+     * The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
      */
     postureProvider: pulumi.Input<string>;
     /**

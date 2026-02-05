@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -17,14 +18,14 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
     public static final LogstreamConfigurationState Empty = new LogstreamConfigurationState();
 
     /**
-     * The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+     * The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
      * 
      */
     @Import(name="compressionFormat")
     private @Nullable Output<String> compressionFormat;
 
     /**
-     * @return The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+     * @return The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
      * 
      */
     public Optional<Output<String>> compressionFormat() {
@@ -32,14 +33,14 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * The type of system to which logs are being streamed.
+     * The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
      * 
      */
     @Import(name="destinationType")
     private @Nullable Output<String> destinationType;
 
     /**
-     * @return The type of system to which logs are being streamed.
+     * @return The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
      * 
      */
     public Optional<Output<String>> destinationType() {
@@ -47,14 +48,74 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+     * The name of the GCS bucket
+     * 
+     */
+    @Import(name="gcsBucket")
+    private @Nullable Output<String> gcsBucket;
+
+    /**
+     * @return The name of the GCS bucket
+     * 
+     */
+    public Optional<Output<String>> gcsBucket() {
+        return Optional.ofNullable(this.gcsBucket);
+    }
+
+    /**
+     * The encoded string of JSON that is used to authenticate for workload identity in GCS
+     * 
+     */
+    @Import(name="gcsCredentials")
+    private @Nullable Output<String> gcsCredentials;
+
+    /**
+     * @return The encoded string of JSON that is used to authenticate for workload identity in GCS
+     * 
+     */
+    public Optional<Output<String>> gcsCredentials() {
+        return Optional.ofNullable(this.gcsCredentials);
+    }
+
+    /**
+     * The GCS key prefix for the bucket
+     * 
+     */
+    @Import(name="gcsKeyPrefix")
+    private @Nullable Output<String> gcsKeyPrefix;
+
+    /**
+     * @return The GCS key prefix for the bucket
+     * 
+     */
+    public Optional<Output<String>> gcsKeyPrefix() {
+        return Optional.ofNullable(this.gcsKeyPrefix);
+    }
+
+    /**
+     * The GCS scopes needed to be able to write in the bucket
+     * 
+     */
+    @Import(name="gcsScopes")
+    private @Nullable Output<List<String>> gcsScopes;
+
+    /**
+     * @return The GCS scopes needed to be able to write in the bucket
+     * 
+     */
+    public Optional<Output<List<String>>> gcsScopes() {
+        return Optional.ofNullable(this.gcsScopes);
+    }
+
+    /**
+     * The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
      * 
      */
     @Import(name="logType")
     private @Nullable Output<String> logType;
 
     /**
-     * @return The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+     * @return The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
      * 
      */
     public Optional<Output<String>> logType() {
@@ -77,14 +138,14 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
     }
 
     /**
-     * What type of authentication to use for S3. Required if destinationType is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
+     * The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
      * 
      */
     @Import(name="s3AuthenticationType")
     private @Nullable Output<String> s3AuthenticationType;
 
     /**
-     * @return What type of authentication to use for S3. Required if destinationType is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
+     * @return The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
      * 
      */
     public Optional<Output<String>> s3AuthenticationType() {
@@ -246,6 +307,10 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
     private LogstreamConfigurationState(LogstreamConfigurationState $) {
         this.compressionFormat = $.compressionFormat;
         this.destinationType = $.destinationType;
+        this.gcsBucket = $.gcsBucket;
+        this.gcsCredentials = $.gcsCredentials;
+        this.gcsKeyPrefix = $.gcsKeyPrefix;
+        this.gcsScopes = $.gcsScopes;
         this.logType = $.logType;
         this.s3AccessKeyId = $.s3AccessKeyId;
         this.s3AuthenticationType = $.s3AuthenticationType;
@@ -280,7 +345,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param compressionFormat The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+         * @param compressionFormat The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
          * 
          * @return builder
          * 
@@ -291,7 +356,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param compressionFormat The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+         * @param compressionFormat The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
          * 
          * @return builder
          * 
@@ -301,7 +366,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param destinationType The type of system to which logs are being streamed.
+         * @param destinationType The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
          * 
          * @return builder
          * 
@@ -312,7 +377,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param destinationType The type of system to which logs are being streamed.
+         * @param destinationType The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
          * 
          * @return builder
          * 
@@ -322,7 +387,101 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param logType The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+         * @param gcsBucket The name of the GCS bucket
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gcsBucket(@Nullable Output<String> gcsBucket) {
+            $.gcsBucket = gcsBucket;
+            return this;
+        }
+
+        /**
+         * @param gcsBucket The name of the GCS bucket
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gcsBucket(String gcsBucket) {
+            return gcsBucket(Output.of(gcsBucket));
+        }
+
+        /**
+         * @param gcsCredentials The encoded string of JSON that is used to authenticate for workload identity in GCS
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gcsCredentials(@Nullable Output<String> gcsCredentials) {
+            $.gcsCredentials = gcsCredentials;
+            return this;
+        }
+
+        /**
+         * @param gcsCredentials The encoded string of JSON that is used to authenticate for workload identity in GCS
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gcsCredentials(String gcsCredentials) {
+            return gcsCredentials(Output.of(gcsCredentials));
+        }
+
+        /**
+         * @param gcsKeyPrefix The GCS key prefix for the bucket
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gcsKeyPrefix(@Nullable Output<String> gcsKeyPrefix) {
+            $.gcsKeyPrefix = gcsKeyPrefix;
+            return this;
+        }
+
+        /**
+         * @param gcsKeyPrefix The GCS key prefix for the bucket
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gcsKeyPrefix(String gcsKeyPrefix) {
+            return gcsKeyPrefix(Output.of(gcsKeyPrefix));
+        }
+
+        /**
+         * @param gcsScopes The GCS scopes needed to be able to write in the bucket
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gcsScopes(@Nullable Output<List<String>> gcsScopes) {
+            $.gcsScopes = gcsScopes;
+            return this;
+        }
+
+        /**
+         * @param gcsScopes The GCS scopes needed to be able to write in the bucket
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gcsScopes(List<String> gcsScopes) {
+            return gcsScopes(Output.of(gcsScopes));
+        }
+
+        /**
+         * @param gcsScopes The GCS scopes needed to be able to write in the bucket
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gcsScopes(String... gcsScopes) {
+            return gcsScopes(List.of(gcsScopes));
+        }
+
+        /**
+         * @param logType The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
          * 
          * @return builder
          * 
@@ -333,7 +492,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param logType The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+         * @param logType The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
          * 
          * @return builder
          * 
@@ -364,7 +523,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param s3AuthenticationType What type of authentication to use for S3. Required if destinationType is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
+         * @param s3AuthenticationType The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
          * 
          * @return builder
          * 
@@ -375,7 +534,7 @@ public final class LogstreamConfigurationState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param s3AuthenticationType What type of authentication to use for S3. Required if destinationType is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
+         * @param s3AuthenticationType The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
          * 
          * @return builder
          * 

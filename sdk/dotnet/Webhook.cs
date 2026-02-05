@@ -56,7 +56,7 @@ namespace Pulumi.Tailscale
         public Output<string> EndpointUrl { get; private set; } = null!;
 
         /// <summary>
-        /// The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `Slack`, `Mattermost`, `Googlechat`, or `Discord` if set.
+        /// The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `Slack`, `Mattermost`, `Googlechat`, and `Discord`.
         /// </summary>
         [Output("providerType")]
         public Output<string?> ProviderType { get; private set; } = null!;
@@ -68,7 +68,7 @@ namespace Pulumi.Tailscale
         public Output<string> Secret { get; private set; } = null!;
 
         /// <summary>
-        /// The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
+        /// The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
         /// </summary>
         [Output("subscriptions")]
         public Output<ImmutableArray<string>> Subscriptions { get; private set; } = null!;
@@ -130,7 +130,7 @@ namespace Pulumi.Tailscale
         public Input<string> EndpointUrl { get; set; } = null!;
 
         /// <summary>
-        /// The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `Slack`, `Mattermost`, `Googlechat`, or `Discord` if set.
+        /// The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `Slack`, `Mattermost`, `Googlechat`, and `Discord`.
         /// </summary>
         [Input("providerType")]
         public Input<string>? ProviderType { get; set; }
@@ -139,7 +139,7 @@ namespace Pulumi.Tailscale
         private InputList<string>? _subscriptions;
 
         /// <summary>
-        /// The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
+        /// The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
         /// </summary>
         public InputList<string> Subscriptions
         {
@@ -162,7 +162,7 @@ namespace Pulumi.Tailscale
         public Input<string>? EndpointUrl { get; set; }
 
         /// <summary>
-        /// The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `Slack`, `Mattermost`, `Googlechat`, or `Discord` if set.
+        /// The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `Slack`, `Mattermost`, `Googlechat`, and `Discord`.
         /// </summary>
         [Input("providerType")]
         public Input<string>? ProviderType { get; set; }
@@ -187,7 +187,7 @@ namespace Pulumi.Tailscale
         private InputList<string>? _subscriptions;
 
         /// <summary>
-        /// The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
+        /// The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
         /// </summary>
         public InputList<string> Subscriptions
         {

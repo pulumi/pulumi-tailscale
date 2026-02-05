@@ -53,7 +53,7 @@ class GetUsersResult:
     @pulumi.getter
     def role(self) -> Optional[_builtins.str]:
         """
-        Filters the users list to elements whose role is the provided value.
+        Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
         """
         return pulumi.get(self, "role")
 
@@ -61,7 +61,7 @@ class GetUsersResult:
     @pulumi.getter
     def type(self) -> Optional[_builtins.str]:
         """
-        Filters the users list to elements whose type is the provided value.
+        Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
         """
         return pulumi.get(self, "type")
 
@@ -102,8 +102,8 @@ def get_users(role: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str role: Filters the users list to elements whose role is the provided value.
-    :param _builtins.str type: Filters the users list to elements whose type is the provided value.
+    :param _builtins.str role: Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
+    :param _builtins.str type: Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
     """
     __args__ = dict()
     __args__['role'] = role
@@ -132,8 +132,8 @@ def get_users_output(role: Optional[pulumi.Input[Optional[_builtins.str]]] = Non
     ```
 
 
-    :param _builtins.str role: Filters the users list to elements whose role is the provided value.
-    :param _builtins.str type: Filters the users list to elements whose type is the provided value.
+    :param _builtins.str role: Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
+    :param _builtins.str type: Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
     """
     __args__ = dict()
     __args__['role'] = role

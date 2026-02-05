@@ -30,6 +30,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.tailscale.LogstreamConfiguration;
  * import com.pulumi.tailscale.LogstreamConfigurationArgs;
+ * import static com.pulumi.codegen.internal.Serialization.*;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -37,12 +38,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         // Example configuration for a non-S3 logstreaming endpoint
  *         var sampleLogstreamConfiguration = new LogstreamConfiguration("sampleLogstreamConfiguration", LogstreamConfigurationArgs.builder()
  *             .logType("configuration")
@@ -74,8 +75,30 @@ import javax.annotation.Nullable;
  *             .s3SecretAccessKey("some-secret-key")
  *             .build());
  * 
- *     }
- * }
+ *         // Example configuration for a GCS logstreaming endpoint using workload identity
+ *         var sampleLogstreamConfigurationGcsWif = new LogstreamConfiguration("sampleLogstreamConfigurationGcsWif", LogstreamConfigurationArgs.builder()
+ *             .logType("configuration")
+ *             .destinationType("gcs")
+ *             .gcsBucket("example-gcs-bucket")
+ *             .gcsCredentials(serializeJson(
+ *                 jsonObject(
+ *                     jsonProperty("type", "external_account"),
+ *                     jsonProperty("audience", "//iam.googleapis.com/projects/12345678/locations/global/workloadIdentityPools/example-pool/providers/example-provider"),
+ *                     jsonProperty("subject_token_type", "urn:ietf:params:aws:token-type:aws4_request"),
+ *                     jsonProperty("service_account_impersonation_url", "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/example}{@literal @}{@code example.iam.gserviceaccount.com:generateAccessToken"),
+ *                     jsonProperty("token_url", "https://sts.googleapis.com/v1/token"),
+ *                     jsonProperty("credential_source", jsonObject(
+ *                         jsonProperty("environment_id", "aws1"),
+ *                         jsonProperty("region_url", "http://169.254.169.254/latest/meta-data/placement/availability-zone"),
+ *                         jsonProperty("url", "http://169.254.169.254/latest/meta-data/iam/security-credentials"),
+ *                         jsonProperty("regional_cred_verification_url", "https://sts.}{{@code region}}{@code .amazonaws.com?Action=GetCallerIdentity&Version=2011-06-15"),
+ *                         jsonProperty("imdsv2_session_token_url", "http://169.254.169.254/latest/api/token")
+ *                     ))
+ *                 )))
+ *             .build());
+ * 
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * 
@@ -93,42 +116,98 @@ import javax.annotation.Nullable;
 @ResourceType(type="tailscale:index/logstreamConfiguration:LogstreamConfiguration")
 public class LogstreamConfiguration extends com.pulumi.resources.CustomResource {
     /**
-     * The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+     * The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
      * 
      */
     @Export(name="compressionFormat", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> compressionFormat;
 
     /**
-     * @return The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+     * @return The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
      * 
      */
     public Output<Optional<String>> compressionFormat() {
         return Codegen.optional(this.compressionFormat);
     }
     /**
-     * The type of system to which logs are being streamed.
+     * The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
      * 
      */
     @Export(name="destinationType", refs={String.class}, tree="[0]")
     private Output<String> destinationType;
 
     /**
-     * @return The type of system to which logs are being streamed.
+     * @return The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
      * 
      */
     public Output<String> destinationType() {
         return this.destinationType;
     }
     /**
-     * The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+     * The name of the GCS bucket
+     * 
+     */
+    @Export(name="gcsBucket", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> gcsBucket;
+
+    /**
+     * @return The name of the GCS bucket
+     * 
+     */
+    public Output<Optional<String>> gcsBucket() {
+        return Codegen.optional(this.gcsBucket);
+    }
+    /**
+     * The encoded string of JSON that is used to authenticate for workload identity in GCS
+     * 
+     */
+    @Export(name="gcsCredentials", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> gcsCredentials;
+
+    /**
+     * @return The encoded string of JSON that is used to authenticate for workload identity in GCS
+     * 
+     */
+    public Output<Optional<String>> gcsCredentials() {
+        return Codegen.optional(this.gcsCredentials);
+    }
+    /**
+     * The GCS key prefix for the bucket
+     * 
+     */
+    @Export(name="gcsKeyPrefix", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> gcsKeyPrefix;
+
+    /**
+     * @return The GCS key prefix for the bucket
+     * 
+     */
+    public Output<Optional<String>> gcsKeyPrefix() {
+        return Codegen.optional(this.gcsKeyPrefix);
+    }
+    /**
+     * The GCS scopes needed to be able to write in the bucket
+     * 
+     */
+    @Export(name="gcsScopes", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> gcsScopes;
+
+    /**
+     * @return The GCS scopes needed to be able to write in the bucket
+     * 
+     */
+    public Output<Optional<List<String>>> gcsScopes() {
+        return Codegen.optional(this.gcsScopes);
+    }
+    /**
+     * The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
      * 
      */
     @Export(name="logType", refs={String.class}, tree="[0]")
     private Output<String> logType;
 
     /**
-     * @return The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+     * @return The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
      * 
      */
     public Output<String> logType() {
@@ -149,14 +228,14 @@ public class LogstreamConfiguration extends com.pulumi.resources.CustomResource 
         return Codegen.optional(this.s3AccessKeyId);
     }
     /**
-     * What type of authentication to use for S3. Required if destinationType is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
+     * The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
      * 
      */
     @Export(name="s3AuthenticationType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> s3AuthenticationType;
 
     /**
-     * @return What type of authentication to use for S3. Required if destinationType is &#39;s3&#39;. Tailscale recommends using &#39;rolearn&#39;.
+     * @return The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
      * 
      */
     public Output<Optional<String>> s3AuthenticationType() {

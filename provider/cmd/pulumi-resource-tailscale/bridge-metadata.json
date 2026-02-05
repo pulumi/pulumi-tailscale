@@ -103,7 +103,12 @@
                 }
             },
             "tailscale_logstream_configuration": {
-                "current": "tailscale:index/logstreamConfiguration:LogstreamConfiguration"
+                "current": "tailscale:index/logstreamConfiguration:LogstreamConfiguration",
+                "fields": {
+                    "gcs_scopes": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "tailscale_oauth_client": {
                 "current": "tailscale:index/oauthClient:OauthClient",

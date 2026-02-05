@@ -70,16 +70,44 @@ type GetDeviceArgs struct {
 type GetDeviceResult struct {
 	// The list of device's IPs
 	Addresses []string `pulumi:"addresses"`
+	// Whether the device is authorized to access the tailnet
+	Authorized bool `pulumi:"authorized"`
+	// Whether the device blocks incoming connections
+	BlocksIncomingConnections bool `pulumi:"blocksIncomingConnections"`
+	// The Tailscale client version running on the device
+	ClientVersion string `pulumi:"clientVersion"`
+	// The creation time of the device
+	Created string `pulumi:"created"`
+	// The expiry time of the device's key
+	Expires string `pulumi:"expires"`
 	// The short hostname of the device
 	Hostname *string `pulumi:"hostname"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+	// Whether the device is marked as external
+	IsExternal bool `pulumi:"isExternal"`
+	// Whether the device's key expiry is disabled
+	KeyExpiryDisabled bool `pulumi:"keyExpiryDisabled"`
+	// The last seen time of the device
+	LastSeen string `pulumi:"lastSeen"`
+	// The machine key of the device
+	MachineKey string `pulumi:"machineKey"`
 	// The full name of the device (e.g. `hostname.domain.ts.net`)
 	Name *string `pulumi:"name"`
 	// The preferred indentifier for a device.
 	NodeId string `pulumi:"nodeId"`
+	// The node key of the device
+	NodeKey string `pulumi:"nodeKey"`
+	// The operating system of the device
+	Os string `pulumi:"os"`
 	// The tags applied to the device
 	Tags []string `pulumi:"tags"`
+	// The tailnet lock error for the device, if any
+	TailnetLockError string `pulumi:"tailnetLockError"`
+	// The tailnet lock key for the device, if any
+	TailnetLockKey string `pulumi:"tailnetLockKey"`
+	// Whether an update is available for the device
+	UpdateAvailable bool `pulumi:"updateAvailable"`
 	// The user associated with the device
 	User string `pulumi:"user"`
 	// If specified, the provider will make multiple attempts to obtain the data source until the waitFor duration is reached. Retries are made every second so this value should be greater than 1s
@@ -129,6 +157,31 @@ func (o GetDeviceResultOutput) Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDeviceResult) []string { return v.Addresses }).(pulumi.StringArrayOutput)
 }
 
+// Whether the device is authorized to access the tailnet
+func (o GetDeviceResultOutput) Authorized() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeviceResult) bool { return v.Authorized }).(pulumi.BoolOutput)
+}
+
+// Whether the device blocks incoming connections
+func (o GetDeviceResultOutput) BlocksIncomingConnections() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeviceResult) bool { return v.BlocksIncomingConnections }).(pulumi.BoolOutput)
+}
+
+// The Tailscale client version running on the device
+func (o GetDeviceResultOutput) ClientVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.ClientVersion }).(pulumi.StringOutput)
+}
+
+// The creation time of the device
+func (o GetDeviceResultOutput) Created() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.Created }).(pulumi.StringOutput)
+}
+
+// The expiry time of the device's key
+func (o GetDeviceResultOutput) Expires() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.Expires }).(pulumi.StringOutput)
+}
+
 // The short hostname of the device
 func (o GetDeviceResultOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeviceResult) *string { return v.Hostname }).(pulumi.StringPtrOutput)
@@ -137,6 +190,26 @@ func (o GetDeviceResultOutput) Hostname() pulumi.StringPtrOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o GetDeviceResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeviceResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Whether the device is marked as external
+func (o GetDeviceResultOutput) IsExternal() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeviceResult) bool { return v.IsExternal }).(pulumi.BoolOutput)
+}
+
+// Whether the device's key expiry is disabled
+func (o GetDeviceResultOutput) KeyExpiryDisabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeviceResult) bool { return v.KeyExpiryDisabled }).(pulumi.BoolOutput)
+}
+
+// The last seen time of the device
+func (o GetDeviceResultOutput) LastSeen() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.LastSeen }).(pulumi.StringOutput)
+}
+
+// The machine key of the device
+func (o GetDeviceResultOutput) MachineKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.MachineKey }).(pulumi.StringOutput)
 }
 
 // The full name of the device (e.g. `hostname.domain.ts.net`)
@@ -149,9 +222,34 @@ func (o GetDeviceResultOutput) NodeId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeviceResult) string { return v.NodeId }).(pulumi.StringOutput)
 }
 
+// The node key of the device
+func (o GetDeviceResultOutput) NodeKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.NodeKey }).(pulumi.StringOutput)
+}
+
+// The operating system of the device
+func (o GetDeviceResultOutput) Os() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.Os }).(pulumi.StringOutput)
+}
+
 // The tags applied to the device
 func (o GetDeviceResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDeviceResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// The tailnet lock error for the device, if any
+func (o GetDeviceResultOutput) TailnetLockError() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.TailnetLockError }).(pulumi.StringOutput)
+}
+
+// The tailnet lock key for the device, if any
+func (o GetDeviceResultOutput) TailnetLockKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeviceResult) string { return v.TailnetLockKey }).(pulumi.StringOutput)
+}
+
+// Whether an update is available for the device
+func (o GetDeviceResultOutput) UpdateAvailable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeviceResult) bool { return v.UpdateAvailable }).(pulumi.BoolOutput)
 }
 
 // The user associated with the device

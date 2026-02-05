@@ -25,8 +25,8 @@ class WebhookArgs:
         """
         The set of arguments for constructing a Webhook resource.
         :param pulumi.Input[_builtins.str] endpoint_url: The endpoint to send webhook events to.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subscriptions: The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
-        :param pulumi.Input[_builtins.str] provider_type: The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subscriptions: The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
+        :param pulumi.Input[_builtins.str] provider_type: The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
         """
         pulumi.set(__self__, "endpoint_url", endpoint_url)
         pulumi.set(__self__, "subscriptions", subscriptions)
@@ -49,7 +49,7 @@ class WebhookArgs:
     @pulumi.getter
     def subscriptions(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
         """
-        The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
+        The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
         """
         return pulumi.get(self, "subscriptions")
 
@@ -61,7 +61,7 @@ class WebhookArgs:
     @pulumi.getter(name="providerType")
     def provider_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
+        The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
         """
         return pulumi.get(self, "provider_type")
 
@@ -80,9 +80,9 @@ class _WebhookState:
         """
         Input properties used for looking up and filtering Webhook resources.
         :param pulumi.Input[_builtins.str] endpoint_url: The endpoint to send webhook events to.
-        :param pulumi.Input[_builtins.str] provider_type: The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
+        :param pulumi.Input[_builtins.str] provider_type: The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
         :param pulumi.Input[_builtins.str] secret: The secret used for signing webhook payloads. Only set on resource creation. See https://tailscale.com/kb/1213/webhooks#webhook-secret for more information.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subscriptions: The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subscriptions: The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
         """
         if endpoint_url is not None:
             pulumi.set(__self__, "endpoint_url", endpoint_url)
@@ -109,7 +109,7 @@ class _WebhookState:
     @pulumi.getter(name="providerType")
     def provider_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
+        The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
         """
         return pulumi.get(self, "provider_type")
 
@@ -133,7 +133,7 @@ class _WebhookState:
     @pulumi.getter
     def subscriptions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
+        The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
         """
         return pulumi.get(self, "subscriptions")
 
@@ -183,8 +183,8 @@ class Webhook(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] endpoint_url: The endpoint to send webhook events to.
-        :param pulumi.Input[_builtins.str] provider_type: The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subscriptions: The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
+        :param pulumi.Input[_builtins.str] provider_type: The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subscriptions: The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
         """
         ...
     @overload
@@ -279,9 +279,9 @@ class Webhook(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] endpoint_url: The endpoint to send webhook events to.
-        :param pulumi.Input[_builtins.str] provider_type: The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
+        :param pulumi.Input[_builtins.str] provider_type: The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
         :param pulumi.Input[_builtins.str] secret: The secret used for signing webhook payloads. Only set on resource creation. See https://tailscale.com/kb/1213/webhooks#webhook-secret for more information.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subscriptions: The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subscriptions: The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -305,7 +305,7 @@ class Webhook(pulumi.CustomResource):
     @pulumi.getter(name="providerType")
     def provider_type(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
+        The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
         """
         return pulumi.get(self, "provider_type")
 
@@ -321,7 +321,7 @@ class Webhook(pulumi.CustomResource):
     @pulumi.getter
     def subscriptions(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
+        The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
         """
         return pulumi.get(self, "subscriptions")
 

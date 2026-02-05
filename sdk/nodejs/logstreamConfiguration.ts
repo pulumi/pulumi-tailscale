@@ -41,6 +41,26 @@ import * as utilities from "./utilities";
  *     s3AccessKeyId: "some-access-key",
  *     s3SecretAccessKey: "some-secret-key",
  * });
+ * // Example configuration for a GCS logstreaming endpoint using workload identity
+ * const sampleLogstreamConfigurationGcsWif = new tailscale.LogstreamConfiguration("sample_logstream_configuration_gcs_wif", {
+ *     logType: "configuration",
+ *     destinationType: "gcs",
+ *     gcsBucket: "example-gcs-bucket",
+ *     gcsCredentials: JSON.stringify({
+ *         type: "external_account",
+ *         audience: "//iam.googleapis.com/projects/12345678/locations/global/workloadIdentityPools/example-pool/providers/example-provider",
+ *         subject_token_type: "urn:ietf:params:aws:token-type:aws4_request",
+ *         service_account_impersonation_url: "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/example@example.iam.gserviceaccount.com:generateAccessToken",
+ *         token_url: "https://sts.googleapis.com/v1/token",
+ *         credential_source: {
+ *             environment_id: "aws1",
+ *             region_url: "http://169.254.169.254/latest/meta-data/placement/availability-zone",
+ *             url: "http://169.254.169.254/latest/meta-data/iam/security-credentials",
+ *             regional_cred_verification_url: "https://sts.{region}.amazonaws.com?Action=GetCallerIdentity&Version=2011-06-15",
+ *             imdsv2_session_token_url: "http://169.254.169.254/latest/api/token",
+ *         },
+ *     }),
+ * });
  * ```
  *
  * ## Import
@@ -82,15 +102,31 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
     }
 
     /**
-     * The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+     * The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
      */
     declare public readonly compressionFormat: pulumi.Output<string | undefined>;
     /**
-     * The type of system to which logs are being streamed.
+     * The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
      */
     declare public readonly destinationType: pulumi.Output<string>;
     /**
-     * The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+     * The name of the GCS bucket
+     */
+    declare public readonly gcsBucket: pulumi.Output<string | undefined>;
+    /**
+     * The encoded string of JSON that is used to authenticate for workload identity in GCS
+     */
+    declare public readonly gcsCredentials: pulumi.Output<string | undefined>;
+    /**
+     * The GCS key prefix for the bucket
+     */
+    declare public readonly gcsKeyPrefix: pulumi.Output<string | undefined>;
+    /**
+     * The GCS scopes needed to be able to write in the bucket
+     */
+    declare public readonly gcsScopes: pulumi.Output<string[] | undefined>;
+    /**
+     * The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
      */
     declare public readonly logType: pulumi.Output<string>;
     /**
@@ -98,7 +134,7 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
      */
     declare public readonly s3AccessKeyId: pulumi.Output<string | undefined>;
     /**
-     * What type of authentication to use for S3. Required if destinationType is 's3'. Tailscale recommends using 'rolearn'.
+     * The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
      */
     declare public readonly s3AuthenticationType: pulumi.Output<string | undefined>;
     /**
@@ -157,6 +193,10 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
             const state = argsOrState as LogstreamConfigurationState | undefined;
             resourceInputs["compressionFormat"] = state?.compressionFormat;
             resourceInputs["destinationType"] = state?.destinationType;
+            resourceInputs["gcsBucket"] = state?.gcsBucket;
+            resourceInputs["gcsCredentials"] = state?.gcsCredentials;
+            resourceInputs["gcsKeyPrefix"] = state?.gcsKeyPrefix;
+            resourceInputs["gcsScopes"] = state?.gcsScopes;
             resourceInputs["logType"] = state?.logType;
             resourceInputs["s3AccessKeyId"] = state?.s3AccessKeyId;
             resourceInputs["s3AuthenticationType"] = state?.s3AuthenticationType;
@@ -180,6 +220,10 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
             }
             resourceInputs["compressionFormat"] = args?.compressionFormat;
             resourceInputs["destinationType"] = args?.destinationType;
+            resourceInputs["gcsBucket"] = args?.gcsBucket;
+            resourceInputs["gcsCredentials"] = args?.gcsCredentials;
+            resourceInputs["gcsKeyPrefix"] = args?.gcsKeyPrefix;
+            resourceInputs["gcsScopes"] = args?.gcsScopes;
             resourceInputs["logType"] = args?.logType;
             resourceInputs["s3AccessKeyId"] = args?.s3AccessKeyId;
             resourceInputs["s3AuthenticationType"] = args?.s3AuthenticationType;
@@ -206,15 +250,31 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
  */
 export interface LogstreamConfigurationState {
     /**
-     * The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+     * The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
      */
     compressionFormat?: pulumi.Input<string>;
     /**
-     * The type of system to which logs are being streamed.
+     * The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
      */
     destinationType?: pulumi.Input<string>;
     /**
-     * The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+     * The name of the GCS bucket
+     */
+    gcsBucket?: pulumi.Input<string>;
+    /**
+     * The encoded string of JSON that is used to authenticate for workload identity in GCS
+     */
+    gcsCredentials?: pulumi.Input<string>;
+    /**
+     * The GCS key prefix for the bucket
+     */
+    gcsKeyPrefix?: pulumi.Input<string>;
+    /**
+     * The GCS scopes needed to be able to write in the bucket
+     */
+    gcsScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
      */
     logType?: pulumi.Input<string>;
     /**
@@ -222,7 +282,7 @@ export interface LogstreamConfigurationState {
      */
     s3AccessKeyId?: pulumi.Input<string>;
     /**
-     * What type of authentication to use for S3. Required if destinationType is 's3'. Tailscale recommends using 'rolearn'.
+     * The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
      */
     s3AuthenticationType?: pulumi.Input<string>;
     /**
@@ -272,15 +332,31 @@ export interface LogstreamConfigurationState {
  */
 export interface LogstreamConfigurationArgs {
     /**
-     * The compression algorithm with which to compress logs. One of `none`, `zstd` or `gzip`. Defaults to `none`.
+     * The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
      */
     compressionFormat?: pulumi.Input<string>;
     /**
-     * The type of system to which logs are being streamed.
+     * The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
      */
     destinationType: pulumi.Input<string>;
     /**
-     * The type of log that is streamed to this endpoint. Either `configuration` for configuration audit logs, or `network` for network flow logs.
+     * The name of the GCS bucket
+     */
+    gcsBucket?: pulumi.Input<string>;
+    /**
+     * The encoded string of JSON that is used to authenticate for workload identity in GCS
+     */
+    gcsCredentials?: pulumi.Input<string>;
+    /**
+     * The GCS key prefix for the bucket
+     */
+    gcsKeyPrefix?: pulumi.Input<string>;
+    /**
+     * The GCS scopes needed to be able to write in the bucket
+     */
+    gcsScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
      */
     logType: pulumi.Input<string>;
     /**
@@ -288,7 +364,7 @@ export interface LogstreamConfigurationArgs {
      */
     s3AccessKeyId?: pulumi.Input<string>;
     /**
-     * What type of authentication to use for S3. Required if destinationType is 's3'. Tailscale recommends using 'rolearn'.
+     * The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
      */
     s3AuthenticationType?: pulumi.Input<string>;
     /**

@@ -65,9 +65,9 @@ import javax.annotation.Nullable;
  *     \"grants\": [
  *       {
  *         // Allow all users access to all ports.
- *         \"src\" = [\"*\"],
- *         \"dst\" = [\"*\"],
- *         \"ip\"  = [\"*\"],
+ *         \"src\": [\"*\"],
+ *         \"dst\": [\"*\"],
+ *         \"ip\": [\"*\"],
  *       },
  *     ],
  *   }

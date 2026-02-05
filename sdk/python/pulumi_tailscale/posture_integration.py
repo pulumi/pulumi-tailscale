@@ -27,7 +27,7 @@ class PostureIntegrationArgs:
         """
         The set of arguments for constructing a PostureIntegration resource.
         :param pulumi.Input[_builtins.str] client_secret: The secret (auth key, token, etc.) used to authenticate with the provider.
-        :param pulumi.Input[_builtins.str] posture_provider: The type of posture integration data provider.
+        :param pulumi.Input[_builtins.str] posture_provider: The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
         :param pulumi.Input[_builtins.str] client_id: Unique identifier for your client.
         :param pulumi.Input[_builtins.str] cloud_id: Identifies which of the provider's clouds to integrate with.
         :param pulumi.Input[_builtins.str] tenant_id: The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
@@ -57,7 +57,7 @@ class PostureIntegrationArgs:
     @pulumi.getter(name="postureProvider")
     def posture_provider(self) -> pulumi.Input[_builtins.str]:
         """
-        The type of posture integration data provider.
+        The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
         """
         return pulumi.get(self, "posture_provider")
 
@@ -115,7 +115,7 @@ class _PostureIntegrationState:
         :param pulumi.Input[_builtins.str] client_id: Unique identifier for your client.
         :param pulumi.Input[_builtins.str] client_secret: The secret (auth key, token, etc.) used to authenticate with the provider.
         :param pulumi.Input[_builtins.str] cloud_id: Identifies which of the provider's clouds to integrate with.
-        :param pulumi.Input[_builtins.str] posture_provider: The type of posture integration data provider.
+        :param pulumi.Input[_builtins.str] posture_provider: The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
         :param pulumi.Input[_builtins.str] tenant_id: The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
         """
         if client_id is not None:
@@ -169,7 +169,7 @@ class _PostureIntegrationState:
     @pulumi.getter(name="postureProvider")
     def posture_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The type of posture integration data provider.
+        The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
         """
         return pulumi.get(self, "posture_provider")
 
@@ -233,7 +233,7 @@ class PostureIntegration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_id: Unique identifier for your client.
         :param pulumi.Input[_builtins.str] client_secret: The secret (auth key, token, etc.) used to authenticate with the provider.
         :param pulumi.Input[_builtins.str] cloud_id: Identifies which of the provider's clouds to integrate with.
-        :param pulumi.Input[_builtins.str] posture_provider: The type of posture integration data provider.
+        :param pulumi.Input[_builtins.str] posture_provider: The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
         :param pulumi.Input[_builtins.str] tenant_id: The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
         """
         ...
@@ -300,12 +300,14 @@ class PostureIntegration(pulumi.CustomResource):
             __props__.__dict__["client_id"] = client_id
             if client_secret is None and not opts.urn:
                 raise TypeError("Missing required property 'client_secret'")
-            __props__.__dict__["client_secret"] = client_secret
+            __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
             __props__.__dict__["cloud_id"] = cloud_id
             if posture_provider is None and not opts.urn:
                 raise TypeError("Missing required property 'posture_provider'")
             __props__.__dict__["posture_provider"] = posture_provider
             __props__.__dict__["tenant_id"] = tenant_id
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientSecret"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(PostureIntegration, __self__).__init__(
             'tailscale:index/postureIntegration:PostureIntegration',
             resource_name,
@@ -331,7 +333,7 @@ class PostureIntegration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_id: Unique identifier for your client.
         :param pulumi.Input[_builtins.str] client_secret: The secret (auth key, token, etc.) used to authenticate with the provider.
         :param pulumi.Input[_builtins.str] cloud_id: Identifies which of the provider's clouds to integrate with.
-        :param pulumi.Input[_builtins.str] posture_provider: The type of posture integration data provider.
+        :param pulumi.Input[_builtins.str] posture_provider: The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
         :param pulumi.Input[_builtins.str] tenant_id: The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -373,7 +375,7 @@ class PostureIntegration(pulumi.CustomResource):
     @pulumi.getter(name="postureProvider")
     def posture_provider(self) -> pulumi.Output[_builtins.str]:
         """
-        The type of posture integration data provider.
+        The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
         """
         return pulumi.get(self, "posture_provider")
 

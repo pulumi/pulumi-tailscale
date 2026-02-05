@@ -187,6 +187,26 @@
                     },
                     "description": "The list of device's IPs\n"
                 },
+                "authorized": {
+                    "type": "boolean",
+                    "description": "Whether the device is authorized to access the tailnet\n"
+                },
+                "blocksIncomingConnections": {
+                    "type": "boolean",
+                    "description": "Whether the device blocks incoming connections\n"
+                },
+                "clientVersion": {
+                    "type": "string",
+                    "description": "The Tailscale client version running on the device\n"
+                },
+                "created": {
+                    "type": "string",
+                    "description": "The creation time of the device\n"
+                },
+                "expires": {
+                    "type": "string",
+                    "description": "The expiry time of the device's key\n"
+                },
                 "hostname": {
                     "type": "string",
                     "description": "The short hostname of the device\n"
@@ -194,6 +214,22 @@
                 "id": {
                     "type": "string",
                     "description": "The legacy identifier of the device. Use\u003cspan pulumi-lang-nodejs=\" nodeId \" pulumi-lang-dotnet=\" NodeId \" pulumi-lang-go=\" nodeId \" pulumi-lang-python=\" node_id \" pulumi-lang-yaml=\" nodeId \" pulumi-lang-java=\" nodeId \"\u003e node_id \u003c/span\u003einstead for new resources.\n"
+                },
+                "isExternal": {
+                    "type": "boolean",
+                    "description": "Whether the device is marked as external\n"
+                },
+                "keyExpiryDisabled": {
+                    "type": "boolean",
+                    "description": "Whether the device's key expiry is disabled\n"
+                },
+                "lastSeen": {
+                    "type": "string",
+                    "description": "The last seen time of the device\n"
+                },
+                "machineKey": {
+                    "type": "string",
+                    "description": "The machine key of the device\n"
                 },
                 "name": {
                     "type": "string",
@@ -203,12 +239,32 @@
                     "type": "string",
                     "description": "The preferred indentifier for a device.\n"
                 },
+                "nodeKey": {
+                    "type": "string",
+                    "description": "The node key of the device\n"
+                },
+                "os": {
+                    "type": "string",
+                    "description": "The operating system of the device\n"
+                },
                 "tags": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
                     "description": "The tags applied to the device\n"
+                },
+                "tailnetLockError": {
+                    "type": "string",
+                    "description": "The tailnet lock error for the device, if any\n"
+                },
+                "tailnetLockKey": {
+                    "type": "string",
+                    "description": "The tailnet lock key for the device, if any\n"
+                },
+                "updateAvailable": {
+                    "type": "boolean",
+                    "description": "Whether an update is available for the device\n"
                 },
                 "user": {
                     "type": "string",
@@ -218,11 +274,25 @@
             "type": "object",
             "required": [
                 "addresses",
+                "authorized",
+                "blocksIncomingConnections",
+                "clientVersion",
+                "created",
+                "expires",
                 "hostname",
                 "id",
+                "isExternal",
+                "keyExpiryDisabled",
+                "lastSeen",
+                "machineKey",
                 "name",
                 "nodeId",
+                "nodeKey",
+                "os",
                 "tags",
+                "tailnetLockError",
+                "tailnetLockKey",
+                "updateAvailable",
                 "user"
             ],
             "language": {
@@ -392,7 +462,7 @@
     },
     "resources": {
         "tailscale:index/acl:Acl": {
-            "description": "The acl resource allows you to configure a Tailscale policy file. See https://tailscale.com/kb/1395/tailnet-policy-file for more information. Note that this resource will completely overwrite existing policy file contents for a given tailnet.\n\nIf tests are defined in the policy file (the top-level \"tests\" section), policy file validation will occur before creation and update operations are applied.\n\n\u003e **Note:** The naming of this resource predates Tailscale's usage of the term \"policy file\" to refer to the centralized configuration file for a tailnet. This resource controls a tailnet's entire policy file and not just the ACLs section within it.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst asJson = new tailscale.Acl(\"as_json\", {acl: JSON.stringify({\n    grants: [{\n        src: [\"*\"],\n        dst: [\"*\"],\n        ip: [\"*\"],\n    }],\n})});\nconst asHujson = new tailscale.Acl(\"as_hujson\", {acl: `  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\\\"grants\\\\\": [\n      {\n        // Allow all users access to all ports.\n        \\\\\"src\\\\\" = [\\\\\"*\\\\\"],\n        \\\\\"dst\\\\\" = [\\\\\"*\\\\\"],\n        \\\\\"ip\\\\\"  = [\\\\\"*\\\\\"],\n      },\n    ],\n  }\n`});\n```\n```python\nimport pulumi\nimport json\nimport pulumi_tailscale as tailscale\n\nas_json = tailscale.Acl(\"as_json\", acl=json.dumps({\n    \"grants\": [{\n        \"src\": [\"*\"],\n        \"dst\": [\"*\"],\n        \"ip\": [\"*\"],\n    }],\n}))\nas_hujson = tailscale.Acl(\"as_hujson\", acl=\"\"\"  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\"grants\\\": [\n      {\n        // Allow all users access to all ports.\n        \\\"src\\\" = [\\\"*\\\"],\n        \\\"dst\\\" = [\\\"*\\\"],\n        \\\"ip\\\"  = [\\\"*\\\"],\n      },\n    ],\n  }\n\"\"\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var asJson = new Tailscale.Acl(\"as_json\", new()\n    {\n        AclJson = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"grants\"] = new[]\n            {\n                new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"src\"] = new[]\n                    {\n                        \"*\",\n                    },\n                    [\"dst\"] = new[]\n                    {\n                        \"*\",\n                    },\n                    [\"ip\"] = new[]\n                    {\n                        \"*\",\n                    },\n                },\n            },\n        }),\n    });\n\n    var asHujson = new Tailscale.Acl(\"as_hujson\", new()\n    {\n        AclJson = @\"  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\"\"grants\\\"\": [\n      {\n        // Allow all users access to all ports.\n        \\\"\"src\\\"\" = [\\\"\"*\\\"\"],\n        \\\"\"dst\\\"\" = [\\\"\"*\\\"\"],\n        \\\"\"ip\\\"\"  = [\\\"\"*\\\"\"],\n      },\n    ],\n  }\n\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"grants\": []map[string]interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"src\": []string{\n\t\t\t\t\t\t\"*\",\n\t\t\t\t\t},\n\t\t\t\t\t\"dst\": []string{\n\t\t\t\t\t\t\"*\",\n\t\t\t\t\t},\n\t\t\t\t\t\"ip\": []string{\n\t\t\t\t\t\t\"*\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = tailscale.NewAcl(ctx, \"as_json\", \u0026tailscale.AclArgs{\n\t\t\tAcl: pulumi.String(json0),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = tailscale.NewAcl(ctx, \"as_hujson\", \u0026tailscale.AclArgs{\n\t\t\tAcl: pulumi.String(`  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\"grants\\\": [\n      {\n        // Allow all users access to all ports.\n        \\\"src\\\" = [\\\"*\\\"],\n        \\\"dst\\\" = [\\\"*\\\"],\n        \\\"ip\\\"  = [\\\"*\\\"],\n      },\n    ],\n  }\n`),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.Acl;\nimport com.pulumi.tailscale.AclArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var asJson = new Acl(\"asJson\", AclArgs.builder()\n            .acl(serializeJson(\n                jsonObject(\n                    jsonProperty(\"grants\", jsonArray(jsonObject(\n                        jsonProperty(\"src\", jsonArray(\"*\")),\n                        jsonProperty(\"dst\", jsonArray(\"*\")),\n                        jsonProperty(\"ip\", jsonArray(\"*\"))\n                    )))\n                )))\n            .build());\n\n        var asHujson = new Acl(\"asHujson\", AclArgs.builder()\n            .acl(\"\"\"\n  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\"grants\\\": [\n      {\n        // Allow all users access to all ports.\n        \\\"src\\\" = [\\\"*\\\"],\n        \\\"dst\\\" = [\\\"*\\\"],\n        \\\"ip\\\"  = [\\\"*\\\"],\n      },\n    ],\n  }\n            \"\"\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  asJson:\n    type: tailscale:Acl\n    name: as_json\n    properties:\n      acl:\n        fn::toJSON:\n          grants:\n            - src:\n                - '*'\n              dst:\n                - '*'\n              ip:\n                - '*'\n  asHujson:\n    type: tailscale:Acl\n    name: as_hujson\n    properties:\n      acl: |2\n          {\n            // Comments in HuJSON policy are preserved when the policy is applied.\n            \\\"grants\\\": [\n              {\n                // Allow all users access to all ports.\n                \\\"src\\\" = [\\\"*\\\"],\n                \\\"dst\\\" = [\\\"*\\\"],\n                \\\"ip\\\"  = [\\\"*\\\"],\n              },\n            ],\n          }\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nID doesn't matter.\n\n```sh\n$ pulumi import tailscale:index/acl:Acl sample_acl acl\n```\n\n",
+            "description": "The acl resource allows you to configure a Tailscale policy file. See https://tailscale.com/kb/1395/tailnet-policy-file for more information. Note that this resource will completely overwrite existing policy file contents for a given tailnet.\n\nIf tests are defined in the policy file (the top-level \"tests\" section), policy file validation will occur before creation and update operations are applied.\n\n\u003e **Note:** The naming of this resource predates Tailscale's usage of the term \"policy file\" to refer to the centralized configuration file for a tailnet. This resource controls a tailnet's entire policy file and not just the ACLs section within it.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst asJson = new tailscale.Acl(\"as_json\", {acl: JSON.stringify({\n    grants: [{\n        src: [\"*\"],\n        dst: [\"*\"],\n        ip: [\"*\"],\n    }],\n})});\nconst asHujson = new tailscale.Acl(\"as_hujson\", {acl: `  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\\\"grants\\\\\": [\n      {\n        // Allow all users access to all ports.\n        \\\\\"src\\\\\": [\\\\\"*\\\\\"],\n        \\\\\"dst\\\\\": [\\\\\"*\\\\\"],\n        \\\\\"ip\\\\\": [\\\\\"*\\\\\"],\n      },\n    ],\n  }\n`});\n```\n```python\nimport pulumi\nimport json\nimport pulumi_tailscale as tailscale\n\nas_json = tailscale.Acl(\"as_json\", acl=json.dumps({\n    \"grants\": [{\n        \"src\": [\"*\"],\n        \"dst\": [\"*\"],\n        \"ip\": [\"*\"],\n    }],\n}))\nas_hujson = tailscale.Acl(\"as_hujson\", acl=\"\"\"  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\"grants\\\": [\n      {\n        // Allow all users access to all ports.\n        \\\"src\\\": [\\\"*\\\"],\n        \\\"dst\\\": [\\\"*\\\"],\n        \\\"ip\\\": [\\\"*\\\"],\n      },\n    ],\n  }\n\"\"\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var asJson = new Tailscale.Acl(\"as_json\", new()\n    {\n        AclJson = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"grants\"] = new[]\n            {\n                new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"src\"] = new[]\n                    {\n                        \"*\",\n                    },\n                    [\"dst\"] = new[]\n                    {\n                        \"*\",\n                    },\n                    [\"ip\"] = new[]\n                    {\n                        \"*\",\n                    },\n                },\n            },\n        }),\n    });\n\n    var asHujson = new Tailscale.Acl(\"as_hujson\", new()\n    {\n        AclJson = @\"  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\"\"grants\\\"\": [\n      {\n        // Allow all users access to all ports.\n        \\\"\"src\\\"\": [\\\"\"*\\\"\"],\n        \\\"\"dst\\\"\": [\\\"\"*\\\"\"],\n        \\\"\"ip\\\"\": [\\\"\"*\\\"\"],\n      },\n    ],\n  }\n\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"grants\": []map[string]interface{}{\n\t\t\t\tmap[string]interface{}{\n\t\t\t\t\t\"src\": []string{\n\t\t\t\t\t\t\"*\",\n\t\t\t\t\t},\n\t\t\t\t\t\"dst\": []string{\n\t\t\t\t\t\t\"*\",\n\t\t\t\t\t},\n\t\t\t\t\t\"ip\": []string{\n\t\t\t\t\t\t\"*\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t_, err = tailscale.NewAcl(ctx, \"as_json\", \u0026tailscale.AclArgs{\n\t\t\tAcl: pulumi.String(json0),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = tailscale.NewAcl(ctx, \"as_hujson\", \u0026tailscale.AclArgs{\n\t\t\tAcl: pulumi.String(`  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\"grants\\\": [\n      {\n        // Allow all users access to all ports.\n        \\\"src\\\": [\\\"*\\\"],\n        \\\"dst\\\": [\\\"*\\\"],\n        \\\"ip\\\": [\\\"*\\\"],\n      },\n    ],\n  }\n`),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.Acl;\nimport com.pulumi.tailscale.AclArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var asJson = new Acl(\"asJson\", AclArgs.builder()\n            .acl(serializeJson(\n                jsonObject(\n                    jsonProperty(\"grants\", jsonArray(jsonObject(\n                        jsonProperty(\"src\", jsonArray(\"*\")),\n                        jsonProperty(\"dst\", jsonArray(\"*\")),\n                        jsonProperty(\"ip\", jsonArray(\"*\"))\n                    )))\n                )))\n            .build());\n\n        var asHujson = new Acl(\"asHujson\", AclArgs.builder()\n            .acl(\"\"\"\n  {\n    // Comments in HuJSON policy are preserved when the policy is applied.\n    \\\"grants\\\": [\n      {\n        // Allow all users access to all ports.\n        \\\"src\\\": [\\\"*\\\"],\n        \\\"dst\\\": [\\\"*\\\"],\n        \\\"ip\\\": [\\\"*\\\"],\n      },\n    ],\n  }\n            \"\"\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  asJson:\n    type: tailscale:Acl\n    name: as_json\n    properties:\n      acl:\n        fn::toJSON:\n          grants:\n            - src:\n                - '*'\n              dst:\n                - '*'\n              ip:\n                - '*'\n  asHujson:\n    type: tailscale:Acl\n    name: as_hujson\n    properties:\n      acl: |2\n          {\n            // Comments in HuJSON policy are preserved when the policy is applied.\n            \\\"grants\\\": [\n              {\n                // Allow all users access to all ports.\n                \\\"src\\\": [\\\"*\\\"],\n                \\\"dst\\\": [\\\"*\\\"],\n                \\\"ip\\\": [\\\"*\\\"],\n              },\n            ],\n          }\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nID doesn't matter.\n\n```sh\n$ pulumi import tailscale:index/acl:Acl sample_acl acl\n```\n\n",
             "properties": {
                 "acl": {
                     "type": "string",
@@ -1179,19 +1249,38 @@
             }
         },
         "tailscale:index/logstreamConfiguration:LogstreamConfiguration": {
-            "description": "The\u003cspan pulumi-lang-nodejs=\" logstreamConfiguration \" pulumi-lang-dotnet=\" LogstreamConfiguration \" pulumi-lang-go=\" logstreamConfiguration \" pulumi-lang-python=\" logstream_configuration \" pulumi-lang-yaml=\" logstreamConfiguration \" pulumi-lang-java=\" logstreamConfiguration \"\u003e logstream_configuration \u003c/span\u003eresource allows you to configure streaming configuration or network flow logs to a supported security information and event management (SIEM) system. See https://tailscale.com/kb/1255/log-streaming for more information.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\n// Example configuration for a non-S3 logstreaming endpoint\nconst sampleLogstreamConfiguration = new tailscale.LogstreamConfiguration(\"sample_logstream_configuration\", {\n    logType: \"configuration\",\n    destinationType: \"panther\",\n    url: \"https://example.com\",\n    token: \"some-token\",\n});\n// Example configuration for an AWS S3 logstreaming endpoint\nconst sampleLogstreamConfigurationS3 = new tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3\", {\n    logType: \"configuration\",\n    destinationType: \"s3\",\n    s3Bucket: tailscaleLogs.id,\n    s3Region: \"us-west-2\",\n    s3AuthenticationType: \"rolearn\",\n    s3RoleArn: tailscaleLogsWriter.arn,\n    s3ExternalId: prod.externalId,\n});\n// Example configuration for an S3-compatible logstreaming endpoint\nconst sampleLogstreamConfigurationS3Compatible = new tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3_compatible\", {\n    logType: \"configuration\",\n    destinationType: \"s3\",\n    url: \"https://s3.example.com\",\n    s3Bucket: \"example-bucket\",\n    s3Region: \"us-west-2\",\n    s3AuthenticationType: \"accesskey\",\n    s3AccessKeyId: \"some-access-key\",\n    s3SecretAccessKey: \"some-secret-key\",\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\n# Example configuration for a non-S3 logstreaming endpoint\nsample_logstream_configuration = tailscale.LogstreamConfiguration(\"sample_logstream_configuration\",\n    log_type=\"configuration\",\n    destination_type=\"panther\",\n    url=\"https://example.com\",\n    token=\"some-token\")\n# Example configuration for an AWS S3 logstreaming endpoint\nsample_logstream_configuration_s3 = tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3\",\n    log_type=\"configuration\",\n    destination_type=\"s3\",\n    s3_bucket=tailscale_logs[\"id\"],\n    s3_region=\"us-west-2\",\n    s3_authentication_type=\"rolearn\",\n    s3_role_arn=tailscale_logs_writer[\"arn\"],\n    s3_external_id=prod[\"externalId\"])\n# Example configuration for an S3-compatible logstreaming endpoint\nsample_logstream_configuration_s3_compatible = tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3_compatible\",\n    log_type=\"configuration\",\n    destination_type=\"s3\",\n    url=\"https://s3.example.com\",\n    s3_bucket=\"example-bucket\",\n    s3_region=\"us-west-2\",\n    s3_authentication_type=\"accesskey\",\n    s3_access_key_id=\"some-access-key\",\n    s3_secret_access_key=\"some-secret-key\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Example configuration for a non-S3 logstreaming endpoint\n    var sampleLogstreamConfiguration = new Tailscale.LogstreamConfiguration(\"sample_logstream_configuration\", new()\n    {\n        LogType = \"configuration\",\n        DestinationType = \"panther\",\n        Url = \"https://example.com\",\n        Token = \"some-token\",\n    });\n\n    // Example configuration for an AWS S3 logstreaming endpoint\n    var sampleLogstreamConfigurationS3 = new Tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3\", new()\n    {\n        LogType = \"configuration\",\n        DestinationType = \"s3\",\n        S3Bucket = tailscaleLogs.Id,\n        S3Region = \"us-west-2\",\n        S3AuthenticationType = \"rolearn\",\n        S3RoleArn = tailscaleLogsWriter.Arn,\n        S3ExternalId = prod.ExternalId,\n    });\n\n    // Example configuration for an S3-compatible logstreaming endpoint\n    var sampleLogstreamConfigurationS3Compatible = new Tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3_compatible\", new()\n    {\n        LogType = \"configuration\",\n        DestinationType = \"s3\",\n        Url = \"https://s3.example.com\",\n        S3Bucket = \"example-bucket\",\n        S3Region = \"us-west-2\",\n        S3AuthenticationType = \"accesskey\",\n        S3AccessKeyId = \"some-access-key\",\n        S3SecretAccessKey = \"some-secret-key\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Example configuration for a non-S3 logstreaming endpoint\n\t\t_, err := tailscale.NewLogstreamConfiguration(ctx, \"sample_logstream_configuration\", \u0026tailscale.LogstreamConfigurationArgs{\n\t\t\tLogType:         pulumi.String(\"configuration\"),\n\t\t\tDestinationType: pulumi.String(\"panther\"),\n\t\t\tUrl:             pulumi.String(\"https://example.com\"),\n\t\t\tToken:           pulumi.String(\"some-token\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Example configuration for an AWS S3 logstreaming endpoint\n\t\t_, err = tailscale.NewLogstreamConfiguration(ctx, \"sample_logstream_configuration_s3\", \u0026tailscale.LogstreamConfigurationArgs{\n\t\t\tLogType:              pulumi.String(\"configuration\"),\n\t\t\tDestinationType:      pulumi.String(\"s3\"),\n\t\t\tS3Bucket:             pulumi.Any(tailscaleLogs.Id),\n\t\t\tS3Region:             pulumi.String(\"us-west-2\"),\n\t\t\tS3AuthenticationType: pulumi.String(\"rolearn\"),\n\t\t\tS3RoleArn:            pulumi.Any(tailscaleLogsWriter.Arn),\n\t\t\tS3ExternalId:         pulumi.Any(prod.ExternalId),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Example configuration for an S3-compatible logstreaming endpoint\n\t\t_, err = tailscale.NewLogstreamConfiguration(ctx, \"sample_logstream_configuration_s3_compatible\", \u0026tailscale.LogstreamConfigurationArgs{\n\t\t\tLogType:              pulumi.String(\"configuration\"),\n\t\t\tDestinationType:      pulumi.String(\"s3\"),\n\t\t\tUrl:                  pulumi.String(\"https://s3.example.com\"),\n\t\t\tS3Bucket:             pulumi.String(\"example-bucket\"),\n\t\t\tS3Region:             pulumi.String(\"us-west-2\"),\n\t\t\tS3AuthenticationType: pulumi.String(\"accesskey\"),\n\t\t\tS3AccessKeyId:        pulumi.String(\"some-access-key\"),\n\t\t\tS3SecretAccessKey:    pulumi.String(\"some-secret-key\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.LogstreamConfiguration;\nimport com.pulumi.tailscale.LogstreamConfigurationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Example configuration for a non-S3 logstreaming endpoint\n        var sampleLogstreamConfiguration = new LogstreamConfiguration(\"sampleLogstreamConfiguration\", LogstreamConfigurationArgs.builder()\n            .logType(\"configuration\")\n            .destinationType(\"panther\")\n            .url(\"https://example.com\")\n            .token(\"some-token\")\n            .build());\n\n        // Example configuration for an AWS S3 logstreaming endpoint\n        var sampleLogstreamConfigurationS3 = new LogstreamConfiguration(\"sampleLogstreamConfigurationS3\", LogstreamConfigurationArgs.builder()\n            .logType(\"configuration\")\n            .destinationType(\"s3\")\n            .s3Bucket(tailscaleLogs.id())\n            .s3Region(\"us-west-2\")\n            .s3AuthenticationType(\"rolearn\")\n            .s3RoleArn(tailscaleLogsWriter.arn())\n            .s3ExternalId(prod.externalId())\n            .build());\n\n        // Example configuration for an S3-compatible logstreaming endpoint\n        var sampleLogstreamConfigurationS3Compatible = new LogstreamConfiguration(\"sampleLogstreamConfigurationS3Compatible\", LogstreamConfigurationArgs.builder()\n            .logType(\"configuration\")\n            .destinationType(\"s3\")\n            .url(\"https://s3.example.com\")\n            .s3Bucket(\"example-bucket\")\n            .s3Region(\"us-west-2\")\n            .s3AuthenticationType(\"accesskey\")\n            .s3AccessKeyId(\"some-access-key\")\n            .s3SecretAccessKey(\"some-secret-key\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Example configuration for a non-S3 logstreaming endpoint\n  sampleLogstreamConfiguration:\n    type: tailscale:LogstreamConfiguration\n    name: sample_logstream_configuration\n    properties:\n      logType: configuration\n      destinationType: panther\n      url: https://example.com\n      token: some-token\n  # Example configuration for an AWS S3 logstreaming endpoint\n  sampleLogstreamConfigurationS3:\n    type: tailscale:LogstreamConfiguration\n    name: sample_logstream_configuration_s3\n    properties:\n      logType: configuration\n      destinationType: s3\n      s3Bucket: ${tailscaleLogs.id}\n      s3Region: us-west-2\n      s3AuthenticationType: rolearn\n      s3RoleArn: ${tailscaleLogsWriter.arn}\n      s3ExternalId: ${prod.externalId}\n  # Example configuration for an S3-compatible logstreaming endpoint\n  sampleLogstreamConfigurationS3Compatible:\n    type: tailscale:LogstreamConfiguration\n    name: sample_logstream_configuration_s3_compatible\n    properties:\n      logType: configuration\n      destinationType: s3\n      url: https://s3.example.com\n      s3Bucket: example-bucket\n      s3Region: us-west-2\n      s3AuthenticationType: accesskey\n      s3AccessKeyId: some-access-key\n      s3SecretAccessKey: some-secret-key\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe `pulumi import` command can be used, for example:\n\nLogstream configuration can be imported using the logstream configuration id, e.g.,\n\n```sh\n$ pulumi import tailscale:index/logstreamConfiguration:LogstreamConfiguration sample_logstream_configuration 123456789\n```\n\n",
+            "description": "The\u003cspan pulumi-lang-nodejs=\" logstreamConfiguration \" pulumi-lang-dotnet=\" LogstreamConfiguration \" pulumi-lang-go=\" logstreamConfiguration \" pulumi-lang-python=\" logstream_configuration \" pulumi-lang-yaml=\" logstreamConfiguration \" pulumi-lang-java=\" logstreamConfiguration \"\u003e logstream_configuration \u003c/span\u003eresource allows you to configure streaming configuration or network flow logs to a supported security information and event management (SIEM) system. See https://tailscale.com/kb/1255/log-streaming for more information.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\n// Example configuration for a non-S3 logstreaming endpoint\nconst sampleLogstreamConfiguration = new tailscale.LogstreamConfiguration(\"sample_logstream_configuration\", {\n    logType: \"configuration\",\n    destinationType: \"panther\",\n    url: \"https://example.com\",\n    token: \"some-token\",\n});\n// Example configuration for an AWS S3 logstreaming endpoint\nconst sampleLogstreamConfigurationS3 = new tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3\", {\n    logType: \"configuration\",\n    destinationType: \"s3\",\n    s3Bucket: tailscaleLogs.id,\n    s3Region: \"us-west-2\",\n    s3AuthenticationType: \"rolearn\",\n    s3RoleArn: tailscaleLogsWriter.arn,\n    s3ExternalId: prod.externalId,\n});\n// Example configuration for an S3-compatible logstreaming endpoint\nconst sampleLogstreamConfigurationS3Compatible = new tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3_compatible\", {\n    logType: \"configuration\",\n    destinationType: \"s3\",\n    url: \"https://s3.example.com\",\n    s3Bucket: \"example-bucket\",\n    s3Region: \"us-west-2\",\n    s3AuthenticationType: \"accesskey\",\n    s3AccessKeyId: \"some-access-key\",\n    s3SecretAccessKey: \"some-secret-key\",\n});\n// Example configuration for a GCS logstreaming endpoint using workload identity\nconst sampleLogstreamConfigurationGcsWif = new tailscale.LogstreamConfiguration(\"sample_logstream_configuration_gcs_wif\", {\n    logType: \"configuration\",\n    destinationType: \"gcs\",\n    gcsBucket: \"example-gcs-bucket\",\n    gcsCredentials: JSON.stringify({\n        type: \"external_account\",\n        audience: \"//iam.googleapis.com/projects/12345678/locations/global/workloadIdentityPools/example-pool/providers/example-provider\",\n        subject_token_type: \"urn:ietf:params:aws:token-type:aws4_request\",\n        service_account_impersonation_url: \"https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/example@example.iam.gserviceaccount.com:generateAccessToken\",\n        token_url: \"https://sts.googleapis.com/v1/token\",\n        credential_source: {\n            environment_id: \"aws1\",\n            region_url: \"http://169.254.169.254/latest/meta-data/placement/availability-zone\",\n            url: \"http://169.254.169.254/latest/meta-data/iam/security-credentials\",\n            regional_cred_verification_url: \"https://sts.{region}.amazonaws.com?Action=GetCallerIdentity\u0026Version=2011-06-15\",\n            imdsv2_session_token_url: \"http://169.254.169.254/latest/api/token\",\n        },\n    }),\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumi_tailscale as tailscale\n\n# Example configuration for a non-S3 logstreaming endpoint\nsample_logstream_configuration = tailscale.LogstreamConfiguration(\"sample_logstream_configuration\",\n    log_type=\"configuration\",\n    destination_type=\"panther\",\n    url=\"https://example.com\",\n    token=\"some-token\")\n# Example configuration for an AWS S3 logstreaming endpoint\nsample_logstream_configuration_s3 = tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3\",\n    log_type=\"configuration\",\n    destination_type=\"s3\",\n    s3_bucket=tailscale_logs[\"id\"],\n    s3_region=\"us-west-2\",\n    s3_authentication_type=\"rolearn\",\n    s3_role_arn=tailscale_logs_writer[\"arn\"],\n    s3_external_id=prod[\"externalId\"])\n# Example configuration for an S3-compatible logstreaming endpoint\nsample_logstream_configuration_s3_compatible = tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3_compatible\",\n    log_type=\"configuration\",\n    destination_type=\"s3\",\n    url=\"https://s3.example.com\",\n    s3_bucket=\"example-bucket\",\n    s3_region=\"us-west-2\",\n    s3_authentication_type=\"accesskey\",\n    s3_access_key_id=\"some-access-key\",\n    s3_secret_access_key=\"some-secret-key\")\n# Example configuration for a GCS logstreaming endpoint using workload identity\nsample_logstream_configuration_gcs_wif = tailscale.LogstreamConfiguration(\"sample_logstream_configuration_gcs_wif\",\n    log_type=\"configuration\",\n    destination_type=\"gcs\",\n    gcs_bucket=\"example-gcs-bucket\",\n    gcs_credentials=json.dumps({\n        \"type\": \"external_account\",\n        \"audience\": \"//iam.googleapis.com/projects/12345678/locations/global/workloadIdentityPools/example-pool/providers/example-provider\",\n        \"subject_token_type\": \"urn:ietf:params:aws:token-type:aws4_request\",\n        \"service_account_impersonation_url\": \"https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/example@example.iam.gserviceaccount.com:generateAccessToken\",\n        \"token_url\": \"https://sts.googleapis.com/v1/token\",\n        \"credential_source\": {\n            \"environment_id\": \"aws1\",\n            \"region_url\": \"http://169.254.169.254/latest/meta-data/placement/availability-zone\",\n            \"url\": \"http://169.254.169.254/latest/meta-data/iam/security-credentials\",\n            \"regional_cred_verification_url\": \"https://sts.{region}.amazonaws.com?Action=GetCallerIdentity\u0026Version=2011-06-15\",\n            \"imdsv2_session_token_url\": \"http://169.254.169.254/latest/api/token\",\n        },\n    }))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // Example configuration for a non-S3 logstreaming endpoint\n    var sampleLogstreamConfiguration = new Tailscale.LogstreamConfiguration(\"sample_logstream_configuration\", new()\n    {\n        LogType = \"configuration\",\n        DestinationType = \"panther\",\n        Url = \"https://example.com\",\n        Token = \"some-token\",\n    });\n\n    // Example configuration for an AWS S3 logstreaming endpoint\n    var sampleLogstreamConfigurationS3 = new Tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3\", new()\n    {\n        LogType = \"configuration\",\n        DestinationType = \"s3\",\n        S3Bucket = tailscaleLogs.Id,\n        S3Region = \"us-west-2\",\n        S3AuthenticationType = \"rolearn\",\n        S3RoleArn = tailscaleLogsWriter.Arn,\n        S3ExternalId = prod.ExternalId,\n    });\n\n    // Example configuration for an S3-compatible logstreaming endpoint\n    var sampleLogstreamConfigurationS3Compatible = new Tailscale.LogstreamConfiguration(\"sample_logstream_configuration_s3_compatible\", new()\n    {\n        LogType = \"configuration\",\n        DestinationType = \"s3\",\n        Url = \"https://s3.example.com\",\n        S3Bucket = \"example-bucket\",\n        S3Region = \"us-west-2\",\n        S3AuthenticationType = \"accesskey\",\n        S3AccessKeyId = \"some-access-key\",\n        S3SecretAccessKey = \"some-secret-key\",\n    });\n\n    // Example configuration for a GCS logstreaming endpoint using workload identity\n    var sampleLogstreamConfigurationGcsWif = new Tailscale.LogstreamConfiguration(\"sample_logstream_configuration_gcs_wif\", new()\n    {\n        LogType = \"configuration\",\n        DestinationType = \"gcs\",\n        GcsBucket = \"example-gcs-bucket\",\n        GcsCredentials = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"type\"] = \"external_account\",\n            [\"audience\"] = \"//iam.googleapis.com/projects/12345678/locations/global/workloadIdentityPools/example-pool/providers/example-provider\",\n            [\"subject_token_type\"] = \"urn:ietf:params:aws:token-type:aws4_request\",\n            [\"service_account_impersonation_url\"] = \"https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/example@example.iam.gserviceaccount.com:generateAccessToken\",\n            [\"token_url\"] = \"https://sts.googleapis.com/v1/token\",\n            [\"credential_source\"] = new Dictionary\u003cstring, object?\u003e\n            {\n                [\"environment_id\"] = \"aws1\",\n                [\"region_url\"] = \"http://169.254.169.254/latest/meta-data/placement/availability-zone\",\n                [\"url\"] = \"http://169.254.169.254/latest/meta-data/iam/security-credentials\",\n                [\"regional_cred_verification_url\"] = \"https://sts.{region}.amazonaws.com?Action=GetCallerIdentity\u0026Version=2011-06-15\",\n                [\"imdsv2_session_token_url\"] = \"http://169.254.169.254/latest/api/token\",\n            },\n        }),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// Example configuration for a non-S3 logstreaming endpoint\n\t\t_, err := tailscale.NewLogstreamConfiguration(ctx, \"sample_logstream_configuration\", \u0026tailscale.LogstreamConfigurationArgs{\n\t\t\tLogType:         pulumi.String(\"configuration\"),\n\t\t\tDestinationType: pulumi.String(\"panther\"),\n\t\t\tUrl:             pulumi.String(\"https://example.com\"),\n\t\t\tToken:           pulumi.String(\"some-token\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Example configuration for an AWS S3 logstreaming endpoint\n\t\t_, err = tailscale.NewLogstreamConfiguration(ctx, \"sample_logstream_configuration_s3\", \u0026tailscale.LogstreamConfigurationArgs{\n\t\t\tLogType:              pulumi.String(\"configuration\"),\n\t\t\tDestinationType:      pulumi.String(\"s3\"),\n\t\t\tS3Bucket:             pulumi.Any(tailscaleLogs.Id),\n\t\t\tS3Region:             pulumi.String(\"us-west-2\"),\n\t\t\tS3AuthenticationType: pulumi.String(\"rolearn\"),\n\t\t\tS3RoleArn:            pulumi.Any(tailscaleLogsWriter.Arn),\n\t\t\tS3ExternalId:         pulumi.Any(prod.ExternalId),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Example configuration for an S3-compatible logstreaming endpoint\n\t\t_, err = tailscale.NewLogstreamConfiguration(ctx, \"sample_logstream_configuration_s3_compatible\", \u0026tailscale.LogstreamConfigurationArgs{\n\t\t\tLogType:              pulumi.String(\"configuration\"),\n\t\t\tDestinationType:      pulumi.String(\"s3\"),\n\t\t\tUrl:                  pulumi.String(\"https://s3.example.com\"),\n\t\t\tS3Bucket:             pulumi.String(\"example-bucket\"),\n\t\t\tS3Region:             pulumi.String(\"us-west-2\"),\n\t\t\tS3AuthenticationType: pulumi.String(\"accesskey\"),\n\t\t\tS3AccessKeyId:        pulumi.String(\"some-access-key\"),\n\t\t\tS3SecretAccessKey:    pulumi.String(\"some-secret-key\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"type\":                              \"external_account\",\n\t\t\t\"audience\":                          \"//iam.googleapis.com/projects/12345678/locations/global/workloadIdentityPools/example-pool/providers/example-provider\",\n\t\t\t\"subject_token_type\":                \"urn:ietf:params:aws:token-type:aws4_request\",\n\t\t\t\"service_account_impersonation_url\": \"https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/example@example.iam.gserviceaccount.com:generateAccessToken\",\n\t\t\t\"token_url\":                         \"https://sts.googleapis.com/v1/token\",\n\t\t\t\"credential_source\": map[string]interface{}{\n\t\t\t\t\"environment_id\":                 \"aws1\",\n\t\t\t\t\"region_url\":                     \"http://169.254.169.254/latest/meta-data/placement/availability-zone\",\n\t\t\t\t\"url\":                            \"http://169.254.169.254/latest/meta-data/iam/security-credentials\",\n\t\t\t\t\"regional_cred_verification_url\": \"https://sts.{region}.amazonaws.com?Action=GetCallerIdentity\u0026Version=2011-06-15\",\n\t\t\t\t\"imdsv2_session_token_url\":       \"http://169.254.169.254/latest/api/token\",\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\t// Example configuration for a GCS logstreaming endpoint using workload identity\n\t\t_, err = tailscale.NewLogstreamConfiguration(ctx, \"sample_logstream_configuration_gcs_wif\", \u0026tailscale.LogstreamConfigurationArgs{\n\t\t\tLogType:         pulumi.String(\"configuration\"),\n\t\t\tDestinationType: pulumi.String(\"gcs\"),\n\t\t\tGcsBucket:       pulumi.String(\"example-gcs-bucket\"),\n\t\t\tGcsCredentials:  pulumi.String(json0),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.LogstreamConfiguration;\nimport com.pulumi.tailscale.LogstreamConfigurationArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // Example configuration for a non-S3 logstreaming endpoint\n        var sampleLogstreamConfiguration = new LogstreamConfiguration(\"sampleLogstreamConfiguration\", LogstreamConfigurationArgs.builder()\n            .logType(\"configuration\")\n            .destinationType(\"panther\")\n            .url(\"https://example.com\")\n            .token(\"some-token\")\n            .build());\n\n        // Example configuration for an AWS S3 logstreaming endpoint\n        var sampleLogstreamConfigurationS3 = new LogstreamConfiguration(\"sampleLogstreamConfigurationS3\", LogstreamConfigurationArgs.builder()\n            .logType(\"configuration\")\n            .destinationType(\"s3\")\n            .s3Bucket(tailscaleLogs.id())\n            .s3Region(\"us-west-2\")\n            .s3AuthenticationType(\"rolearn\")\n            .s3RoleArn(tailscaleLogsWriter.arn())\n            .s3ExternalId(prod.externalId())\n            .build());\n\n        // Example configuration for an S3-compatible logstreaming endpoint\n        var sampleLogstreamConfigurationS3Compatible = new LogstreamConfiguration(\"sampleLogstreamConfigurationS3Compatible\", LogstreamConfigurationArgs.builder()\n            .logType(\"configuration\")\n            .destinationType(\"s3\")\n            .url(\"https://s3.example.com\")\n            .s3Bucket(\"example-bucket\")\n            .s3Region(\"us-west-2\")\n            .s3AuthenticationType(\"accesskey\")\n            .s3AccessKeyId(\"some-access-key\")\n            .s3SecretAccessKey(\"some-secret-key\")\n            .build());\n\n        // Example configuration for a GCS logstreaming endpoint using workload identity\n        var sampleLogstreamConfigurationGcsWif = new LogstreamConfiguration(\"sampleLogstreamConfigurationGcsWif\", LogstreamConfigurationArgs.builder()\n            .logType(\"configuration\")\n            .destinationType(\"gcs\")\n            .gcsBucket(\"example-gcs-bucket\")\n            .gcsCredentials(serializeJson(\n                jsonObject(\n                    jsonProperty(\"type\", \"external_account\"),\n                    jsonProperty(\"audience\", \"//iam.googleapis.com/projects/12345678/locations/global/workloadIdentityPools/example-pool/providers/example-provider\"),\n                    jsonProperty(\"subject_token_type\", \"urn:ietf:params:aws:token-type:aws4_request\"),\n                    jsonProperty(\"service_account_impersonation_url\", \"https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/example@example.iam.gserviceaccount.com:generateAccessToken\"),\n                    jsonProperty(\"token_url\", \"https://sts.googleapis.com/v1/token\"),\n                    jsonProperty(\"credential_source\", jsonObject(\n                        jsonProperty(\"environment_id\", \"aws1\"),\n                        jsonProperty(\"region_url\", \"http://169.254.169.254/latest/meta-data/placement/availability-zone\"),\n                        jsonProperty(\"url\", \"http://169.254.169.254/latest/meta-data/iam/security-credentials\"),\n                        jsonProperty(\"regional_cred_verification_url\", \"https://sts.{region}.amazonaws.com?Action=GetCallerIdentity\u0026Version=2011-06-15\"),\n                        jsonProperty(\"imdsv2_session_token_url\", \"http://169.254.169.254/latest/api/token\")\n                    ))\n                )))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Example configuration for a non-S3 logstreaming endpoint\n  sampleLogstreamConfiguration:\n    type: tailscale:LogstreamConfiguration\n    name: sample_logstream_configuration\n    properties:\n      logType: configuration\n      destinationType: panther\n      url: https://example.com\n      token: some-token\n  # Example configuration for an AWS S3 logstreaming endpoint\n  sampleLogstreamConfigurationS3:\n    type: tailscale:LogstreamConfiguration\n    name: sample_logstream_configuration_s3\n    properties:\n      logType: configuration\n      destinationType: s3\n      s3Bucket: ${tailscaleLogs.id}\n      s3Region: us-west-2\n      s3AuthenticationType: rolearn\n      s3RoleArn: ${tailscaleLogsWriter.arn}\n      s3ExternalId: ${prod.externalId}\n  # Example configuration for an S3-compatible logstreaming endpoint\n  sampleLogstreamConfigurationS3Compatible:\n    type: tailscale:LogstreamConfiguration\n    name: sample_logstream_configuration_s3_compatible\n    properties:\n      logType: configuration\n      destinationType: s3\n      url: https://s3.example.com\n      s3Bucket: example-bucket\n      s3Region: us-west-2\n      s3AuthenticationType: accesskey\n      s3AccessKeyId: some-access-key\n      s3SecretAccessKey: some-secret-key\n  # Example configuration for a GCS logstreaming endpoint using workload identity\n  sampleLogstreamConfigurationGcsWif:\n    type: tailscale:LogstreamConfiguration\n    name: sample_logstream_configuration_gcs_wif\n    properties:\n      logType: configuration\n      destinationType: gcs\n      gcsBucket: example-gcs-bucket\n      gcsCredentials:\n        fn::toJSON:\n          type: external_account\n          audience: //iam.googleapis.com/projects/12345678/locations/global/workloadIdentityPools/example-pool/providers/example-provider\n          subject_token_type: urn:ietf:params:aws:token-type:aws4_request\n          service_account_impersonation_url: https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/example@example.iam.gserviceaccount.com:generateAccessToken\n          token_url: https://sts.googleapis.com/v1/token\n          credential_source:\n            environment_id: aws1\n            region_url: http://169.254.169.254/latest/meta-data/placement/availability-zone\n            url: http://169.254.169.254/latest/meta-data/iam/security-credentials\n            regional_cred_verification_url: https://sts.{region}.amazonaws.com?Action=GetCallerIdentity\u0026Version=2011-06-15\n            imdsv2_session_token_url: http://169.254.169.254/latest/api/token\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe `pulumi import` command can be used, for example:\n\nLogstream configuration can be imported using the logstream configuration id, e.g.,\n\n```sh\n$ pulumi import tailscale:index/logstreamConfiguration:LogstreamConfiguration sample_logstream_configuration 123456789\n```\n\n",
             "properties": {
                 "compressionFormat": {
                     "type": "string",
-                    "description": "The compression algorithm with which to compress logs. One of \u003cspan pulumi-lang-nodejs=\"`none`\" pulumi-lang-dotnet=\"`None`\" pulumi-lang-go=\"`none`\" pulumi-lang-python=\"`none`\" pulumi-lang-yaml=\"`none`\" pulumi-lang-java=\"`none`\"\u003e`none`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`zstd`\" pulumi-lang-dotnet=\"`Zstd`\" pulumi-lang-go=\"`zstd`\" pulumi-lang-python=\"`zstd`\" pulumi-lang-yaml=\"`zstd`\" pulumi-lang-java=\"`zstd`\"\u003e`zstd`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`gzip`\" pulumi-lang-dotnet=\"`Gzip`\" pulumi-lang-go=\"`gzip`\" pulumi-lang-python=\"`gzip`\" pulumi-lang-yaml=\"`gzip`\" pulumi-lang-java=\"`gzip`\"\u003e`gzip`\u003c/span\u003e. Defaults to \u003cspan pulumi-lang-nodejs=\"`none`\" pulumi-lang-dotnet=\"`None`\" pulumi-lang-go=\"`none`\" pulumi-lang-python=\"`none`\" pulumi-lang-yaml=\"`none`\" pulumi-lang-java=\"`none`\"\u003e`none`\u003c/span\u003e.\n"
+                    "description": "The compression algorithm used for logs. Valid values are \u003cspan pulumi-lang-nodejs=\"`none`\" pulumi-lang-dotnet=\"`None`\" pulumi-lang-go=\"`none`\" pulumi-lang-python=\"`none`\" pulumi-lang-yaml=\"`none`\" pulumi-lang-java=\"`none`\"\u003e`none`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`zstd`\" pulumi-lang-dotnet=\"`Zstd`\" pulumi-lang-go=\"`zstd`\" pulumi-lang-python=\"`zstd`\" pulumi-lang-yaml=\"`zstd`\" pulumi-lang-java=\"`zstd`\"\u003e`zstd`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`gzip`\" pulumi-lang-dotnet=\"`Gzip`\" pulumi-lang-go=\"`gzip`\" pulumi-lang-python=\"`gzip`\" pulumi-lang-yaml=\"`gzip`\" pulumi-lang-java=\"`gzip`\"\u003e`gzip`\u003c/span\u003e. Defaults to \u003cspan pulumi-lang-nodejs=\"`none`\" pulumi-lang-dotnet=\"`None`\" pulumi-lang-go=\"`none`\" pulumi-lang-python=\"`none`\" pulumi-lang-yaml=\"`none`\" pulumi-lang-java=\"`none`\"\u003e`none`\u003c/span\u003e.\n"
                 },
                 "destinationType": {
                     "type": "string",
-                    "description": "The type of system to which logs are being streamed.\n"
+                    "description": "The type of SIEM platform to stream to. Valid values are \u003cspan pulumi-lang-nodejs=\"`axiom`\" pulumi-lang-dotnet=\"`Axiom`\" pulumi-lang-go=\"`axiom`\" pulumi-lang-python=\"`axiom`\" pulumi-lang-yaml=\"`axiom`\" pulumi-lang-java=\"`axiom`\"\u003e`axiom`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`cribl`\" pulumi-lang-dotnet=\"`Cribl`\" pulumi-lang-go=\"`cribl`\" pulumi-lang-python=\"`cribl`\" pulumi-lang-yaml=\"`cribl`\" pulumi-lang-java=\"`cribl`\"\u003e`cribl`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`datadog`\" pulumi-lang-dotnet=\"`Datadog`\" pulumi-lang-go=\"`datadog`\" pulumi-lang-python=\"`datadog`\" pulumi-lang-yaml=\"`datadog`\" pulumi-lang-java=\"`datadog`\"\u003e`datadog`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`elastic`\" pulumi-lang-dotnet=\"`Elastic`\" pulumi-lang-go=\"`elastic`\" pulumi-lang-python=\"`elastic`\" pulumi-lang-yaml=\"`elastic`\" pulumi-lang-java=\"`elastic`\"\u003e`elastic`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`gcs`\" pulumi-lang-dotnet=\"`Gcs`\" pulumi-lang-go=\"`gcs`\" pulumi-lang-python=\"`gcs`\" pulumi-lang-yaml=\"`gcs`\" pulumi-lang-java=\"`gcs`\"\u003e`gcs`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`panther`\" pulumi-lang-dotnet=\"`Panther`\" pulumi-lang-go=\"`panther`\" pulumi-lang-python=\"`panther`\" pulumi-lang-yaml=\"`panther`\" pulumi-lang-java=\"`panther`\"\u003e`panther`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`splunk`\" pulumi-lang-dotnet=\"`Splunk`\" pulumi-lang-go=\"`splunk`\" pulumi-lang-python=\"`splunk`\" pulumi-lang-yaml=\"`splunk`\" pulumi-lang-java=\"`splunk`\"\u003e`splunk`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`s3`\" pulumi-lang-dotnet=\"`S3`\" pulumi-lang-go=\"`s3`\" pulumi-lang-python=\"`s3`\" pulumi-lang-yaml=\"`s3`\" pulumi-lang-java=\"`s3`\"\u003e`s3`\u003c/span\u003e.\n"
+                },
+                "gcsBucket": {
+                    "type": "string",
+                    "description": "The name of the GCS bucket\n"
+                },
+                "gcsCredentials": {
+                    "type": "string",
+                    "description": "The encoded string of JSON that is used to authenticate for workload identity in GCS\n"
+                },
+                "gcsKeyPrefix": {
+                    "type": "string",
+                    "description": "The GCS key prefix for the bucket\n"
+                },
+                "gcsScopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The GCS scopes needed to be able to write in the bucket\n"
                 },
                 "logType": {
                     "type": "string",
-                    "description": "The type of log that is streamed to this endpoint. Either \u003cspan pulumi-lang-nodejs=\"`configuration`\" pulumi-lang-dotnet=\"`Configuration`\" pulumi-lang-go=\"`configuration`\" pulumi-lang-python=\"`configuration`\" pulumi-lang-yaml=\"`configuration`\" pulumi-lang-java=\"`configuration`\"\u003e`configuration`\u003c/span\u003e for configuration audit logs, or \u003cspan pulumi-lang-nodejs=\"`network`\" pulumi-lang-dotnet=\"`Network`\" pulumi-lang-go=\"`network`\" pulumi-lang-python=\"`network`\" pulumi-lang-yaml=\"`network`\" pulumi-lang-java=\"`network`\"\u003e`network`\u003c/span\u003e for network flow logs.\n"
+                    "description": "The type of logs to stream. Valid values are \u003cspan pulumi-lang-nodejs=\"`configuration`\" pulumi-lang-dotnet=\"`Configuration`\" pulumi-lang-go=\"`configuration`\" pulumi-lang-python=\"`configuration`\" pulumi-lang-yaml=\"`configuration`\" pulumi-lang-java=\"`configuration`\"\u003e`configuration`\u003c/span\u003e (configuration audit logs) and \u003cspan pulumi-lang-nodejs=\"`network`\" pulumi-lang-dotnet=\"`Network`\" pulumi-lang-go=\"`network`\" pulumi-lang-python=\"`network`\" pulumi-lang-yaml=\"`network`\" pulumi-lang-java=\"`network`\"\u003e`network`\u003c/span\u003e (network flow logs).\n"
                 },
                 "s3AccessKeyId": {
                     "type": "string",
@@ -1199,7 +1288,7 @@
                 },
                 "s3AuthenticationType": {
                     "type": "string",
-                    "description": "What type of authentication to use for S3. Required if\u003cspan pulumi-lang-nodejs=\" destinationType \" pulumi-lang-dotnet=\" DestinationType \" pulumi-lang-go=\" destinationType \" pulumi-lang-python=\" destination_type \" pulumi-lang-yaml=\" destinationType \" pulumi-lang-java=\" destinationType \"\u003e destination_type \u003c/span\u003eis 's3'. Tailscale recommends using 'rolearn'.\n"
+                    "description": "The type of authentication to use for S3. Required if\u003cspan pulumi-lang-nodejs=\" destinationType \" pulumi-lang-dotnet=\" DestinationType \" pulumi-lang-go=\" destinationType \" pulumi-lang-python=\" destination_type \" pulumi-lang-yaml=\" destinationType \" pulumi-lang-java=\" destinationType \"\u003e destination_type \u003c/span\u003eis \u003cspan pulumi-lang-nodejs=\"`s3`\" pulumi-lang-dotnet=\"`S3`\" pulumi-lang-go=\"`s3`\" pulumi-lang-python=\"`s3`\" pulumi-lang-yaml=\"`s3`\" pulumi-lang-java=\"`s3`\"\u003e`s3`\u003c/span\u003e. Valid values are \u003cspan pulumi-lang-nodejs=\"`accesskey`\" pulumi-lang-dotnet=\"`Accesskey`\" pulumi-lang-go=\"`accesskey`\" pulumi-lang-python=\"`accesskey`\" pulumi-lang-yaml=\"`accesskey`\" pulumi-lang-java=\"`accesskey`\"\u003e`accesskey`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`rolearn`\" pulumi-lang-dotnet=\"`Rolearn`\" pulumi-lang-go=\"`rolearn`\" pulumi-lang-python=\"`rolearn`\" pulumi-lang-yaml=\"`rolearn`\" pulumi-lang-java=\"`rolearn`\"\u003e`rolearn`\u003c/span\u003e. Tailscale recommends using \u003cspan pulumi-lang-nodejs=\"`rolearn`\" pulumi-lang-dotnet=\"`Rolearn`\" pulumi-lang-go=\"`rolearn`\" pulumi-lang-python=\"`rolearn`\" pulumi-lang-yaml=\"`rolearn`\" pulumi-lang-java=\"`rolearn`\"\u003e`rolearn`\u003c/span\u003e.\n"
                 },
                 "s3Bucket": {
                     "type": "string",
@@ -1251,15 +1340,34 @@
             "inputProperties": {
                 "compressionFormat": {
                     "type": "string",
-                    "description": "The compression algorithm with which to compress logs. One of \u003cspan pulumi-lang-nodejs=\"`none`\" pulumi-lang-dotnet=\"`None`\" pulumi-lang-go=\"`none`\" pulumi-lang-python=\"`none`\" pulumi-lang-yaml=\"`none`\" pulumi-lang-java=\"`none`\"\u003e`none`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`zstd`\" pulumi-lang-dotnet=\"`Zstd`\" pulumi-lang-go=\"`zstd`\" pulumi-lang-python=\"`zstd`\" pulumi-lang-yaml=\"`zstd`\" pulumi-lang-java=\"`zstd`\"\u003e`zstd`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`gzip`\" pulumi-lang-dotnet=\"`Gzip`\" pulumi-lang-go=\"`gzip`\" pulumi-lang-python=\"`gzip`\" pulumi-lang-yaml=\"`gzip`\" pulumi-lang-java=\"`gzip`\"\u003e`gzip`\u003c/span\u003e. Defaults to \u003cspan pulumi-lang-nodejs=\"`none`\" pulumi-lang-dotnet=\"`None`\" pulumi-lang-go=\"`none`\" pulumi-lang-python=\"`none`\" pulumi-lang-yaml=\"`none`\" pulumi-lang-java=\"`none`\"\u003e`none`\u003c/span\u003e.\n"
+                    "description": "The compression algorithm used for logs. Valid values are \u003cspan pulumi-lang-nodejs=\"`none`\" pulumi-lang-dotnet=\"`None`\" pulumi-lang-go=\"`none`\" pulumi-lang-python=\"`none`\" pulumi-lang-yaml=\"`none`\" pulumi-lang-java=\"`none`\"\u003e`none`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`zstd`\" pulumi-lang-dotnet=\"`Zstd`\" pulumi-lang-go=\"`zstd`\" pulumi-lang-python=\"`zstd`\" pulumi-lang-yaml=\"`zstd`\" pulumi-lang-java=\"`zstd`\"\u003e`zstd`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`gzip`\" pulumi-lang-dotnet=\"`Gzip`\" pulumi-lang-go=\"`gzip`\" pulumi-lang-python=\"`gzip`\" pulumi-lang-yaml=\"`gzip`\" pulumi-lang-java=\"`gzip`\"\u003e`gzip`\u003c/span\u003e. Defaults to \u003cspan pulumi-lang-nodejs=\"`none`\" pulumi-lang-dotnet=\"`None`\" pulumi-lang-go=\"`none`\" pulumi-lang-python=\"`none`\" pulumi-lang-yaml=\"`none`\" pulumi-lang-java=\"`none`\"\u003e`none`\u003c/span\u003e.\n"
                 },
                 "destinationType": {
                     "type": "string",
-                    "description": "The type of system to which logs are being streamed.\n"
+                    "description": "The type of SIEM platform to stream to. Valid values are \u003cspan pulumi-lang-nodejs=\"`axiom`\" pulumi-lang-dotnet=\"`Axiom`\" pulumi-lang-go=\"`axiom`\" pulumi-lang-python=\"`axiom`\" pulumi-lang-yaml=\"`axiom`\" pulumi-lang-java=\"`axiom`\"\u003e`axiom`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`cribl`\" pulumi-lang-dotnet=\"`Cribl`\" pulumi-lang-go=\"`cribl`\" pulumi-lang-python=\"`cribl`\" pulumi-lang-yaml=\"`cribl`\" pulumi-lang-java=\"`cribl`\"\u003e`cribl`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`datadog`\" pulumi-lang-dotnet=\"`Datadog`\" pulumi-lang-go=\"`datadog`\" pulumi-lang-python=\"`datadog`\" pulumi-lang-yaml=\"`datadog`\" pulumi-lang-java=\"`datadog`\"\u003e`datadog`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`elastic`\" pulumi-lang-dotnet=\"`Elastic`\" pulumi-lang-go=\"`elastic`\" pulumi-lang-python=\"`elastic`\" pulumi-lang-yaml=\"`elastic`\" pulumi-lang-java=\"`elastic`\"\u003e`elastic`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`gcs`\" pulumi-lang-dotnet=\"`Gcs`\" pulumi-lang-go=\"`gcs`\" pulumi-lang-python=\"`gcs`\" pulumi-lang-yaml=\"`gcs`\" pulumi-lang-java=\"`gcs`\"\u003e`gcs`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`panther`\" pulumi-lang-dotnet=\"`Panther`\" pulumi-lang-go=\"`panther`\" pulumi-lang-python=\"`panther`\" pulumi-lang-yaml=\"`panther`\" pulumi-lang-java=\"`panther`\"\u003e`panther`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`splunk`\" pulumi-lang-dotnet=\"`Splunk`\" pulumi-lang-go=\"`splunk`\" pulumi-lang-python=\"`splunk`\" pulumi-lang-yaml=\"`splunk`\" pulumi-lang-java=\"`splunk`\"\u003e`splunk`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`s3`\" pulumi-lang-dotnet=\"`S3`\" pulumi-lang-go=\"`s3`\" pulumi-lang-python=\"`s3`\" pulumi-lang-yaml=\"`s3`\" pulumi-lang-java=\"`s3`\"\u003e`s3`\u003c/span\u003e.\n"
+                },
+                "gcsBucket": {
+                    "type": "string",
+                    "description": "The name of the GCS bucket\n"
+                },
+                "gcsCredentials": {
+                    "type": "string",
+                    "description": "The encoded string of JSON that is used to authenticate for workload identity in GCS\n"
+                },
+                "gcsKeyPrefix": {
+                    "type": "string",
+                    "description": "The GCS key prefix for the bucket\n"
+                },
+                "gcsScopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The GCS scopes needed to be able to write in the bucket\n"
                 },
                 "logType": {
                     "type": "string",
-                    "description": "The type of log that is streamed to this endpoint. Either \u003cspan pulumi-lang-nodejs=\"`configuration`\" pulumi-lang-dotnet=\"`Configuration`\" pulumi-lang-go=\"`configuration`\" pulumi-lang-python=\"`configuration`\" pulumi-lang-yaml=\"`configuration`\" pulumi-lang-java=\"`configuration`\"\u003e`configuration`\u003c/span\u003e for configuration audit logs, or \u003cspan pulumi-lang-nodejs=\"`network`\" pulumi-lang-dotnet=\"`Network`\" pulumi-lang-go=\"`network`\" pulumi-lang-python=\"`network`\" pulumi-lang-yaml=\"`network`\" pulumi-lang-java=\"`network`\"\u003e`network`\u003c/span\u003e for network flow logs.\n",
+                    "description": "The type of logs to stream. Valid values are \u003cspan pulumi-lang-nodejs=\"`configuration`\" pulumi-lang-dotnet=\"`Configuration`\" pulumi-lang-go=\"`configuration`\" pulumi-lang-python=\"`configuration`\" pulumi-lang-yaml=\"`configuration`\" pulumi-lang-java=\"`configuration`\"\u003e`configuration`\u003c/span\u003e (configuration audit logs) and \u003cspan pulumi-lang-nodejs=\"`network`\" pulumi-lang-dotnet=\"`Network`\" pulumi-lang-go=\"`network`\" pulumi-lang-python=\"`network`\" pulumi-lang-yaml=\"`network`\" pulumi-lang-java=\"`network`\"\u003e`network`\u003c/span\u003e (network flow logs).\n",
                     "willReplaceOnChanges": true
                 },
                 "s3AccessKeyId": {
@@ -1268,7 +1376,7 @@
                 },
                 "s3AuthenticationType": {
                     "type": "string",
-                    "description": "What type of authentication to use for S3. Required if\u003cspan pulumi-lang-nodejs=\" destinationType \" pulumi-lang-dotnet=\" DestinationType \" pulumi-lang-go=\" destinationType \" pulumi-lang-python=\" destination_type \" pulumi-lang-yaml=\" destinationType \" pulumi-lang-java=\" destinationType \"\u003e destination_type \u003c/span\u003eis 's3'. Tailscale recommends using 'rolearn'.\n"
+                    "description": "The type of authentication to use for S3. Required if\u003cspan pulumi-lang-nodejs=\" destinationType \" pulumi-lang-dotnet=\" DestinationType \" pulumi-lang-go=\" destinationType \" pulumi-lang-python=\" destination_type \" pulumi-lang-yaml=\" destinationType \" pulumi-lang-java=\" destinationType \"\u003e destination_type \u003c/span\u003eis \u003cspan pulumi-lang-nodejs=\"`s3`\" pulumi-lang-dotnet=\"`S3`\" pulumi-lang-go=\"`s3`\" pulumi-lang-python=\"`s3`\" pulumi-lang-yaml=\"`s3`\" pulumi-lang-java=\"`s3`\"\u003e`s3`\u003c/span\u003e. Valid values are \u003cspan pulumi-lang-nodejs=\"`accesskey`\" pulumi-lang-dotnet=\"`Accesskey`\" pulumi-lang-go=\"`accesskey`\" pulumi-lang-python=\"`accesskey`\" pulumi-lang-yaml=\"`accesskey`\" pulumi-lang-java=\"`accesskey`\"\u003e`accesskey`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`rolearn`\" pulumi-lang-dotnet=\"`Rolearn`\" pulumi-lang-go=\"`rolearn`\" pulumi-lang-python=\"`rolearn`\" pulumi-lang-yaml=\"`rolearn`\" pulumi-lang-java=\"`rolearn`\"\u003e`rolearn`\u003c/span\u003e. Tailscale recommends using \u003cspan pulumi-lang-nodejs=\"`rolearn`\" pulumi-lang-dotnet=\"`Rolearn`\" pulumi-lang-go=\"`rolearn`\" pulumi-lang-python=\"`rolearn`\" pulumi-lang-yaml=\"`rolearn`\" pulumi-lang-java=\"`rolearn`\"\u003e`rolearn`\u003c/span\u003e.\n"
                 },
                 "s3Bucket": {
                     "type": "string",
@@ -1322,15 +1430,34 @@
                 "properties": {
                     "compressionFormat": {
                         "type": "string",
-                        "description": "The compression algorithm with which to compress logs. One of \u003cspan pulumi-lang-nodejs=\"`none`\" pulumi-lang-dotnet=\"`None`\" pulumi-lang-go=\"`none`\" pulumi-lang-python=\"`none`\" pulumi-lang-yaml=\"`none`\" pulumi-lang-java=\"`none`\"\u003e`none`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`zstd`\" pulumi-lang-dotnet=\"`Zstd`\" pulumi-lang-go=\"`zstd`\" pulumi-lang-python=\"`zstd`\" pulumi-lang-yaml=\"`zstd`\" pulumi-lang-java=\"`zstd`\"\u003e`zstd`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`gzip`\" pulumi-lang-dotnet=\"`Gzip`\" pulumi-lang-go=\"`gzip`\" pulumi-lang-python=\"`gzip`\" pulumi-lang-yaml=\"`gzip`\" pulumi-lang-java=\"`gzip`\"\u003e`gzip`\u003c/span\u003e. Defaults to \u003cspan pulumi-lang-nodejs=\"`none`\" pulumi-lang-dotnet=\"`None`\" pulumi-lang-go=\"`none`\" pulumi-lang-python=\"`none`\" pulumi-lang-yaml=\"`none`\" pulumi-lang-java=\"`none`\"\u003e`none`\u003c/span\u003e.\n"
+                        "description": "The compression algorithm used for logs. Valid values are \u003cspan pulumi-lang-nodejs=\"`none`\" pulumi-lang-dotnet=\"`None`\" pulumi-lang-go=\"`none`\" pulumi-lang-python=\"`none`\" pulumi-lang-yaml=\"`none`\" pulumi-lang-java=\"`none`\"\u003e`none`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`zstd`\" pulumi-lang-dotnet=\"`Zstd`\" pulumi-lang-go=\"`zstd`\" pulumi-lang-python=\"`zstd`\" pulumi-lang-yaml=\"`zstd`\" pulumi-lang-java=\"`zstd`\"\u003e`zstd`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`gzip`\" pulumi-lang-dotnet=\"`Gzip`\" pulumi-lang-go=\"`gzip`\" pulumi-lang-python=\"`gzip`\" pulumi-lang-yaml=\"`gzip`\" pulumi-lang-java=\"`gzip`\"\u003e`gzip`\u003c/span\u003e. Defaults to \u003cspan pulumi-lang-nodejs=\"`none`\" pulumi-lang-dotnet=\"`None`\" pulumi-lang-go=\"`none`\" pulumi-lang-python=\"`none`\" pulumi-lang-yaml=\"`none`\" pulumi-lang-java=\"`none`\"\u003e`none`\u003c/span\u003e.\n"
                     },
                     "destinationType": {
                         "type": "string",
-                        "description": "The type of system to which logs are being streamed.\n"
+                        "description": "The type of SIEM platform to stream to. Valid values are \u003cspan pulumi-lang-nodejs=\"`axiom`\" pulumi-lang-dotnet=\"`Axiom`\" pulumi-lang-go=\"`axiom`\" pulumi-lang-python=\"`axiom`\" pulumi-lang-yaml=\"`axiom`\" pulumi-lang-java=\"`axiom`\"\u003e`axiom`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`cribl`\" pulumi-lang-dotnet=\"`Cribl`\" pulumi-lang-go=\"`cribl`\" pulumi-lang-python=\"`cribl`\" pulumi-lang-yaml=\"`cribl`\" pulumi-lang-java=\"`cribl`\"\u003e`cribl`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`datadog`\" pulumi-lang-dotnet=\"`Datadog`\" pulumi-lang-go=\"`datadog`\" pulumi-lang-python=\"`datadog`\" pulumi-lang-yaml=\"`datadog`\" pulumi-lang-java=\"`datadog`\"\u003e`datadog`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`elastic`\" pulumi-lang-dotnet=\"`Elastic`\" pulumi-lang-go=\"`elastic`\" pulumi-lang-python=\"`elastic`\" pulumi-lang-yaml=\"`elastic`\" pulumi-lang-java=\"`elastic`\"\u003e`elastic`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`gcs`\" pulumi-lang-dotnet=\"`Gcs`\" pulumi-lang-go=\"`gcs`\" pulumi-lang-python=\"`gcs`\" pulumi-lang-yaml=\"`gcs`\" pulumi-lang-java=\"`gcs`\"\u003e`gcs`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`panther`\" pulumi-lang-dotnet=\"`Panther`\" pulumi-lang-go=\"`panther`\" pulumi-lang-python=\"`panther`\" pulumi-lang-yaml=\"`panther`\" pulumi-lang-java=\"`panther`\"\u003e`panther`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`splunk`\" pulumi-lang-dotnet=\"`Splunk`\" pulumi-lang-go=\"`splunk`\" pulumi-lang-python=\"`splunk`\" pulumi-lang-yaml=\"`splunk`\" pulumi-lang-java=\"`splunk`\"\u003e`splunk`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`s3`\" pulumi-lang-dotnet=\"`S3`\" pulumi-lang-go=\"`s3`\" pulumi-lang-python=\"`s3`\" pulumi-lang-yaml=\"`s3`\" pulumi-lang-java=\"`s3`\"\u003e`s3`\u003c/span\u003e.\n"
+                    },
+                    "gcsBucket": {
+                        "type": "string",
+                        "description": "The name of the GCS bucket\n"
+                    },
+                    "gcsCredentials": {
+                        "type": "string",
+                        "description": "The encoded string of JSON that is used to authenticate for workload identity in GCS\n"
+                    },
+                    "gcsKeyPrefix": {
+                        "type": "string",
+                        "description": "The GCS key prefix for the bucket\n"
+                    },
+                    "gcsScopes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The GCS scopes needed to be able to write in the bucket\n"
                     },
                     "logType": {
                         "type": "string",
-                        "description": "The type of log that is streamed to this endpoint. Either \u003cspan pulumi-lang-nodejs=\"`configuration`\" pulumi-lang-dotnet=\"`Configuration`\" pulumi-lang-go=\"`configuration`\" pulumi-lang-python=\"`configuration`\" pulumi-lang-yaml=\"`configuration`\" pulumi-lang-java=\"`configuration`\"\u003e`configuration`\u003c/span\u003e for configuration audit logs, or \u003cspan pulumi-lang-nodejs=\"`network`\" pulumi-lang-dotnet=\"`Network`\" pulumi-lang-go=\"`network`\" pulumi-lang-python=\"`network`\" pulumi-lang-yaml=\"`network`\" pulumi-lang-java=\"`network`\"\u003e`network`\u003c/span\u003e for network flow logs.\n",
+                        "description": "The type of logs to stream. Valid values are \u003cspan pulumi-lang-nodejs=\"`configuration`\" pulumi-lang-dotnet=\"`Configuration`\" pulumi-lang-go=\"`configuration`\" pulumi-lang-python=\"`configuration`\" pulumi-lang-yaml=\"`configuration`\" pulumi-lang-java=\"`configuration`\"\u003e`configuration`\u003c/span\u003e (configuration audit logs) and \u003cspan pulumi-lang-nodejs=\"`network`\" pulumi-lang-dotnet=\"`Network`\" pulumi-lang-go=\"`network`\" pulumi-lang-python=\"`network`\" pulumi-lang-yaml=\"`network`\" pulumi-lang-java=\"`network`\"\u003e`network`\u003c/span\u003e (network flow logs).\n",
                         "willReplaceOnChanges": true
                     },
                     "s3AccessKeyId": {
@@ -1339,7 +1466,7 @@
                     },
                     "s3AuthenticationType": {
                         "type": "string",
-                        "description": "What type of authentication to use for S3. Required if\u003cspan pulumi-lang-nodejs=\" destinationType \" pulumi-lang-dotnet=\" DestinationType \" pulumi-lang-go=\" destinationType \" pulumi-lang-python=\" destination_type \" pulumi-lang-yaml=\" destinationType \" pulumi-lang-java=\" destinationType \"\u003e destination_type \u003c/span\u003eis 's3'. Tailscale recommends using 'rolearn'.\n"
+                        "description": "The type of authentication to use for S3. Required if\u003cspan pulumi-lang-nodejs=\" destinationType \" pulumi-lang-dotnet=\" DestinationType \" pulumi-lang-go=\" destinationType \" pulumi-lang-python=\" destination_type \" pulumi-lang-yaml=\" destinationType \" pulumi-lang-java=\" destinationType \"\u003e destination_type \u003c/span\u003eis \u003cspan pulumi-lang-nodejs=\"`s3`\" pulumi-lang-dotnet=\"`S3`\" pulumi-lang-go=\"`s3`\" pulumi-lang-python=\"`s3`\" pulumi-lang-yaml=\"`s3`\" pulumi-lang-java=\"`s3`\"\u003e`s3`\u003c/span\u003e. Valid values are \u003cspan pulumi-lang-nodejs=\"`accesskey`\" pulumi-lang-dotnet=\"`Accesskey`\" pulumi-lang-go=\"`accesskey`\" pulumi-lang-python=\"`accesskey`\" pulumi-lang-yaml=\"`accesskey`\" pulumi-lang-java=\"`accesskey`\"\u003e`accesskey`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`rolearn`\" pulumi-lang-dotnet=\"`Rolearn`\" pulumi-lang-go=\"`rolearn`\" pulumi-lang-python=\"`rolearn`\" pulumi-lang-yaml=\"`rolearn`\" pulumi-lang-java=\"`rolearn`\"\u003e`rolearn`\u003c/span\u003e. Tailscale recommends using \u003cspan pulumi-lang-nodejs=\"`rolearn`\" pulumi-lang-dotnet=\"`Rolearn`\" pulumi-lang-go=\"`rolearn`\" pulumi-lang-python=\"`rolearn`\" pulumi-lang-yaml=\"`rolearn`\" pulumi-lang-java=\"`rolearn`\"\u003e`rolearn`\u003c/span\u003e.\n"
                     },
                     "s3Bucket": {
                         "type": "string",
@@ -1507,7 +1634,8 @@
                 },
                 "clientSecret": {
                     "type": "string",
-                    "description": "The secret (auth key, token, etc.) used to authenticate with the provider.\n"
+                    "description": "The secret (auth key, token, etc.) used to authenticate with the provider.\n",
+                    "secret": true
                 },
                 "cloudId": {
                     "type": "string",
@@ -1515,7 +1643,7 @@
                 },
                 "postureProvider": {
                     "type": "string",
-                    "description": "The type of posture integration data provider.\n"
+                    "description": "The third-party provider for posture data. Valid values are \u003cspan pulumi-lang-nodejs=\"`falcon`\" pulumi-lang-dotnet=\"`Falcon`\" pulumi-lang-go=\"`falcon`\" pulumi-lang-python=\"`falcon`\" pulumi-lang-yaml=\"`falcon`\" pulumi-lang-java=\"`falcon`\"\u003e`falcon`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`intune`\" pulumi-lang-dotnet=\"`Intune`\" pulumi-lang-go=\"`intune`\" pulumi-lang-python=\"`intune`\" pulumi-lang-yaml=\"`intune`\" pulumi-lang-java=\"`intune`\"\u003e`intune`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`jamfpro`\" pulumi-lang-dotnet=\"`Jamfpro`\" pulumi-lang-go=\"`jamfpro`\" pulumi-lang-python=\"`jamfpro`\" pulumi-lang-yaml=\"`jamfpro`\" pulumi-lang-java=\"`jamfpro`\"\u003e`jamfpro`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`kandji`\" pulumi-lang-dotnet=\"`Kandji`\" pulumi-lang-go=\"`kandji`\" pulumi-lang-python=\"`kandji`\" pulumi-lang-yaml=\"`kandji`\" pulumi-lang-java=\"`kandji`\"\u003e`kandji`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`kolide`\" pulumi-lang-dotnet=\"`Kolide`\" pulumi-lang-go=\"`kolide`\" pulumi-lang-python=\"`kolide`\" pulumi-lang-yaml=\"`kolide`\" pulumi-lang-java=\"`kolide`\"\u003e`kolide`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`sentinelone`\" pulumi-lang-dotnet=\"`Sentinelone`\" pulumi-lang-go=\"`sentinelone`\" pulumi-lang-python=\"`sentinelone`\" pulumi-lang-yaml=\"`sentinelone`\" pulumi-lang-java=\"`sentinelone`\"\u003e`sentinelone`\u003c/span\u003e.\n"
                 },
                 "tenantId": {
                     "type": "string",
@@ -1533,7 +1661,8 @@
                 },
                 "clientSecret": {
                     "type": "string",
-                    "description": "The secret (auth key, token, etc.) used to authenticate with the provider.\n"
+                    "description": "The secret (auth key, token, etc.) used to authenticate with the provider.\n",
+                    "secret": true
                 },
                 "cloudId": {
                     "type": "string",
@@ -1541,7 +1670,7 @@
                 },
                 "postureProvider": {
                     "type": "string",
-                    "description": "The type of posture integration data provider.\n",
+                    "description": "The third-party provider for posture data. Valid values are \u003cspan pulumi-lang-nodejs=\"`falcon`\" pulumi-lang-dotnet=\"`Falcon`\" pulumi-lang-go=\"`falcon`\" pulumi-lang-python=\"`falcon`\" pulumi-lang-yaml=\"`falcon`\" pulumi-lang-java=\"`falcon`\"\u003e`falcon`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`intune`\" pulumi-lang-dotnet=\"`Intune`\" pulumi-lang-go=\"`intune`\" pulumi-lang-python=\"`intune`\" pulumi-lang-yaml=\"`intune`\" pulumi-lang-java=\"`intune`\"\u003e`intune`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`jamfpro`\" pulumi-lang-dotnet=\"`Jamfpro`\" pulumi-lang-go=\"`jamfpro`\" pulumi-lang-python=\"`jamfpro`\" pulumi-lang-yaml=\"`jamfpro`\" pulumi-lang-java=\"`jamfpro`\"\u003e`jamfpro`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`kandji`\" pulumi-lang-dotnet=\"`Kandji`\" pulumi-lang-go=\"`kandji`\" pulumi-lang-python=\"`kandji`\" pulumi-lang-yaml=\"`kandji`\" pulumi-lang-java=\"`kandji`\"\u003e`kandji`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`kolide`\" pulumi-lang-dotnet=\"`Kolide`\" pulumi-lang-go=\"`kolide`\" pulumi-lang-python=\"`kolide`\" pulumi-lang-yaml=\"`kolide`\" pulumi-lang-java=\"`kolide`\"\u003e`kolide`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`sentinelone`\" pulumi-lang-dotnet=\"`Sentinelone`\" pulumi-lang-go=\"`sentinelone`\" pulumi-lang-python=\"`sentinelone`\" pulumi-lang-yaml=\"`sentinelone`\" pulumi-lang-java=\"`sentinelone`\"\u003e`sentinelone`\u003c/span\u003e.\n",
                     "willReplaceOnChanges": true
                 },
                 "tenantId": {
@@ -1562,7 +1691,8 @@
                     },
                     "clientSecret": {
                         "type": "string",
-                        "description": "The secret (auth key, token, etc.) used to authenticate with the provider.\n"
+                        "description": "The secret (auth key, token, etc.) used to authenticate with the provider.\n",
+                        "secret": true
                     },
                     "cloudId": {
                         "type": "string",
@@ -1570,7 +1700,7 @@
                     },
                     "postureProvider": {
                         "type": "string",
-                        "description": "The type of posture integration data provider.\n",
+                        "description": "The third-party provider for posture data. Valid values are \u003cspan pulumi-lang-nodejs=\"`falcon`\" pulumi-lang-dotnet=\"`Falcon`\" pulumi-lang-go=\"`falcon`\" pulumi-lang-python=\"`falcon`\" pulumi-lang-yaml=\"`falcon`\" pulumi-lang-java=\"`falcon`\"\u003e`falcon`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`intune`\" pulumi-lang-dotnet=\"`Intune`\" pulumi-lang-go=\"`intune`\" pulumi-lang-python=\"`intune`\" pulumi-lang-yaml=\"`intune`\" pulumi-lang-java=\"`intune`\"\u003e`intune`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`jamfpro`\" pulumi-lang-dotnet=\"`Jamfpro`\" pulumi-lang-go=\"`jamfpro`\" pulumi-lang-python=\"`jamfpro`\" pulumi-lang-yaml=\"`jamfpro`\" pulumi-lang-java=\"`jamfpro`\"\u003e`jamfpro`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`kandji`\" pulumi-lang-dotnet=\"`Kandji`\" pulumi-lang-go=\"`kandji`\" pulumi-lang-python=\"`kandji`\" pulumi-lang-yaml=\"`kandji`\" pulumi-lang-java=\"`kandji`\"\u003e`kandji`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`kolide`\" pulumi-lang-dotnet=\"`Kolide`\" pulumi-lang-go=\"`kolide`\" pulumi-lang-python=\"`kolide`\" pulumi-lang-yaml=\"`kolide`\" pulumi-lang-java=\"`kolide`\"\u003e`kolide`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`sentinelone`\" pulumi-lang-dotnet=\"`Sentinelone`\" pulumi-lang-go=\"`sentinelone`\" pulumi-lang-python=\"`sentinelone`\" pulumi-lang-yaml=\"`sentinelone`\" pulumi-lang-java=\"`sentinelone`\"\u003e`sentinelone`\u003c/span\u003e.\n",
                         "willReplaceOnChanges": true
                     },
                     "tenantId": {
@@ -1917,7 +2047,7 @@
                 },
                 "providerType": {
                     "type": "string",
-                    "description": "The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of \u003cspan pulumi-lang-nodejs=\"`slack`\" pulumi-lang-dotnet=\"`Slack`\" pulumi-lang-go=\"`slack`\" pulumi-lang-python=\"`slack`\" pulumi-lang-yaml=\"`slack`\" pulumi-lang-java=\"`slack`\"\u003e`slack`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`mattermost`\" pulumi-lang-dotnet=\"`Mattermost`\" pulumi-lang-go=\"`mattermost`\" pulumi-lang-python=\"`mattermost`\" pulumi-lang-yaml=\"`mattermost`\" pulumi-lang-java=\"`mattermost`\"\u003e`mattermost`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`googlechat`\" pulumi-lang-dotnet=\"`Googlechat`\" pulumi-lang-go=\"`googlechat`\" pulumi-lang-python=\"`googlechat`\" pulumi-lang-yaml=\"`googlechat`\" pulumi-lang-java=\"`googlechat`\"\u003e`googlechat`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`discord`\" pulumi-lang-dotnet=\"`Discord`\" pulumi-lang-go=\"`discord`\" pulumi-lang-python=\"`discord`\" pulumi-lang-yaml=\"`discord`\" pulumi-lang-java=\"`discord`\"\u003e`discord`\u003c/span\u003e if set.\n"
+                    "description": "The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are \u003cspan pulumi-lang-nodejs=\"`slack`\" pulumi-lang-dotnet=\"`Slack`\" pulumi-lang-go=\"`slack`\" pulumi-lang-python=\"`slack`\" pulumi-lang-yaml=\"`slack`\" pulumi-lang-java=\"`slack`\"\u003e`slack`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`mattermost`\" pulumi-lang-dotnet=\"`Mattermost`\" pulumi-lang-go=\"`mattermost`\" pulumi-lang-python=\"`mattermost`\" pulumi-lang-yaml=\"`mattermost`\" pulumi-lang-java=\"`mattermost`\"\u003e`mattermost`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`googlechat`\" pulumi-lang-dotnet=\"`Googlechat`\" pulumi-lang-go=\"`googlechat`\" pulumi-lang-python=\"`googlechat`\" pulumi-lang-yaml=\"`googlechat`\" pulumi-lang-java=\"`googlechat`\"\u003e`googlechat`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`discord`\" pulumi-lang-dotnet=\"`Discord`\" pulumi-lang-go=\"`discord`\" pulumi-lang-python=\"`discord`\" pulumi-lang-yaml=\"`discord`\" pulumi-lang-java=\"`discord`\"\u003e`discord`\u003c/span\u003e.\n"
                 },
                 "secret": {
                     "type": "string",
@@ -1929,7 +2059,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.\n"
+                    "description": "The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).\n"
                 }
             },
             "required": [
@@ -1945,7 +2075,7 @@
                 },
                 "providerType": {
                     "type": "string",
-                    "description": "The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of \u003cspan pulumi-lang-nodejs=\"`slack`\" pulumi-lang-dotnet=\"`Slack`\" pulumi-lang-go=\"`slack`\" pulumi-lang-python=\"`slack`\" pulumi-lang-yaml=\"`slack`\" pulumi-lang-java=\"`slack`\"\u003e`slack`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`mattermost`\" pulumi-lang-dotnet=\"`Mattermost`\" pulumi-lang-go=\"`mattermost`\" pulumi-lang-python=\"`mattermost`\" pulumi-lang-yaml=\"`mattermost`\" pulumi-lang-java=\"`mattermost`\"\u003e`mattermost`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`googlechat`\" pulumi-lang-dotnet=\"`Googlechat`\" pulumi-lang-go=\"`googlechat`\" pulumi-lang-python=\"`googlechat`\" pulumi-lang-yaml=\"`googlechat`\" pulumi-lang-java=\"`googlechat`\"\u003e`googlechat`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`discord`\" pulumi-lang-dotnet=\"`Discord`\" pulumi-lang-go=\"`discord`\" pulumi-lang-python=\"`discord`\" pulumi-lang-yaml=\"`discord`\" pulumi-lang-java=\"`discord`\"\u003e`discord`\u003c/span\u003e if set.\n",
+                    "description": "The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are \u003cspan pulumi-lang-nodejs=\"`slack`\" pulumi-lang-dotnet=\"`Slack`\" pulumi-lang-go=\"`slack`\" pulumi-lang-python=\"`slack`\" pulumi-lang-yaml=\"`slack`\" pulumi-lang-java=\"`slack`\"\u003e`slack`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`mattermost`\" pulumi-lang-dotnet=\"`Mattermost`\" pulumi-lang-go=\"`mattermost`\" pulumi-lang-python=\"`mattermost`\" pulumi-lang-yaml=\"`mattermost`\" pulumi-lang-java=\"`mattermost`\"\u003e`mattermost`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`googlechat`\" pulumi-lang-dotnet=\"`Googlechat`\" pulumi-lang-go=\"`googlechat`\" pulumi-lang-python=\"`googlechat`\" pulumi-lang-yaml=\"`googlechat`\" pulumi-lang-java=\"`googlechat`\"\u003e`googlechat`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`discord`\" pulumi-lang-dotnet=\"`Discord`\" pulumi-lang-go=\"`discord`\" pulumi-lang-python=\"`discord`\" pulumi-lang-yaml=\"`discord`\" pulumi-lang-java=\"`discord`\"\u003e`discord`\u003c/span\u003e.\n",
                     "willReplaceOnChanges": true
                 },
                 "subscriptions": {
@@ -1953,7 +2083,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.\n"
+                    "description": "The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).\n"
                 }
             },
             "requiredInputs": [
@@ -1970,7 +2100,7 @@
                     },
                     "providerType": {
                         "type": "string",
-                        "description": "The provider type of the endpoint URL. Also referred to as the 'destination' for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of \u003cspan pulumi-lang-nodejs=\"`slack`\" pulumi-lang-dotnet=\"`Slack`\" pulumi-lang-go=\"`slack`\" pulumi-lang-python=\"`slack`\" pulumi-lang-yaml=\"`slack`\" pulumi-lang-java=\"`slack`\"\u003e`slack`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`mattermost`\" pulumi-lang-dotnet=\"`Mattermost`\" pulumi-lang-go=\"`mattermost`\" pulumi-lang-python=\"`mattermost`\" pulumi-lang-yaml=\"`mattermost`\" pulumi-lang-java=\"`mattermost`\"\u003e`mattermost`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`googlechat`\" pulumi-lang-dotnet=\"`Googlechat`\" pulumi-lang-go=\"`googlechat`\" pulumi-lang-python=\"`googlechat`\" pulumi-lang-yaml=\"`googlechat`\" pulumi-lang-java=\"`googlechat`\"\u003e`googlechat`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`discord`\" pulumi-lang-dotnet=\"`Discord`\" pulumi-lang-go=\"`discord`\" pulumi-lang-python=\"`discord`\" pulumi-lang-yaml=\"`discord`\" pulumi-lang-java=\"`discord`\"\u003e`discord`\u003c/span\u003e if set.\n",
+                        "description": "The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are \u003cspan pulumi-lang-nodejs=\"`slack`\" pulumi-lang-dotnet=\"`Slack`\" pulumi-lang-go=\"`slack`\" pulumi-lang-python=\"`slack`\" pulumi-lang-yaml=\"`slack`\" pulumi-lang-java=\"`slack`\"\u003e`slack`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`mattermost`\" pulumi-lang-dotnet=\"`Mattermost`\" pulumi-lang-go=\"`mattermost`\" pulumi-lang-python=\"`mattermost`\" pulumi-lang-yaml=\"`mattermost`\" pulumi-lang-java=\"`mattermost`\"\u003e`mattermost`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`googlechat`\" pulumi-lang-dotnet=\"`Googlechat`\" pulumi-lang-go=\"`googlechat`\" pulumi-lang-python=\"`googlechat`\" pulumi-lang-yaml=\"`googlechat`\" pulumi-lang-java=\"`googlechat`\"\u003e`googlechat`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`discord`\" pulumi-lang-dotnet=\"`Discord`\" pulumi-lang-go=\"`discord`\" pulumi-lang-python=\"`discord`\" pulumi-lang-yaml=\"`discord`\" pulumi-lang-java=\"`discord`\"\u003e`discord`\u003c/span\u003e.\n",
                         "willReplaceOnChanges": true
                     },
                     "secret": {
@@ -1983,7 +2113,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.\n"
+                        "description": "The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).\n"
                     }
                 },
                 "type": "object"
@@ -2125,12 +2255,48 @@
                         },
                         "type": "array"
                     },
+                    "authorized": {
+                        "description": "Whether the device is authorized to access the tailnet\n",
+                        "type": "boolean"
+                    },
+                    "blocksIncomingConnections": {
+                        "description": "Whether the device blocks incoming connections\n",
+                        "type": "boolean"
+                    },
+                    "clientVersion": {
+                        "description": "The Tailscale client version running on the device\n",
+                        "type": "string"
+                    },
+                    "created": {
+                        "description": "The creation time of the device\n",
+                        "type": "string"
+                    },
+                    "expires": {
+                        "description": "The expiry time of the device's key\n",
+                        "type": "string"
+                    },
                     "hostname": {
                         "description": "The short hostname of the device\n",
                         "type": "string"
                     },
                     "id": {
                         "description": "The provider-assigned unique ID for this managed resource.",
+                        "type": "string"
+                    },
+                    "isExternal": {
+                        "description": "Whether the device is marked as external\n",
+                        "type": "boolean"
+                    },
+                    "keyExpiryDisabled": {
+                        "description": "Whether the device's key expiry is disabled\n",
+                        "type": "boolean"
+                    },
+                    "lastSeen": {
+                        "description": "The last seen time of the device\n",
+                        "type": "string"
+                    },
+                    "machineKey": {
+                        "description": "The machine key of the device\n",
                         "type": "string"
                     },
                     "name": {
@@ -2141,12 +2307,32 @@
                         "description": "The preferred indentifier for a device.\n",
                         "type": "string"
                     },
+                    "nodeKey": {
+                        "description": "The node key of the device\n",
+                        "type": "string"
+                    },
+                    "os": {
+                        "description": "The operating system of the device\n",
+                        "type": "string"
+                    },
                     "tags": {
                         "description": "The tags applied to the device\n",
                         "items": {
                             "type": "string"
                         },
                         "type": "array"
+                    },
+                    "tailnetLockError": {
+                        "description": "The tailnet lock error for the device, if any\n",
+                        "type": "string"
+                    },
+                    "tailnetLockKey": {
+                        "description": "The tailnet lock key for the device, if any\n",
+                        "type": "string"
+                    },
+                    "updateAvailable": {
+                        "description": "Whether an update is available for the device\n",
+                        "type": "boolean"
                     },
                     "user": {
                         "description": "The user associated with the device\n",
@@ -2159,8 +2345,22 @@
                 },
                 "required": [
                     "addresses",
+                    "authorized",
+                    "blocksIncomingConnections",
+                    "clientVersion",
+                    "created",
+                    "expires",
+                    "isExternal",
+                    "keyExpiryDisabled",
+                    "lastSeen",
+                    "machineKey",
                     "nodeId",
+                    "nodeKey",
+                    "os",
                     "tags",
+                    "tailnetLockError",
+                    "tailnetLockKey",
+                    "updateAvailable",
                     "user",
                     "id"
                 ],
@@ -2295,11 +2495,11 @@
                 "properties": {
                     "role": {
                         "type": "string",
-                        "description": "Filters the users list to elements whose role is the provided value.\n"
+                        "description": "Filter the results to only include users with a specific role. Valid values are \u003cspan pulumi-lang-nodejs=\"`owner`\" pulumi-lang-dotnet=\"`Owner`\" pulumi-lang-go=\"`owner`\" pulumi-lang-python=\"`owner`\" pulumi-lang-yaml=\"`owner`\" pulumi-lang-java=\"`owner`\"\u003e`owner`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`member`\" pulumi-lang-dotnet=\"`Member`\" pulumi-lang-go=\"`member`\" pulumi-lang-python=\"`member`\" pulumi-lang-yaml=\"`member`\" pulumi-lang-java=\"`member`\"\u003e`member`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`admin`\" pulumi-lang-dotnet=\"`Admin`\" pulumi-lang-go=\"`admin`\" pulumi-lang-python=\"`admin`\" pulumi-lang-yaml=\"`admin`\" pulumi-lang-java=\"`admin`\"\u003e`admin`\u003c/span\u003e, `it-admin`, `network-admin`, `billing-admin`, and \u003cspan pulumi-lang-nodejs=\"`auditor`\" pulumi-lang-dotnet=\"`Auditor`\" pulumi-lang-go=\"`auditor`\" pulumi-lang-python=\"`auditor`\" pulumi-lang-yaml=\"`auditor`\" pulumi-lang-java=\"`auditor`\"\u003e`auditor`\u003c/span\u003e.\n"
                     },
                     "type": {
                         "type": "string",
-                        "description": "Filters the users list to elements whose type is the provided value.\n"
+                        "description": "Filter the results to only include users of a specific type. Valid values are \u003cspan pulumi-lang-nodejs=\"`member`\" pulumi-lang-dotnet=\"`Member`\" pulumi-lang-go=\"`member`\" pulumi-lang-python=\"`member`\" pulumi-lang-yaml=\"`member`\" pulumi-lang-java=\"`member`\"\u003e`member`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`shared`\" pulumi-lang-dotnet=\"`Shared`\" pulumi-lang-go=\"`shared`\" pulumi-lang-python=\"`shared`\" pulumi-lang-yaml=\"`shared`\" pulumi-lang-java=\"`shared`\"\u003e`shared`\u003c/span\u003e.\n"
                     }
                 },
                 "type": "object"
@@ -2312,11 +2512,11 @@
                         "type": "string"
                     },
                     "role": {
-                        "description": "Filters the users list to elements whose role is the provided value.\n",
+                        "description": "Filter the results to only include users with a specific role. Valid values are \u003cspan pulumi-lang-nodejs=\"`owner`\" pulumi-lang-dotnet=\"`Owner`\" pulumi-lang-go=\"`owner`\" pulumi-lang-python=\"`owner`\" pulumi-lang-yaml=\"`owner`\" pulumi-lang-java=\"`owner`\"\u003e`owner`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`member`\" pulumi-lang-dotnet=\"`Member`\" pulumi-lang-go=\"`member`\" pulumi-lang-python=\"`member`\" pulumi-lang-yaml=\"`member`\" pulumi-lang-java=\"`member`\"\u003e`member`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`admin`\" pulumi-lang-dotnet=\"`Admin`\" pulumi-lang-go=\"`admin`\" pulumi-lang-python=\"`admin`\" pulumi-lang-yaml=\"`admin`\" pulumi-lang-java=\"`admin`\"\u003e`admin`\u003c/span\u003e, `it-admin`, `network-admin`, `billing-admin`, and \u003cspan pulumi-lang-nodejs=\"`auditor`\" pulumi-lang-dotnet=\"`Auditor`\" pulumi-lang-go=\"`auditor`\" pulumi-lang-python=\"`auditor`\" pulumi-lang-yaml=\"`auditor`\" pulumi-lang-java=\"`auditor`\"\u003e`auditor`\u003c/span\u003e.\n",
                         "type": "string"
                     },
                     "type": {
-                        "description": "Filters the users list to elements whose type is the provided value.\n",
+                        "description": "Filter the results to only include users of a specific type. Valid values are \u003cspan pulumi-lang-nodejs=\"`member`\" pulumi-lang-dotnet=\"`Member`\" pulumi-lang-go=\"`member`\" pulumi-lang-python=\"`member`\" pulumi-lang-yaml=\"`member`\" pulumi-lang-java=\"`member`\"\u003e`member`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`shared`\" pulumi-lang-dotnet=\"`Shared`\" pulumi-lang-go=\"`shared`\" pulumi-lang-python=\"`shared`\" pulumi-lang-yaml=\"`shared`\" pulumi-lang-java=\"`shared`\"\u003e`shared`\u003c/span\u003e.\n",
                         "type": "string"
                     },
                     "users": {

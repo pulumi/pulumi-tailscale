@@ -5,6 +5,7 @@ package com.pulumi.tailscale.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -19,6 +20,31 @@ public final class GetDeviceResult {
      */
     private List<String> addresses;
     /**
+     * @return Whether the device is authorized to access the tailnet
+     * 
+     */
+    private Boolean authorized;
+    /**
+     * @return Whether the device blocks incoming connections
+     * 
+     */
+    private Boolean blocksIncomingConnections;
+    /**
+     * @return The Tailscale client version running on the device
+     * 
+     */
+    private String clientVersion;
+    /**
+     * @return The creation time of the device
+     * 
+     */
+    private String created;
+    /**
+     * @return The expiry time of the device&#39;s key
+     * 
+     */
+    private String expires;
+    /**
      * @return The short hostname of the device
      * 
      */
@@ -28,6 +54,26 @@ public final class GetDeviceResult {
      * 
      */
     private String id;
+    /**
+     * @return Whether the device is marked as external
+     * 
+     */
+    private Boolean isExternal;
+    /**
+     * @return Whether the device&#39;s key expiry is disabled
+     * 
+     */
+    private Boolean keyExpiryDisabled;
+    /**
+     * @return The last seen time of the device
+     * 
+     */
+    private String lastSeen;
+    /**
+     * @return The machine key of the device
+     * 
+     */
+    private String machineKey;
     /**
      * @return The full name of the device (e.g. `hostname.domain.ts.net`)
      * 
@@ -39,10 +85,35 @@ public final class GetDeviceResult {
      */
     private String nodeId;
     /**
+     * @return The node key of the device
+     * 
+     */
+    private String nodeKey;
+    /**
+     * @return The operating system of the device
+     * 
+     */
+    private String os;
+    /**
      * @return The tags applied to the device
      * 
      */
     private List<String> tags;
+    /**
+     * @return The tailnet lock error for the device, if any
+     * 
+     */
+    private String tailnetLockError;
+    /**
+     * @return The tailnet lock key for the device, if any
+     * 
+     */
+    private String tailnetLockKey;
+    /**
+     * @return Whether an update is available for the device
+     * 
+     */
+    private Boolean updateAvailable;
     /**
      * @return The user associated with the device
      * 
@@ -63,6 +134,41 @@ public final class GetDeviceResult {
         return this.addresses;
     }
     /**
+     * @return Whether the device is authorized to access the tailnet
+     * 
+     */
+    public Boolean authorized() {
+        return this.authorized;
+    }
+    /**
+     * @return Whether the device blocks incoming connections
+     * 
+     */
+    public Boolean blocksIncomingConnections() {
+        return this.blocksIncomingConnections;
+    }
+    /**
+     * @return The Tailscale client version running on the device
+     * 
+     */
+    public String clientVersion() {
+        return this.clientVersion;
+    }
+    /**
+     * @return The creation time of the device
+     * 
+     */
+    public String created() {
+        return this.created;
+    }
+    /**
+     * @return The expiry time of the device&#39;s key
+     * 
+     */
+    public String expires() {
+        return this.expires;
+    }
+    /**
      * @return The short hostname of the device
      * 
      */
@@ -75,6 +181,34 @@ public final class GetDeviceResult {
      */
     public String id() {
         return this.id;
+    }
+    /**
+     * @return Whether the device is marked as external
+     * 
+     */
+    public Boolean isExternal() {
+        return this.isExternal;
+    }
+    /**
+     * @return Whether the device&#39;s key expiry is disabled
+     * 
+     */
+    public Boolean keyExpiryDisabled() {
+        return this.keyExpiryDisabled;
+    }
+    /**
+     * @return The last seen time of the device
+     * 
+     */
+    public String lastSeen() {
+        return this.lastSeen;
+    }
+    /**
+     * @return The machine key of the device
+     * 
+     */
+    public String machineKey() {
+        return this.machineKey;
     }
     /**
      * @return The full name of the device (e.g. `hostname.domain.ts.net`)
@@ -91,11 +225,46 @@ public final class GetDeviceResult {
         return this.nodeId;
     }
     /**
+     * @return The node key of the device
+     * 
+     */
+    public String nodeKey() {
+        return this.nodeKey;
+    }
+    /**
+     * @return The operating system of the device
+     * 
+     */
+    public String os() {
+        return this.os;
+    }
+    /**
      * @return The tags applied to the device
      * 
      */
     public List<String> tags() {
         return this.tags;
+    }
+    /**
+     * @return The tailnet lock error for the device, if any
+     * 
+     */
+    public String tailnetLockError() {
+        return this.tailnetLockError;
+    }
+    /**
+     * @return The tailnet lock key for the device, if any
+     * 
+     */
+    public String tailnetLockKey() {
+        return this.tailnetLockKey;
+    }
+    /**
+     * @return Whether an update is available for the device
+     * 
+     */
+    public Boolean updateAvailable() {
+        return this.updateAvailable;
     }
     /**
      * @return The user associated with the device
@@ -122,22 +291,50 @@ public final class GetDeviceResult {
     @CustomType.Builder
     public static final class Builder {
         private List<String> addresses;
+        private Boolean authorized;
+        private Boolean blocksIncomingConnections;
+        private String clientVersion;
+        private String created;
+        private String expires;
         private @Nullable String hostname;
         private String id;
+        private Boolean isExternal;
+        private Boolean keyExpiryDisabled;
+        private String lastSeen;
+        private String machineKey;
         private @Nullable String name;
         private String nodeId;
+        private String nodeKey;
+        private String os;
         private List<String> tags;
+        private String tailnetLockError;
+        private String tailnetLockKey;
+        private Boolean updateAvailable;
         private String user;
         private @Nullable String waitFor;
         public Builder() {}
         public Builder(GetDeviceResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.addresses = defaults.addresses;
+    	      this.authorized = defaults.authorized;
+    	      this.blocksIncomingConnections = defaults.blocksIncomingConnections;
+    	      this.clientVersion = defaults.clientVersion;
+    	      this.created = defaults.created;
+    	      this.expires = defaults.expires;
     	      this.hostname = defaults.hostname;
     	      this.id = defaults.id;
+    	      this.isExternal = defaults.isExternal;
+    	      this.keyExpiryDisabled = defaults.keyExpiryDisabled;
+    	      this.lastSeen = defaults.lastSeen;
+    	      this.machineKey = defaults.machineKey;
     	      this.name = defaults.name;
     	      this.nodeId = defaults.nodeId;
+    	      this.nodeKey = defaults.nodeKey;
+    	      this.os = defaults.os;
     	      this.tags = defaults.tags;
+    	      this.tailnetLockError = defaults.tailnetLockError;
+    	      this.tailnetLockKey = defaults.tailnetLockKey;
+    	      this.updateAvailable = defaults.updateAvailable;
     	      this.user = defaults.user;
     	      this.waitFor = defaults.waitFor;
         }
@@ -154,6 +351,46 @@ public final class GetDeviceResult {
             return addresses(List.of(addresses));
         }
         @CustomType.Setter
+        public Builder authorized(Boolean authorized) {
+            if (authorized == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "authorized");
+            }
+            this.authorized = authorized;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder blocksIncomingConnections(Boolean blocksIncomingConnections) {
+            if (blocksIncomingConnections == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "blocksIncomingConnections");
+            }
+            this.blocksIncomingConnections = blocksIncomingConnections;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder clientVersion(String clientVersion) {
+            if (clientVersion == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "clientVersion");
+            }
+            this.clientVersion = clientVersion;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder created(String created) {
+            if (created == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "created");
+            }
+            this.created = created;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder expires(String expires) {
+            if (expires == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "expires");
+            }
+            this.expires = expires;
+            return this;
+        }
+        @CustomType.Setter
         public Builder hostname(@Nullable String hostname) {
 
             this.hostname = hostname;
@@ -165,6 +402,38 @@ public final class GetDeviceResult {
               throw new MissingRequiredPropertyException("GetDeviceResult", "id");
             }
             this.id = id;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder isExternal(Boolean isExternal) {
+            if (isExternal == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "isExternal");
+            }
+            this.isExternal = isExternal;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder keyExpiryDisabled(Boolean keyExpiryDisabled) {
+            if (keyExpiryDisabled == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "keyExpiryDisabled");
+            }
+            this.keyExpiryDisabled = keyExpiryDisabled;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder lastSeen(String lastSeen) {
+            if (lastSeen == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "lastSeen");
+            }
+            this.lastSeen = lastSeen;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder machineKey(String machineKey) {
+            if (machineKey == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "machineKey");
+            }
+            this.machineKey = machineKey;
             return this;
         }
         @CustomType.Setter
@@ -182,6 +451,22 @@ public final class GetDeviceResult {
             return this;
         }
         @CustomType.Setter
+        public Builder nodeKey(String nodeKey) {
+            if (nodeKey == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "nodeKey");
+            }
+            this.nodeKey = nodeKey;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder os(String os) {
+            if (os == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "os");
+            }
+            this.os = os;
+            return this;
+        }
+        @CustomType.Setter
         public Builder tags(List<String> tags) {
             if (tags == null) {
               throw new MissingRequiredPropertyException("GetDeviceResult", "tags");
@@ -191,6 +476,30 @@ public final class GetDeviceResult {
         }
         public Builder tags(String... tags) {
             return tags(List.of(tags));
+        }
+        @CustomType.Setter
+        public Builder tailnetLockError(String tailnetLockError) {
+            if (tailnetLockError == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "tailnetLockError");
+            }
+            this.tailnetLockError = tailnetLockError;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder tailnetLockKey(String tailnetLockKey) {
+            if (tailnetLockKey == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "tailnetLockKey");
+            }
+            this.tailnetLockKey = tailnetLockKey;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder updateAvailable(Boolean updateAvailable) {
+            if (updateAvailable == null) {
+              throw new MissingRequiredPropertyException("GetDeviceResult", "updateAvailable");
+            }
+            this.updateAvailable = updateAvailable;
+            return this;
         }
         @CustomType.Setter
         public Builder user(String user) {
@@ -209,11 +518,25 @@ public final class GetDeviceResult {
         public GetDeviceResult build() {
             final var _resultValue = new GetDeviceResult();
             _resultValue.addresses = addresses;
+            _resultValue.authorized = authorized;
+            _resultValue.blocksIncomingConnections = blocksIncomingConnections;
+            _resultValue.clientVersion = clientVersion;
+            _resultValue.created = created;
+            _resultValue.expires = expires;
             _resultValue.hostname = hostname;
             _resultValue.id = id;
+            _resultValue.isExternal = isExternal;
+            _resultValue.keyExpiryDisabled = keyExpiryDisabled;
+            _resultValue.lastSeen = lastSeen;
+            _resultValue.machineKey = machineKey;
             _resultValue.name = name;
             _resultValue.nodeId = nodeId;
+            _resultValue.nodeKey = nodeKey;
+            _resultValue.os = os;
             _resultValue.tags = tags;
+            _resultValue.tailnetLockError = tailnetLockError;
+            _resultValue.tailnetLockKey = tailnetLockKey;
+            _resultValue.updateAvailable = updateAvailable;
             _resultValue.user = user;
             _resultValue.waitFor = waitFor;
             return _resultValue;

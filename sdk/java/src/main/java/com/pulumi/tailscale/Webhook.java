@@ -83,14 +83,14 @@ public class Webhook extends com.pulumi.resources.CustomResource {
         return this.endpointUrl;
     }
     /**
-     * The provider type of the endpoint URL. Also referred to as the &#39;destination&#39; for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
+     * The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
      * 
      */
     @Export(name="providerType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> providerType;
 
     /**
-     * @return The provider type of the endpoint URL. Also referred to as the &#39;destination&#39; for the webhook in the admin panel. Webhook event payloads are formatted according to the provider type if it is set to a known value. Must be one of `slack`, `mattermost`, `googlechat`, or `discord` if set.
+     * @return The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
      * 
      */
     public Output<Optional<String>> providerType() {
@@ -111,14 +111,14 @@ public class Webhook extends com.pulumi.resources.CustomResource {
         return this.secret;
     }
     /**
-     * The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
+     * The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
      * 
      */
     @Export(name="subscriptions", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> subscriptions;
 
     /**
-     * @return The Tailscale events to subscribe this webhook to. See https://tailscale.com/kb/1213/webhooks#events for the list of valid events.
+     * @return The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
      * 
      */
     public Output<List<String>> subscriptions() {

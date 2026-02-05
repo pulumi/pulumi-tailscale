@@ -15,14 +15,14 @@ public final class GetUsersPlainArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetUsersPlainArgs Empty = new GetUsersPlainArgs();
 
     /**
-     * Filters the users list to elements whose role is the provided value.
+     * Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
      * 
      */
     @Import(name="role")
     private @Nullable String role;
 
     /**
-     * @return Filters the users list to elements whose role is the provided value.
+     * @return Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
      * 
      */
     public Optional<String> role() {
@@ -30,14 +30,14 @@ public final class GetUsersPlainArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * Filters the users list to elements whose type is the provided value.
+     * Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
      * 
      */
     @Import(name="type")
     private @Nullable String type;
 
     /**
-     * @return Filters the users list to elements whose type is the provided value.
+     * @return Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
      * 
      */
     public Optional<String> type() {
@@ -70,7 +70,7 @@ public final class GetUsersPlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param role Filters the users list to elements whose role is the provided value.
+         * @param role Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
          * 
          * @return builder
          * 
@@ -81,7 +81,7 @@ public final class GetUsersPlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param type Filters the users list to elements whose type is the provided value.
+         * @param type Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
          * 
          * @return builder
          * 
