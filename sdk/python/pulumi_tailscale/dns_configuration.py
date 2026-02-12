@@ -207,6 +207,10 @@ class DnsConfiguration(pulumi.CustomResource):
                  split_dns: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DnsConfigurationSplitDnArgs', 'DnsConfigurationSplitDnArgsDict']]]]] = None,
                  __props__=None):
         """
+        The dns_configuration resource allows you to manage the complete DNS configuration for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
+
+        > **Note:** The Tailscale Terraform provider has multiple resources for managing DNS configuration. This resource is meant to manage the entirety of a Tailnet's DNS configuration and conflicts with tailscale_dns_nameservers, tailscale_dns_preferences, tailscale_dns_search_paths, and tailscale_dns_split_nameservers. This resource and previously mentioned resources should not be used simultaneously.
+
         ## Example Usage
 
         ```python
@@ -275,6 +279,10 @@ class DnsConfiguration(pulumi.CustomResource):
                  args: Optional[DnsConfigurationArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        The dns_configuration resource allows you to manage the complete DNS configuration for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
+
+        > **Note:** The Tailscale Terraform provider has multiple resources for managing DNS configuration. This resource is meant to manage the entirety of a Tailnet's DNS configuration and conflicts with tailscale_dns_nameservers, tailscale_dns_preferences, tailscale_dns_search_paths, and tailscale_dns_split_nameservers. This resource and previously mentioned resources should not be used simultaneously.
+
         ## Example Usage
 
         ```python

@@ -33,6 +33,7 @@ class TailnetSettingsArgs:
         """
         The set of arguments for constructing a TailnetSettings resource.
         :param pulumi.Input[_builtins.str] acls_external_link: Link to your external ACL definition or management system. Must be a valid URL.
+        :param pulumi.Input[_builtins.bool] acls_externally_managed_on: Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
         :param pulumi.Input[_builtins.bool] devices_approval_on: Whether device approval is enabled for the tailnet
         :param pulumi.Input[_builtins.bool] devices_auto_updates_on: Whether auto updates are enabled for devices that belong to this tailnet
         :param pulumi.Input[_builtins.int] devices_key_duration_days: The key expiry duration for devices on this tailnet
@@ -81,6 +82,9 @@ class TailnetSettingsArgs:
     @_builtins.property
     @pulumi.getter(name="aclsExternallyManagedOn")
     def acls_externally_managed_on(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
+        """
         return pulumi.get(self, "acls_externally_managed_on")
 
     @acls_externally_managed_on.setter
@@ -213,6 +217,7 @@ class _TailnetSettingsState:
         """
         Input properties used for looking up and filtering TailnetSettings resources.
         :param pulumi.Input[_builtins.str] acls_external_link: Link to your external ACL definition or management system. Must be a valid URL.
+        :param pulumi.Input[_builtins.bool] acls_externally_managed_on: Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
         :param pulumi.Input[_builtins.bool] devices_approval_on: Whether device approval is enabled for the tailnet
         :param pulumi.Input[_builtins.bool] devices_auto_updates_on: Whether auto updates are enabled for devices that belong to this tailnet
         :param pulumi.Input[_builtins.int] devices_key_duration_days: The key expiry duration for devices on this tailnet
@@ -261,6 +266,9 @@ class _TailnetSettingsState:
     @_builtins.property
     @pulumi.getter(name="aclsExternallyManagedOn")
     def acls_externally_managed_on(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
+        """
         return pulumi.get(self, "acls_externally_managed_on")
 
     @acls_externally_managed_on.setter
@@ -428,6 +436,7 @@ class TailnetSettings(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] acls_external_link: Link to your external ACL definition or management system. Must be a valid URL.
+        :param pulumi.Input[_builtins.bool] acls_externally_managed_on: Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
         :param pulumi.Input[_builtins.bool] devices_approval_on: Whether device approval is enabled for the tailnet
         :param pulumi.Input[_builtins.bool] devices_auto_updates_on: Whether auto updates are enabled for devices that belong to this tailnet
         :param pulumi.Input[_builtins.int] devices_key_duration_days: The key expiry duration for devices on this tailnet
@@ -550,6 +559,7 @@ class TailnetSettings(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] acls_external_link: Link to your external ACL definition or management system. Must be a valid URL.
+        :param pulumi.Input[_builtins.bool] acls_externally_managed_on: Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
         :param pulumi.Input[_builtins.bool] devices_approval_on: Whether device approval is enabled for the tailnet
         :param pulumi.Input[_builtins.bool] devices_auto_updates_on: Whether auto updates are enabled for devices that belong to this tailnet
         :param pulumi.Input[_builtins.int] devices_key_duration_days: The key expiry duration for devices on this tailnet
@@ -588,6 +598,9 @@ class TailnetSettings(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="aclsExternallyManagedOn")
     def acls_externally_managed_on(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
+        """
         return pulumi.get(self, "acls_externally_managed_on")
 
     @_builtins.property

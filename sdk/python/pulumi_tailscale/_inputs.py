@@ -31,16 +31,11 @@ __all__ = [
     'GetDevicesFilterArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ContactsAccountArgsDict(TypedDict):
-        email: pulumi.Input[_builtins.str]
-        """
-        Email address to send communications to
-        """
-elif False:
-    ContactsAccountArgsDict: TypeAlias = Mapping[str, Any]
+class ContactsAccountArgsDict(TypedDict):
+    email: pulumi.Input[_builtins.str]
+    """
+    Email address to send communications to
+    """
 
 @pulumi.input_type
 class ContactsAccountArgs:
@@ -64,14 +59,11 @@ class ContactsAccountArgs:
         pulumi.set(self, "email", value)
 
 
-if not MYPY:
-    class ContactsSecurityArgsDict(TypedDict):
-        email: pulumi.Input[_builtins.str]
-        """
-        Email address to send communications to
-        """
-elif False:
-    ContactsSecurityArgsDict: TypeAlias = Mapping[str, Any]
+class ContactsSecurityArgsDict(TypedDict):
+    email: pulumi.Input[_builtins.str]
+    """
+    Email address to send communications to
+    """
 
 @pulumi.input_type
 class ContactsSecurityArgs:
@@ -95,14 +87,11 @@ class ContactsSecurityArgs:
         pulumi.set(self, "email", value)
 
 
-if not MYPY:
-    class ContactsSupportArgsDict(TypedDict):
-        email: pulumi.Input[_builtins.str]
-        """
-        Email address to send communications to
-        """
-elif False:
-    ContactsSupportArgsDict: TypeAlias = Mapping[str, Any]
+class ContactsSupportArgsDict(TypedDict):
+    email: pulumi.Input[_builtins.str]
+    """
+    Email address to send communications to
+    """
 
 @pulumi.input_type
 class ContactsSupportArgs:
@@ -126,18 +115,15 @@ class ContactsSupportArgs:
         pulumi.set(self, "email", value)
 
 
-if not MYPY:
-    class DnsConfigurationNameserverArgsDict(TypedDict):
-        address: pulumi.Input[_builtins.str]
-        """
-        The nameserver's IPv4 or IPv6 address
-        """
-        use_with_exit_node: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
-        """
-elif False:
-    DnsConfigurationNameserverArgsDict: TypeAlias = Mapping[str, Any]
+class DnsConfigurationNameserverArgsDict(TypedDict):
+    address: pulumi.Input[_builtins.str]
+    """
+    The nameserver's IPv4 or IPv6 address
+    """
+    use_with_exit_node: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
+    """
 
 @pulumi.input_type
 class DnsConfigurationNameserverArgs:
@@ -177,18 +163,15 @@ class DnsConfigurationNameserverArgs:
         pulumi.set(self, "use_with_exit_node", value)
 
 
-if not MYPY:
-    class DnsConfigurationSplitDnArgsDict(TypedDict):
-        domain: pulumi.Input[_builtins.str]
-        """
-        The nameservers will be used only for this domain.
-        """
-        nameservers: pulumi.Input[Sequence[pulumi.Input['DnsConfigurationSplitDnNameserverArgsDict']]]
-        """
-        Set the nameservers used by devices on your network to resolve DNS queries.
-        """
-elif False:
-    DnsConfigurationSplitDnArgsDict: TypeAlias = Mapping[str, Any]
+class DnsConfigurationSplitDnArgsDict(TypedDict):
+    domain: pulumi.Input[_builtins.str]
+    """
+    The nameservers will be used only for this domain.
+    """
+    nameservers: pulumi.Input[Sequence[pulumi.Input['DnsConfigurationSplitDnNameserverArgsDict']]]
+    """
+    Set the nameservers used by devices on your network to resolve DNS queries.
+    """
 
 @pulumi.input_type
 class DnsConfigurationSplitDnArgs:
@@ -227,18 +210,15 @@ class DnsConfigurationSplitDnArgs:
         pulumi.set(self, "nameservers", value)
 
 
-if not MYPY:
-    class DnsConfigurationSplitDnNameserverArgsDict(TypedDict):
-        address: pulumi.Input[_builtins.str]
-        """
-        The nameserver's IPv4 or IPv6 address.
-        """
-        use_with_exit_node: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
-        """
-elif False:
-    DnsConfigurationSplitDnNameserverArgsDict: TypeAlias = Mapping[str, Any]
+class DnsConfigurationSplitDnNameserverArgsDict(TypedDict):
+    address: pulumi.Input[_builtins.str]
+    """
+    The nameserver's IPv4 or IPv6 address.
+    """
+    use_with_exit_node: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
+    """
 
 @pulumi.input_type
 class DnsConfigurationSplitDnNameserverArgs:
@@ -278,18 +258,15 @@ class DnsConfigurationSplitDnNameserverArgs:
         pulumi.set(self, "use_with_exit_node", value)
 
 
-if not MYPY:
-    class GetDevicesFilterArgsDict(TypedDict):
-        name: _builtins.str
-        """
-        The name must be a top-level device property, e.g. isEphemeral, tags, hostname, etc.
-        """
-        values: Sequence[_builtins.str]
-        """
-        The list of values to filter for. Values are matched as exact matches.
-        """
-elif False:
-    GetDevicesFilterArgsDict: TypeAlias = Mapping[str, Any]
+class GetDevicesFilterArgsDict(TypedDict):
+    name: _builtins.str
+    """
+    The name must be a top-level device property, e.g. isEphemeral, tags, hostname, etc.
+    """
+    values: Sequence[_builtins.str]
+    """
+    The list of values to filter for. Values are matched as exact matches.
+    """
 
 @pulumi.input_type
 class GetDevicesFilterArgs:

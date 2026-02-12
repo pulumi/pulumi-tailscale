@@ -392,8 +392,7 @@ class TailnetKey(pulumi.CustomResource):
         $ pulumi import tailscale:index/tailnetKey:TailnetKey sample_key 123456789
         ```
 
-        -> ** Note ** the `key` attribute will not be populated on import as this attribute is only populated
-
+        > ** Note ** the `key` attribute will not be populated on import as this attribute is only populated
         on resource creation.
 
         :param str resource_name: The name of the resource.
@@ -438,8 +437,7 @@ class TailnetKey(pulumi.CustomResource):
         $ pulumi import tailscale:index/tailnetKey:TailnetKey sample_key 123456789
         ```
 
-        -> ** Note ** the `key` attribute will not be populated on import as this attribute is only populated
-
+        > ** Note ** the `key` attribute will not be populated on import as this attribute is only populated
         on resource creation.
 
         :param str resource_name: The name of the resource.

@@ -68,6 +68,9 @@ export class TailnetSettings extends pulumi.CustomResource {
      * Link to your external ACL definition or management system. Must be a valid URL.
      */
     declare public readonly aclsExternalLink: pulumi.Output<string>;
+    /**
+     * Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
+     */
     declare public readonly aclsExternallyManagedOn: pulumi.Output<boolean>;
     /**
      * Whether device approval is enabled for the tailnet
@@ -157,6 +160,9 @@ export interface TailnetSettingsState {
      * Link to your external ACL definition or management system. Must be a valid URL.
      */
     aclsExternalLink?: pulumi.Input<string>;
+    /**
+     * Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
+     */
     aclsExternallyManagedOn?: pulumi.Input<boolean>;
     /**
      * Whether device approval is enabled for the tailnet
@@ -204,6 +210,9 @@ export interface TailnetSettingsArgs {
      * Link to your external ACL definition or management system. Must be a valid URL.
      */
     aclsExternalLink?: pulumi.Input<string>;
+    /**
+     * Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
+     */
     aclsExternallyManagedOn?: pulumi.Input<boolean>;
     /**
      * Whether device approval is enabled for the tailnet

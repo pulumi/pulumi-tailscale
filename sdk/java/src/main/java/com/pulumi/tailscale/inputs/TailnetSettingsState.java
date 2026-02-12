@@ -32,9 +32,17 @@ public final class TailnetSettingsState extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.aclsExternalLink);
     }
 
+    /**
+     * Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
+     * 
+     */
     @Import(name="aclsExternallyManagedOn")
     private @Nullable Output<Boolean> aclsExternallyManagedOn;
 
+    /**
+     * @return Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
+     * 
+     */
     public Optional<Output<Boolean>> aclsExternallyManagedOn() {
         return Optional.ofNullable(this.aclsExternallyManagedOn);
     }
@@ -229,11 +237,23 @@ public final class TailnetSettingsState extends com.pulumi.resources.ResourceArg
             return aclsExternalLink(Output.of(aclsExternalLink));
         }
 
+        /**
+         * @param aclsExternallyManagedOn Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
+         * 
+         * @return builder
+         * 
+         */
         public Builder aclsExternallyManagedOn(@Nullable Output<Boolean> aclsExternallyManagedOn) {
             $.aclsExternallyManagedOn = aclsExternallyManagedOn;
             return this;
         }
 
+        /**
+         * @param aclsExternallyManagedOn Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
+         * 
+         * @return builder
+         * 
+         */
         public Builder aclsExternallyManagedOn(Boolean aclsExternallyManagedOn) {
             return aclsExternallyManagedOn(Output.of(aclsExternallyManagedOn));
         }

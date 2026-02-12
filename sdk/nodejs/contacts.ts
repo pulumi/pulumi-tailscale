@@ -7,6 +7,10 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * The contacts resource allows you to configure contact details for your Tailscale network. See https://tailscale.com/kb/1224/contact-preferences for more information.
+ *
+ * Destroying this resource does not unset or modify values in the tailscale control plane, and simply removes the resource from Terraform state.
+ *
  * ## Example Usage
  *
  * ```typescript

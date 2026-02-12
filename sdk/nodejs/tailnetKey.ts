@@ -30,8 +30,7 @@ import * as utilities from "./utilities";
  * $ pulumi import tailscale:index/tailnetKey:TailnetKey sample_key 123456789
  * ```
  *
- * -> ** Note ** the `key` attribute will not be populated on import as this attribute is only populated
- *
+ * > ** Note ** the `key` attribute will not be populated on import as this attribute is only populated
  * on resource creation.
  */
 export class TailnetKey extends pulumi.CustomResource {
