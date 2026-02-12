@@ -60,12 +60,12 @@
             },
             "identityToken": {
                 "type": "string",
-                "description": "The jwt identity token to exchange for a Tailscale API token when using a federated identity client. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with 'api_key' and 'oauth_client_secret'.",
+                "description": "The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with 'api_key' and 'oauth_client_secret'.",
                 "secret": true
             },
             "oauthClientId": {
                 "type": "string",
-                "description": "The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'."
+                "description": "The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'."
             },
             "oauthClientSecret": {
                 "type": "string",
@@ -77,7 +77,7 @@
                 "items": {
                     "type": "string"
                 },
-                "description": "The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret' are set."
+                "description": "The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret', or both are set."
             },
             "tailnet": {
                 "type": "string",
@@ -301,6 +301,26 @@
                 }
             }
         },
+        "tailscale:index/getDevicesFilter:getDevicesFilter": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name must be a top-level device property, e.g. isEphemeral, tags, hostname, etc.\n"
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The list of values to filter for. Values are matched as exact matches.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "values"
+            ]
+        },
         "tailscale:index/getUsersUser:getUsersUser": {
             "properties": {
                 "created": {
@@ -388,12 +408,12 @@
             },
             "identityToken": {
                 "type": "string",
-                "description": "The jwt identity token to exchange for a Tailscale API token when using a federated identity client. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with 'api_key' and 'oauth_client_secret'.",
+                "description": "The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with 'api_key' and 'oauth_client_secret'.",
                 "secret": true
             },
             "oauthClientId": {
                 "type": "string",
-                "description": "The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'."
+                "description": "The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'."
             },
             "oauthClientSecret": {
                 "type": "string",
@@ -405,7 +425,7 @@
                 "items": {
                     "type": "string"
                 },
-                "description": "The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret' are set."
+                "description": "The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret', or both are set."
             },
             "tailnet": {
                 "type": "string",
@@ -428,12 +448,12 @@
             },
             "identityToken": {
                 "type": "string",
-                "description": "The jwt identity token to exchange for a Tailscale API token when using a federated identity client. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with 'api_key' and 'oauth_client_secret'.",
+                "description": "The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with 'api_key' and 'oauth_client_secret'.",
                 "secret": true
             },
             "oauthClientId": {
                 "type": "string",
-                "description": "The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'."
+                "description": "The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'."
             },
             "oauthClientSecret": {
                 "type": "string",
@@ -445,7 +465,7 @@
                 "items": {
                     "type": "string"
                 },
-                "description": "The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret' are set."
+                "description": "The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret', or both are set."
             },
             "tailnet": {
                 "type": "string",
@@ -2368,10 +2388,17 @@
             }
         },
         "tailscale:index/getDevices:getDevices": {
-            "description": "The devices data source describes a list of devices in a tailnet\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleDevices = tailscale.getDevices({\n    namePrefix: \"example-\",\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_devices = tailscale.get_devices(name_prefix=\"example-\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleDevices = Tailscale.GetDevices.Invoke(new()\n    {\n        NamePrefix = \"example-\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.GetDevices(ctx, \u0026tailscale.GetDevicesArgs{\n\t\t\tNamePrefix: pulumi.StringRef(\"example-\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.TailscaleFunctions;\nimport com.pulumi.tailscale.inputs.GetDevicesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var sampleDevices = TailscaleFunctions.getDevices(GetDevicesArgs.builder()\n            .namePrefix(\"example-\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  sampleDevices:\n    fn::invoke:\n      function: tailscale:getDevices\n      arguments:\n        namePrefix: example-\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "The devices data source describes a list of devices in a tailnet\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleDevices = tailscale.getDevices({\n    namePrefix: \"example-\",\n    filters: [\n        {\n            name: \"isEphemeral\",\n            values: [\"true\"],\n        },\n        {\n            name: \"tags\",\n            values: [\n                \"tag:server\",\n                \"tag:test\",\n            ],\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_devices = tailscale.get_devices(name_prefix=\"example-\",\n    filters=[\n        {\n            \"name\": \"isEphemeral\",\n            \"values\": [\"true\"],\n        },\n        {\n            \"name\": \"tags\",\n            \"values\": [\n                \"tag:server\",\n                \"tag:test\",\n            ],\n        },\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleDevices = Tailscale.GetDevices.Invoke(new()\n    {\n        NamePrefix = \"example-\",\n        Filters = new[]\n        {\n            new Tailscale.Inputs.GetDevicesFilterInputArgs\n            {\n                Name = \"isEphemeral\",\n                Values = new[]\n                {\n                    \"true\",\n                },\n            },\n            new Tailscale.Inputs.GetDevicesFilterInputArgs\n            {\n                Name = \"tags\",\n                Values = new[]\n                {\n                    \"tag:server\",\n                    \"tag:test\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.GetDevices(ctx, \u0026tailscale.GetDevicesArgs{\n\t\t\tNamePrefix: pulumi.StringRef(\"example-\"),\n\t\t\tFilters: []tailscale.GetDevicesFilter{\n\t\t\t\t{\n\t\t\t\t\tName: \"isEphemeral\",\n\t\t\t\t\tValues: []string{\n\t\t\t\t\t\t\"true\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tName: \"tags\",\n\t\t\t\t\tValues: []string{\n\t\t\t\t\t\t\"tag:server\",\n\t\t\t\t\t\t\"tag:test\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.TailscaleFunctions;\nimport com.pulumi.tailscale.inputs.GetDevicesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var sampleDevices = TailscaleFunctions.getDevices(GetDevicesArgs.builder()\n            .namePrefix(\"example-\")\n            .filters(            \n                GetDevicesFilterArgs.builder()\n                    .name(\"isEphemeral\")\n                    .values(\"true\")\n                    .build(),\n                GetDevicesFilterArgs.builder()\n                    .name(\"tags\")\n                    .values(                    \n                        \"tag:server\",\n                        \"tag:test\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  sampleDevices:\n    fn::invoke:\n      function: tailscale:getDevices\n      arguments:\n        namePrefix: example-\n        filters:\n          - name: isEphemeral\n            values:\n              - 'true'\n          - name: tags\n            values:\n              - tag:server\n              - tag:test\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getDevices.\n",
                 "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/tailscale:index/getDevicesFilter:getDevicesFilter"
+                        },
+                        "description": "Filters the device list to elements devices whose fields match the provided values.\n"
+                    },
                     "namePrefix": {
                         "type": "string",
                         "description": "Filters the device list to elements whose name has the provided prefix\n"
@@ -2386,6 +2413,13 @@
                         "description": "The list of devices in the tailnet\n",
                         "items": {
                             "$ref": "#/types/tailscale:index/getDevicesDevice:getDevicesDevice"
+                        },
+                        "type": "array"
+                    },
+                    "filters": {
+                        "description": "Filters the device list to elements devices whose fields match the provided values.\n",
+                        "items": {
+                            "$ref": "#/types/tailscale:index/getDevicesFilter:getDevicesFilter"
                         },
                         "type": "array"
                     },

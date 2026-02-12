@@ -177,6 +177,16 @@
                                 }
                             }
                         }
+                    },
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
