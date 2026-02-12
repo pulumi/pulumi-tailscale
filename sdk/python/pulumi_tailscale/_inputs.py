@@ -27,6 +27,8 @@ __all__ = [
     'DnsConfigurationSplitDnArgsDict',
     'DnsConfigurationSplitDnNameserverArgs',
     'DnsConfigurationSplitDnNameserverArgsDict',
+    'GetDevicesFilterArgs',
+    'GetDevicesFilterArgsDict',
 ]
 
 MYPY = False
@@ -274,5 +276,55 @@ class DnsConfigurationSplitDnNameserverArgs:
     @use_with_exit_node.setter
     def use_with_exit_node(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "use_with_exit_node", value)
+
+
+if not MYPY:
+    class GetDevicesFilterArgsDict(TypedDict):
+        name: _builtins.str
+        """
+        The name must be a top-level device property, e.g. isEphemeral, tags, hostname, etc.
+        """
+        values: Sequence[_builtins.str]
+        """
+        The list of values to filter for. Values are matched as exact matches.
+        """
+elif False:
+    GetDevicesFilterArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class GetDevicesFilterArgs:
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str name: The name must be a top-level device property, e.g. isEphemeral, tags, hostname, etc.
+        :param Sequence[_builtins.str] values: The list of values to filter for. Values are matched as exact matches.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name must be a top-level device property, e.g. isEphemeral, tags, hostname, etc.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: _builtins.str):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The list of values to filter for. Values are matched as exact matches.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[_builtins.str]):
+        pulumi.set(self, "values", value)
 
 

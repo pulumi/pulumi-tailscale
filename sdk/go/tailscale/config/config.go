@@ -21,12 +21,12 @@ func GetBaseUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:baseUrl")
 }
 
-// The jwt identity token to exchange for a Tailscale API token when using a federated identity client. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with 'api_key' and 'oauth_client_secret'.
+// The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with 'api_key' and 'oauth_client_secret'.
 func GetIdentityToken(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:identityToken")
 }
 
-// The OAuth application's ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
+// The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
 func GetOauthClientId(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:oauthClientId")
 }
@@ -36,7 +36,7 @@ func GetOauthClientSecret(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:oauthClientSecret")
 }
 
-// The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret' are set.
+// The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret', or both are set.
 func GetScopes(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:scopes")
 }

@@ -52,28 +52,28 @@ public class Provider extends com.pulumi.resources.ProviderResource {
         return Codegen.optional(this.baseUrl);
     }
     /**
-     * The jwt identity token to exchange for a Tailscale API token when using a federated identity client. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with &#39;api_key&#39; and &#39;oauth_client_secret&#39;.
+     * The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with &#39;api_key&#39; and &#39;oauth_client_secret&#39;.
      * 
      */
     @Export(name="identityToken", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> identityToken;
 
     /**
-     * @return The jwt identity token to exchange for a Tailscale API token when using a federated identity client. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with &#39;api_key&#39; and &#39;oauth_client_secret&#39;.
+     * @return The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with &#39;api_key&#39; and &#39;oauth_client_secret&#39;.
      * 
      */
     public Output<Optional<String>> identityToken() {
         return Codegen.optional(this.identityToken);
     }
     /**
-     * The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either &#39;oauth_client_secret&#39; or &#39;identity_token&#39; must be set alongside &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;.
+     * The OAuth application or federated identity&#39;s ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either &#39;oauth_client_secret&#39; or &#39;identity_token&#39; must be set alongside &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;.
      * 
      */
     @Export(name="oauthClientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oauthClientId;
 
     /**
-     * @return The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either &#39;oauth_client_secret&#39; or &#39;identity_token&#39; must be set alongside &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;.
+     * @return The OAuth application or federated identity&#39;s ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either &#39;oauth_client_secret&#39; or &#39;identity_token&#39; must be set alongside &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;.
      * 
      */
     public Output<Optional<String>> oauthClientId() {

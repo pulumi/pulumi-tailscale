@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetDevicesResult',
@@ -27,10 +28,13 @@ class GetDevicesResult:
     """
     A collection of values returned by getDevices.
     """
-    def __init__(__self__, devices=None, id=None, name_prefix=None):
+    def __init__(__self__, devices=None, filters=None, id=None, name_prefix=None):
         if devices and not isinstance(devices, list):
             raise TypeError("Expected argument 'devices' to be a list")
         pulumi.set(__self__, "devices", devices)
+        if filters and not isinstance(filters, list):
+            raise TypeError("Expected argument 'filters' to be a list")
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -45,6 +49,14 @@ class GetDevicesResult:
         The list of devices in the tailnet
         """
         return pulumi.get(self, "devices")
+
+    @_builtins.property
+    @pulumi.getter
+    def filters(self) -> Optional[Sequence['outputs.GetDevicesFilterResult']]:
+        """
+        Filters the device list to elements devices whose fields match the provided values.
+        """
+        return pulumi.get(self, "filters")
 
     @_builtins.property
     @pulumi.getter
@@ -70,11 +82,13 @@ class AwaitableGetDevicesResult(GetDevicesResult):
             yield self
         return GetDevicesResult(
             devices=self.devices,
+            filters=self.filters,
             id=self.id,
             name_prefix=self.name_prefix)
 
 
-def get_devices(name_prefix: Optional[_builtins.str] = None,
+def get_devices(filters: Optional[Sequence[Union['GetDevicesFilterArgs', 'GetDevicesFilterArgsDict']]] = None,
+                name_prefix: Optional[_builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDevicesResult:
     """
     The devices data source describes a list of devices in a tailnet
@@ -85,22 +99,39 @@ def get_devices(name_prefix: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_tailscale as tailscale
 
-    sample_devices = tailscale.get_devices(name_prefix="example-")
+    sample_devices = tailscale.get_devices(name_prefix="example-",
+        filters=[
+            {
+                "name": "isEphemeral",
+                "values": ["true"],
+            },
+            {
+                "name": "tags",
+                "values": [
+                    "tag:server",
+                    "tag:test",
+                ],
+            },
+        ])
     ```
 
 
+    :param Sequence[Union['GetDevicesFilterArgs', 'GetDevicesFilterArgsDict']] filters: Filters the device list to elements devices whose fields match the provided values.
     :param _builtins.str name_prefix: Filters the device list to elements whose name has the provided prefix
     """
     __args__ = dict()
+    __args__['filters'] = filters
     __args__['namePrefix'] = name_prefix
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('tailscale:index/getDevices:getDevices', __args__, opts=opts, typ=GetDevicesResult).value
 
     return AwaitableGetDevicesResult(
         devices=pulumi.get(__ret__, 'devices'),
+        filters=pulumi.get(__ret__, 'filters'),
         id=pulumi.get(__ret__, 'id'),
         name_prefix=pulumi.get(__ret__, 'name_prefix'))
-def get_devices_output(name_prefix: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_devices_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetDevicesFilterArgs', 'GetDevicesFilterArgsDict']]]]] = None,
+                       name_prefix: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDevicesResult]:
     """
     The devices data source describes a list of devices in a tailnet
@@ -111,17 +142,33 @@ def get_devices_output(name_prefix: Optional[pulumi.Input[Optional[_builtins.str
     import pulumi
     import pulumi_tailscale as tailscale
 
-    sample_devices = tailscale.get_devices(name_prefix="example-")
+    sample_devices = tailscale.get_devices(name_prefix="example-",
+        filters=[
+            {
+                "name": "isEphemeral",
+                "values": ["true"],
+            },
+            {
+                "name": "tags",
+                "values": [
+                    "tag:server",
+                    "tag:test",
+                ],
+            },
+        ])
     ```
 
 
+    :param Sequence[Union['GetDevicesFilterArgs', 'GetDevicesFilterArgsDict']] filters: Filters the device list to elements devices whose fields match the provided values.
     :param _builtins.str name_prefix: Filters the device list to elements whose name has the provided prefix
     """
     __args__ = dict()
+    __args__['filters'] = filters
     __args__['namePrefix'] = name_prefix
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('tailscale:index/getDevices:getDevices', __args__, opts=opts, typ=GetDevicesResult)
     return __ret__.apply(lambda __response__: GetDevicesResult(
         devices=pulumi.get(__response__, 'devices'),
+        filters=pulumi.get(__response__, 'filters'),
         id=pulumi.get(__response__, 'id'),
         name_prefix=pulumi.get(__response__, 'name_prefix')))

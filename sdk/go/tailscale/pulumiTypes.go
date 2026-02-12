@@ -1019,6 +1019,112 @@ func (o GetDevicesDeviceArrayOutput) Index(i pulumi.IntInput) GetDevicesDeviceOu
 	}).(GetDevicesDeviceOutput)
 }
 
+type GetDevicesFilter struct {
+	// The name must be a top-level device property, e.g. isEphemeral, tags, hostname, etc.
+	Name string `pulumi:"name"`
+	// The list of values to filter for. Values are matched as exact matches.
+	Values []string `pulumi:"values"`
+}
+
+// GetDevicesFilterInput is an input type that accepts GetDevicesFilterArgs and GetDevicesFilterOutput values.
+// You can construct a concrete instance of `GetDevicesFilterInput` via:
+//
+//	GetDevicesFilterArgs{...}
+type GetDevicesFilterInput interface {
+	pulumi.Input
+
+	ToGetDevicesFilterOutput() GetDevicesFilterOutput
+	ToGetDevicesFilterOutputWithContext(context.Context) GetDevicesFilterOutput
+}
+
+type GetDevicesFilterArgs struct {
+	// The name must be a top-level device property, e.g. isEphemeral, tags, hostname, etc.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The list of values to filter for. Values are matched as exact matches.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetDevicesFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDevicesFilter)(nil)).Elem()
+}
+
+func (i GetDevicesFilterArgs) ToGetDevicesFilterOutput() GetDevicesFilterOutput {
+	return i.ToGetDevicesFilterOutputWithContext(context.Background())
+}
+
+func (i GetDevicesFilterArgs) ToGetDevicesFilterOutputWithContext(ctx context.Context) GetDevicesFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDevicesFilterOutput)
+}
+
+// GetDevicesFilterArrayInput is an input type that accepts GetDevicesFilterArray and GetDevicesFilterArrayOutput values.
+// You can construct a concrete instance of `GetDevicesFilterArrayInput` via:
+//
+//	GetDevicesFilterArray{ GetDevicesFilterArgs{...} }
+type GetDevicesFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetDevicesFilterArrayOutput() GetDevicesFilterArrayOutput
+	ToGetDevicesFilterArrayOutputWithContext(context.Context) GetDevicesFilterArrayOutput
+}
+
+type GetDevicesFilterArray []GetDevicesFilterInput
+
+func (GetDevicesFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDevicesFilter)(nil)).Elem()
+}
+
+func (i GetDevicesFilterArray) ToGetDevicesFilterArrayOutput() GetDevicesFilterArrayOutput {
+	return i.ToGetDevicesFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetDevicesFilterArray) ToGetDevicesFilterArrayOutputWithContext(ctx context.Context) GetDevicesFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDevicesFilterArrayOutput)
+}
+
+type GetDevicesFilterOutput struct{ *pulumi.OutputState }
+
+func (GetDevicesFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDevicesFilter)(nil)).Elem()
+}
+
+func (o GetDevicesFilterOutput) ToGetDevicesFilterOutput() GetDevicesFilterOutput {
+	return o
+}
+
+func (o GetDevicesFilterOutput) ToGetDevicesFilterOutputWithContext(ctx context.Context) GetDevicesFilterOutput {
+	return o
+}
+
+// The name must be a top-level device property, e.g. isEphemeral, tags, hostname, etc.
+func (o GetDevicesFilterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDevicesFilter) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The list of values to filter for. Values are matched as exact matches.
+func (o GetDevicesFilterOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDevicesFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetDevicesFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDevicesFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDevicesFilter)(nil)).Elem()
+}
+
+func (o GetDevicesFilterArrayOutput) ToGetDevicesFilterArrayOutput() GetDevicesFilterArrayOutput {
+	return o
+}
+
+func (o GetDevicesFilterArrayOutput) ToGetDevicesFilterArrayOutputWithContext(ctx context.Context) GetDevicesFilterArrayOutput {
+	return o
+}
+
+func (o GetDevicesFilterArrayOutput) Index(i pulumi.IntInput) GetDevicesFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDevicesFilter {
+		return vs[0].([]GetDevicesFilter)[vs[1].(int)]
+	}).(GetDevicesFilterOutput)
+}
+
 type GetUsersUser struct {
 	// The time the user joined their tailnet.
 	Created string `pulumi:"created"`
@@ -1230,6 +1336,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsConfigurationSplitDnNameserverArrayInput)(nil)).Elem(), DnsConfigurationSplitDnNameserverArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDevicesDeviceInput)(nil)).Elem(), GetDevicesDeviceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDevicesDeviceArrayInput)(nil)).Elem(), GetDevicesDeviceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDevicesFilterInput)(nil)).Elem(), GetDevicesFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDevicesFilterArrayInput)(nil)).Elem(), GetDevicesFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
 	pulumi.RegisterOutputType(ContactsAccountOutput{})
@@ -1246,6 +1354,8 @@ func init() {
 	pulumi.RegisterOutputType(DnsConfigurationSplitDnNameserverArrayOutput{})
 	pulumi.RegisterOutputType(GetDevicesDeviceOutput{})
 	pulumi.RegisterOutputType(GetDevicesDeviceArrayOutput{})
+	pulumi.RegisterOutputType(GetDevicesFilterOutput{})
+	pulumi.RegisterOutputType(GetDevicesFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetUsersUserOutput{})
 	pulumi.RegisterOutputType(GetUsersUserArrayOutput{})
 }

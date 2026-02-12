@@ -27,6 +27,26 @@ namespace Pulumi.Tailscale
         ///     var sampleDevices = Tailscale.GetDevices.Invoke(new()
         ///     {
         ///         NamePrefix = "example-",
+        ///         Filters = new[]
+        ///         {
+        ///             new Tailscale.Inputs.GetDevicesFilterInputArgs
+        ///             {
+        ///                 Name = "isEphemeral",
+        ///                 Values = new[]
+        ///                 {
+        ///                     "true",
+        ///                 },
+        ///             },
+        ///             new Tailscale.Inputs.GetDevicesFilterInputArgs
+        ///             {
+        ///                 Name = "tags",
+        ///                 Values = new[]
+        ///                 {
+        ///                     "tag:server",
+        ///                     "tag:test",
+        ///                 },
+        ///             },
+        ///         },
         ///     });
         /// 
         /// });
@@ -51,6 +71,26 @@ namespace Pulumi.Tailscale
         ///     var sampleDevices = Tailscale.GetDevices.Invoke(new()
         ///     {
         ///         NamePrefix = "example-",
+        ///         Filters = new[]
+        ///         {
+        ///             new Tailscale.Inputs.GetDevicesFilterInputArgs
+        ///             {
+        ///                 Name = "isEphemeral",
+        ///                 Values = new[]
+        ///                 {
+        ///                     "true",
+        ///                 },
+        ///             },
+        ///             new Tailscale.Inputs.GetDevicesFilterInputArgs
+        ///             {
+        ///                 Name = "tags",
+        ///                 Values = new[]
+        ///                 {
+        ///                     "tag:server",
+        ///                     "tag:test",
+        ///                 },
+        ///             },
+        ///         },
         ///     });
         /// 
         /// });
@@ -75,6 +115,26 @@ namespace Pulumi.Tailscale
         ///     var sampleDevices = Tailscale.GetDevices.Invoke(new()
         ///     {
         ///         NamePrefix = "example-",
+        ///         Filters = new[]
+        ///         {
+        ///             new Tailscale.Inputs.GetDevicesFilterInputArgs
+        ///             {
+        ///                 Name = "isEphemeral",
+        ///                 Values = new[]
+        ///                 {
+        ///                     "true",
+        ///                 },
+        ///             },
+        ///             new Tailscale.Inputs.GetDevicesFilterInputArgs
+        ///             {
+        ///                 Name = "tags",
+        ///                 Values = new[]
+        ///                 {
+        ///                     "tag:server",
+        ///                     "tag:test",
+        ///                 },
+        ///             },
+        ///         },
         ///     });
         /// 
         /// });
@@ -87,6 +147,18 @@ namespace Pulumi.Tailscale
 
     public sealed class GetDevicesArgs : global::Pulumi.InvokeArgs
     {
+        [Input("filters")]
+        private List<Inputs.GetDevicesFilterArgs>? _filters;
+
+        /// <summary>
+        /// Filters the device list to elements devices whose fields match the provided values.
+        /// </summary>
+        public List<Inputs.GetDevicesFilterArgs> Filters
+        {
+            get => _filters ?? (_filters = new List<Inputs.GetDevicesFilterArgs>());
+            set => _filters = value;
+        }
+
         /// <summary>
         /// Filters the device list to elements whose name has the provided prefix
         /// </summary>
@@ -101,6 +173,18 @@ namespace Pulumi.Tailscale
 
     public sealed class GetDevicesInvokeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("filters")]
+        private InputList<Inputs.GetDevicesFilterInputArgs>? _filters;
+
+        /// <summary>
+        /// Filters the device list to elements devices whose fields match the provided values.
+        /// </summary>
+        public InputList<Inputs.GetDevicesFilterInputArgs> Filters
+        {
+            get => _filters ?? (_filters = new InputList<Inputs.GetDevicesFilterInputArgs>());
+            set => _filters = value;
+        }
+
         /// <summary>
         /// Filters the device list to elements whose name has the provided prefix
         /// </summary>
@@ -122,6 +206,10 @@ namespace Pulumi.Tailscale
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDevicesDeviceResult> Devices;
         /// <summary>
+        /// Filters the device list to elements devices whose fields match the provided values.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetDevicesFilterResult> Filters;
+        /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
@@ -134,11 +222,14 @@ namespace Pulumi.Tailscale
         private GetDevicesResult(
             ImmutableArray<Outputs.GetDevicesDeviceResult> devices,
 
+            ImmutableArray<Outputs.GetDevicesFilterResult> filters,
+
             string id,
 
             string? namePrefix)
         {
             Devices = devices;
+            Filters = filters;
             Id = id;
             NamePrefix = namePrefix;
         }

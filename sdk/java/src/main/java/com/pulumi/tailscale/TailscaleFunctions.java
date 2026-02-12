@@ -648,6 +648,17 @@ public final class TailscaleFunctions {
      *     public static void stack(Context ctx) {
      *         final var sampleDevices = TailscaleFunctions.getDevices(GetDevicesArgs.builder()
      *             .namePrefix("example-")
+     *             .filters(            
+     *                 GetDevicesFilterArgs.builder()
+     *                     .name("isEphemeral")
+     *                     .values("true")
+     *                     .build(),
+     *                 GetDevicesFilterArgs.builder()
+     *                     .name("tags")
+     *                     .values(                    
+     *                         "tag:server",
+     *                         "tag:test")
+     *                     .build())
      *             .build());
      * 
      *     }
@@ -688,6 +699,17 @@ public final class TailscaleFunctions {
      *     public static void stack(Context ctx) {
      *         final var sampleDevices = TailscaleFunctions.getDevices(GetDevicesArgs.builder()
      *             .namePrefix("example-")
+     *             .filters(            
+     *                 GetDevicesFilterArgs.builder()
+     *                     .name("isEphemeral")
+     *                     .values("true")
+     *                     .build(),
+     *                 GetDevicesFilterArgs.builder()
+     *                     .name("tags")
+     *                     .values(                    
+     *                         "tag:server",
+     *                         "tag:test")
+     *                     .build())
      *             .build());
      * 
      *     }
@@ -728,6 +750,17 @@ public final class TailscaleFunctions {
      *     public static void stack(Context ctx) {
      *         final var sampleDevices = TailscaleFunctions.getDevices(GetDevicesArgs.builder()
      *             .namePrefix("example-")
+     *             .filters(            
+     *                 GetDevicesFilterArgs.builder()
+     *                     .name("isEphemeral")
+     *                     .values("true")
+     *                     .build(),
+     *                 GetDevicesFilterArgs.builder()
+     *                     .name("tags")
+     *                     .values(                    
+     *                         "tag:server",
+     *                         "tag:test")
+     *                     .build())
      *             .build());
      * 
      *     }
@@ -768,6 +801,17 @@ public final class TailscaleFunctions {
      *     public static void stack(Context ctx) {
      *         final var sampleDevices = TailscaleFunctions.getDevices(GetDevicesArgs.builder()
      *             .namePrefix("example-")
+     *             .filters(            
+     *                 GetDevicesFilterArgs.builder()
+     *                     .name("isEphemeral")
+     *                     .values("true")
+     *                     .build(),
+     *                 GetDevicesFilterArgs.builder()
+     *                     .name("tags")
+     *                     .values(                    
+     *                         "tag:server",
+     *                         "tag:test")
+     *                     .build())
      *             .build());
      * 
      *     }
@@ -808,6 +852,17 @@ public final class TailscaleFunctions {
      *     public static void stack(Context ctx) {
      *         final var sampleDevices = TailscaleFunctions.getDevices(GetDevicesArgs.builder()
      *             .namePrefix("example-")
+     *             .filters(            
+     *                 GetDevicesFilterArgs.builder()
+     *                     .name("isEphemeral")
+     *                     .values("true")
+     *                     .build(),
+     *                 GetDevicesFilterArgs.builder()
+     *                     .name("tags")
+     *                     .values(                    
+     *                         "tag:server",
+     *                         "tag:test")
+     *                     .build())
      *             .build());
      * 
      *     }
@@ -848,6 +903,17 @@ public final class TailscaleFunctions {
      *     public static void stack(Context ctx) {
      *         final var sampleDevices = TailscaleFunctions.getDevices(GetDevicesArgs.builder()
      *             .namePrefix("example-")
+     *             .filters(            
+     *                 GetDevicesFilterArgs.builder()
+     *                     .name("isEphemeral")
+     *                     .values("true")
+     *                     .build(),
+     *                 GetDevicesFilterArgs.builder()
+     *                     .name("tags")
+     *                     .values(                    
+     *                         "tag:server",
+     *                         "tag:test")
+     *                     .build())
      *             .build());
      * 
      *     }
@@ -888,6 +954,17 @@ public final class TailscaleFunctions {
      *     public static void stack(Context ctx) {
      *         final var sampleDevices = TailscaleFunctions.getDevices(GetDevicesArgs.builder()
      *             .namePrefix("example-")
+     *             .filters(            
+     *                 GetDevicesFilterArgs.builder()
+     *                     .name("isEphemeral")
+     *                     .values("true")
+     *                     .build(),
+     *                 GetDevicesFilterArgs.builder()
+     *                     .name("tags")
+     *                     .values(                    
+     *                         "tag:server",
+     *                         "tag:test")
+     *                     .build())
      *             .build());
      * 
      *     }

@@ -5,7 +5,9 @@ package com.pulumi.tailscale.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.tailscale.inputs.GetDevicesFilterArgs;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -14,6 +16,21 @@ import javax.annotation.Nullable;
 public final class GetDevicesArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetDevicesArgs Empty = new GetDevicesArgs();
+
+    /**
+     * Filters the device list to elements devices whose fields match the provided values.
+     * 
+     */
+    @Import(name="filters")
+    private @Nullable Output<List<GetDevicesFilterArgs>> filters;
+
+    /**
+     * @return Filters the device list to elements devices whose fields match the provided values.
+     * 
+     */
+    public Optional<Output<List<GetDevicesFilterArgs>>> filters() {
+        return Optional.ofNullable(this.filters);
+    }
 
     /**
      * Filters the device list to elements whose name has the provided prefix
@@ -33,6 +50,7 @@ public final class GetDevicesArgs extends com.pulumi.resources.InvokeArgs {
     private GetDevicesArgs() {}
 
     private GetDevicesArgs(GetDevicesArgs $) {
+        this.filters = $.filters;
         this.namePrefix = $.namePrefix;
     }
 
@@ -52,6 +70,37 @@ public final class GetDevicesArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder(GetDevicesArgs defaults) {
             $ = new GetDevicesArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param filters Filters the device list to elements devices whose fields match the provided values.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder filters(@Nullable Output<List<GetDevicesFilterArgs>> filters) {
+            $.filters = filters;
+            return this;
+        }
+
+        /**
+         * @param filters Filters the device list to elements devices whose fields match the provided values.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder filters(List<GetDevicesFilterArgs> filters) {
+            return filters(Output.of(filters));
+        }
+
+        /**
+         * @param filters Filters the device list to elements devices whose fields match the provided values.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder filters(GetDevicesFilterArgs... filters) {
+            return filters(List.of(filters));
         }
 
         /**
