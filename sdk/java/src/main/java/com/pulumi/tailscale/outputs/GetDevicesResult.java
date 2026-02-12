@@ -6,6 +6,7 @@ package com.pulumi.tailscale.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.tailscale.outputs.GetDevicesDevice;
+import com.pulumi.tailscale.outputs.GetDevicesFilter;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -19,6 +20,11 @@ public final class GetDevicesResult {
      * 
      */
     private List<GetDevicesDevice> devices;
+    /**
+     * @return Filters the device list to elements devices whose fields match the provided values.
+     * 
+     */
+    private @Nullable List<GetDevicesFilter> filters;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -37,6 +43,13 @@ public final class GetDevicesResult {
      */
     public List<GetDevicesDevice> devices() {
         return this.devices;
+    }
+    /**
+     * @return Filters the device list to elements devices whose fields match the provided values.
+     * 
+     */
+    public List<GetDevicesFilter> filters() {
+        return this.filters == null ? List.of() : this.filters;
     }
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -63,12 +76,14 @@ public final class GetDevicesResult {
     @CustomType.Builder
     public static final class Builder {
         private List<GetDevicesDevice> devices;
+        private @Nullable List<GetDevicesFilter> filters;
         private String id;
         private @Nullable String namePrefix;
         public Builder() {}
         public Builder(GetDevicesResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.devices = defaults.devices;
+    	      this.filters = defaults.filters;
     	      this.id = defaults.id;
     	      this.namePrefix = defaults.namePrefix;
         }
@@ -83,6 +98,15 @@ public final class GetDevicesResult {
         }
         public Builder devices(GetDevicesDevice... devices) {
             return devices(List.of(devices));
+        }
+        @CustomType.Setter
+        public Builder filters(@Nullable List<GetDevicesFilter> filters) {
+
+            this.filters = filters;
+            return this;
+        }
+        public Builder filters(GetDevicesFilter... filters) {
+            return filters(List.of(filters));
         }
         @CustomType.Setter
         public Builder id(String id) {
@@ -101,6 +125,7 @@ public final class GetDevicesResult {
         public GetDevicesResult build() {
             final var _resultValue = new GetDevicesResult();
             _resultValue.devices = devices;
+            _resultValue.filters = filters;
             _resultValue.id = id;
             _resultValue.namePrefix = namePrefix;
             return _resultValue;

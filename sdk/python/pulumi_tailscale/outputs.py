@@ -23,6 +23,7 @@ __all__ = [
     'DnsConfigurationSplitDn',
     'DnsConfigurationSplitDnNameserver',
     'GetDevicesDeviceResult',
+    'GetDevicesFilterResult',
     'GetUsersUserResult',
 ]
 
@@ -439,6 +440,35 @@ class GetDevicesDeviceResult(dict):
         The user associated with the device
         """
         return pulumi.get(self, "user")
+
+
+@pulumi.output_type
+class GetDevicesFilterResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 values: Sequence[_builtins.str]):
+        """
+        :param _builtins.str name: The name must be a top-level device property, e.g. isEphemeral, tags, hostname, etc.
+        :param Sequence[_builtins.str] values: The list of values to filter for. Values are matched as exact matches.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name must be a top-level device property, e.g. isEphemeral, tags, hostname, etc.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def values(self) -> Sequence[_builtins.str]:
+        """
+        The list of values to filter for. Values are matched as exact matches.
+        """
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type

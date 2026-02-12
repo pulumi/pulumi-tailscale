@@ -17,6 +17,19 @@ import * as utilities from "./utilities";
  *
  * const sampleDevices = tailscale.getDevices({
  *     namePrefix: "example-",
+ *     filters: [
+ *         {
+ *             name: "isEphemeral",
+ *             values: ["true"],
+ *         },
+ *         {
+ *             name: "tags",
+ *             values: [
+ *                 "tag:server",
+ *                 "tag:test",
+ *             ],
+ *         },
+ *     ],
  * });
  * ```
  */
@@ -24,6 +37,7 @@ export function getDevices(args?: GetDevicesArgs, opts?: pulumi.InvokeOptions): 
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale:index/getDevices:getDevices", {
+        "filters": args.filters,
         "namePrefix": args.namePrefix,
     }, opts);
 }
@@ -32,6 +46,10 @@ export function getDevices(args?: GetDevicesArgs, opts?: pulumi.InvokeOptions): 
  * A collection of arguments for invoking getDevices.
  */
 export interface GetDevicesArgs {
+    /**
+     * Filters the device list to elements devices whose fields match the provided values.
+     */
+    filters?: inputs.GetDevicesFilter[];
     /**
      * Filters the device list to elements whose name has the provided prefix
      */
@@ -46,6 +64,10 @@ export interface GetDevicesResult {
      * The list of devices in the tailnet
      */
     readonly devices: outputs.GetDevicesDevice[];
+    /**
+     * Filters the device list to elements devices whose fields match the provided values.
+     */
+    readonly filters?: outputs.GetDevicesFilter[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -66,6 +88,19 @@ export interface GetDevicesResult {
  *
  * const sampleDevices = tailscale.getDevices({
  *     namePrefix: "example-",
+ *     filters: [
+ *         {
+ *             name: "isEphemeral",
+ *             values: ["true"],
+ *         },
+ *         {
+ *             name: "tags",
+ *             values: [
+ *                 "tag:server",
+ *                 "tag:test",
+ *             ],
+ *         },
+ *     ],
  * });
  * ```
  */
@@ -73,6 +108,7 @@ export function getDevicesOutput(args?: GetDevicesOutputArgs, opts?: pulumi.Invo
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("tailscale:index/getDevices:getDevices", {
+        "filters": args.filters,
         "namePrefix": args.namePrefix,
     }, opts);
 }
@@ -81,6 +117,10 @@ export function getDevicesOutput(args?: GetDevicesOutputArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getDevices.
  */
 export interface GetDevicesOutputArgs {
+    /**
+     * Filters the device list to elements devices whose fields match the provided values.
+     */
+    filters?: pulumi.Input<pulumi.Input<inputs.GetDevicesFilterArgs>[]>;
     /**
      * Filters the device list to elements whose name has the provided prefix
      */

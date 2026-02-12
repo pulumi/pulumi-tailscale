@@ -59,3 +59,25 @@ export interface DnsConfigurationSplitDnNameserver {
     useWithExitNode?: pulumi.Input<boolean>;
 }
 
+export interface GetDevicesFilter {
+    /**
+     * The name must be a top-level device property, e.g. isEphemeral, tags, hostname, etc.
+     */
+    name: string;
+    /**
+     * The list of values to filter for. Values are matched as exact matches.
+     */
+    values: string[];
+}
+
+export interface GetDevicesFilterArgs {
+    /**
+     * The name must be a top-level device property, e.g. isEphemeral, tags, hostname, etc.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The list of values to filter for. Values are matched as exact matches.
+     */
+    values: pulumi.Input<pulumi.Input<string>[]>;
+}
+

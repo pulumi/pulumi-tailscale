@@ -27,14 +27,14 @@ public final class Config {
         return Codegen.stringProp("baseUrl").config(config).get();
     }
 /**
- * The jwt identity token to exchange for a Tailscale API token when using a federated identity client. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with &#39;api_key&#39; and &#39;oauth_client_secret&#39;.
+ * The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with &#39;api_key&#39; and &#39;oauth_client_secret&#39;.
  * 
  */
     public Optional<String> identityToken() {
         return Codegen.stringProp("identityToken").config(config).get();
     }
 /**
- * The OAuth application&#39;s ID when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either &#39;oauth_client_secret&#39; or &#39;identity_token&#39; must be set alongside &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;.
+ * The OAuth application or federated identity&#39;s ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either &#39;oauth_client_secret&#39; or &#39;identity_token&#39; must be set alongside &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;.
  * 
  */
     public Optional<String> oauthClientId() {
@@ -48,7 +48,7 @@ public final class Config {
         return Codegen.stringProp("oauthClientSecret").config(config).get();
     }
 /**
- * The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39; are set.
+ * The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;, or both are set.
  * 
  */
     public Optional<List<String>> scopes() {

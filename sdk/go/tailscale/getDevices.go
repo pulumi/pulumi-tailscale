@@ -29,6 +29,21 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tailscale.GetDevices(ctx, &tailscale.GetDevicesArgs{
 //				NamePrefix: pulumi.StringRef("example-"),
+//				Filters: []tailscale.GetDevicesFilter{
+//					{
+//						Name: "isEphemeral",
+//						Values: []string{
+//							"true",
+//						},
+//					},
+//					{
+//						Name: "tags",
+//						Values: []string{
+//							"tag:server",
+//							"tag:test",
+//						},
+//					},
+//				},
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -50,6 +65,8 @@ func GetDevices(ctx *pulumi.Context, args *GetDevicesArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getDevices.
 type GetDevicesArgs struct {
+	// Filters the device list to elements devices whose fields match the provided values.
+	Filters []GetDevicesFilter `pulumi:"filters"`
 	// Filters the device list to elements whose name has the provided prefix
 	NamePrefix *string `pulumi:"namePrefix"`
 }
@@ -58,6 +75,8 @@ type GetDevicesArgs struct {
 type GetDevicesResult struct {
 	// The list of devices in the tailnet
 	Devices []GetDevicesDevice `pulumi:"devices"`
+	// Filters the device list to elements devices whose fields match the provided values.
+	Filters []GetDevicesFilter `pulumi:"filters"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Filters the device list to elements whose name has the provided prefix
@@ -75,6 +94,8 @@ func GetDevicesOutput(ctx *pulumi.Context, args GetDevicesOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getDevices.
 type GetDevicesOutputArgs struct {
+	// Filters the device list to elements devices whose fields match the provided values.
+	Filters GetDevicesFilterArrayInput `pulumi:"filters"`
 	// Filters the device list to elements whose name has the provided prefix
 	NamePrefix pulumi.StringPtrInput `pulumi:"namePrefix"`
 }
@@ -101,6 +122,11 @@ func (o GetDevicesResultOutput) ToGetDevicesResultOutputWithContext(ctx context.
 // The list of devices in the tailnet
 func (o GetDevicesResultOutput) Devices() GetDevicesDeviceArrayOutput {
 	return o.ApplyT(func(v GetDevicesResult) []GetDevicesDevice { return v.Devices }).(GetDevicesDeviceArrayOutput)
+}
+
+// Filters the device list to elements devices whose fields match the provided values.
+func (o GetDevicesResultOutput) Filters() GetDevicesFilterArrayOutput {
+	return o.ApplyT(func(v GetDevicesResult) []GetDevicesFilter { return v.Filters }).(GetDevicesFilterArrayOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

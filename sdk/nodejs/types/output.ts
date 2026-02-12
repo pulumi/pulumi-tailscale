@@ -146,6 +146,17 @@ export interface GetDevicesDevice {
     user: string;
 }
 
+export interface GetDevicesFilter {
+    /**
+     * The name must be a top-level device property, e.g. isEphemeral, tags, hostname, etc.
+     */
+    name: string;
+    /**
+     * The list of values to filter for. Values are matched as exact matches.
+     */
+    values: string[];
+}
+
 export interface GetUsersUser {
     /**
      * The time the user joined their tailnet.
