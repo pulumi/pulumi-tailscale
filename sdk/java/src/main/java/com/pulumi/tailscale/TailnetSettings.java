@@ -86,9 +86,17 @@ public class TailnetSettings extends com.pulumi.resources.CustomResource {
     public Output<String> aclsExternalLink() {
         return this.aclsExternalLink;
     }
+    /**
+     * Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
+     * 
+     */
     @Export(name="aclsExternallyManagedOn", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> aclsExternallyManagedOn;
 
+    /**
+     * @return Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
+     * 
+     */
     public Output<Boolean> aclsExternallyManagedOn() {
         return this.aclsExternallyManagedOn;
     }

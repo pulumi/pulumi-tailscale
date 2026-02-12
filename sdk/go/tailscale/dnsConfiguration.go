@@ -11,6 +11,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// The dnsConfiguration resource allows you to manage the complete DNS configuration for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
+//
+// > **Note:** The Tailscale Terraform provider has multiple resources for managing DNS configuration. This resource is meant to manage the entirety of a Tailnet's DNS configuration and conflicts with tailscale_dns_nameservers, tailscale_dns_preferences, tailscale_dns_search_paths, and tailscale_dns_split_nameservers. This resource and previously mentioned resources should not be used simultaneously.
+//
 // ## Example Usage
 //
 // ```go

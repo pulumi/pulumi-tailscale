@@ -57,6 +57,9 @@ namespace Pulumi.Tailscale
         [Output("aclsExternalLink")]
         public Output<string> AclsExternalLink { get; private set; } = null!;
 
+        /// <summary>
+        /// Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
+        /// </summary>
         [Output("aclsExternallyManagedOn")]
         public Output<bool> AclsExternallyManagedOn { get; private set; } = null!;
 
@@ -166,6 +169,9 @@ namespace Pulumi.Tailscale
         [Input("aclsExternalLink")]
         public Input<string>? AclsExternalLink { get; set; }
 
+        /// <summary>
+        /// Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
+        /// </summary>
         [Input("aclsExternallyManagedOn")]
         public Input<bool>? AclsExternallyManagedOn { get; set; }
 
@@ -237,6 +243,9 @@ namespace Pulumi.Tailscale
         [Input("aclsExternalLink")]
         public Input<string>? AclsExternalLink { get; set; }
 
+        /// <summary>
+        /// Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
+        /// </summary>
         [Input("aclsExternallyManagedOn")]
         public Input<bool>? AclsExternallyManagedOn { get; set; }
 

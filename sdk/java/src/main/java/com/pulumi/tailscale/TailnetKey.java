@@ -65,8 +65,7 @@ import javax.annotation.Nullable;
  * $ pulumi import tailscale:index/tailnetKey:TailnetKey sample_key 123456789
  * ```
  * 
- * -&gt; ** Note ** the `key` attribute will not be populated on import as this attribute is only populated
- * 
+ * &gt; ** Note ** the `key` attribute will not be populated on import as this attribute is only populated
  * on resource creation.
  * 
  */

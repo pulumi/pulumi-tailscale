@@ -60,8 +60,9 @@ type TailnetSettings struct {
 	pulumi.CustomResourceState
 
 	// Link to your external ACL definition or management system. Must be a valid URL.
-	AclsExternalLink        pulumi.StringOutput `pulumi:"aclsExternalLink"`
-	AclsExternallyManagedOn pulumi.BoolOutput   `pulumi:"aclsExternallyManagedOn"`
+	AclsExternalLink pulumi.StringOutput `pulumi:"aclsExternalLink"`
+	// Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
+	AclsExternallyManagedOn pulumi.BoolOutput `pulumi:"aclsExternallyManagedOn"`
 	// Whether device approval is enabled for the tailnet
 	DevicesApprovalOn pulumi.BoolOutput `pulumi:"devicesApprovalOn"`
 	// Whether auto updates are enabled for devices that belong to this tailnet
@@ -113,8 +114,9 @@ func GetTailnetSettings(ctx *pulumi.Context,
 // Input properties used for looking up and filtering TailnetSettings resources.
 type tailnetSettingsState struct {
 	// Link to your external ACL definition or management system. Must be a valid URL.
-	AclsExternalLink        *string `pulumi:"aclsExternalLink"`
-	AclsExternallyManagedOn *bool   `pulumi:"aclsExternallyManagedOn"`
+	AclsExternalLink *string `pulumi:"aclsExternalLink"`
+	// Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
+	AclsExternallyManagedOn *bool `pulumi:"aclsExternallyManagedOn"`
 	// Whether device approval is enabled for the tailnet
 	DevicesApprovalOn *bool `pulumi:"devicesApprovalOn"`
 	// Whether auto updates are enabled for devices that belong to this tailnet
@@ -137,7 +139,8 @@ type tailnetSettingsState struct {
 
 type TailnetSettingsState struct {
 	// Link to your external ACL definition or management system. Must be a valid URL.
-	AclsExternalLink        pulumi.StringPtrInput
+	AclsExternalLink pulumi.StringPtrInput
+	// Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
 	AclsExternallyManagedOn pulumi.BoolPtrInput
 	// Whether device approval is enabled for the tailnet
 	DevicesApprovalOn pulumi.BoolPtrInput
@@ -165,8 +168,9 @@ func (TailnetSettingsState) ElementType() reflect.Type {
 
 type tailnetSettingsArgs struct {
 	// Link to your external ACL definition or management system. Must be a valid URL.
-	AclsExternalLink        *string `pulumi:"aclsExternalLink"`
-	AclsExternallyManagedOn *bool   `pulumi:"aclsExternallyManagedOn"`
+	AclsExternalLink *string `pulumi:"aclsExternalLink"`
+	// Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
+	AclsExternallyManagedOn *bool `pulumi:"aclsExternallyManagedOn"`
 	// Whether device approval is enabled for the tailnet
 	DevicesApprovalOn *bool `pulumi:"devicesApprovalOn"`
 	// Whether auto updates are enabled for devices that belong to this tailnet
@@ -190,7 +194,8 @@ type tailnetSettingsArgs struct {
 // The set of arguments for constructing a TailnetSettings resource.
 type TailnetSettingsArgs struct {
 	// Link to your external ACL definition or management system. Must be a valid URL.
-	AclsExternalLink        pulumi.StringPtrInput
+	AclsExternalLink pulumi.StringPtrInput
+	// Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
 	AclsExternallyManagedOn pulumi.BoolPtrInput
 	// Whether device approval is enabled for the tailnet
 	DevicesApprovalOn pulumi.BoolPtrInput
@@ -304,6 +309,7 @@ func (o TailnetSettingsOutput) AclsExternalLink() pulumi.StringOutput {
 	return o.ApplyT(func(v *TailnetSettings) pulumi.StringOutput { return v.AclsExternalLink }).(pulumi.StringOutput)
 }
 
+// Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
 func (o TailnetSettingsOutput) AclsExternallyManagedOn() pulumi.BoolOutput {
 	return o.ApplyT(func(v *TailnetSettings) pulumi.BoolOutput { return v.AclsExternallyManagedOn }).(pulumi.BoolOutput)
 }

@@ -51,8 +51,7 @@ import (
 // $ pulumi import tailscale:index/tailnetKey:TailnetKey sample_key 123456789
 // ```
 //
-// -> ** Note ** the `key` attribute will not be populated on import as this attribute is only populated
-//
+// > ** Note ** the `key` attribute will not be populated on import as this attribute is only populated
 // on resource creation.
 type TailnetKey struct {
 	pulumi.CustomResourceState
