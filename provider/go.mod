@@ -9,7 +9,7 @@ require (
 	github.com/pulumi/providertest v0.6.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.121.0
 	github.com/stretchr/testify v1.11.1
-	github.com/tailscale/terraform-provider-tailscale v0.27.0
+	github.com/tailscale/terraform-provider-tailscale v0.28.0
 )
 
 require (
@@ -201,5 +201,5 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	lukechampine.com/frand v1.4.2 // indirect
 	tailscale.com v1.94.1 // indirect
-	tailscale.com/client/tailscale/v2 v2.7.0 // indirect
+	tailscale.com/client/tailscale/v2 v2.8.0 // indirect
 )
