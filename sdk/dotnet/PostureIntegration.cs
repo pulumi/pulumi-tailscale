@@ -65,7 +65,7 @@ namespace Pulumi.Tailscale
         public Output<string?> CloudId { get; private set; } = null!;
 
         /// <summary>
-        /// The third-party provider for posture data. Valid values are `Falcon`, `Intune`, `Jamfpro`, `Kandji`, `Kolide`, and `Sentinelone`.
+        /// The third-party provider for posture data. Valid values are `Falcon`, `Fleet`, `Huntress`, `Intune`, `Jamfpro`, `Kandji`, `Kolide`, and `Sentinelone`.
         /// </summary>
         [Output("postureProvider")]
         public Output<string> PostureProvider { get; private set; } = null!;
@@ -155,7 +155,7 @@ namespace Pulumi.Tailscale
         public Input<string>? CloudId { get; set; }
 
         /// <summary>
-        /// The third-party provider for posture data. Valid values are `Falcon`, `Intune`, `Jamfpro`, `Kandji`, `Kolide`, and `Sentinelone`.
+        /// The third-party provider for posture data. Valid values are `Falcon`, `Fleet`, `Huntress`, `Intune`, `Jamfpro`, `Kandji`, `Kolide`, and `Sentinelone`.
         /// </summary>
         [Input("postureProvider", required: true)]
         public Input<string> PostureProvider { get; set; } = null!;
@@ -203,7 +203,7 @@ namespace Pulumi.Tailscale
         public Input<string>? CloudId { get; set; }
 
         /// <summary>
-        /// The third-party provider for posture data. Valid values are `Falcon`, `Intune`, `Jamfpro`, `Kandji`, `Kolide`, and `Sentinelone`.
+        /// The third-party provider for posture data. Valid values are `Falcon`, `Fleet`, `Huntress`, `Intune`, `Jamfpro`, `Kandji`, `Kolide`, and `Sentinelone`.
         /// </summary>
         [Input("postureProvider")]
         public Input<string>? PostureProvider { get; set; }

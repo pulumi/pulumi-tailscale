@@ -110,14 +110,14 @@ public class PostureIntegration extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.cloudId);
     }
     /**
-     * The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
+     * The third-party provider for posture data. Valid values are `falcon`, `fleet`, `huntress`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
      * 
      */
     @Export(name="postureProvider", refs={String.class}, tree="[0]")
     private Output<String> postureProvider;
 
     /**
-     * @return The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
+     * @return The third-party provider for posture data. Valid values are `falcon`, `fleet`, `huntress`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
      * 
      */
     public Output<String> postureProvider() {
