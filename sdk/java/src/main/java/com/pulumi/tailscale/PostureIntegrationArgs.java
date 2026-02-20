@@ -62,14 +62,14 @@ public final class PostureIntegrationArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
+     * The third-party provider for posture data. Valid values are `falcon`, `fleet`, `huntress`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
      * 
      */
     @Import(name="postureProvider", required=true)
     private Output<String> postureProvider;
 
     /**
-     * @return The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
+     * @return The third-party provider for posture data. Valid values are `falcon`, `fleet`, `huntress`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
      * 
      */
     public Output<String> postureProvider() {
@@ -183,7 +183,7 @@ public final class PostureIntegrationArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param postureProvider The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
+         * @param postureProvider The third-party provider for posture data. Valid values are `falcon`, `fleet`, `huntress`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
          * 
          * @return builder
          * 
@@ -194,7 +194,7 @@ public final class PostureIntegrationArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param postureProvider The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
+         * @param postureProvider The third-party provider for posture data. Valid values are `falcon`, `fleet`, `huntress`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
          * 
          * @return builder
          * 

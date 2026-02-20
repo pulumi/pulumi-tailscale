@@ -72,7 +72,7 @@ export class PostureIntegration extends pulumi.CustomResource {
      */
     declare public readonly cloudId: pulumi.Output<string | undefined>;
     /**
-     * The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
+     * The third-party provider for posture data. Valid values are `falcon`, `fleet`, `huntress`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
      */
     declare public readonly postureProvider: pulumi.Output<string>;
     /**
@@ -136,7 +136,7 @@ export interface PostureIntegrationState {
      */
     cloudId?: pulumi.Input<string>;
     /**
-     * The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
+     * The third-party provider for posture data. Valid values are `falcon`, `fleet`, `huntress`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
      */
     postureProvider?: pulumi.Input<string>;
     /**
@@ -162,7 +162,7 @@ export interface PostureIntegrationArgs {
      */
     cloudId?: pulumi.Input<string>;
     /**
-     * The third-party provider for posture data. Valid values are `falcon`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
+     * The third-party provider for posture data. Valid values are `falcon`, `fleet`, `huntress`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
      */
     postureProvider: pulumi.Input<string>;
     /**
