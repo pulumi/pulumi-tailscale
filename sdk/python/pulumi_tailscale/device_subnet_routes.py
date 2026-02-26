@@ -23,6 +23,7 @@ class DeviceSubnetRoutesArgs:
                  routes: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         """
         The set of arguments for constructing a DeviceSubnetRoutes resource.
+
         :param pulumi.Input[_builtins.str] device_id: The device to set subnet routes for
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] routes: The subnet routes that are enabled to be routed by a device
         """
@@ -61,6 +62,7 @@ class _DeviceSubnetRoutesState:
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering DeviceSubnetRoutes resources.
+
         :param pulumi.Input[_builtins.str] device_id: The device to set subnet routes for
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] routes: The subnet routes that are enabled to be routed by a device
         """
@@ -148,6 +150,7 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
         $ pulumi import tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes sample 123456789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] device_id: The device to set subnet routes for
@@ -203,6 +206,7 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
         ```sh
         $ pulumi import tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes sample 123456789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeviceSubnetRoutesArgs args: The arguments to use to populate this resource's properties.

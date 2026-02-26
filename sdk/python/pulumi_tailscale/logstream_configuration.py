@@ -40,6 +40,7 @@ class LogstreamConfigurationArgs:
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LogstreamConfiguration resource.
+
         :param pulumi.Input[_builtins.str] destination_type: The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
         :param pulumi.Input[_builtins.str] log_type: The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
         :param pulumi.Input[_builtins.str] compression_format: The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
@@ -350,6 +351,7 @@ class _LogstreamConfigurationState:
                  user: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LogstreamConfiguration resources.
+
         :param pulumi.Input[_builtins.str] compression_format: The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
         :param pulumi.Input[_builtins.str] destination_type: The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
         :param pulumi.Input[_builtins.str] gcs_bucket: The name of the GCS bucket
@@ -730,6 +732,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
         $ pulumi import tailscale:index/logstreamConfiguration:LogstreamConfiguration sample_logstream_configuration 123456789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] compression_format: The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
@@ -823,6 +826,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
         ```sh
         $ pulumi import tailscale:index/logstreamConfiguration:LogstreamConfiguration sample_logstream_configuration 123456789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param LogstreamConfigurationArgs args: The arguments to use to populate this resource's properties.

@@ -28,6 +28,7 @@ class DnsConfigurationArgs:
                  split_dns: Optional[pulumi.Input[Sequence[pulumi.Input['DnsConfigurationSplitDnArgs']]]] = None):
         """
         The set of arguments for constructing a DnsConfiguration resource.
+
         :param pulumi.Input[_builtins.bool] magic_dns: Whether or not to enable MagicDNS. Defaults to true.
         :param pulumi.Input[Sequence[pulumi.Input['DnsConfigurationNameserverArgs']]] nameservers: Set the nameservers used by devices on your network to resolve DNS queries. `override_local_dns` must also be true to prefer these nameservers over local DNS configuration.
         :param pulumi.Input[_builtins.bool] override_local_dns: When enabled, use the configured DNS servers in `nameservers` to resolve names outside the tailnet. When disabled, devices will prefer their local DNS configuration. Defaults to false.
@@ -116,6 +117,7 @@ class _DnsConfigurationState:
                  split_dns: Optional[pulumi.Input[Sequence[pulumi.Input['DnsConfigurationSplitDnArgs']]]] = None):
         """
         Input properties used for looking up and filtering DnsConfiguration resources.
+
         :param pulumi.Input[_builtins.bool] magic_dns: Whether or not to enable MagicDNS. Defaults to true.
         :param pulumi.Input[Sequence[pulumi.Input['DnsConfigurationNameserverArgs']]] nameservers: Set the nameservers used by devices on your network to resolve DNS queries. `override_local_dns` must also be true to prefer these nameservers over local DNS configuration.
         :param pulumi.Input[_builtins.bool] override_local_dns: When enabled, use the configured DNS servers in `nameservers` to resolve names outside the tailnet. When disabled, devices will prefer their local DNS configuration. Defaults to false.
@@ -264,6 +266,7 @@ class DnsConfiguration(pulumi.CustomResource):
         $ pulumi import tailscale:index/dnsConfiguration:DnsConfiguration sample_configuration dns_configuration
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] magic_dns: Whether or not to enable MagicDNS. Defaults to true.
@@ -335,6 +338,7 @@ class DnsConfiguration(pulumi.CustomResource):
         ```sh
         $ pulumi import tailscale:index/dnsConfiguration:DnsConfiguration sample_configuration dns_configuration
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DnsConfigurationArgs args: The arguments to use to populate this resource's properties.

@@ -26,6 +26,7 @@ class PostureIntegrationArgs:
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PostureIntegration resource.
+
         :param pulumi.Input[_builtins.str] client_secret: The secret (auth key, token, etc.) used to authenticate with the provider.
         :param pulumi.Input[_builtins.str] posture_provider: The third-party provider for posture data. Valid values are `falcon`, `fleet`, `huntress`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
         :param pulumi.Input[_builtins.str] client_id: Unique identifier for your client.
@@ -112,6 +113,7 @@ class _PostureIntegrationState:
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PostureIntegration resources.
+
         :param pulumi.Input[_builtins.str] client_id: Unique identifier for your client.
         :param pulumi.Input[_builtins.str] client_secret: The secret (auth key, token, etc.) used to authenticate with the provider.
         :param pulumi.Input[_builtins.str] cloud_id: Identifies which of the provider's clouds to integrate with.
@@ -228,6 +230,7 @@ class PostureIntegration(pulumi.CustomResource):
         $ pulumi import tailscale:index/postureIntegration:PostureIntegration sample_posture_integration 123456789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] client_id: Unique identifier for your client.
@@ -267,6 +270,7 @@ class PostureIntegration(pulumi.CustomResource):
         ```sh
         $ pulumi import tailscale:index/postureIntegration:PostureIntegration sample_posture_integration 123456789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param PostureIntegrationArgs args: The arguments to use to populate this resource's properties.

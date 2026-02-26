@@ -28,6 +28,7 @@ class FederatedIdentityArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a FederatedIdentity resource.
+
         :param pulumi.Input[_builtins.str] issuer: The issuer of the OIDC identity token used in the token exchange. Must be a valid and publicly reachable https:// URL.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Scopes to grant to the federated identity. See https://tailscale.com/kb/1623/ for a list of available scopes.
         :param pulumi.Input[_builtins.str] subject: The pattern used when matching against the `sub` claim from an OIDC identity token. Patterns can include `*` characters to match against any character.
@@ -148,6 +149,7 @@ class _FederatedIdentityState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FederatedIdentity resources.
+
         :param pulumi.Input[_builtins.str] audience: The value used when matching against the `aud` claim from an OIDC identity token. Specifying the audience is optional as Tailscale will generate a secure audience at creation time by default.   It is recommended to let Tailscale generate the audience unless the identity provider you are integrating with requires a specific audience format.
         :param pulumi.Input[_builtins.str] created_at: The creation timestamp of the key in RFC3339 format
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_claim_rules: A map of claim names to pattern strings used to match against arbitrary claims in the OIDC identity token. Patterns can include `*` characters to match against any character.
@@ -346,6 +348,7 @@ class FederatedIdentity(pulumi.CustomResource):
         $ pulumi import tailscale:index/federatedIdentity:FederatedIdentity example k1234511CNTRL-kZDRvszg8621CNTRL
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] audience: The value used when matching against the `aud` claim from an OIDC identity token. Specifying the audience is optional as Tailscale will generate a secure audience at creation time by default.   It is recommended to let Tailscale generate the audience unless the identity provider you are integrating with requires a specific audience format.
@@ -392,6 +395,7 @@ class FederatedIdentity(pulumi.CustomResource):
         ```sh
         $ pulumi import tailscale:index/federatedIdentity:FederatedIdentity example k1234511CNTRL-kZDRvszg8621CNTRL
         ```
+
 
         :param str resource_name: The name of the resource.
         :param FederatedIdentityArgs args: The arguments to use to populate this resource's properties.

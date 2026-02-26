@@ -24,6 +24,7 @@ class WebhookArgs:
                  provider_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Webhook resource.
+
         :param pulumi.Input[_builtins.str] endpoint_url: The endpoint to send webhook events to.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] subscriptions: The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
         :param pulumi.Input[_builtins.str] provider_type: The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
@@ -79,6 +80,7 @@ class _WebhookState:
                  subscriptions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Webhook resources.
+
         :param pulumi.Input[_builtins.str] endpoint_url: The endpoint to send webhook events to.
         :param pulumi.Input[_builtins.str] provider_type: The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
         :param pulumi.Input[_builtins.str] secret: The secret used for signing webhook payloads. Only set on resource creation. See https://tailscale.com/kb/1213/webhooks#webhook-secret for more information.
@@ -180,6 +182,7 @@ class Webhook(pulumi.CustomResource):
         $ pulumi import tailscale:index/webhook:Webhook sample_webhook 123456789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] endpoint_url: The endpoint to send webhook events to.
@@ -219,6 +222,7 @@ class Webhook(pulumi.CustomResource):
         ```sh
         $ pulumi import tailscale:index/webhook:Webhook sample_webhook 123456789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param WebhookArgs args: The arguments to use to populate this resource's properties.

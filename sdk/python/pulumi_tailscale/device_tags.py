@@ -23,6 +23,7 @@ class DeviceTagsArgs:
                  tags: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         """
         The set of arguments for constructing a DeviceTags resource.
+
         :param pulumi.Input[_builtins.str] device_id: The device to set tags for
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to apply to the device
         """
@@ -61,6 +62,7 @@ class _DeviceTagsState:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering DeviceTags resources.
+
         :param pulumi.Input[_builtins.str] device_id: The device to set tags for
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to apply to the device
         """
@@ -134,6 +136,7 @@ class DeviceTags(pulumi.CustomResource):
         $ pulumi import tailscale:index/deviceTags:DeviceTags sample 123456789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] device_id: The device to set tags for
@@ -175,6 +178,7 @@ class DeviceTags(pulumi.CustomResource):
         ```sh
         $ pulumi import tailscale:index/deviceTags:DeviceTags sample 123456789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeviceTagsArgs args: The arguments to use to populate this resource's properties.

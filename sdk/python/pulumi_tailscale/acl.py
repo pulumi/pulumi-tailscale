@@ -24,6 +24,7 @@ class AclArgs:
                  reset_acl_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Acl resource.
+
         :param pulumi.Input[_builtins.str] acl: The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
         :param pulumi.Input[_builtins.bool] overwrite_existing_content: If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
         :param pulumi.Input[_builtins.bool] reset_acl_on_destroy: If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
@@ -79,6 +80,7 @@ class _AclState:
                  reset_acl_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Acl resources.
+
         :param pulumi.Input[_builtins.str] acl: The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
         :param pulumi.Input[_builtins.bool] overwrite_existing_content: If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
         :param pulumi.Input[_builtins.bool] reset_acl_on_destroy: If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
@@ -180,6 +182,7 @@ class Acl(pulumi.CustomResource):
         $ pulumi import tailscale:index/acl:Acl sample_acl acl
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] acl: The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
@@ -234,6 +237,7 @@ class Acl(pulumi.CustomResource):
         ```sh
         $ pulumi import tailscale:index/acl:Acl sample_acl acl
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AclArgs args: The arguments to use to populate this resource's properties.

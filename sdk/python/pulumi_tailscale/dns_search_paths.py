@@ -22,6 +22,7 @@ class DnsSearchPathsArgs:
                  search_paths: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         """
         The set of arguments for constructing a DnsSearchPaths resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] search_paths: Devices on your network will use these domain suffixes to resolve DNS names.
         """
         pulumi.set(__self__, "search_paths", search_paths)
@@ -45,6 +46,7 @@ class _DnsSearchPathsState:
                  search_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering DnsSearchPaths resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] search_paths: Devices on your network will use these domain suffixes to resolve DNS names.
         """
         if search_paths is not None:
@@ -93,6 +95,7 @@ class DnsSearchPaths(pulumi.CustomResource):
         $ pulumi import tailscale:index/dnsSearchPaths:DnsSearchPaths sample dns_search_paths
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] search_paths: Devices on your network will use these domain suffixes to resolve DNS names.
@@ -124,6 +127,7 @@ class DnsSearchPaths(pulumi.CustomResource):
         ```sh
         $ pulumi import tailscale:index/dnsSearchPaths:DnsSearchPaths sample dns_search_paths
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DnsSearchPathsArgs args: The arguments to use to populate this resource's properties.
