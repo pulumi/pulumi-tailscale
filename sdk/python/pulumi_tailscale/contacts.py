@@ -26,6 +26,7 @@ class ContactsArgs:
                  support: pulumi.Input['ContactsSupportArgs']):
         """
         The set of arguments for constructing a Contacts resource.
+
         :param pulumi.Input['ContactsAccountArgs'] account: Configuration for communications about important changes to your tailnet
         :param pulumi.Input['ContactsSecurityArgs'] security: Configuration for communications about security issues affecting your tailnet
         :param pulumi.Input['ContactsSupportArgs'] support: Configuration for communications about misconfigurations in your tailnet
@@ -79,6 +80,7 @@ class _ContactsState:
                  support: Optional[pulumi.Input['ContactsSupportArgs']] = None):
         """
         Input properties used for looking up and filtering Contacts resources.
+
         :param pulumi.Input['ContactsAccountArgs'] account: Configuration for communications about important changes to your tailnet
         :param pulumi.Input['ContactsSecurityArgs'] security: Configuration for communications about security issues affecting your tailnet
         :param pulumi.Input['ContactsSupportArgs'] support: Configuration for communications about misconfigurations in your tailnet
@@ -170,6 +172,7 @@ class Contacts(pulumi.CustomResource):
         $ pulumi import tailscale:index/contacts:Contacts sample_contacts contacts
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']] account: Configuration for communications about important changes to your tailnet
@@ -214,6 +217,7 @@ class Contacts(pulumi.CustomResource):
         ```sh
         $ pulumi import tailscale:index/contacts:Contacts sample_contacts contacts
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ContactsArgs args: The arguments to use to populate this resource's properties.

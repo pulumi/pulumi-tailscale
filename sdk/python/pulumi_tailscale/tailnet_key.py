@@ -29,6 +29,7 @@ class TailnetKeyArgs:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TailnetKey resource.
+
         :param pulumi.Input[_builtins.str] description: A description of the key consisting of alphanumeric characters. Defaults to `""`.
         :param pulumi.Input[_builtins.bool] ephemeral: Indicates if the key is ephemeral. Defaults to `false`.
         :param pulumi.Input[_builtins.int] expiry: The expiry of the key in seconds. Defaults to `7776000` (90 days).
@@ -169,6 +170,7 @@ class _TailnetKeyState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TailnetKey resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation timestamp of the key in RFC3339 format
         :param pulumi.Input[_builtins.str] description: A description of the key consisting of alphanumeric characters. Defaults to `""`.
         :param pulumi.Input[_builtins.bool] ephemeral: Indicates if the key is ephemeral. Defaults to `false`.
@@ -395,6 +397,7 @@ class TailnetKey(pulumi.CustomResource):
         > ** Note ** the `key` attribute will not be populated on import as this attribute is only populated
         on resource creation.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: A description of the key consisting of alphanumeric characters. Defaults to `""`.
@@ -439,6 +442,7 @@ class TailnetKey(pulumi.CustomResource):
 
         > ** Note ** the `key` attribute will not be populated on import as this attribute is only populated
         on resource creation.
+
 
         :param str resource_name: The name of the resource.
         :param TailnetKeyArgs args: The arguments to use to populate this resource's properties.

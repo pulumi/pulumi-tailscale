@@ -22,6 +22,7 @@ class DnsPreferencesArgs:
                  magic_dns: pulumi.Input[_builtins.bool]):
         """
         The set of arguments for constructing a DnsPreferences resource.
+
         :param pulumi.Input[_builtins.bool] magic_dns: Whether or not to enable magic DNS
         """
         pulumi.set(__self__, "magic_dns", magic_dns)
@@ -45,6 +46,7 @@ class _DnsPreferencesState:
                  magic_dns: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering DnsPreferences resources.
+
         :param pulumi.Input[_builtins.bool] magic_dns: Whether or not to enable magic DNS
         """
         if magic_dns is not None:
@@ -93,6 +95,7 @@ class DnsPreferences(pulumi.CustomResource):
         $ pulumi import tailscale:index/dnsPreferences:DnsPreferences sample_preferences dns_preferences
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] magic_dns: Whether or not to enable magic DNS
@@ -124,6 +127,7 @@ class DnsPreferences(pulumi.CustomResource):
         ```sh
         $ pulumi import tailscale:index/dnsPreferences:DnsPreferences sample_preferences dns_preferences
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DnsPreferencesArgs args: The arguments to use to populate this resource's properties.

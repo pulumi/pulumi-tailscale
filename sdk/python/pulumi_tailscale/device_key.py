@@ -23,6 +23,7 @@ class DeviceKeyArgs:
                  key_expiry_disabled: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a DeviceKey resource.
+
         :param pulumi.Input[_builtins.str] device_id: The device to update the key properties of
         :param pulumi.Input[_builtins.bool] key_expiry_disabled: Determines whether or not the device's key will expire. Defaults to `false`.
         """
@@ -62,6 +63,7 @@ class _DeviceKeyState:
                  key_expiry_disabled: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering DeviceKey resources.
+
         :param pulumi.Input[_builtins.str] device_id: The device to update the key properties of
         :param pulumi.Input[_builtins.bool] key_expiry_disabled: Determines whether or not the device's key will expire. Defaults to `false`.
         """
@@ -135,6 +137,7 @@ class DeviceKey(pulumi.CustomResource):
         $ pulumi import tailscale:index/deviceKey:DeviceKey sample 123456789
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] device_id: The device to update the key properties of
@@ -176,6 +179,7 @@ class DeviceKey(pulumi.CustomResource):
         ```sh
         $ pulumi import tailscale:index/deviceKey:DeviceKey sample 123456789
         ```
+
 
         :param str resource_name: The name of the resource.
         :param DeviceKeyArgs args: The arguments to use to populate this resource's properties.

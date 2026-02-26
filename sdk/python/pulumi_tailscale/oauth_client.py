@@ -24,6 +24,7 @@ class OauthClientArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a OauthClient resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
         :param pulumi.Input[_builtins.str] description: A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "auth_keys".
@@ -83,6 +84,7 @@ class _OauthClientState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OauthClient resources.
+
         :param pulumi.Input[_builtins.str] created_at: The creation timestamp of the key in RFC3339 format
         :param pulumi.Input[_builtins.str] description: A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
         :param pulumi.Input[_builtins.str] key: The client secret, also known as the key. Used with the client ID to generate access tokens.
@@ -226,6 +228,7 @@ class OauthClient(pulumi.CustomResource):
         $ pulumi import tailscale:index/oauthClient:OauthClient example k1234511CNTRL
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
@@ -262,6 +265,7 @@ class OauthClient(pulumi.CustomResource):
         ```sh
         $ pulumi import tailscale:index/oauthClient:OauthClient example k1234511CNTRL
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OauthClientArgs args: The arguments to use to populate this resource's properties.

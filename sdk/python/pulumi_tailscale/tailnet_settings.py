@@ -32,6 +32,7 @@ class TailnetSettingsArgs:
                  users_role_allowed_to_join_external_tailnet: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a TailnetSettings resource.
+
         :param pulumi.Input[_builtins.str] acls_external_link: Link to your external ACL definition or management system. Must be a valid URL.
         :param pulumi.Input[_builtins.bool] acls_externally_managed_on: Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
         :param pulumi.Input[_builtins.bool] devices_approval_on: Whether device approval is enabled for the tailnet
@@ -216,6 +217,7 @@ class _TailnetSettingsState:
                  users_role_allowed_to_join_external_tailnet: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TailnetSettings resources.
+
         :param pulumi.Input[_builtins.str] acls_external_link: Link to your external ACL definition or management system. Must be a valid URL.
         :param pulumi.Input[_builtins.bool] acls_externally_managed_on: Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
         :param pulumi.Input[_builtins.bool] devices_approval_on: Whether device approval is enabled for the tailnet
@@ -433,6 +435,7 @@ class TailnetSettings(pulumi.CustomResource):
         $ pulumi import tailscale:index/tailnetSettings:TailnetSettings sample_preferences tailnet_settings
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] acls_external_link: Link to your external ACL definition or management system. Must be a valid URL.
@@ -483,6 +486,7 @@ class TailnetSettings(pulumi.CustomResource):
         ```sh
         $ pulumi import tailscale:index/tailnetSettings:TailnetSettings sample_preferences tailnet_settings
         ```
+
 
         :param str resource_name: The name of the resource.
         :param TailnetSettingsArgs args: The arguments to use to populate this resource's properties.

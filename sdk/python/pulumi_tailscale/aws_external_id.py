@@ -32,6 +32,7 @@ class _AwsExternalIdState:
                  tailscale_aws_account_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AwsExternalId resources.
+
         :param pulumi.Input[_builtins.str] external_id: The External ID that Tailscale will supply when assuming your role. You must reference this in your IAM role's trust policy. See https://docs.aws.amazon.com/IAM/latest/UserGuide/id*roles*common-scenarios_third-party.html for more information on external IDs.
         :param pulumi.Input[_builtins.str] tailscale_aws_account_id: The AWS account from which Tailscale will assume your role. You must reference this in your IAM role's trust policy. See https://docs.aws.amazon.com/IAM/latest/UserGuide/id*roles*common-scenarios_third-party.html for more information on external IDs.
         """
@@ -119,6 +120,7 @@ class AwsExternalId(pulumi.CustomResource):
             policy=logs_writer.json)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -174,6 +176,7 @@ class AwsExternalId(pulumi.CustomResource):
             role=logs_writer_iam_role.id,
             policy=logs_writer.json)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AwsExternalIdArgs args: The arguments to use to populate this resource's properties.
