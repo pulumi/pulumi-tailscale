@@ -35,7 +35,7 @@ import (
 //				return err
 //			}
 //			_, err = tailscale.NewDeviceAuthorization(ctx, "sample_authorization", &tailscale.DeviceAuthorizationArgs{
-//				DeviceId:   pulumi.String(sampleDevice.NodeId),
+//				DeviceId:   pulumi.String(pulumi.String(sampleDevice.NodeId)),
 //				Authorized: pulumi.Bool(true),
 //			})
 //			if err != nil {

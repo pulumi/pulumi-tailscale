@@ -54,7 +54,7 @@ import (
 //			}
 //			json0 := string(tmpJSON0)
 //			_, err = tailscale.NewAcl(ctx, "as_json", &tailscale.AclArgs{
-//				Acl: pulumi.String(json0),
+//				Acl: pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err
