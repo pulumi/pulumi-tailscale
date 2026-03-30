@@ -90,7 +90,7 @@ import (
 //				LogType:         pulumi.String("configuration"),
 //				DestinationType: pulumi.String("gcs"),
 //				GcsBucket:       pulumi.String("example-gcs-bucket"),
-//				GcsCredentials:  pulumi.String(json0),
+//				GcsCredentials:  pulumi.String(pulumi.String(json0)),
 //			})
 //			if err != nil {
 //				return err

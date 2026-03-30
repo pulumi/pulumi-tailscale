@@ -35,7 +35,7 @@ import (
 //				return err
 //			}
 //			_, err = tailscale.NewDeviceTags(ctx, "sample_tags", &tailscale.DeviceTagsArgs{
-//				DeviceId: pulumi.String(sampleDevice.NodeId),
+//				DeviceId: pulumi.String(pulumi.String(sampleDevice.NodeId)),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("room:bedroom"),
 //				},
