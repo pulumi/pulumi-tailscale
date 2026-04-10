@@ -22,7 +22,7 @@ namespace Pulumi.Tailscale
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var sampleTailnetSettings = new Tailscale.TailnetSettings("sample_tailnet_settings", new()
+    ///     var sampleTailnetSettings = new Tailscale.Index.TailnetSettings("sample_tailnet_settings", new()
     ///     {
     ///         AclsExternallyManagedOn = true,
     ///         AclsExternalLink = "https://github.com/octocat/Hello-World",

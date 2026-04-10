@@ -27,7 +27,7 @@ namespace Pulumi.Tailscale
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var asJson = new Tailscale.Acl("as_json", new()
+    ///     var asJson = new Tailscale.Index.Acl("as_json", new()
     ///     {
     ///         AclJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
@@ -52,7 +52,7 @@ namespace Pulumi.Tailscale
     ///         }),
     ///     });
     /// 
-    ///     var asHujson = new Tailscale.Acl("as_hujson", new()
+    ///     var asHujson = new Tailscale.Index.Acl("as_hujson", new()
     ///     {
     ///         AclJson = @"  {
     ///     // Comments in HuJSON policy are preserved when the policy is applied.

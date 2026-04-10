@@ -22,7 +22,7 @@ namespace Pulumi.Tailscale
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var samplePostureIntegration = new Tailscale.PostureIntegration("sample_posture_integration", new()
+    ///     var samplePostureIntegration = new Tailscale.Index.PostureIntegration("sample_posture_integration", new()
     ///     {
     ///         PostureProvider = "falcon",
     ///         CloudId = "us-1",

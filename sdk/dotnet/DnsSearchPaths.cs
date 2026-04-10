@@ -22,7 +22,7 @@ namespace Pulumi.Tailscale
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var sampleSearchPaths = new Tailscale.DnsSearchPaths("sample_search_paths", new()
+    ///     var sampleSearchPaths = new Tailscale.Index.DnsSearchPaths("sample_search_paths", new()
     ///     {
     ///         SearchPaths = new[]
     ///         {

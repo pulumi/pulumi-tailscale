@@ -26,12 +26,12 @@ namespace Pulumi.Tailscale
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var sampleDevice = Tailscale.GetDevice.Invoke(new()
+    ///     var sampleDevice = Tailscale.Index.GetDevice.Invoke(new()
     ///     {
     ///         Name = "device.example.com",
     ///     });
     /// 
-    ///     var sampleRoutes = new Tailscale.DeviceSubnetRoutes("sample_routes", new()
+    ///     var sampleRoutes = new Tailscale.Index.DeviceSubnetRoutes("sample_routes", new()
     ///     {
     ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.NodeId),
     ///         Routes = new[]
@@ -42,7 +42,7 @@ namespace Pulumi.Tailscale
     ///         },
     ///     });
     /// 
-    ///     var sampleExitNode = new Tailscale.DeviceSubnetRoutes("sample_exit_node", new()
+    ///     var sampleExitNode = new Tailscale.Index.DeviceSubnetRoutes("sample_exit_node", new()
     ///     {
     ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.NodeId),
     ///         Routes = new[]

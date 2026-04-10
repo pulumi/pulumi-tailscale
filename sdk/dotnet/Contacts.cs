@@ -24,7 +24,7 @@ namespace Pulumi.Tailscale
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var sampleContacts = new Tailscale.Contacts("sample_contacts", new()
+    ///     var sampleContacts = new Tailscale.Index.Contacts("sample_contacts", new()
     ///     {
     ///         Account = new Tailscale.Inputs.ContactsAccountArgs
     ///         {
