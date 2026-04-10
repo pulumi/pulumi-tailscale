@@ -24,7 +24,7 @@ namespace Pulumi.Tailscale
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var all_users = Tailscale.GetUsers.Invoke();
+        ///     var all_users = Tailscale.Index.GetUsers.Invoke();
         /// 
         /// });
         /// ```
@@ -45,7 +45,7 @@ namespace Pulumi.Tailscale
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var all_users = Tailscale.GetUsers.Invoke();
+        ///     var all_users = Tailscale.Index.GetUsers.Invoke();
         /// 
         /// });
         /// ```
@@ -66,7 +66,7 @@ namespace Pulumi.Tailscale
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var all_users = Tailscale.GetUsers.Invoke();
+        ///     var all_users = Tailscale.Index.GetUsers.Invoke();
         /// 
         /// });
         /// ```

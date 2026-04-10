@@ -22,12 +22,12 @@ namespace Pulumi.Tailscale
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var sampleDevice = Tailscale.GetDevice.Invoke(new()
+    ///     var sampleDevice = Tailscale.Index.GetDevice.Invoke(new()
     ///     {
     ///         Name = "device.example.com",
     ///     });
     /// 
-    ///     var sampleAuthorization = new Tailscale.DeviceAuthorization("sample_authorization", new()
+    ///     var sampleAuthorization = new Tailscale.Index.DeviceAuthorization("sample_authorization", new()
     ///     {
     ///         DeviceId = sampleDevice.Apply(getDeviceResult =&gt; getDeviceResult.NodeId),
     ///         Authorized = true,

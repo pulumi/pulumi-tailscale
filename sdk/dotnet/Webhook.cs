@@ -22,7 +22,7 @@ namespace Pulumi.Tailscale
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var sampleWebhook = new Tailscale.Webhook("sample_webhook", new()
+    ///     var sampleWebhook = new Tailscale.Index.Webhook("sample_webhook", new()
     ///     {
     ///         EndpointUrl = "https://example.com/webhook/endpoint",
     ///         ProviderType = "slack",

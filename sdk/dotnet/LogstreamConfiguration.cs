@@ -24,7 +24,7 @@ namespace Pulumi.Tailscale
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Example configuration for a non-S3 logstreaming endpoint
-    ///     var sampleLogstreamConfiguration = new Tailscale.LogstreamConfiguration("sample_logstream_configuration", new()
+    ///     var sampleLogstreamConfiguration = new Tailscale.Index.LogstreamConfiguration("sample_logstream_configuration", new()
     ///     {
     ///         LogType = "configuration",
     ///         DestinationType = "panther",
@@ -33,7 +33,7 @@ namespace Pulumi.Tailscale
     ///     });
     /// 
     ///     // Example configuration for an AWS S3 logstreaming endpoint
-    ///     var sampleLogstreamConfigurationS3 = new Tailscale.LogstreamConfiguration("sample_logstream_configuration_s3", new()
+    ///     var sampleLogstreamConfigurationS3 = new Tailscale.Index.LogstreamConfiguration("sample_logstream_configuration_s3", new()
     ///     {
     ///         LogType = "configuration",
     ///         DestinationType = "s3",
@@ -45,7 +45,7 @@ namespace Pulumi.Tailscale
     ///     });
     /// 
     ///     // Example configuration for an S3-compatible logstreaming endpoint
-    ///     var sampleLogstreamConfigurationS3Compatible = new Tailscale.LogstreamConfiguration("sample_logstream_configuration_s3_compatible", new()
+    ///     var sampleLogstreamConfigurationS3Compatible = new Tailscale.Index.LogstreamConfiguration("sample_logstream_configuration_s3_compatible", new()
     ///     {
     ///         LogType = "configuration",
     ///         DestinationType = "s3",
@@ -58,7 +58,7 @@ namespace Pulumi.Tailscale
     ///     });
     /// 
     ///     // Example configuration for a GCS logstreaming endpoint using workload identity
-    ///     var sampleLogstreamConfigurationGcsWif = new Tailscale.LogstreamConfiguration("sample_logstream_configuration_gcs_wif", new()
+    ///     var sampleLogstreamConfigurationGcsWif = new Tailscale.Index.LogstreamConfiguration("sample_logstream_configuration_gcs_wif", new()
     ///     {
     ///         LogType = "configuration",
     ///         DestinationType = "gcs",

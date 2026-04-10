@@ -22,7 +22,7 @@ namespace Pulumi.Tailscale
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleFederatedIdentity = new Tailscale.FederatedIdentity("example_federated_identity", new()
+    ///     var exampleFederatedIdentity = new Tailscale.Index.FederatedIdentity("example_federated_identity", new()
     ///     {
     ///         Description = "Example federated identity",
     ///         Scopes = new[]

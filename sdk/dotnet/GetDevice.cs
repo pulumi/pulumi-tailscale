@@ -24,13 +24,13 @@ namespace Pulumi.Tailscale
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var sampleDevice = Tailscale.GetDevice.Invoke(new()
+        ///     var sampleDevice = Tailscale.Index.GetDevice.Invoke(new()
         ///     {
         ///         Name = "device1.example.ts.net",
         ///         WaitFor = "60s",
         ///     });
         /// 
-        ///     var sampleDevice2 = Tailscale.GetDevice.Invoke(new()
+        ///     var sampleDevice2 = Tailscale.Index.GetDevice.Invoke(new()
         ///     {
         ///         Hostname = "device2",
         ///         WaitFor = "60s",
@@ -55,13 +55,13 @@ namespace Pulumi.Tailscale
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var sampleDevice = Tailscale.GetDevice.Invoke(new()
+        ///     var sampleDevice = Tailscale.Index.GetDevice.Invoke(new()
         ///     {
         ///         Name = "device1.example.ts.net",
         ///         WaitFor = "60s",
         ///     });
         /// 
-        ///     var sampleDevice2 = Tailscale.GetDevice.Invoke(new()
+        ///     var sampleDevice2 = Tailscale.Index.GetDevice.Invoke(new()
         ///     {
         ///         Hostname = "device2",
         ///         WaitFor = "60s",
@@ -86,13 +86,13 @@ namespace Pulumi.Tailscale
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var sampleDevice = Tailscale.GetDevice.Invoke(new()
+        ///     var sampleDevice = Tailscale.Index.GetDevice.Invoke(new()
         ///     {
         ///         Name = "device1.example.ts.net",
         ///         WaitFor = "60s",
         ///     });
         /// 
-        ///     var sampleDevice2 = Tailscale.GetDevice.Invoke(new()
+        ///     var sampleDevice2 = Tailscale.Index.GetDevice.Invoke(new()
         ///     {
         ///         Hostname = "device2",
         ///         WaitFor = "60s",

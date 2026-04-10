@@ -24,7 +24,7 @@ namespace Pulumi.Tailscale
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var sampleDevices = Tailscale.GetDevices.Invoke(new()
+        ///     var sampleDevices = Tailscale.Index.GetDevices.Invoke(new()
         ///     {
         ///         NamePrefix = "example-",
         ///         Filters = new[]
@@ -68,7 +68,7 @@ namespace Pulumi.Tailscale
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var sampleDevices = Tailscale.GetDevices.Invoke(new()
+        ///     var sampleDevices = Tailscale.Index.GetDevices.Invoke(new()
         ///     {
         ///         NamePrefix = "example-",
         ///         Filters = new[]
@@ -112,7 +112,7 @@ namespace Pulumi.Tailscale
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var sampleDevices = Tailscale.GetDevices.Invoke(new()
+        ///     var sampleDevices = Tailscale.Index.GetDevices.Invoke(new()
         ///     {
         ///         NamePrefix = "example-",
         ///         Filters = new[]

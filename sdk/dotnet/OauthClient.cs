@@ -22,7 +22,7 @@ namespace Pulumi.Tailscale
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var sampleClient = new Tailscale.OauthClient("sample_client", new()
+    ///     var sampleClient = new Tailscale.Index.OauthClient("sample_client", new()
     ///     {
     ///         Description = "sample client",
     ///         Scopes = new[]

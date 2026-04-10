@@ -24,7 +24,7 @@ namespace Pulumi.Tailscale
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Tailscale.Get4Via6.Invoke(new()
+        ///     var example = Tailscale.Index.Get4Via6.Invoke(new()
         ///     {
         ///         Site = 7,
         ///         Cidr = "10.1.1.0/24",
@@ -49,7 +49,7 @@ namespace Pulumi.Tailscale
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Tailscale.Get4Via6.Invoke(new()
+        ///     var example = Tailscale.Index.Get4Via6.Invoke(new()
         ///     {
         ///         Site = 7,
         ///         Cidr = "10.1.1.0/24",
@@ -74,7 +74,7 @@ namespace Pulumi.Tailscale
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Tailscale.Get4Via6.Invoke(new()
+        ///     var example = Tailscale.Index.Get4Via6.Invoke(new()
         ///     {
         ///         Site = 7,
         ///         Cidr = "10.1.1.0/24",

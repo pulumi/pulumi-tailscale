@@ -22,7 +22,7 @@ namespace Pulumi.Tailscale
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var sampleKey = new Tailscale.TailnetKey("sample_key", new()
+    ///     var sampleKey = new Tailscale.Index.TailnetKey("sample_key", new()
     ///     {
     ///         Reusable = true,
     ///         Ephemeral = false,

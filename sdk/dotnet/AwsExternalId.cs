@@ -23,7 +23,7 @@ namespace Pulumi.Tailscale
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var prod = new Tailscale.AwsExternalId("prod");
+    ///     var prod = new Tailscale.Index.AwsExternalId("prod");
     /// 
     ///     var tailscaleAssumeRole = Aws.Index.IamPolicyDocument.Invoke(new()
     ///     {
@@ -68,7 +68,7 @@ namespace Pulumi.Tailscale
     ///         AssumeRolePolicy = tailscaleAssumeRole.Json,
     ///     });
     /// 
-    ///     var configurationLogs = new Tailscale.LogstreamConfiguration("configuration_logs", new()
+    ///     var configurationLogs = new Tailscale.Index.LogstreamConfiguration("configuration_logs", new()
     ///     {
     ///         LogType = "configuration",
     ///         DestinationType = "s3",
