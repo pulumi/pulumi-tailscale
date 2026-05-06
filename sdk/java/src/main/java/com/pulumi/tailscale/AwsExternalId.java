@@ -33,8 +33,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.tailscale.LogstreamConfigurationArgs;
  * import com.pulumi.aws.IamRolePolicy;
  * import com.pulumi.aws.IamRolePolicyArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -48,16 +48,16 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var prod = new AwsExternalId("prod");
  * 
- *         final var tailscaleAssumeRole = AwsFunctions.IamPolicyDocument(Map.of("statement", List.of(Map.ofEntries(
- *             Map.entry("actions", List.of("sts:AssumeRole")),
- *             Map.entry("principals", List.of(Map.ofEntries(
+ *         final var tailscaleAssumeRole = AwsFunctions.IamPolicyDocument(Map.of("statement", Arrays.asList(Map.ofEntries(
+ *             Map.entry("actions", Arrays.asList("sts:AssumeRole")),
+ *             Map.entry("principals", Arrays.asList(Map.ofEntries(
  *                 Map.entry("type", "AWS"),
- *                 Map.entry("identifiers", List.of(prod.tailscaleAwsAccountId()))
+ *                 Map.entry("identifiers", Arrays.asList(prod.tailscaleAwsAccountId()))
  *             ))),
- *             Map.entry("condition", List.of(Map.ofEntries(
+ *             Map.entry("condition", Arrays.asList(Map.ofEntries(
  *                 Map.entry("test", "StringEquals"),
  *                 Map.entry("variable", "sts:ExternalId"),
- *                 Map.entry("values", List.of(prod.externalId()))
+ *                 Map.entry("values", Arrays.asList(prod.externalId()))
  *             )))
  *         ))));
  * 
@@ -76,13 +76,13 @@ import javax.annotation.Nullable;
  *             .s3ExternalId(prod.externalId())
  *             .build());
  * 
- *         final var logsWriter = AwsFunctions.IamPolicyDocument(Map.of("statement", Map.ofEntries(
+ *         final var logsWriter = AwsFunctions.IamPolicyDocument(Map.of("statement", Arrays.asList(Map.ofEntries(
  *             Map.entry("effect", "Allow"),
- *             Map.entry("actions", "s3:*"),
- *             Map.entry("resources",             
+ *             Map.entry("actions", Arrays.asList("s3:*")),
+ *             Map.entry("resources", Arrays.asList(            
  *                 "arn:aws:s3:::example-bucket",
- *                 "arn:aws:s3:::example-bucket/*")
- *         )));
+ *                 "arn:aws:s3:::example-bucket/*"))
+ *         ))));
  * 
  *         var logsWriterIamRolePolicy = new IamRolePolicy("logsWriterIamRolePolicy", IamRolePolicyArgs.builder()
  *             .role(logsWriterIamRole.id())
