@@ -21,9 +21,9 @@ class PostureIntegrationArgs:
     def __init__(__self__, *,
                  client_secret: pulumi.Input[_builtins.str],
                  posture_provider: pulumi.Input[_builtins.str],
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a PostureIntegration resource.
 
@@ -68,49 +68,49 @@ class PostureIntegrationArgs:
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier for your client.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="cloudId")
-    def cloud_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Identifies which of the provider's clouds to integrate with.
         """
         return pulumi.get(self, "cloud_id")
 
     @cloud_id.setter
-    def cloud_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_id", value)
 
     @_builtins.property
     @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tenant_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
         """
         return pulumi.get(self, "tenant_id")
 
     @tenant_id.setter
-    def tenant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tenant_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tenant_id", value)
 
 
 @pulumi.input_type
 class _PostureIntegrationState:
     def __init__(__self__, *,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 posture_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 posture_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PostureIntegration resources.
 
@@ -133,62 +133,62 @@ class _PostureIntegrationState:
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier for your client.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret (auth key, token, etc.) used to authenticate with the provider.
         """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="cloudId")
-    def cloud_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Identifies which of the provider's clouds to integrate with.
         """
         return pulumi.get(self, "cloud_id")
 
     @cloud_id.setter
-    def cloud_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_id", value)
 
     @_builtins.property
     @pulumi.getter(name="postureProvider")
-    def posture_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def posture_provider(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The third-party provider for posture data. Valid values are `falcon`, `fleet`, `huntress`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
         """
         return pulumi.get(self, "posture_provider")
 
     @posture_provider.setter
-    def posture_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def posture_provider(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "posture_provider", value)
 
     @_builtins.property
     @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tenant_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
         """
         return pulumi.get(self, "tenant_id")
 
     @tenant_id.setter
-    def tenant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tenant_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tenant_id", value)
 
 
@@ -198,11 +198,11 @@ class PostureIntegration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 posture_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 posture_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The posture_integration resource allows you to manage integrations with device posture data providers. See https://tailscale.com/kb/1288/device-posture for more information.
@@ -287,11 +287,11 @@ class PostureIntegration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 cloud_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 posture_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 posture_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -322,11 +322,11 @@ class PostureIntegration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-            cloud_id: Optional[pulumi.Input[_builtins.str]] = None,
-            posture_provider: Optional[pulumi.Input[_builtins.str]] = None,
-            tenant_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'PostureIntegration':
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
+            posture_provider: pulumi.Input[Optional[_builtins.str]] = None,
+            tenant_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'PostureIntegration':
         """
         Get an existing PostureIntegration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

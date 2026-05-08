@@ -102,9 +102,9 @@ export interface GetUserOutputArgs {
     /**
      * The unique identifier for the user.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * The emailish login name of the user.
      */
-    loginName?: pulumi.Input<string>;
+    loginName?: pulumi.Input<string | undefined>;
 }

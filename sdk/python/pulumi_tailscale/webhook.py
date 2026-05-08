@@ -21,7 +21,7 @@ class WebhookArgs:
     def __init__(__self__, *,
                  endpoint_url: pulumi.Input[_builtins.str],
                  subscriptions: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 provider_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 provider_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Webhook resource.
 
@@ -60,24 +60,24 @@ class WebhookArgs:
 
     @_builtins.property
     @pulumi.getter(name="providerType")
-    def provider_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
         """
         return pulumi.get(self, "provider_type")
 
     @provider_type.setter
-    def provider_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_type", value)
 
 
 @pulumi.input_type
 class _WebhookState:
     def __init__(__self__, *,
-                 endpoint_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 subscriptions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 endpoint_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 subscriptions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Webhook resources.
 
@@ -97,50 +97,50 @@ class _WebhookState:
 
     @_builtins.property
     @pulumi.getter(name="endpointUrl")
-    def endpoint_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The endpoint to send webhook events to.
         """
         return pulumi.get(self, "endpoint_url")
 
     @endpoint_url.setter
-    def endpoint_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint_url", value)
 
     @_builtins.property
     @pulumi.getter(name="providerType")
-    def provider_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
         """
         return pulumi.get(self, "provider_type")
 
     @provider_type.setter
-    def provider_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret used for signing webhook payloads. Only set on resource creation. See https://tailscale.com/kb/1213/webhooks#webhook-secret for more information.
         """
         return pulumi.get(self, "secret")
 
     @secret.setter
-    def secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret", value)
 
     @_builtins.property
     @pulumi.getter
-    def subscriptions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def subscriptions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
         """
         return pulumi.get(self, "subscriptions")
 
     @subscriptions.setter
-    def subscriptions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def subscriptions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "subscriptions", value)
 
 
@@ -150,9 +150,9 @@ class Webhook(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 endpoint_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 subscriptions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 endpoint_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 subscriptions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         The webhook resource allows you to configure webhook endpoints for your Tailscale network. See https://tailscale.com/kb/1213/webhooks for more information.
@@ -239,9 +239,9 @@ class Webhook(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 endpoint_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 subscriptions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 endpoint_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 subscriptions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -271,10 +271,10 @@ class Webhook(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            endpoint_url: Optional[pulumi.Input[_builtins.str]] = None,
-            provider_type: Optional[pulumi.Input[_builtins.str]] = None,
-            secret: Optional[pulumi.Input[_builtins.str]] = None,
-            subscriptions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Webhook':
+            endpoint_url: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_type: pulumi.Input[Optional[_builtins.str]] = None,
+            secret: pulumi.Input[Optional[_builtins.str]] = None,
+            subscriptions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Webhook':
         """
         Get an existing Webhook resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

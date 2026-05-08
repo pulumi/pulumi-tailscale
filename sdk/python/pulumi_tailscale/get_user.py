@@ -210,8 +210,8 @@ def get_user(id: Optional[_builtins.str] = None,
         status=pulumi.get(__ret__, 'status'),
         tailnet_id=pulumi.get(__ret__, 'tailnet_id'),
         type=pulumi.get(__ret__, 'type'))
-def get_user_output(id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                    login_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_user_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    login_name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserResult]:
     """
     The user data source describes a single user in a tailnet

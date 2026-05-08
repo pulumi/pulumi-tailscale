@@ -116,8 +116,8 @@ def get_users(role: Optional[_builtins.str] = None,
         role=pulumi.get(__ret__, 'role'),
         type=pulumi.get(__ret__, 'type'),
         users=pulumi.get(__ret__, 'users'))
-def get_users_output(role: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_users_output(role: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUsersResult]:
     """
     The users data source describes a list of users in a tailnet

@@ -28,8 +28,8 @@ class AwsExternalIdArgs:
 @pulumi.input_type
 class _AwsExternalIdState:
     def __init__(__self__, *,
-                 external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tailscale_aws_account_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tailscale_aws_account_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AwsExternalId resources.
 
@@ -43,26 +43,26 @@ class _AwsExternalIdState:
 
     @_builtins.property
     @pulumi.getter(name="externalId")
-    def external_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The External ID that Tailscale will supply when assuming your role. You must reference this in your IAM role's trust policy. See https://docs.aws.amazon.com/IAM/latest/UserGuide/id*roles*common-scenarios_third-party.html for more information on external IDs.
         """
         return pulumi.get(self, "external_id")
 
     @external_id.setter
-    def external_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def external_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "external_id", value)
 
     @_builtins.property
     @pulumi.getter(name="tailscaleAwsAccountId")
-    def tailscale_aws_account_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tailscale_aws_account_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS account from which Tailscale will assume your role. You must reference this in your IAM role's trust policy. See https://docs.aws.amazon.com/IAM/latest/UserGuide/id*roles*common-scenarios_third-party.html for more information on external IDs.
         """
         return pulumi.get(self, "tailscale_aws_account_id")
 
     @tailscale_aws_account_id.setter
-    def tailscale_aws_account_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tailscale_aws_account_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tailscale_aws_account_id", value)
 
 
@@ -214,8 +214,8 @@ class AwsExternalId(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            external_id: Optional[pulumi.Input[_builtins.str]] = None,
-            tailscale_aws_account_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'AwsExternalId':
+            external_id: pulumi.Input[Optional[_builtins.str]] = None,
+            tailscale_aws_account_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'AwsExternalId':
         """
         Get an existing AwsExternalId resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

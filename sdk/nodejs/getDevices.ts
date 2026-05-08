@@ -120,9 +120,9 @@ export interface GetDevicesOutputArgs {
     /**
      * Filters the device list to elements devices whose fields match the provided values.
      */
-    filters?: pulumi.Input<pulumi.Input<inputs.GetDevicesFilterArgs>[]>;
+    filters?: pulumi.Input<pulumi.Input<inputs.GetDevicesFilterArgs>[] | undefined>;
     /**
      * Filters the device list to elements whose name has the provided prefix
      */
-    namePrefix?: pulumi.Input<string>;
+    namePrefix?: pulumi.Input<string | undefined>;
 }

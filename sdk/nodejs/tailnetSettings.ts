@@ -159,47 +159,47 @@ export interface TailnetSettingsState {
     /**
      * Link to your external ACL definition or management system. Must be a valid URL.
      */
-    aclsExternalLink?: pulumi.Input<string>;
+    aclsExternalLink?: pulumi.Input<string | undefined>;
     /**
      * Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
      */
-    aclsExternallyManagedOn?: pulumi.Input<boolean>;
+    aclsExternallyManagedOn?: pulumi.Input<boolean | undefined>;
     /**
      * Whether device approval is enabled for the tailnet
      */
-    devicesApprovalOn?: pulumi.Input<boolean>;
+    devicesApprovalOn?: pulumi.Input<boolean | undefined>;
     /**
      * Whether auto updates are enabled for devices that belong to this tailnet
      */
-    devicesAutoUpdatesOn?: pulumi.Input<boolean>;
+    devicesAutoUpdatesOn?: pulumi.Input<boolean | undefined>;
     /**
      * The key expiry duration for devices on this tailnet
      */
-    devicesKeyDurationDays?: pulumi.Input<number>;
+    devicesKeyDurationDays?: pulumi.Input<number | undefined>;
     /**
      * Whether provisioning of HTTPS certificates is enabled for the tailnet
      */
-    httpsEnabled?: pulumi.Input<boolean>;
+    httpsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Whether network flow logs are enabled for the tailnet
      */
-    networkFlowLoggingOn?: pulumi.Input<boolean>;
+    networkFlowLoggingOn?: pulumi.Input<boolean | undefined>;
     /**
      * Whether identity collection is enabled for device posture integrations for the tailnet
      */
-    postureIdentityCollectionOn?: pulumi.Input<boolean>;
+    postureIdentityCollectionOn?: pulumi.Input<boolean | undefined>;
     /**
      * Whether regional routing is enabled for the tailnet
      */
-    regionalRoutingOn?: pulumi.Input<boolean>;
+    regionalRoutingOn?: pulumi.Input<boolean | undefined>;
     /**
      * Whether user approval is enabled for this tailnet
      */
-    usersApprovalOn?: pulumi.Input<boolean>;
+    usersApprovalOn?: pulumi.Input<boolean | undefined>;
     /**
      * Which user roles are allowed to join external tailnets
      */
-    usersRoleAllowedToJoinExternalTailnet?: pulumi.Input<string>;
+    usersRoleAllowedToJoinExternalTailnet?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -209,45 +209,45 @@ export interface TailnetSettingsArgs {
     /**
      * Link to your external ACL definition or management system. Must be a valid URL.
      */
-    aclsExternalLink?: pulumi.Input<string>;
+    aclsExternalLink?: pulumi.Input<string | undefined>;
     /**
      * Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
      */
-    aclsExternallyManagedOn?: pulumi.Input<boolean>;
+    aclsExternallyManagedOn?: pulumi.Input<boolean | undefined>;
     /**
      * Whether device approval is enabled for the tailnet
      */
-    devicesApprovalOn?: pulumi.Input<boolean>;
+    devicesApprovalOn?: pulumi.Input<boolean | undefined>;
     /**
      * Whether auto updates are enabled for devices that belong to this tailnet
      */
-    devicesAutoUpdatesOn?: pulumi.Input<boolean>;
+    devicesAutoUpdatesOn?: pulumi.Input<boolean | undefined>;
     /**
      * The key expiry duration for devices on this tailnet
      */
-    devicesKeyDurationDays?: pulumi.Input<number>;
+    devicesKeyDurationDays?: pulumi.Input<number | undefined>;
     /**
      * Whether provisioning of HTTPS certificates is enabled for the tailnet
      */
-    httpsEnabled?: pulumi.Input<boolean>;
+    httpsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Whether network flow logs are enabled for the tailnet
      */
-    networkFlowLoggingOn?: pulumi.Input<boolean>;
+    networkFlowLoggingOn?: pulumi.Input<boolean | undefined>;
     /**
      * Whether identity collection is enabled for device posture integrations for the tailnet
      */
-    postureIdentityCollectionOn?: pulumi.Input<boolean>;
+    postureIdentityCollectionOn?: pulumi.Input<boolean | undefined>;
     /**
      * Whether regional routing is enabled for the tailnet
      */
-    regionalRoutingOn?: pulumi.Input<boolean>;
+    regionalRoutingOn?: pulumi.Input<boolean | undefined>;
     /**
      * Whether user approval is enabled for this tailnet
      */
-    usersApprovalOn?: pulumi.Input<boolean>;
+    usersApprovalOn?: pulumi.Input<boolean | undefined>;
     /**
      * Which user roles are allowed to join external tailnets
      */
-    usersRoleAllowedToJoinExternalTailnet?: pulumi.Input<string>;
+    usersRoleAllowedToJoinExternalTailnet?: pulumi.Input<string | undefined>;
 }

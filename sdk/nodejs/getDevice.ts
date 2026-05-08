@@ -180,13 +180,13 @@ export interface GetDeviceOutputArgs {
     /**
      * The short hostname of the device
      */
-    hostname?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string | undefined>;
     /**
      * The full name of the device (e.g. `hostname.domain.ts.net`)
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * If specified, the provider will make multiple attempts to obtain the data source until the waitFor duration is reached. Retries are made every second so this value should be greater than 1s
      */
-    waitFor?: pulumi.Input<string>;
+    waitFor?: pulumi.Input<string | undefined>;
 }

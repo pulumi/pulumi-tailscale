@@ -22,10 +22,10 @@ class FederatedIdentityArgs:
                  issuer: pulumi.Input[_builtins.str],
                  scopes: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  subject: pulumi.Input[_builtins.str],
-                 audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 custom_claim_rules: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 custom_claim_rules: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a FederatedIdentity resource.
 
@@ -87,66 +87,66 @@ class FederatedIdentityArgs:
 
     @_builtins.property
     @pulumi.getter
-    def audience(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def audience(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The value used when matching against the `aud` claim from an OIDC identity token. Specifying the audience is optional as Tailscale will generate a secure audience at creation time by default.   It is recommended to let Tailscale generate the audience unless the identity provider you are integrating with requires a specific audience format.
         """
         return pulumi.get(self, "audience")
 
     @audience.setter
-    def audience(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def audience(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "audience", value)
 
     @_builtins.property
     @pulumi.getter(name="customClaimRules")
-    def custom_claim_rules(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def custom_claim_rules(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of claim names to pattern strings used to match against arbitrary claims in the OIDC identity token. Patterns can include `*` characters to match against any character.
         """
         return pulumi.get(self, "custom_claim_rules")
 
     @custom_claim_rules.setter
-    def custom_claim_rules(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def custom_claim_rules(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "custom_claim_rules", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A description of the federated identity consisting of alphanumeric characters. Defaults to `""`.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of tags that access tokens generated for the federated identity will be able to assign to devices. Mandatory if the scopes include "devices:core" or "auth_keys".
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
 class _FederatedIdentityState:
     def __init__(__self__, *,
-                 audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 custom_claim_rules: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 subject: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 custom_claim_rules: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 subject: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FederatedIdentity resources.
 
@@ -184,122 +184,122 @@ class _FederatedIdentityState:
 
     @_builtins.property
     @pulumi.getter
-    def audience(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def audience(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The value used when matching against the `aud` claim from an OIDC identity token. Specifying the audience is optional as Tailscale will generate a secure audience at creation time by default.   It is recommended to let Tailscale generate the audience unless the identity provider you are integrating with requires a specific audience format.
         """
         return pulumi.get(self, "audience")
 
     @audience.setter
-    def audience(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def audience(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "audience", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The creation timestamp of the key in RFC3339 format
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="customClaimRules")
-    def custom_claim_rules(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def custom_claim_rules(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of claim names to pattern strings used to match against arbitrary claims in the OIDC identity token. Patterns can include `*` characters to match against any character.
         """
         return pulumi.get(self, "custom_claim_rules")
 
     @custom_claim_rules.setter
-    def custom_claim_rules(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def custom_claim_rules(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "custom_claim_rules", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A description of the federated identity consisting of alphanumeric characters. Defaults to `""`.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def issuer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The issuer of the OIDC identity token used in the token exchange. Must be a valid and publicly reachable https:// URL.
         """
         return pulumi.get(self, "issuer")
 
     @issuer.setter
-    def issuer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer", value)
 
     @_builtins.property
     @pulumi.getter
-    def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Scopes to grant to the federated identity. See https://tailscale.com/kb/1623/ for a list of available scopes.
         """
         return pulumi.get(self, "scopes")
 
     @scopes.setter
-    def scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "scopes", value)
 
     @_builtins.property
     @pulumi.getter
-    def subject(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The pattern used when matching against the `sub` claim from an OIDC identity token. Patterns can include `*` characters to match against any character.
         """
         return pulumi.get(self, "subject")
 
     @subject.setter
-    def subject(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of tags that access tokens generated for the federated identity will be able to assign to devices. Mandatory if the scopes include "devices:core" or "auth_keys".
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The updated timestamp of the key in RFC3339 format
         """
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
     @_builtins.property
     @pulumi.getter(name="userId")
-    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the user who created this federated identity, empty for federated identities created by other trust credentials.
         """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_id", value)
 
 
@@ -309,13 +309,13 @@ class FederatedIdentity(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 custom_claim_rules: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 subject: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 custom_claim_rules: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 subject: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         The federated_identity resource allows you to create federated identities to programmatically interact with the Tailscale API using workload identity federation.
@@ -412,13 +412,13 @@ class FederatedIdentity(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 custom_claim_rules: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 subject: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 custom_claim_rules: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 subject: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -454,16 +454,16 @@ class FederatedIdentity(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            audience: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            custom_claim_rules: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            issuer: Optional[pulumi.Input[_builtins.str]] = None,
-            scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            subject: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            updated_at: Optional[pulumi.Input[_builtins.str]] = None,
-            user_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'FederatedIdentity':
+            audience: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_claim_rules: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            subject: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            user_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'FederatedIdentity':
         """
         Get an existing FederatedIdentity resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

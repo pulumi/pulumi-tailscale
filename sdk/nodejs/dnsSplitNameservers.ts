@@ -104,11 +104,11 @@ export interface DnsSplitNameserversState {
     /**
      * Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
      */
-    domain?: pulumi.Input<string>;
+    domain?: pulumi.Input<string | undefined>;
     /**
      * Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
      */
-    nameservers?: pulumi.Input<pulumi.Input<string>[]>;
+    nameservers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**

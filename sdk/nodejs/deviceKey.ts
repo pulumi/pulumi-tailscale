@@ -110,11 +110,11 @@ export interface DeviceKeyState {
     /**
      * The device to update the key properties of
      */
-    deviceId?: pulumi.Input<string>;
+    deviceId?: pulumi.Input<string | undefined>;
     /**
      * Determines whether or not the device's key will expire. Defaults to `false`.
      */
-    keyExpiryDisabled?: pulumi.Input<boolean>;
+    keyExpiryDisabled?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -128,5 +128,5 @@ export interface DeviceKeyArgs {
     /**
      * Determines whether or not the device's key will expire. Defaults to `false`.
      */
-    keyExpiryDisabled?: pulumi.Input<boolean>;
+    keyExpiryDisabled?: pulumi.Input<boolean | undefined>;
 }

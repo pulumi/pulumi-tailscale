@@ -95,7 +95,7 @@ export interface DnsNameserversState {
     /**
      * Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
      */
-    nameservers?: pulumi.Input<pulumi.Input<string>[]>;
+    nameservers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**

@@ -43,8 +43,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.Get4Via6Args;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -84,8 +84,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.Get4Via6Args;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -125,8 +125,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.Get4Via6Args;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -166,8 +166,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.Get4Via6Args;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -207,8 +207,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.Get4Via6Args;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -311,8 +311,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDeviceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -357,8 +357,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDeviceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -403,8 +403,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDeviceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -449,8 +449,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDeviceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -495,8 +495,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDeviceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -541,8 +541,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDeviceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -587,8 +587,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDeviceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -633,8 +633,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDevicesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -684,8 +684,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDevicesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -735,8 +735,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDevicesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -786,8 +786,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDevicesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -837,8 +837,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDevicesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -888,8 +888,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDevicesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -939,8 +939,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDevicesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1039,8 +1039,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1078,8 +1078,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1117,8 +1117,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1156,8 +1156,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1195,8 +1195,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1234,8 +1234,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1273,8 +1273,8 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

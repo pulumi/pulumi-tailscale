@@ -122,19 +122,19 @@ export interface WebhookState {
     /**
      * The endpoint to send webhook events to.
      */
-    endpointUrl?: pulumi.Input<string>;
+    endpointUrl?: pulumi.Input<string | undefined>;
     /**
      * The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
      */
-    providerType?: pulumi.Input<string>;
+    providerType?: pulumi.Input<string | undefined>;
     /**
      * The secret used for signing webhook payloads. Only set on resource creation. See https://tailscale.com/kb/1213/webhooks#webhook-secret for more information.
      */
-    secret?: pulumi.Input<string>;
+    secret?: pulumi.Input<string | undefined>;
     /**
      * The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
      */
-    subscriptions?: pulumi.Input<pulumi.Input<string>[]>;
+    subscriptions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -148,7 +148,7 @@ export interface WebhookArgs {
     /**
      * The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are `slack`, `mattermost`, `googlechat`, and `discord`.
      */
-    providerType?: pulumi.Input<string>;
+    providerType?: pulumi.Input<string | undefined>;
     /**
      * The set of events that trigger this webhook. For a full list of event types, see the [webhooks documentation](https://tailscale.com/kb/1213/webhooks#events).
      */

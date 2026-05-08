@@ -21,23 +21,23 @@ class LogstreamConfigurationArgs:
     def __init__(__self__, *,
                  destination_type: pulumi.Input[_builtins.str],
                  log_type: pulumi.Input[_builtins.str],
-                 compression_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcs_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcs_credentials: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcs_key_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcs_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 s3_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_authentication_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_key_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 upload_period_minutes: Optional[pulumi.Input[_builtins.int]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None):
+                 compression_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcs_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcs_credentials: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcs_key_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcs_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 s3_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_authentication_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_key_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 upload_period_minutes: pulumi.Input[Optional[_builtins.int]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a LogstreamConfiguration resource.
 
@@ -124,231 +124,231 @@ class LogstreamConfigurationArgs:
 
     @_builtins.property
     @pulumi.getter(name="compressionFormat")
-    def compression_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
         """
         return pulumi.get(self, "compression_format")
 
     @compression_format.setter
-    def compression_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_format", value)
 
     @_builtins.property
     @pulumi.getter(name="gcsBucket")
-    def gcs_bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gcs_bucket(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the GCS bucket
         """
         return pulumi.get(self, "gcs_bucket")
 
     @gcs_bucket.setter
-    def gcs_bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gcs_bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gcs_bucket", value)
 
     @_builtins.property
     @pulumi.getter(name="gcsCredentials")
-    def gcs_credentials(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gcs_credentials(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The encoded string of JSON that is used to authenticate for workload identity in GCS
         """
         return pulumi.get(self, "gcs_credentials")
 
     @gcs_credentials.setter
-    def gcs_credentials(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gcs_credentials(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gcs_credentials", value)
 
     @_builtins.property
     @pulumi.getter(name="gcsKeyPrefix")
-    def gcs_key_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gcs_key_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The GCS key prefix for the bucket
         """
         return pulumi.get(self, "gcs_key_prefix")
 
     @gcs_key_prefix.setter
-    def gcs_key_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gcs_key_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gcs_key_prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="gcsScopes")
-    def gcs_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def gcs_scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The GCS scopes needed to be able to write in the bucket
         """
         return pulumi.get(self, "gcs_scopes")
 
     @gcs_scopes.setter
-    def gcs_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def gcs_scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "gcs_scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="s3AccessKeyId")
-    def s3_access_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_access_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
         """
         return pulumi.get(self, "s3_access_key_id")
 
     @s3_access_key_id.setter
-    def s3_access_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_access_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_access_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="s3AuthenticationType")
-    def s3_authentication_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_authentication_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of authentication to use for S3. Required if destination_type is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
         """
         return pulumi.get(self, "s3_authentication_type")
 
     @s3_authentication_type.setter
-    def s3_authentication_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_authentication_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_authentication_type", value)
 
     @_builtins.property
     @pulumi.getter(name="s3Bucket")
-    def s3_bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_bucket(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The S3 bucket name. Required if destination_type is 's3'.
         """
         return pulumi.get(self, "s3_bucket")
 
     @s3_bucket.setter
-    def s3_bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_bucket", value)
 
     @_builtins.property
     @pulumi.getter(name="s3ExternalId")
-    def s3_external_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
         """
         return pulumi.get(self, "s3_external_id")
 
     @s3_external_id.setter
-    def s3_external_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_external_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_external_id", value)
 
     @_builtins.property
     @pulumi.getter(name="s3KeyPrefix")
-    def s3_key_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_key_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An optional S3 key prefix to prepend to the auto-generated S3 key name.
         """
         return pulumi.get(self, "s3_key_prefix")
 
     @s3_key_prefix.setter
-    def s3_key_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_key_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_key_prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="s3Region")
-    def s3_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region in which the S3 bucket is located. Required if destination_type is 's3'.
         """
         return pulumi.get(self, "s3_region")
 
     @s3_region.setter
-    def s3_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_region", value)
 
     @_builtins.property
     @pulumi.getter(name="s3RoleArn")
-    def s3_role_arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_role_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
         """
         return pulumi.get(self, "s3_role_arn")
 
     @s3_role_arn.setter
-    def s3_role_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_role_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_role_arn", value)
 
     @_builtins.property
     @pulumi.getter(name="s3SecretAccessKey")
-    def s3_secret_access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_secret_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
         """
         return pulumi.get(self, "s3_secret_access_key")
 
     @s3_secret_access_key.setter
-    def s3_secret_access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_secret_access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_secret_access_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter(name="uploadPeriodMinutes")
-    def upload_period_minutes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def upload_period_minutes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
         """
         return pulumi.get(self, "upload_period_minutes")
 
     @upload_period_minutes.setter
-    def upload_period_minutes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def upload_period_minutes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "upload_period_minutes", value)
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         """
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "url", value)
 
     @_builtins.property
     @pulumi.getter
-    def user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.
         """
         return pulumi.get(self, "user")
 
     @user.setter
-    def user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user", value)
 
 
 @pulumi.input_type
 class _LogstreamConfigurationState:
     def __init__(__self__, *,
-                 compression_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcs_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcs_credentials: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcs_key_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcs_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 log_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_authentication_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_key_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 upload_period_minutes: Optional[pulumi.Input[_builtins.int]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None):
+                 compression_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 destination_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcs_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcs_credentials: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcs_key_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcs_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 log_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_authentication_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_key_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 upload_period_minutes: pulumi.Input[Optional[_builtins.int]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LogstreamConfiguration resources.
 
@@ -413,230 +413,230 @@ class _LogstreamConfigurationState:
 
     @_builtins.property
     @pulumi.getter(name="compressionFormat")
-    def compression_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compression_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
         """
         return pulumi.get(self, "compression_format")
 
     @compression_format.setter
-    def compression_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compression_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compression_format", value)
 
     @_builtins.property
     @pulumi.getter(name="destinationType")
-    def destination_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def destination_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
         """
         return pulumi.get(self, "destination_type")
 
     @destination_type.setter
-    def destination_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def destination_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "destination_type", value)
 
     @_builtins.property
     @pulumi.getter(name="gcsBucket")
-    def gcs_bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gcs_bucket(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the GCS bucket
         """
         return pulumi.get(self, "gcs_bucket")
 
     @gcs_bucket.setter
-    def gcs_bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gcs_bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gcs_bucket", value)
 
     @_builtins.property
     @pulumi.getter(name="gcsCredentials")
-    def gcs_credentials(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gcs_credentials(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The encoded string of JSON that is used to authenticate for workload identity in GCS
         """
         return pulumi.get(self, "gcs_credentials")
 
     @gcs_credentials.setter
-    def gcs_credentials(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gcs_credentials(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gcs_credentials", value)
 
     @_builtins.property
     @pulumi.getter(name="gcsKeyPrefix")
-    def gcs_key_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gcs_key_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The GCS key prefix for the bucket
         """
         return pulumi.get(self, "gcs_key_prefix")
 
     @gcs_key_prefix.setter
-    def gcs_key_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gcs_key_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gcs_key_prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="gcsScopes")
-    def gcs_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def gcs_scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The GCS scopes needed to be able to write in the bucket
         """
         return pulumi.get(self, "gcs_scopes")
 
     @gcs_scopes.setter
-    def gcs_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def gcs_scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "gcs_scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="logType")
-    def log_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def log_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
         """
         return pulumi.get(self, "log_type")
 
     @log_type.setter
-    def log_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def log_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "log_type", value)
 
     @_builtins.property
     @pulumi.getter(name="s3AccessKeyId")
-    def s3_access_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_access_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
         """
         return pulumi.get(self, "s3_access_key_id")
 
     @s3_access_key_id.setter
-    def s3_access_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_access_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_access_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="s3AuthenticationType")
-    def s3_authentication_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_authentication_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of authentication to use for S3. Required if destination_type is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
         """
         return pulumi.get(self, "s3_authentication_type")
 
     @s3_authentication_type.setter
-    def s3_authentication_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_authentication_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_authentication_type", value)
 
     @_builtins.property
     @pulumi.getter(name="s3Bucket")
-    def s3_bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_bucket(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The S3 bucket name. Required if destination_type is 's3'.
         """
         return pulumi.get(self, "s3_bucket")
 
     @s3_bucket.setter
-    def s3_bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_bucket", value)
 
     @_builtins.property
     @pulumi.getter(name="s3ExternalId")
-    def s3_external_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
         """
         return pulumi.get(self, "s3_external_id")
 
     @s3_external_id.setter
-    def s3_external_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_external_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_external_id", value)
 
     @_builtins.property
     @pulumi.getter(name="s3KeyPrefix")
-    def s3_key_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_key_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An optional S3 key prefix to prepend to the auto-generated S3 key name.
         """
         return pulumi.get(self, "s3_key_prefix")
 
     @s3_key_prefix.setter
-    def s3_key_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_key_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_key_prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="s3Region")
-    def s3_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The region in which the S3 bucket is located. Required if destination_type is 's3'.
         """
         return pulumi.get(self, "s3_region")
 
     @s3_region.setter
-    def s3_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_region", value)
 
     @_builtins.property
     @pulumi.getter(name="s3RoleArn")
-    def s3_role_arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_role_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
         """
         return pulumi.get(self, "s3_role_arn")
 
     @s3_role_arn.setter
-    def s3_role_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_role_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_role_arn", value)
 
     @_builtins.property
     @pulumi.getter(name="s3SecretAccessKey")
-    def s3_secret_access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def s3_secret_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
         """
         return pulumi.get(self, "s3_secret_access_key")
 
     @s3_secret_access_key.setter
-    def s3_secret_access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def s3_secret_access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "s3_secret_access_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The token/password with which log streams to this endpoint should be authenticated, required unless destination_type is 's3'.
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter(name="uploadPeriodMinutes")
-    def upload_period_minutes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def upload_period_minutes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
         """
         return pulumi.get(self, "upload_period_minutes")
 
     @upload_period_minutes.setter
-    def upload_period_minutes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def upload_period_minutes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "upload_period_minutes", value)
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         """
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "url", value)
 
     @_builtins.property
     @pulumi.getter
-    def user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.
         """
         return pulumi.get(self, "user")
 
     @user.setter
-    def user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user", value)
 
 
@@ -646,25 +646,25 @@ class LogstreamConfiguration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 compression_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcs_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcs_credentials: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcs_key_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcs_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 log_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_authentication_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_key_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 upload_period_minutes: Optional[pulumi.Input[_builtins.int]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None,
+                 compression_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 destination_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcs_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcs_credentials: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcs_key_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcs_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 log_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_authentication_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_key_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 upload_period_minutes: pulumi.Input[Optional[_builtins.int]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The logstream_configuration resource allows you to configure streaming configuration or network flow logs to a supported security information and event management (SIEM) system. See https://tailscale.com/kb/1255/log-streaming for more information.
@@ -843,25 +843,25 @@ class LogstreamConfiguration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 compression_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 destination_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcs_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcs_credentials: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcs_key_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcs_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 log_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_authentication_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_key_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 s3_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 upload_period_minutes: Optional[pulumi.Input[_builtins.int]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
-                 user: Optional[pulumi.Input[_builtins.str]] = None,
+                 compression_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 destination_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcs_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcs_credentials: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcs_key_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcs_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 log_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_authentication_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_key_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 s3_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 upload_period_minutes: pulumi.Input[Optional[_builtins.int]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -906,25 +906,25 @@ class LogstreamConfiguration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            compression_format: Optional[pulumi.Input[_builtins.str]] = None,
-            destination_type: Optional[pulumi.Input[_builtins.str]] = None,
-            gcs_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-            gcs_credentials: Optional[pulumi.Input[_builtins.str]] = None,
-            gcs_key_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-            gcs_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            log_type: Optional[pulumi.Input[_builtins.str]] = None,
-            s3_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            s3_authentication_type: Optional[pulumi.Input[_builtins.str]] = None,
-            s3_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-            s3_external_id: Optional[pulumi.Input[_builtins.str]] = None,
-            s3_key_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-            s3_region: Optional[pulumi.Input[_builtins.str]] = None,
-            s3_role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-            s3_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-            token: Optional[pulumi.Input[_builtins.str]] = None,
-            upload_period_minutes: Optional[pulumi.Input[_builtins.int]] = None,
-            url: Optional[pulumi.Input[_builtins.str]] = None,
-            user: Optional[pulumi.Input[_builtins.str]] = None) -> 'LogstreamConfiguration':
+            compression_format: pulumi.Input[Optional[_builtins.str]] = None,
+            destination_type: pulumi.Input[Optional[_builtins.str]] = None,
+            gcs_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            gcs_credentials: pulumi.Input[Optional[_builtins.str]] = None,
+            gcs_key_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            gcs_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            log_type: pulumi.Input[Optional[_builtins.str]] = None,
+            s3_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            s3_authentication_type: pulumi.Input[Optional[_builtins.str]] = None,
+            s3_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            s3_external_id: pulumi.Input[Optional[_builtins.str]] = None,
+            s3_key_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            s3_region: pulumi.Input[Optional[_builtins.str]] = None,
+            s3_role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+            s3_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            token: pulumi.Input[Optional[_builtins.str]] = None,
+            upload_period_minutes: pulumi.Input[Optional[_builtins.int]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None,
+            user: pulumi.Input[Optional[_builtins.str]] = None) -> 'LogstreamConfiguration':
         """
         Get an existing LogstreamConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

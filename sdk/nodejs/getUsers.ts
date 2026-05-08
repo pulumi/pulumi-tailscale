@@ -90,9 +90,9 @@ export interface GetUsersOutputArgs {
     /**
      * Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

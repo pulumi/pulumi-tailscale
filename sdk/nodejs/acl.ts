@@ -124,15 +124,15 @@ export interface AclState {
     /**
      * The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
      */
-    acl?: pulumi.Input<string>;
+    acl?: pulumi.Input<string | undefined>;
     /**
      * If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
      */
-    overwriteExistingContent?: pulumi.Input<boolean>;
+    overwriteExistingContent?: pulumi.Input<boolean | undefined>;
     /**
      * If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
      */
-    resetAclOnDestroy?: pulumi.Input<boolean>;
+    resetAclOnDestroy?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -146,9 +146,9 @@ export interface AclArgs {
     /**
      * If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
      */
-    overwriteExistingContent?: pulumi.Input<boolean>;
+    overwriteExistingContent?: pulumi.Input<boolean | undefined>;
     /**
      * If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
      */
-    resetAclOnDestroy?: pulumi.Input<boolean>;
+    resetAclOnDestroy?: pulumi.Input<boolean | undefined>;
 }

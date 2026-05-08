@@ -355,9 +355,9 @@ def get_device(hostname: Optional[_builtins.str] = None,
         update_available=pulumi.get(__ret__, 'update_available'),
         user=pulumi.get(__ret__, 'user'),
         wait_for=pulumi.get(__ret__, 'wait_for'))
-def get_device_output(hostname: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      wait_for: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_device_output(hostname: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      wait_for: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDeviceResult]:
     """
     The device data source describes a single device in a tailnet

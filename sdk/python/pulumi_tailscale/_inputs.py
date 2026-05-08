@@ -120,7 +120,7 @@ class DnsConfigurationNameserverArgsDict(TypedDict):
     """
     The nameserver's IPv4 or IPv6 address
     """
-    use_with_exit_node: NotRequired[pulumi.Input[_builtins.bool]]
+    use_with_exit_node: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
     """
@@ -129,7 +129,7 @@ class DnsConfigurationNameserverArgsDict(TypedDict):
 class DnsConfigurationNameserverArgs:
     def __init__(__self__, *,
                  address: pulumi.Input[_builtins.str],
-                 use_with_exit_node: Optional[pulumi.Input[_builtins.bool]] = None):
+                 use_with_exit_node: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The nameserver's IPv4 or IPv6 address
         :param pulumi.Input[_builtins.bool] use_with_exit_node: This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
@@ -152,14 +152,14 @@ class DnsConfigurationNameserverArgs:
 
     @_builtins.property
     @pulumi.getter(name="useWithExitNode")
-    def use_with_exit_node(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_with_exit_node(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
         """
         return pulumi.get(self, "use_with_exit_node")
 
     @use_with_exit_node.setter
-    def use_with_exit_node(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_with_exit_node(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_with_exit_node", value)
 
 
@@ -215,7 +215,7 @@ class DnsConfigurationSplitDnNameserverArgsDict(TypedDict):
     """
     The nameserver's IPv4 or IPv6 address.
     """
-    use_with_exit_node: NotRequired[pulumi.Input[_builtins.bool]]
+    use_with_exit_node: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
     """
@@ -224,7 +224,7 @@ class DnsConfigurationSplitDnNameserverArgsDict(TypedDict):
 class DnsConfigurationSplitDnNameserverArgs:
     def __init__(__self__, *,
                  address: pulumi.Input[_builtins.str],
-                 use_with_exit_node: Optional[pulumi.Input[_builtins.bool]] = None):
+                 use_with_exit_node: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The nameserver's IPv4 or IPv6 address.
         :param pulumi.Input[_builtins.bool] use_with_exit_node: This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
@@ -247,14 +247,14 @@ class DnsConfigurationSplitDnNameserverArgs:
 
     @_builtins.property
     @pulumi.getter(name="useWithExitNode")
-    def use_with_exit_node(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_with_exit_node(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
         """
         return pulumi.get(self, "use_with_exit_node")
 
     @use_with_exit_node.setter
-    def use_with_exit_node(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_with_exit_node(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_with_exit_node", value)
 
 

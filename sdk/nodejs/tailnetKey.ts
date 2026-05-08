@@ -164,51 +164,51 @@ export interface TailnetKeyState {
     /**
      * The creation timestamp of the key in RFC3339 format
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * A description of the key consisting of alphanumeric characters. Defaults to `""`.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Indicates if the key is ephemeral. Defaults to `false`.
      */
-    ephemeral?: pulumi.Input<boolean>;
+    ephemeral?: pulumi.Input<boolean | undefined>;
     /**
      * The expiry timestamp of the key in RFC3339 format
      */
-    expiresAt?: pulumi.Input<string>;
+    expiresAt?: pulumi.Input<string | undefined>;
     /**
      * The expiry of the key in seconds. Defaults to `7776000` (90 days).
      */
-    expiry?: pulumi.Input<number>;
+    expiry?: pulumi.Input<number | undefined>;
     /**
      * Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
      */
-    invalid?: pulumi.Input<boolean>;
+    invalid?: pulumi.Input<boolean | undefined>;
     /**
      * The authentication key
      */
-    key?: pulumi.Input<string>;
+    key?: pulumi.Input<string | undefined>;
     /**
      * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
      */
-    preauthorized?: pulumi.Input<boolean>;
+    preauthorized?: pulumi.Input<boolean | undefined>;
     /**
      * Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
      */
-    recreateIfInvalid?: pulumi.Input<string>;
+    recreateIfInvalid?: pulumi.Input<string | undefined>;
     /**
      * Indicates if the key is reusable or single-use. Defaults to `false`.
      */
-    reusable?: pulumi.Input<boolean>;
+    reusable?: pulumi.Input<boolean | undefined>;
     /**
      * List of tags to apply to the machines authenticated by the key.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * ID of the user who created this key, empty for keys created by OAuth clients.
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -218,33 +218,33 @@ export interface TailnetKeyArgs {
     /**
      * A description of the key consisting of alphanumeric characters. Defaults to `""`.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Indicates if the key is ephemeral. Defaults to `false`.
      */
-    ephemeral?: pulumi.Input<boolean>;
+    ephemeral?: pulumi.Input<boolean | undefined>;
     /**
      * The expiry of the key in seconds. Defaults to `7776000` (90 days).
      */
-    expiry?: pulumi.Input<number>;
+    expiry?: pulumi.Input<number | undefined>;
     /**
      * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
      */
-    preauthorized?: pulumi.Input<boolean>;
+    preauthorized?: pulumi.Input<boolean | undefined>;
     /**
      * Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
      */
-    recreateIfInvalid?: pulumi.Input<string>;
+    recreateIfInvalid?: pulumi.Input<string | undefined>;
     /**
      * Indicates if the key is reusable or single-use. Defaults to `false`.
      */
-    reusable?: pulumi.Input<boolean>;
+    reusable?: pulumi.Input<boolean | undefined>;
     /**
      * List of tags to apply to the machines authenticated by the key.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * ID of the user who created this key, empty for keys created by OAuth clients.
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
 }

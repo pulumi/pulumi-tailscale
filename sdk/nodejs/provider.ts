@@ -97,35 +97,35 @@ export interface ProviderArgs {
     /**
      * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
      */
-    apiKey?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string | undefined>;
     /**
      * The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL environment variable.
      */
-    baseUrl?: pulumi.Input<string>;
+    baseUrl?: pulumi.Input<string | undefined>;
     /**
      * The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with 'api_key' and 'oauth_client_secret'.
      */
-    identityToken?: pulumi.Input<string>;
+    identityToken?: pulumi.Input<string | undefined>;
     /**
      * The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
      */
-    oauthClientId?: pulumi.Input<string>;
+    oauthClientId?: pulumi.Input<string | undefined>;
     /**
      * The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Conflicts with 'api_key' and 'identity_token'.
      */
-    oauthClientSecret?: pulumi.Input<string>;
+    oauthClientSecret?: pulumi.Input<string | undefined>;
     /**
      * The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret', or both are set.
      */
-    scopes?: pulumi.Input<pulumi.Input<string>[]>;
+    scopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
      */
-    tailnet?: pulumi.Input<string>;
+    tailnet?: pulumi.Input<string | undefined>;
     /**
      * User-Agent header for API requests.
      */
-    userAgent?: pulumi.Input<string>;
+    userAgent?: pulumi.Input<string | undefined>;
 }
 
 export namespace Provider {

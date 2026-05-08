@@ -19,14 +19,14 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tailnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_agent: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tailnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_agent: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
 
@@ -58,98 +58,98 @@ class ProviderArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
         """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
-    def api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_key", value)
 
     @_builtins.property
     @pulumi.getter(name="baseUrl")
-    def base_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def base_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL environment variable.
         """
         return pulumi.get(self, "base_url")
 
     @base_url.setter
-    def base_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def base_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "base_url", value)
 
     @_builtins.property
     @pulumi.getter(name="identityToken")
-    def identity_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def identity_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with 'api_key' and 'oauth_client_secret'.
         """
         return pulumi.get(self, "identity_token")
 
     @identity_token.setter
-    def identity_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def identity_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "identity_token", value)
 
     @_builtins.property
     @pulumi.getter(name="oauthClientId")
-    def oauth_client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def oauth_client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
         """
         return pulumi.get(self, "oauth_client_id")
 
     @oauth_client_id.setter
-    def oauth_client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def oauth_client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oauth_client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="oauthClientSecret")
-    def oauth_client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def oauth_client_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Conflicts with 'api_key' and 'identity_token'.
         """
         return pulumi.get(self, "oauth_client_secret")
 
     @oauth_client_secret.setter
-    def oauth_client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def oauth_client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oauth_client_secret", value)
 
     @_builtins.property
     @pulumi.getter
-    def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret', or both are set.
         """
         return pulumi.get(self, "scopes")
 
     @scopes.setter
-    def scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "scopes", value)
 
     @_builtins.property
     @pulumi.getter
-    def tailnet(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tailnet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
         """
         return pulumi.get(self, "tailnet")
 
     @tailnet.setter
-    def tailnet(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tailnet(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tailnet", value)
 
     @_builtins.property
     @pulumi.getter(name="userAgent")
-    def user_agent(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_agent(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         User-Agent header for API requests.
         """
         return pulumi.get(self, "user_agent")
 
     @user_agent.setter
-    def user_agent(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_agent(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_agent", value)
 
 
@@ -159,14 +159,14 @@ class Provider(pulumi.ProviderResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tailnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_agent: Optional[pulumi.Input[_builtins.str]] = None,
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tailnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_agent: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The provider type for the tailscale package. By default, resources use package-wide configuration
@@ -214,14 +214,14 @@ class Provider(pulumi.ProviderResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 oauth_client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tailnet: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_agent: Optional[pulumi.Input[_builtins.str]] = None,
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 oauth_client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tailnet: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_agent: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

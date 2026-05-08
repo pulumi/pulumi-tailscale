@@ -113,11 +113,11 @@ export interface DeviceAuthorizationState {
     /**
      * Whether or not the device is authorized
      */
-    authorized?: pulumi.Input<boolean>;
+    authorized?: pulumi.Input<boolean | undefined>;
     /**
      * The device to set as authorized
      */
-    deviceId?: pulumi.Input<string>;
+    deviceId?: pulumi.Input<string | undefined>;
 }
 
 /**

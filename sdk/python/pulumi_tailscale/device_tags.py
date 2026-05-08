@@ -58,8 +58,8 @@ class DeviceTagsArgs:
 @pulumi.input_type
 class _DeviceTagsState:
     def __init__(__self__, *,
-                 device_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 device_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering DeviceTags resources.
 
@@ -73,26 +73,26 @@ class _DeviceTagsState:
 
     @_builtins.property
     @pulumi.getter(name="deviceId")
-    def device_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def device_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The device to set tags for
         """
         return pulumi.get(self, "device_id")
 
     @device_id.setter
-    def device_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def device_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "device_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The tags to apply to the device
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
 
@@ -102,8 +102,8 @@ class DeviceTags(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 device_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 device_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         The device_tags resource is used to apply tags to Tailscale devices. See https://tailscale.com/kb/1068/acl-tags/ for more details.
@@ -195,8 +195,8 @@ class DeviceTags(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 device_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 device_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -222,8 +222,8 @@ class DeviceTags(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            device_id: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'DeviceTags':
+            device_id: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'DeviceTags':
         """
         Get an existing DeviceTags resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
