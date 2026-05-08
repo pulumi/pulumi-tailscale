@@ -130,8 +130,8 @@ def get_devices(filters: Optional[Sequence[Union['GetDevicesFilterArgs', 'GetDev
         filters=pulumi.get(__ret__, 'filters'),
         id=pulumi.get(__ret__, 'id'),
         name_prefix=pulumi.get(__ret__, 'name_prefix'))
-def get_devices_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetDevicesFilterArgs', 'GetDevicesFilterArgsDict']]]]] = None,
-                       name_prefix: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_devices_output(filters: pulumi.Input[Optional[Optional[Sequence[Union['GetDevicesFilterArgs', 'GetDevicesFilterArgsDict']]]]] = None,
+                       name_prefix: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDevicesResult]:
     """
     The devices data source describes a list of devices in a tailnet

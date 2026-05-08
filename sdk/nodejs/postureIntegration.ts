@@ -126,23 +126,23 @@ export interface PostureIntegrationState {
     /**
      * Unique identifier for your client.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The secret (auth key, token, etc.) used to authenticate with the provider.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * Identifies which of the provider's clouds to integrate with.
      */
-    cloudId?: pulumi.Input<string>;
+    cloudId?: pulumi.Input<string | undefined>;
     /**
      * The third-party provider for posture data. Valid values are `falcon`, `fleet`, `huntress`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
      */
-    postureProvider?: pulumi.Input<string>;
+    postureProvider?: pulumi.Input<string | undefined>;
     /**
      * The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -152,7 +152,7 @@ export interface PostureIntegrationArgs {
     /**
      * Unique identifier for your client.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The secret (auth key, token, etc.) used to authenticate with the provider.
      */
@@ -160,7 +160,7 @@ export interface PostureIntegrationArgs {
     /**
      * Identifies which of the provider's clouds to integrate with.
      */
-    cloudId?: pulumi.Input<string>;
+    cloudId?: pulumi.Input<string | undefined>;
     /**
      * The third-party provider for posture data. Valid values are `falcon`, `fleet`, `huntress`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
      */
@@ -168,5 +168,5 @@ export interface PostureIntegrationArgs {
     /**
      * The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
 }

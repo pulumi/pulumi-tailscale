@@ -43,7 +43,7 @@ class DnsPreferencesArgs:
 @pulumi.input_type
 class _DnsPreferencesState:
     def __init__(__self__, *,
-                 magic_dns: Optional[pulumi.Input[_builtins.bool]] = None):
+                 magic_dns: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering DnsPreferences resources.
 
@@ -54,14 +54,14 @@ class _DnsPreferencesState:
 
     @_builtins.property
     @pulumi.getter(name="magicDns")
-    def magic_dns(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def magic_dns(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether or not to enable magic DNS
         """
         return pulumi.get(self, "magic_dns")
 
     @magic_dns.setter
-    def magic_dns(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def magic_dns(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "magic_dns", value)
 
 
@@ -71,7 +71,7 @@ class DnsPreferences(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 magic_dns: Optional[pulumi.Input[_builtins.bool]] = None,
+                 magic_dns: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         The dns_preferences resource allows you to configure DNS preferences for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
@@ -144,7 +144,7 @@ class DnsPreferences(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 magic_dns: Optional[pulumi.Input[_builtins.bool]] = None,
+                 magic_dns: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -167,7 +167,7 @@ class DnsPreferences(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            magic_dns: Optional[pulumi.Input[_builtins.bool]] = None) -> 'DnsPreferences':
+            magic_dns: pulumi.Input[Optional[_builtins.bool]] = None) -> 'DnsPreferences':
         """
         Get an existing DnsPreferences resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

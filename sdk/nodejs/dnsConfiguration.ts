@@ -152,23 +152,23 @@ export interface DnsConfigurationState {
     /**
      * Whether or not to enable MagicDNS. Defaults to true.
      */
-    magicDns?: pulumi.Input<boolean>;
+    magicDns?: pulumi.Input<boolean | undefined>;
     /**
      * Set the nameservers used by devices on your network to resolve DNS queries. `overrideLocalDns` must also be true to prefer these nameservers over local DNS configuration.
      */
-    nameservers?: pulumi.Input<pulumi.Input<inputs.DnsConfigurationNameserver>[]>;
+    nameservers?: pulumi.Input<pulumi.Input<inputs.DnsConfigurationNameserver>[] | undefined>;
     /**
      * When enabled, use the configured DNS servers in `nameservers` to resolve names outside the tailnet. When disabled, devices will prefer their local DNS configuration. Defaults to false.
      */
-    overrideLocalDns?: pulumi.Input<boolean>;
+    overrideLocalDns?: pulumi.Input<boolean | undefined>;
     /**
      * Additional search domains. When MagicDNS is on, the tailnet domain is automatically included as the first search domain.
      */
-    searchPaths?: pulumi.Input<pulumi.Input<string>[]>;
+    searchPaths?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `overrideLocalDns`.
      */
-    splitDns?: pulumi.Input<pulumi.Input<inputs.DnsConfigurationSplitDn>[]>;
+    splitDns?: pulumi.Input<pulumi.Input<inputs.DnsConfigurationSplitDn>[] | undefined>;
 }
 
 /**
@@ -178,21 +178,21 @@ export interface DnsConfigurationArgs {
     /**
      * Whether or not to enable MagicDNS. Defaults to true.
      */
-    magicDns?: pulumi.Input<boolean>;
+    magicDns?: pulumi.Input<boolean | undefined>;
     /**
      * Set the nameservers used by devices on your network to resolve DNS queries. `overrideLocalDns` must also be true to prefer these nameservers over local DNS configuration.
      */
-    nameservers?: pulumi.Input<pulumi.Input<inputs.DnsConfigurationNameserver>[]>;
+    nameservers?: pulumi.Input<pulumi.Input<inputs.DnsConfigurationNameserver>[] | undefined>;
     /**
      * When enabled, use the configured DNS servers in `nameservers` to resolve names outside the tailnet. When disabled, devices will prefer their local DNS configuration. Defaults to false.
      */
-    overrideLocalDns?: pulumi.Input<boolean>;
+    overrideLocalDns?: pulumi.Input<boolean | undefined>;
     /**
      * Additional search domains. When MagicDNS is on, the tailnet domain is automatically included as the first search domain.
      */
-    searchPaths?: pulumi.Input<pulumi.Input<string>[]>;
+    searchPaths?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `overrideLocalDns`.
      */
-    splitDns?: pulumi.Input<pulumi.Input<inputs.DnsConfigurationSplitDn>[]>;
+    splitDns?: pulumi.Input<pulumi.Input<inputs.DnsConfigurationSplitDn>[] | undefined>;
 }

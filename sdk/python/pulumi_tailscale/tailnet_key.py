@@ -19,14 +19,14 @@ __all__ = ['TailnetKeyArgs', 'TailnetKey']
 @pulumi.input_type
 class TailnetKeyArgs:
     def __init__(__self__, *,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 ephemeral: Optional[pulumi.Input[_builtins.bool]] = None,
-                 expiry: Optional[pulumi.Input[_builtins.int]] = None,
-                 preauthorized: Optional[pulumi.Input[_builtins.bool]] = None,
-                 recreate_if_invalid: Optional[pulumi.Input[_builtins.str]] = None,
-                 reusable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 ephemeral: pulumi.Input[Optional[_builtins.bool]] = None,
+                 expiry: pulumi.Input[Optional[_builtins.int]] = None,
+                 preauthorized: pulumi.Input[Optional[_builtins.bool]] = None,
+                 recreate_if_invalid: pulumi.Input[Optional[_builtins.str]] = None,
+                 reusable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a TailnetKey resource.
 
@@ -58,116 +58,116 @@ class TailnetKeyArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A description of the key consisting of alphanumeric characters. Defaults to `""`.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def ephemeral(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ephemeral(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if the key is ephemeral. Defaults to `false`.
         """
         return pulumi.get(self, "ephemeral")
 
     @ephemeral.setter
-    def ephemeral(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ephemeral(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ephemeral", value)
 
     @_builtins.property
     @pulumi.getter
-    def expiry(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def expiry(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The expiry of the key in seconds. Defaults to `7776000` (90 days).
         """
         return pulumi.get(self, "expiry")
 
     @expiry.setter
-    def expiry(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def expiry(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "expiry", value)
 
     @_builtins.property
     @pulumi.getter
-    def preauthorized(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def preauthorized(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
         """
         return pulumi.get(self, "preauthorized")
 
     @preauthorized.setter
-    def preauthorized(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def preauthorized(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "preauthorized", value)
 
     @_builtins.property
     @pulumi.getter(name="recreateIfInvalid")
-    def recreate_if_invalid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def recreate_if_invalid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
         """
         return pulumi.get(self, "recreate_if_invalid")
 
     @recreate_if_invalid.setter
-    def recreate_if_invalid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def recreate_if_invalid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "recreate_if_invalid", value)
 
     @_builtins.property
     @pulumi.getter
-    def reusable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def reusable(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if the key is reusable or single-use. Defaults to `false`.
         """
         return pulumi.get(self, "reusable")
 
     @reusable.setter
-    def reusable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def reusable(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "reusable", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of tags to apply to the machines authenticated by the key.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="userId")
-    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the user who created this key, empty for keys created by OAuth clients.
         """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_id", value)
 
 
 @pulumi.input_type
 class _TailnetKeyState:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 ephemeral: Optional[pulumi.Input[_builtins.bool]] = None,
-                 expires_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 expiry: Optional[pulumi.Input[_builtins.int]] = None,
-                 invalid: Optional[pulumi.Input[_builtins.bool]] = None,
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 preauthorized: Optional[pulumi.Input[_builtins.bool]] = None,
-                 recreate_if_invalid: Optional[pulumi.Input[_builtins.str]] = None,
-                 reusable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 ephemeral: pulumi.Input[Optional[_builtins.bool]] = None,
+                 expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 expiry: pulumi.Input[Optional[_builtins.int]] = None,
+                 invalid: pulumi.Input[Optional[_builtins.bool]] = None,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 preauthorized: pulumi.Input[Optional[_builtins.bool]] = None,
+                 recreate_if_invalid: pulumi.Input[Optional[_builtins.str]] = None,
+                 reusable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TailnetKey resources.
 
@@ -211,146 +211,146 @@ class _TailnetKeyState:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The creation timestamp of the key in RFC3339 format
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A description of the key consisting of alphanumeric characters. Defaults to `""`.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def ephemeral(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ephemeral(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if the key is ephemeral. Defaults to `false`.
         """
         return pulumi.get(self, "ephemeral")
 
     @ephemeral.setter
-    def ephemeral(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ephemeral(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ephemeral", value)
 
     @_builtins.property
     @pulumi.getter(name="expiresAt")
-    def expires_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def expires_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The expiry timestamp of the key in RFC3339 format
         """
         return pulumi.get(self, "expires_at")
 
     @expires_at.setter
-    def expires_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def expires_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "expires_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def expiry(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def expiry(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The expiry of the key in seconds. Defaults to `7776000` (90 days).
         """
         return pulumi.get(self, "expiry")
 
     @expiry.setter
-    def expiry(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def expiry(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "expiry", value)
 
     @_builtins.property
     @pulumi.getter
-    def invalid(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def invalid(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether the key is invalid (e.g. expired, revoked or has been deleted).
         """
         return pulumi.get(self, "invalid")
 
     @invalid.setter
-    def invalid(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def invalid(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "invalid", value)
 
     @_builtins.property
     @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication key
         """
         return pulumi.get(self, "key")
 
     @key.setter
-    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key", value)
 
     @_builtins.property
     @pulumi.getter
-    def preauthorized(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def preauthorized(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
         """
         return pulumi.get(self, "preauthorized")
 
     @preauthorized.setter
-    def preauthorized(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def preauthorized(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "preauthorized", value)
 
     @_builtins.property
     @pulumi.getter(name="recreateIfInvalid")
-    def recreate_if_invalid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def recreate_if_invalid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
         """
         return pulumi.get(self, "recreate_if_invalid")
 
     @recreate_if_invalid.setter
-    def recreate_if_invalid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def recreate_if_invalid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "recreate_if_invalid", value)
 
     @_builtins.property
     @pulumi.getter
-    def reusable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def reusable(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if the key is reusable or single-use. Defaults to `false`.
         """
         return pulumi.get(self, "reusable")
 
     @reusable.setter
-    def reusable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def reusable(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "reusable", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of tags to apply to the machines authenticated by the key.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="userId")
-    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the user who created this key, empty for keys created by OAuth clients.
         """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_id", value)
 
 
@@ -360,14 +360,14 @@ class TailnetKey(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 ephemeral: Optional[pulumi.Input[_builtins.bool]] = None,
-                 expiry: Optional[pulumi.Input[_builtins.int]] = None,
-                 preauthorized: Optional[pulumi.Input[_builtins.bool]] = None,
-                 recreate_if_invalid: Optional[pulumi.Input[_builtins.str]] = None,
-                 reusable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 ephemeral: pulumi.Input[Optional[_builtins.bool]] = None,
+                 expiry: pulumi.Input[Optional[_builtins.int]] = None,
+                 preauthorized: pulumi.Input[Optional[_builtins.bool]] = None,
+                 recreate_if_invalid: pulumi.Input[Optional[_builtins.str]] = None,
+                 reusable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The tailnet_key resource allows you to create pre-authentication keys that can register new nodes without needing to sign in via a web browser. See https://tailscale.com/kb/1085/auth-keys for more information
@@ -459,14 +459,14 @@ class TailnetKey(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 ephemeral: Optional[pulumi.Input[_builtins.bool]] = None,
-                 expiry: Optional[pulumi.Input[_builtins.int]] = None,
-                 preauthorized: Optional[pulumi.Input[_builtins.bool]] = None,
-                 recreate_if_invalid: Optional[pulumi.Input[_builtins.str]] = None,
-                 reusable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 ephemeral: pulumi.Input[Optional[_builtins.bool]] = None,
+                 expiry: pulumi.Input[Optional[_builtins.int]] = None,
+                 preauthorized: pulumi.Input[Optional[_builtins.bool]] = None,
+                 recreate_if_invalid: pulumi.Input[Optional[_builtins.str]] = None,
+                 reusable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -500,18 +500,18 @@ class TailnetKey(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            ephemeral: Optional[pulumi.Input[_builtins.bool]] = None,
-            expires_at: Optional[pulumi.Input[_builtins.str]] = None,
-            expiry: Optional[pulumi.Input[_builtins.int]] = None,
-            invalid: Optional[pulumi.Input[_builtins.bool]] = None,
-            key: Optional[pulumi.Input[_builtins.str]] = None,
-            preauthorized: Optional[pulumi.Input[_builtins.bool]] = None,
-            recreate_if_invalid: Optional[pulumi.Input[_builtins.str]] = None,
-            reusable: Optional[pulumi.Input[_builtins.bool]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            user_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'TailnetKey':
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            ephemeral: pulumi.Input[Optional[_builtins.bool]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            expiry: pulumi.Input[Optional[_builtins.int]] = None,
+            invalid: pulumi.Input[Optional[_builtins.bool]] = None,
+            key: pulumi.Input[Optional[_builtins.str]] = None,
+            preauthorized: pulumi.Input[Optional[_builtins.bool]] = None,
+            recreate_if_invalid: pulumi.Input[Optional[_builtins.str]] = None,
+            reusable: pulumi.Input[Optional[_builtins.bool]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            user_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'TailnetKey':
         """
         Get an existing TailnetKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

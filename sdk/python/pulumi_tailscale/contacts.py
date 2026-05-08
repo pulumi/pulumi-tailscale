@@ -75,9 +75,9 @@ class ContactsArgs:
 @pulumi.input_type
 class _ContactsState:
     def __init__(__self__, *,
-                 account: Optional[pulumi.Input['ContactsAccountArgs']] = None,
-                 security: Optional[pulumi.Input['ContactsSecurityArgs']] = None,
-                 support: Optional[pulumi.Input['ContactsSupportArgs']] = None):
+                 account: pulumi.Input[Optional['ContactsAccountArgs']] = None,
+                 security: pulumi.Input[Optional['ContactsSecurityArgs']] = None,
+                 support: pulumi.Input[Optional['ContactsSupportArgs']] = None):
         """
         Input properties used for looking up and filtering Contacts resources.
 
@@ -94,38 +94,38 @@ class _ContactsState:
 
     @_builtins.property
     @pulumi.getter
-    def account(self) -> Optional[pulumi.Input['ContactsAccountArgs']]:
+    def account(self) -> pulumi.Input[Optional['ContactsAccountArgs']]:
         """
         Configuration for communications about important changes to your tailnet
         """
         return pulumi.get(self, "account")
 
     @account.setter
-    def account(self, value: Optional[pulumi.Input['ContactsAccountArgs']]):
+    def account(self, value: pulumi.Input[Optional['ContactsAccountArgs']]):
         pulumi.set(self, "account", value)
 
     @_builtins.property
     @pulumi.getter
-    def security(self) -> Optional[pulumi.Input['ContactsSecurityArgs']]:
+    def security(self) -> pulumi.Input[Optional['ContactsSecurityArgs']]:
         """
         Configuration for communications about security issues affecting your tailnet
         """
         return pulumi.get(self, "security")
 
     @security.setter
-    def security(self, value: Optional[pulumi.Input['ContactsSecurityArgs']]):
+    def security(self, value: pulumi.Input[Optional['ContactsSecurityArgs']]):
         pulumi.set(self, "security", value)
 
     @_builtins.property
     @pulumi.getter
-    def support(self) -> Optional[pulumi.Input['ContactsSupportArgs']]:
+    def support(self) -> pulumi.Input[Optional['ContactsSupportArgs']]:
         """
         Configuration for communications about misconfigurations in your tailnet
         """
         return pulumi.get(self, "support")
 
     @support.setter
-    def support(self, value: Optional[pulumi.Input['ContactsSupportArgs']]):
+    def support(self, value: pulumi.Input[Optional['ContactsSupportArgs']]):
         pulumi.set(self, "support", value)
 
 
@@ -135,9 +135,9 @@ class Contacts(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 account: Optional[pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]] = None,
-                 security: Optional[pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]] = None,
-                 support: Optional[pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]] = None,
+                 account: pulumi.Input[Optional[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]] = None,
+                 security: pulumi.Input[Optional[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]] = None,
+                 support: pulumi.Input[Optional[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]] = None,
                  __props__=None):
         """
         The contacts resource allows you to configure contact details for your Tailscale network. See https://tailscale.com/kb/1224/contact-preferences for more information.
@@ -234,9 +234,9 @@ class Contacts(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 account: Optional[pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]] = None,
-                 security: Optional[pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]] = None,
-                 support: Optional[pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]] = None,
+                 account: pulumi.Input[Optional[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]] = None,
+                 security: pulumi.Input[Optional[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]] = None,
+                 support: pulumi.Input[Optional[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -265,9 +265,9 @@ class Contacts(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            account: Optional[pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]] = None,
-            security: Optional[pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]] = None,
-            support: Optional[pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]] = None) -> 'Contacts':
+            account: pulumi.Input[Optional[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]] = None,
+            security: pulumi.Input[Optional[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]] = None,
+            support: pulumi.Input[Optional[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]] = None) -> 'Contacts':
         """
         Get an existing Contacts resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

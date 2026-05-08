@@ -128,11 +128,11 @@ export interface DeviceSubnetRoutesState {
     /**
      * The device to set subnet routes for
      */
-    deviceId?: pulumi.Input<string>;
+    deviceId?: pulumi.Input<string | undefined>;
     /**
      * The subnet routes that are enabled to be routed by a device
      */
-    routes?: pulumi.Input<pulumi.Input<string>[]>;
+    routes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**

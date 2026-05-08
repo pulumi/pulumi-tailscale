@@ -58,8 +58,8 @@ class DeviceSubnetRoutesArgs:
 @pulumi.input_type
 class _DeviceSubnetRoutesState:
     def __init__(__self__, *,
-                 device_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 routes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 device_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 routes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering DeviceSubnetRoutes resources.
 
@@ -73,26 +73,26 @@ class _DeviceSubnetRoutesState:
 
     @_builtins.property
     @pulumi.getter(name="deviceId")
-    def device_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def device_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The device to set subnet routes for
         """
         return pulumi.get(self, "device_id")
 
     @device_id.setter
-    def device_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def device_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "device_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def routes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The subnet routes that are enabled to be routed by a device
         """
         return pulumi.get(self, "routes")
 
     @routes.setter
-    def routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def routes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "routes", value)
 
 
@@ -102,8 +102,8 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 device_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 routes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 device_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 routes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         The device_subnet_routes resource allows you to configure enabled subnet routes for your Tailscale devices. See https://tailscale.com/kb/1019/subnets for more information.
@@ -223,8 +223,8 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 device_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 routes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 device_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 routes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -250,8 +250,8 @@ class DeviceSubnetRoutes(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            device_id: Optional[pulumi.Input[_builtins.str]] = None,
-            routes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'DeviceSubnetRoutes':
+            device_id: pulumi.Input[Optional[_builtins.str]] = None,
+            routes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'DeviceSubnetRoutes':
         """
         Get an existing DeviceSubnetRoutes resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

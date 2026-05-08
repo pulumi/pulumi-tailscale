@@ -116,8 +116,8 @@ def get4_via6(cidr: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         ipv6=pulumi.get(__ret__, 'ipv6'),
         site=pulumi.get(__ret__, 'site'))
-def get4_via6_output(cidr: Optional[pulumi.Input[_builtins.str]] = None,
-                     site: Optional[pulumi.Input[_builtins.int]] = None,
+def get4_via6_output(cidr: pulumi.Input[Optional[_builtins.str]] = None,
+                     site: pulumi.Input[Optional[_builtins.int]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[Get4Via6Result]:
     """
     The 4via6 data source is calculates an IPv6 prefix for a given site ID and IPv4 CIDR. See Tailscale documentation for [4via6 subnets](https://tailscale.com/kb/1201/4via6-subnets/) for more details.

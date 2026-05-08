@@ -252,79 +252,79 @@ export interface LogstreamConfigurationState {
     /**
      * The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
      */
-    compressionFormat?: pulumi.Input<string>;
+    compressionFormat?: pulumi.Input<string | undefined>;
     /**
      * The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
      */
-    destinationType?: pulumi.Input<string>;
+    destinationType?: pulumi.Input<string | undefined>;
     /**
      * The name of the GCS bucket
      */
-    gcsBucket?: pulumi.Input<string>;
+    gcsBucket?: pulumi.Input<string | undefined>;
     /**
      * The encoded string of JSON that is used to authenticate for workload identity in GCS
      */
-    gcsCredentials?: pulumi.Input<string>;
+    gcsCredentials?: pulumi.Input<string | undefined>;
     /**
      * The GCS key prefix for the bucket
      */
-    gcsKeyPrefix?: pulumi.Input<string>;
+    gcsKeyPrefix?: pulumi.Input<string | undefined>;
     /**
      * The GCS scopes needed to be able to write in the bucket
      */
-    gcsScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    gcsScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
      */
-    logType?: pulumi.Input<string>;
+    logType?: pulumi.Input<string | undefined>;
     /**
      * The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
      */
-    s3AccessKeyId?: pulumi.Input<string>;
+    s3AccessKeyId?: pulumi.Input<string | undefined>;
     /**
      * The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
      */
-    s3AuthenticationType?: pulumi.Input<string>;
+    s3AuthenticationType?: pulumi.Input<string | undefined>;
     /**
      * The S3 bucket name. Required if destinationType is 's3'.
      */
-    s3Bucket?: pulumi.Input<string>;
+    s3Bucket?: pulumi.Input<string | undefined>;
     /**
      * The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
      */
-    s3ExternalId?: pulumi.Input<string>;
+    s3ExternalId?: pulumi.Input<string | undefined>;
     /**
      * An optional S3 key prefix to prepend to the auto-generated S3 key name.
      */
-    s3KeyPrefix?: pulumi.Input<string>;
+    s3KeyPrefix?: pulumi.Input<string | undefined>;
     /**
      * The region in which the S3 bucket is located. Required if destinationType is 's3'.
      */
-    s3Region?: pulumi.Input<string>;
+    s3Region?: pulumi.Input<string | undefined>;
     /**
      * ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
      */
-    s3RoleArn?: pulumi.Input<string>;
+    s3RoleArn?: pulumi.Input<string | undefined>;
     /**
      * The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
      */
-    s3SecretAccessKey?: pulumi.Input<string>;
+    s3SecretAccessKey?: pulumi.Input<string | undefined>;
     /**
      * The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is 's3'.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
      */
-    uploadPeriodMinutes?: pulumi.Input<number>;
+    uploadPeriodMinutes?: pulumi.Input<number | undefined>;
     /**
      * The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
      */
-    url?: pulumi.Input<string>;
+    url?: pulumi.Input<string | undefined>;
     /**
      * The username with which log streams to this endpoint are authenticated. Only required if destinationType is 'elastic', defaults to 'user' if not set.
      */
-    user?: pulumi.Input<string>;
+    user?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -334,7 +334,7 @@ export interface LogstreamConfigurationArgs {
     /**
      * The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
      */
-    compressionFormat?: pulumi.Input<string>;
+    compressionFormat?: pulumi.Input<string | undefined>;
     /**
      * The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
      */
@@ -342,19 +342,19 @@ export interface LogstreamConfigurationArgs {
     /**
      * The name of the GCS bucket
      */
-    gcsBucket?: pulumi.Input<string>;
+    gcsBucket?: pulumi.Input<string | undefined>;
     /**
      * The encoded string of JSON that is used to authenticate for workload identity in GCS
      */
-    gcsCredentials?: pulumi.Input<string>;
+    gcsCredentials?: pulumi.Input<string | undefined>;
     /**
      * The GCS key prefix for the bucket
      */
-    gcsKeyPrefix?: pulumi.Input<string>;
+    gcsKeyPrefix?: pulumi.Input<string | undefined>;
     /**
      * The GCS scopes needed to be able to write in the bucket
      */
-    gcsScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    gcsScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
      */
@@ -362,49 +362,49 @@ export interface LogstreamConfigurationArgs {
     /**
      * The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
      */
-    s3AccessKeyId?: pulumi.Input<string>;
+    s3AccessKeyId?: pulumi.Input<string | undefined>;
     /**
      * The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
      */
-    s3AuthenticationType?: pulumi.Input<string>;
+    s3AuthenticationType?: pulumi.Input<string | undefined>;
     /**
      * The S3 bucket name. Required if destinationType is 's3'.
      */
-    s3Bucket?: pulumi.Input<string>;
+    s3Bucket?: pulumi.Input<string | undefined>;
     /**
      * The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
      */
-    s3ExternalId?: pulumi.Input<string>;
+    s3ExternalId?: pulumi.Input<string | undefined>;
     /**
      * An optional S3 key prefix to prepend to the auto-generated S3 key name.
      */
-    s3KeyPrefix?: pulumi.Input<string>;
+    s3KeyPrefix?: pulumi.Input<string | undefined>;
     /**
      * The region in which the S3 bucket is located. Required if destinationType is 's3'.
      */
-    s3Region?: pulumi.Input<string>;
+    s3Region?: pulumi.Input<string | undefined>;
     /**
      * ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
      */
-    s3RoleArn?: pulumi.Input<string>;
+    s3RoleArn?: pulumi.Input<string | undefined>;
     /**
      * The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
      */
-    s3SecretAccessKey?: pulumi.Input<string>;
+    s3SecretAccessKey?: pulumi.Input<string | undefined>;
     /**
      * The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is 's3'.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
      */
-    uploadPeriodMinutes?: pulumi.Input<number>;
+    uploadPeriodMinutes?: pulumi.Input<number | undefined>;
     /**
      * The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
      */
-    url?: pulumi.Input<string>;
+    url?: pulumi.Input<string | undefined>;
     /**
      * The username with which log streams to this endpoint are authenticated. Only required if destinationType is 'elastic', defaults to 'user' if not set.
      */
-    user?: pulumi.Input<string>;
+    user?: pulumi.Input<string | undefined>;
 }

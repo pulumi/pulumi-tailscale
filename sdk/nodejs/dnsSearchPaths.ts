@@ -92,7 +92,7 @@ export interface DnsSearchPathsState {
     /**
      * Devices on your network will use these domain suffixes to resolve DNS names.
      */
-    searchPaths?: pulumi.Input<pulumi.Input<string>[]>;
+    searchPaths?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**

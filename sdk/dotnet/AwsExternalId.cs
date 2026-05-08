@@ -23,9 +23,9 @@ namespace Pulumi.Tailscale
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var prod = new Tailscale.Index.AwsExternalId("prod");
+    ///     var prod = new Tailscale.AwsExternalId("prod");
     /// 
-    ///     var tailscaleAssumeRole = Aws.Index.IamPolicyDocument.Invoke(new()
+    ///     var tailscaleAssumeRole = Aws.IamPolicyDocument.Invoke(new()
     ///     {
     ///         Statement = new[]
     ///         {
@@ -62,13 +62,13 @@ namespace Pulumi.Tailscale
     ///         },
     ///     });
     /// 
-    ///     var logsWriterIamRole = new Aws.Index.IamRole("logs_writer", new()
+    ///     var logsWriterIamRole = new Aws.IamRole("logs_writer", new()
     ///     {
     ///         Name = "logs-writer",
     ///         AssumeRolePolicy = tailscaleAssumeRole.Json,
     ///     });
     /// 
-    ///     var configurationLogs = new Tailscale.Index.LogstreamConfiguration("configuration_logs", new()
+    ///     var configurationLogs = new Tailscale.LogstreamConfiguration("configuration_logs", new()
     ///     {
     ///         LogType = "configuration",
     ///         DestinationType = "s3",
@@ -79,7 +79,7 @@ namespace Pulumi.Tailscale
     ///         S3ExternalId = prod.ExternalId,
     ///     });
     /// 
-    ///     var logsWriter = Aws.Index.IamPolicyDocument.Invoke(new()
+    ///     var logsWriter = Aws.IamPolicyDocument.Invoke(new()
     ///     {
     ///         Statement = new[]
     ///         {
@@ -99,7 +99,7 @@ namespace Pulumi.Tailscale
     ///         },
     ///     });
     /// 
-    ///     var logsWriterIamRolePolicy = new Aws.Index.IamRolePolicy("logs_writer", new()
+    ///     var logsWriterIamRolePolicy = new Aws.IamRolePolicy("logs_writer", new()
     ///     {
     ///         Role = logsWriterIamRole.Id,
     ///         Policy = logsWriter.Json,

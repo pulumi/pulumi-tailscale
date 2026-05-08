@@ -58,8 +58,8 @@ class DeviceAuthorizationArgs:
 @pulumi.input_type
 class _DeviceAuthorizationState:
     def __init__(__self__, *,
-                 authorized: Optional[pulumi.Input[_builtins.bool]] = None,
-                 device_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 authorized: pulumi.Input[Optional[_builtins.bool]] = None,
+                 device_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DeviceAuthorization resources.
 
@@ -73,26 +73,26 @@ class _DeviceAuthorizationState:
 
     @_builtins.property
     @pulumi.getter
-    def authorized(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def authorized(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether or not the device is authorized
         """
         return pulumi.get(self, "authorized")
 
     @authorized.setter
-    def authorized(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def authorized(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "authorized", value)
 
     @_builtins.property
     @pulumi.getter(name="deviceId")
-    def device_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def device_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The device to set as authorized
         """
         return pulumi.get(self, "device_id")
 
     @device_id.setter
-    def device_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def device_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "device_id", value)
 
 
@@ -102,8 +102,8 @@ class DeviceAuthorization(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authorized: Optional[pulumi.Input[_builtins.bool]] = None,
-                 device_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 authorized: pulumi.Input[Optional[_builtins.bool]] = None,
+                 device_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The device_authorization resource is used to approve new devices before they can join the tailnet. See https://tailscale.com/kb/1099/device-authorization/ for more details.
@@ -195,8 +195,8 @@ class DeviceAuthorization(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authorized: Optional[pulumi.Input[_builtins.bool]] = None,
-                 device_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 authorized: pulumi.Input[Optional[_builtins.bool]] = None,
+                 device_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -222,8 +222,8 @@ class DeviceAuthorization(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            authorized: Optional[pulumi.Input[_builtins.bool]] = None,
-            device_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'DeviceAuthorization':
+            authorized: pulumi.Input[Optional[_builtins.bool]] = None,
+            device_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'DeviceAuthorization':
         """
         Get an existing DeviceAuthorization resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

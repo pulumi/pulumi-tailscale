@@ -124,15 +124,15 @@ export interface ContactsState {
     /**
      * Configuration for communications about important changes to your tailnet
      */
-    account?: pulumi.Input<inputs.ContactsAccount>;
+    account?: pulumi.Input<inputs.ContactsAccount | undefined>;
     /**
      * Configuration for communications about security issues affecting your tailnet
      */
-    security?: pulumi.Input<inputs.ContactsSecurity>;
+    security?: pulumi.Input<inputs.ContactsSecurity | undefined>;
     /**
      * Configuration for communications about misconfigurations in your tailnet
      */
-    support?: pulumi.Input<inputs.ContactsSupport>;
+    support?: pulumi.Input<inputs.ContactsSupport | undefined>;
 }
 
 /**

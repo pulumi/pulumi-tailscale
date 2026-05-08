@@ -92,7 +92,7 @@ export interface DnsPreferencesState {
     /**
      * Whether or not to enable magic DNS
      */
-    magicDns?: pulumi.Input<boolean>;
+    magicDns?: pulumi.Input<boolean | undefined>;
 }
 
 /**

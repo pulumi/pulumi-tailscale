@@ -134,31 +134,31 @@ export interface OauthClientState {
     /**
      * The creation timestamp of the key in RFC3339 format
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The client secret, also known as the key. Used with the client ID to generate access tokens.
      */
-    key?: pulumi.Input<string>;
+    key?: pulumi.Input<string | undefined>;
     /**
      * Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
      */
-    scopes?: pulumi.Input<pulumi.Input<string>[]>;
+    scopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "authKeys".
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The updated timestamp of the key in RFC3339 format
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * ID of the user who created this key, empty for OAuth clients created by other trust credentials.
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -168,7 +168,7 @@ export interface OauthClientArgs {
     /**
      * A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
      */
@@ -176,5 +176,5 @@ export interface OauthClientArgs {
     /**
      * A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "authKeys".
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

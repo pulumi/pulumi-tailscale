@@ -20,7 +20,7 @@ __all__ = ['DeviceKeyArgs', 'DeviceKey']
 class DeviceKeyArgs:
     def __init__(__self__, *,
                  device_id: pulumi.Input[_builtins.str],
-                 key_expiry_disabled: Optional[pulumi.Input[_builtins.bool]] = None):
+                 key_expiry_disabled: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a DeviceKey resource.
 
@@ -45,22 +45,22 @@ class DeviceKeyArgs:
 
     @_builtins.property
     @pulumi.getter(name="keyExpiryDisabled")
-    def key_expiry_disabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def key_expiry_disabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Determines whether or not the device's key will expire. Defaults to `false`.
         """
         return pulumi.get(self, "key_expiry_disabled")
 
     @key_expiry_disabled.setter
-    def key_expiry_disabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def key_expiry_disabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "key_expiry_disabled", value)
 
 
 @pulumi.input_type
 class _DeviceKeyState:
     def __init__(__self__, *,
-                 device_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_expiry_disabled: Optional[pulumi.Input[_builtins.bool]] = None):
+                 device_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_expiry_disabled: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering DeviceKey resources.
 
@@ -74,26 +74,26 @@ class _DeviceKeyState:
 
     @_builtins.property
     @pulumi.getter(name="deviceId")
-    def device_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def device_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The device to update the key properties of
         """
         return pulumi.get(self, "device_id")
 
     @device_id.setter
-    def device_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def device_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "device_id", value)
 
     @_builtins.property
     @pulumi.getter(name="keyExpiryDisabled")
-    def key_expiry_disabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def key_expiry_disabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Determines whether or not the device's key will expire. Defaults to `false`.
         """
         return pulumi.get(self, "key_expiry_disabled")
 
     @key_expiry_disabled.setter
-    def key_expiry_disabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def key_expiry_disabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "key_expiry_disabled", value)
 
 
@@ -103,8 +103,8 @@ class DeviceKey(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 device_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_expiry_disabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 device_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_expiry_disabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         The device_key resource allows you to update the properties of a device's key
@@ -196,8 +196,8 @@ class DeviceKey(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 device_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_expiry_disabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 device_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_expiry_disabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -221,8 +221,8 @@ class DeviceKey(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            device_id: Optional[pulumi.Input[_builtins.str]] = None,
-            key_expiry_disabled: Optional[pulumi.Input[_builtins.bool]] = None) -> 'DeviceKey':
+            device_id: pulumi.Input[Optional[_builtins.str]] = None,
+            key_expiry_disabled: pulumi.Input[Optional[_builtins.bool]] = None) -> 'DeviceKey':
         """
         Get an existing DeviceKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

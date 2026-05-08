@@ -58,8 +58,8 @@ class DnsSplitNameserversArgs:
 @pulumi.input_type
 class _DnsSplitNameserversState:
     def __init__(__self__, *,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering DnsSplitNameservers resources.
 
@@ -73,26 +73,26 @@ class _DnsSplitNameserversState:
 
     @_builtins.property
     @pulumi.getter
-    def domain(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def domain(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
         """
         return pulumi.get(self, "domain")
 
     @domain.setter
-    def domain(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def domain(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "domain", value)
 
     @_builtins.property
     @pulumi.getter
-    def nameservers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def nameservers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
         """
         return pulumi.get(self, "nameservers")
 
     @nameservers.setter
-    def nameservers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def nameservers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "nameservers", value)
 
 
@@ -102,8 +102,8 @@ class DnsSplitNameservers(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         The dns_split_nameservers resource allows you to configure split DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
@@ -181,8 +181,8 @@ class DnsSplitNameservers(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 domain: Optional[pulumi.Input[_builtins.str]] = None,
-                 nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -208,8 +208,8 @@ class DnsSplitNameservers(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            domain: Optional[pulumi.Input[_builtins.str]] = None,
-            nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'DnsSplitNameservers':
+            domain: pulumi.Input[Optional[_builtins.str]] = None,
+            nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'DnsSplitNameservers':
         """
         Get an existing DnsSplitNameservers resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

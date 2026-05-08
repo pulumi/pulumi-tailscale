@@ -113,11 +113,11 @@ export interface DeviceTagsState {
     /**
      * The device to set tags for
      */
-    deviceId?: pulumi.Input<string>;
+    deviceId?: pulumi.Input<string | undefined>;
     /**
      * The tags to apply to the device
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**

@@ -43,7 +43,7 @@ class DnsNameserversArgs:
 @pulumi.input_type
 class _DnsNameserversState:
     def __init__(__self__, *,
-                 nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering DnsNameservers resources.
 
@@ -54,14 +54,14 @@ class _DnsNameserversState:
 
     @_builtins.property
     @pulumi.getter
-    def nameservers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def nameservers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
         """
         return pulumi.get(self, "nameservers")
 
     @nameservers.setter
-    def nameservers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def nameservers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "nameservers", value)
 
 
@@ -71,7 +71,7 @@ class DnsNameservers(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
@@ -150,7 +150,7 @@ class DnsNameservers(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -173,7 +173,7 @@ class DnsNameservers(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            nameservers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'DnsNameservers':
+            nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'DnsNameservers':
         """
         Get an existing DnsNameservers resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

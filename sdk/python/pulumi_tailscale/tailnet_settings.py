@@ -19,17 +19,17 @@ __all__ = ['TailnetSettingsArgs', 'TailnetSettings']
 @pulumi.input_type
 class TailnetSettingsArgs:
     def __init__(__self__, *,
-                 acls_external_link: Optional[pulumi.Input[_builtins.str]] = None,
-                 acls_externally_managed_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 devices_approval_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 devices_auto_updates_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 devices_key_duration_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 https_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 network_flow_logging_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 posture_identity_collection_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 regional_routing_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 users_approval_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 users_role_allowed_to_join_external_tailnet: Optional[pulumi.Input[_builtins.str]] = None):
+                 acls_external_link: pulumi.Input[Optional[_builtins.str]] = None,
+                 acls_externally_managed_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 devices_approval_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 devices_auto_updates_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 devices_key_duration_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 https_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 network_flow_logging_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 posture_identity_collection_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 regional_routing_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 users_approval_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 users_role_allowed_to_join_external_tailnet: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a TailnetSettings resource.
 
@@ -70,151 +70,151 @@ class TailnetSettingsArgs:
 
     @_builtins.property
     @pulumi.getter(name="aclsExternalLink")
-    def acls_external_link(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def acls_external_link(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Link to your external ACL definition or management system. Must be a valid URL.
         """
         return pulumi.get(self, "acls_external_link")
 
     @acls_external_link.setter
-    def acls_external_link(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def acls_external_link(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "acls_external_link", value)
 
     @_builtins.property
     @pulumi.getter(name="aclsExternallyManagedOn")
-    def acls_externally_managed_on(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def acls_externally_managed_on(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
         """
         return pulumi.get(self, "acls_externally_managed_on")
 
     @acls_externally_managed_on.setter
-    def acls_externally_managed_on(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def acls_externally_managed_on(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "acls_externally_managed_on", value)
 
     @_builtins.property
     @pulumi.getter(name="devicesApprovalOn")
-    def devices_approval_on(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def devices_approval_on(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether device approval is enabled for the tailnet
         """
         return pulumi.get(self, "devices_approval_on")
 
     @devices_approval_on.setter
-    def devices_approval_on(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def devices_approval_on(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "devices_approval_on", value)
 
     @_builtins.property
     @pulumi.getter(name="devicesAutoUpdatesOn")
-    def devices_auto_updates_on(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def devices_auto_updates_on(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether auto updates are enabled for devices that belong to this tailnet
         """
         return pulumi.get(self, "devices_auto_updates_on")
 
     @devices_auto_updates_on.setter
-    def devices_auto_updates_on(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def devices_auto_updates_on(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "devices_auto_updates_on", value)
 
     @_builtins.property
     @pulumi.getter(name="devicesKeyDurationDays")
-    def devices_key_duration_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def devices_key_duration_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The key expiry duration for devices on this tailnet
         """
         return pulumi.get(self, "devices_key_duration_days")
 
     @devices_key_duration_days.setter
-    def devices_key_duration_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def devices_key_duration_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "devices_key_duration_days", value)
 
     @_builtins.property
     @pulumi.getter(name="httpsEnabled")
-    def https_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def https_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether provisioning of HTTPS certificates is enabled for the tailnet
         """
         return pulumi.get(self, "https_enabled")
 
     @https_enabled.setter
-    def https_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def https_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "https_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="networkFlowLoggingOn")
-    def network_flow_logging_on(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def network_flow_logging_on(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether network flow logs are enabled for the tailnet
         """
         return pulumi.get(self, "network_flow_logging_on")
 
     @network_flow_logging_on.setter
-    def network_flow_logging_on(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def network_flow_logging_on(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "network_flow_logging_on", value)
 
     @_builtins.property
     @pulumi.getter(name="postureIdentityCollectionOn")
-    def posture_identity_collection_on(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def posture_identity_collection_on(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether identity collection is enabled for device posture integrations for the tailnet
         """
         return pulumi.get(self, "posture_identity_collection_on")
 
     @posture_identity_collection_on.setter
-    def posture_identity_collection_on(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def posture_identity_collection_on(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "posture_identity_collection_on", value)
 
     @_builtins.property
     @pulumi.getter(name="regionalRoutingOn")
-    def regional_routing_on(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def regional_routing_on(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether regional routing is enabled for the tailnet
         """
         return pulumi.get(self, "regional_routing_on")
 
     @regional_routing_on.setter
-    def regional_routing_on(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def regional_routing_on(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "regional_routing_on", value)
 
     @_builtins.property
     @pulumi.getter(name="usersApprovalOn")
-    def users_approval_on(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def users_approval_on(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether user approval is enabled for this tailnet
         """
         return pulumi.get(self, "users_approval_on")
 
     @users_approval_on.setter
-    def users_approval_on(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def users_approval_on(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "users_approval_on", value)
 
     @_builtins.property
     @pulumi.getter(name="usersRoleAllowedToJoinExternalTailnet")
-    def users_role_allowed_to_join_external_tailnet(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def users_role_allowed_to_join_external_tailnet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which user roles are allowed to join external tailnets
         """
         return pulumi.get(self, "users_role_allowed_to_join_external_tailnet")
 
     @users_role_allowed_to_join_external_tailnet.setter
-    def users_role_allowed_to_join_external_tailnet(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def users_role_allowed_to_join_external_tailnet(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "users_role_allowed_to_join_external_tailnet", value)
 
 
 @pulumi.input_type
 class _TailnetSettingsState:
     def __init__(__self__, *,
-                 acls_external_link: Optional[pulumi.Input[_builtins.str]] = None,
-                 acls_externally_managed_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 devices_approval_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 devices_auto_updates_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 devices_key_duration_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 https_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 network_flow_logging_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 posture_identity_collection_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 regional_routing_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 users_approval_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 users_role_allowed_to_join_external_tailnet: Optional[pulumi.Input[_builtins.str]] = None):
+                 acls_external_link: pulumi.Input[Optional[_builtins.str]] = None,
+                 acls_externally_managed_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 devices_approval_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 devices_auto_updates_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 devices_key_duration_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 https_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 network_flow_logging_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 posture_identity_collection_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 regional_routing_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 users_approval_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 users_role_allowed_to_join_external_tailnet: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TailnetSettings resources.
 
@@ -255,134 +255,134 @@ class _TailnetSettingsState:
 
     @_builtins.property
     @pulumi.getter(name="aclsExternalLink")
-    def acls_external_link(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def acls_external_link(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Link to your external ACL definition or management system. Must be a valid URL.
         """
         return pulumi.get(self, "acls_external_link")
 
     @acls_external_link.setter
-    def acls_external_link(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def acls_external_link(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "acls_external_link", value)
 
     @_builtins.property
     @pulumi.getter(name="aclsExternallyManagedOn")
-    def acls_externally_managed_on(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def acls_externally_managed_on(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Prevent users from editing policies in the admin console to avoid conflicts with external management workflows like GitOps or Terraform.
         """
         return pulumi.get(self, "acls_externally_managed_on")
 
     @acls_externally_managed_on.setter
-    def acls_externally_managed_on(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def acls_externally_managed_on(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "acls_externally_managed_on", value)
 
     @_builtins.property
     @pulumi.getter(name="devicesApprovalOn")
-    def devices_approval_on(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def devices_approval_on(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether device approval is enabled for the tailnet
         """
         return pulumi.get(self, "devices_approval_on")
 
     @devices_approval_on.setter
-    def devices_approval_on(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def devices_approval_on(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "devices_approval_on", value)
 
     @_builtins.property
     @pulumi.getter(name="devicesAutoUpdatesOn")
-    def devices_auto_updates_on(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def devices_auto_updates_on(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether auto updates are enabled for devices that belong to this tailnet
         """
         return pulumi.get(self, "devices_auto_updates_on")
 
     @devices_auto_updates_on.setter
-    def devices_auto_updates_on(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def devices_auto_updates_on(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "devices_auto_updates_on", value)
 
     @_builtins.property
     @pulumi.getter(name="devicesKeyDurationDays")
-    def devices_key_duration_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def devices_key_duration_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The key expiry duration for devices on this tailnet
         """
         return pulumi.get(self, "devices_key_duration_days")
 
     @devices_key_duration_days.setter
-    def devices_key_duration_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def devices_key_duration_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "devices_key_duration_days", value)
 
     @_builtins.property
     @pulumi.getter(name="httpsEnabled")
-    def https_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def https_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether provisioning of HTTPS certificates is enabled for the tailnet
         """
         return pulumi.get(self, "https_enabled")
 
     @https_enabled.setter
-    def https_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def https_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "https_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="networkFlowLoggingOn")
-    def network_flow_logging_on(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def network_flow_logging_on(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether network flow logs are enabled for the tailnet
         """
         return pulumi.get(self, "network_flow_logging_on")
 
     @network_flow_logging_on.setter
-    def network_flow_logging_on(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def network_flow_logging_on(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "network_flow_logging_on", value)
 
     @_builtins.property
     @pulumi.getter(name="postureIdentityCollectionOn")
-    def posture_identity_collection_on(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def posture_identity_collection_on(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether identity collection is enabled for device posture integrations for the tailnet
         """
         return pulumi.get(self, "posture_identity_collection_on")
 
     @posture_identity_collection_on.setter
-    def posture_identity_collection_on(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def posture_identity_collection_on(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "posture_identity_collection_on", value)
 
     @_builtins.property
     @pulumi.getter(name="regionalRoutingOn")
-    def regional_routing_on(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def regional_routing_on(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether regional routing is enabled for the tailnet
         """
         return pulumi.get(self, "regional_routing_on")
 
     @regional_routing_on.setter
-    def regional_routing_on(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def regional_routing_on(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "regional_routing_on", value)
 
     @_builtins.property
     @pulumi.getter(name="usersApprovalOn")
-    def users_approval_on(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def users_approval_on(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether user approval is enabled for this tailnet
         """
         return pulumi.get(self, "users_approval_on")
 
     @users_approval_on.setter
-    def users_approval_on(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def users_approval_on(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "users_approval_on", value)
 
     @_builtins.property
     @pulumi.getter(name="usersRoleAllowedToJoinExternalTailnet")
-    def users_role_allowed_to_join_external_tailnet(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def users_role_allowed_to_join_external_tailnet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which user roles are allowed to join external tailnets
         """
         return pulumi.get(self, "users_role_allowed_to_join_external_tailnet")
 
     @users_role_allowed_to_join_external_tailnet.setter
-    def users_role_allowed_to_join_external_tailnet(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def users_role_allowed_to_join_external_tailnet(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "users_role_allowed_to_join_external_tailnet", value)
 
 
@@ -392,17 +392,17 @@ class TailnetSettings(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls_external_link: Optional[pulumi.Input[_builtins.str]] = None,
-                 acls_externally_managed_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 devices_approval_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 devices_auto_updates_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 devices_key_duration_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 https_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 network_flow_logging_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 posture_identity_collection_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 regional_routing_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 users_approval_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 users_role_allowed_to_join_external_tailnet: Optional[pulumi.Input[_builtins.str]] = None,
+                 acls_external_link: pulumi.Input[Optional[_builtins.str]] = None,
+                 acls_externally_managed_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 devices_approval_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 devices_auto_updates_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 devices_key_duration_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 https_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 network_flow_logging_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 posture_identity_collection_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 regional_routing_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 users_approval_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 users_role_allowed_to_join_external_tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The tailnet_settings resource allows you to configure settings for your tailnet. See https://tailscale.com/api#tag/tailnetsettings for more information.
@@ -503,17 +503,17 @@ class TailnetSettings(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls_external_link: Optional[pulumi.Input[_builtins.str]] = None,
-                 acls_externally_managed_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 devices_approval_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 devices_auto_updates_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 devices_key_duration_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 https_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 network_flow_logging_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 posture_identity_collection_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 regional_routing_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 users_approval_on: Optional[pulumi.Input[_builtins.bool]] = None,
-                 users_role_allowed_to_join_external_tailnet: Optional[pulumi.Input[_builtins.str]] = None,
+                 acls_external_link: pulumi.Input[Optional[_builtins.str]] = None,
+                 acls_externally_managed_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 devices_approval_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 devices_auto_updates_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 devices_key_duration_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 https_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 network_flow_logging_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 posture_identity_collection_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 regional_routing_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 users_approval_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 users_role_allowed_to_join_external_tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -544,17 +544,17 @@ class TailnetSettings(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acls_external_link: Optional[pulumi.Input[_builtins.str]] = None,
-            acls_externally_managed_on: Optional[pulumi.Input[_builtins.bool]] = None,
-            devices_approval_on: Optional[pulumi.Input[_builtins.bool]] = None,
-            devices_auto_updates_on: Optional[pulumi.Input[_builtins.bool]] = None,
-            devices_key_duration_days: Optional[pulumi.Input[_builtins.int]] = None,
-            https_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            network_flow_logging_on: Optional[pulumi.Input[_builtins.bool]] = None,
-            posture_identity_collection_on: Optional[pulumi.Input[_builtins.bool]] = None,
-            regional_routing_on: Optional[pulumi.Input[_builtins.bool]] = None,
-            users_approval_on: Optional[pulumi.Input[_builtins.bool]] = None,
-            users_role_allowed_to_join_external_tailnet: Optional[pulumi.Input[_builtins.str]] = None) -> 'TailnetSettings':
+            acls_external_link: pulumi.Input[Optional[_builtins.str]] = None,
+            acls_externally_managed_on: pulumi.Input[Optional[_builtins.bool]] = None,
+            devices_approval_on: pulumi.Input[Optional[_builtins.bool]] = None,
+            devices_auto_updates_on: pulumi.Input[Optional[_builtins.bool]] = None,
+            devices_key_duration_days: pulumi.Input[Optional[_builtins.int]] = None,
+            https_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            network_flow_logging_on: pulumi.Input[Optional[_builtins.bool]] = None,
+            posture_identity_collection_on: pulumi.Input[Optional[_builtins.bool]] = None,
+            regional_routing_on: pulumi.Input[Optional[_builtins.bool]] = None,
+            users_approval_on: pulumi.Input[Optional[_builtins.bool]] = None,
+            users_role_allowed_to_join_external_tailnet: pulumi.Input[Optional[_builtins.str]] = None) -> 'TailnetSettings':
         """
         Get an existing TailnetSettings resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

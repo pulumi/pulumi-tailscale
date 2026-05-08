@@ -20,8 +20,8 @@ __all__ = ['AclArgs', 'Acl']
 class AclArgs:
     def __init__(__self__, *,
                  acl: pulumi.Input[_builtins.str],
-                 overwrite_existing_content: Optional[pulumi.Input[_builtins.bool]] = None,
-                 reset_acl_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None):
+                 overwrite_existing_content: pulumi.Input[Optional[_builtins.bool]] = None,
+                 reset_acl_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Acl resource.
 
@@ -49,35 +49,35 @@ class AclArgs:
 
     @_builtins.property
     @pulumi.getter(name="overwriteExistingContent")
-    def overwrite_existing_content(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def overwrite_existing_content(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
         """
         return pulumi.get(self, "overwrite_existing_content")
 
     @overwrite_existing_content.setter
-    def overwrite_existing_content(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def overwrite_existing_content(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "overwrite_existing_content", value)
 
     @_builtins.property
     @pulumi.getter(name="resetAclOnDestroy")
-    def reset_acl_on_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def reset_acl_on_destroy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
         """
         return pulumi.get(self, "reset_acl_on_destroy")
 
     @reset_acl_on_destroy.setter
-    def reset_acl_on_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def reset_acl_on_destroy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "reset_acl_on_destroy", value)
 
 
 @pulumi.input_type
 class _AclState:
     def __init__(__self__, *,
-                 acl: Optional[pulumi.Input[_builtins.str]] = None,
-                 overwrite_existing_content: Optional[pulumi.Input[_builtins.bool]] = None,
-                 reset_acl_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None):
+                 acl: pulumi.Input[Optional[_builtins.str]] = None,
+                 overwrite_existing_content: pulumi.Input[Optional[_builtins.bool]] = None,
+                 reset_acl_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Acl resources.
 
@@ -94,38 +94,38 @@ class _AclState:
 
     @_builtins.property
     @pulumi.getter
-    def acl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def acl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The policy that defines which devices and users are allowed to connect in your network. Can be either a JSON or a HuJSON string.
         """
         return pulumi.get(self, "acl")
 
     @acl.setter
-    def acl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def acl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "acl", value)
 
     @_builtins.property
     @pulumi.getter(name="overwriteExistingContent")
-    def overwrite_existing_content(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def overwrite_existing_content(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, will skip requirement to import acl before allowing changes. Be careful, can cause the policy file to be overwritten
         """
         return pulumi.get(self, "overwrite_existing_content")
 
     @overwrite_existing_content.setter
-    def overwrite_existing_content(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def overwrite_existing_content(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "overwrite_existing_content", value)
 
     @_builtins.property
     @pulumi.getter(name="resetAclOnDestroy")
-    def reset_acl_on_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def reset_acl_on_destroy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, will reset the policy file for the Tailnet to the default when this resource is destroyed
         """
         return pulumi.get(self, "reset_acl_on_destroy")
 
     @reset_acl_on_destroy.setter
-    def reset_acl_on_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def reset_acl_on_destroy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "reset_acl_on_destroy", value)
 
 
@@ -135,9 +135,9 @@ class Acl(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acl: Optional[pulumi.Input[_builtins.str]] = None,
-                 overwrite_existing_content: Optional[pulumi.Input[_builtins.bool]] = None,
-                 reset_acl_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
+                 acl: pulumi.Input[Optional[_builtins.str]] = None,
+                 overwrite_existing_content: pulumi.Input[Optional[_builtins.bool]] = None,
+                 reset_acl_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         The acl resource allows you to configure a Tailscale policy file. See https://tailscale.com/kb/1395/tailnet-policy-file for more information. Note that this resource will completely overwrite existing policy file contents for a given tailnet.
@@ -254,9 +254,9 @@ class Acl(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acl: Optional[pulumi.Input[_builtins.str]] = None,
-                 overwrite_existing_content: Optional[pulumi.Input[_builtins.bool]] = None,
-                 reset_acl_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
+                 acl: pulumi.Input[Optional[_builtins.str]] = None,
+                 overwrite_existing_content: pulumi.Input[Optional[_builtins.bool]] = None,
+                 reset_acl_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -281,9 +281,9 @@ class Acl(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acl: Optional[pulumi.Input[_builtins.str]] = None,
-            overwrite_existing_content: Optional[pulumi.Input[_builtins.bool]] = None,
-            reset_acl_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None) -> 'Acl':
+            acl: pulumi.Input[Optional[_builtins.str]] = None,
+            overwrite_existing_content: pulumi.Input[Optional[_builtins.bool]] = None,
+            reset_acl_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None) -> 'Acl':
         """
         Get an existing Acl resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

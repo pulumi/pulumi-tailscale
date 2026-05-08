@@ -34,7 +34,7 @@ export interface DnsConfigurationNameserver {
     /**
      * This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
      */
-    useWithExitNode?: pulumi.Input<boolean>;
+    useWithExitNode?: pulumi.Input<boolean | undefined>;
 }
 
 export interface DnsConfigurationSplitDn {
@@ -56,7 +56,7 @@ export interface DnsConfigurationSplitDnNameserver {
     /**
      * This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
      */
-    useWithExitNode?: pulumi.Input<boolean>;
+    useWithExitNode?: pulumi.Input<boolean | undefined>;
 }
 
 export interface GetDevicesFilter {

@@ -162,43 +162,43 @@ export interface FederatedIdentityState {
     /**
      * The value used when matching against the `aud` claim from an OIDC identity token. Specifying the audience is optional as Tailscale will generate a secure audience at creation time by default.   It is recommended to let Tailscale generate the audience unless the identity provider you are integrating with requires a specific audience format.
      */
-    audience?: pulumi.Input<string>;
+    audience?: pulumi.Input<string | undefined>;
     /**
      * The creation timestamp of the key in RFC3339 format
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * A map of claim names to pattern strings used to match against arbitrary claims in the OIDC identity token. Patterns can include `*` characters to match against any character.
      */
-    customClaimRules?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    customClaimRules?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * A description of the federated identity consisting of alphanumeric characters. Defaults to `""`.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The issuer of the OIDC identity token used in the token exchange. Must be a valid and publicly reachable https:// URL.
      */
-    issuer?: pulumi.Input<string>;
+    issuer?: pulumi.Input<string | undefined>;
     /**
      * Scopes to grant to the federated identity. See https://tailscale.com/kb/1623/ for a list of available scopes.
      */
-    scopes?: pulumi.Input<pulumi.Input<string>[]>;
+    scopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The pattern used when matching against the `sub` claim from an OIDC identity token. Patterns can include `*` characters to match against any character.
      */
-    subject?: pulumi.Input<string>;
+    subject?: pulumi.Input<string | undefined>;
     /**
      * A list of tags that access tokens generated for the federated identity will be able to assign to devices. Mandatory if the scopes include "devices:core" or "authKeys".
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The updated timestamp of the key in RFC3339 format
      */
-    updatedAt?: pulumi.Input<string>;
+    updatedAt?: pulumi.Input<string | undefined>;
     /**
      * ID of the user who created this federated identity, empty for federated identities created by other trust credentials.
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -208,15 +208,15 @@ export interface FederatedIdentityArgs {
     /**
      * The value used when matching against the `aud` claim from an OIDC identity token. Specifying the audience is optional as Tailscale will generate a secure audience at creation time by default.   It is recommended to let Tailscale generate the audience unless the identity provider you are integrating with requires a specific audience format.
      */
-    audience?: pulumi.Input<string>;
+    audience?: pulumi.Input<string | undefined>;
     /**
      * A map of claim names to pattern strings used to match against arbitrary claims in the OIDC identity token. Patterns can include `*` characters to match against any character.
      */
-    customClaimRules?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    customClaimRules?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * A description of the federated identity consisting of alphanumeric characters. Defaults to `""`.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The issuer of the OIDC identity token used in the token exchange. Must be a valid and publicly reachable https:// URL.
      */
@@ -232,5 +232,5 @@ export interface FederatedIdentityArgs {
     /**
      * A list of tags that access tokens generated for the federated identity will be able to assign to devices. Mandatory if the scopes include "devices:core" or "authKeys".
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

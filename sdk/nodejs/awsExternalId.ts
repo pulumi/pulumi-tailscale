@@ -127,11 +127,11 @@ export interface AwsExternalIdState {
     /**
      * The External ID that Tailscale will supply when assuming your role. You must reference this in your IAM role's trust policy. See https://docs.aws.amazon.com/IAM/latest/UserGuide/id*roles*common-scenarios_third-party.html for more information on external IDs.
      */
-    externalId?: pulumi.Input<string>;
+    externalId?: pulumi.Input<string | undefined>;
     /**
      * The AWS account from which Tailscale will assume your role. You must reference this in your IAM role's trust policy. See https://docs.aws.amazon.com/IAM/latest/UserGuide/id*roles*common-scenarios_third-party.html for more information on external IDs.
      */
-    tailscaleAwsAccountId?: pulumi.Input<string>;
+    tailscaleAwsAccountId?: pulumi.Input<string | undefined>;
 }
 
 /**

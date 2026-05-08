@@ -43,7 +43,7 @@ class DnsSearchPathsArgs:
 @pulumi.input_type
 class _DnsSearchPathsState:
     def __init__(__self__, *,
-                 search_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 search_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering DnsSearchPaths resources.
 
@@ -54,14 +54,14 @@ class _DnsSearchPathsState:
 
     @_builtins.property
     @pulumi.getter(name="searchPaths")
-    def search_paths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def search_paths(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Devices on your network will use these domain suffixes to resolve DNS names.
         """
         return pulumi.get(self, "search_paths")
 
     @search_paths.setter
-    def search_paths(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def search_paths(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "search_paths", value)
 
 
@@ -71,7 +71,7 @@ class DnsSearchPaths(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 search_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 search_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
@@ -144,7 +144,7 @@ class DnsSearchPaths(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 search_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 search_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -167,7 +167,7 @@ class DnsSearchPaths(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            search_paths: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'DnsSearchPaths':
+            search_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'DnsSearchPaths':
         """
         Get an existing DnsSearchPaths resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
