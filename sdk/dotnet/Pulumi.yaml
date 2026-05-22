@@ -1,3 +1,0 @@
-name: tailscale
-description: A Pulumi resource provider for tailscale.
-language: dotnet
