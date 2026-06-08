@@ -633,6 +633,7 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDevicesArgs;
+     * import com.pulumi.tailscale.inputs.GetDevicesFilterArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -684,6 +685,7 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDevicesArgs;
+     * import com.pulumi.tailscale.inputs.GetDevicesFilterArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -735,6 +737,7 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDevicesArgs;
+     * import com.pulumi.tailscale.inputs.GetDevicesFilterArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -786,6 +789,7 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDevicesArgs;
+     * import com.pulumi.tailscale.inputs.GetDevicesFilterArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -837,6 +841,7 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDevicesArgs;
+     * import com.pulumi.tailscale.inputs.GetDevicesFilterArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -888,6 +893,7 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDevicesArgs;
+     * import com.pulumi.tailscale.inputs.GetDevicesFilterArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -939,6 +945,7 @@ public final class TailscaleFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.tailscale.TailscaleFunctions;
      * import com.pulumi.tailscale.inputs.GetDevicesArgs;
+     * import com.pulumi.tailscale.inputs.GetDevicesFilterArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
