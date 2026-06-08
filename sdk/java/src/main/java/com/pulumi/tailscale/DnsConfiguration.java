@@ -36,6 +36,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.tailscale.DnsConfigurationArgs;
  * import com.pulumi.tailscale.inputs.DnsConfigurationNameserverArgs;
  * import com.pulumi.tailscale.inputs.DnsConfigurationSplitDnArgs;
+ * import com.pulumi.tailscale.inputs.DnsConfigurationSplitDnNameserverArgs;
  * import java.util.ArrayList;
  * import java.util.Arrays;
  * import java.util.Map;
