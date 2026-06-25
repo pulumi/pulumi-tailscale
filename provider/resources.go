@@ -50,15 +50,16 @@ func Provider() tfbridge.ProviderInfo {
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:            p,
-		Name:         "tailscale",
-		DisplayName:  "Tailscale",
-		Description:  "A Pulumi package for creating and managing Tailscale cloud resources.",
-		Keywords:     []string{"pulumi", "tailscale"},
-		License:      "Apache-2.0",
-		Homepage:     "https://pulumi.io",
-		GitHubOrg:    "tailscale",
-		Repository:   "https://github.com/pulumi/pulumi-tailscale",
+		P:           p,
+		Name:        mainPkg,
+		Version:     version.Version,
+		DisplayName: "Tailscale",
+		Description: "A Pulumi package for creating and managing Tailscale cloud resources.",
+		Keywords:    []string{"pulumi", mainPkg},
+		License:     "Apache-2.0",
+		Homepage:    "https://pulumi.io",
+		GitHubOrg:   mainPkg,
+		Repository:  "https://github.com/pulumi/pulumi-tailscale",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"user_agent": {
 				Default: &tfbridge.DefaultInfo{
