@@ -124,6 +124,20 @@
             "tailscale_posture_integration": {
                 "current": "tailscale:index/postureIntegration:PostureIntegration"
             },
+            "tailscale_service": {
+                "current": "tailscale:index/service:Service",
+                "fields": {
+                    "addrs": {
+                        "maxItemsOne": false
+                    },
+                    "ports": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "tailscale_tailnet_key": {
                 "current": "tailscale:index/tailnetKey:TailnetKey",
                 "fields": {
@@ -190,6 +204,20 @@
                     }
                 }
             },
+            "tailscale_service": {
+                "current": "tailscale:index/getService:getService",
+                "fields": {
+                    "addrs": {
+                        "maxItemsOne": false
+                    },
+                    "ports": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "tailscale_user": {
                 "current": "tailscale:index/getUser:getUser"
             },
@@ -203,7 +231,41 @@
             }
         }
     },
-    "auto-settings": {},
+    "auto-settings": {
+        "resources": {
+            "tailscale_contacts": {
+                "maxItemsOneOverrides": {
+                    "account": true,
+                    "security": true,
+                    "support": true
+                }
+            }
+        }
+    },
+    "default-resource-schema-fixups": {
+        "resources": {
+            "tailscale_acl": {},
+            "tailscale_aws_external_id": {},
+            "tailscale_contacts": {},
+            "tailscale_device_authorization": {},
+            "tailscale_device_key": {},
+            "tailscale_device_subnet_routes": {},
+            "tailscale_device_tags": {},
+            "tailscale_dns_configuration": {},
+            "tailscale_dns_nameservers": {},
+            "tailscale_dns_preferences": {},
+            "tailscale_dns_search_paths": {},
+            "tailscale_dns_split_nameservers": {},
+            "tailscale_federated_identity": {},
+            "tailscale_logstream_configuration": {},
+            "tailscale_oauth_client": {},
+            "tailscale_posture_integration": {},
+            "tailscale_service": {},
+            "tailscale_tailnet_key": {},
+            "tailscale_tailnet_settings": {},
+            "tailscale_webhook": {}
+        }
+    },
     "renames": {
         "resources": {
             "tailscale:index/acl:Acl": "tailscale_acl",

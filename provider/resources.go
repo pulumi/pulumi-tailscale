@@ -23,12 +23,11 @@ import (
 	// Allow embedding metadata
 	_ "embed"
 
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/tailscale/terraform-provider-tailscale/tailscale"
 
+	pfbridge "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
-	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 
 	"github.com/pulumi/pulumi-tailscale/provider/pkg/version"
 )
@@ -47,7 +46,7 @@ var metadata []byte
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv2.NewProvider(tailscale.Provider(addUserAgent))
+	p := pfbridge.ShimProvider(tailscale.NewFrameworkProvider())
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
@@ -60,7 +59,13 @@ func Provider() tfbridge.ProviderInfo {
 		Homepage:     "https://pulumi.io",
 		GitHubOrg:    "tailscale",
 		Repository:   "https://github.com/pulumi/pulumi-tailscale",
-		Config:       map[string]*tfbridge.SchemaInfo{},
+		Config: map[string]*tfbridge.SchemaInfo{
+			"user_agent": {
+				Default: &tfbridge.DefaultInfo{
+					Value: fmt.Sprintf("Pulumi/3.0 (https://www.pulumi.com) pulumi-tailscale/%s", version.Version),
+				},
+			},
+		},
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		DocRules:     &tfbridge.DocRuleInfo{EditRules: editRules},
 		Resources: map[string]*tfbridge.ResourceInfo{
@@ -110,18 +115,6 @@ func Provider() tfbridge.ProviderInfo {
 	prov.MustApplyAutoAliases()
 
 	return prov
-}
-
-// addUserAgent adds a `user_agent` configuration key to the provider with a
-// default value based on provider version. This is adapted from the upstream provider.
-// See: https://github.com/tailscale/terraform-provider-tailscale/commit/e2961ac83f24bc2cc279177abcf23e28570815c6
-func addUserAgent(p *schema.Provider) {
-	p.Schema["user_agent"] = &schema.Schema{
-		Type:        schema.TypeString,
-		Default:     fmt.Sprintf("Pulumi/3.0 (https://www.pulumi.com) pulumi-tailscale/%s", version.Version),
-		Optional:    true,
-		Description: "User-Agent header for API requests.",
-	}
 }
 
 func editRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {

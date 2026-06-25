@@ -51,8 +51,12 @@
         "variables": {
             "apiKey": {
                 "type": "string",
-                "description": "The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.",
+                "description": "The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.",
                 "secret": true
+            },
+            "audience": {
+                "type": "string",
+                "description": "The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires 'oauth_client_id'. Conflicts with 'api_key', 'oauth_client_secret', 'identity_token', and 'identity_token_environment_variable_name'."
             },
             "baseUrl": {
                 "type": "string",
@@ -60,16 +64,20 @@
             },
             "identityToken": {
                 "type": "string",
-                "description": "The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with 'api_key' and 'oauth_client_secret'.",
+                "description": "The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with 'api_key', 'oauth_client_secret', and 'identity_token_environment_variable_name'.",
                 "secret": true
+            },
+            "identityTokenEnvironmentVariableName": {
+                "type": "string",
+                "description": "The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Terraform Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with 'identity_token'."
             },
             "oauthClientId": {
                 "type": "string",
-                "description": "The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'."
+                "description": "The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'."
             },
             "oauthClientSecret": {
                 "type": "string",
-                "description": "The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Conflicts with 'api_key' and 'identity_token'.",
+                "description": "The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with 'api_key' and 'identity_token'.",
                 "secret": true
             },
             "scopes": {
@@ -85,7 +93,8 @@
             },
             "userAgent": {
                 "type": "string",
-                "description": "User-Agent header for API requests."
+                "description": "User-Agent header for API requests.",
+                "default": "Pulumi/3.0 (https://www.pulumi.com) pulumi-tailscale/1.0.0-alpha.0+dev"
             }
         }
     },
@@ -140,7 +149,15 @@
             "type": "object",
             "required": [
                 "address"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "address",
+                        "useWithExitNode"
+                    ]
+                }
+            }
         },
         "tailscale:index/DnsConfigurationSplitDn:DnsConfigurationSplitDn": {
             "properties": {
@@ -158,8 +175,7 @@
             },
             "type": "object",
             "required": [
-                "domain",
-                "nameservers"
+                "domain"
             ]
         },
         "tailscale:index/DnsConfigurationSplitDnNameserver:DnsConfigurationSplitDnNameserver": {
@@ -176,7 +192,15 @@
             "type": "object",
             "required": [
                 "address"
-            ]
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "address",
+                        "useWithExitNode"
+                    ]
+                }
+            }
         },
         "tailscale:index/getDevicesDevice:getDevicesDevice": {
             "properties": {
@@ -213,7 +237,7 @@
                 },
                 "id": {
                     "type": "string",
-                    "description": "The legacy identifier of the device. Use\u003cspan pulumi-lang-nodejs=\" nodeId \" pulumi-lang-dotnet=\" NodeId \" pulumi-lang-go=\" nodeId \" pulumi-lang-python=\" node_id \" pulumi-lang-yaml=\" nodeId \" pulumi-lang-java=\" nodeId \" pulumi-lang-hcl=\" node_id \"\u003e nodeId \u003c/span\u003einstead for new resources.\n"
+                    "description": "The ID of this resource.\n"
                 },
                 "isExternal": {
                     "type": "boolean",
@@ -399,8 +423,12 @@
         "properties": {
             "apiKey": {
                 "type": "string",
-                "description": "The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.",
+                "description": "The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.",
                 "secret": true
+            },
+            "audience": {
+                "type": "string",
+                "description": "The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires 'oauth_client_id'. Conflicts with 'api_key', 'oauth_client_secret', 'identity_token', and 'identity_token_environment_variable_name'."
             },
             "baseUrl": {
                 "type": "string",
@@ -408,16 +436,20 @@
             },
             "identityToken": {
                 "type": "string",
-                "description": "The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with 'api_key' and 'oauth_client_secret'.",
+                "description": "The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with 'api_key', 'oauth_client_secret', and 'identity_token_environment_variable_name'.",
                 "secret": true
+            },
+            "identityTokenEnvironmentVariableName": {
+                "type": "string",
+                "description": "The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Terraform Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with 'identity_token'."
             },
             "oauthClientId": {
                 "type": "string",
-                "description": "The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'."
+                "description": "The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'."
             },
             "oauthClientSecret": {
                 "type": "string",
-                "description": "The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Conflicts with 'api_key' and 'identity_token'.",
+                "description": "The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with 'api_key' and 'identity_token'.",
                 "secret": true
             },
             "scopes": {
@@ -439,8 +471,12 @@
         "inputProperties": {
             "apiKey": {
                 "type": "string",
-                "description": "The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.",
+                "description": "The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.",
                 "secret": true
+            },
+            "audience": {
+                "type": "string",
+                "description": "The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires 'oauth_client_id'. Conflicts with 'api_key', 'oauth_client_secret', 'identity_token', and 'identity_token_environment_variable_name'."
             },
             "baseUrl": {
                 "type": "string",
@@ -448,16 +484,20 @@
             },
             "identityToken": {
                 "type": "string",
-                "description": "The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with 'api_key' and 'oauth_client_secret'.",
+                "description": "The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with 'api_key', 'oauth_client_secret', and 'identity_token_environment_variable_name'.",
                 "secret": true
+            },
+            "identityTokenEnvironmentVariableName": {
+                "type": "string",
+                "description": "The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Terraform Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with 'identity_token'."
             },
             "oauthClientId": {
                 "type": "string",
-                "description": "The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'."
+                "description": "The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'."
             },
             "oauthClientSecret": {
                 "type": "string",
-                "description": "The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Conflicts with 'api_key' and 'identity_token'.",
+                "description": "The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with 'api_key' and 'identity_token'.",
                 "secret": true
             },
             "scopes": {
@@ -473,7 +513,8 @@
             },
             "userAgent": {
                 "type": "string",
-                "description": "User-Agent header for API requests."
+                "description": "User-Agent header for API requests.",
+                "default": "Pulumi/3.0 (https://www.pulumi.com) pulumi-tailscale/1.0.0-alpha.0+dev"
             }
         },
         "methods": {
@@ -598,11 +639,6 @@
                     "description": "Configuration for communications about misconfigurations in your tailnet\n"
                 }
             },
-            "required": [
-                "account",
-                "security",
-                "support"
-            ],
             "inputProperties": {
                 "account": {
                     "$ref": "#/types/tailscale:index/ContactsAccount:ContactsAccount",
@@ -617,11 +653,6 @@
                     "description": "Configuration for communications about misconfigurations in your tailnet\n"
                 }
             },
-            "requiredInputs": [
-                "account",
-                "security",
-                "support"
-            ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Contacts resources.\n",
                 "properties": {
@@ -699,7 +730,8 @@
                 }
             },
             "required": [
-                "deviceId"
+                "deviceId",
+                "keyExpiryDisabled"
             ],
             "inputProperties": {
                 "deviceId": {
@@ -751,8 +783,7 @@
             "inputProperties": {
                 "deviceId": {
                     "type": "string",
-                    "description": "The device to set subnet routes for\n",
-                    "willReplaceOnChanges": true
+                    "description": "The device to set subnet routes for\n"
                 },
                 "routes": {
                     "type": "array",
@@ -771,8 +802,7 @@
                 "properties": {
                     "deviceId": {
                         "type": "string",
-                        "description": "The device to set subnet routes for\n",
-                        "willReplaceOnChanges": true
+                        "description": "The device to set subnet routes for\n"
                     },
                     "routes": {
                         "type": "array",
@@ -872,6 +902,11 @@
                     "description": "Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on \u003cspan pulumi-lang-nodejs=\"`overrideLocalDns`\" pulumi-lang-dotnet=\"`OverrideLocalDns`\" pulumi-lang-go=\"`overrideLocalDns`\" pulumi-lang-python=\"`override_local_dns`\" pulumi-lang-yaml=\"`overrideLocalDns`\" pulumi-lang-java=\"`overrideLocalDns`\" pulumi-lang-hcl=\"`override_local_dns`\"\u003e`overrideLocalDns`\u003c/span\u003e.\n"
                 }
             },
+            "required": [
+                "magicDns",
+                "overrideLocalDns",
+                "searchPaths"
+            ],
             "inputProperties": {
                 "magicDns": {
                     "type": "boolean",
@@ -1011,7 +1046,7 @@
             }
         },
         "tailscale:index/dnsSearchPaths:DnsSearchPaths": {
-            "description": "The\u003cspan pulumi-lang-nodejs=\" dnsNameservers \" pulumi-lang-dotnet=\" DnsNameservers \" pulumi-lang-go=\" dnsNameservers \" pulumi-lang-python=\" dns_nameservers \" pulumi-lang-yaml=\" dnsNameservers \" pulumi-lang-java=\" dnsNameservers \" pulumi-lang-hcl=\" dns_nameservers \"\u003e dnsNameservers \u003c/span\u003eresource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleSearchPaths = new tailscale.DnsSearchPaths(\"sample_search_paths\", {searchPaths: [\"example.com\"]});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_search_paths = tailscale.DnsSearchPaths(\"sample_search_paths\", search_paths=[\"example.com\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleSearchPaths = new Tailscale.DnsSearchPaths(\"sample_search_paths\", new()\n    {\n        SearchPaths = new[]\n        {\n            \"example.com\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewDnsSearchPaths(ctx, \"sample_search_paths\", \u0026tailscale.DnsSearchPathsArgs{\n\t\t\tSearchPaths: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"example.com\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    tailscale = {\n      source = \"pulumi/tailscale\"\n    }\n  }\n}\n\nresource \"tailscale_dnssearchpaths\" \"sample_search_paths\" {\n  search_paths = [\"example.com\"]\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.DnsSearchPaths;\nimport com.pulumi.tailscale.DnsSearchPathsArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var sampleSearchPaths = new DnsSearchPaths(\"sampleSearchPaths\", DnsSearchPathsArgs.builder()\n            .searchPaths(\"example.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  sampleSearchPaths:\n    type: tailscale:DnsSearchPaths\n    name: sample_search_paths\n    properties:\n      searchPaths:\n        - example.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe `pulumi import` command can be used, for example:\n\nID doesn't matter.\n\n```sh\n$ pulumi import tailscale:index/dnsSearchPaths:DnsSearchPaths sample dns_search_paths\n```\n\n",
+            "description": "The\u003cspan pulumi-lang-nodejs=\" dnsSearchPaths \" pulumi-lang-dotnet=\" DnsSearchPaths \" pulumi-lang-go=\" dnsSearchPaths \" pulumi-lang-python=\" dns_search_paths \" pulumi-lang-yaml=\" dnsSearchPaths \" pulumi-lang-java=\" dnsSearchPaths \" pulumi-lang-hcl=\" dns_search_paths \"\u003e dnsSearchPaths \u003c/span\u003eresource allows you to configure DNS search paths for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleSearchPaths = new tailscale.DnsSearchPaths(\"sample_search_paths\", {searchPaths: [\"example.com\"]});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_search_paths = tailscale.DnsSearchPaths(\"sample_search_paths\", search_paths=[\"example.com\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleSearchPaths = new Tailscale.DnsSearchPaths(\"sample_search_paths\", new()\n    {\n        SearchPaths = new[]\n        {\n            \"example.com\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewDnsSearchPaths(ctx, \"sample_search_paths\", \u0026tailscale.DnsSearchPathsArgs{\n\t\t\tSearchPaths: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"example.com\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    tailscale = {\n      source = \"pulumi/tailscale\"\n    }\n  }\n}\n\nresource \"tailscale_dnssearchpaths\" \"sample_search_paths\" {\n  search_paths = [\"example.com\"]\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.DnsSearchPaths;\nimport com.pulumi.tailscale.DnsSearchPathsArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var sampleSearchPaths = new DnsSearchPaths(\"sampleSearchPaths\", DnsSearchPathsArgs.builder()\n            .searchPaths(\"example.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  sampleSearchPaths:\n    type: tailscale:DnsSearchPaths\n    name: sample_search_paths\n    properties:\n      searchPaths:\n        - example.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe `pulumi import` command can be used, for example:\n\nID doesn't matter.\n\n```sh\n$ pulumi import tailscale:index/dnsSearchPaths:DnsSearchPaths sample dns_search_paths\n```\n\n",
             "properties": {
                 "searchPaths": {
                     "type": "array",
@@ -1072,8 +1107,7 @@
             "inputProperties": {
                 "domain": {
                     "type": "string",
-                    "description": "Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.\n",
-                    "willReplaceOnChanges": true
+                    "description": "Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.\n"
                 },
                 "nameservers": {
                     "type": "array",
@@ -1092,8 +1126,7 @@
                 "properties": {
                     "domain": {
                         "type": "string",
-                        "description": "Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.\n",
-                        "willReplaceOnChanges": true
+                        "description": "Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.\n"
                     },
                     "nameservers": {
                         "type": "array",
@@ -1162,9 +1195,12 @@
             "required": [
                 "audience",
                 "createdAt",
+                "customClaimRules",
+                "description",
                 "issuer",
                 "scopes",
                 "subject",
+                "tags",
                 "updatedAt",
                 "userId"
             ],
@@ -1354,8 +1390,22 @@
                 }
             },
             "required": [
+                "compressionFormat",
                 "destinationType",
-                "logType"
+                "gcsBucket",
+                "gcsCredentials",
+                "gcsKeyPrefix",
+                "gcsScopes",
+                "logType",
+                "s3AccessKeyId",
+                "s3Bucket",
+                "s3ExternalId",
+                "s3KeyPrefix",
+                "s3Region",
+                "s3RoleArn",
+                "uploadPeriodMinutes",
+                "url",
+                "user"
             ],
             "inputProperties": {
                 "compressionFormat": {
@@ -1387,8 +1437,7 @@
                 },
                 "logType": {
                     "type": "string",
-                    "description": "The type of logs to stream. Valid values are \u003cspan pulumi-lang-nodejs=\"`configuration`\" pulumi-lang-dotnet=\"`Configuration`\" pulumi-lang-go=\"`configuration`\" pulumi-lang-python=\"`configuration`\" pulumi-lang-yaml=\"`configuration`\" pulumi-lang-java=\"`configuration`\" pulumi-lang-hcl=\"`configuration`\"\u003e`configuration`\u003c/span\u003e (configuration audit logs) and \u003cspan pulumi-lang-nodejs=\"`network`\" pulumi-lang-dotnet=\"`Network`\" pulumi-lang-go=\"`network`\" pulumi-lang-python=\"`network`\" pulumi-lang-yaml=\"`network`\" pulumi-lang-java=\"`network`\" pulumi-lang-hcl=\"`network`\"\u003e`network`\u003c/span\u003e (network flow logs).\n",
-                    "willReplaceOnChanges": true
+                    "description": "The type of logs to stream. Valid values are \u003cspan pulumi-lang-nodejs=\"`configuration`\" pulumi-lang-dotnet=\"`Configuration`\" pulumi-lang-go=\"`configuration`\" pulumi-lang-python=\"`configuration`\" pulumi-lang-yaml=\"`configuration`\" pulumi-lang-java=\"`configuration`\" pulumi-lang-hcl=\"`configuration`\"\u003e`configuration`\u003c/span\u003e (configuration audit logs) and \u003cspan pulumi-lang-nodejs=\"`network`\" pulumi-lang-dotnet=\"`Network`\" pulumi-lang-go=\"`network`\" pulumi-lang-python=\"`network`\" pulumi-lang-yaml=\"`network`\" pulumi-lang-java=\"`network`\" pulumi-lang-hcl=\"`network`\"\u003e`network`\u003c/span\u003e (network flow logs).\n"
                 },
                 "s3AccessKeyId": {
                     "type": "string",
@@ -1477,8 +1526,7 @@
                     },
                     "logType": {
                         "type": "string",
-                        "description": "The type of logs to stream. Valid values are \u003cspan pulumi-lang-nodejs=\"`configuration`\" pulumi-lang-dotnet=\"`Configuration`\" pulumi-lang-go=\"`configuration`\" pulumi-lang-python=\"`configuration`\" pulumi-lang-yaml=\"`configuration`\" pulumi-lang-java=\"`configuration`\" pulumi-lang-hcl=\"`configuration`\"\u003e`configuration`\u003c/span\u003e (configuration audit logs) and \u003cspan pulumi-lang-nodejs=\"`network`\" pulumi-lang-dotnet=\"`Network`\" pulumi-lang-go=\"`network`\" pulumi-lang-python=\"`network`\" pulumi-lang-yaml=\"`network`\" pulumi-lang-java=\"`network`\" pulumi-lang-hcl=\"`network`\"\u003e`network`\u003c/span\u003e (network flow logs).\n",
-                        "willReplaceOnChanges": true
+                        "description": "The type of logs to stream. Valid values are \u003cspan pulumi-lang-nodejs=\"`configuration`\" pulumi-lang-dotnet=\"`Configuration`\" pulumi-lang-go=\"`configuration`\" pulumi-lang-python=\"`configuration`\" pulumi-lang-yaml=\"`configuration`\" pulumi-lang-java=\"`configuration`\" pulumi-lang-hcl=\"`configuration`\"\u003e`configuration`\u003c/span\u003e (configuration audit logs) and \u003cspan pulumi-lang-nodejs=\"`network`\" pulumi-lang-dotnet=\"`Network`\" pulumi-lang-go=\"`network`\" pulumi-lang-python=\"`network`\" pulumi-lang-yaml=\"`network`\" pulumi-lang-java=\"`network`\" pulumi-lang-hcl=\"`network`\"\u003e`network`\u003c/span\u003e (network flow logs).\n"
                     },
                     "s3AccessKeyId": {
                         "type": "string",
@@ -1575,8 +1623,10 @@
             },
             "required": [
                 "createdAt",
+                "description",
                 "key",
                 "scopes",
+                "tags",
                 "updatedAt",
                 "userId"
             ],
@@ -1671,8 +1721,11 @@
                 }
             },
             "required": [
+                "clientId",
                 "clientSecret",
-                "postureProvider"
+                "cloudId",
+                "postureProvider",
+                "tenantId"
             ],
             "inputProperties": {
                 "clientId": {
@@ -1690,8 +1743,7 @@
                 },
                 "postureProvider": {
                     "type": "string",
-                    "description": "The third-party provider for posture data. Valid values are \u003cspan pulumi-lang-nodejs=\"`falcon`\" pulumi-lang-dotnet=\"`Falcon`\" pulumi-lang-go=\"`falcon`\" pulumi-lang-python=\"`falcon`\" pulumi-lang-yaml=\"`falcon`\" pulumi-lang-java=\"`falcon`\" pulumi-lang-hcl=\"`falcon`\"\u003e`falcon`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`fleet`\" pulumi-lang-dotnet=\"`Fleet`\" pulumi-lang-go=\"`fleet`\" pulumi-lang-python=\"`fleet`\" pulumi-lang-yaml=\"`fleet`\" pulumi-lang-java=\"`fleet`\" pulumi-lang-hcl=\"`fleet`\"\u003e`fleet`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`huntress`\" pulumi-lang-dotnet=\"`Huntress`\" pulumi-lang-go=\"`huntress`\" pulumi-lang-python=\"`huntress`\" pulumi-lang-yaml=\"`huntress`\" pulumi-lang-java=\"`huntress`\" pulumi-lang-hcl=\"`huntress`\"\u003e`huntress`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`intune`\" pulumi-lang-dotnet=\"`Intune`\" pulumi-lang-go=\"`intune`\" pulumi-lang-python=\"`intune`\" pulumi-lang-yaml=\"`intune`\" pulumi-lang-java=\"`intune`\" pulumi-lang-hcl=\"`intune`\"\u003e`intune`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`jamfpro`\" pulumi-lang-dotnet=\"`Jamfpro`\" pulumi-lang-go=\"`jamfpro`\" pulumi-lang-python=\"`jamfpro`\" pulumi-lang-yaml=\"`jamfpro`\" pulumi-lang-java=\"`jamfpro`\" pulumi-lang-hcl=\"`jamfpro`\"\u003e`jamfpro`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`kandji`\" pulumi-lang-dotnet=\"`Kandji`\" pulumi-lang-go=\"`kandji`\" pulumi-lang-python=\"`kandji`\" pulumi-lang-yaml=\"`kandji`\" pulumi-lang-java=\"`kandji`\" pulumi-lang-hcl=\"`kandji`\"\u003e`kandji`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`kolide`\" pulumi-lang-dotnet=\"`Kolide`\" pulumi-lang-go=\"`kolide`\" pulumi-lang-python=\"`kolide`\" pulumi-lang-yaml=\"`kolide`\" pulumi-lang-java=\"`kolide`\" pulumi-lang-hcl=\"`kolide`\"\u003e`kolide`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`sentinelone`\" pulumi-lang-dotnet=\"`Sentinelone`\" pulumi-lang-go=\"`sentinelone`\" pulumi-lang-python=\"`sentinelone`\" pulumi-lang-yaml=\"`sentinelone`\" pulumi-lang-java=\"`sentinelone`\" pulumi-lang-hcl=\"`sentinelone`\"\u003e`sentinelone`\u003c/span\u003e.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The third-party provider for posture data. Valid values are \u003cspan pulumi-lang-nodejs=\"`falcon`\" pulumi-lang-dotnet=\"`Falcon`\" pulumi-lang-go=\"`falcon`\" pulumi-lang-python=\"`falcon`\" pulumi-lang-yaml=\"`falcon`\" pulumi-lang-java=\"`falcon`\" pulumi-lang-hcl=\"`falcon`\"\u003e`falcon`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`fleet`\" pulumi-lang-dotnet=\"`Fleet`\" pulumi-lang-go=\"`fleet`\" pulumi-lang-python=\"`fleet`\" pulumi-lang-yaml=\"`fleet`\" pulumi-lang-java=\"`fleet`\" pulumi-lang-hcl=\"`fleet`\"\u003e`fleet`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`huntress`\" pulumi-lang-dotnet=\"`Huntress`\" pulumi-lang-go=\"`huntress`\" pulumi-lang-python=\"`huntress`\" pulumi-lang-yaml=\"`huntress`\" pulumi-lang-java=\"`huntress`\" pulumi-lang-hcl=\"`huntress`\"\u003e`huntress`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`intune`\" pulumi-lang-dotnet=\"`Intune`\" pulumi-lang-go=\"`intune`\" pulumi-lang-python=\"`intune`\" pulumi-lang-yaml=\"`intune`\" pulumi-lang-java=\"`intune`\" pulumi-lang-hcl=\"`intune`\"\u003e`intune`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`jamfpro`\" pulumi-lang-dotnet=\"`Jamfpro`\" pulumi-lang-go=\"`jamfpro`\" pulumi-lang-python=\"`jamfpro`\" pulumi-lang-yaml=\"`jamfpro`\" pulumi-lang-java=\"`jamfpro`\" pulumi-lang-hcl=\"`jamfpro`\"\u003e`jamfpro`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`kandji`\" pulumi-lang-dotnet=\"`Kandji`\" pulumi-lang-go=\"`kandji`\" pulumi-lang-python=\"`kandji`\" pulumi-lang-yaml=\"`kandji`\" pulumi-lang-java=\"`kandji`\" pulumi-lang-hcl=\"`kandji`\"\u003e`kandji`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`kolide`\" pulumi-lang-dotnet=\"`Kolide`\" pulumi-lang-go=\"`kolide`\" pulumi-lang-python=\"`kolide`\" pulumi-lang-yaml=\"`kolide`\" pulumi-lang-java=\"`kolide`\" pulumi-lang-hcl=\"`kolide`\"\u003e`kolide`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`sentinelone`\" pulumi-lang-dotnet=\"`Sentinelone`\" pulumi-lang-go=\"`sentinelone`\" pulumi-lang-python=\"`sentinelone`\" pulumi-lang-yaml=\"`sentinelone`\" pulumi-lang-java=\"`sentinelone`\" pulumi-lang-hcl=\"`sentinelone`\"\u003e`sentinelone`\u003c/span\u003e.\n"
                 },
                 "tenantId": {
                     "type": "string",
@@ -1720,12 +1772,114 @@
                     },
                     "postureProvider": {
                         "type": "string",
-                        "description": "The third-party provider for posture data. Valid values are \u003cspan pulumi-lang-nodejs=\"`falcon`\" pulumi-lang-dotnet=\"`Falcon`\" pulumi-lang-go=\"`falcon`\" pulumi-lang-python=\"`falcon`\" pulumi-lang-yaml=\"`falcon`\" pulumi-lang-java=\"`falcon`\" pulumi-lang-hcl=\"`falcon`\"\u003e`falcon`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`fleet`\" pulumi-lang-dotnet=\"`Fleet`\" pulumi-lang-go=\"`fleet`\" pulumi-lang-python=\"`fleet`\" pulumi-lang-yaml=\"`fleet`\" pulumi-lang-java=\"`fleet`\" pulumi-lang-hcl=\"`fleet`\"\u003e`fleet`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`huntress`\" pulumi-lang-dotnet=\"`Huntress`\" pulumi-lang-go=\"`huntress`\" pulumi-lang-python=\"`huntress`\" pulumi-lang-yaml=\"`huntress`\" pulumi-lang-java=\"`huntress`\" pulumi-lang-hcl=\"`huntress`\"\u003e`huntress`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`intune`\" pulumi-lang-dotnet=\"`Intune`\" pulumi-lang-go=\"`intune`\" pulumi-lang-python=\"`intune`\" pulumi-lang-yaml=\"`intune`\" pulumi-lang-java=\"`intune`\" pulumi-lang-hcl=\"`intune`\"\u003e`intune`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`jamfpro`\" pulumi-lang-dotnet=\"`Jamfpro`\" pulumi-lang-go=\"`jamfpro`\" pulumi-lang-python=\"`jamfpro`\" pulumi-lang-yaml=\"`jamfpro`\" pulumi-lang-java=\"`jamfpro`\" pulumi-lang-hcl=\"`jamfpro`\"\u003e`jamfpro`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`kandji`\" pulumi-lang-dotnet=\"`Kandji`\" pulumi-lang-go=\"`kandji`\" pulumi-lang-python=\"`kandji`\" pulumi-lang-yaml=\"`kandji`\" pulumi-lang-java=\"`kandji`\" pulumi-lang-hcl=\"`kandji`\"\u003e`kandji`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`kolide`\" pulumi-lang-dotnet=\"`Kolide`\" pulumi-lang-go=\"`kolide`\" pulumi-lang-python=\"`kolide`\" pulumi-lang-yaml=\"`kolide`\" pulumi-lang-java=\"`kolide`\" pulumi-lang-hcl=\"`kolide`\"\u003e`kolide`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`sentinelone`\" pulumi-lang-dotnet=\"`Sentinelone`\" pulumi-lang-go=\"`sentinelone`\" pulumi-lang-python=\"`sentinelone`\" pulumi-lang-yaml=\"`sentinelone`\" pulumi-lang-java=\"`sentinelone`\" pulumi-lang-hcl=\"`sentinelone`\"\u003e`sentinelone`\u003c/span\u003e.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The third-party provider for posture data. Valid values are \u003cspan pulumi-lang-nodejs=\"`falcon`\" pulumi-lang-dotnet=\"`Falcon`\" pulumi-lang-go=\"`falcon`\" pulumi-lang-python=\"`falcon`\" pulumi-lang-yaml=\"`falcon`\" pulumi-lang-java=\"`falcon`\" pulumi-lang-hcl=\"`falcon`\"\u003e`falcon`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`fleet`\" pulumi-lang-dotnet=\"`Fleet`\" pulumi-lang-go=\"`fleet`\" pulumi-lang-python=\"`fleet`\" pulumi-lang-yaml=\"`fleet`\" pulumi-lang-java=\"`fleet`\" pulumi-lang-hcl=\"`fleet`\"\u003e`fleet`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`huntress`\" pulumi-lang-dotnet=\"`Huntress`\" pulumi-lang-go=\"`huntress`\" pulumi-lang-python=\"`huntress`\" pulumi-lang-yaml=\"`huntress`\" pulumi-lang-java=\"`huntress`\" pulumi-lang-hcl=\"`huntress`\"\u003e`huntress`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`intune`\" pulumi-lang-dotnet=\"`Intune`\" pulumi-lang-go=\"`intune`\" pulumi-lang-python=\"`intune`\" pulumi-lang-yaml=\"`intune`\" pulumi-lang-java=\"`intune`\" pulumi-lang-hcl=\"`intune`\"\u003e`intune`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`jamfpro`\" pulumi-lang-dotnet=\"`Jamfpro`\" pulumi-lang-go=\"`jamfpro`\" pulumi-lang-python=\"`jamfpro`\" pulumi-lang-yaml=\"`jamfpro`\" pulumi-lang-java=\"`jamfpro`\" pulumi-lang-hcl=\"`jamfpro`\"\u003e`jamfpro`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`kandji`\" pulumi-lang-dotnet=\"`Kandji`\" pulumi-lang-go=\"`kandji`\" pulumi-lang-python=\"`kandji`\" pulumi-lang-yaml=\"`kandji`\" pulumi-lang-java=\"`kandji`\" pulumi-lang-hcl=\"`kandji`\"\u003e`kandji`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`kolide`\" pulumi-lang-dotnet=\"`Kolide`\" pulumi-lang-go=\"`kolide`\" pulumi-lang-python=\"`kolide`\" pulumi-lang-yaml=\"`kolide`\" pulumi-lang-java=\"`kolide`\" pulumi-lang-hcl=\"`kolide`\"\u003e`kolide`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`sentinelone`\" pulumi-lang-dotnet=\"`Sentinelone`\" pulumi-lang-go=\"`sentinelone`\" pulumi-lang-python=\"`sentinelone`\" pulumi-lang-yaml=\"`sentinelone`\" pulumi-lang-java=\"`sentinelone`\" pulumi-lang-hcl=\"`sentinelone`\"\u003e`sentinelone`\u003c/span\u003e.\n"
                     },
                     "tenantId": {
                         "type": "string",
                         "description": "The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "tailscale:index/service:Service": {
+            "description": "The Service resource allows you to manage Tailscale Services in your Tailscale network. Services let you publish internal resources (like databases or web servers) as named resources in your tailnet. Services provide a stable MagicDNS name, a Tailscale virtual IP address pair, can be served by multiple nodes, and are valid access control destinations. See https://tailscale.com/docs/features/tailscale-services) for more information.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst example = new tailscale.Service(\"example\", {\n    name: \"svc:my-service\",\n    comment: \"My service\",\n    ports: [\"tcp:443\"],\n    tags: [\"tag:web\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nexample = tailscale.Service(\"example\",\n    name=\"svc:my-service\",\n    comment=\"My service\",\n    ports=[\"tcp:443\"],\n    tags=[\"tag:web\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Tailscale.Service(\"example\", new()\n    {\n        Name = \"svc:my-service\",\n        Comment = \"My service\",\n        Ports = new[]\n        {\n            \"tcp:443\",\n        },\n        Tags = new[]\n        {\n            \"tag:web\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewService(ctx, \"example\", \u0026tailscale.ServiceArgs{\n\t\t\tName:    pulumi.String(\"svc:my-service\"),\n\t\t\tComment: pulumi.String(\"My service\"),\n\t\t\tPorts: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"tcp:443\"),\n\t\t\t},\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"tag:web\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    tailscale = {\n      source = \"pulumi/tailscale\"\n    }\n  }\n}\n\nresource \"tailscale_service\" \"example\" {\n  name    = \"svc:my-service\"\n  comment = \"My service\"\n  ports   = [\"tcp:443\"]\n  tags    = [\"tag:web\"]\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.Service;\nimport com.pulumi.tailscale.ServiceArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Service(\"example\", ServiceArgs.builder()\n            .name(\"svc:my-service\")\n            .comment(\"My service\")\n            .ports(\"tcp:443\")\n            .tags(\"tag:web\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: tailscale:Service\n    properties:\n      name: svc:my-service\n      comment: My service\n      ports:\n        - tcp:443\n      tags:\n        - tag:web\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "addrs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The IP addresses assigned to the Service.\n"
+                },
+                "comment": {
+                    "type": "string",
+                    "description": "An optional comment describing the Service.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Service. Must begin with `svc:`.\n"
+                },
+                "ports": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of protocol:port pairs to be exposed by the Service. The only supported protocol is \"tcp\" at this time. \"do-not-validate\" can be used to skip validation.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The ACL tags applied to the Service.\n"
+                }
+            },
+            "required": [
+                "addrs",
+                "comment",
+                "name",
+                "ports",
+                "tags"
+            ],
+            "inputProperties": {
+                "comment": {
+                    "type": "string",
+                    "description": "An optional comment describing the Service.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Service. Must begin with `svc:`.\n"
+                },
+                "ports": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of protocol:port pairs to be exposed by the Service. The only supported protocol is \"tcp\" at this time. \"do-not-validate\" can be used to skip validation.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The ACL tags applied to the Service.\n"
+                }
+            },
+            "requiredInputs": [
+                "ports"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Service resources.\n",
+                "properties": {
+                    "addrs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The IP addresses assigned to the Service.\n"
+                    },
+                    "comment": {
+                        "type": "string",
+                        "description": "An optional comment describing the Service.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the Service. Must begin with `svc:`.\n"
+                    },
+                    "ports": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A list of protocol:port pairs to be exposed by the Service. The only supported protocol is \"tcp\" at this time. \"do-not-validate\" can be used to skip validation.\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The ACL tags applied to the Service.\n"
                     }
                 },
                 "type": "object"
@@ -1789,32 +1943,33 @@
             },
             "required": [
                 "createdAt",
+                "description",
+                "ephemeral",
                 "expiresAt",
                 "expiry",
                 "invalid",
                 "key",
+                "preauthorized",
+                "reusable",
+                "tags",
                 "userId"
             ],
             "inputProperties": {
                 "description": {
                     "type": "string",
-                    "description": "A description of the key consisting of alphanumeric characters. Defaults to `\"\"`.\n",
-                    "willReplaceOnChanges": true
+                    "description": "A description of the key consisting of alphanumeric characters. Defaults to `\"\"`.\n"
                 },
                 "ephemeral": {
                     "type": "boolean",
-                    "description": "Indicates if the key is ephemeral. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n",
-                    "willReplaceOnChanges": true
+                    "description": "Indicates if the key is ephemeral. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
                 },
                 "expiry": {
                     "type": "integer",
-                    "description": "The expiry of the key in seconds. Defaults to \u003cspan pulumi-lang-nodejs=\"`7776000`\" pulumi-lang-dotnet=\"`7776000`\" pulumi-lang-go=\"`7776000`\" pulumi-lang-python=\"`7776000`\" pulumi-lang-yaml=\"`7776000`\" pulumi-lang-java=\"`7776000`\" pulumi-lang-hcl=\"`7776000`\"\u003e`7776000`\u003c/span\u003e (90 days).\n",
-                    "willReplaceOnChanges": true
+                    "description": "The expiry of the key in seconds. Defaults to \u003cspan pulumi-lang-nodejs=\"`7776000`\" pulumi-lang-dotnet=\"`7776000`\" pulumi-lang-go=\"`7776000`\" pulumi-lang-python=\"`7776000`\" pulumi-lang-yaml=\"`7776000`\" pulumi-lang-java=\"`7776000`\" pulumi-lang-hcl=\"`7776000`\"\u003e`7776000`\u003c/span\u003e (90 days).\n"
                 },
                 "preauthorized": {
                     "type": "boolean",
-                    "description": "Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n",
-                    "willReplaceOnChanges": true
+                    "description": "Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
                 },
                 "recreateIfInvalid": {
                     "type": "string",
@@ -1822,16 +1977,14 @@
                 },
                 "reusable": {
                     "type": "boolean",
-                    "description": "Indicates if the key is reusable or single-use. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n",
-                    "willReplaceOnChanges": true
+                    "description": "Indicates if the key is reusable or single-use. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
                 },
                 "tags": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of tags to apply to the machines authenticated by the key.\n",
-                    "willReplaceOnChanges": true
+                    "description": "List of tags to apply to the machines authenticated by the key.\n"
                 },
                 "userId": {
                     "type": "string",
@@ -1847,13 +2000,11 @@
                     },
                     "description": {
                         "type": "string",
-                        "description": "A description of the key consisting of alphanumeric characters. Defaults to `\"\"`.\n",
-                        "willReplaceOnChanges": true
+                        "description": "A description of the key consisting of alphanumeric characters. Defaults to `\"\"`.\n"
                     },
                     "ephemeral": {
                         "type": "boolean",
-                        "description": "Indicates if the key is ephemeral. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n",
-                        "willReplaceOnChanges": true
+                        "description": "Indicates if the key is ephemeral. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
                     },
                     "expiresAt": {
                         "type": "string",
@@ -1861,8 +2012,7 @@
                     },
                     "expiry": {
                         "type": "integer",
-                        "description": "The expiry of the key in seconds. Defaults to \u003cspan pulumi-lang-nodejs=\"`7776000`\" pulumi-lang-dotnet=\"`7776000`\" pulumi-lang-go=\"`7776000`\" pulumi-lang-python=\"`7776000`\" pulumi-lang-yaml=\"`7776000`\" pulumi-lang-java=\"`7776000`\" pulumi-lang-hcl=\"`7776000`\"\u003e`7776000`\u003c/span\u003e (90 days).\n",
-                        "willReplaceOnChanges": true
+                        "description": "The expiry of the key in seconds. Defaults to \u003cspan pulumi-lang-nodejs=\"`7776000`\" pulumi-lang-dotnet=\"`7776000`\" pulumi-lang-go=\"`7776000`\" pulumi-lang-python=\"`7776000`\" pulumi-lang-yaml=\"`7776000`\" pulumi-lang-java=\"`7776000`\" pulumi-lang-hcl=\"`7776000`\"\u003e`7776000`\u003c/span\u003e (90 days).\n"
                     },
                     "invalid": {
                         "type": "boolean",
@@ -1875,8 +2025,7 @@
                     },
                     "preauthorized": {
                         "type": "boolean",
-                        "description": "Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n",
-                        "willReplaceOnChanges": true
+                        "description": "Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
                     },
                     "recreateIfInvalid": {
                         "type": "string",
@@ -1884,16 +2033,14 @@
                     },
                     "reusable": {
                         "type": "boolean",
-                        "description": "Indicates if the key is reusable or single-use. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n",
-                        "willReplaceOnChanges": true
+                        "description": "Indicates if the key is reusable or single-use. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
                     },
                     "tags": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "List of tags to apply to the machines authenticated by the key.\n",
-                        "willReplaceOnChanges": true
+                        "description": "List of tags to apply to the machines authenticated by the key.\n"
                     },
                     "userId": {
                         "type": "string",
@@ -2093,13 +2240,11 @@
             "inputProperties": {
                 "endpointUrl": {
                     "type": "string",
-                    "description": "The endpoint to send webhook events to.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The endpoint to send webhook events to.\n"
                 },
                 "providerType": {
                     "type": "string",
-                    "description": "The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are \u003cspan pulumi-lang-nodejs=\"`slack`\" pulumi-lang-dotnet=\"`Slack`\" pulumi-lang-go=\"`slack`\" pulumi-lang-python=\"`slack`\" pulumi-lang-yaml=\"`slack`\" pulumi-lang-java=\"`slack`\" pulumi-lang-hcl=\"`slack`\"\u003e`slack`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`mattermost`\" pulumi-lang-dotnet=\"`Mattermost`\" pulumi-lang-go=\"`mattermost`\" pulumi-lang-python=\"`mattermost`\" pulumi-lang-yaml=\"`mattermost`\" pulumi-lang-java=\"`mattermost`\" pulumi-lang-hcl=\"`mattermost`\"\u003e`mattermost`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`googlechat`\" pulumi-lang-dotnet=\"`Googlechat`\" pulumi-lang-go=\"`googlechat`\" pulumi-lang-python=\"`googlechat`\" pulumi-lang-yaml=\"`googlechat`\" pulumi-lang-java=\"`googlechat`\" pulumi-lang-hcl=\"`googlechat`\"\u003e`googlechat`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`discord`\" pulumi-lang-dotnet=\"`Discord`\" pulumi-lang-go=\"`discord`\" pulumi-lang-python=\"`discord`\" pulumi-lang-yaml=\"`discord`\" pulumi-lang-java=\"`discord`\" pulumi-lang-hcl=\"`discord`\"\u003e`discord`\u003c/span\u003e.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are \u003cspan pulumi-lang-nodejs=\"`slack`\" pulumi-lang-dotnet=\"`Slack`\" pulumi-lang-go=\"`slack`\" pulumi-lang-python=\"`slack`\" pulumi-lang-yaml=\"`slack`\" pulumi-lang-java=\"`slack`\" pulumi-lang-hcl=\"`slack`\"\u003e`slack`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`mattermost`\" pulumi-lang-dotnet=\"`Mattermost`\" pulumi-lang-go=\"`mattermost`\" pulumi-lang-python=\"`mattermost`\" pulumi-lang-yaml=\"`mattermost`\" pulumi-lang-java=\"`mattermost`\" pulumi-lang-hcl=\"`mattermost`\"\u003e`mattermost`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`googlechat`\" pulumi-lang-dotnet=\"`Googlechat`\" pulumi-lang-go=\"`googlechat`\" pulumi-lang-python=\"`googlechat`\" pulumi-lang-yaml=\"`googlechat`\" pulumi-lang-java=\"`googlechat`\" pulumi-lang-hcl=\"`googlechat`\"\u003e`googlechat`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`discord`\" pulumi-lang-dotnet=\"`Discord`\" pulumi-lang-go=\"`discord`\" pulumi-lang-python=\"`discord`\" pulumi-lang-yaml=\"`discord`\" pulumi-lang-java=\"`discord`\" pulumi-lang-hcl=\"`discord`\"\u003e`discord`\u003c/span\u003e.\n"
                 },
                 "subscriptions": {
                     "type": "array",
@@ -2118,13 +2263,11 @@
                 "properties": {
                     "endpointUrl": {
                         "type": "string",
-                        "description": "The endpoint to send webhook events to.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The endpoint to send webhook events to.\n"
                     },
                     "providerType": {
                         "type": "string",
-                        "description": "The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are \u003cspan pulumi-lang-nodejs=\"`slack`\" pulumi-lang-dotnet=\"`Slack`\" pulumi-lang-go=\"`slack`\" pulumi-lang-python=\"`slack`\" pulumi-lang-yaml=\"`slack`\" pulumi-lang-java=\"`slack`\" pulumi-lang-hcl=\"`slack`\"\u003e`slack`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`mattermost`\" pulumi-lang-dotnet=\"`Mattermost`\" pulumi-lang-go=\"`mattermost`\" pulumi-lang-python=\"`mattermost`\" pulumi-lang-yaml=\"`mattermost`\" pulumi-lang-java=\"`mattermost`\" pulumi-lang-hcl=\"`mattermost`\"\u003e`mattermost`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`googlechat`\" pulumi-lang-dotnet=\"`Googlechat`\" pulumi-lang-go=\"`googlechat`\" pulumi-lang-python=\"`googlechat`\" pulumi-lang-yaml=\"`googlechat`\" pulumi-lang-java=\"`googlechat`\" pulumi-lang-hcl=\"`googlechat`\"\u003e`googlechat`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`discord`\" pulumi-lang-dotnet=\"`Discord`\" pulumi-lang-go=\"`discord`\" pulumi-lang-python=\"`discord`\" pulumi-lang-yaml=\"`discord`\" pulumi-lang-java=\"`discord`\" pulumi-lang-hcl=\"`discord`\"\u003e`discord`\u003c/span\u003e.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The provider type of the endpoint URL. This determines the payload format sent to the destination. Valid values are \u003cspan pulumi-lang-nodejs=\"`slack`\" pulumi-lang-dotnet=\"`Slack`\" pulumi-lang-go=\"`slack`\" pulumi-lang-python=\"`slack`\" pulumi-lang-yaml=\"`slack`\" pulumi-lang-java=\"`slack`\" pulumi-lang-hcl=\"`slack`\"\u003e`slack`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`mattermost`\" pulumi-lang-dotnet=\"`Mattermost`\" pulumi-lang-go=\"`mattermost`\" pulumi-lang-python=\"`mattermost`\" pulumi-lang-yaml=\"`mattermost`\" pulumi-lang-java=\"`mattermost`\" pulumi-lang-hcl=\"`mattermost`\"\u003e`mattermost`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`googlechat`\" pulumi-lang-dotnet=\"`Googlechat`\" pulumi-lang-go=\"`googlechat`\" pulumi-lang-python=\"`googlechat`\" pulumi-lang-yaml=\"`googlechat`\" pulumi-lang-java=\"`googlechat`\" pulumi-lang-hcl=\"`googlechat`\"\u003e`googlechat`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`discord`\" pulumi-lang-dotnet=\"`Discord`\" pulumi-lang-go=\"`discord`\" pulumi-lang-python=\"`discord`\" pulumi-lang-yaml=\"`discord`\" pulumi-lang-java=\"`discord`\" pulumi-lang-hcl=\"`discord`\"\u003e`discord`\u003c/span\u003e.\n"
                     },
                     "secret": {
                         "type": "string",
@@ -2201,7 +2344,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "description": "The ID of this resource.\n",
                         "type": "string"
                     },
                     "ipv6": {
@@ -2215,35 +2358,35 @@
                 },
                 "required": [
                     "cidr",
+                    "id",
                     "ipv6",
-                    "site",
-                    "id"
+                    "site"
                 ],
                 "type": "object"
             }
         },
         "tailscale:index/getAcl:getAcl": {
-            "description": "The acl data source gets the Tailscale policy file for a tailnet\n\n\u003e **Note:** The naming of this data source predates Tailscale's usage of the term \"policy file\" to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet's entire policy file and not just the ACLs section within it.\n",
+            "description": "Returns the Tailscale policy file for a tailnet.\n\n\u003e **Note:** The naming of this data source predates Tailscale's usage of the term \"policy file\" to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet's entire policy file and not just the ACLs section within it.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst example = tailscale.getAcl({});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nexample = tailscale.get_acl()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Tailscale.GetAcl.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.GetAcl(ctx, map[string]interface{}{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    tailscale = {\n      source = \"pulumi/tailscale\"\n    }\n  }\n}\n\ndata \"tailscale_getacl\" \"example\" {\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.TailscaleFunctions;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = TailscaleFunctions.getAcl(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: tailscale:getAcl\n      arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "outputs": {
                 "description": "A collection of values returned by getAcl.\n",
                 "properties": {
                     "hujson": {
-                        "description": "The contents of Tailscale ACL as a HuJSON string\n",
+                        "description": "The contents of the policy file as a HuJSON string.\n",
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "description": "The ID of this resource.\n",
                         "type": "string"
                     },
                     "json": {
-                        "description": "The contents of Tailscale ACL as a JSON string\n",
+                        "description": "The contents of the policy file as a JSON string.\n",
                         "type": "string"
                     }
                 },
                 "required": [
                     "hujson",
-                    "json",
-                    "id"
+                    "id",
+                    "json"
                 ],
                 "type": "object"
             }
@@ -2303,7 +2446,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "description": "The ID of this resource.\n",
                         "type": "string"
                     },
                     "isExternal": {
@@ -2373,6 +2516,7 @@
                     "clientVersion",
                     "created",
                     "expires",
+                    "id",
                     "isExternal",
                     "keyExpiryDisabled",
                     "lastSeen",
@@ -2384,8 +2528,7 @@
                     "tailnetLockError",
                     "tailnetLockKey",
                     "updateAvailable",
-                    "user",
-                    "id"
+                    "user"
                 ],
                 "type": "object"
             }
@@ -2395,6 +2538,13 @@
             "inputs": {
                 "description": "A collection of arguments for invoking getDevices.\n",
                 "properties": {
+                    "devices": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/tailscale:index/getDevicesDevice:getDevicesDevice"
+                        },
+                        "description": "The list of devices in the tailnet\n"
+                    },
                     "filters": {
                         "type": "array",
                         "items": {
@@ -2427,7 +2577,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "description": "The ID of this resource.\n",
                         "type": "string"
                     },
                     "namePrefix": {
@@ -2436,8 +2586,70 @@
                     }
                 },
                 "required": [
-                    "devices",
                     "id"
+                ],
+                "type": "object"
+            }
+        },
+        "tailscale:index/getService:getService": {
+            "description": "The Service data source describes a single Service in a tailnet. See https://tailscale.com/docs/features/tailscale-services for more information.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst example = tailscale.getService({\n    name: \"svc:my-service\",\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nexample = tailscale.get_service(name=\"svc:my-service\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Tailscale.GetService.Invoke(new()\n    {\n        Name = \"svc:my-service\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.GetService(ctx, \u0026tailscale.LookupServiceArgs{\n\t\t\tName: \"svc:my-service\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    tailscale = {\n      source = \"pulumi/tailscale\"\n    }\n  }\n}\n\ndata \"tailscale_getservice\" \"example\" {\n  name = \"svc:my-service\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.TailscaleFunctions;\nimport com.pulumi.tailscale.inputs.GetServiceArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = TailscaleFunctions.getService(GetServiceArgs.builder()\n            .name(\"svc:my-service\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: tailscale:getService\n      arguments:\n        name: svc:my-service\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getService.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the Service (e.g. `svc:my-service`).\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getService.\n",
+                "properties": {
+                    "addrs": {
+                        "description": "The IP addresses assigned to the Service.\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "comment": {
+                        "description": "A comment describing the Service.\n",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "The Service name, e.g. 'svc:my-service'.\n",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "The name of the Service (e.g. `svc:my-service`).\n",
+                        "type": "string"
+                    },
+                    "ports": {
+                        "description": "The ports that the Service listens on.\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "tags": {
+                        "description": "The ACL tags applied to the Service.\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "addrs",
+                    "comment",
+                    "id",
+                    "name",
+                    "ports",
+                    "tags"
                 ],
                 "type": "object"
             }
@@ -2537,6 +2749,13 @@
                     "type": {
                         "type": "string",
                         "description": "Filter the results to only include users of a specific type. Valid values are \u003cspan pulumi-lang-nodejs=\"`member`\" pulumi-lang-dotnet=\"`Member`\" pulumi-lang-go=\"`member`\" pulumi-lang-python=\"`member`\" pulumi-lang-yaml=\"`member`\" pulumi-lang-java=\"`member`\" pulumi-lang-hcl=\"`member`\"\u003e`member`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`shared`\" pulumi-lang-dotnet=\"`Shared`\" pulumi-lang-go=\"`shared`\" pulumi-lang-python=\"`shared`\" pulumi-lang-yaml=\"`shared`\" pulumi-lang-java=\"`shared`\" pulumi-lang-hcl=\"`shared`\"\u003e`shared`\u003c/span\u003e.\n"
+                    },
+                    "users": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/tailscale:index/getUsersUser:getUsersUser"
+                        },
+                        "description": "The list of users in the tailnet\n"
                     }
                 },
                 "type": "object"
@@ -2545,7 +2764,7 @@
                 "description": "A collection of values returned by getUsers.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "description": "The ID of this resource.\n",
                         "type": "string"
                     },
                     "role": {
@@ -2565,7 +2784,6 @@
                     }
                 },
                 "required": [
-                    "users",
                     "id"
                 ],
                 "type": "object"
