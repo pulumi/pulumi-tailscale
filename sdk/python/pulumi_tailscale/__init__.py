@@ -23,12 +23,14 @@ from .get4_via6 import *
 from .get_acl import *
 from .get_device import *
 from .get_devices import *
+from .get_service import *
 from .get_user import *
 from .get_users import *
 from .logstream_configuration import *
 from .oauth_client import *
 from .posture_integration import *
 from .provider import *
+from .service import *
 from .tailnet_key import *
 from .tailnet_settings import *
 from .webhook import *
@@ -171,6 +173,14 @@ _utilities.register(
   "fqn": "pulumi_tailscale",
   "classes": {
    "tailscale:index/postureIntegration:PostureIntegration": "PostureIntegration"
+  }
+ },
+ {
+  "pkg": "tailscale",
+  "mod": "index/service",
+  "fqn": "pulumi_tailscale",
+  "classes": {
+   "tailscale:index/service:Service": "Service"
   }
  },
  {

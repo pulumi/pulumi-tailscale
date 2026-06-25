@@ -90,6 +90,18 @@ namespace Pulumi.Tailscale
         [Input("type")]
         public string? Type { get; set; }
 
+        [Input("users")]
+        private List<Inputs.GetUsersUserArgs>? _users;
+
+        /// <summary>
+        /// The list of users in the tailnet
+        /// </summary>
+        public List<Inputs.GetUsersUserArgs> Users
+        {
+            get => _users ?? (_users = new List<Inputs.GetUsersUserArgs>());
+            set => _users = value;
+        }
+
         public GetUsersArgs()
         {
         }
@@ -110,6 +122,18 @@ namespace Pulumi.Tailscale
         [Input("type")]
         public Input<string>? Type { get; set; }
 
+        [Input("users")]
+        private InputList<Inputs.GetUsersUserInputArgs>? _users;
+
+        /// <summary>
+        /// The list of users in the tailnet
+        /// </summary>
+        public InputList<Inputs.GetUsersUserInputArgs> Users
+        {
+            get => _users ?? (_users = new InputList<Inputs.GetUsersUserInputArgs>());
+            set => _users = value;
+        }
+
         public GetUsersInvokeArgs()
         {
         }
@@ -121,7 +145,7 @@ namespace Pulumi.Tailscale
     public sealed class GetUsersResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of this resource.
         /// </summary>
         public readonly string Id;
         /// <summary>

@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -63,29 +62,20 @@ type Contacts struct {
 	pulumi.CustomResourceState
 
 	// Configuration for communications about important changes to your tailnet
-	Account ContactsAccountOutput `pulumi:"account"`
+	Account ContactsAccountPtrOutput `pulumi:"account"`
 	// Configuration for communications about security issues affecting your tailnet
-	Security ContactsSecurityOutput `pulumi:"security"`
+	Security ContactsSecurityPtrOutput `pulumi:"security"`
 	// Configuration for communications about misconfigurations in your tailnet
-	Support ContactsSupportOutput `pulumi:"support"`
+	Support ContactsSupportPtrOutput `pulumi:"support"`
 }
 
 // NewContacts registers a new resource with the given unique name, arguments, and options.
 func NewContacts(ctx *pulumi.Context,
 	name string, args *ContactsArgs, opts ...pulumi.ResourceOption) (*Contacts, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &ContactsArgs{}
 	}
 
-	if args.Account == nil {
-		return nil, errors.New("invalid value for required argument 'Account'")
-	}
-	if args.Security == nil {
-		return nil, errors.New("invalid value for required argument 'Security'")
-	}
-	if args.Support == nil {
-		return nil, errors.New("invalid value for required argument 'Support'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Contacts
 	err := ctx.RegisterResource("tailscale:index/contacts:Contacts", name, args, &resource, opts...)
@@ -132,21 +122,21 @@ func (ContactsState) ElementType() reflect.Type {
 
 type contactsArgs struct {
 	// Configuration for communications about important changes to your tailnet
-	Account ContactsAccount `pulumi:"account"`
+	Account *ContactsAccount `pulumi:"account"`
 	// Configuration for communications about security issues affecting your tailnet
-	Security ContactsSecurity `pulumi:"security"`
+	Security *ContactsSecurity `pulumi:"security"`
 	// Configuration for communications about misconfigurations in your tailnet
-	Support ContactsSupport `pulumi:"support"`
+	Support *ContactsSupport `pulumi:"support"`
 }
 
 // The set of arguments for constructing a Contacts resource.
 type ContactsArgs struct {
 	// Configuration for communications about important changes to your tailnet
-	Account ContactsAccountInput
+	Account ContactsAccountPtrInput
 	// Configuration for communications about security issues affecting your tailnet
-	Security ContactsSecurityInput
+	Security ContactsSecurityPtrInput
 	// Configuration for communications about misconfigurations in your tailnet
-	Support ContactsSupportInput
+	Support ContactsSupportPtrInput
 }
 
 func (ContactsArgs) ElementType() reflect.Type {
@@ -237,18 +227,18 @@ func (o ContactsOutput) ToContactsOutputWithContext(ctx context.Context) Contact
 }
 
 // Configuration for communications about important changes to your tailnet
-func (o ContactsOutput) Account() ContactsAccountOutput {
-	return o.ApplyT(func(v *Contacts) ContactsAccountOutput { return v.Account }).(ContactsAccountOutput)
+func (o ContactsOutput) Account() ContactsAccountPtrOutput {
+	return o.ApplyT(func(v *Contacts) ContactsAccountPtrOutput { return v.Account }).(ContactsAccountPtrOutput)
 }
 
 // Configuration for communications about security issues affecting your tailnet
-func (o ContactsOutput) Security() ContactsSecurityOutput {
-	return o.ApplyT(func(v *Contacts) ContactsSecurityOutput { return v.Security }).(ContactsSecurityOutput)
+func (o ContactsOutput) Security() ContactsSecurityPtrOutput {
+	return o.ApplyT(func(v *Contacts) ContactsSecurityPtrOutput { return v.Security }).(ContactsSecurityPtrOutput)
 }
 
 // Configuration for communications about misconfigurations in your tailnet
-func (o ContactsOutput) Support() ContactsSupportOutput {
-	return o.ApplyT(func(v *Contacts) ContactsSupportOutput { return v.Support }).(ContactsSupportOutput)
+func (o ContactsOutput) Support() ContactsSupportPtrOutput {
+	return o.ApplyT(func(v *Contacts) ContactsSupportPtrOutput { return v.Support }).(ContactsSupportPtrOutput)
 }
 
 type ContactsArrayOutput struct{ *pulumi.OutputState }

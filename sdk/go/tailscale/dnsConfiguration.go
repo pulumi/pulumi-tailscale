@@ -89,11 +89,11 @@ type DnsConfiguration struct {
 	pulumi.CustomResourceState
 
 	// Whether or not to enable MagicDNS. Defaults to true.
-	MagicDns pulumi.BoolPtrOutput `pulumi:"magicDns"`
+	MagicDns pulumi.BoolOutput `pulumi:"magicDns"`
 	// Set the nameservers used by devices on your network to resolve DNS queries. `overrideLocalDns` must also be true to prefer these nameservers over local DNS configuration.
 	Nameservers DnsConfigurationNameserverArrayOutput `pulumi:"nameservers"`
 	// When enabled, use the configured DNS servers in `nameservers` to resolve names outside the tailnet. When disabled, devices will prefer their local DNS configuration. Defaults to false.
-	OverrideLocalDns pulumi.BoolPtrOutput `pulumi:"overrideLocalDns"`
+	OverrideLocalDns pulumi.BoolOutput `pulumi:"overrideLocalDns"`
 	// Additional search domains. When MagicDNS is on, the tailnet domain is automatically included as the first search domain.
 	SearchPaths pulumi.StringArrayOutput `pulumi:"searchPaths"`
 	// Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `overrideLocalDns`.
@@ -274,8 +274,8 @@ func (o DnsConfigurationOutput) ToDnsConfigurationOutputWithContext(ctx context.
 }
 
 // Whether or not to enable MagicDNS. Defaults to true.
-func (o DnsConfigurationOutput) MagicDns() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *DnsConfiguration) pulumi.BoolPtrOutput { return v.MagicDns }).(pulumi.BoolPtrOutput)
+func (o DnsConfigurationOutput) MagicDns() pulumi.BoolOutput {
+	return o.ApplyT(func(v *DnsConfiguration) pulumi.BoolOutput { return v.MagicDns }).(pulumi.BoolOutput)
 }
 
 // Set the nameservers used by devices on your network to resolve DNS queries. `overrideLocalDns` must also be true to prefer these nameservers over local DNS configuration.
@@ -284,8 +284,8 @@ func (o DnsConfigurationOutput) Nameservers() DnsConfigurationNameserverArrayOut
 }
 
 // When enabled, use the configured DNS servers in `nameservers` to resolve names outside the tailnet. When disabled, devices will prefer their local DNS configuration. Defaults to false.
-func (o DnsConfigurationOutput) OverrideLocalDns() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *DnsConfiguration) pulumi.BoolPtrOutput { return v.OverrideLocalDns }).(pulumi.BoolPtrOutput)
+func (o DnsConfigurationOutput) OverrideLocalDns() pulumi.BoolOutput {
+	return o.ApplyT(func(v *DnsConfiguration) pulumi.BoolOutput { return v.OverrideLocalDns }).(pulumi.BoolOutput)
 }
 
 // Additional search domains. When MagicDNS is on, the tailnet domain is automatically included as the first search domain.

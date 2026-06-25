@@ -34,12 +34,22 @@ namespace Pulumi.Tailscale
 
         private static readonly __Value<string?> _apiKey = new __Value<string?>(() => __config.Get("apiKey"));
         /// <summary>
-        /// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
+        /// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
         /// </summary>
         public static string? ApiKey
         {
             get => _apiKey.Get();
             set => _apiKey.Set(value);
+        }
+
+        private static readonly __Value<string?> _audience = new __Value<string?>(() => __config.Get("audience"));
+        /// <summary>
+        /// The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires 'oauth_client_id'. Conflicts with 'api_key', 'oauth_client_secret', 'identity_token', and 'identity_token_environment_variable_name'.
+        /// </summary>
+        public static string? Audience
+        {
+            get => _audience.Get();
+            set => _audience.Set(value);
         }
 
         private static readonly __Value<string?> _baseUrl = new __Value<string?>(() => __config.Get("baseUrl"));
@@ -54,7 +64,7 @@ namespace Pulumi.Tailscale
 
         private static readonly __Value<string?> _identityToken = new __Value<string?>(() => __config.Get("identityToken"));
         /// <summary>
-        /// The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with 'api_key' and 'oauth_client_secret'.
+        /// The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with 'api_key', 'oauth_client_secret', and 'identity_token_environment_variable_name'.
         /// </summary>
         public static string? IdentityToken
         {
@@ -62,9 +72,19 @@ namespace Pulumi.Tailscale
             set => _identityToken.Set(value);
         }
 
+        private static readonly __Value<string?> _identityTokenEnvironmentVariableName = new __Value<string?>(() => __config.Get("identityTokenEnvironmentVariableName"));
+        /// <summary>
+        /// The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Terraform Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with 'identity_token'.
+        /// </summary>
+        public static string? IdentityTokenEnvironmentVariableName
+        {
+            get => _identityTokenEnvironmentVariableName.Get();
+            set => _identityTokenEnvironmentVariableName.Set(value);
+        }
+
         private static readonly __Value<string?> _oauthClientId = new __Value<string?>(() => __config.Get("oauthClientId"));
         /// <summary>
-        /// The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
+        /// The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
         /// </summary>
         public static string? OauthClientId
         {
@@ -74,7 +94,7 @@ namespace Pulumi.Tailscale
 
         private static readonly __Value<string?> _oauthClientSecret = new __Value<string?>(() => __config.Get("oauthClientSecret"));
         /// <summary>
-        /// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Conflicts with 'api_key' and 'identity_token'.
+        /// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with 'api_key' and 'identity_token'.
         /// </summary>
         public static string? OauthClientSecret
         {
@@ -102,7 +122,7 @@ namespace Pulumi.Tailscale
             set => _tailnet.Set(value);
         }
 
-        private static readonly __Value<string?> _userAgent = new __Value<string?>(() => __config.Get("userAgent"));
+        private static readonly __Value<string?> _userAgent = new __Value<string?>(() => __config.Get("userAgent") ?? "Pulumi/3.0 (https://www.pulumi.com) pulumi-tailscale/1.0.0-alpha.0+dev");
         /// <summary>
         /// User-Agent header for API requests.
         /// </summary>

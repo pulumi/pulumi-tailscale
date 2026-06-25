@@ -757,7 +757,7 @@ type GetDevicesDevice struct {
 	Expires string `pulumi:"expires"`
 	// The short hostname of the device
 	Hostname string `pulumi:"hostname"`
-	// The legacy identifier of the device. Use nodeId instead for new resources.
+	// The ID of this resource.
 	Id string `pulumi:"id"`
 	// Whether the device is marked as external
 	IsExternal bool `pulumi:"isExternal"`
@@ -813,7 +813,7 @@ type GetDevicesDeviceArgs struct {
 	Expires pulumi.StringInput `pulumi:"expires"`
 	// The short hostname of the device
 	Hostname pulumi.StringInput `pulumi:"hostname"`
-	// The legacy identifier of the device. Use nodeId instead for new resources.
+	// The ID of this resource.
 	Id pulumi.StringInput `pulumi:"id"`
 	// Whether the device is marked as external
 	IsExternal pulumi.BoolInput `pulumi:"isExternal"`
@@ -929,7 +929,7 @@ func (o GetDevicesDeviceOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDevicesDevice) string { return v.Hostname }).(pulumi.StringOutput)
 }
 
-// The legacy identifier of the device. Use nodeId instead for new resources.
+// The ID of this resource.
 func (o GetDevicesDeviceOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDevicesDevice) string { return v.Id }).(pulumi.StringOutput)
 }

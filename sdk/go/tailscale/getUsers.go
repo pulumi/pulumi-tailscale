@@ -52,11 +52,13 @@ type GetUsersArgs struct {
 	Role *string `pulumi:"role"`
 	// Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
 	Type *string `pulumi:"type"`
+	// The list of users in the tailnet
+	Users []GetUsersUser `pulumi:"users"`
 }
 
 // A collection of values returned by getUsers.
 type GetUsersResult struct {
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of this resource.
 	Id string `pulumi:"id"`
 	// Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
 	Role *string `pulumi:"role"`
@@ -81,6 +83,8 @@ type GetUsersOutputArgs struct {
 	Role pulumi.StringPtrInput `pulumi:"role"`
 	// Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
+	// The list of users in the tailnet
+	Users GetUsersUserArrayInput `pulumi:"users"`
 }
 
 func (GetUsersOutputArgs) ElementType() reflect.Type {
@@ -102,7 +106,7 @@ func (o GetUsersResultOutput) ToGetUsersResultOutputWithContext(ctx context.Cont
 	return o
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this resource.
 func (o GetUsersResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUsersResult) string { return v.Id }).(pulumi.StringOutput)
 }

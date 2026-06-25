@@ -71,15 +71,15 @@ export class Contacts extends pulumi.CustomResource {
     /**
      * Configuration for communications about important changes to your tailnet
      */
-    declare public readonly account: pulumi.Output<outputs.ContactsAccount>;
+    declare public readonly account: pulumi.Output<outputs.ContactsAccount | undefined>;
     /**
      * Configuration for communications about security issues affecting your tailnet
      */
-    declare public readonly security: pulumi.Output<outputs.ContactsSecurity>;
+    declare public readonly security: pulumi.Output<outputs.ContactsSecurity | undefined>;
     /**
      * Configuration for communications about misconfigurations in your tailnet
      */
-    declare public readonly support: pulumi.Output<outputs.ContactsSupport>;
+    declare public readonly support: pulumi.Output<outputs.ContactsSupport | undefined>;
 
     /**
      * Create a Contacts resource with the given unique name, arguments, and options.
@@ -88,7 +88,7 @@ export class Contacts extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ContactsArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: ContactsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ContactsArgs | ContactsState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -99,15 +99,6 @@ export class Contacts extends pulumi.CustomResource {
             resourceInputs["support"] = state?.support;
         } else {
             const args = argsOrState as ContactsArgs | undefined;
-            if (args?.account === undefined && !opts.urn) {
-                throw new Error("Missing required property 'account'");
-            }
-            if (args?.security === undefined && !opts.urn) {
-                throw new Error("Missing required property 'security'");
-            }
-            if (args?.support === undefined && !opts.urn) {
-                throw new Error("Missing required property 'support'");
-            }
             resourceInputs["account"] = args?.account;
             resourceInputs["security"] = args?.security;
             resourceInputs["support"] = args?.support;
@@ -142,13 +133,13 @@ export interface ContactsArgs {
     /**
      * Configuration for communications about important changes to your tailnet
      */
-    account: pulumi.Input<inputs.ContactsAccount>;
+    account?: pulumi.Input<inputs.ContactsAccount | undefined>;
     /**
      * Configuration for communications about security issues affecting your tailnet
      */
-    security: pulumi.Input<inputs.ContactsSecurity>;
+    security?: pulumi.Input<inputs.ContactsSecurity | undefined>;
     /**
      * Configuration for communications about misconfigurations in your tailnet
      */
-    support: pulumi.Input<inputs.ContactsSupport>;
+    support?: pulumi.Input<inputs.ContactsSupport | undefined>;
 }

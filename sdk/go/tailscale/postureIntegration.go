@@ -56,15 +56,15 @@ type PostureIntegration struct {
 	pulumi.CustomResourceState
 
 	// Unique identifier for your client.
-	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
+	ClientId pulumi.StringOutput `pulumi:"clientId"`
 	// The secret (auth key, token, etc.) used to authenticate with the provider.
 	ClientSecret pulumi.StringOutput `pulumi:"clientSecret"`
 	// Identifies which of the provider's clouds to integrate with.
-	CloudId pulumi.StringPtrOutput `pulumi:"cloudId"`
+	CloudId pulumi.StringOutput `pulumi:"cloudId"`
 	// The third-party provider for posture data. Valid values are `falcon`, `fleet`, `huntress`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
 	PostureProvider pulumi.StringOutput `pulumi:"postureProvider"`
 	// The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
-	TenantId pulumi.StringPtrOutput `pulumi:"tenantId"`
+	TenantId pulumi.StringOutput `pulumi:"tenantId"`
 }
 
 // NewPostureIntegration registers a new resource with the given unique name, arguments, and options.
@@ -254,8 +254,8 @@ func (o PostureIntegrationOutput) ToPostureIntegrationOutputWithContext(ctx cont
 }
 
 // Unique identifier for your client.
-func (o PostureIntegrationOutput) ClientId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PostureIntegration) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+func (o PostureIntegrationOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v *PostureIntegration) pulumi.StringOutput { return v.ClientId }).(pulumi.StringOutput)
 }
 
 // The secret (auth key, token, etc.) used to authenticate with the provider.
@@ -264,8 +264,8 @@ func (o PostureIntegrationOutput) ClientSecret() pulumi.StringOutput {
 }
 
 // Identifies which of the provider's clouds to integrate with.
-func (o PostureIntegrationOutput) CloudId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PostureIntegration) pulumi.StringPtrOutput { return v.CloudId }).(pulumi.StringPtrOutput)
+func (o PostureIntegrationOutput) CloudId() pulumi.StringOutput {
+	return o.ApplyT(func(v *PostureIntegration) pulumi.StringOutput { return v.CloudId }).(pulumi.StringOutput)
 }
 
 // The third-party provider for posture data. Valid values are `falcon`, `fleet`, `huntress`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
@@ -274,8 +274,8 @@ func (o PostureIntegrationOutput) PostureProvider() pulumi.StringOutput {
 }
 
 // The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
-func (o PostureIntegrationOutput) TenantId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PostureIntegration) pulumi.StringPtrOutput { return v.TenantId }).(pulumi.StringPtrOutput)
+func (o PostureIntegrationOutput) TenantId() pulumi.StringOutput {
+	return o.ApplyT(func(v *PostureIntegration) pulumi.StringOutput { return v.TenantId }).(pulumi.StringOutput)
 }
 
 type PostureIntegrationArrayOutput struct{ *pulumi.OutputState }

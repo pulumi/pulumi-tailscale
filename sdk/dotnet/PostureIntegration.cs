@@ -50,7 +50,7 @@ namespace Pulumi.Tailscale
         /// Unique identifier for your client.
         /// </summary>
         [Output("clientId")]
-        public Output<string?> ClientId { get; private set; } = null!;
+        public Output<string> ClientId { get; private set; } = null!;
 
         /// <summary>
         /// The secret (auth key, token, etc.) used to authenticate with the provider.
@@ -62,7 +62,7 @@ namespace Pulumi.Tailscale
         /// Identifies which of the provider's clouds to integrate with.
         /// </summary>
         [Output("cloudId")]
-        public Output<string?> CloudId { get; private set; } = null!;
+        public Output<string> CloudId { get; private set; } = null!;
 
         /// <summary>
         /// The third-party provider for posture data. Valid values are `Falcon`, `Fleet`, `Huntress`, `Intune`, `Jamfpro`, `Kandji`, `Kolide`, and `Sentinelone`.
@@ -74,7 +74,7 @@ namespace Pulumi.Tailscale
         /// The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
         /// </summary>
         [Output("tenantId")]
-        public Output<string?> TenantId { get; private set; } = null!;
+        public Output<string> TenantId { get; private set; } = null!;
 
 
         /// <summary>

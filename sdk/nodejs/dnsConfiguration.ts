@@ -96,7 +96,7 @@ export class DnsConfiguration extends pulumi.CustomResource {
     /**
      * Whether or not to enable MagicDNS. Defaults to true.
      */
-    declare public readonly magicDns: pulumi.Output<boolean | undefined>;
+    declare public readonly magicDns: pulumi.Output<boolean>;
     /**
      * Set the nameservers used by devices on your network to resolve DNS queries. `overrideLocalDns` must also be true to prefer these nameservers over local DNS configuration.
      */
@@ -104,11 +104,11 @@ export class DnsConfiguration extends pulumi.CustomResource {
     /**
      * When enabled, use the configured DNS servers in `nameservers` to resolve names outside the tailnet. When disabled, devices will prefer their local DNS configuration. Defaults to false.
      */
-    declare public readonly overrideLocalDns: pulumi.Output<boolean | undefined>;
+    declare public readonly overrideLocalDns: pulumi.Output<boolean>;
     /**
      * Additional search domains. When MagicDNS is on, the tailnet domain is automatically included as the first search domain.
      */
-    declare public readonly searchPaths: pulumi.Output<string[] | undefined>;
+    declare public readonly searchPaths: pulumi.Output<string[]>;
     /**
      * Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `overrideLocalDns`.
      */

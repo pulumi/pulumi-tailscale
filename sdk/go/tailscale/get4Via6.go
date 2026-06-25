@@ -61,7 +61,7 @@ type Get4Via6Args struct {
 type Get4Via6Result struct {
 	// The IPv4 CIDR to map
 	Cidr string `pulumi:"cidr"`
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of this resource.
 	Id string `pulumi:"id"`
 	// The 4via6 mapped address
 	Ipv6 string `pulumi:"ipv6"`
@@ -110,7 +110,7 @@ func (o Get4Via6ResultOutput) Cidr() pulumi.StringOutput {
 	return o.ApplyT(func(v Get4Via6Result) string { return v.Cidr }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this resource.
 func (o Get4Via6ResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v Get4Via6Result) string { return v.Id }).(pulumi.StringOutput)
 }

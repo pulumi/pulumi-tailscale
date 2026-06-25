@@ -120,14 +120,14 @@ public class LogstreamConfiguration extends com.pulumi.resources.CustomResource 
      * 
      */
     @Export(name="compressionFormat", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> compressionFormat;
+    private Output<String> compressionFormat;
 
     /**
      * @return The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
      * 
      */
-    public Output<Optional<String>> compressionFormat() {
-        return Codegen.optional(this.compressionFormat);
+    public Output<String> compressionFormat() {
+        return this.compressionFormat;
     }
     /**
      * The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
@@ -148,56 +148,56 @@ public class LogstreamConfiguration extends com.pulumi.resources.CustomResource 
      * 
      */
     @Export(name="gcsBucket", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> gcsBucket;
+    private Output<String> gcsBucket;
 
     /**
      * @return The name of the GCS bucket
      * 
      */
-    public Output<Optional<String>> gcsBucket() {
-        return Codegen.optional(this.gcsBucket);
+    public Output<String> gcsBucket() {
+        return this.gcsBucket;
     }
     /**
      * The encoded string of JSON that is used to authenticate for workload identity in GCS
      * 
      */
     @Export(name="gcsCredentials", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> gcsCredentials;
+    private Output<String> gcsCredentials;
 
     /**
      * @return The encoded string of JSON that is used to authenticate for workload identity in GCS
      * 
      */
-    public Output<Optional<String>> gcsCredentials() {
-        return Codegen.optional(this.gcsCredentials);
+    public Output<String> gcsCredentials() {
+        return this.gcsCredentials;
     }
     /**
      * The GCS key prefix for the bucket
      * 
      */
     @Export(name="gcsKeyPrefix", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> gcsKeyPrefix;
+    private Output<String> gcsKeyPrefix;
 
     /**
      * @return The GCS key prefix for the bucket
      * 
      */
-    public Output<Optional<String>> gcsKeyPrefix() {
-        return Codegen.optional(this.gcsKeyPrefix);
+    public Output<String> gcsKeyPrefix() {
+        return this.gcsKeyPrefix;
     }
     /**
      * The GCS scopes needed to be able to write in the bucket
      * 
      */
     @Export(name="gcsScopes", refs={List.class,String.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<String>> gcsScopes;
+    private Output<List<String>> gcsScopes;
 
     /**
      * @return The GCS scopes needed to be able to write in the bucket
      * 
      */
-    public Output<Optional<List<String>>> gcsScopes() {
-        return Codegen.optional(this.gcsScopes);
+    public Output<List<String>> gcsScopes() {
+        return this.gcsScopes;
     }
     /**
      * The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
@@ -218,14 +218,14 @@ public class LogstreamConfiguration extends com.pulumi.resources.CustomResource 
      * 
      */
     @Export(name="s3AccessKeyId", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> s3AccessKeyId;
+    private Output<String> s3AccessKeyId;
 
     /**
      * @return The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is &#39;accesskey&#39;.
      * 
      */
-    public Output<Optional<String>> s3AccessKeyId() {
-        return Codegen.optional(this.s3AccessKeyId);
+    public Output<String> s3AccessKeyId() {
+        return this.s3AccessKeyId;
     }
     /**
      * The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
@@ -246,70 +246,70 @@ public class LogstreamConfiguration extends com.pulumi.resources.CustomResource 
      * 
      */
     @Export(name="s3Bucket", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> s3Bucket;
+    private Output<String> s3Bucket;
 
     /**
      * @return The S3 bucket name. Required if destinationType is &#39;s3&#39;.
      * 
      */
-    public Output<Optional<String>> s3Bucket() {
-        return Codegen.optional(this.s3Bucket);
+    public Output<String> s3Bucket() {
+        return this.s3Bucket;
     }
     /**
      * The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is &#39;s3&#39; and s3*authentication*type is &#39;rolearn&#39;. This can be obtained via the tailscale*aws*external*id resource.
      * 
      */
     @Export(name="s3ExternalId", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> s3ExternalId;
+    private Output<String> s3ExternalId;
 
     /**
      * @return The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is &#39;s3&#39; and s3*authentication*type is &#39;rolearn&#39;. This can be obtained via the tailscale*aws*external*id resource.
      * 
      */
-    public Output<Optional<String>> s3ExternalId() {
-        return Codegen.optional(this.s3ExternalId);
+    public Output<String> s3ExternalId() {
+        return this.s3ExternalId;
     }
     /**
      * An optional S3 key prefix to prepend to the auto-generated S3 key name.
      * 
      */
     @Export(name="s3KeyPrefix", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> s3KeyPrefix;
+    private Output<String> s3KeyPrefix;
 
     /**
      * @return An optional S3 key prefix to prepend to the auto-generated S3 key name.
      * 
      */
-    public Output<Optional<String>> s3KeyPrefix() {
-        return Codegen.optional(this.s3KeyPrefix);
+    public Output<String> s3KeyPrefix() {
+        return this.s3KeyPrefix;
     }
     /**
      * The region in which the S3 bucket is located. Required if destinationType is &#39;s3&#39;.
      * 
      */
     @Export(name="s3Region", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> s3Region;
+    private Output<String> s3Region;
 
     /**
      * @return The region in which the S3 bucket is located. Required if destinationType is &#39;s3&#39;.
      * 
      */
-    public Output<Optional<String>> s3Region() {
-        return Codegen.optional(this.s3Region);
+    public Output<String> s3Region() {
+        return this.s3Region;
     }
     /**
      * ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is &#39;s3&#39; and s3*authentication_type is &#39;rolearn&#39;.
      * 
      */
     @Export(name="s3RoleArn", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> s3RoleArn;
+    private Output<String> s3RoleArn;
 
     /**
      * @return ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is &#39;s3&#39; and s3*authentication_type is &#39;rolearn&#39;.
      * 
      */
-    public Output<Optional<String>> s3RoleArn() {
-        return Codegen.optional(this.s3RoleArn);
+    public Output<String> s3RoleArn() {
+        return this.s3RoleArn;
     }
     /**
      * The S3 secret access key. Required if destination*type is &#39;s3&#39; and s3*authentication_type is &#39;accesskey&#39;.
@@ -344,42 +344,42 @@ public class LogstreamConfiguration extends com.pulumi.resources.CustomResource 
      * 
      */
     @Export(name="uploadPeriodMinutes", refs={Integer.class}, tree="[0]")
-    private Output</* @Nullable */ Integer> uploadPeriodMinutes;
+    private Output<Integer> uploadPeriodMinutes;
 
     /**
      * @return An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
      * 
      */
-    public Output<Optional<Integer>> uploadPeriodMinutes() {
-        return Codegen.optional(this.uploadPeriodMinutes);
+    public Output<Integer> uploadPeriodMinutes() {
+        return this.uploadPeriodMinutes;
     }
     /**
      * The URL to which log streams are being posted. If destinationType is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
      * 
      */
     @Export(name="url", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> url;
+    private Output<String> url;
 
     /**
      * @return The URL to which log streams are being posted. If destinationType is &#39;s3&#39; and you want to use the official Amazon S3 endpoint, leave this empty.
      * 
      */
-    public Output<Optional<String>> url() {
-        return Codegen.optional(this.url);
+    public Output<String> url() {
+        return this.url;
     }
     /**
      * The username with which log streams to this endpoint are authenticated. Only required if destinationType is &#39;elastic&#39;, defaults to &#39;user&#39; if not set.
      * 
      */
     @Export(name="user", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> user;
+    private Output<String> user;
 
     /**
      * @return The username with which log streams to this endpoint are authenticated. Only required if destinationType is &#39;elastic&#39;, defaults to &#39;user&#39; if not set.
      * 
      */
-    public Output<Optional<String>> user() {
-        return Codegen.optional(this.user);
+    public Output<String> user() {
+        return this.user;
     }
 
     /**

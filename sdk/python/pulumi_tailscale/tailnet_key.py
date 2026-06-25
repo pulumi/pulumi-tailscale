@@ -560,7 +560,7 @@ class TailnetKey(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def description(self) -> pulumi.Output[_builtins.str]:
         """
         A description of the key consisting of alphanumeric characters. Defaults to `""`.
         """
@@ -568,7 +568,7 @@ class TailnetKey(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def ephemeral(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def ephemeral(self) -> pulumi.Output[_builtins.bool]:
         """
         Indicates if the key is ephemeral. Defaults to `false`.
         """
@@ -608,7 +608,7 @@ class TailnetKey(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def preauthorized(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def preauthorized(self) -> pulumi.Output[_builtins.bool]:
         """
         Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
         """
@@ -624,7 +624,7 @@ class TailnetKey(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def reusable(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def reusable(self) -> pulumi.Output[_builtins.bool]:
         """
         Indicates if the key is reusable or single-use. Defaults to `false`.
         """
@@ -632,7 +632,7 @@ class TailnetKey(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+    def tags(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
         List of tags to apply to the machines authenticated by the key.
         """

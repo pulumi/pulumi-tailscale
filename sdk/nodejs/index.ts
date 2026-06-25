@@ -90,6 +90,11 @@ export const getDevices: typeof import("./getDevices").getDevices = null as any;
 export const getDevicesOutput: typeof import("./getDevices").getDevicesOutput = null as any;
 utilities.lazyLoad(exports, ["getDevices","getDevicesOutput"], () => require("./getDevices"));
 
+export { GetServiceArgs, GetServiceResult, GetServiceOutputArgs } from "./getService";
+export const getService: typeof import("./getService").getService = null as any;
+export const getServiceOutput: typeof import("./getService").getServiceOutput = null as any;
+utilities.lazyLoad(exports, ["getService","getServiceOutput"], () => require("./getService"));
+
 export { GetUserArgs, GetUserResult, GetUserOutputArgs } from "./getUser";
 export const getUser: typeof import("./getUser").getUser = null as any;
 export const getUserOutput: typeof import("./getUser").getUserOutput = null as any;
@@ -117,6 +122,11 @@ utilities.lazyLoad(exports, ["PostureIntegration"], () => require("./postureInte
 
 export * from "./provider";
 import { Provider } from "./provider";
+
+export { ServiceArgs, ServiceState } from "./service";
+export type Service = import("./service").Service;
+export const Service: typeof import("./service").Service = null as any;
+utilities.lazyLoad(exports, ["Service"], () => require("./service"));
 
 export { TailnetKeyArgs, TailnetKeyState } from "./tailnetKey";
 export type TailnetKey = import("./tailnetKey").TailnetKey;
@@ -179,6 +189,8 @@ const _module = {
                 return new OauthClient(name, <any>undefined, { urn })
             case "tailscale:index/postureIntegration:PostureIntegration":
                 return new PostureIntegration(name, <any>undefined, { urn })
+            case "tailscale:index/service:Service":
+                return new Service(name, <any>undefined, { urn })
             case "tailscale:index/tailnetKey:TailnetKey":
                 return new TailnetKey(name, <any>undefined, { urn })
             case "tailscale:index/tailnetSettings:TailnetSettings":
@@ -206,6 +218,7 @@ pulumi.runtime.registerResourceModule("tailscale", "index/federatedIdentity", _m
 pulumi.runtime.registerResourceModule("tailscale", "index/logstreamConfiguration", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/oauthClient", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/postureIntegration", _module)
+pulumi.runtime.registerResourceModule("tailscale", "index/service", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/tailnetKey", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/tailnetSettings", _module)
 pulumi.runtime.registerResourceModule("tailscale", "index/webhook", _module)

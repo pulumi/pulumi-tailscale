@@ -10,6 +10,8 @@ import com.pulumi.tailscale.inputs.DnsConfigurationSplitDnNameserverArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class DnsConfigurationSplitDnArgs extends com.pulumi.resources.ResourceArgs {
@@ -35,15 +37,15 @@ public final class DnsConfigurationSplitDnArgs extends com.pulumi.resources.Reso
      * Set the nameservers used by devices on your network to resolve DNS queries.
      * 
      */
-    @Import(name="nameservers", required=true)
-    private Output<List<DnsConfigurationSplitDnNameserverArgs>> nameservers;
+    @Import(name="nameservers")
+    private @Nullable Output<List<DnsConfigurationSplitDnNameserverArgs>> nameservers;
 
     /**
      * @return Set the nameservers used by devices on your network to resolve DNS queries.
      * 
      */
-    public Output<List<DnsConfigurationSplitDnNameserverArgs>> nameservers() {
-        return this.nameservers;
+    public Optional<Output<List<DnsConfigurationSplitDnNameserverArgs>>> nameservers() {
+        return Optional.ofNullable(this.nameservers);
     }
 
     private DnsConfigurationSplitDnArgs() {}
@@ -98,7 +100,7 @@ public final class DnsConfigurationSplitDnArgs extends com.pulumi.resources.Reso
          * @return builder
          * 
          */
-        public Builder nameservers(Output<List<DnsConfigurationSplitDnNameserverArgs>> nameservers) {
+        public Builder nameservers(@Nullable Output<List<DnsConfigurationSplitDnNameserverArgs>> nameservers) {
             $.nameservers = nameservers;
             return this;
         }
@@ -126,9 +128,6 @@ public final class DnsConfigurationSplitDnArgs extends com.pulumi.resources.Reso
         public DnsConfigurationSplitDnArgs build() {
             if ($.domain == null) {
                 throw new MissingRequiredPropertyException("DnsConfigurationSplitDnArgs", "domain");
-            }
-            if ($.nameservers == null) {
-                throw new MissingRequiredPropertyException("DnsConfigurationSplitDnArgs", "nameservers");
             }
             return $;
         }

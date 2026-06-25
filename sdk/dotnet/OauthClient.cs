@@ -61,7 +61,7 @@ namespace Pulumi.Tailscale
         /// A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
         /// </summary>
         [Output("description")]
-        public Output<string?> Description { get; private set; } = null!;
+        public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
         /// The client secret, also known as the key. Used with the client ID to generate access tokens.

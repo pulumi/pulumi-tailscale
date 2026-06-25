@@ -82,7 +82,7 @@ type GetDeviceResult struct {
 	Expires string `pulumi:"expires"`
 	// The short hostname of the device
 	Hostname *string `pulumi:"hostname"`
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of this resource.
 	Id string `pulumi:"id"`
 	// Whether the device is marked as external
 	IsExternal bool `pulumi:"isExternal"`
@@ -187,7 +187,7 @@ func (o GetDeviceResultOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDeviceResult) *string { return v.Hostname }).(pulumi.StringPtrOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this resource.
 func (o GetDeviceResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDeviceResult) string { return v.Id }).(pulumi.StringOutput)
 }

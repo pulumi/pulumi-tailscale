@@ -65,7 +65,7 @@ export class OauthClient extends pulumi.CustomResource {
     /**
      * A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
      */
-    declare public readonly description: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string>;
     /**
      * The client secret, also known as the key. Used with the client ID to generate access tokens.
      */
@@ -77,7 +77,7 @@ export class OauthClient extends pulumi.CustomResource {
     /**
      * A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "authKeys".
      */
-    declare public readonly tags: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[]>;
     /**
      * The updated timestamp of the key in RFC3339 format
      */

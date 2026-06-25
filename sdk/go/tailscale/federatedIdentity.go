@@ -69,7 +69,7 @@ type FederatedIdentity struct {
 	// A map of claim names to pattern strings used to match against arbitrary claims in the OIDC identity token. Patterns can include `*` characters to match against any character.
 	CustomClaimRules pulumi.StringMapOutput `pulumi:"customClaimRules"`
 	// A description of the federated identity consisting of alphanumeric characters. Defaults to `""`.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
+	Description pulumi.StringOutput `pulumi:"description"`
 	// The issuer of the OIDC identity token used in the token exchange. Must be a valid and publicly reachable https:// URL.
 	Issuer pulumi.StringOutput `pulumi:"issuer"`
 	// Scopes to grant to the federated identity. See https://tailscale.com/kb/1623/ for a list of available scopes.
@@ -310,8 +310,8 @@ func (o FederatedIdentityOutput) CustomClaimRules() pulumi.StringMapOutput {
 }
 
 // A description of the federated identity consisting of alphanumeric characters. Defaults to `""`.
-func (o FederatedIdentityOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FederatedIdentity) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+func (o FederatedIdentityOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *FederatedIdentity) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
 // The issuer of the OIDC identity token used in the token exchange. Must be a valid and publicly reachable https:// URL.

@@ -19,14 +19,14 @@ public final class GetDevicesResult {
      * @return The list of devices in the tailnet
      * 
      */
-    private List<GetDevicesDevice> devices;
+    private @Nullable List<GetDevicesDevice> devices;
     /**
      * @return Filters the device list to elements devices whose fields match the provided values.
      * 
      */
     private @Nullable List<GetDevicesFilter> filters;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource.
      * 
      */
     private String id;
@@ -42,7 +42,7 @@ public final class GetDevicesResult {
      * 
      */
     public List<GetDevicesDevice> devices() {
-        return this.devices;
+        return this.devices == null ? List.of() : this.devices;
     }
     /**
      * @return Filters the device list to elements devices whose fields match the provided values.
@@ -52,7 +52,7 @@ public final class GetDevicesResult {
         return this.filters == null ? List.of() : this.filters;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource.
      * 
      */
     public String id() {
@@ -75,7 +75,7 @@ public final class GetDevicesResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private List<GetDevicesDevice> devices;
+        private @Nullable List<GetDevicesDevice> devices;
         private @Nullable List<GetDevicesFilter> filters;
         private String id;
         private @Nullable String namePrefix;
@@ -89,10 +89,8 @@ public final class GetDevicesResult {
         }
 
         @CustomType.Setter
-        public Builder devices(List<GetDevicesDevice> devices) {
-            if (devices == null) {
-              throw new MissingRequiredPropertyException("GetDevicesResult", "devices");
-            }
+        public Builder devices(@Nullable List<GetDevicesDevice> devices) {
+
             this.devices = devices;
             return this;
         }

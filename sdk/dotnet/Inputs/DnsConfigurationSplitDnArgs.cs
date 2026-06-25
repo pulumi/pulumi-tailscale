@@ -18,7 +18,7 @@ namespace Pulumi.Tailscale.Inputs
         [Input("domain", required: true)]
         public Input<string> Domain { get; set; } = null!;
 
-        [Input("nameservers", required: true)]
+        [Input("nameservers")]
         private InputList<Inputs.DnsConfigurationSplitDnNameserverArgs>? _nameservers;
 
         /// <summary>

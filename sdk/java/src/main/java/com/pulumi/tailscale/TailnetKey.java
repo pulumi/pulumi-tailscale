@@ -90,28 +90,28 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> description;
+    private Output<String> description;
 
     /**
      * @return A description of the key consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
      * 
      */
-    public Output<Optional<String>> description() {
-        return Codegen.optional(this.description);
+    public Output<String> description() {
+        return this.description;
     }
     /**
      * Indicates if the key is ephemeral. Defaults to `false`.
      * 
      */
     @Export(name="ephemeral", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> ephemeral;
+    private Output<Boolean> ephemeral;
 
     /**
      * @return Indicates if the key is ephemeral. Defaults to `false`.
      * 
      */
-    public Output<Optional<Boolean>> ephemeral() {
-        return Codegen.optional(this.ephemeral);
+    public Output<Boolean> ephemeral() {
+        return this.ephemeral;
     }
     /**
      * The expiry timestamp of the key in RFC3339 format
@@ -174,14 +174,14 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="preauthorized", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> preauthorized;
+    private Output<Boolean> preauthorized;
 
     /**
      * @return Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
      * 
      */
-    public Output<Optional<Boolean>> preauthorized() {
-        return Codegen.optional(this.preauthorized);
+    public Output<Boolean> preauthorized() {
+        return this.preauthorized;
     }
     /**
      * Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: &#39;always&#39;, &#39;never&#39;.
@@ -202,28 +202,28 @@ public class TailnetKey extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="reusable", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> reusable;
+    private Output<Boolean> reusable;
 
     /**
      * @return Indicates if the key is reusable or single-use. Defaults to `false`.
      * 
      */
-    public Output<Optional<Boolean>> reusable() {
-        return Codegen.optional(this.reusable);
+    public Output<Boolean> reusable() {
+        return this.reusable;
     }
     /**
      * List of tags to apply to the machines authenticated by the key.
      * 
      */
     @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<String>> tags;
+    private Output<List<String>> tags;
 
     /**
      * @return List of tags to apply to the machines authenticated by the key.
      * 
      */
-    public Output<Optional<List<String>>> tags() {
-        return Codegen.optional(this.tags);
+    public Output<List<String>> tags() {
+        return this.tags;
     }
     /**
      * ID of the user who created this key, empty for keys created by OAuth clients.

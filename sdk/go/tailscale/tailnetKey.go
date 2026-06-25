@@ -59,9 +59,9 @@ type TailnetKey struct {
 	// The creation timestamp of the key in RFC3339 format
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// A description of the key consisting of alphanumeric characters. Defaults to `""`.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
+	Description pulumi.StringOutput `pulumi:"description"`
 	// Indicates if the key is ephemeral. Defaults to `false`.
-	Ephemeral pulumi.BoolPtrOutput `pulumi:"ephemeral"`
+	Ephemeral pulumi.BoolOutput `pulumi:"ephemeral"`
 	// The expiry timestamp of the key in RFC3339 format
 	ExpiresAt pulumi.StringOutput `pulumi:"expiresAt"`
 	// The expiry of the key in seconds. Defaults to `7776000` (90 days).
@@ -71,11 +71,11 @@ type TailnetKey struct {
 	// The authentication key
 	Key pulumi.StringOutput `pulumi:"key"`
 	// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
-	Preauthorized pulumi.BoolPtrOutput `pulumi:"preauthorized"`
+	Preauthorized pulumi.BoolOutput `pulumi:"preauthorized"`
 	// Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
 	RecreateIfInvalid pulumi.StringPtrOutput `pulumi:"recreateIfInvalid"`
 	// Indicates if the key is reusable or single-use. Defaults to `false`.
-	Reusable pulumi.BoolPtrOutput `pulumi:"reusable"`
+	Reusable pulumi.BoolOutput `pulumi:"reusable"`
 	// List of tags to apply to the machines authenticated by the key.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// ID of the user who created this key, empty for keys created by OAuth clients.
@@ -305,13 +305,13 @@ func (o TailnetKeyOutput) CreatedAt() pulumi.StringOutput {
 }
 
 // A description of the key consisting of alphanumeric characters. Defaults to `""`.
-func (o TailnetKeyOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *TailnetKey) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+func (o TailnetKeyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *TailnetKey) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
 // Indicates if the key is ephemeral. Defaults to `false`.
-func (o TailnetKeyOutput) Ephemeral() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *TailnetKey) pulumi.BoolPtrOutput { return v.Ephemeral }).(pulumi.BoolPtrOutput)
+func (o TailnetKeyOutput) Ephemeral() pulumi.BoolOutput {
+	return o.ApplyT(func(v *TailnetKey) pulumi.BoolOutput { return v.Ephemeral }).(pulumi.BoolOutput)
 }
 
 // The expiry timestamp of the key in RFC3339 format
@@ -335,8 +335,8 @@ func (o TailnetKeyOutput) Key() pulumi.StringOutput {
 }
 
 // Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
-func (o TailnetKeyOutput) Preauthorized() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *TailnetKey) pulumi.BoolPtrOutput { return v.Preauthorized }).(pulumi.BoolPtrOutput)
+func (o TailnetKeyOutput) Preauthorized() pulumi.BoolOutput {
+	return o.ApplyT(func(v *TailnetKey) pulumi.BoolOutput { return v.Preauthorized }).(pulumi.BoolOutput)
 }
 
 // Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
@@ -345,8 +345,8 @@ func (o TailnetKeyOutput) RecreateIfInvalid() pulumi.StringPtrOutput {
 }
 
 // Indicates if the key is reusable or single-use. Defaults to `false`.
-func (o TailnetKeyOutput) Reusable() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *TailnetKey) pulumi.BoolPtrOutput { return v.Reusable }).(pulumi.BoolPtrOutput)
+func (o TailnetKeyOutput) Reusable() pulumi.BoolOutput {
+	return o.ApplyT(func(v *TailnetKey) pulumi.BoolOutput { return v.Reusable }).(pulumi.BoolOutput)
 }
 
 // List of tags to apply to the machines authenticated by the key.

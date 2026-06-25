@@ -4,7 +4,9 @@
 package com.pulumi.tailscale.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.tailscale.inputs.GetUsersUser;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -44,11 +46,27 @@ public final class GetUsersPlainArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.type);
     }
 
+    /**
+     * The list of users in the tailnet
+     * 
+     */
+    @Import(name="users")
+    private @Nullable List<GetUsersUser> users;
+
+    /**
+     * @return The list of users in the tailnet
+     * 
+     */
+    public Optional<List<GetUsersUser>> users() {
+        return Optional.ofNullable(this.users);
+    }
+
     private GetUsersPlainArgs() {}
 
     private GetUsersPlainArgs(GetUsersPlainArgs $) {
         this.role = $.role;
         this.type = $.type;
+        this.users = $.users;
     }
 
     public static Builder builder() {
@@ -89,6 +107,27 @@ public final class GetUsersPlainArgs extends com.pulumi.resources.InvokeArgs {
         public Builder type(@Nullable String type) {
             $.type = type;
             return this;
+        }
+
+        /**
+         * @param users The list of users in the tailnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder users(@Nullable List<GetUsersUser> users) {
+            $.users = users;
+            return this;
+        }
+
+        /**
+         * @param users The list of users in the tailnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder users(GetUsersUser... users) {
+            return users(List.of(users));
         }
 
         public GetUsersPlainArgs build() {

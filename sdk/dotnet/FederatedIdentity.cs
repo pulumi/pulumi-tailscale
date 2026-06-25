@@ -72,13 +72,13 @@ namespace Pulumi.Tailscale
         /// A map of claim names to pattern strings used to match against arbitrary claims in the OIDC identity token. Patterns can include `*` characters to match against any character.
         /// </summary>
         [Output("customClaimRules")]
-        public Output<ImmutableDictionary<string, string>?> CustomClaimRules { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> CustomClaimRules { get; private set; } = null!;
 
         /// <summary>
         /// A description of the federated identity consisting of alphanumeric characters. Defaults to `""`.
         /// </summary>
         [Output("description")]
-        public Output<string?> Description { get; private set; } = null!;
+        public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
         /// The issuer of the OIDC identity token used in the token exchange. Must be a valid and publicly reachable https:// URL.

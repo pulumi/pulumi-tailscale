@@ -13,6 +13,7 @@ import com.pulumi.tailscale.inputs.ContactsState;
 import com.pulumi.tailscale.outputs.ContactsAccount;
 import com.pulumi.tailscale.outputs.ContactsSecurity;
 import com.pulumi.tailscale.outputs.ContactsSupport;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -82,42 +83,42 @@ public class Contacts extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="account", refs={ContactsAccount.class}, tree="[0]")
-    private Output<ContactsAccount> account;
+    private Output</* @Nullable */ ContactsAccount> account;
 
     /**
      * @return Configuration for communications about important changes to your tailnet
      * 
      */
-    public Output<ContactsAccount> account() {
-        return this.account;
+    public Output<Optional<ContactsAccount>> account() {
+        return Codegen.optional(this.account);
     }
     /**
      * Configuration for communications about security issues affecting your tailnet
      * 
      */
     @Export(name="security", refs={ContactsSecurity.class}, tree="[0]")
-    private Output<ContactsSecurity> security;
+    private Output</* @Nullable */ ContactsSecurity> security;
 
     /**
      * @return Configuration for communications about security issues affecting your tailnet
      * 
      */
-    public Output<ContactsSecurity> security() {
-        return this.security;
+    public Output<Optional<ContactsSecurity>> security() {
+        return Codegen.optional(this.security);
     }
     /**
      * Configuration for communications about misconfigurations in your tailnet
      * 
      */
     @Export(name="support", refs={ContactsSupport.class}, tree="[0]")
-    private Output<ContactsSupport> support;
+    private Output</* @Nullable */ ContactsSupport> support;
 
     /**
      * @return Configuration for communications about misconfigurations in your tailnet
      * 
      */
-    public Output<ContactsSupport> support() {
-        return this.support;
+    public Output<Optional<ContactsSupport>> support() {
+        return Codegen.optional(this.support);
     }
 
     /**
@@ -132,7 +133,7 @@ public class Contacts extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Contacts(java.lang.String name, ContactsArgs args) {
+    public Contacts(java.lang.String name, @Nullable ContactsArgs args) {
         this(name, args, null);
     }
     /**
@@ -141,7 +142,7 @@ public class Contacts extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Contacts(java.lang.String name, ContactsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public Contacts(java.lang.String name, @Nullable ContactsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("tailscale:index/contacts:Contacts", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
@@ -149,7 +150,7 @@ public class Contacts extends com.pulumi.resources.CustomResource {
         super("tailscale:index/contacts:Contacts", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static ContactsArgs makeArgs(ContactsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static ContactsArgs makeArgs(@Nullable ContactsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }

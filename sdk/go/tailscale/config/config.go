@@ -11,9 +11,14 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
-// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
+// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
 func GetApiKey(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:apiKey")
+}
+
+// The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires 'oauth_client_id'. Conflicts with 'api_key', 'oauth_client_secret', 'identity_token', and 'identity_token_environment_variable_name'.
+func GetAudience(ctx *pulumi.Context) string {
+	return config.Get(ctx, "tailscale:audience")
 }
 
 // The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL environment variable.
@@ -21,17 +26,22 @@ func GetBaseUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:baseUrl")
 }
 
-// The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with 'api_key' and 'oauth_client_secret'.
+// The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with 'api_key', 'oauth_client_secret', and 'identity_token_environment_variable_name'.
 func GetIdentityToken(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:identityToken")
 }
 
-// The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
+// The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Terraform Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with 'identity_token'.
+func GetIdentityTokenEnvironmentVariableName(ctx *pulumi.Context) string {
+	return config.Get(ctx, "tailscale:identityTokenEnvironmentVariableName")
+}
+
+// The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
 func GetOauthClientId(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:oauthClientId")
 }
 
-// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Conflicts with 'api_key' and 'identity_token'.
+// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with 'api_key' and 'identity_token'.
 func GetOauthClientSecret(ctx *pulumi.Context) string {
 	return config.Get(ctx, "tailscale:oauthClientSecret")
 }
@@ -48,5 +58,11 @@ func GetTailnet(ctx *pulumi.Context) string {
 
 // User-Agent header for API requests.
 func GetUserAgent(ctx *pulumi.Context) string {
-	return config.Get(ctx, "tailscale:userAgent")
+	v, err := config.Try(ctx, "tailscale:userAgent")
+	if err == nil {
+		return v
+	}
+	var value string
+	value = "Pulumi/3.0 (https://www.pulumi.com) pulumi-tailscale/1.0.0-alpha.0+dev"
+	return value
 }

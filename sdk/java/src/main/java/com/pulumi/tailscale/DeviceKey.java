@@ -12,7 +12,6 @@ import com.pulumi.tailscale.Utilities;
 import com.pulumi.tailscale.inputs.DeviceKeyState;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -96,14 +95,14 @@ public class DeviceKey extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="keyExpiryDisabled", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> keyExpiryDisabled;
+    private Output<Boolean> keyExpiryDisabled;
 
     /**
      * @return Determines whether or not the device&#39;s key will expire. Defaults to `false`.
      * 
      */
-    public Output<Optional<Boolean>> keyExpiryDisabled() {
-        return Codegen.optional(this.keyExpiryDisabled);
+    public Output<Boolean> keyExpiryDisabled() {
+        return this.keyExpiryDisabled;
     }
 
     /**

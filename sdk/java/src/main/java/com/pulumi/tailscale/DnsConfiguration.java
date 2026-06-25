@@ -106,14 +106,14 @@ public class DnsConfiguration extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="magicDns", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> magicDns;
+    private Output<Boolean> magicDns;
 
     /**
      * @return Whether or not to enable MagicDNS. Defaults to true.
      * 
      */
-    public Output<Optional<Boolean>> magicDns() {
-        return Codegen.optional(this.magicDns);
+    public Output<Boolean> magicDns() {
+        return this.magicDns;
     }
     /**
      * Set the nameservers used by devices on your network to resolve DNS queries. `overrideLocalDns` must also be true to prefer these nameservers over local DNS configuration.
@@ -134,28 +134,28 @@ public class DnsConfiguration extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="overrideLocalDns", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> overrideLocalDns;
+    private Output<Boolean> overrideLocalDns;
 
     /**
      * @return When enabled, use the configured DNS servers in `nameservers` to resolve names outside the tailnet. When disabled, devices will prefer their local DNS configuration. Defaults to false.
      * 
      */
-    public Output<Optional<Boolean>> overrideLocalDns() {
-        return Codegen.optional(this.overrideLocalDns);
+    public Output<Boolean> overrideLocalDns() {
+        return this.overrideLocalDns;
     }
     /**
      * Additional search domains. When MagicDNS is on, the tailnet domain is automatically included as the first search domain.
      * 
      */
     @Export(name="searchPaths", refs={List.class,String.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<String>> searchPaths;
+    private Output<List<String>> searchPaths;
 
     /**
      * @return Additional search domains. When MagicDNS is on, the tailnet domain is automatically included as the first search domain.
      * 
      */
-    public Output<Optional<List<String>>> searchPaths() {
-        return Codegen.optional(this.searchPaths);
+    public Output<List<String>> searchPaths() {
+        return this.searchPaths;
     }
     /**
      * Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `overrideLocalDns`.

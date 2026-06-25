@@ -12,7 +12,6 @@ import com.pulumi.tailscale.Utilities;
 import com.pulumi.tailscale.inputs.OauthClientState;
 import java.lang.String;
 import java.util.List;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -85,14 +84,14 @@ public class OauthClient extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> description;
+    private Output<String> description;
 
     /**
      * @return A description of the OAuth client consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
      * 
      */
-    public Output<Optional<String>> description() {
-        return Codegen.optional(this.description);
+    public Output<String> description() {
+        return this.description;
     }
     /**
      * The client secret, also known as the key. Used with the client ID to generate access tokens.
@@ -127,14 +126,14 @@ public class OauthClient extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<String>> tags;
+    private Output<List<String>> tags;
 
     /**
      * @return A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include &#34;devices:core&#34; or &#34;authKeys&#34;.
      * 
      */
-    public Output<Optional<List<String>>> tags() {
-        return Codegen.optional(this.tags);
+    public Output<List<String>> tags() {
+        return this.tags;
     }
     /**
      * The updated timestamp of the key in RFC3339 format

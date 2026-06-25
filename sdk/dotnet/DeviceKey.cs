@@ -65,7 +65,7 @@ namespace Pulumi.Tailscale
         /// Determines whether or not the device's key will expire. Defaults to `False`.
         /// </summary>
         [Output("keyExpiryDisabled")]
-        public Output<bool?> KeyExpiryDisabled { get; private set; } = null!;
+        public Output<bool> KeyExpiryDisabled { get; private set; } = null!;
 
 
         /// <summary>

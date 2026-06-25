@@ -415,7 +415,7 @@ class DnsConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="magicDns")
-    def magic_dns(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def magic_dns(self) -> pulumi.Output[_builtins.bool]:
         """
         Whether or not to enable MagicDNS. Defaults to true.
         """
@@ -431,7 +431,7 @@ class DnsConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="overrideLocalDns")
-    def override_local_dns(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def override_local_dns(self) -> pulumi.Output[_builtins.bool]:
         """
         When enabled, use the configured DNS servers in `nameservers` to resolve names outside the tailnet. When disabled, devices will prefer their local DNS configuration. Defaults to false.
         """
@@ -439,7 +439,7 @@ class DnsConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="searchPaths")
-    def search_paths(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+    def search_paths(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
         Additional search domains. When MagicDNS is on, the tailnet domain is automatically included as the first search domain.
         """

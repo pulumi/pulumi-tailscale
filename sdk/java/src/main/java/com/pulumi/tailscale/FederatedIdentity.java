@@ -13,7 +13,6 @@ import com.pulumi.tailscale.inputs.FederatedIdentityState;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -103,28 +102,28 @@ public class FederatedIdentity extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="customClaimRules", refs={Map.class,String.class}, tree="[0,1,1]")
-    private Output</* @Nullable */ Map<String,String>> customClaimRules;
+    private Output<Map<String,String>> customClaimRules;
 
     /**
      * @return A map of claim names to pattern strings used to match against arbitrary claims in the OIDC identity token. Patterns can include `*` characters to match against any character.
      * 
      */
-    public Output<Optional<Map<String,String>>> customClaimRules() {
-        return Codegen.optional(this.customClaimRules);
+    public Output<Map<String,String>> customClaimRules() {
+        return this.customClaimRules;
     }
     /**
      * A description of the federated identity consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> description;
+    private Output<String> description;
 
     /**
      * @return A description of the federated identity consisting of alphanumeric characters. Defaults to `&#34;&#34;`.
      * 
      */
-    public Output<Optional<String>> description() {
-        return Codegen.optional(this.description);
+    public Output<String> description() {
+        return this.description;
     }
     /**
      * The issuer of the OIDC identity token used in the token exchange. Must be a valid and publicly reachable https:// URL.
@@ -173,14 +172,14 @@ public class FederatedIdentity extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<String>> tags;
+    private Output<List<String>> tags;
 
     /**
      * @return A list of tags that access tokens generated for the federated identity will be able to assign to devices. Mandatory if the scopes include &#34;devices:core&#34; or &#34;authKeys&#34;.
      * 
      */
-    public Output<Optional<List<String>>> tags() {
-        return Codegen.optional(this.tags);
+    public Output<List<String>> tags() {
+        return this.tags;
     }
     /**
      * The updated timestamp of the key in RFC3339 format

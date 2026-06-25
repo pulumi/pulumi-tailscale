@@ -68,7 +68,7 @@ type DeviceKey struct {
 	// The device to update the key properties of
 	DeviceId pulumi.StringOutput `pulumi:"deviceId"`
 	// Determines whether or not the device's key will expire. Defaults to `false`.
-	KeyExpiryDisabled pulumi.BoolPtrOutput `pulumi:"keyExpiryDisabled"`
+	KeyExpiryDisabled pulumi.BoolOutput `pulumi:"keyExpiryDisabled"`
 }
 
 // NewDeviceKey registers a new resource with the given unique name, arguments, and options.
@@ -229,8 +229,8 @@ func (o DeviceKeyOutput) DeviceId() pulumi.StringOutput {
 }
 
 // Determines whether or not the device's key will expire. Defaults to `false`.
-func (o DeviceKeyOutput) KeyExpiryDisabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *DeviceKey) pulumi.BoolPtrOutput { return v.KeyExpiryDisabled }).(pulumi.BoolPtrOutput)
+func (o DeviceKeyOutput) KeyExpiryDisabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *DeviceKey) pulumi.BoolOutput { return v.KeyExpiryDisabled }).(pulumi.BoolOutput)
 }
 
 type DeviceKeyArrayOutput struct{ *pulumi.OutputState }

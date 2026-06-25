@@ -5,6 +5,7 @@ package com.pulumi.tailscale.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.tailscale.inputs.GetDevicesDeviceArgs;
 import com.pulumi.tailscale.inputs.GetDevicesFilterArgs;
 import java.lang.String;
 import java.util.List;
@@ -16,6 +17,21 @@ import javax.annotation.Nullable;
 public final class GetDevicesArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetDevicesArgs Empty = new GetDevicesArgs();
+
+    /**
+     * The list of devices in the tailnet
+     * 
+     */
+    @Import(name="devices")
+    private @Nullable Output<List<GetDevicesDeviceArgs>> devices;
+
+    /**
+     * @return The list of devices in the tailnet
+     * 
+     */
+    public Optional<Output<List<GetDevicesDeviceArgs>>> devices() {
+        return Optional.ofNullable(this.devices);
+    }
 
     /**
      * Filters the device list to elements devices whose fields match the provided values.
@@ -50,6 +66,7 @@ public final class GetDevicesArgs extends com.pulumi.resources.InvokeArgs {
     private GetDevicesArgs() {}
 
     private GetDevicesArgs(GetDevicesArgs $) {
+        this.devices = $.devices;
         this.filters = $.filters;
         this.namePrefix = $.namePrefix;
     }
@@ -70,6 +87,37 @@ public final class GetDevicesArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder(GetDevicesArgs defaults) {
             $ = new GetDevicesArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param devices The list of devices in the tailnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder devices(@Nullable Output<List<GetDevicesDeviceArgs>> devices) {
+            $.devices = devices;
+            return this;
+        }
+
+        /**
+         * @param devices The list of devices in the tailnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder devices(List<GetDevicesDeviceArgs> devices) {
+            return devices(Output.of(devices));
+        }
+
+        /**
+         * @param devices The list of devices in the tailnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder devices(GetDevicesDeviceArgs... devices) {
+            return devices(List.of(devices));
         }
 
         /**

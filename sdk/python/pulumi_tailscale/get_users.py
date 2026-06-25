@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetUsersResult',
@@ -45,7 +46,7 @@ class GetUsersResult:
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The ID of this resource.
         """
         return pulumi.get(self, "id")
 
@@ -67,7 +68,7 @@ class GetUsersResult:
 
     @_builtins.property
     @pulumi.getter
-    def users(self) -> Sequence['outputs.GetUsersUserResult']:
+    def users(self) -> Optional[Sequence['outputs.GetUsersUserResult']]:
         """
         The list of users in the tailnet
         """
@@ -88,6 +89,7 @@ class AwaitableGetUsersResult(GetUsersResult):
 
 def get_users(role: Optional[_builtins.str] = None,
               type: Optional[_builtins.str] = None,
+              users: Optional[Sequence[Union['GetUsersUserArgs', 'GetUsersUserArgsDict']]] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUsersResult:
     """
     The users data source describes a list of users in a tailnet
@@ -104,10 +106,12 @@ def get_users(role: Optional[_builtins.str] = None,
 
     :param _builtins.str role: Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
     :param _builtins.str type: Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
+    :param Sequence[Union['GetUsersUserArgs', 'GetUsersUserArgsDict']] users: The list of users in the tailnet
     """
     __args__ = dict()
     __args__['role'] = role
     __args__['type'] = type
+    __args__['users'] = users
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('tailscale:index/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult).value
 
@@ -118,6 +122,7 @@ def get_users(role: Optional[_builtins.str] = None,
         users=pulumi.get(__ret__, 'users'))
 def get_users_output(role: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     users: pulumi.Input[Optional[Optional[Sequence[Union['GetUsersUserArgs', 'GetUsersUserArgsDict']]]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUsersResult]:
     """
     The users data source describes a list of users in a tailnet
@@ -134,10 +139,12 @@ def get_users_output(role: pulumi.Input[Optional[Optional[_builtins.str]]] = Non
 
     :param _builtins.str role: Filter the results to only include users with a specific role. Valid values are `owner`, `member`, `admin`, `it-admin`, `network-admin`, `billing-admin`, and `auditor`.
     :param _builtins.str type: Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
+    :param Sequence[Union['GetUsersUserArgs', 'GetUsersUserArgsDict']] users: The list of users in the tailnet
     """
     __args__ = dict()
     __args__['role'] = role
     __args__['type'] = type
+    __args__['users'] = users
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('tailscale:index/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult)
     return __ret__.apply(lambda __response__: GetUsersResult(

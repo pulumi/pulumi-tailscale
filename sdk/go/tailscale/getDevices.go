@@ -65,6 +65,8 @@ func GetDevices(ctx *pulumi.Context, args *GetDevicesArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getDevices.
 type GetDevicesArgs struct {
+	// The list of devices in the tailnet
+	Devices []GetDevicesDevice `pulumi:"devices"`
 	// Filters the device list to elements devices whose fields match the provided values.
 	Filters []GetDevicesFilter `pulumi:"filters"`
 	// Filters the device list to elements whose name has the provided prefix
@@ -77,7 +79,7 @@ type GetDevicesResult struct {
 	Devices []GetDevicesDevice `pulumi:"devices"`
 	// Filters the device list to elements devices whose fields match the provided values.
 	Filters []GetDevicesFilter `pulumi:"filters"`
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of this resource.
 	Id string `pulumi:"id"`
 	// Filters the device list to elements whose name has the provided prefix
 	NamePrefix *string `pulumi:"namePrefix"`
@@ -94,6 +96,8 @@ func GetDevicesOutput(ctx *pulumi.Context, args GetDevicesOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getDevices.
 type GetDevicesOutputArgs struct {
+	// The list of devices in the tailnet
+	Devices GetDevicesDeviceArrayInput `pulumi:"devices"`
 	// Filters the device list to elements devices whose fields match the provided values.
 	Filters GetDevicesFilterArrayInput `pulumi:"filters"`
 	// Filters the device list to elements whose name has the provided prefix
@@ -129,7 +133,7 @@ func (o GetDevicesResultOutput) Filters() GetDevicesFilterArrayOutput {
 	return o.ApplyT(func(v GetDevicesResult) []GetDevicesFilter { return v.Filters }).(GetDevicesFilterArrayOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this resource.
 func (o GetDevicesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDevicesResult) string { return v.Id }).(pulumi.StringOutput)
 }

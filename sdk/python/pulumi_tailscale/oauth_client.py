@@ -360,7 +360,7 @@ class OauthClient(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def description(self) -> pulumi.Output[_builtins.str]:
         """
         A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
         """
@@ -384,7 +384,7 @@ class OauthClient(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+    def tags(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
         A list of tags that access tokens generated for the OAuth client will be able to assign to devices. Mandatory if the scopes include "devices:core" or "auth_keys".
         """

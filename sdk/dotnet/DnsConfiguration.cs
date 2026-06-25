@@ -96,7 +96,7 @@ namespace Pulumi.Tailscale
         /// Whether or not to enable MagicDNS. Defaults to true.
         /// </summary>
         [Output("magicDns")]
-        public Output<bool?> MagicDns { get; private set; } = null!;
+        public Output<bool> MagicDns { get; private set; } = null!;
 
         /// <summary>
         /// Set the nameservers used by devices on your network to resolve DNS queries. `OverrideLocalDns` must also be true to prefer these nameservers over local DNS configuration.
@@ -108,7 +108,7 @@ namespace Pulumi.Tailscale
         /// When enabled, use the configured DNS servers in `Nameservers` to resolve names outside the tailnet. When disabled, devices will prefer their local DNS configuration. Defaults to false.
         /// </summary>
         [Output("overrideLocalDns")]
-        public Output<bool?> OverrideLocalDns { get; private set; } = null!;
+        public Output<bool> OverrideLocalDns { get; private set; } = null!;
 
         /// <summary>
         /// Additional search domains. When MagicDNS is on, the tailnet domain is automatically included as the first search domain.

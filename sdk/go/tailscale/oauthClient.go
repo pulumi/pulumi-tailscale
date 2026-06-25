@@ -61,7 +61,7 @@ type OauthClient struct {
 	// The creation timestamp of the key in RFC3339 format
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
+	Description pulumi.StringOutput `pulumi:"description"`
 	// The client secret, also known as the key. Used with the client ID to generate access tokens.
 	Key pulumi.StringOutput `pulumi:"key"`
 	// Scopes to grant to the client. See https://tailscale.com/kb/1623/ for a list of available scopes.
@@ -260,8 +260,8 @@ func (o OauthClientOutput) CreatedAt() pulumi.StringOutput {
 }
 
 // A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
-func (o OauthClientOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *OauthClient) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+func (o OauthClientOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *OauthClient) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
 // The client secret, also known as the key. Used with the client ID to generate access tokens.

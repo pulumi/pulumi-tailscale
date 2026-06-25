@@ -12,7 +12,6 @@ import com.pulumi.tailscale.Utilities;
 import com.pulumi.tailscale.inputs.PostureIntegrationState;
 import java.lang.String;
 import java.util.List;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -72,14 +71,14 @@ public class PostureIntegration extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="clientId", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> clientId;
+    private Output<String> clientId;
 
     /**
      * @return Unique identifier for your client.
      * 
      */
-    public Output<Optional<String>> clientId() {
-        return Codegen.optional(this.clientId);
+    public Output<String> clientId() {
+        return this.clientId;
     }
     /**
      * The secret (auth key, token, etc.) used to authenticate with the provider.
@@ -100,14 +99,14 @@ public class PostureIntegration extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="cloudId", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> cloudId;
+    private Output<String> cloudId;
 
     /**
      * @return Identifies which of the provider&#39;s clouds to integrate with.
      * 
      */
-    public Output<Optional<String>> cloudId() {
-        return Codegen.optional(this.cloudId);
+    public Output<String> cloudId() {
+        return this.cloudId;
     }
     /**
      * The third-party provider for posture data. Valid values are `falcon`, `fleet`, `huntress`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
@@ -128,14 +127,14 @@ public class PostureIntegration extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="tenantId", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> tenantId;
+    private Output<String> tenantId;
 
     /**
      * @return The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
      * 
      */
-    public Output<Optional<String>> tenantId() {
-        return Codegen.optional(this.tenantId);
+    public Output<String> tenantId() {
+        return this.tenantId;
     }
 
     /**
