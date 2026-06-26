@@ -12,25 +12,70 @@ namespace Pulumi.Tailscale
     public static class GetAcl
     {
         /// <summary>
-        /// The acl data source gets the Tailscale policy file for a tailnet
+        /// Returns the Tailscale policy file for a tailnet.
         /// 
         /// &gt; **Note:** The naming of this data source predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet's entire policy file and not just the ACLs section within it.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Tailscale = Pulumi.Tailscale;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Tailscale.GetAcl.Invoke();
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetAclResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAclResult>("tailscale:index/getAcl:getAcl", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// The acl data source gets the Tailscale policy file for a tailnet
+        /// Returns the Tailscale policy file for a tailnet.
         /// 
         /// &gt; **Note:** The naming of this data source predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet's entire policy file and not just the ACLs section within it.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Tailscale = Pulumi.Tailscale;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Tailscale.GetAcl.Invoke();
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetAclResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAclResult>("tailscale:index/getAcl:getAcl", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// The acl data source gets the Tailscale policy file for a tailnet
+        /// Returns the Tailscale policy file for a tailnet.
         /// 
         /// &gt; **Note:** The naming of this data source predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet's entire policy file and not just the ACLs section within it.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Tailscale = Pulumi.Tailscale;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Tailscale.GetAcl.Invoke();
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetAclResult> Invoke(InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetAclResult>("tailscale:index/getAcl:getAcl", InvokeArgs.Empty, options.WithDefaults());
@@ -41,15 +86,15 @@ namespace Pulumi.Tailscale
     public sealed class GetAclResult
     {
         /// <summary>
-        /// The contents of Tailscale ACL as a HuJSON string
+        /// The contents of the policy file as a HuJSON string.
         /// </summary>
         public readonly string Hujson;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of this resource.
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The contents of Tailscale ACL as a JSON string
+        /// The contents of the policy file as a JSON string.
         /// </summary>
         public readonly string Json;
 

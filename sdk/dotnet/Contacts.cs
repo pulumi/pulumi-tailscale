@@ -60,19 +60,19 @@ namespace Pulumi.Tailscale
         /// Configuration for communications about important changes to your tailnet
         /// </summary>
         [Output("account")]
-        public Output<Outputs.ContactsAccount> Account { get; private set; } = null!;
+        public Output<Outputs.ContactsAccount?> Account { get; private set; } = null!;
 
         /// <summary>
         /// Configuration for communications about security issues affecting your tailnet
         /// </summary>
         [Output("security")]
-        public Output<Outputs.ContactsSecurity> Security { get; private set; } = null!;
+        public Output<Outputs.ContactsSecurity?> Security { get; private set; } = null!;
 
         /// <summary>
         /// Configuration for communications about misconfigurations in your tailnet
         /// </summary>
         [Output("support")]
-        public Output<Outputs.ContactsSupport> Support { get; private set; } = null!;
+        public Output<Outputs.ContactsSupport?> Support { get; private set; } = null!;
 
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Pulumi.Tailscale
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Contacts(string name, ContactsArgs args, CustomResourceOptions? options = null)
+        public Contacts(string name, ContactsArgs? args = null, CustomResourceOptions? options = null)
             : base("tailscale:index/contacts:Contacts", name, args ?? new ContactsArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -123,20 +123,20 @@ namespace Pulumi.Tailscale
         /// <summary>
         /// Configuration for communications about important changes to your tailnet
         /// </summary>
-        [Input("account", required: true)]
-        public Input<Inputs.ContactsAccountArgs> Account { get; set; } = null!;
+        [Input("account")]
+        public Input<Inputs.ContactsAccountArgs>? Account { get; set; }
 
         /// <summary>
         /// Configuration for communications about security issues affecting your tailnet
         /// </summary>
-        [Input("security", required: true)]
-        public Input<Inputs.ContactsSecurityArgs> Security { get; set; } = null!;
+        [Input("security")]
+        public Input<Inputs.ContactsSecurityArgs>? Security { get; set; }
 
         /// <summary>
         /// Configuration for communications about misconfigurations in your tailnet
         /// </summary>
-        [Input("support", required: true)]
-        public Input<Inputs.ContactsSupportArgs> Support { get; set; } = null!;
+        [Input("support")]
+        public Input<Inputs.ContactsSupportArgs>? Support { get; set; }
 
         public ContactsArgs()
         {

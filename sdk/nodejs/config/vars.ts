@@ -8,12 +8,23 @@ declare var exports: any;
 const __config = new pulumi.Config("tailscale");
 
 /**
- * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
+ * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
  */
 export declare const apiKey: string | undefined;
 Object.defineProperty(exports, "apiKey", {
     get() {
         return __config.get("apiKey");
+    },
+    enumerable: true,
+});
+
+/**
+ * The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires 'oauth_client_id'. Conflicts with 'api_key', 'oauth_client_secret', 'identity_token', and 'identity_token_environment_variable_name'.
+ */
+export declare const audience: string | undefined;
+Object.defineProperty(exports, "audience", {
+    get() {
+        return __config.get("audience");
     },
     enumerable: true,
 });
@@ -30,7 +41,7 @@ Object.defineProperty(exports, "baseUrl", {
 });
 
 /**
- * The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with 'api_key' and 'oauth_client_secret'.
+ * The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with 'api_key', 'oauth_client_secret', and 'identity_token_environment_variable_name'.
  */
 export declare const identityToken: string | undefined;
 Object.defineProperty(exports, "identityToken", {
@@ -41,7 +52,18 @@ Object.defineProperty(exports, "identityToken", {
 });
 
 /**
- * The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
+ * The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Terraform Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with 'identity_token'.
+ */
+export declare const identityTokenEnvironmentVariableName: string | undefined;
+Object.defineProperty(exports, "identityTokenEnvironmentVariableName", {
+    get() {
+        return __config.get("identityTokenEnvironmentVariableName");
+    },
+    enumerable: true,
+});
+
+/**
+ * The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
  */
 export declare const oauthClientId: string | undefined;
 Object.defineProperty(exports, "oauthClientId", {
@@ -52,7 +74,7 @@ Object.defineProperty(exports, "oauthClientId", {
 });
 
 /**
- * The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Conflicts with 'api_key' and 'identity_token'.
+ * The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with 'api_key' and 'identity_token'.
  */
 export declare const oauthClientSecret: string | undefined;
 Object.defineProperty(exports, "oauthClientSecret", {
@@ -87,10 +109,10 @@ Object.defineProperty(exports, "tailnet", {
 /**
  * User-Agent header for API requests.
  */
-export declare const userAgent: string | undefined;
+export declare const userAgent: string;
 Object.defineProperty(exports, "userAgent", {
     get() {
-        return __config.get("userAgent");
+        return __config.get("userAgent") ?? "Pulumi/3.0 (https://www.pulumi.com) pulumi-tailscale/1.0.0-alpha.0+dev";
     },
     enumerable: true,
 });

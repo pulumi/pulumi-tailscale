@@ -53,6 +53,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &OauthClient{}
 	case "tailscale:index/postureIntegration:PostureIntegration":
 		r = &PostureIntegration{}
+	case "tailscale:index/service:Service":
+		r = &Service{}
 	case "tailscale:index/tailnetKey:TailnetKey":
 		r = &TailnetKey{}
 	case "tailscale:index/tailnetSettings:TailnetSettings":
@@ -168,6 +170,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"tailscale",
 		"index/postureIntegration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"tailscale",
+		"index/service",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

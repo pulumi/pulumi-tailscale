@@ -353,7 +353,7 @@ class PostureIntegration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def client_id(self) -> pulumi.Output[_builtins.str]:
         """
         Unique identifier for your client.
         """
@@ -369,7 +369,7 @@ class PostureIntegration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="cloudId")
-    def cloud_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def cloud_id(self) -> pulumi.Output[_builtins.str]:
         """
         Identifies which of the provider's clouds to integrate with.
         """
@@ -385,7 +385,7 @@ class PostureIntegration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def tenant_id(self) -> pulumi.Output[_builtins.str]:
         """
         The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
         """

@@ -73,7 +73,7 @@ export class DeviceKey extends pulumi.CustomResource {
     /**
      * Determines whether or not the device's key will expire. Defaults to `false`.
      */
-    declare public readonly keyExpiryDisabled: pulumi.Output<boolean | undefined>;
+    declare public readonly keyExpiryDisabled: pulumi.Output<boolean>;
 
     /**
      * Create a DeviceKey resource with the given unique name, arguments, and options.

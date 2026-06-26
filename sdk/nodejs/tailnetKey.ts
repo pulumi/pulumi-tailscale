@@ -68,11 +68,11 @@ export class TailnetKey extends pulumi.CustomResource {
     /**
      * A description of the key consisting of alphanumeric characters. Defaults to `""`.
      */
-    declare public readonly description: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string>;
     /**
      * Indicates if the key is ephemeral. Defaults to `false`.
      */
-    declare public readonly ephemeral: pulumi.Output<boolean | undefined>;
+    declare public readonly ephemeral: pulumi.Output<boolean>;
     /**
      * The expiry timestamp of the key in RFC3339 format
      */
@@ -92,7 +92,7 @@ export class TailnetKey extends pulumi.CustomResource {
     /**
      * Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `false`.
      */
-    declare public readonly preauthorized: pulumi.Output<boolean | undefined>;
+    declare public readonly preauthorized: pulumi.Output<boolean>;
     /**
      * Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
      */
@@ -100,11 +100,11 @@ export class TailnetKey extends pulumi.CustomResource {
     /**
      * Indicates if the key is reusable or single-use. Defaults to `false`.
      */
-    declare public readonly reusable: pulumi.Output<boolean | undefined>;
+    declare public readonly reusable: pulumi.Output<boolean>;
     /**
      * List of tags to apply to the machines authenticated by the key.
      */
-    declare public readonly tags: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[]>;
     /**
      * ID of the user who created this key, empty for keys created by OAuth clients.
      */

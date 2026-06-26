@@ -4,6 +4,7 @@
 package com.pulumi.tailscale.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.tailscale.inputs.GetDevicesDevice;
 import com.pulumi.tailscale.inputs.GetDevicesFilter;
 import java.lang.String;
 import java.util.List;
@@ -15,6 +16,21 @@ import javax.annotation.Nullable;
 public final class GetDevicesPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetDevicesPlainArgs Empty = new GetDevicesPlainArgs();
+
+    /**
+     * The list of devices in the tailnet
+     * 
+     */
+    @Import(name="devices")
+    private @Nullable List<GetDevicesDevice> devices;
+
+    /**
+     * @return The list of devices in the tailnet
+     * 
+     */
+    public Optional<List<GetDevicesDevice>> devices() {
+        return Optional.ofNullable(this.devices);
+    }
 
     /**
      * Filters the device list to elements devices whose fields match the provided values.
@@ -49,6 +65,7 @@ public final class GetDevicesPlainArgs extends com.pulumi.resources.InvokeArgs {
     private GetDevicesPlainArgs() {}
 
     private GetDevicesPlainArgs(GetDevicesPlainArgs $) {
+        this.devices = $.devices;
         this.filters = $.filters;
         this.namePrefix = $.namePrefix;
     }
@@ -69,6 +86,27 @@ public final class GetDevicesPlainArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder(GetDevicesPlainArgs defaults) {
             $ = new GetDevicesPlainArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param devices The list of devices in the tailnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder devices(@Nullable List<GetDevicesDevice> devices) {
+            $.devices = devices;
+            return this;
+        }
+
+        /**
+         * @param devices The list of devices in the tailnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder devices(GetDevicesDevice... devices) {
+            return devices(List.of(devices));
         }
 
         /**

@@ -17,7 +17,7 @@ public final class Get4Via6Result {
      */
     private String cidr;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource.
      * 
      */
     private String id;
@@ -41,7 +41,7 @@ public final class Get4Via6Result {
         return this.cidr;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource.
      * 
      */
     public String id() {

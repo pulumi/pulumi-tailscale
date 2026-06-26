@@ -251,7 +251,7 @@ class DeviceKey(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="keyExpiryDisabled")
-    def key_expiry_disabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def key_expiry_disabled(self) -> pulumi.Output[_builtins.bool]:
         """
         Determines whether or not the device's key will expire. Defaults to `false`.
         """

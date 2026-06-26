@@ -114,43 +114,43 @@ type LogstreamConfiguration struct {
 	pulumi.CustomResourceState
 
 	// The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
-	CompressionFormat pulumi.StringPtrOutput `pulumi:"compressionFormat"`
+	CompressionFormat pulumi.StringOutput `pulumi:"compressionFormat"`
 	// The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
 	DestinationType pulumi.StringOutput `pulumi:"destinationType"`
 	// The name of the GCS bucket
-	GcsBucket pulumi.StringPtrOutput `pulumi:"gcsBucket"`
+	GcsBucket pulumi.StringOutput `pulumi:"gcsBucket"`
 	// The encoded string of JSON that is used to authenticate for workload identity in GCS
-	GcsCredentials pulumi.StringPtrOutput `pulumi:"gcsCredentials"`
+	GcsCredentials pulumi.StringOutput `pulumi:"gcsCredentials"`
 	// The GCS key prefix for the bucket
-	GcsKeyPrefix pulumi.StringPtrOutput `pulumi:"gcsKeyPrefix"`
+	GcsKeyPrefix pulumi.StringOutput `pulumi:"gcsKeyPrefix"`
 	// The GCS scopes needed to be able to write in the bucket
 	GcsScopes pulumi.StringArrayOutput `pulumi:"gcsScopes"`
 	// The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
 	LogType pulumi.StringOutput `pulumi:"logType"`
 	// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
-	S3AccessKeyId pulumi.StringPtrOutput `pulumi:"s3AccessKeyId"`
+	S3AccessKeyId pulumi.StringOutput `pulumi:"s3AccessKeyId"`
 	// The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
 	S3AuthenticationType pulumi.StringPtrOutput `pulumi:"s3AuthenticationType"`
 	// The S3 bucket name. Required if destinationType is 's3'.
-	S3Bucket pulumi.StringPtrOutput `pulumi:"s3Bucket"`
+	S3Bucket pulumi.StringOutput `pulumi:"s3Bucket"`
 	// The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
-	S3ExternalId pulumi.StringPtrOutput `pulumi:"s3ExternalId"`
+	S3ExternalId pulumi.StringOutput `pulumi:"s3ExternalId"`
 	// An optional S3 key prefix to prepend to the auto-generated S3 key name.
-	S3KeyPrefix pulumi.StringPtrOutput `pulumi:"s3KeyPrefix"`
+	S3KeyPrefix pulumi.StringOutput `pulumi:"s3KeyPrefix"`
 	// The region in which the S3 bucket is located. Required if destinationType is 's3'.
-	S3Region pulumi.StringPtrOutput `pulumi:"s3Region"`
+	S3Region pulumi.StringOutput `pulumi:"s3Region"`
 	// ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
-	S3RoleArn pulumi.StringPtrOutput `pulumi:"s3RoleArn"`
+	S3RoleArn pulumi.StringOutput `pulumi:"s3RoleArn"`
 	// The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
 	S3SecretAccessKey pulumi.StringPtrOutput `pulumi:"s3SecretAccessKey"`
 	// The token/password with which log streams to this endpoint should be authenticated, required unless destinationType is 's3'.
 	Token pulumi.StringPtrOutput `pulumi:"token"`
 	// An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
-	UploadPeriodMinutes pulumi.IntPtrOutput `pulumi:"uploadPeriodMinutes"`
+	UploadPeriodMinutes pulumi.IntOutput `pulumi:"uploadPeriodMinutes"`
 	// The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
-	Url pulumi.StringPtrOutput `pulumi:"url"`
+	Url pulumi.StringOutput `pulumi:"url"`
 	// The username with which log streams to this endpoint are authenticated. Only required if destinationType is 'elastic', defaults to 'user' if not set.
-	User pulumi.StringPtrOutput `pulumi:"user"`
+	User pulumi.StringOutput `pulumi:"user"`
 }
 
 // NewLogstreamConfiguration registers a new resource with the given unique name, arguments, and options.
@@ -456,8 +456,8 @@ func (o LogstreamConfigurationOutput) ToLogstreamConfigurationOutputWithContext(
 }
 
 // The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
-func (o LogstreamConfigurationOutput) CompressionFormat() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.CompressionFormat }).(pulumi.StringPtrOutput)
+func (o LogstreamConfigurationOutput) CompressionFormat() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.CompressionFormat }).(pulumi.StringOutput)
 }
 
 // The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
@@ -466,18 +466,18 @@ func (o LogstreamConfigurationOutput) DestinationType() pulumi.StringOutput {
 }
 
 // The name of the GCS bucket
-func (o LogstreamConfigurationOutput) GcsBucket() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.GcsBucket }).(pulumi.StringPtrOutput)
+func (o LogstreamConfigurationOutput) GcsBucket() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.GcsBucket }).(pulumi.StringOutput)
 }
 
 // The encoded string of JSON that is used to authenticate for workload identity in GCS
-func (o LogstreamConfigurationOutput) GcsCredentials() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.GcsCredentials }).(pulumi.StringPtrOutput)
+func (o LogstreamConfigurationOutput) GcsCredentials() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.GcsCredentials }).(pulumi.StringOutput)
 }
 
 // The GCS key prefix for the bucket
-func (o LogstreamConfigurationOutput) GcsKeyPrefix() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.GcsKeyPrefix }).(pulumi.StringPtrOutput)
+func (o LogstreamConfigurationOutput) GcsKeyPrefix() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.GcsKeyPrefix }).(pulumi.StringOutput)
 }
 
 // The GCS scopes needed to be able to write in the bucket
@@ -491,8 +491,8 @@ func (o LogstreamConfigurationOutput) LogType() pulumi.StringOutput {
 }
 
 // The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
-func (o LogstreamConfigurationOutput) S3AccessKeyId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.S3AccessKeyId }).(pulumi.StringPtrOutput)
+func (o LogstreamConfigurationOutput) S3AccessKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.S3AccessKeyId }).(pulumi.StringOutput)
 }
 
 // The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
@@ -501,28 +501,28 @@ func (o LogstreamConfigurationOutput) S3AuthenticationType() pulumi.StringPtrOut
 }
 
 // The S3 bucket name. Required if destinationType is 's3'.
-func (o LogstreamConfigurationOutput) S3Bucket() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.S3Bucket }).(pulumi.StringPtrOutput)
+func (o LogstreamConfigurationOutput) S3Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.S3Bucket }).(pulumi.StringOutput)
 }
 
 // The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
-func (o LogstreamConfigurationOutput) S3ExternalId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.S3ExternalId }).(pulumi.StringPtrOutput)
+func (o LogstreamConfigurationOutput) S3ExternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.S3ExternalId }).(pulumi.StringOutput)
 }
 
 // An optional S3 key prefix to prepend to the auto-generated S3 key name.
-func (o LogstreamConfigurationOutput) S3KeyPrefix() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.S3KeyPrefix }).(pulumi.StringPtrOutput)
+func (o LogstreamConfigurationOutput) S3KeyPrefix() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.S3KeyPrefix }).(pulumi.StringOutput)
 }
 
 // The region in which the S3 bucket is located. Required if destinationType is 's3'.
-func (o LogstreamConfigurationOutput) S3Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.S3Region }).(pulumi.StringPtrOutput)
+func (o LogstreamConfigurationOutput) S3Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.S3Region }).(pulumi.StringOutput)
 }
 
 // ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
-func (o LogstreamConfigurationOutput) S3RoleArn() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.S3RoleArn }).(pulumi.StringPtrOutput)
+func (o LogstreamConfigurationOutput) S3RoleArn() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.S3RoleArn }).(pulumi.StringOutput)
 }
 
 // The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
@@ -536,18 +536,18 @@ func (o LogstreamConfigurationOutput) Token() pulumi.StringPtrOutput {
 }
 
 // An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
-func (o LogstreamConfigurationOutput) UploadPeriodMinutes() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.IntPtrOutput { return v.UploadPeriodMinutes }).(pulumi.IntPtrOutput)
+func (o LogstreamConfigurationOutput) UploadPeriodMinutes() pulumi.IntOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.IntOutput { return v.UploadPeriodMinutes }).(pulumi.IntOutput)
 }
 
 // The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
-func (o LogstreamConfigurationOutput) Url() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.Url }).(pulumi.StringPtrOutput)
+func (o LogstreamConfigurationOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
 }
 
 // The username with which log streams to this endpoint are authenticated. Only required if destinationType is 'elastic', defaults to 'user' if not set.
-func (o LogstreamConfigurationOutput) User() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringPtrOutput { return v.User }).(pulumi.StringPtrOutput)
+func (o LogstreamConfigurationOutput) User() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogstreamConfiguration) pulumi.StringOutput { return v.User }).(pulumi.StringOutput)
 }
 
 type LogstreamConfigurationArrayOutput struct{ *pulumi.OutputState }

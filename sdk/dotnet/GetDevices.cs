@@ -147,6 +147,18 @@ namespace Pulumi.Tailscale
 
     public sealed class GetDevicesArgs : global::Pulumi.InvokeArgs
     {
+        [Input("devices")]
+        private List<Inputs.GetDevicesDeviceArgs>? _devices;
+
+        /// <summary>
+        /// The list of devices in the tailnet
+        /// </summary>
+        public List<Inputs.GetDevicesDeviceArgs> Devices
+        {
+            get => _devices ?? (_devices = new List<Inputs.GetDevicesDeviceArgs>());
+            set => _devices = value;
+        }
+
         [Input("filters")]
         private List<Inputs.GetDevicesFilterArgs>? _filters;
 
@@ -173,6 +185,18 @@ namespace Pulumi.Tailscale
 
     public sealed class GetDevicesInvokeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("devices")]
+        private InputList<Inputs.GetDevicesDeviceInputArgs>? _devices;
+
+        /// <summary>
+        /// The list of devices in the tailnet
+        /// </summary>
+        public InputList<Inputs.GetDevicesDeviceInputArgs> Devices
+        {
+            get => _devices ?? (_devices = new InputList<Inputs.GetDevicesDeviceInputArgs>());
+            set => _devices = value;
+        }
+
         [Input("filters")]
         private InputList<Inputs.GetDevicesFilterInputArgs>? _filters;
 
@@ -210,7 +234,7 @@ namespace Pulumi.Tailscale
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDevicesFilterResult> Filters;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of this resource.
         /// </summary>
         public readonly string Id;
         /// <summary>

@@ -37,6 +37,7 @@ export function getDevices(args?: GetDevicesArgs, opts?: pulumi.InvokeOptions): 
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("tailscale:index/getDevices:getDevices", {
+        "devices": args.devices,
         "filters": args.filters,
         "namePrefix": args.namePrefix,
     }, opts);
@@ -46,6 +47,10 @@ export function getDevices(args?: GetDevicesArgs, opts?: pulumi.InvokeOptions): 
  * A collection of arguments for invoking getDevices.
  */
 export interface GetDevicesArgs {
+    /**
+     * The list of devices in the tailnet
+     */
+    devices?: inputs.GetDevicesDevice[];
     /**
      * Filters the device list to elements devices whose fields match the provided values.
      */
@@ -63,13 +68,13 @@ export interface GetDevicesResult {
     /**
      * The list of devices in the tailnet
      */
-    readonly devices: outputs.GetDevicesDevice[];
+    readonly devices?: outputs.GetDevicesDevice[];
     /**
      * Filters the device list to elements devices whose fields match the provided values.
      */
     readonly filters?: outputs.GetDevicesFilter[];
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The ID of this resource.
      */
     readonly id: string;
     /**
@@ -108,6 +113,7 @@ export function getDevicesOutput(args?: GetDevicesOutputArgs, opts?: pulumi.Invo
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("tailscale:index/getDevices:getDevices", {
+        "devices": args.devices,
         "filters": args.filters,
         "namePrefix": args.namePrefix,
     }, opts);
@@ -117,6 +123,10 @@ export function getDevicesOutput(args?: GetDevicesOutputArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getDevices.
  */
 export interface GetDevicesOutputArgs {
+    /**
+     * The list of devices in the tailnet
+     */
+    devices?: pulumi.Input<pulumi.Input<inputs.GetDevicesDeviceArgs>[] | undefined>;
     /**
      * Filters the device list to elements devices whose fields match the provided values.
      */

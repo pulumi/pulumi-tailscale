@@ -5,7 +5,9 @@ package com.pulumi.tailscale.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.tailscale.inputs.GetUsersUserArgs;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -45,11 +47,27 @@ public final class GetUsersArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.type);
     }
 
+    /**
+     * The list of users in the tailnet
+     * 
+     */
+    @Import(name="users")
+    private @Nullable Output<List<GetUsersUserArgs>> users;
+
+    /**
+     * @return The list of users in the tailnet
+     * 
+     */
+    public Optional<Output<List<GetUsersUserArgs>>> users() {
+        return Optional.ofNullable(this.users);
+    }
+
     private GetUsersArgs() {}
 
     private GetUsersArgs(GetUsersArgs $) {
         this.role = $.role;
         this.type = $.type;
+        this.users = $.users;
     }
 
     public static Builder builder() {
@@ -110,6 +128,37 @@ public final class GetUsersArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder type(String type) {
             return type(Output.of(type));
+        }
+
+        /**
+         * @param users The list of users in the tailnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder users(@Nullable Output<List<GetUsersUserArgs>> users) {
+            $.users = users;
+            return this;
+        }
+
+        /**
+         * @param users The list of users in the tailnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder users(List<GetUsersUserArgs> users) {
+            return users(Output.of(users));
+        }
+
+        /**
+         * @param users The list of users in the tailnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder users(GetUsersUserArgs... users) {
+            return users(List.of(users));
         }
 
         public GetUsersArgs build() {

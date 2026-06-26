@@ -5,9 +5,18 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The acl data source gets the Tailscale policy file for a tailnet
+ * Returns the Tailscale policy file for a tailnet.
  *
  * > **Note:** The naming of this data source predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet's entire policy file and not just the ACLs section within it.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as tailscale from "@pulumi/tailscale";
+ *
+ * const example = tailscale.getAcl({});
+ * ```
  */
 export function getAcl(opts?: pulumi.InvokeOptions): Promise<GetAclResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -20,22 +29,31 @@ export function getAcl(opts?: pulumi.InvokeOptions): Promise<GetAclResult> {
  */
 export interface GetAclResult {
     /**
-     * The contents of Tailscale ACL as a HuJSON string
+     * The contents of the policy file as a HuJSON string.
      */
     readonly hujson: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The ID of this resource.
      */
     readonly id: string;
     /**
-     * The contents of Tailscale ACL as a JSON string
+     * The contents of the policy file as a JSON string.
      */
     readonly json: string;
 }
 /**
- * The acl data source gets the Tailscale policy file for a tailnet
+ * Returns the Tailscale policy file for a tailnet.
  *
  * > **Note:** The naming of this data source predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet's entire policy file and not just the ACLs section within it.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as tailscale from "@pulumi/tailscale";
+ *
+ * const example = tailscale.getAcl({});
+ * ```
  */
 export function getAclOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAclResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

@@ -62,7 +62,7 @@ export class PostureIntegration extends pulumi.CustomResource {
     /**
      * Unique identifier for your client.
      */
-    declare public readonly clientId: pulumi.Output<string | undefined>;
+    declare public readonly clientId: pulumi.Output<string>;
     /**
      * The secret (auth key, token, etc.) used to authenticate with the provider.
      */
@@ -70,7 +70,7 @@ export class PostureIntegration extends pulumi.CustomResource {
     /**
      * Identifies which of the provider's clouds to integrate with.
      */
-    declare public readonly cloudId: pulumi.Output<string | undefined>;
+    declare public readonly cloudId: pulumi.Output<string>;
     /**
      * The third-party provider for posture data. Valid values are `falcon`, `fleet`, `huntress`, `intune`, `jamfpro`, `kandji`, `kolide`, and `sentinelone`.
      */
@@ -78,7 +78,7 @@ export class PostureIntegration extends pulumi.CustomResource {
     /**
      * The Microsoft Intune directory (tenant) ID. For other providers, this is left blank.
      */
-    declare public readonly tenantId: pulumi.Output<string | undefined>;
+    declare public readonly tenantId: pulumi.Output<string>;
 
     /**
      * Create a PostureIntegration resource with the given unique name, arguments, and options.

@@ -101,7 +101,7 @@ namespace Pulumi.Tailscale
         /// The compression algorithm used for logs. Valid values are `None`, `Zstd` or `Gzip`. Defaults to `None`.
         /// </summary>
         [Output("compressionFormat")]
-        public Output<string?> CompressionFormat { get; private set; } = null!;
+        public Output<string> CompressionFormat { get; private set; } = null!;
 
         /// <summary>
         /// The type of SIEM platform to stream to. Valid values are `Axiom`, `Cribl`, `Datadog`, `Elastic`, `Gcs`, `Panther`, `Splunk`, and `S3`.
@@ -113,19 +113,19 @@ namespace Pulumi.Tailscale
         /// The name of the GCS bucket
         /// </summary>
         [Output("gcsBucket")]
-        public Output<string?> GcsBucket { get; private set; } = null!;
+        public Output<string> GcsBucket { get; private set; } = null!;
 
         /// <summary>
         /// The encoded string of JSON that is used to authenticate for workload identity in GCS
         /// </summary>
         [Output("gcsCredentials")]
-        public Output<string?> GcsCredentials { get; private set; } = null!;
+        public Output<string> GcsCredentials { get; private set; } = null!;
 
         /// <summary>
         /// The GCS key prefix for the bucket
         /// </summary>
         [Output("gcsKeyPrefix")]
-        public Output<string?> GcsKeyPrefix { get; private set; } = null!;
+        public Output<string> GcsKeyPrefix { get; private set; } = null!;
 
         /// <summary>
         /// The GCS scopes needed to be able to write in the bucket
@@ -143,7 +143,7 @@ namespace Pulumi.Tailscale
         /// The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
         /// </summary>
         [Output("s3AccessKeyId")]
-        public Output<string?> S3AccessKeyId { get; private set; } = null!;
+        public Output<string> S3AccessKeyId { get; private set; } = null!;
 
         /// <summary>
         /// The type of authentication to use for S3. Required if DestinationType is `S3`. Valid values are `Accesskey` and `Rolearn`. Tailscale recommends using `Rolearn`.
@@ -155,31 +155,31 @@ namespace Pulumi.Tailscale
         /// The S3 bucket name. Required if DestinationType is 's3'.
         /// </summary>
         [Output("s3Bucket")]
-        public Output<string?> S3Bucket { get; private set; } = null!;
+        public Output<string> S3Bucket { get; private set; } = null!;
 
         /// <summary>
         /// The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
         /// </summary>
         [Output("s3ExternalId")]
-        public Output<string?> S3ExternalId { get; private set; } = null!;
+        public Output<string> S3ExternalId { get; private set; } = null!;
 
         /// <summary>
         /// An optional S3 key prefix to prepend to the auto-generated S3 key name.
         /// </summary>
         [Output("s3KeyPrefix")]
-        public Output<string?> S3KeyPrefix { get; private set; } = null!;
+        public Output<string> S3KeyPrefix { get; private set; } = null!;
 
         /// <summary>
         /// The region in which the S3 bucket is located. Required if DestinationType is 's3'.
         /// </summary>
         [Output("s3Region")]
-        public Output<string?> S3Region { get; private set; } = null!;
+        public Output<string> S3Region { get; private set; } = null!;
 
         /// <summary>
         /// ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
         /// </summary>
         [Output("s3RoleArn")]
-        public Output<string?> S3RoleArn { get; private set; } = null!;
+        public Output<string> S3RoleArn { get; private set; } = null!;
 
         /// <summary>
         /// The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
@@ -197,19 +197,19 @@ namespace Pulumi.Tailscale
         /// An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
         /// </summary>
         [Output("uploadPeriodMinutes")]
-        public Output<int?> UploadPeriodMinutes { get; private set; } = null!;
+        public Output<int> UploadPeriodMinutes { get; private set; } = null!;
 
         /// <summary>
         /// The URL to which log streams are being posted. If DestinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         /// </summary>
         [Output("url")]
-        public Output<string?> Url { get; private set; } = null!;
+        public Output<string> Url { get; private set; } = null!;
 
         /// <summary>
         /// The username with which log streams to this endpoint are authenticated. Only required if DestinationType is 'elastic', defaults to 'user' if not set.
         /// </summary>
         [Output("user")]
-        public Output<string?> User { get; private set; } = null!;
+        public Output<string> User { get; private set; } = null!;
 
 
         /// <summary>

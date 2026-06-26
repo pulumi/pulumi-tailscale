@@ -137,7 +137,7 @@ namespace Pulumi.Tailscale
         /// </summary>
         public readonly string Cidr;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The ID of this resource.
         /// </summary>
         public readonly string Id;
         /// <summary>

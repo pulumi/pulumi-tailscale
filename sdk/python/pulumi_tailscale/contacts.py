@@ -21,9 +21,9 @@ __all__ = ['ContactsArgs', 'Contacts']
 @pulumi.input_type
 class ContactsArgs:
     def __init__(__self__, *,
-                 account: pulumi.Input['ContactsAccountArgs'],
-                 security: pulumi.Input['ContactsSecurityArgs'],
-                 support: pulumi.Input['ContactsSupportArgs']):
+                 account: pulumi.Input[Optional['ContactsAccountArgs']] = None,
+                 security: pulumi.Input[Optional['ContactsSecurityArgs']] = None,
+                 support: pulumi.Input[Optional['ContactsSupportArgs']] = None):
         """
         The set of arguments for constructing a Contacts resource.
 
@@ -31,44 +31,47 @@ class ContactsArgs:
         :param pulumi.Input['ContactsSecurityArgs'] security: Configuration for communications about security issues affecting your tailnet
         :param pulumi.Input['ContactsSupportArgs'] support: Configuration for communications about misconfigurations in your tailnet
         """
-        pulumi.set(__self__, "account", account)
-        pulumi.set(__self__, "security", security)
-        pulumi.set(__self__, "support", support)
+        if account is not None:
+            pulumi.set(__self__, "account", account)
+        if security is not None:
+            pulumi.set(__self__, "security", security)
+        if support is not None:
+            pulumi.set(__self__, "support", support)
 
     @_builtins.property
     @pulumi.getter
-    def account(self) -> pulumi.Input['ContactsAccountArgs']:
+    def account(self) -> pulumi.Input[Optional['ContactsAccountArgs']]:
         """
         Configuration for communications about important changes to your tailnet
         """
         return pulumi.get(self, "account")
 
     @account.setter
-    def account(self, value: pulumi.Input['ContactsAccountArgs']):
+    def account(self, value: pulumi.Input[Optional['ContactsAccountArgs']]):
         pulumi.set(self, "account", value)
 
     @_builtins.property
     @pulumi.getter
-    def security(self) -> pulumi.Input['ContactsSecurityArgs']:
+    def security(self) -> pulumi.Input[Optional['ContactsSecurityArgs']]:
         """
         Configuration for communications about security issues affecting your tailnet
         """
         return pulumi.get(self, "security")
 
     @security.setter
-    def security(self, value: pulumi.Input['ContactsSecurityArgs']):
+    def security(self, value: pulumi.Input[Optional['ContactsSecurityArgs']]):
         pulumi.set(self, "security", value)
 
     @_builtins.property
     @pulumi.getter
-    def support(self) -> pulumi.Input['ContactsSupportArgs']:
+    def support(self) -> pulumi.Input[Optional['ContactsSupportArgs']]:
         """
         Configuration for communications about misconfigurations in your tailnet
         """
         return pulumi.get(self, "support")
 
     @support.setter
-    def support(self, value: pulumi.Input['ContactsSupportArgs']):
+    def support(self, value: pulumi.Input[Optional['ContactsSupportArgs']]):
         pulumi.set(self, "support", value)
 
 
@@ -183,7 +186,7 @@ class Contacts(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ContactsArgs,
+                 args: Optional[ContactsArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The contacts resource allows you to configure contact details for your Tailscale network. See https://tailscale.com/kb/1224/contact-preferences for more information.
@@ -246,14 +249,8 @@ class Contacts(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ContactsArgs.__new__(ContactsArgs)
 
-            if account is None and not opts.urn:
-                raise TypeError("Missing required property 'account'")
             __props__.__dict__["account"] = account
-            if security is None and not opts.urn:
-                raise TypeError("Missing required property 'security'")
             __props__.__dict__["security"] = security
-            if support is None and not opts.urn:
-                raise TypeError("Missing required property 'support'")
             __props__.__dict__["support"] = support
         super(Contacts, __self__).__init__(
             'tailscale:index/contacts:Contacts',
@@ -290,7 +287,7 @@ class Contacts(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def account(self) -> pulumi.Output['outputs.ContactsAccount']:
+    def account(self) -> pulumi.Output[Optional['outputs.ContactsAccount']]:
         """
         Configuration for communications about important changes to your tailnet
         """
@@ -298,7 +295,7 @@ class Contacts(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def security(self) -> pulumi.Output['outputs.ContactsSecurity']:
+    def security(self) -> pulumi.Output[Optional['outputs.ContactsSecurity']]:
         """
         Configuration for communications about security issues affecting your tailnet
         """
@@ -306,7 +303,7 @@ class Contacts(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def support(self) -> pulumi.Output['outputs.ContactsSupport']:
+    def support(self) -> pulumi.Output[Optional['outputs.ContactsSupport']]:
         """
         Configuration for communications about misconfigurations in your tailnet
         """

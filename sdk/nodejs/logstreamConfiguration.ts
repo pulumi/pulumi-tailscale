@@ -104,7 +104,7 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
     /**
      * The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
      */
-    declare public readonly compressionFormat: pulumi.Output<string | undefined>;
+    declare public readonly compressionFormat: pulumi.Output<string>;
     /**
      * The type of SIEM platform to stream to. Valid values are `axiom`, `cribl`, `datadog`, `elastic`, `gcs`, `panther`, `splunk`, and `s3`.
      */
@@ -112,19 +112,19 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
     /**
      * The name of the GCS bucket
      */
-    declare public readonly gcsBucket: pulumi.Output<string | undefined>;
+    declare public readonly gcsBucket: pulumi.Output<string>;
     /**
      * The encoded string of JSON that is used to authenticate for workload identity in GCS
      */
-    declare public readonly gcsCredentials: pulumi.Output<string | undefined>;
+    declare public readonly gcsCredentials: pulumi.Output<string>;
     /**
      * The GCS key prefix for the bucket
      */
-    declare public readonly gcsKeyPrefix: pulumi.Output<string | undefined>;
+    declare public readonly gcsKeyPrefix: pulumi.Output<string>;
     /**
      * The GCS scopes needed to be able to write in the bucket
      */
-    declare public readonly gcsScopes: pulumi.Output<string[] | undefined>;
+    declare public readonly gcsScopes: pulumi.Output<string[]>;
     /**
      * The type of logs to stream. Valid values are `configuration` (configuration audit logs) and `network` (network flow logs).
      */
@@ -132,7 +132,7 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
     /**
      * The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
      */
-    declare public readonly s3AccessKeyId: pulumi.Output<string | undefined>;
+    declare public readonly s3AccessKeyId: pulumi.Output<string>;
     /**
      * The type of authentication to use for S3. Required if destinationType is `s3`. Valid values are `accesskey` and `rolearn`. Tailscale recommends using `rolearn`.
      */
@@ -140,23 +140,23 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
     /**
      * The S3 bucket name. Required if destinationType is 's3'.
      */
-    declare public readonly s3Bucket: pulumi.Output<string | undefined>;
+    declare public readonly s3Bucket: pulumi.Output<string>;
     /**
      * The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
      */
-    declare public readonly s3ExternalId: pulumi.Output<string | undefined>;
+    declare public readonly s3ExternalId: pulumi.Output<string>;
     /**
      * An optional S3 key prefix to prepend to the auto-generated S3 key name.
      */
-    declare public readonly s3KeyPrefix: pulumi.Output<string | undefined>;
+    declare public readonly s3KeyPrefix: pulumi.Output<string>;
     /**
      * The region in which the S3 bucket is located. Required if destinationType is 's3'.
      */
-    declare public readonly s3Region: pulumi.Output<string | undefined>;
+    declare public readonly s3Region: pulumi.Output<string>;
     /**
      * ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
      */
-    declare public readonly s3RoleArn: pulumi.Output<string | undefined>;
+    declare public readonly s3RoleArn: pulumi.Output<string>;
     /**
      * The S3 secret access key. Required if destination*type is 's3' and s3*authentication_type is 'accesskey'.
      */
@@ -168,15 +168,15 @@ export class LogstreamConfiguration extends pulumi.CustomResource {
     /**
      * An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
      */
-    declare public readonly uploadPeriodMinutes: pulumi.Output<number | undefined>;
+    declare public readonly uploadPeriodMinutes: pulumi.Output<number>;
     /**
      * The URL to which log streams are being posted. If destinationType is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
      */
-    declare public readonly url: pulumi.Output<string | undefined>;
+    declare public readonly url: pulumi.Output<string>;
     /**
      * The username with which log streams to this endpoint are authenticated. Only required if destinationType is 'elastic', defaults to 'user' if not set.
      */
-    declare public readonly user: pulumi.Output<string | undefined>;
+    declare public readonly user: pulumi.Output<string>;
 
     /**
      * Create a LogstreamConfiguration resource with the given unique name, arguments, and options.

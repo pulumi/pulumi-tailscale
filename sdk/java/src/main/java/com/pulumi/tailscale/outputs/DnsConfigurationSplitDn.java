@@ -9,6 +9,7 @@ import com.pulumi.tailscale.outputs.DnsConfigurationSplitDnNameserver;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class DnsConfigurationSplitDn {
@@ -21,7 +22,7 @@ public final class DnsConfigurationSplitDn {
      * @return Set the nameservers used by devices on your network to resolve DNS queries.
      * 
      */
-    private List<DnsConfigurationSplitDnNameserver> nameservers;
+    private @Nullable List<DnsConfigurationSplitDnNameserver> nameservers;
 
     private DnsConfigurationSplitDn() {}
     /**
@@ -36,7 +37,7 @@ public final class DnsConfigurationSplitDn {
      * 
      */
     public List<DnsConfigurationSplitDnNameserver> nameservers() {
-        return this.nameservers;
+        return this.nameservers == null ? List.of() : this.nameservers;
     }
 
     public static Builder builder() {
@@ -49,7 +50,7 @@ public final class DnsConfigurationSplitDn {
     @CustomType.Builder
     public static final class Builder {
         private String domain;
-        private List<DnsConfigurationSplitDnNameserver> nameservers;
+        private @Nullable List<DnsConfigurationSplitDnNameserver> nameservers;
         public Builder() {}
         public Builder(DnsConfigurationSplitDn defaults) {
     	      Objects.requireNonNull(defaults);
@@ -66,10 +67,8 @@ public final class DnsConfigurationSplitDn {
             return this;
         }
         @CustomType.Setter
-        public Builder nameservers(List<DnsConfigurationSplitDnNameserver> nameservers) {
-            if (nameservers == null) {
-              throw new MissingRequiredPropertyException("DnsConfigurationSplitDn", "nameservers");
-            }
+        public Builder nameservers(@Nullable List<DnsConfigurationSplitDnNameserver> nameservers) {
+
             this.nameservers = nameservers;
             return this;
         }

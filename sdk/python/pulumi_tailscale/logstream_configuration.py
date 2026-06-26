@@ -979,7 +979,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="compressionFormat")
-    def compression_format(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def compression_format(self) -> pulumi.Output[_builtins.str]:
         """
         The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
         """
@@ -995,7 +995,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="gcsBucket")
-    def gcs_bucket(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def gcs_bucket(self) -> pulumi.Output[_builtins.str]:
         """
         The name of the GCS bucket
         """
@@ -1003,7 +1003,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="gcsCredentials")
-    def gcs_credentials(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def gcs_credentials(self) -> pulumi.Output[_builtins.str]:
         """
         The encoded string of JSON that is used to authenticate for workload identity in GCS
         """
@@ -1011,7 +1011,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="gcsKeyPrefix")
-    def gcs_key_prefix(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def gcs_key_prefix(self) -> pulumi.Output[_builtins.str]:
         """
         The GCS key prefix for the bucket
         """
@@ -1019,7 +1019,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="gcsScopes")
-    def gcs_scopes(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+    def gcs_scopes(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
         The GCS scopes needed to be able to write in the bucket
         """
@@ -1035,7 +1035,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="s3AccessKeyId")
-    def s3_access_key_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def s3_access_key_id(self) -> pulumi.Output[_builtins.str]:
         """
         The S3 access key ID. Required if destination*type is s3 and s3*authentication_type is 'accesskey'.
         """
@@ -1051,7 +1051,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="s3Bucket")
-    def s3_bucket(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def s3_bucket(self) -> pulumi.Output[_builtins.str]:
         """
         The S3 bucket name. Required if destination_type is 's3'.
         """
@@ -1059,7 +1059,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="s3ExternalId")
-    def s3_external_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def s3_external_id(self) -> pulumi.Output[_builtins.str]:
         """
         The AWS External ID that Tailscale supplies when authenticating using role-based authentication. Required if destination*type is 's3' and s3*authentication*type is 'rolearn'. This can be obtained via the tailscale*aws*external*id resource.
         """
@@ -1067,7 +1067,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="s3KeyPrefix")
-    def s3_key_prefix(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def s3_key_prefix(self) -> pulumi.Output[_builtins.str]:
         """
         An optional S3 key prefix to prepend to the auto-generated S3 key name.
         """
@@ -1075,7 +1075,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="s3Region")
-    def s3_region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def s3_region(self) -> pulumi.Output[_builtins.str]:
         """
         The region in which the S3 bucket is located. Required if destination_type is 's3'.
         """
@@ -1083,7 +1083,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="s3RoleArn")
-    def s3_role_arn(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def s3_role_arn(self) -> pulumi.Output[_builtins.str]:
         """
         ARN of the AWS IAM role that Tailscale should assume when using role-based authentication. Required if destination*type is 's3' and s3*authentication_type is 'rolearn'.
         """
@@ -1107,7 +1107,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="uploadPeriodMinutes")
-    def upload_period_minutes(self) -> pulumi.Output[Optional[_builtins.int]]:
+    def upload_period_minutes(self) -> pulumi.Output[_builtins.int]:
         """
         An optional number of minutes to wait in between uploading new logs. If the quantity of logs does not fit within a single upload, multiple uploads will be made.
         """
@@ -1115,7 +1115,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def url(self) -> pulumi.Output[_builtins.str]:
         """
         The URL to which log streams are being posted. If destination_type is 's3' and you want to use the official Amazon S3 endpoint, leave this empty.
         """
@@ -1123,7 +1123,7 @@ class LogstreamConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def user(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def user(self) -> pulumi.Output[_builtins.str]:
         """
         The username with which log streams to this endpoint are authenticated. Only required if destination_type is 'elastic', defaults to 'user' if not set.
         """

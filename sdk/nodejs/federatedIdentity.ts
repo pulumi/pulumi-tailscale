@@ -75,11 +75,11 @@ export class FederatedIdentity extends pulumi.CustomResource {
     /**
      * A map of claim names to pattern strings used to match against arbitrary claims in the OIDC identity token. Patterns can include `*` characters to match against any character.
      */
-    declare public readonly customClaimRules: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly customClaimRules: pulumi.Output<{[key: string]: string}>;
     /**
      * A description of the federated identity consisting of alphanumeric characters. Defaults to `""`.
      */
-    declare public readonly description: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string>;
     /**
      * The issuer of the OIDC identity token used in the token exchange. Must be a valid and publicly reachable https:// URL.
      */
@@ -95,7 +95,7 @@ export class FederatedIdentity extends pulumi.CustomResource {
     /**
      * A list of tags that access tokens generated for the federated identity will be able to assign to devices. Mandatory if the scopes include "devices:core" or "authKeys".
      */
-    declare public readonly tags: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[]>;
     /**
      * The updated timestamp of the key in RFC3339 format
      */

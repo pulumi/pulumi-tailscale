@@ -132,13 +132,14 @@ class DnsConfigurationNameserver(dict):
 class DnsConfigurationSplitDn(dict):
     def __init__(__self__, *,
                  domain: _builtins.str,
-                 nameservers: Sequence['outputs.DnsConfigurationSplitDnNameserver']):
+                 nameservers: Optional[Sequence['outputs.DnsConfigurationSplitDnNameserver']] = None):
         """
         :param _builtins.str domain: The nameservers will be used only for this domain.
         :param Sequence['DnsConfigurationSplitDnNameserverArgs'] nameservers: Set the nameservers used by devices on your network to resolve DNS queries.
         """
         pulumi.set(__self__, "domain", domain)
-        pulumi.set(__self__, "nameservers", nameservers)
+        if nameservers is not None:
+            pulumi.set(__self__, "nameservers", nameservers)
 
     @_builtins.property
     @pulumi.getter
@@ -150,7 +151,7 @@ class DnsConfigurationSplitDn(dict):
 
     @_builtins.property
     @pulumi.getter
-    def nameservers(self) -> Sequence['outputs.DnsConfigurationSplitDnNameserver']:
+    def nameservers(self) -> Optional[Sequence['outputs.DnsConfigurationSplitDnNameserver']]:
         """
         Set the nameservers used by devices on your network to resolve DNS queries.
         """
@@ -236,7 +237,7 @@ class GetDevicesDeviceResult(dict):
         :param _builtins.str created: The creation time of the device
         :param _builtins.str expires: The expiry time of the device's key
         :param _builtins.str hostname: The short hostname of the device
-        :param _builtins.str id: The legacy identifier of the device. Use node_id instead for new resources.
+        :param _builtins.str id: The ID of this resource.
         :param _builtins.bool is_external: Whether the device is marked as external
         :param _builtins.bool key_expiry_disabled: Whether the device's key expiry is disabled
         :param _builtins.str last_seen: The last seen time of the device
@@ -333,7 +334,7 @@ class GetDevicesDeviceResult(dict):
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The legacy identifier of the device. Use node_id instead for new resources.
+        The ID of this resource.
         """
         return pulumi.get(self, "id")
 

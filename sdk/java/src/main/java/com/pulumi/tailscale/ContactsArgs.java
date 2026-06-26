@@ -5,11 +5,12 @@ package com.pulumi.tailscale;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.tailscale.inputs.ContactsAccountArgs;
 import com.pulumi.tailscale.inputs.ContactsSecurityArgs;
 import com.pulumi.tailscale.inputs.ContactsSupportArgs;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class ContactsArgs extends com.pulumi.resources.ResourceArgs {
@@ -20,45 +21,45 @@ public final class ContactsArgs extends com.pulumi.resources.ResourceArgs {
      * Configuration for communications about important changes to your tailnet
      * 
      */
-    @Import(name="account", required=true)
-    private Output<ContactsAccountArgs> account;
+    @Import(name="account")
+    private @Nullable Output<ContactsAccountArgs> account;
 
     /**
      * @return Configuration for communications about important changes to your tailnet
      * 
      */
-    public Output<ContactsAccountArgs> account() {
-        return this.account;
+    public Optional<Output<ContactsAccountArgs>> account() {
+        return Optional.ofNullable(this.account);
     }
 
     /**
      * Configuration for communications about security issues affecting your tailnet
      * 
      */
-    @Import(name="security", required=true)
-    private Output<ContactsSecurityArgs> security;
+    @Import(name="security")
+    private @Nullable Output<ContactsSecurityArgs> security;
 
     /**
      * @return Configuration for communications about security issues affecting your tailnet
      * 
      */
-    public Output<ContactsSecurityArgs> security() {
-        return this.security;
+    public Optional<Output<ContactsSecurityArgs>> security() {
+        return Optional.ofNullable(this.security);
     }
 
     /**
      * Configuration for communications about misconfigurations in your tailnet
      * 
      */
-    @Import(name="support", required=true)
-    private Output<ContactsSupportArgs> support;
+    @Import(name="support")
+    private @Nullable Output<ContactsSupportArgs> support;
 
     /**
      * @return Configuration for communications about misconfigurations in your tailnet
      * 
      */
-    public Output<ContactsSupportArgs> support() {
-        return this.support;
+    public Optional<Output<ContactsSupportArgs>> support() {
+        return Optional.ofNullable(this.support);
     }
 
     private ContactsArgs() {}
@@ -93,7 +94,7 @@ public final class ContactsArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder account(Output<ContactsAccountArgs> account) {
+        public Builder account(@Nullable Output<ContactsAccountArgs> account) {
             $.account = account;
             return this;
         }
@@ -114,7 +115,7 @@ public final class ContactsArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder security(Output<ContactsSecurityArgs> security) {
+        public Builder security(@Nullable Output<ContactsSecurityArgs> security) {
             $.security = security;
             return this;
         }
@@ -135,7 +136,7 @@ public final class ContactsArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder support(Output<ContactsSupportArgs> support) {
+        public Builder support(@Nullable Output<ContactsSupportArgs> support) {
             $.support = support;
             return this;
         }
@@ -151,15 +152,6 @@ public final class ContactsArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ContactsArgs build() {
-            if ($.account == null) {
-                throw new MissingRequiredPropertyException("ContactsArgs", "account");
-            }
-            if ($.security == null) {
-                throw new MissingRequiredPropertyException("ContactsArgs", "security");
-            }
-            if ($.support == null) {
-                throw new MissingRequiredPropertyException("ContactsArgs", "support");
-            }
             return $;
         }
     }

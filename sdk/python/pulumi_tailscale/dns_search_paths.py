@@ -74,7 +74,7 @@ class DnsSearchPaths(pulumi.CustomResource):
                  search_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
+        The dns_search_paths resource allows you to configure DNS search paths for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
 
         ## Example Usage
 
@@ -107,7 +107,7 @@ class DnsSearchPaths(pulumi.CustomResource):
                  args: DnsSearchPathsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The dns_nameservers resource allows you to configure DNS nameservers for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
+        The dns_search_paths resource allows you to configure DNS search paths for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
 
         ## Example Usage
 

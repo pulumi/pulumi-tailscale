@@ -58,13 +58,13 @@ namespace Pulumi.Tailscale
         /// A description of the key consisting of alphanumeric characters. Defaults to `""`.
         /// </summary>
         [Output("description")]
-        public Output<string?> Description { get; private set; } = null!;
+        public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
         /// Indicates if the key is ephemeral. Defaults to `False`.
         /// </summary>
         [Output("ephemeral")]
-        public Output<bool?> Ephemeral { get; private set; } = null!;
+        public Output<bool> Ephemeral { get; private set; } = null!;
 
         /// <summary>
         /// The expiry timestamp of the key in RFC3339 format
@@ -94,7 +94,7 @@ namespace Pulumi.Tailscale
         /// Determines whether or not the machines authenticated by the key will be authorized for the tailnet by default. Defaults to `False`.
         /// </summary>
         [Output("preauthorized")]
-        public Output<bool?> Preauthorized { get; private set; } = null!;
+        public Output<bool> Preauthorized { get; private set; } = null!;
 
         /// <summary>
         /// Determines whether the key should be created again if it becomes invalid. By default, reusable keys will be recreated, but single-use keys will not. Possible values: 'always', 'never'.
@@ -106,7 +106,7 @@ namespace Pulumi.Tailscale
         /// Indicates if the key is reusable or single-use. Defaults to `False`.
         /// </summary>
         [Output("reusable")]
-        public Output<bool?> Reusable { get; private set; } = null!;
+        public Output<bool> Reusable { get; private set; } = null!;
 
         /// <summary>
         /// List of tags to apply to the machines authenticated by the key.

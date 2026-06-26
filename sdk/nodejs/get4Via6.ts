@@ -50,7 +50,7 @@ export interface Get4Via6Result {
      */
     readonly cidr: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The ID of this resource.
      */
     readonly id: string;
     /**

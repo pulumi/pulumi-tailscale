@@ -11,38 +11,38 @@ import java.util.Objects;
 @CustomType
 public final class GetAclResult {
     /**
-     * @return The contents of Tailscale ACL as a HuJSON string
+     * @return The contents of the policy file as a HuJSON string.
      * 
      */
     private String hujson;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource.
      * 
      */
     private String id;
     /**
-     * @return The contents of Tailscale ACL as a JSON string
+     * @return The contents of the policy file as a JSON string.
      * 
      */
     private String json;
 
     private GetAclResult() {}
     /**
-     * @return The contents of Tailscale ACL as a HuJSON string
+     * @return The contents of the policy file as a HuJSON string.
      * 
      */
     public String hujson() {
         return this.hujson;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource.
      * 
      */
     public String id() {
         return this.id;
     }
     /**
-     * @return The contents of Tailscale ACL as a JSON string
+     * @return The contents of the policy file as a JSON string.
      * 
      */
     public String json() {

@@ -45,7 +45,7 @@ export interface DnsConfigurationSplitDn {
     /**
      * Set the nameservers used by devices on your network to resolve DNS queries.
      */
-    nameservers: pulumi.Input<pulumi.Input<inputs.DnsConfigurationSplitDnNameserver>[]>;
+    nameservers?: pulumi.Input<pulumi.Input<inputs.DnsConfigurationSplitDnNameserver>[] | undefined>;
 }
 
 export interface DnsConfigurationSplitDnNameserver {
@@ -57,6 +57,180 @@ export interface DnsConfigurationSplitDnNameserver {
      * This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
      */
     useWithExitNode?: pulumi.Input<boolean | undefined>;
+}
+
+export interface GetDevicesDevice {
+    /**
+     * The list of device's IPs
+     */
+    addresses?: string[];
+    /**
+     * Whether the device is authorized to access the tailnet
+     */
+    authorized?: boolean;
+    /**
+     * Whether the device blocks incoming connections
+     */
+    blocksIncomingConnections?: boolean;
+    /**
+     * The Tailscale client version running on the device
+     */
+    clientVersion?: string;
+    /**
+     * The creation time of the device
+     */
+    created?: string;
+    /**
+     * The expiry time of the device's key
+     */
+    expires?: string;
+    /**
+     * The short hostname of the device
+     */
+    hostname?: string;
+    /**
+     * The ID of this resource.
+     */
+    id?: string;
+    /**
+     * Whether the device is marked as external
+     */
+    isExternal?: boolean;
+    /**
+     * Whether the device's key expiry is disabled
+     */
+    keyExpiryDisabled?: boolean;
+    /**
+     * The last seen time of the device
+     */
+    lastSeen?: string;
+    /**
+     * The machine key of the device
+     */
+    machineKey?: string;
+    /**
+     * The full name of the device (e.g. `hostname.domain.ts.net`)
+     */
+    name?: string;
+    /**
+     * The preferred indentifier for a device.
+     */
+    nodeId?: string;
+    /**
+     * The node key of the device
+     */
+    nodeKey?: string;
+    /**
+     * The operating system of the device
+     */
+    os?: string;
+    /**
+     * The tags applied to the device
+     */
+    tags?: string[];
+    /**
+     * The tailnet lock error for the device, if any
+     */
+    tailnetLockError?: string;
+    /**
+     * The tailnet lock key for the device, if any
+     */
+    tailnetLockKey?: string;
+    /**
+     * Whether an update is available for the device
+     */
+    updateAvailable?: boolean;
+    /**
+     * The user associated with the device
+     */
+    user?: string;
+}
+
+export interface GetDevicesDeviceArgs {
+    /**
+     * The list of device's IPs
+     */
+    addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * Whether the device is authorized to access the tailnet
+     */
+    authorized?: pulumi.Input<boolean | undefined>;
+    /**
+     * Whether the device blocks incoming connections
+     */
+    blocksIncomingConnections?: pulumi.Input<boolean | undefined>;
+    /**
+     * The Tailscale client version running on the device
+     */
+    clientVersion?: pulumi.Input<string | undefined>;
+    /**
+     * The creation time of the device
+     */
+    created?: pulumi.Input<string | undefined>;
+    /**
+     * The expiry time of the device's key
+     */
+    expires?: pulumi.Input<string | undefined>;
+    /**
+     * The short hostname of the device
+     */
+    hostname?: pulumi.Input<string | undefined>;
+    /**
+     * The ID of this resource.
+     */
+    id?: pulumi.Input<string | undefined>;
+    /**
+     * Whether the device is marked as external
+     */
+    isExternal?: pulumi.Input<boolean | undefined>;
+    /**
+     * Whether the device's key expiry is disabled
+     */
+    keyExpiryDisabled?: pulumi.Input<boolean | undefined>;
+    /**
+     * The last seen time of the device
+     */
+    lastSeen?: pulumi.Input<string | undefined>;
+    /**
+     * The machine key of the device
+     */
+    machineKey?: pulumi.Input<string | undefined>;
+    /**
+     * The full name of the device (e.g. `hostname.domain.ts.net`)
+     */
+    name?: pulumi.Input<string | undefined>;
+    /**
+     * The preferred indentifier for a device.
+     */
+    nodeId?: pulumi.Input<string | undefined>;
+    /**
+     * The node key of the device
+     */
+    nodeKey?: pulumi.Input<string | undefined>;
+    /**
+     * The operating system of the device
+     */
+    os?: pulumi.Input<string | undefined>;
+    /**
+     * The tags applied to the device
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * The tailnet lock error for the device, if any
+     */
+    tailnetLockError?: pulumi.Input<string | undefined>;
+    /**
+     * The tailnet lock key for the device, if any
+     */
+    tailnetLockKey?: pulumi.Input<string | undefined>;
+    /**
+     * Whether an update is available for the device
+     */
+    updateAvailable?: pulumi.Input<boolean | undefined>;
+    /**
+     * The user associated with the device
+     */
+    user?: pulumi.Input<string | undefined>;
 }
 
 export interface GetDevicesFilter {
@@ -81,3 +255,104 @@ export interface GetDevicesFilterArgs {
     values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface GetUsersUser {
+    /**
+     * The time the user joined their tailnet.
+     */
+    created?: string;
+    /**
+     * true when the user has a node currently connected to the control server.
+     */
+    currentlyConnected?: boolean;
+    /**
+     * Number of devices the user owns.
+     */
+    deviceCount?: number;
+    /**
+     * The name of the user.
+     */
+    displayName?: string;
+    /**
+     * The unique identifier for the user.
+     */
+    id?: string;
+    /**
+     * The later of either: a) The last time any of the user's nodes were connected to the network or b) The last time the user authenticated to any tailscale service, including the admin panel.
+     */
+    lastSeen?: string;
+    /**
+     * The emailish login name of the user.
+     */
+    loginName?: string;
+    /**
+     * The profile pic URL for the user.
+     */
+    profilePicUrl?: string;
+    /**
+     * The role of the user.
+     */
+    role?: string;
+    /**
+     * The status of the user.
+     */
+    status?: string;
+    /**
+     * The tailnet that owns the user.
+     */
+    tailnetId?: string;
+    /**
+     * The type of relation this user has to the tailnet associated with the request.
+     */
+    type?: string;
+}
+
+export interface GetUsersUserArgs {
+    /**
+     * The time the user joined their tailnet.
+     */
+    created?: pulumi.Input<string | undefined>;
+    /**
+     * true when the user has a node currently connected to the control server.
+     */
+    currentlyConnected?: pulumi.Input<boolean | undefined>;
+    /**
+     * Number of devices the user owns.
+     */
+    deviceCount?: pulumi.Input<number | undefined>;
+    /**
+     * The name of the user.
+     */
+    displayName?: pulumi.Input<string | undefined>;
+    /**
+     * The unique identifier for the user.
+     */
+    id?: pulumi.Input<string | undefined>;
+    /**
+     * The later of either: a) The last time any of the user's nodes were connected to the network or b) The last time the user authenticated to any tailscale service, including the admin panel.
+     */
+    lastSeen?: pulumi.Input<string | undefined>;
+    /**
+     * The emailish login name of the user.
+     */
+    loginName?: pulumi.Input<string | undefined>;
+    /**
+     * The profile pic URL for the user.
+     */
+    profilePicUrl?: pulumi.Input<string | undefined>;
+    /**
+     * The role of the user.
+     */
+    role?: pulumi.Input<string | undefined>;
+    /**
+     * The status of the user.
+     */
+    status?: pulumi.Input<string | undefined>;
+    /**
+     * The tailnet that owns the user.
+     */
+    tailnetId?: pulumi.Input<string | undefined>;
+    /**
+     * The type of relation this user has to the tailnet associated with the request.
+     */
+    type?: pulumi.Input<string | undefined>;
+}

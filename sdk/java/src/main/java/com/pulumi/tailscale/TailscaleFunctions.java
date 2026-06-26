@@ -16,6 +16,8 @@ import com.pulumi.tailscale.inputs.GetDeviceArgs;
 import com.pulumi.tailscale.inputs.GetDevicePlainArgs;
 import com.pulumi.tailscale.inputs.GetDevicesArgs;
 import com.pulumi.tailscale.inputs.GetDevicesPlainArgs;
+import com.pulumi.tailscale.inputs.GetServiceArgs;
+import com.pulumi.tailscale.inputs.GetServicePlainArgs;
 import com.pulumi.tailscale.inputs.GetUserArgs;
 import com.pulumi.tailscale.inputs.GetUserPlainArgs;
 import com.pulumi.tailscale.inputs.GetUsersArgs;
@@ -24,6 +26,7 @@ import com.pulumi.tailscale.outputs.Get4Via6Result;
 import com.pulumi.tailscale.outputs.GetAclResult;
 import com.pulumi.tailscale.outputs.GetDeviceResult;
 import com.pulumi.tailscale.outputs.GetDevicesResult;
+import com.pulumi.tailscale.outputs.GetServiceResult;
 import com.pulumi.tailscale.outputs.GetUserResult;
 import com.pulumi.tailscale.outputs.GetUsersResult;
 import java.util.concurrent.CompletableFuture;
@@ -235,63 +238,273 @@ public final class TailscaleFunctions {
         return Deployment.getInstance().invokeAsync("tailscale:index/get4Via6:get4Via6", TypeShape.of(Get4Via6Result.class), args, Utilities.withVersion(options));
     }
     /**
-     * The acl data source gets the Tailscale policy file for a tailnet
+     * Returns the Tailscale policy file for a tailnet.
      * 
      * &gt; **Note:** The naming of this data source predates Tailscale&#39;s usage of the term &#34;policy file&#34; to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet&#39;s entire policy file and not just the ACLs section within it.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.tailscale.TailscaleFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = TailscaleFunctions.getAcl(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetAclResult> getAcl() {
         return getAcl(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * The acl data source gets the Tailscale policy file for a tailnet
+     * Returns the Tailscale policy file for a tailnet.
      * 
      * &gt; **Note:** The naming of this data source predates Tailscale&#39;s usage of the term &#34;policy file&#34; to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet&#39;s entire policy file and not just the ACLs section within it.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.tailscale.TailscaleFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = TailscaleFunctions.getAcl(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetAclResult> getAclPlain() {
         return getAclPlain(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * The acl data source gets the Tailscale policy file for a tailnet
+     * Returns the Tailscale policy file for a tailnet.
      * 
      * &gt; **Note:** The naming of this data source predates Tailscale&#39;s usage of the term &#34;policy file&#34; to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet&#39;s entire policy file and not just the ACLs section within it.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.tailscale.TailscaleFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = TailscaleFunctions.getAcl(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetAclResult> getAcl(InvokeArgs args) {
         return getAcl(args, InvokeOptions.Empty);
     }
     /**
-     * The acl data source gets the Tailscale policy file for a tailnet
+     * Returns the Tailscale policy file for a tailnet.
      * 
      * &gt; **Note:** The naming of this data source predates Tailscale&#39;s usage of the term &#34;policy file&#34; to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet&#39;s entire policy file and not just the ACLs section within it.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.tailscale.TailscaleFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = TailscaleFunctions.getAcl(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetAclResult> getAclPlain(InvokeArgs args) {
         return getAclPlain(args, InvokeOptions.Empty);
     }
     /**
-     * The acl data source gets the Tailscale policy file for a tailnet
+     * Returns the Tailscale policy file for a tailnet.
      * 
      * &gt; **Note:** The naming of this data source predates Tailscale&#39;s usage of the term &#34;policy file&#34; to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet&#39;s entire policy file and not just the ACLs section within it.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.tailscale.TailscaleFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = TailscaleFunctions.getAcl(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetAclResult> getAcl(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("tailscale:index/getAcl:getAcl", TypeShape.of(GetAclResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The acl data source gets the Tailscale policy file for a tailnet
+     * Returns the Tailscale policy file for a tailnet.
      * 
      * &gt; **Note:** The naming of this data source predates Tailscale&#39;s usage of the term &#34;policy file&#34; to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet&#39;s entire policy file and not just the ACLs section within it.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.tailscale.TailscaleFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = TailscaleFunctions.getAcl(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetAclResult> getAcl(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("tailscale:index/getAcl:getAcl", TypeShape.of(GetAclResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * The acl data source gets the Tailscale policy file for a tailnet
+     * Returns the Tailscale policy file for a tailnet.
      * 
      * &gt; **Note:** The naming of this data source predates Tailscale&#39;s usage of the term &#34;policy file&#34; to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet&#39;s entire policy file and not just the ACLs section within it.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.tailscale.TailscaleFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = TailscaleFunctions.getAcl(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetAclResult> getAclPlain(InvokeArgs args, InvokeOptions options) {
@@ -982,6 +1195,206 @@ public final class TailscaleFunctions {
      */
     public static CompletableFuture<GetDevicesResult> getDevicesPlain(GetDevicesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("tailscale:index/getDevices:getDevices", TypeShape.of(GetDevicesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The Service data source describes a single Service in a tailnet. See https://tailscale.com/docs/features/tailscale-services for more information.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.tailscale.TailscaleFunctions;
+     * import com.pulumi.tailscale.inputs.GetServiceArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = TailscaleFunctions.getService(GetServiceArgs.builder()
+     *             .name("svc:my-service")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServiceResult> getService(GetServiceArgs args) {
+        return getService(args, InvokeOptions.Empty);
+    }
+    /**
+     * The Service data source describes a single Service in a tailnet. See https://tailscale.com/docs/features/tailscale-services for more information.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.tailscale.TailscaleFunctions;
+     * import com.pulumi.tailscale.inputs.GetServiceArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = TailscaleFunctions.getService(GetServiceArgs.builder()
+     *             .name("svc:my-service")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetServiceResult> getServicePlain(GetServicePlainArgs args) {
+        return getServicePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * The Service data source describes a single Service in a tailnet. See https://tailscale.com/docs/features/tailscale-services for more information.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.tailscale.TailscaleFunctions;
+     * import com.pulumi.tailscale.inputs.GetServiceArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = TailscaleFunctions.getService(GetServiceArgs.builder()
+     *             .name("svc:my-service")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServiceResult> getService(GetServiceArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("tailscale:index/getService:getService", TypeShape.of(GetServiceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The Service data source describes a single Service in a tailnet. See https://tailscale.com/docs/features/tailscale-services for more information.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.tailscale.TailscaleFunctions;
+     * import com.pulumi.tailscale.inputs.GetServiceArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = TailscaleFunctions.getService(GetServiceArgs.builder()
+     *             .name("svc:my-service")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServiceResult> getService(GetServiceArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("tailscale:index/getService:getService", TypeShape.of(GetServiceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * The Service data source describes a single Service in a tailnet. See https://tailscale.com/docs/features/tailscale-services for more information.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.tailscale.TailscaleFunctions;
+     * import com.pulumi.tailscale.inputs.GetServiceArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = TailscaleFunctions.getService(GetServiceArgs.builder()
+     *             .name("svc:my-service")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetServiceResult> getServicePlain(GetServicePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("tailscale:index/getService:getService", TypeShape.of(GetServiceResult.class), args, Utilities.withVersion(options));
     }
     /**
      * The user data source describes a single user in a tailnet

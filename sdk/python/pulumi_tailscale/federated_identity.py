@@ -516,7 +516,7 @@ class FederatedIdentity(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="customClaimRules")
-    def custom_claim_rules(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+    def custom_claim_rules(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
         """
         A map of claim names to pattern strings used to match against arbitrary claims in the OIDC identity token. Patterns can include `*` characters to match against any character.
         """
@@ -524,7 +524,7 @@ class FederatedIdentity(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def description(self) -> pulumi.Output[_builtins.str]:
         """
         A description of the federated identity consisting of alphanumeric characters. Defaults to `""`.
         """
@@ -556,7 +556,7 @@ class FederatedIdentity(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+    def tags(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
         A list of tags that access tokens generated for the federated identity will be able to assign to devices. Mandatory if the scopes include "devices:core" or "auth_keys".
         """

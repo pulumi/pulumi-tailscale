@@ -17,18 +17,21 @@
 package main
 
 import (
+	"context"
+
 	_ "embed"
 
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 
 	tailscale "github.com/pulumi/pulumi-tailscale/provider"
-	"github.com/pulumi/pulumi-tailscale/provider/pkg/version"
 )
 
 //go:embed schema-embed.json
 var pulumiSchema []byte
 
 func main() {
-	// Modify the path to point to the new provider
-	tfbridge.Main("tailscale", version.Version, tailscale.Provider(), pulumiSchema)
+	meta := tfbridge.ProviderMetadata{
+		PackageSchema: pulumiSchema,
+	}
+	tfbridge.Main(context.Background(), "tailscale", tailscale.Provider(), meta)
 }

@@ -24,6 +24,7 @@ export function getUsers(args?: GetUsersArgs, opts?: pulumi.InvokeOptions): Prom
     return pulumi.runtime.invoke("tailscale:index/getUsers:getUsers", {
         "role": args.role,
         "type": args.type,
+        "users": args.users,
     }, opts);
 }
 
@@ -39,6 +40,10 @@ export interface GetUsersArgs {
      * Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
      */
     type?: string;
+    /**
+     * The list of users in the tailnet
+     */
+    users?: inputs.GetUsersUser[];
 }
 
 /**
@@ -46,7 +51,7 @@ export interface GetUsersArgs {
  */
 export interface GetUsersResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The ID of this resource.
      */
     readonly id: string;
     /**
@@ -60,7 +65,7 @@ export interface GetUsersResult {
     /**
      * The list of users in the tailnet
      */
-    readonly users: outputs.GetUsersUser[];
+    readonly users?: outputs.GetUsersUser[];
 }
 /**
  * The users data source describes a list of users in a tailnet
@@ -80,6 +85,7 @@ export function getUsersOutput(args?: GetUsersOutputArgs, opts?: pulumi.InvokeOu
     return pulumi.runtime.invokeOutput("tailscale:index/getUsers:getUsers", {
         "role": args.role,
         "type": args.type,
+        "users": args.users,
     }, opts);
 }
 
@@ -95,4 +101,8 @@ export interface GetUsersOutputArgs {
      * Filter the results to only include users of a specific type. Valid values are `member` or `shared`.
      */
     type?: pulumi.Input<string | undefined>;
+    /**
+     * The list of users in the tailnet
+     */
+    users?: pulumi.Input<pulumi.Input<inputs.GetUsersUserArgs>[] | undefined>;
 }

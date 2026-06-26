@@ -34,7 +34,7 @@ export interface DnsConfigurationNameserver {
     /**
      * This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
      */
-    useWithExitNode?: boolean;
+    useWithExitNode: boolean;
 }
 
 export interface DnsConfigurationSplitDn {
@@ -45,7 +45,7 @@ export interface DnsConfigurationSplitDn {
     /**
      * Set the nameservers used by devices on your network to resolve DNS queries.
      */
-    nameservers: outputs.DnsConfigurationSplitDnNameserver[];
+    nameservers?: outputs.DnsConfigurationSplitDnNameserver[];
 }
 
 export interface DnsConfigurationSplitDnNameserver {
@@ -56,7 +56,7 @@ export interface DnsConfigurationSplitDnNameserver {
     /**
      * This nameserver will continue to be used when an exit node is selected (requires Tailscale v1.88.1 or later). Defaults to false.
      */
-    useWithExitNode?: boolean;
+    useWithExitNode: boolean;
 }
 
 export interface GetDevicesDevice {
@@ -89,7 +89,7 @@ export interface GetDevicesDevice {
      */
     hostname: string;
     /**
-     * The legacy identifier of the device. Use nodeId instead for new resources.
+     * The ID of this resource.
      */
     id: string;
     /**

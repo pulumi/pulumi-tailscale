@@ -11,9 +11,33 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The acl data source gets the Tailscale policy file for a tailnet
+// Returns the Tailscale policy file for a tailnet.
 //
 // > **Note:** The naming of this data source predates Tailscale's usage of the term "policy file" to refer to the centralized configuration file for a tailnet. This data source fetches a tailnet's entire policy file and not just the ACLs section within it.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := tailscale.GetAcl(ctx, map[string]interface{}{}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupAcl(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*LookupAclResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAclResult
@@ -26,11 +50,11 @@ func LookupAcl(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*LookupAclResu
 
 // A collection of values returned by getAcl.
 type LookupAclResult struct {
-	// The contents of Tailscale ACL as a HuJSON string
+	// The contents of the policy file as a HuJSON string.
 	Hujson string `pulumi:"hujson"`
-	// The provider-assigned unique ID for this managed resource.
+	// The ID of this resource.
 	Id string `pulumi:"id"`
-	// The contents of Tailscale ACL as a JSON string
+	// The contents of the policy file as a JSON string.
 	Json string `pulumi:"json"`
 }
 
@@ -56,17 +80,17 @@ func (o LookupAclResultOutput) ToLookupAclResultOutputWithContext(ctx context.Co
 	return o
 }
 
-// The contents of Tailscale ACL as a HuJSON string
+// The contents of the policy file as a HuJSON string.
 func (o LookupAclResultOutput) Hujson() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAclResult) string { return v.Hujson }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The ID of this resource.
 func (o LookupAclResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAclResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The contents of Tailscale ACL as a JSON string
+// The contents of the policy file as a JSON string.
 func (o LookupAclResultOutput) Json() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAclResult) string { return v.Json }).(pulumi.StringOutput)
 }

@@ -13,11 +13,18 @@ public final class Config {
 
     private static final com.pulumi.Config config = com.pulumi.Config.of("tailscale");
 /**
- * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. Conflicts with &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;.
+ * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the API key. Conflicts with &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;.
  * 
  */
     public Optional<String> apiKey() {
         return Codegen.stringProp("apiKey").config(config).get();
+    }
+/**
+ * The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the audience. Requires &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;, &#39;oauth_client_secret&#39;, &#39;identity_token&#39;, and &#39;identity_token_environment_variable_name&#39;.
+ * 
+ */
+    public Optional<String> audience() {
+        return Codegen.stringProp("audience").config(config).get();
     }
 /**
  * The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL environment variable.
@@ -27,21 +34,28 @@ public final class Config {
         return Codegen.stringProp("baseUrl").config(config).get();
     }
 /**
- * The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. Conflicts with &#39;api_key&#39; and &#39;oauth_client_secret&#39;.
+ * The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the identity token. Conflicts with &#39;api_key&#39;, &#39;oauth_client_secret&#39;, and &#39;identity_token_environment_variable_name&#39;.
  * 
  */
     public Optional<String> identityToken() {
         return Codegen.stringProp("identityToken").config(config).get();
     }
 /**
- * The OAuth application or federated identity&#39;s ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. Either &#39;oauth_client_secret&#39; or &#39;identity_token&#39; must be set alongside &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;.
+ * The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Terraform Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains identity token. Conflicts with &#39;identity_token&#39;.
+ * 
+ */
+    public Optional<String> identityTokenEnvironmentVariableName() {
+        return Codegen.stringProp("identityTokenEnvironmentVariableName").config(config).get();
+    }
+/**
+ * The OAuth application or federated identity&#39;s ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the client ID. Either &#39;oauth_client_secret&#39; or &#39;identity_token&#39; must be set alongside &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;.
  * 
  */
     public Optional<String> oauthClientId() {
         return Codegen.stringProp("oauthClientId").config(config).get();
     }
 /**
- * The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. Conflicts with &#39;api_key&#39; and &#39;identity_token&#39;.
+ * The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the client secret. Conflicts with &#39;api_key&#39; and &#39;identity_token&#39;.
  * 
  */
     public Optional<String> oauthClientSecret() {
@@ -66,6 +80,6 @@ public final class Config {
  * 
  */
     public Optional<String> userAgent() {
-        return Codegen.stringProp("userAgent").config(config).get();
+        return Codegen.stringProp("userAgent").config(config).def("Pulumi/3.0 (https://www.pulumi.com) pulumi-tailscale/1.0.0-alpha.0+dev").get();
     }
 }

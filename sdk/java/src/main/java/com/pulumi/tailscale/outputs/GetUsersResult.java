@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetUsersResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource.
      * 
      */
     private String id;
@@ -33,11 +33,11 @@ public final class GetUsersResult {
      * @return The list of users in the tailnet
      * 
      */
-    private List<GetUsersUser> users;
+    private @Nullable List<GetUsersUser> users;
 
     private GetUsersResult() {}
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The ID of this resource.
      * 
      */
     public String id() {
@@ -62,7 +62,7 @@ public final class GetUsersResult {
      * 
      */
     public List<GetUsersUser> users() {
-        return this.users;
+        return this.users == null ? List.of() : this.users;
     }
 
     public static Builder builder() {
@@ -77,7 +77,7 @@ public final class GetUsersResult {
         private String id;
         private @Nullable String role;
         private @Nullable String type;
-        private List<GetUsersUser> users;
+        private @Nullable List<GetUsersUser> users;
         public Builder() {}
         public Builder(GetUsersResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -108,10 +108,8 @@ public final class GetUsersResult {
             return this;
         }
         @CustomType.Setter
-        public Builder users(List<GetUsersUser> users) {
-            if (users == null) {
-              throw new MissingRequiredPropertyException("GetUsersResult", "users");
-            }
+        public Builder users(@Nullable List<GetUsersUser> users) {
+
             this.users = users;
             return this;
         }
