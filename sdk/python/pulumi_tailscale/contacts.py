@@ -21,115 +21,115 @@ __all__ = ['ContactsArgs', 'Contacts']
 @pulumi.input_type
 class ContactsArgs:
     def __init__(__self__, *,
-                 account: pulumi.Input[Optional['ContactsAccountArgs']] = None,
-                 security: pulumi.Input[Optional['ContactsSecurityArgs']] = None,
-                 support: pulumi.Input[Optional['ContactsSupportArgs']] = None):
+                 accounts: pulumi.Input[Optional[Sequence[pulumi.Input['ContactsAccountArgs']]]] = None,
+                 securities: pulumi.Input[Optional[Sequence[pulumi.Input['ContactsSecurityArgs']]]] = None,
+                 supports: pulumi.Input[Optional[Sequence[pulumi.Input['ContactsSupportArgs']]]] = None):
         """
         The set of arguments for constructing a Contacts resource.
 
-        :param pulumi.Input['ContactsAccountArgs'] account: Configuration for communications about important changes to your tailnet
-        :param pulumi.Input['ContactsSecurityArgs'] security: Configuration for communications about security issues affecting your tailnet
-        :param pulumi.Input['ContactsSupportArgs'] support: Configuration for communications about misconfigurations in your tailnet
+        :param pulumi.Input[Sequence[pulumi.Input['ContactsAccountArgs']]] accounts: Configuration for communications about important changes to your tailnet
+        :param pulumi.Input[Sequence[pulumi.Input['ContactsSecurityArgs']]] securities: Configuration for communications about security issues affecting your tailnet
+        :param pulumi.Input[Sequence[pulumi.Input['ContactsSupportArgs']]] supports: Configuration for communications about misconfigurations in your tailnet
         """
-        if account is not None:
-            pulumi.set(__self__, "account", account)
-        if security is not None:
-            pulumi.set(__self__, "security", security)
-        if support is not None:
-            pulumi.set(__self__, "support", support)
+        if accounts is not None:
+            pulumi.set(__self__, "accounts", accounts)
+        if securities is not None:
+            pulumi.set(__self__, "securities", securities)
+        if supports is not None:
+            pulumi.set(__self__, "supports", supports)
 
     @_builtins.property
     @pulumi.getter
-    def account(self) -> pulumi.Input[Optional['ContactsAccountArgs']]:
+    def accounts(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ContactsAccountArgs']]]]:
         """
         Configuration for communications about important changes to your tailnet
         """
-        return pulumi.get(self, "account")
+        return pulumi.get(self, "accounts")
 
-    @account.setter
-    def account(self, value: pulumi.Input[Optional['ContactsAccountArgs']]):
-        pulumi.set(self, "account", value)
+    @accounts.setter
+    def accounts(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ContactsAccountArgs']]]]):
+        pulumi.set(self, "accounts", value)
 
     @_builtins.property
     @pulumi.getter
-    def security(self) -> pulumi.Input[Optional['ContactsSecurityArgs']]:
+    def securities(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ContactsSecurityArgs']]]]:
         """
         Configuration for communications about security issues affecting your tailnet
         """
-        return pulumi.get(self, "security")
+        return pulumi.get(self, "securities")
 
-    @security.setter
-    def security(self, value: pulumi.Input[Optional['ContactsSecurityArgs']]):
-        pulumi.set(self, "security", value)
+    @securities.setter
+    def securities(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ContactsSecurityArgs']]]]):
+        pulumi.set(self, "securities", value)
 
     @_builtins.property
     @pulumi.getter
-    def support(self) -> pulumi.Input[Optional['ContactsSupportArgs']]:
+    def supports(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ContactsSupportArgs']]]]:
         """
         Configuration for communications about misconfigurations in your tailnet
         """
-        return pulumi.get(self, "support")
+        return pulumi.get(self, "supports")
 
-    @support.setter
-    def support(self, value: pulumi.Input[Optional['ContactsSupportArgs']]):
-        pulumi.set(self, "support", value)
+    @supports.setter
+    def supports(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ContactsSupportArgs']]]]):
+        pulumi.set(self, "supports", value)
 
 
 @pulumi.input_type
 class _ContactsState:
     def __init__(__self__, *,
-                 account: pulumi.Input[Optional['ContactsAccountArgs']] = None,
-                 security: pulumi.Input[Optional['ContactsSecurityArgs']] = None,
-                 support: pulumi.Input[Optional['ContactsSupportArgs']] = None):
+                 accounts: pulumi.Input[Optional[Sequence[pulumi.Input['ContactsAccountArgs']]]] = None,
+                 securities: pulumi.Input[Optional[Sequence[pulumi.Input['ContactsSecurityArgs']]]] = None,
+                 supports: pulumi.Input[Optional[Sequence[pulumi.Input['ContactsSupportArgs']]]] = None):
         """
         Input properties used for looking up and filtering Contacts resources.
 
-        :param pulumi.Input['ContactsAccountArgs'] account: Configuration for communications about important changes to your tailnet
-        :param pulumi.Input['ContactsSecurityArgs'] security: Configuration for communications about security issues affecting your tailnet
-        :param pulumi.Input['ContactsSupportArgs'] support: Configuration for communications about misconfigurations in your tailnet
+        :param pulumi.Input[Sequence[pulumi.Input['ContactsAccountArgs']]] accounts: Configuration for communications about important changes to your tailnet
+        :param pulumi.Input[Sequence[pulumi.Input['ContactsSecurityArgs']]] securities: Configuration for communications about security issues affecting your tailnet
+        :param pulumi.Input[Sequence[pulumi.Input['ContactsSupportArgs']]] supports: Configuration for communications about misconfigurations in your tailnet
         """
-        if account is not None:
-            pulumi.set(__self__, "account", account)
-        if security is not None:
-            pulumi.set(__self__, "security", security)
-        if support is not None:
-            pulumi.set(__self__, "support", support)
+        if accounts is not None:
+            pulumi.set(__self__, "accounts", accounts)
+        if securities is not None:
+            pulumi.set(__self__, "securities", securities)
+        if supports is not None:
+            pulumi.set(__self__, "supports", supports)
 
     @_builtins.property
     @pulumi.getter
-    def account(self) -> pulumi.Input[Optional['ContactsAccountArgs']]:
+    def accounts(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ContactsAccountArgs']]]]:
         """
         Configuration for communications about important changes to your tailnet
         """
-        return pulumi.get(self, "account")
+        return pulumi.get(self, "accounts")
 
-    @account.setter
-    def account(self, value: pulumi.Input[Optional['ContactsAccountArgs']]):
-        pulumi.set(self, "account", value)
+    @accounts.setter
+    def accounts(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ContactsAccountArgs']]]]):
+        pulumi.set(self, "accounts", value)
 
     @_builtins.property
     @pulumi.getter
-    def security(self) -> pulumi.Input[Optional['ContactsSecurityArgs']]:
+    def securities(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ContactsSecurityArgs']]]]:
         """
         Configuration for communications about security issues affecting your tailnet
         """
-        return pulumi.get(self, "security")
+        return pulumi.get(self, "securities")
 
-    @security.setter
-    def security(self, value: pulumi.Input[Optional['ContactsSecurityArgs']]):
-        pulumi.set(self, "security", value)
+    @securities.setter
+    def securities(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ContactsSecurityArgs']]]]):
+        pulumi.set(self, "securities", value)
 
     @_builtins.property
     @pulumi.getter
-    def support(self) -> pulumi.Input[Optional['ContactsSupportArgs']]:
+    def supports(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ContactsSupportArgs']]]]:
         """
         Configuration for communications about misconfigurations in your tailnet
         """
-        return pulumi.get(self, "support")
+        return pulumi.get(self, "supports")
 
-    @support.setter
-    def support(self, value: pulumi.Input[Optional['ContactsSupportArgs']]):
-        pulumi.set(self, "support", value)
+    @supports.setter
+    def supports(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ContactsSupportArgs']]]]):
+        pulumi.set(self, "supports", value)
 
 
 @pulumi.type_token("tailscale:index/contacts:Contacts")
@@ -138,9 +138,9 @@ class Contacts(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 account: pulumi.Input[Optional[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]] = None,
-                 security: pulumi.Input[Optional[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]] = None,
-                 support: pulumi.Input[Optional[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]] = None,
+                 accounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]]]] = None,
+                 securities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]]]] = None,
+                 supports: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]]]] = None,
                  __props__=None):
         """
         The contacts resource allows you to configure contact details for your Tailscale network. See https://tailscale.com/kb/1224/contact-preferences for more information.
@@ -154,15 +154,15 @@ class Contacts(pulumi.CustomResource):
         import pulumi_tailscale as tailscale
 
         sample_contacts = tailscale.Contacts("sample_contacts",
-            account={
+            accounts=[{
                 "email": "account@example.com",
-            },
-            support={
+            }],
+            supports=[{
                 "email": "support@example.com",
-            },
-            security={
+            }],
+            securities=[{
                 "email": "security@example.com",
-            })
+            }])
         ```
 
         ## Import
@@ -178,9 +178,9 @@ class Contacts(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']] account: Configuration for communications about important changes to your tailnet
-        :param pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']] security: Configuration for communications about security issues affecting your tailnet
-        :param pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']] support: Configuration for communications about misconfigurations in your tailnet
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]]] accounts: Configuration for communications about important changes to your tailnet
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]]] securities: Configuration for communications about security issues affecting your tailnet
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]]] supports: Configuration for communications about misconfigurations in your tailnet
         """
         ...
     @overload
@@ -200,15 +200,15 @@ class Contacts(pulumi.CustomResource):
         import pulumi_tailscale as tailscale
 
         sample_contacts = tailscale.Contacts("sample_contacts",
-            account={
+            accounts=[{
                 "email": "account@example.com",
-            },
-            support={
+            }],
+            supports=[{
                 "email": "support@example.com",
-            },
-            security={
+            }],
+            securities=[{
                 "email": "security@example.com",
-            })
+            }])
         ```
 
         ## Import
@@ -237,9 +237,9 @@ class Contacts(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 account: pulumi.Input[Optional[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]] = None,
-                 security: pulumi.Input[Optional[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]] = None,
-                 support: pulumi.Input[Optional[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]] = None,
+                 accounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]]]] = None,
+                 securities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]]]] = None,
+                 supports: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -249,9 +249,9 @@ class Contacts(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ContactsArgs.__new__(ContactsArgs)
 
-            __props__.__dict__["account"] = account
-            __props__.__dict__["security"] = security
-            __props__.__dict__["support"] = support
+            __props__.__dict__["accounts"] = accounts
+            __props__.__dict__["securities"] = securities
+            __props__.__dict__["supports"] = supports
         super(Contacts, __self__).__init__(
             'tailscale:index/contacts:Contacts',
             resource_name,
@@ -262,9 +262,9 @@ class Contacts(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            account: pulumi.Input[Optional[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]] = None,
-            security: pulumi.Input[Optional[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]] = None,
-            support: pulumi.Input[Optional[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]] = None) -> 'Contacts':
+            accounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]]]] = None,
+            securities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]]]] = None,
+            supports: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]]]] = None) -> 'Contacts':
         """
         Get an existing Contacts resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -272,40 +272,40 @@ class Contacts(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']] account: Configuration for communications about important changes to your tailnet
-        :param pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']] security: Configuration for communications about security issues affecting your tailnet
-        :param pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']] support: Configuration for communications about misconfigurations in your tailnet
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]]] accounts: Configuration for communications about important changes to your tailnet
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]]] securities: Configuration for communications about security issues affecting your tailnet
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]]] supports: Configuration for communications about misconfigurations in your tailnet
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _ContactsState.__new__(_ContactsState)
 
-        __props__.__dict__["account"] = account
-        __props__.__dict__["security"] = security
-        __props__.__dict__["support"] = support
+        __props__.__dict__["accounts"] = accounts
+        __props__.__dict__["securities"] = securities
+        __props__.__dict__["supports"] = supports
         return Contacts(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter
-    def account(self) -> pulumi.Output[Optional['outputs.ContactsAccount']]:
+    def accounts(self) -> pulumi.Output[Optional[Sequence['outputs.ContactsAccount']]]:
         """
         Configuration for communications about important changes to your tailnet
         """
-        return pulumi.get(self, "account")
+        return pulumi.get(self, "accounts")
 
     @_builtins.property
     @pulumi.getter
-    def security(self) -> pulumi.Output[Optional['outputs.ContactsSecurity']]:
+    def securities(self) -> pulumi.Output[Optional[Sequence['outputs.ContactsSecurity']]]:
         """
         Configuration for communications about security issues affecting your tailnet
         """
-        return pulumi.get(self, "security")
+        return pulumi.get(self, "securities")
 
     @_builtins.property
     @pulumi.getter
-    def support(self) -> pulumi.Output[Optional['outputs.ContactsSupport']]:
+    def supports(self) -> pulumi.Output[Optional[Sequence['outputs.ContactsSupport']]]:
         """
         Configuration for communications about misconfigurations in your tailnet
         """
-        return pulumi.get(self, "support")
+        return pulumi.get(self, "supports")
 

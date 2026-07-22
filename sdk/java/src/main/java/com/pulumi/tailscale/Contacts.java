@@ -13,6 +13,7 @@ import com.pulumi.tailscale.inputs.ContactsState;
 import com.pulumi.tailscale.outputs.ContactsAccount;
 import com.pulumi.tailscale.outputs.ContactsSecurity;
 import com.pulumi.tailscale.outputs.ContactsSupport;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -49,13 +50,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) }{{@code
  *         var sampleContacts = new Contacts("sampleContacts", ContactsArgs.builder()
- *             .account(ContactsAccountArgs.builder()
+ *             .accounts(ContactsAccountArgs.builder()
  *                 .email("account}{@literal @}{@code example.com")
  *                 .build())
- *             .support(ContactsSupportArgs.builder()
+ *             .supports(ContactsSupportArgs.builder()
  *                 .email("support}{@literal @}{@code example.com")
  *                 .build())
- *             .security(ContactsSecurityArgs.builder()
+ *             .securities(ContactsSecurityArgs.builder()
  *                 .email("security}{@literal @}{@code example.com")
  *                 .build())
  *             .build());
@@ -82,43 +83,43 @@ public class Contacts extends com.pulumi.resources.CustomResource {
      * Configuration for communications about important changes to your tailnet
      * 
      */
-    @Export(name="account", refs={ContactsAccount.class}, tree="[0]")
-    private Output</* @Nullable */ ContactsAccount> account;
+    @Export(name="accounts", refs={List.class,ContactsAccount.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<ContactsAccount>> accounts;
 
     /**
      * @return Configuration for communications about important changes to your tailnet
      * 
      */
-    public Output<Optional<ContactsAccount>> account() {
-        return Codegen.optional(this.account);
+    public Output<Optional<List<ContactsAccount>>> accounts() {
+        return Codegen.optional(this.accounts);
     }
     /**
      * Configuration for communications about security issues affecting your tailnet
      * 
      */
-    @Export(name="security", refs={ContactsSecurity.class}, tree="[0]")
-    private Output</* @Nullable */ ContactsSecurity> security;
+    @Export(name="securities", refs={List.class,ContactsSecurity.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<ContactsSecurity>> securities;
 
     /**
      * @return Configuration for communications about security issues affecting your tailnet
      * 
      */
-    public Output<Optional<ContactsSecurity>> security() {
-        return Codegen.optional(this.security);
+    public Output<Optional<List<ContactsSecurity>>> securities() {
+        return Codegen.optional(this.securities);
     }
     /**
      * Configuration for communications about misconfigurations in your tailnet
      * 
      */
-    @Export(name="support", refs={ContactsSupport.class}, tree="[0]")
-    private Output</* @Nullable */ ContactsSupport> support;
+    @Export(name="supports", refs={List.class,ContactsSupport.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<ContactsSupport>> supports;
 
     /**
      * @return Configuration for communications about misconfigurations in your tailnet
      * 
      */
-    public Output<Optional<ContactsSupport>> support() {
-        return Codegen.optional(this.support);
+    public Output<Optional<List<ContactsSupport>>> supports() {
+        return Codegen.optional(this.supports);
     }
 
     /**

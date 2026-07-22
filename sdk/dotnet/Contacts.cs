@@ -26,17 +26,26 @@ namespace Pulumi.Tailscale
     /// {
     ///     var sampleContacts = new Tailscale.Contacts("sample_contacts", new()
     ///     {
-    ///         Account = new Tailscale.Inputs.ContactsAccountArgs
+    ///         Accounts = new[]
     ///         {
-    ///             Email = "account@example.com",
+    ///             new Tailscale.Inputs.ContactsAccountArgs
+    ///             {
+    ///                 Email = "account@example.com",
+    ///             },
     ///         },
-    ///         Support = new Tailscale.Inputs.ContactsSupportArgs
+    ///         Supports = new[]
     ///         {
-    ///             Email = "support@example.com",
+    ///             new Tailscale.Inputs.ContactsSupportArgs
+    ///             {
+    ///                 Email = "support@example.com",
+    ///             },
     ///         },
-    ///         Security = new Tailscale.Inputs.ContactsSecurityArgs
+    ///         Securities = new[]
     ///         {
-    ///             Email = "security@example.com",
+    ///             new Tailscale.Inputs.ContactsSecurityArgs
+    ///             {
+    ///                 Email = "security@example.com",
+    ///             },
     ///         },
     ///     });
     /// 
@@ -59,20 +68,20 @@ namespace Pulumi.Tailscale
         /// <summary>
         /// Configuration for communications about important changes to your tailnet
         /// </summary>
-        [Output("account")]
-        public Output<Outputs.ContactsAccount?> Account { get; private set; } = null!;
+        [Output("accounts")]
+        public Output<ImmutableArray<Outputs.ContactsAccount>> Accounts { get; private set; } = null!;
 
         /// <summary>
         /// Configuration for communications about security issues affecting your tailnet
         /// </summary>
-        [Output("security")]
-        public Output<Outputs.ContactsSecurity?> Security { get; private set; } = null!;
+        [Output("securities")]
+        public Output<ImmutableArray<Outputs.ContactsSecurity>> Securities { get; private set; } = null!;
 
         /// <summary>
         /// Configuration for communications about misconfigurations in your tailnet
         /// </summary>
-        [Output("support")]
-        public Output<Outputs.ContactsSupport?> Support { get; private set; } = null!;
+        [Output("supports")]
+        public Output<ImmutableArray<Outputs.ContactsSupport>> Supports { get; private set; } = null!;
 
 
         /// <summary>
@@ -120,23 +129,41 @@ namespace Pulumi.Tailscale
 
     public sealed class ContactsArgs : global::Pulumi.ResourceArgs
     {
+        [Input("accounts")]
+        private InputList<Inputs.ContactsAccountArgs>? _accounts;
+
         /// <summary>
         /// Configuration for communications about important changes to your tailnet
         /// </summary>
-        [Input("account")]
-        public Input<Inputs.ContactsAccountArgs>? Account { get; set; }
+        public InputList<Inputs.ContactsAccountArgs> Accounts
+        {
+            get => _accounts ?? (_accounts = new InputList<Inputs.ContactsAccountArgs>());
+            set => _accounts = value;
+        }
+
+        [Input("securities")]
+        private InputList<Inputs.ContactsSecurityArgs>? _securities;
 
         /// <summary>
         /// Configuration for communications about security issues affecting your tailnet
         /// </summary>
-        [Input("security")]
-        public Input<Inputs.ContactsSecurityArgs>? Security { get; set; }
+        public InputList<Inputs.ContactsSecurityArgs> Securities
+        {
+            get => _securities ?? (_securities = new InputList<Inputs.ContactsSecurityArgs>());
+            set => _securities = value;
+        }
+
+        [Input("supports")]
+        private InputList<Inputs.ContactsSupportArgs>? _supports;
 
         /// <summary>
         /// Configuration for communications about misconfigurations in your tailnet
         /// </summary>
-        [Input("support")]
-        public Input<Inputs.ContactsSupportArgs>? Support { get; set; }
+        public InputList<Inputs.ContactsSupportArgs> Supports
+        {
+            get => _supports ?? (_supports = new InputList<Inputs.ContactsSupportArgs>());
+            set => _supports = value;
+        }
 
         public ContactsArgs()
         {
@@ -146,23 +173,41 @@ namespace Pulumi.Tailscale
 
     public sealed class ContactsState : global::Pulumi.ResourceArgs
     {
+        [Input("accounts")]
+        private InputList<Inputs.ContactsAccountGetArgs>? _accounts;
+
         /// <summary>
         /// Configuration for communications about important changes to your tailnet
         /// </summary>
-        [Input("account")]
-        public Input<Inputs.ContactsAccountGetArgs>? Account { get; set; }
+        public InputList<Inputs.ContactsAccountGetArgs> Accounts
+        {
+            get => _accounts ?? (_accounts = new InputList<Inputs.ContactsAccountGetArgs>());
+            set => _accounts = value;
+        }
+
+        [Input("securities")]
+        private InputList<Inputs.ContactsSecurityGetArgs>? _securities;
 
         /// <summary>
         /// Configuration for communications about security issues affecting your tailnet
         /// </summary>
-        [Input("security")]
-        public Input<Inputs.ContactsSecurityGetArgs>? Security { get; set; }
+        public InputList<Inputs.ContactsSecurityGetArgs> Securities
+        {
+            get => _securities ?? (_securities = new InputList<Inputs.ContactsSecurityGetArgs>());
+            set => _securities = value;
+        }
+
+        [Input("supports")]
+        private InputList<Inputs.ContactsSupportGetArgs>? _supports;
 
         /// <summary>
         /// Configuration for communications about misconfigurations in your tailnet
         /// </summary>
-        [Input("support")]
-        public Input<Inputs.ContactsSupportGetArgs>? Support { get; set; }
+        public InputList<Inputs.ContactsSupportGetArgs> Supports
+        {
+            get => _supports ?? (_supports = new InputList<Inputs.ContactsSupportGetArgs>());
+            set => _supports = value;
+        }
 
         public ContactsState()
         {
