@@ -30,14 +30,20 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tailscale.NewContacts(ctx, "sample_contacts", &tailscale.ContactsArgs{
-//				Account: &tailscale.ContactsAccountArgs{
-//					Email: pulumi.String("account@example.com"),
+//				Accounts: tailscale.ContactsAccountArray{
+//					&tailscale.ContactsAccountArgs{
+//						Email: pulumi.String("account@example.com"),
+//					},
 //				},
-//				Support: &tailscale.ContactsSupportArgs{
-//					Email: pulumi.String("support@example.com"),
+//				Supports: tailscale.ContactsSupportArray{
+//					&tailscale.ContactsSupportArgs{
+//						Email: pulumi.String("support@example.com"),
+//					},
 //				},
-//				Security: &tailscale.ContactsSecurityArgs{
-//					Email: pulumi.String("security@example.com"),
+//				Securities: tailscale.ContactsSecurityArray{
+//					&tailscale.ContactsSecurityArgs{
+//						Email: pulumi.String("security@example.com"),
+//					},
 //				},
 //			})
 //			if err != nil {
@@ -62,11 +68,11 @@ type Contacts struct {
 	pulumi.CustomResourceState
 
 	// Configuration for communications about important changes to your tailnet
-	Account ContactsAccountPtrOutput `pulumi:"account"`
+	Accounts ContactsAccountArrayOutput `pulumi:"accounts"`
 	// Configuration for communications about security issues affecting your tailnet
-	Security ContactsSecurityPtrOutput `pulumi:"security"`
+	Securities ContactsSecurityArrayOutput `pulumi:"securities"`
 	// Configuration for communications about misconfigurations in your tailnet
-	Support ContactsSupportPtrOutput `pulumi:"support"`
+	Supports ContactsSupportArrayOutput `pulumi:"supports"`
 }
 
 // NewContacts registers a new resource with the given unique name, arguments, and options.
@@ -100,20 +106,20 @@ func GetContacts(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Contacts resources.
 type contactsState struct {
 	// Configuration for communications about important changes to your tailnet
-	Account *ContactsAccount `pulumi:"account"`
+	Accounts []ContactsAccount `pulumi:"accounts"`
 	// Configuration for communications about security issues affecting your tailnet
-	Security *ContactsSecurity `pulumi:"security"`
+	Securities []ContactsSecurity `pulumi:"securities"`
 	// Configuration for communications about misconfigurations in your tailnet
-	Support *ContactsSupport `pulumi:"support"`
+	Supports []ContactsSupport `pulumi:"supports"`
 }
 
 type ContactsState struct {
 	// Configuration for communications about important changes to your tailnet
-	Account ContactsAccountPtrInput
+	Accounts ContactsAccountArrayInput
 	// Configuration for communications about security issues affecting your tailnet
-	Security ContactsSecurityPtrInput
+	Securities ContactsSecurityArrayInput
 	// Configuration for communications about misconfigurations in your tailnet
-	Support ContactsSupportPtrInput
+	Supports ContactsSupportArrayInput
 }
 
 func (ContactsState) ElementType() reflect.Type {
@@ -122,21 +128,21 @@ func (ContactsState) ElementType() reflect.Type {
 
 type contactsArgs struct {
 	// Configuration for communications about important changes to your tailnet
-	Account *ContactsAccount `pulumi:"account"`
+	Accounts []ContactsAccount `pulumi:"accounts"`
 	// Configuration for communications about security issues affecting your tailnet
-	Security *ContactsSecurity `pulumi:"security"`
+	Securities []ContactsSecurity `pulumi:"securities"`
 	// Configuration for communications about misconfigurations in your tailnet
-	Support *ContactsSupport `pulumi:"support"`
+	Supports []ContactsSupport `pulumi:"supports"`
 }
 
 // The set of arguments for constructing a Contacts resource.
 type ContactsArgs struct {
 	// Configuration for communications about important changes to your tailnet
-	Account ContactsAccountPtrInput
+	Accounts ContactsAccountArrayInput
 	// Configuration for communications about security issues affecting your tailnet
-	Security ContactsSecurityPtrInput
+	Securities ContactsSecurityArrayInput
 	// Configuration for communications about misconfigurations in your tailnet
-	Support ContactsSupportPtrInput
+	Supports ContactsSupportArrayInput
 }
 
 func (ContactsArgs) ElementType() reflect.Type {
@@ -227,18 +233,18 @@ func (o ContactsOutput) ToContactsOutputWithContext(ctx context.Context) Contact
 }
 
 // Configuration for communications about important changes to your tailnet
-func (o ContactsOutput) Account() ContactsAccountPtrOutput {
-	return o.ApplyT(func(v *Contacts) ContactsAccountPtrOutput { return v.Account }).(ContactsAccountPtrOutput)
+func (o ContactsOutput) Accounts() ContactsAccountArrayOutput {
+	return o.ApplyT(func(v *Contacts) ContactsAccountArrayOutput { return v.Accounts }).(ContactsAccountArrayOutput)
 }
 
 // Configuration for communications about security issues affecting your tailnet
-func (o ContactsOutput) Security() ContactsSecurityPtrOutput {
-	return o.ApplyT(func(v *Contacts) ContactsSecurityPtrOutput { return v.Security }).(ContactsSecurityPtrOutput)
+func (o ContactsOutput) Securities() ContactsSecurityArrayOutput {
+	return o.ApplyT(func(v *Contacts) ContactsSecurityArrayOutput { return v.Securities }).(ContactsSecurityArrayOutput)
 }
 
 // Configuration for communications about misconfigurations in your tailnet
-func (o ContactsOutput) Support() ContactsSupportPtrOutput {
-	return o.ApplyT(func(v *Contacts) ContactsSupportPtrOutput { return v.Support }).(ContactsSupportPtrOutput)
+func (o ContactsOutput) Supports() ContactsSupportArrayOutput {
+	return o.ApplyT(func(v *Contacts) ContactsSupportArrayOutput { return v.Supports }).(ContactsSupportArrayOutput)
 }
 
 type ContactsArrayOutput struct{ *pulumi.OutputState }

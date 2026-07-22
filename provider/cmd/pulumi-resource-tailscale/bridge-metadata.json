@@ -2,33 +2,39 @@
     "auto-aliasing": {
         "resources": {
             "tailscale_acl": {
-                "current": "tailscale:index/acl:Acl"
+                "current": "tailscale:index/acl:Acl",
+                "majorVersion": 1
             },
             "tailscale_aws_external_id": {
-                "current": "tailscale:index/awsExternalId:AwsExternalId"
+                "current": "tailscale:index/awsExternalId:AwsExternalId",
+                "majorVersion": 1
             },
             "tailscale_contacts": {
                 "current": "tailscale:index/contacts:Contacts",
+                "majorVersion": 1,
                 "fields": {
                     "account": {
-                        "maxItemsOne": true
+                        "maxItemsOne": false
                     },
                     "security": {
-                        "maxItemsOne": true
+                        "maxItemsOne": false
                     },
                     "support": {
-                        "maxItemsOne": true
+                        "maxItemsOne": false
                     }
                 }
             },
             "tailscale_device_authorization": {
-                "current": "tailscale:index/deviceAuthorization:DeviceAuthorization"
+                "current": "tailscale:index/deviceAuthorization:DeviceAuthorization",
+                "majorVersion": 1
             },
             "tailscale_device_key": {
-                "current": "tailscale:index/deviceKey:DeviceKey"
+                "current": "tailscale:index/deviceKey:DeviceKey",
+                "majorVersion": 1
             },
             "tailscale_device_subnet_routes": {
                 "current": "tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes",
+                "majorVersion": 1,
                 "fields": {
                     "routes": {
                         "maxItemsOne": false
@@ -37,6 +43,7 @@
             },
             "tailscale_device_tags": {
                 "current": "tailscale:index/deviceTags:DeviceTags",
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -45,6 +52,7 @@
             },
             "tailscale_dns_configuration": {
                 "current": "tailscale:index/dnsConfiguration:DnsConfiguration",
+                "majorVersion": 1,
                 "fields": {
                     "nameservers": {
                         "maxItemsOne": false
@@ -66,6 +74,7 @@
             },
             "tailscale_dns_nameservers": {
                 "current": "tailscale:index/dnsNameservers:DnsNameservers",
+                "majorVersion": 1,
                 "fields": {
                     "nameservers": {
                         "maxItemsOne": false
@@ -73,10 +82,12 @@
                 }
             },
             "tailscale_dns_preferences": {
-                "current": "tailscale:index/dnsPreferences:DnsPreferences"
+                "current": "tailscale:index/dnsPreferences:DnsPreferences",
+                "majorVersion": 1
             },
             "tailscale_dns_search_paths": {
                 "current": "tailscale:index/dnsSearchPaths:DnsSearchPaths",
+                "majorVersion": 1,
                 "fields": {
                     "search_paths": {
                         "maxItemsOne": false
@@ -85,6 +96,7 @@
             },
             "tailscale_dns_split_nameservers": {
                 "current": "tailscale:index/dnsSplitNameservers:DnsSplitNameservers",
+                "majorVersion": 1,
                 "fields": {
                     "nameservers": {
                         "maxItemsOne": false
@@ -93,6 +105,7 @@
             },
             "tailscale_federated_identity": {
                 "current": "tailscale:index/federatedIdentity:FederatedIdentity",
+                "majorVersion": 1,
                 "fields": {
                     "scopes": {
                         "maxItemsOne": false
@@ -104,6 +117,7 @@
             },
             "tailscale_logstream_configuration": {
                 "current": "tailscale:index/logstreamConfiguration:LogstreamConfiguration",
+                "majorVersion": 1,
                 "fields": {
                     "gcs_scopes": {
                         "maxItemsOne": false
@@ -112,6 +126,7 @@
             },
             "tailscale_oauth_client": {
                 "current": "tailscale:index/oauthClient:OauthClient",
+                "majorVersion": 1,
                 "fields": {
                     "scopes": {
                         "maxItemsOne": false
@@ -122,10 +137,12 @@
                 }
             },
             "tailscale_posture_integration": {
-                "current": "tailscale:index/postureIntegration:PostureIntegration"
+                "current": "tailscale:index/postureIntegration:PostureIntegration",
+                "majorVersion": 1
             },
             "tailscale_service": {
                 "current": "tailscale:index/service:Service",
+                "majorVersion": 1,
                 "fields": {
                     "addrs": {
                         "maxItemsOne": false
@@ -140,6 +157,7 @@
             },
             "tailscale_tailnet_key": {
                 "current": "tailscale:index/tailnetKey:TailnetKey",
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -147,10 +165,12 @@
                 }
             },
             "tailscale_tailnet_settings": {
-                "current": "tailscale:index/tailnetSettings:TailnetSettings"
+                "current": "tailscale:index/tailnetSettings:TailnetSettings",
+                "majorVersion": 1
             },
             "tailscale_webhook": {
                 "current": "tailscale:index/webhook:Webhook",
+                "majorVersion": 1,
                 "fields": {
                     "subscriptions": {
                         "maxItemsOne": false
@@ -160,13 +180,16 @@
         },
         "datasources": {
             "tailscale_4via6": {
-                "current": "tailscale:index/get4Via6:get4Via6"
+                "current": "tailscale:index/get4Via6:get4Via6",
+                "majorVersion": 1
             },
             "tailscale_acl": {
-                "current": "tailscale:index/getAcl:getAcl"
+                "current": "tailscale:index/getAcl:getAcl",
+                "majorVersion": 1
             },
             "tailscale_device": {
                 "current": "tailscale:index/getDevice:getDevice",
+                "majorVersion": 1,
                 "fields": {
                     "addresses": {
                         "maxItemsOne": false
@@ -178,6 +201,7 @@
             },
             "tailscale_devices": {
                 "current": "tailscale:index/getDevices:getDevices",
+                "majorVersion": 1,
                 "fields": {
                     "devices": {
                         "maxItemsOne": false,
@@ -206,6 +230,7 @@
             },
             "tailscale_service": {
                 "current": "tailscale:index/getService:getService",
+                "majorVersion": 1,
                 "fields": {
                     "addrs": {
                         "maxItemsOne": false
@@ -219,10 +244,12 @@
                 }
             },
             "tailscale_user": {
-                "current": "tailscale:index/getUser:getUser"
+                "current": "tailscale:index/getUser:getUser",
+                "majorVersion": 1
             },
             "tailscale_users": {
                 "current": "tailscale:index/getUsers:getUsers",
+                "majorVersion": 1,
                 "fields": {
                     "users": {
                         "maxItemsOne": false
@@ -231,17 +258,7 @@
             }
         }
     },
-    "auto-settings": {
-        "resources": {
-            "tailscale_contacts": {
-                "maxItemsOneOverrides": {
-                    "account": true,
-                    "security": true,
-                    "support": true
-                }
-            }
-        }
-    },
+    "auto-settings": {},
     "default-resource-schema-fixups": {
         "resources": {
             "tailscale_acl": {},

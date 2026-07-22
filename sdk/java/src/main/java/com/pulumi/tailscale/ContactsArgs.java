@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.tailscale.inputs.ContactsAccountArgs;
 import com.pulumi.tailscale.inputs.ContactsSecurityArgs;
 import com.pulumi.tailscale.inputs.ContactsSupportArgs;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -21,53 +22,53 @@ public final class ContactsArgs extends com.pulumi.resources.ResourceArgs {
      * Configuration for communications about important changes to your tailnet
      * 
      */
-    @Import(name="account")
-    private @Nullable Output<ContactsAccountArgs> account;
+    @Import(name="accounts")
+    private @Nullable Output<List<ContactsAccountArgs>> accounts;
 
     /**
      * @return Configuration for communications about important changes to your tailnet
      * 
      */
-    public Optional<Output<ContactsAccountArgs>> account() {
-        return Optional.ofNullable(this.account);
+    public Optional<Output<List<ContactsAccountArgs>>> accounts() {
+        return Optional.ofNullable(this.accounts);
     }
 
     /**
      * Configuration for communications about security issues affecting your tailnet
      * 
      */
-    @Import(name="security")
-    private @Nullable Output<ContactsSecurityArgs> security;
+    @Import(name="securities")
+    private @Nullable Output<List<ContactsSecurityArgs>> securities;
 
     /**
      * @return Configuration for communications about security issues affecting your tailnet
      * 
      */
-    public Optional<Output<ContactsSecurityArgs>> security() {
-        return Optional.ofNullable(this.security);
+    public Optional<Output<List<ContactsSecurityArgs>>> securities() {
+        return Optional.ofNullable(this.securities);
     }
 
     /**
      * Configuration for communications about misconfigurations in your tailnet
      * 
      */
-    @Import(name="support")
-    private @Nullable Output<ContactsSupportArgs> support;
+    @Import(name="supports")
+    private @Nullable Output<List<ContactsSupportArgs>> supports;
 
     /**
      * @return Configuration for communications about misconfigurations in your tailnet
      * 
      */
-    public Optional<Output<ContactsSupportArgs>> support() {
-        return Optional.ofNullable(this.support);
+    public Optional<Output<List<ContactsSupportArgs>>> supports() {
+        return Optional.ofNullable(this.supports);
     }
 
     private ContactsArgs() {}
 
     private ContactsArgs(ContactsArgs $) {
-        this.account = $.account;
-        this.security = $.security;
-        this.support = $.support;
+        this.accounts = $.accounts;
+        this.securities = $.securities;
+        this.supports = $.supports;
     }
 
     public static Builder builder() {
@@ -89,66 +90,96 @@ public final class ContactsArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param account Configuration for communications about important changes to your tailnet
+         * @param accounts Configuration for communications about important changes to your tailnet
          * 
          * @return builder
          * 
          */
-        public Builder account(@Nullable Output<ContactsAccountArgs> account) {
-            $.account = account;
+        public Builder accounts(@Nullable Output<List<ContactsAccountArgs>> accounts) {
+            $.accounts = accounts;
             return this;
         }
 
         /**
-         * @param account Configuration for communications about important changes to your tailnet
+         * @param accounts Configuration for communications about important changes to your tailnet
          * 
          * @return builder
          * 
          */
-        public Builder account(ContactsAccountArgs account) {
-            return account(Output.of(account));
+        public Builder accounts(List<ContactsAccountArgs> accounts) {
+            return accounts(Output.of(accounts));
         }
 
         /**
-         * @param security Configuration for communications about security issues affecting your tailnet
+         * @param accounts Configuration for communications about important changes to your tailnet
          * 
          * @return builder
          * 
          */
-        public Builder security(@Nullable Output<ContactsSecurityArgs> security) {
-            $.security = security;
+        public Builder accounts(ContactsAccountArgs... accounts) {
+            return accounts(List.of(accounts));
+        }
+
+        /**
+         * @param securities Configuration for communications about security issues affecting your tailnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder securities(@Nullable Output<List<ContactsSecurityArgs>> securities) {
+            $.securities = securities;
             return this;
         }
 
         /**
-         * @param security Configuration for communications about security issues affecting your tailnet
+         * @param securities Configuration for communications about security issues affecting your tailnet
          * 
          * @return builder
          * 
          */
-        public Builder security(ContactsSecurityArgs security) {
-            return security(Output.of(security));
+        public Builder securities(List<ContactsSecurityArgs> securities) {
+            return securities(Output.of(securities));
         }
 
         /**
-         * @param support Configuration for communications about misconfigurations in your tailnet
+         * @param securities Configuration for communications about security issues affecting your tailnet
          * 
          * @return builder
          * 
          */
-        public Builder support(@Nullable Output<ContactsSupportArgs> support) {
-            $.support = support;
+        public Builder securities(ContactsSecurityArgs... securities) {
+            return securities(List.of(securities));
+        }
+
+        /**
+         * @param supports Configuration for communications about misconfigurations in your tailnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder supports(@Nullable Output<List<ContactsSupportArgs>> supports) {
+            $.supports = supports;
             return this;
         }
 
         /**
-         * @param support Configuration for communications about misconfigurations in your tailnet
+         * @param supports Configuration for communications about misconfigurations in your tailnet
          * 
          * @return builder
          * 
          */
-        public Builder support(ContactsSupportArgs support) {
-            return support(Output.of(support));
+        public Builder supports(List<ContactsSupportArgs> supports) {
+            return supports(Output.of(supports));
+        }
+
+        /**
+         * @param supports Configuration for communications about misconfigurations in your tailnet
+         * 
+         * @return builder
+         * 
+         */
+        public Builder supports(ContactsSupportArgs... supports) {
+            return supports(List.of(supports));
         }
 
         public ContactsArgs build() {

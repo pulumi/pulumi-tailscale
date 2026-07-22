@@ -18,15 +18,15 @@ import * as utilities from "./utilities";
  * import * as tailscale from "@pulumi/tailscale";
  *
  * const sampleContacts = new tailscale.Contacts("sample_contacts", {
- *     account: {
+ *     accounts: [{
  *         email: "account@example.com",
- *     },
- *     support: {
+ *     }],
+ *     supports: [{
  *         email: "support@example.com",
- *     },
- *     security: {
+ *     }],
+ *     securities: [{
  *         email: "security@example.com",
- *     },
+ *     }],
  * });
  * ```
  *
@@ -71,15 +71,15 @@ export class Contacts extends pulumi.CustomResource {
     /**
      * Configuration for communications about important changes to your tailnet
      */
-    declare public readonly account: pulumi.Output<outputs.ContactsAccount | undefined>;
+    declare public readonly accounts: pulumi.Output<outputs.ContactsAccount[] | undefined>;
     /**
      * Configuration for communications about security issues affecting your tailnet
      */
-    declare public readonly security: pulumi.Output<outputs.ContactsSecurity | undefined>;
+    declare public readonly securities: pulumi.Output<outputs.ContactsSecurity[] | undefined>;
     /**
      * Configuration for communications about misconfigurations in your tailnet
      */
-    declare public readonly support: pulumi.Output<outputs.ContactsSupport | undefined>;
+    declare public readonly supports: pulumi.Output<outputs.ContactsSupport[] | undefined>;
 
     /**
      * Create a Contacts resource with the given unique name, arguments, and options.
@@ -94,14 +94,14 @@ export class Contacts extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ContactsState | undefined;
-            resourceInputs["account"] = state?.account;
-            resourceInputs["security"] = state?.security;
-            resourceInputs["support"] = state?.support;
+            resourceInputs["accounts"] = state?.accounts;
+            resourceInputs["securities"] = state?.securities;
+            resourceInputs["supports"] = state?.supports;
         } else {
             const args = argsOrState as ContactsArgs | undefined;
-            resourceInputs["account"] = args?.account;
-            resourceInputs["security"] = args?.security;
-            resourceInputs["support"] = args?.support;
+            resourceInputs["accounts"] = args?.accounts;
+            resourceInputs["securities"] = args?.securities;
+            resourceInputs["supports"] = args?.supports;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Contacts.__pulumiType, name, resourceInputs, opts);
@@ -115,15 +115,15 @@ export interface ContactsState {
     /**
      * Configuration for communications about important changes to your tailnet
      */
-    account?: pulumi.Input<inputs.ContactsAccount | undefined>;
+    accounts?: pulumi.Input<pulumi.Input<inputs.ContactsAccount>[] | undefined>;
     /**
      * Configuration for communications about security issues affecting your tailnet
      */
-    security?: pulumi.Input<inputs.ContactsSecurity | undefined>;
+    securities?: pulumi.Input<pulumi.Input<inputs.ContactsSecurity>[] | undefined>;
     /**
      * Configuration for communications about misconfigurations in your tailnet
      */
-    support?: pulumi.Input<inputs.ContactsSupport | undefined>;
+    supports?: pulumi.Input<pulumi.Input<inputs.ContactsSupport>[] | undefined>;
 }
 
 /**
@@ -133,13 +133,13 @@ export interface ContactsArgs {
     /**
      * Configuration for communications about important changes to your tailnet
      */
-    account?: pulumi.Input<inputs.ContactsAccount | undefined>;
+    accounts?: pulumi.Input<pulumi.Input<inputs.ContactsAccount>[] | undefined>;
     /**
      * Configuration for communications about security issues affecting your tailnet
      */
-    security?: pulumi.Input<inputs.ContactsSecurity | undefined>;
+    securities?: pulumi.Input<pulumi.Input<inputs.ContactsSecurity>[] | undefined>;
     /**
      * Configuration for communications about misconfigurations in your tailnet
      */
-    support?: pulumi.Input<inputs.ContactsSupport | undefined>;
+    supports?: pulumi.Input<pulumi.Input<inputs.ContactsSupport>[] | undefined>;
 }

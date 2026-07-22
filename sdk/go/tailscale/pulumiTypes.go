@@ -46,45 +46,29 @@ func (i ContactsAccountArgs) ToContactsAccountOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(ContactsAccountOutput)
 }
 
-func (i ContactsAccountArgs) ToContactsAccountPtrOutput() ContactsAccountPtrOutput {
-	return i.ToContactsAccountPtrOutputWithContext(context.Background())
-}
-
-func (i ContactsAccountArgs) ToContactsAccountPtrOutputWithContext(ctx context.Context) ContactsAccountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ContactsAccountOutput).ToContactsAccountPtrOutputWithContext(ctx)
-}
-
-// ContactsAccountPtrInput is an input type that accepts ContactsAccountArgs, ContactsAccountPtr and ContactsAccountPtrOutput values.
-// You can construct a concrete instance of `ContactsAccountPtrInput` via:
+// ContactsAccountArrayInput is an input type that accepts ContactsAccountArray and ContactsAccountArrayOutput values.
+// You can construct a concrete instance of `ContactsAccountArrayInput` via:
 //
-//	        ContactsAccountArgs{...}
-//
-//	or:
-//
-//	        nil
-type ContactsAccountPtrInput interface {
+//	ContactsAccountArray{ ContactsAccountArgs{...} }
+type ContactsAccountArrayInput interface {
 	pulumi.Input
 
-	ToContactsAccountPtrOutput() ContactsAccountPtrOutput
-	ToContactsAccountPtrOutputWithContext(context.Context) ContactsAccountPtrOutput
+	ToContactsAccountArrayOutput() ContactsAccountArrayOutput
+	ToContactsAccountArrayOutputWithContext(context.Context) ContactsAccountArrayOutput
 }
 
-type contactsAccountPtrType ContactsAccountArgs
+type ContactsAccountArray []ContactsAccountInput
 
-func ContactsAccountPtr(v *ContactsAccountArgs) ContactsAccountPtrInput {
-	return (*contactsAccountPtrType)(v)
+func (ContactsAccountArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContactsAccount)(nil)).Elem()
 }
 
-func (*contactsAccountPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ContactsAccount)(nil)).Elem()
+func (i ContactsAccountArray) ToContactsAccountArrayOutput() ContactsAccountArrayOutput {
+	return i.ToContactsAccountArrayOutputWithContext(context.Background())
 }
 
-func (i *contactsAccountPtrType) ToContactsAccountPtrOutput() ContactsAccountPtrOutput {
-	return i.ToContactsAccountPtrOutputWithContext(context.Background())
-}
-
-func (i *contactsAccountPtrType) ToContactsAccountPtrOutputWithContext(ctx context.Context) ContactsAccountPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ContactsAccountPtrOutput)
+func (i ContactsAccountArray) ToContactsAccountArrayOutputWithContext(ctx context.Context) ContactsAccountArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactsAccountArrayOutput)
 }
 
 type ContactsAccountOutput struct{ *pulumi.OutputState }
@@ -101,53 +85,29 @@ func (o ContactsAccountOutput) ToContactsAccountOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o ContactsAccountOutput) ToContactsAccountPtrOutput() ContactsAccountPtrOutput {
-	return o.ToContactsAccountPtrOutputWithContext(context.Background())
-}
-
-func (o ContactsAccountOutput) ToContactsAccountPtrOutputWithContext(ctx context.Context) ContactsAccountPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContactsAccount) *ContactsAccount {
-		return &v
-	}).(ContactsAccountPtrOutput)
-}
-
 // Email address to send communications to
 func (o ContactsAccountOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v ContactsAccount) string { return v.Email }).(pulumi.StringOutput)
 }
 
-type ContactsAccountPtrOutput struct{ *pulumi.OutputState }
+type ContactsAccountArrayOutput struct{ *pulumi.OutputState }
 
-func (ContactsAccountPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ContactsAccount)(nil)).Elem()
+func (ContactsAccountArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContactsAccount)(nil)).Elem()
 }
 
-func (o ContactsAccountPtrOutput) ToContactsAccountPtrOutput() ContactsAccountPtrOutput {
+func (o ContactsAccountArrayOutput) ToContactsAccountArrayOutput() ContactsAccountArrayOutput {
 	return o
 }
 
-func (o ContactsAccountPtrOutput) ToContactsAccountPtrOutputWithContext(ctx context.Context) ContactsAccountPtrOutput {
+func (o ContactsAccountArrayOutput) ToContactsAccountArrayOutputWithContext(ctx context.Context) ContactsAccountArrayOutput {
 	return o
 }
 
-func (o ContactsAccountPtrOutput) Elem() ContactsAccountOutput {
-	return o.ApplyT(func(v *ContactsAccount) ContactsAccount {
-		if v != nil {
-			return *v
-		}
-		var ret ContactsAccount
-		return ret
+func (o ContactsAccountArrayOutput) Index(i pulumi.IntInput) ContactsAccountOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ContactsAccount {
+		return vs[0].([]ContactsAccount)[vs[1].(int)]
 	}).(ContactsAccountOutput)
-}
-
-// Email address to send communications to
-func (o ContactsAccountPtrOutput) Email() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ContactsAccount) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Email
-	}).(pulumi.StringPtrOutput)
 }
 
 type ContactsSecurity struct {
@@ -183,45 +143,29 @@ func (i ContactsSecurityArgs) ToContactsSecurityOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(ContactsSecurityOutput)
 }
 
-func (i ContactsSecurityArgs) ToContactsSecurityPtrOutput() ContactsSecurityPtrOutput {
-	return i.ToContactsSecurityPtrOutputWithContext(context.Background())
-}
-
-func (i ContactsSecurityArgs) ToContactsSecurityPtrOutputWithContext(ctx context.Context) ContactsSecurityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ContactsSecurityOutput).ToContactsSecurityPtrOutputWithContext(ctx)
-}
-
-// ContactsSecurityPtrInput is an input type that accepts ContactsSecurityArgs, ContactsSecurityPtr and ContactsSecurityPtrOutput values.
-// You can construct a concrete instance of `ContactsSecurityPtrInput` via:
+// ContactsSecurityArrayInput is an input type that accepts ContactsSecurityArray and ContactsSecurityArrayOutput values.
+// You can construct a concrete instance of `ContactsSecurityArrayInput` via:
 //
-//	        ContactsSecurityArgs{...}
-//
-//	or:
-//
-//	        nil
-type ContactsSecurityPtrInput interface {
+//	ContactsSecurityArray{ ContactsSecurityArgs{...} }
+type ContactsSecurityArrayInput interface {
 	pulumi.Input
 
-	ToContactsSecurityPtrOutput() ContactsSecurityPtrOutput
-	ToContactsSecurityPtrOutputWithContext(context.Context) ContactsSecurityPtrOutput
+	ToContactsSecurityArrayOutput() ContactsSecurityArrayOutput
+	ToContactsSecurityArrayOutputWithContext(context.Context) ContactsSecurityArrayOutput
 }
 
-type contactsSecurityPtrType ContactsSecurityArgs
+type ContactsSecurityArray []ContactsSecurityInput
 
-func ContactsSecurityPtr(v *ContactsSecurityArgs) ContactsSecurityPtrInput {
-	return (*contactsSecurityPtrType)(v)
+func (ContactsSecurityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContactsSecurity)(nil)).Elem()
 }
 
-func (*contactsSecurityPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ContactsSecurity)(nil)).Elem()
+func (i ContactsSecurityArray) ToContactsSecurityArrayOutput() ContactsSecurityArrayOutput {
+	return i.ToContactsSecurityArrayOutputWithContext(context.Background())
 }
 
-func (i *contactsSecurityPtrType) ToContactsSecurityPtrOutput() ContactsSecurityPtrOutput {
-	return i.ToContactsSecurityPtrOutputWithContext(context.Background())
-}
-
-func (i *contactsSecurityPtrType) ToContactsSecurityPtrOutputWithContext(ctx context.Context) ContactsSecurityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ContactsSecurityPtrOutput)
+func (i ContactsSecurityArray) ToContactsSecurityArrayOutputWithContext(ctx context.Context) ContactsSecurityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactsSecurityArrayOutput)
 }
 
 type ContactsSecurityOutput struct{ *pulumi.OutputState }
@@ -238,53 +182,29 @@ func (o ContactsSecurityOutput) ToContactsSecurityOutputWithContext(ctx context.
 	return o
 }
 
-func (o ContactsSecurityOutput) ToContactsSecurityPtrOutput() ContactsSecurityPtrOutput {
-	return o.ToContactsSecurityPtrOutputWithContext(context.Background())
-}
-
-func (o ContactsSecurityOutput) ToContactsSecurityPtrOutputWithContext(ctx context.Context) ContactsSecurityPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContactsSecurity) *ContactsSecurity {
-		return &v
-	}).(ContactsSecurityPtrOutput)
-}
-
 // Email address to send communications to
 func (o ContactsSecurityOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v ContactsSecurity) string { return v.Email }).(pulumi.StringOutput)
 }
 
-type ContactsSecurityPtrOutput struct{ *pulumi.OutputState }
+type ContactsSecurityArrayOutput struct{ *pulumi.OutputState }
 
-func (ContactsSecurityPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ContactsSecurity)(nil)).Elem()
+func (ContactsSecurityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContactsSecurity)(nil)).Elem()
 }
 
-func (o ContactsSecurityPtrOutput) ToContactsSecurityPtrOutput() ContactsSecurityPtrOutput {
+func (o ContactsSecurityArrayOutput) ToContactsSecurityArrayOutput() ContactsSecurityArrayOutput {
 	return o
 }
 
-func (o ContactsSecurityPtrOutput) ToContactsSecurityPtrOutputWithContext(ctx context.Context) ContactsSecurityPtrOutput {
+func (o ContactsSecurityArrayOutput) ToContactsSecurityArrayOutputWithContext(ctx context.Context) ContactsSecurityArrayOutput {
 	return o
 }
 
-func (o ContactsSecurityPtrOutput) Elem() ContactsSecurityOutput {
-	return o.ApplyT(func(v *ContactsSecurity) ContactsSecurity {
-		if v != nil {
-			return *v
-		}
-		var ret ContactsSecurity
-		return ret
+func (o ContactsSecurityArrayOutput) Index(i pulumi.IntInput) ContactsSecurityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ContactsSecurity {
+		return vs[0].([]ContactsSecurity)[vs[1].(int)]
 	}).(ContactsSecurityOutput)
-}
-
-// Email address to send communications to
-func (o ContactsSecurityPtrOutput) Email() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ContactsSecurity) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Email
-	}).(pulumi.StringPtrOutput)
 }
 
 type ContactsSupport struct {
@@ -320,45 +240,29 @@ func (i ContactsSupportArgs) ToContactsSupportOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(ContactsSupportOutput)
 }
 
-func (i ContactsSupportArgs) ToContactsSupportPtrOutput() ContactsSupportPtrOutput {
-	return i.ToContactsSupportPtrOutputWithContext(context.Background())
-}
-
-func (i ContactsSupportArgs) ToContactsSupportPtrOutputWithContext(ctx context.Context) ContactsSupportPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ContactsSupportOutput).ToContactsSupportPtrOutputWithContext(ctx)
-}
-
-// ContactsSupportPtrInput is an input type that accepts ContactsSupportArgs, ContactsSupportPtr and ContactsSupportPtrOutput values.
-// You can construct a concrete instance of `ContactsSupportPtrInput` via:
+// ContactsSupportArrayInput is an input type that accepts ContactsSupportArray and ContactsSupportArrayOutput values.
+// You can construct a concrete instance of `ContactsSupportArrayInput` via:
 //
-//	        ContactsSupportArgs{...}
-//
-//	or:
-//
-//	        nil
-type ContactsSupportPtrInput interface {
+//	ContactsSupportArray{ ContactsSupportArgs{...} }
+type ContactsSupportArrayInput interface {
 	pulumi.Input
 
-	ToContactsSupportPtrOutput() ContactsSupportPtrOutput
-	ToContactsSupportPtrOutputWithContext(context.Context) ContactsSupportPtrOutput
+	ToContactsSupportArrayOutput() ContactsSupportArrayOutput
+	ToContactsSupportArrayOutputWithContext(context.Context) ContactsSupportArrayOutput
 }
 
-type contactsSupportPtrType ContactsSupportArgs
+type ContactsSupportArray []ContactsSupportInput
 
-func ContactsSupportPtr(v *ContactsSupportArgs) ContactsSupportPtrInput {
-	return (*contactsSupportPtrType)(v)
+func (ContactsSupportArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContactsSupport)(nil)).Elem()
 }
 
-func (*contactsSupportPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ContactsSupport)(nil)).Elem()
+func (i ContactsSupportArray) ToContactsSupportArrayOutput() ContactsSupportArrayOutput {
+	return i.ToContactsSupportArrayOutputWithContext(context.Background())
 }
 
-func (i *contactsSupportPtrType) ToContactsSupportPtrOutput() ContactsSupportPtrOutput {
-	return i.ToContactsSupportPtrOutputWithContext(context.Background())
-}
-
-func (i *contactsSupportPtrType) ToContactsSupportPtrOutputWithContext(ctx context.Context) ContactsSupportPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ContactsSupportPtrOutput)
+func (i ContactsSupportArray) ToContactsSupportArrayOutputWithContext(ctx context.Context) ContactsSupportArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ContactsSupportArrayOutput)
 }
 
 type ContactsSupportOutput struct{ *pulumi.OutputState }
@@ -375,53 +279,29 @@ func (o ContactsSupportOutput) ToContactsSupportOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o ContactsSupportOutput) ToContactsSupportPtrOutput() ContactsSupportPtrOutput {
-	return o.ToContactsSupportPtrOutputWithContext(context.Background())
-}
-
-func (o ContactsSupportOutput) ToContactsSupportPtrOutputWithContext(ctx context.Context) ContactsSupportPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ContactsSupport) *ContactsSupport {
-		return &v
-	}).(ContactsSupportPtrOutput)
-}
-
 // Email address to send communications to
 func (o ContactsSupportOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v ContactsSupport) string { return v.Email }).(pulumi.StringOutput)
 }
 
-type ContactsSupportPtrOutput struct{ *pulumi.OutputState }
+type ContactsSupportArrayOutput struct{ *pulumi.OutputState }
 
-func (ContactsSupportPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ContactsSupport)(nil)).Elem()
+func (ContactsSupportArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ContactsSupport)(nil)).Elem()
 }
 
-func (o ContactsSupportPtrOutput) ToContactsSupportPtrOutput() ContactsSupportPtrOutput {
+func (o ContactsSupportArrayOutput) ToContactsSupportArrayOutput() ContactsSupportArrayOutput {
 	return o
 }
 
-func (o ContactsSupportPtrOutput) ToContactsSupportPtrOutputWithContext(ctx context.Context) ContactsSupportPtrOutput {
+func (o ContactsSupportArrayOutput) ToContactsSupportArrayOutputWithContext(ctx context.Context) ContactsSupportArrayOutput {
 	return o
 }
 
-func (o ContactsSupportPtrOutput) Elem() ContactsSupportOutput {
-	return o.ApplyT(func(v *ContactsSupport) ContactsSupport {
-		if v != nil {
-			return *v
-		}
-		var ret ContactsSupport
-		return ret
+func (o ContactsSupportArrayOutput) Index(i pulumi.IntInput) ContactsSupportOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ContactsSupport {
+		return vs[0].([]ContactsSupport)[vs[1].(int)]
 	}).(ContactsSupportOutput)
-}
-
-// Email address to send communications to
-func (o ContactsSupportPtrOutput) Email() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ContactsSupport) *string {
-		if v == nil {
-			return nil
-		}
-		return &v.Email
-	}).(pulumi.StringPtrOutput)
 }
 
 type DnsConfigurationNameserver struct {
@@ -1323,11 +1203,11 @@ func (o GetUsersUserArrayOutput) Index(i pulumi.IntInput) GetUsersUserOutput {
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactsAccountInput)(nil)).Elem(), ContactsAccountArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ContactsAccountPtrInput)(nil)).Elem(), ContactsAccountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactsAccountArrayInput)(nil)).Elem(), ContactsAccountArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactsSecurityInput)(nil)).Elem(), ContactsSecurityArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ContactsSecurityPtrInput)(nil)).Elem(), ContactsSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactsSecurityArrayInput)(nil)).Elem(), ContactsSecurityArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ContactsSupportInput)(nil)).Elem(), ContactsSupportArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ContactsSupportPtrInput)(nil)).Elem(), ContactsSupportArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ContactsSupportArrayInput)(nil)).Elem(), ContactsSupportArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsConfigurationNameserverInput)(nil)).Elem(), DnsConfigurationNameserverArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsConfigurationNameserverArrayInput)(nil)).Elem(), DnsConfigurationNameserverArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DnsConfigurationSplitDnInput)(nil)).Elem(), DnsConfigurationSplitDnArgs{})
@@ -1341,11 +1221,11 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserInput)(nil)).Elem(), GetUsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUsersUserArrayInput)(nil)).Elem(), GetUsersUserArray{})
 	pulumi.RegisterOutputType(ContactsAccountOutput{})
-	pulumi.RegisterOutputType(ContactsAccountPtrOutput{})
+	pulumi.RegisterOutputType(ContactsAccountArrayOutput{})
 	pulumi.RegisterOutputType(ContactsSecurityOutput{})
-	pulumi.RegisterOutputType(ContactsSecurityPtrOutput{})
+	pulumi.RegisterOutputType(ContactsSecurityArrayOutput{})
 	pulumi.RegisterOutputType(ContactsSupportOutput{})
-	pulumi.RegisterOutputType(ContactsSupportPtrOutput{})
+	pulumi.RegisterOutputType(ContactsSupportArrayOutput{})
 	pulumi.RegisterOutputType(DnsConfigurationNameserverOutput{})
 	pulumi.RegisterOutputType(DnsConfigurationNameserverArrayOutput{})
 	pulumi.RegisterOutputType(DnsConfigurationSplitDnOutput{})
