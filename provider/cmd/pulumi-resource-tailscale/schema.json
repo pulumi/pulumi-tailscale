@@ -624,48 +624,75 @@
             }
         },
         "tailscale:index/contacts:Contacts": {
-            "description": "The contacts resource allows you to configure contact details for your Tailscale network. See https://tailscale.com/kb/1224/contact-preferences for more information.\n\nDestroying this resource does not unset or modify values in the tailscale control plane, and simply removes the resource from Terraform state.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleContacts = new tailscale.Contacts(\"sample_contacts\", {\n    account: {\n        email: \"account@example.com\",\n    },\n    support: {\n        email: \"support@example.com\",\n    },\n    security: {\n        email: \"security@example.com\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_contacts = tailscale.Contacts(\"sample_contacts\",\n    account={\n        \"email\": \"account@example.com\",\n    },\n    support={\n        \"email\": \"support@example.com\",\n    },\n    security={\n        \"email\": \"security@example.com\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleContacts = new Tailscale.Contacts(\"sample_contacts\", new()\n    {\n        Account = new Tailscale.Inputs.ContactsAccountArgs\n        {\n            Email = \"account@example.com\",\n        },\n        Support = new Tailscale.Inputs.ContactsSupportArgs\n        {\n            Email = \"support@example.com\",\n        },\n        Security = new Tailscale.Inputs.ContactsSecurityArgs\n        {\n            Email = \"security@example.com\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewContacts(ctx, \"sample_contacts\", \u0026tailscale.ContactsArgs{\n\t\t\tAccount: \u0026tailscale.ContactsAccountArgs{\n\t\t\t\tEmail: pulumi.String(\"account@example.com\"),\n\t\t\t},\n\t\t\tSupport: \u0026tailscale.ContactsSupportArgs{\n\t\t\t\tEmail: pulumi.String(\"support@example.com\"),\n\t\t\t},\n\t\t\tSecurity: \u0026tailscale.ContactsSecurityArgs{\n\t\t\t\tEmail: pulumi.String(\"security@example.com\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    tailscale = {\n      source = \"pulumi/tailscale\"\n    }\n  }\n}\n\nresource \"tailscale_contacts\" \"sample_contacts\" {\n  account = {\n    email = \"account@example.com\"\n  }\n  support = {\n    email = \"support@example.com\"\n  }\n  security = {\n    email = \"security@example.com\"\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.Contacts;\nimport com.pulumi.tailscale.ContactsArgs;\nimport com.pulumi.tailscale.inputs.ContactsAccountArgs;\nimport com.pulumi.tailscale.inputs.ContactsSupportArgs;\nimport com.pulumi.tailscale.inputs.ContactsSecurityArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var sampleContacts = new Contacts(\"sampleContacts\", ContactsArgs.builder()\n            .account(ContactsAccountArgs.builder()\n                .email(\"account@example.com\")\n                .build())\n            .support(ContactsSupportArgs.builder()\n                .email(\"support@example.com\")\n                .build())\n            .security(ContactsSecurityArgs.builder()\n                .email(\"security@example.com\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  sampleContacts:\n    type: tailscale:Contacts\n    name: sample_contacts\n    properties:\n      account:\n        email: account@example.com\n      support:\n        email: support@example.com\n      security:\n        email: security@example.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe `pulumi import` command can be used, for example:\n\nID doesn't matter.\n\n```sh\n$ pulumi import tailscale:index/contacts:Contacts sample_contacts contacts\n```\n\n",
+            "description": "The contacts resource allows you to configure contact details for your Tailscale network. See https://tailscale.com/kb/1224/contact-preferences for more information.\n\nDestroying this resource does not unset or modify values in the tailscale control plane, and simply removes the resource from Terraform state.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as tailscale from \"@pulumi/tailscale\";\n\nconst sampleContacts = new tailscale.Contacts(\"sample_contacts\", {\n    accounts: [{\n        email: \"account@example.com\",\n    }],\n    supports: [{\n        email: \"support@example.com\",\n    }],\n    securities: [{\n        email: \"security@example.com\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_tailscale as tailscale\n\nsample_contacts = tailscale.Contacts(\"sample_contacts\",\n    accounts=[{\n        \"email\": \"account@example.com\",\n    }],\n    supports=[{\n        \"email\": \"support@example.com\",\n    }],\n    securities=[{\n        \"email\": \"security@example.com\",\n    }])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Tailscale = Pulumi.Tailscale;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var sampleContacts = new Tailscale.Contacts(\"sample_contacts\", new()\n    {\n        Accounts = new[]\n        {\n            new Tailscale.Inputs.ContactsAccountArgs\n            {\n                Email = \"account@example.com\",\n            },\n        },\n        Supports = new[]\n        {\n            new Tailscale.Inputs.ContactsSupportArgs\n            {\n                Email = \"support@example.com\",\n            },\n        },\n        Securities = new[]\n        {\n            new Tailscale.Inputs.ContactsSecurityArgs\n            {\n                Email = \"security@example.com\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := tailscale.NewContacts(ctx, \"sample_contacts\", \u0026tailscale.ContactsArgs{\n\t\t\tAccounts: tailscale.ContactsAccountArray{\n\t\t\t\t\u0026tailscale.ContactsAccountArgs{\n\t\t\t\t\tEmail: pulumi.String(\"account@example.com\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tSupports: tailscale.ContactsSupportArray{\n\t\t\t\t\u0026tailscale.ContactsSupportArgs{\n\t\t\t\t\tEmail: pulumi.String(\"support@example.com\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tSecurities: tailscale.ContactsSecurityArray{\n\t\t\t\t\u0026tailscale.ContactsSecurityArgs{\n\t\t\t\t\tEmail: pulumi.String(\"security@example.com\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    tailscale = {\n      source = \"pulumi/tailscale\"\n    }\n  }\n}\n\nresource \"tailscale_contacts\" \"sample_contacts\" {\n  accounts {\n    email = \"account@example.com\"\n  }\n  supports {\n    email = \"support@example.com\"\n  }\n  securities {\n    email = \"security@example.com\"\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.tailscale.Contacts;\nimport com.pulumi.tailscale.ContactsArgs;\nimport com.pulumi.tailscale.inputs.ContactsAccountArgs;\nimport com.pulumi.tailscale.inputs.ContactsSupportArgs;\nimport com.pulumi.tailscale.inputs.ContactsSecurityArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var sampleContacts = new Contacts(\"sampleContacts\", ContactsArgs.builder()\n            .accounts(ContactsAccountArgs.builder()\n                .email(\"account@example.com\")\n                .build())\n            .supports(ContactsSupportArgs.builder()\n                .email(\"support@example.com\")\n                .build())\n            .securities(ContactsSecurityArgs.builder()\n                .email(\"security@example.com\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  sampleContacts:\n    type: tailscale:Contacts\n    name: sample_contacts\n    properties:\n      accounts:\n        - email: account@example.com\n      supports:\n        - email: support@example.com\n      securities:\n        - email: security@example.com\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe `pulumi import` command can be used, for example:\n\nID doesn't matter.\n\n```sh\n$ pulumi import tailscale:index/contacts:Contacts sample_contacts contacts\n```\n\n",
             "properties": {
-                "account": {
-                    "$ref": "#/types/tailscale:index/ContactsAccount:ContactsAccount",
+                "accounts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/tailscale:index/ContactsAccount:ContactsAccount"
+                    },
                     "description": "Configuration for communications about important changes to your tailnet\n"
                 },
-                "security": {
-                    "$ref": "#/types/tailscale:index/ContactsSecurity:ContactsSecurity",
+                "securities": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/tailscale:index/ContactsSecurity:ContactsSecurity"
+                    },
                     "description": "Configuration for communications about security issues affecting your tailnet\n"
                 },
-                "support": {
-                    "$ref": "#/types/tailscale:index/ContactsSupport:ContactsSupport",
+                "supports": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/tailscale:index/ContactsSupport:ContactsSupport"
+                    },
                     "description": "Configuration for communications about misconfigurations in your tailnet\n"
                 }
             },
             "inputProperties": {
-                "account": {
-                    "$ref": "#/types/tailscale:index/ContactsAccount:ContactsAccount",
+                "accounts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/tailscale:index/ContactsAccount:ContactsAccount"
+                    },
                     "description": "Configuration for communications about important changes to your tailnet\n"
                 },
-                "security": {
-                    "$ref": "#/types/tailscale:index/ContactsSecurity:ContactsSecurity",
+                "securities": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/tailscale:index/ContactsSecurity:ContactsSecurity"
+                    },
                     "description": "Configuration for communications about security issues affecting your tailnet\n"
                 },
-                "support": {
-                    "$ref": "#/types/tailscale:index/ContactsSupport:ContactsSupport",
+                "supports": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/tailscale:index/ContactsSupport:ContactsSupport"
+                    },
                     "description": "Configuration for communications about misconfigurations in your tailnet\n"
                 }
             },
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Contacts resources.\n",
                 "properties": {
-                    "account": {
-                        "$ref": "#/types/tailscale:index/ContactsAccount:ContactsAccount",
+                    "accounts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/tailscale:index/ContactsAccount:ContactsAccount"
+                        },
                         "description": "Configuration for communications about important changes to your tailnet\n"
                     },
-                    "security": {
-                        "$ref": "#/types/tailscale:index/ContactsSecurity:ContactsSecurity",
+                    "securities": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/tailscale:index/ContactsSecurity:ContactsSecurity"
+                        },
                         "description": "Configuration for communications about security issues affecting your tailnet\n"
                     },
-                    "support": {
-                        "$ref": "#/types/tailscale:index/ContactsSupport:ContactsSupport",
+                    "supports": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/tailscale:index/ContactsSupport:ContactsSupport"
+                        },
                         "description": "Configuration for communications about misconfigurations in your tailnet\n"
                     }
                 },
