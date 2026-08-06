@@ -32,7 +32,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			tailscaleAssumeRole, err := aws.IamPolicyDocument(ctx, map[string]interface{}{
+//			tailscaleAssumeRole, err := aws.IamPolicyDocument(ctx, map[string][]map[string]interface{}{
 //				"statement": []map[string]interface{}{
 //					map[string]interface{}{
 //						"actions": []string{
@@ -80,7 +80,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			logsWriter, err := aws.IamPolicyDocument(ctx, map[string]interface{}{
+//			logsWriter, err := aws.IamPolicyDocument(ctx, map[string][]map[string]interface{}{
 //				"statement": []map[string]interface{}{
 //					map[string]interface{}{
 //						"effect": "Allow",

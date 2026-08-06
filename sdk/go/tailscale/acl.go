@@ -34,9 +34,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			tmpJSON0, err := json.Marshal(map[string]interface{}{
-//				"grants": []map[string]interface{}{
-//					map[string]interface{}{
+//			tmpJSON0, err := json.Marshal(map[string][]map[string][]string{
+//				"grants": []map[string][]string{
+//					{
 //						"src": []string{
 //							"*",
 //						},
