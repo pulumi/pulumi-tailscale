@@ -18,19 +18,19 @@ import (
 type Provider struct {
 	pulumi.ProviderResourceState
 
-	// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
+	// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with `oauthClientId` and `oauthClientSecret`.
 	ApiKey pulumi.StringPtrOutput `pulumi:"apiKey"`
-	// The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires 'oauth_client_id'. Conflicts with 'api_key', 'oauth_client_secret', 'identity_token', and 'identity_token_environment_variable_name'.
+	// The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires `oauthClientId`. Conflicts with `apiKey`, `oauthClientSecret`, `identityToken`, and `identityTokenEnvironmentVariableName`.
 	Audience pulumi.StringPtrOutput `pulumi:"audience"`
 	// The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL environment variable.
 	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
-	// The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with 'api_key', 'oauth_client_secret', and 'identity_token_environment_variable_name'.
+	// The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with `apiKey`, `oauthClientSecret`, and `identityTokenEnvironmentVariableName`.
 	IdentityToken pulumi.StringPtrOutput `pulumi:"identityToken"`
-	// The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Terraform Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with 'identity_token'.
+	// The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Pulumi Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with `identityToken`.
 	IdentityTokenEnvironmentVariableName pulumi.StringPtrOutput `pulumi:"identityTokenEnvironmentVariableName"`
-	// The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
+	// The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either `oauthClientSecret` or `identityToken` must be set alongside `oauthClientId`. Conflicts with `apiKey`.
 	OauthClientId pulumi.StringPtrOutput `pulumi:"oauthClientId"`
-	// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with 'api_key' and 'identity_token'.
+	// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with `apiKey` and `identityToken`.
 	OauthClientSecret pulumi.StringPtrOutput `pulumi:"oauthClientSecret"`
 	// The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
 	Tailnet pulumi.StringPtrOutput `pulumi:"tailnet"`
@@ -73,21 +73,21 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
+	// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with `oauthClientId` and `oauthClientSecret`.
 	ApiKey *string `pulumi:"apiKey"`
-	// The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires 'oauth_client_id'. Conflicts with 'api_key', 'oauth_client_secret', 'identity_token', and 'identity_token_environment_variable_name'.
+	// The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires `oauthClientId`. Conflicts with `apiKey`, `oauthClientSecret`, `identityToken`, and `identityTokenEnvironmentVariableName`.
 	Audience *string `pulumi:"audience"`
 	// The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL environment variable.
 	BaseUrl *string `pulumi:"baseUrl"`
-	// The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with 'api_key', 'oauth_client_secret', and 'identity_token_environment_variable_name'.
+	// The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with `apiKey`, `oauthClientSecret`, and `identityTokenEnvironmentVariableName`.
 	IdentityToken *string `pulumi:"identityToken"`
-	// The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Terraform Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with 'identity_token'.
+	// The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Pulumi Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with `identityToken`.
 	IdentityTokenEnvironmentVariableName *string `pulumi:"identityTokenEnvironmentVariableName"`
-	// The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
+	// The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either `oauthClientSecret` or `identityToken` must be set alongside `oauthClientId`. Conflicts with `apiKey`.
 	OauthClientId *string `pulumi:"oauthClientId"`
-	// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with 'api_key' and 'identity_token'.
+	// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with `apiKey` and `identityToken`.
 	OauthClientSecret *string `pulumi:"oauthClientSecret"`
-	// The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret', or both are set.
+	// The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both `oauthClientId` and `oauthClientSecret` are set.
 	Scopes []string `pulumi:"scopes"`
 	// The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
 	Tailnet *string `pulumi:"tailnet"`
@@ -97,21 +97,21 @@ type providerArgs struct {
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
-	// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
+	// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with `oauthClientId` and `oauthClientSecret`.
 	ApiKey pulumi.StringPtrInput
-	// The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires 'oauth_client_id'. Conflicts with 'api_key', 'oauth_client_secret', 'identity_token', and 'identity_token_environment_variable_name'.
+	// The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires `oauthClientId`. Conflicts with `apiKey`, `oauthClientSecret`, `identityToken`, and `identityTokenEnvironmentVariableName`.
 	Audience pulumi.StringPtrInput
 	// The base URL of the Tailscale API. Defaults to https://api.tailscale.com. Can be set via the TAILSCALE_BASE_URL environment variable.
 	BaseUrl pulumi.StringPtrInput
-	// The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with 'api_key', 'oauth_client_secret', and 'identity_token_environment_variable_name'.
+	// The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with `apiKey`, `oauthClientSecret`, and `identityTokenEnvironmentVariableName`.
 	IdentityToken pulumi.StringPtrInput
-	// The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Terraform Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with 'identity_token'.
+	// The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Pulumi Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with `identityToken`.
 	IdentityTokenEnvironmentVariableName pulumi.StringPtrInput
-	// The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
+	// The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either `oauthClientSecret` or `identityToken` must be set alongside `oauthClientId`. Conflicts with `apiKey`.
 	OauthClientId pulumi.StringPtrInput
-	// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with 'api_key' and 'identity_token'.
+	// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with `apiKey` and `identityToken`.
 	OauthClientSecret pulumi.StringPtrInput
-	// The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret', or both are set.
+	// The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both `oauthClientId` and `oauthClientSecret` are set.
 	Scopes pulumi.StringArrayInput
 	// The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
 	Tailnet pulumi.StringPtrInput
@@ -179,12 +179,12 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
-// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
+// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with `oauthClientId` and `oauthClientSecret`.
 func (o ProviderOutput) ApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ApiKey }).(pulumi.StringPtrOutput)
 }
 
-// The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires 'oauth_client_id'. Conflicts with 'api_key', 'oauth_client_secret', 'identity_token', and 'identity_token_environment_variable_name'.
+// The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires `oauthClientId`. Conflicts with `apiKey`, `oauthClientSecret`, `identityToken`, and `identityTokenEnvironmentVariableName`.
 func (o ProviderOutput) Audience() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Audience }).(pulumi.StringPtrOutput)
 }
@@ -194,22 +194,22 @@ func (o ProviderOutput) BaseUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.BaseUrl }).(pulumi.StringPtrOutput)
 }
 
-// The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with 'api_key', 'oauth_client_secret', and 'identity_token_environment_variable_name'.
+// The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with `apiKey`, `oauthClientSecret`, and `identityTokenEnvironmentVariableName`.
 func (o ProviderOutput) IdentityToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.IdentityToken }).(pulumi.StringPtrOutput)
 }
 
-// The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Terraform Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with 'identity_token'.
+// The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Pulumi Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with `identityToken`.
 func (o ProviderOutput) IdentityTokenEnvironmentVariableName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.IdentityTokenEnvironmentVariableName }).(pulumi.StringPtrOutput)
 }
 
-// The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
+// The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either `oauthClientSecret` or `identityToken` must be set alongside `oauthClientId`. Conflicts with `apiKey`.
 func (o ProviderOutput) OauthClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.OauthClientId }).(pulumi.StringPtrOutput)
 }
 
-// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with 'api_key' and 'identity_token'.
+// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with `apiKey` and `identityToken`.
 func (o ProviderOutput) OauthClientSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.OauthClientSecret }).(pulumi.StringPtrOutput)
 }

@@ -7,6 +7,7 @@ replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraf
 require (
 	github.com/pulumi/providertest v0.7.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.137.0
+	github.com/pulumi/pulumi/pkg/v3 v3.256.0
 	github.com/stretchr/testify v1.11.1
 	github.com/tailscale/terraform-provider-tailscale v0.29.2
 )
@@ -176,7 +177,6 @@ require (
 	github.com/pulumi/pulumi-dotnet/pulumi-language-dotnet/v3 v3.110.0 // indirect
 	github.com/pulumi/pulumi-java v1.34.0 // indirect
 	github.com/pulumi/pulumi-yaml v1.38.1 // indirect
-	github.com/pulumi/pulumi/pkg/v3 v3.256.0 // indirect
 	github.com/pulumi/pulumi/sdk/v3 v3.256.0 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/rogpeppe/go-internal v1.14.1 // indirect

@@ -14,7 +14,7 @@ The Tailscale Resource Provider lets you manage [Tailscale](https://tailscale.co
 
 This package is available in many languages in the standard packaging formats.
 
-### Node.js (Java/TypeScript)
+### Node.js (JavaScript/TypeScript)
 
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
@@ -42,18 +42,54 @@ To use from .NET, install using `dotnet add package`:
 
     $ dotnet add package Pulumi.Tailscale
 
+### Java
+
+To use from Java, add the following to the dependencies of your `pom.xml`:
+
+    <dependency>
+        <groupId>com.pulumi</groupId>
+        <artifactId>tailscale</artifactId>
+    </dependency>
+
 ## Configuration
 
-The following configuration points are available:
+The following configuration points are available. None is required: credentials and the
+tailnet can equally be supplied through the environment, and `tailnet` defaults to the
+tailnet that owns the credentials you authenticate with.
 
-- `tailscale:apiKey` - (Required) API key to authenticate with the Tailscale API. It must be provided, but it can also be sourced
-  from the `TAILSCALE_API_KEY` environment variable.
-- `tailscale:tailnet` - (Required) Tailscale tailnet to manage resources for. It must be provided, but it can also be
-  sourced from the `TAILSCALE_TAILNET` variable. A tailnet is the name of your Tailscale network. You can find it in 
-  the top left corner of the Admin Panel beside the Tailscale logo.
-- `tailscale:oauthClientId` - The OAuth application's ID when using OAuth client credentials. Can be set via the OAUTH_CLIENT_ID environment variable. Both 'oauthClientId' and 'oauthClientSecret' must be set. Conflicts with 'apiKey'.
-- `oauthClientSecret` - The OAuth application's secret when using OAuth client credentials. Can be set via the OAUTH_CLIENT_SECRET environment variable. Both 'oauthClientId' and 'oauthClientSecret' must be set. Conflicts with 'apiKey'.
-- `scopes` - The OAuth 2.0 scopes to request when for the access token generated using the supplied OAuth client credentials. See https://tailscale.com/kb/1215/oauth-clients/#scopes for available scopes. Only valid when both 'oauthClientId' and 'oauthClientSecret' are set.
+Set them with `pulumi config set`, using `--secret` for the sensitive ones:
+
+    $ pulumi config set tailscale:oauthClientId my_client_id
+    $ pulumi config set --secret tailscale:oauthClientSecret my_client_secret
+
+- `tailscale:apiKey` - (Sensitive) API key to authenticate with the Tailscale API. Can be set via the
+  `TAILSCALE_API_KEY` environment variable. If the value starts with `file:` it is treated as a path to a file on
+  disk that contains the API key. Conflicts with `tailscale:oauthClientId` and `tailscale:oauthClientSecret`.
+- `tailscale:audience` - The OIDC audience to request when discovering an identity token from the runtime
+  (GitHub Actions, AWS, or Google Cloud) for workload identity federation. Can be set via the `TAILSCALE_AUDIENCE`
+  environment variable. Requires `tailscale:oauthClientId`.
+- `tailscale:baseUrl` - The base URL of the Tailscale API. Defaults to `https://api.tailscale.com`. Can be set via
+  the `TAILSCALE_BASE_URL` environment variable.
+- `tailscale:identityToken` - (Sensitive) The JWT identity token to exchange for a Tailscale API token when using a
+  federated identity. Can be set via the `TAILSCALE_IDENTITY_TOKEN` environment variable. Conflicts with
+  `tailscale:apiKey` and `tailscale:oauthClientSecret`.
+- `tailscale:identityTokenEnvironmentVariableName` - The name of an environment variable to read the identity token
+  from, for when an external system supplies it in a variable you do not control. Conflicts with
+  `tailscale:identityToken`.
+- `tailscale:oauthClientId` - The OAuth application or federated identity's ID when using OAuth client credentials
+  or workload identity federation. Can be set via the `TAILSCALE_OAUTH_CLIENT_ID` environment variable. Either
+  `tailscale:oauthClientSecret` or `tailscale:identityToken` must be set alongside it. Conflicts with
+  `tailscale:apiKey`.
+- `tailscale:oauthClientSecret` - (Sensitive) The OAuth application's secret when using OAuth client credentials.
+  Can be set via the `TAILSCALE_OAUTH_CLIENT_SECRET` environment variable. Conflicts with `tailscale:apiKey` and
+  `tailscale:identityToken`.
+- `tailscale:scopes` - The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth
+  client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid
+  when both `tailscale:oauthClientId` and `tailscale:oauthClientSecret` are set.
+- `tailscale:tailnet` - The tailnet to manage resources for. Tailnets created before October 2025 can still use the
+  legacy ID, but the tailnet ID is the preferred identifier. Can be set via the `TAILSCALE_TAILNET` environment
+  variable. Defaults to the tailnet that owns the credentials passed to the provider.
+- `tailscale:userAgent` - User-Agent header for API requests. Defaults to a Pulumi-specific value.
 
 ## Reference
 

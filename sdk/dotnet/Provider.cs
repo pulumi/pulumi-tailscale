@@ -19,13 +19,13 @@ namespace Pulumi.Tailscale
     public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
-        /// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
+        /// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with `oauthClientId` and `oauthClientSecret`.
         /// </summary>
         [Output("apiKey")]
         public Output<string?> ApiKey { get; private set; } = null!;
 
         /// <summary>
-        /// The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires 'oauth_client_id'. Conflicts with 'api_key', 'oauth_client_secret', 'identity_token', and 'identity_token_environment_variable_name'.
+        /// The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires `oauthClientId`. Conflicts with `apiKey`, `oauthClientSecret`, `identityToken`, and `identityTokenEnvironmentVariableName`.
         /// </summary>
         [Output("audience")]
         public Output<string?> Audience { get; private set; } = null!;
@@ -37,25 +37,25 @@ namespace Pulumi.Tailscale
         public Output<string?> BaseUrl { get; private set; } = null!;
 
         /// <summary>
-        /// The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with 'api_key', 'oauth_client_secret', and 'identity_token_environment_variable_name'.
+        /// The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with `apiKey`, `oauthClientSecret`, and `identityTokenEnvironmentVariableName`.
         /// </summary>
         [Output("identityToken")]
         public Output<string?> IdentityToken { get; private set; } = null!;
 
         /// <summary>
-        /// The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Terraform Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with 'identity_token'.
+        /// The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Pulumi Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with `identityToken`.
         /// </summary>
         [Output("identityTokenEnvironmentVariableName")]
         public Output<string?> IdentityTokenEnvironmentVariableName { get; private set; } = null!;
 
         /// <summary>
-        /// The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
+        /// The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either `oauthClientSecret` or `identityToken` must be set alongside `oauthClientId`. Conflicts with `apiKey`.
         /// </summary>
         [Output("oauthClientId")]
         public Output<string?> OauthClientId { get; private set; } = null!;
 
         /// <summary>
-        /// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with 'api_key' and 'identity_token'.
+        /// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with `apiKey` and `identityToken`.
         /// </summary>
         [Output("oauthClientSecret")]
         public Output<string?> OauthClientSecret { get; private set; } = null!;
@@ -116,7 +116,7 @@ namespace Pulumi.Tailscale
         private Input<string>? _apiKey;
 
         /// <summary>
-        /// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
+        /// The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with `oauthClientId` and `oauthClientSecret`.
         /// </summary>
         public Input<string>? ApiKey
         {
@@ -129,7 +129,7 @@ namespace Pulumi.Tailscale
         }
 
         /// <summary>
-        /// The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires 'oauth_client_id'. Conflicts with 'api_key', 'oauth_client_secret', 'identity_token', and 'identity_token_environment_variable_name'.
+        /// The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires `oauthClientId`. Conflicts with `apiKey`, `oauthClientSecret`, `identityToken`, and `identityTokenEnvironmentVariableName`.
         /// </summary>
         [Input("audience")]
         public Input<string>? Audience { get; set; }
@@ -144,7 +144,7 @@ namespace Pulumi.Tailscale
         private Input<string>? _identityToken;
 
         /// <summary>
-        /// The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with 'api_key', 'oauth_client_secret', and 'identity_token_environment_variable_name'.
+        /// The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with `apiKey`, `oauthClientSecret`, and `identityTokenEnvironmentVariableName`.
         /// </summary>
         public Input<string>? IdentityToken
         {
@@ -157,13 +157,13 @@ namespace Pulumi.Tailscale
         }
 
         /// <summary>
-        /// The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Terraform Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with 'identity_token'.
+        /// The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Pulumi Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with `identityToken`.
         /// </summary>
         [Input("identityTokenEnvironmentVariableName")]
         public Input<string>? IdentityTokenEnvironmentVariableName { get; set; }
 
         /// <summary>
-        /// The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
+        /// The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either `oauthClientSecret` or `identityToken` must be set alongside `oauthClientId`. Conflicts with `apiKey`.
         /// </summary>
         [Input("oauthClientId")]
         public Input<string>? OauthClientId { get; set; }
@@ -172,7 +172,7 @@ namespace Pulumi.Tailscale
         private Input<string>? _oauthClientSecret;
 
         /// <summary>
-        /// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with 'api_key' and 'identity_token'.
+        /// The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with `apiKey` and `identityToken`.
         /// </summary>
         public Input<string>? OauthClientSecret
         {
@@ -188,7 +188,7 @@ namespace Pulumi.Tailscale
         private InputList<string>? _scopes;
 
         /// <summary>
-        /// The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret', or both are set.
+        /// The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both `oauthClientId` and `oauthClientSecret` are set.
         /// </summary>
         public InputList<string> Scopes
         {

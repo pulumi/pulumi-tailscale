@@ -20,6 +20,13 @@ The Tailscale provider is available as a package in all Pulumi languages:
 This provider is used to interact with resources supported by the [Tailscale API](https://tailscale.com/api).
 
 Use the navigation to the left to read about the available resources and functions.
+## Example Usage
+
+```bash
+$ pulumi config set tailscale:oauthClientId my_client_id
+$ pulumi config set --secret tailscale:oauthClientSecret my_client_secret
+$ pulumi config set tailscale:tailnet example.com
+```
 ## Authentication
 
 There are several ways to authenticate the Tailscale provider with the Tailscale API.
@@ -34,18 +41,10 @@ Available authentication methods are detailed below.
 and `oauthClientSecret` arguments in the provider configuration to the client ID and client secret of a configured OAuth client
 respectively:
 
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime:
-config:
-    tailscale:oauthClientId:
-        value: my_client_id
-    tailscale:oauthClientSecret:
-        value: my_client_secret
-    tailscale:tailnet:
-        value: example.com
-
+```bash
+$ pulumi config set tailscale:oauthClientId my_client_id
+$ pulumi config set --secret tailscale:oauthClientSecret my_client_secret
+$ pulumi config set tailscale:tailnet example.com
 ```
 
 See argument reference for more details.
@@ -55,36 +54,20 @@ See argument reference for more details.
 by setting the `oauthClientId` and `identityToken` in the provider configuration to the client ID of a configured
 federated identity and a JWT identity token from a compatible issuer respectively:
 
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime:
-config:
-    tailscale:identityToken:
-        value: my_identity_token
-    tailscale:oauthClientId:
-        value: my_client_id
-    tailscale:tailnet:
-        value: example.com
-
+```bash
+$ pulumi config set --secret tailscale:identityToken my_identity_token
+$ pulumi config set tailscale:oauthClientId my_client_id
+$ pulumi config set tailscale:tailnet example.com
 ```
 
 If Pulumi is running in a supported runtime (GitHub Actions, AWS via EC2 instance profile or ECS task role, or Google
 Cloud), the provider can discover the OIDC token from the runtime automatically. Configure only the `oauthClientId`
 and the `audience` expected by the federated identity:
 
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime:
-config:
-    tailscale:audience:
-        value: my_audience
-    tailscale:oauthClientId:
-        value: my_client_id
-    tailscale:tailnet:
-        value: example.com
-
+```bash
+$ pulumi config set tailscale:audience my_audience
+$ pulumi config set tailscale:oauthClientId my_client_id
+$ pulumi config set tailscale:tailnet example.com
 ```
 
 For GitHub Actions, the workflow must declare `permissions: id-token: write`. For AWS, the runtime must have valid AWS
@@ -96,28 +79,21 @@ See argument reference for more details.
 [API keys](https://tailscale.com/kb/1101/api#authentication) can be used for authentication by setting the `apiKey`
 argument in the provider configuration:
 
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime:
-config:
-    tailscale:apiKey:
-        value: my_api_key
-    tailscale:tailnet:
-        value: example.com
-
+```bash
+$ pulumi config set --secret tailscale:apiKey my_api_key
+$ pulumi config set tailscale:tailnet example.com
 ```
 
 See argument reference for more details.
 ## Configuration Reference
 
-- `apiKey` (String, Sensitive) The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with 'oauth_client_id' and 'oauth_client_secret'.
-- `audience` (String) The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires 'oauth_client_id'. Conflicts with 'api_key', 'oauth_client_secret', 'identity_token', and 'identity_token_environment_variable_name'.
+- `apiKey` (String, Sensitive) The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the API key. Conflicts with `oauthClientId` and `oauthClientSecret`.
+- `audience` (String) The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the audience. Requires `oauthClientId`. Conflicts with `apiKey`, `oauthClientSecret`, `identityToken`, and `identityTokenEnvironmentVariableName`.
 - `baseUrl` (String) The base URL of the Tailscale API. Defaults to <https://api.tailscale.com>. Can be set via the TAILSCALE_BASE_URL environment variable.
-- `identityToken` (String, Sensitive) The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with 'api_key', 'oauth_client_secret', and 'identity_token_environment_variable_name'.
-- `identityTokenEnvironmentVariableName` (String) The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Pulumi Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with 'identity_token'.
-- `oauthClientId` (String) The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either 'oauth_client_secret' or 'identity_token' must be set alongside 'oauth_client_id'. Conflicts with 'api_key'.
-- `oauthClientSecret` (String, Sensitive) The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with 'api_key' and 'identity_token'.
-- `scopes` (List of String) The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See <https://tailscale.com/kb/1623/trust-credentials#scopes> for available scopes. Only valid when both 'oauth_client_id' and 'oauth_client_secret', or both are set.
+- `identityToken` (String, Sensitive) The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the identity token. Conflicts with `apiKey`, `oauthClientSecret`, and `identityTokenEnvironmentVariableName`.
+- `identityTokenEnvironmentVariableName` (String) The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Pulumi Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with 'file:' then it is treated as a path to a file on disk that contains identity token. Conflicts with `identityToken`.
+- `oauthClientId` (String) The OAuth application or federated identity's ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client ID. Either `oauthClientSecret` or `identityToken` must be set alongside `oauthClientId`. Conflicts with `apiKey`.
+- `oauthClientSecret` (String, Sensitive) The OAuth application's secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with 'file:' then it is treated as a path to a file on disk that contains the client secret. Conflicts with `apiKey` and `identityToken`.
+- `scopes` (List of String) The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See <https://tailscale.com/kb/1623/trust-credentials#scopes> for available scopes. Only valid when both `oauthClientId` and `oauthClientSecret` are set.
 - `tailnet` (String) The tailnet ID. Tailnets created before Oct 2025 can still use the legacy ID, but the Tailnet ID is the preferred identifier. Can be set via the TAILSCALE_TAILNET environment variable. Default is the tailnet that owns API credentials passed to the provider.
 - `userAgent` (String) User-Agent header for API requests.
