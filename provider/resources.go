@@ -128,7 +128,7 @@ func editRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
 	return append(
 		defaults,
 		fixScopesSentence,
-		stripTerraformBlock,
+		overrideExampleUsage,
 		camelCaseQuotedNames,
 		configExamplesAsStackConfig,
 	)
@@ -179,22 +179,40 @@ var fixScopesSentence = tfbridge.DocsEdit{
 	},
 }
 
-// tfplugindocs renders the upstream provider example inside a `terraform` block pinning
-// the provider version. `pulumi convert` cannot translate that block; the failure is
-// swallowed (pkg/tfgen/convert_cli.go, singleExampleFromHCLToPCL) and the resulting empty
-// example takes the whole "Example Usage" section with it
-// (pkg/tfgen/installation_docs.go, removeEmptySection). Strip the block so only the
-// `provider` block reaches the converter.
+// Upstream's "Example Usage" section does not show usage: it is a `terraform` block
+// pinning the provider version plus a `provider` block, with no resources at all. On the
+// Pulumi page that is doubly wrong. The `terraform` block cannot be translated, and
+// `pulumi convert` failing is silent -- the error is swallowed
+// (pkg/tfgen/convert_cli.go, singleExampleFromHCLToPCL) and the empty result takes the
+// whole section with it (pkg/tfgen/installation_docs.go, removeEmptySection). Strip only
+// that block and what remains is provider configuration, already covered in more detail
+// by the Authentication section immediately below.
 //
-// Anchoring the closing brace at column 0 is enough to find the end of the block:
-// tfplugindocs output is gofmt-like, so nothing else in the example starts a line with
-// a closing brace.
-var terraformBlock = regexp.MustCompile(`(?m)^terraform[ \t]*\{\n(?s:.*?)^\}\n+`)
+// Substitute a minimal resource so the section shows what its heading promises. Omitting
+// the `provider` block is deliberate: it keeps credentials out of the example -- the
+// converter renders them as plaintext project config -- and leaves configuration to
+// Authentication. Having a resource to translate also means the example renders as a
+// language chooser rather than a lone YAML block, and it is the only code on this page
+// that shows the provider actually being used.
+//
+// tailscale_dns_nameservers is the least incidental resource available: one list of
+// strings, no required references to anything else. It is also exercised by
+// test-programs/index_dnsnameservers.
+var exampleUsageBlock = regexp.MustCompile("(?s)(## Example Usage\n+)```terraform\n.*?```\n")
 
-var stripTerraformBlock = tfbridge.DocsEdit{
+const exampleUsageReplacement = "```terraform\n" +
+	`resource "tailscale_dns_nameservers" "sample" {` + "\n" +
+	"  nameservers = [\n" +
+	`    "1.1.1.1",` + "\n" +
+	`    "8.8.8.8",` + "\n" +
+	"  ]\n" +
+	"}\n" +
+	"```\n"
+
+var overrideExampleUsage = tfbridge.DocsEdit{
 	Path: "index.md",
 	Edit: func(_ string, content []byte) ([]byte, error) {
-		return terraformBlock.ReplaceAll(content, nil), nil
+		return exampleUsageBlock.ReplaceAll(content, []byte("${1}"+exampleUsageReplacement)), nil
 	},
 }
 

@@ -22,11 +22,142 @@ This provider is used to interact with resources supported by the [Tailscale API
 Use the navigation to the left to read about the available resources and functions.
 ## Example Usage
 
-```bash
-$ pulumi config set tailscale:oauthClientId my_client_id
-$ pulumi config set --secret tailscale:oauthClientSecret my_client_secret
-$ pulumi config set tailscale:tailnet example.com
+{{< chooser language "typescript,python,go,csharp,java,yaml,hcl" >}}
+{{% choosable language typescript %}}
+```typescript
+import * as pulumi from "@pulumi/pulumi";
+import * as tailscale from "@pulumi/tailscale";
+
+const sample = new tailscale.DnsNameservers("sample", {nameservers: [
+    "1.1.1.1",
+    "8.8.8.8",
+]});
 ```
+
+{{% /choosable %}}
+{{% choosable language python %}}
+```python
+import pulumi
+import pulumi_tailscale as tailscale
+
+sample = tailscale.DnsNameservers("sample", nameservers=[
+    "1.1.1.1",
+    "8.8.8.8",
+])
+```
+
+{{% /choosable %}}
+{{% choosable language csharp %}}
+```csharp
+using System.Collections.Generic;
+using System.Linq;
+using Pulumi;
+using Tailscale = Pulumi.Tailscale;
+
+return await Deployment.RunAsync(() =>
+{
+    var sample = new Tailscale.DnsNameservers("sample", new()
+    {
+        Nameservers = new[]
+        {
+            "1.1.1.1",
+            "8.8.8.8",
+        },
+    });
+
+});
+
+```
+
+{{% /choosable %}}
+{{% choosable language go %}}
+```go
+package main
+
+import (
+	"github.com/pulumi/pulumi-tailscale/sdk/go/tailscale"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+)
+
+func main() {
+	pulumi.Run(func(ctx *pulumi.Context) error {
+		_, err := tailscale.NewDnsNameservers(ctx, "sample", &tailscale.DnsNameserversArgs{
+			Nameservers: pulumi.StringArray{
+				pulumi.String("1.1.1.1"),
+				pulumi.String("8.8.8.8"),
+			},
+		})
+		if err != nil {
+			return err
+		}
+		return nil
+	})
+}
+```
+
+{{% /choosable %}}
+{{% choosable language yaml %}}
+```yaml
+resources:
+  sample:
+    type: tailscale:DnsNameservers
+    properties:
+      nameservers:
+        - 1.1.1.1
+        - 8.8.8.8
+```
+
+{{% /choosable %}}
+{{% choosable language java %}}
+```java
+package generated_program;
+
+import com.pulumi.Context;
+import com.pulumi.Pulumi;
+import com.pulumi.core.Output;
+import com.pulumi.tailscale.DnsNameservers;
+import com.pulumi.tailscale.DnsNameserversArgs;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+public class App {
+    public static void main(String[] args) {
+        Pulumi.run(App::stack);
+    }
+
+    public static void stack(Context ctx) {
+        var sample = new DnsNameservers("sample", DnsNameserversArgs.builder()
+            .nameservers(
+                "1.1.1.1",
+                "8.8.8.8")
+            .build());
+
+    }
+}
+```
+
+{{% /choosable %}}
+{{% choosable language hcl %}}
+```hcl
+pulumi {
+  required_providers {
+    tailscale = {
+      source = "pulumi/tailscale"
+    }
+  }
+}
+
+resource "tailscale_dnsnameservers" "sample" {
+  nameservers = ["1.1.1.1", "8.8.8.8"]
+}
+```
+
+{{% /choosable %}}
+{{< /chooser >}}
 ## Authentication
 
 There are several ways to authenticate the Tailscale provider with the Tailscale API.

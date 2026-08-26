@@ -6,48 +6,53 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// The Example Usage block as tfplugindocs renders it in the upstream provider's
-// docs/index.md at v0.29.2. Only the `provider` block survives conversion; the
-// `terraform` block has to go, or `pulumi convert` fails and the bridge drops the whole
-// section.
-const upstreamExampleUsage = "```terraform\n" +
+// The Example Usage section as tfplugindocs renders it in the upstream provider's
+// docs/index.md at v0.29.2: a version pin and a provider block, and no resource.
+const upstreamExampleUsage = "## Example Usage\n" +
+	"\n" +
+	"```terraform\n" +
 	"terraform {\n" +
 	"  required_providers {\n" +
 	"    tailscale = {\n" +
-	"      source  = \"tailscale/tailscale\"\n" +
-	"      version = \"<version>\"\n" +
+	`      source  = "tailscale/tailscale"` + "\n" +
+	`      version = "<version>"` + "\n" +
 	"    }\n" +
 	"  }\n" +
 	"}\n" +
 	"\n" +
-	"provider \"tailscale\" {\n" +
-	"  oauth_client_id      = \"my_client_id\"\n" +
-	"  oauth_client_secret  = \"my_client_secret\"\n" +
-	"  tailnet              = \"example.com\"\n" +
+	`provider "tailscale" {` + "\n" +
+	`  oauth_client_id      = "my_client_id"` + "\n" +
+	`  oauth_client_secret  = "my_client_secret"` + "\n" +
+	`  tailnet              = "example.com"` + "\n" +
 	"}\n" +
-	"```\n"
+	"```\n" +
+	"\n" +
+	"## Authentication\n"
 
-func TestStripTerraformBlock(t *testing.T) {
+func TestOverrideExampleUsage(t *testing.T) {
 	t.Parallel()
 
-	actual, err := stripTerraformBlock.Edit("index.md", []byte(upstreamExampleUsage))
+	actual, err := overrideExampleUsage.Edit("index.md", []byte(upstreamExampleUsage))
 	require.NoError(t, err)
 
-	expected := "```terraform\n" +
-		"provider \"tailscale\" {\n" +
-		"  oauth_client_id      = \"my_client_id\"\n" +
-		"  oauth_client_secret  = \"my_client_secret\"\n" +
-		"  tailnet              = \"example.com\"\n" +
-		"}\n" +
-		"```\n"
+	expected := "## Example Usage\n\n" + exampleUsageReplacement + "\n## Authentication\n"
 	require.Equal(t, expected, string(actual))
+
+	// The credentials upstream puts in the example must not survive into the page.
+	require.NotContains(t, string(actual), "my_client_secret")
+	require.NotContains(t, string(actual), "terraform {")
 }
 
-func TestStripTerraformBlockLeavesOtherContentAlone(t *testing.T) {
+func TestOverrideExampleUsageLeavesOtherSectionsAlone(t *testing.T) {
 	t.Parallel()
 
-	input := "provider \"tailscale\" {\n  api_key = \"my_api_key\"\n}\n"
-	actual, err := stripTerraformBlock.Edit("index.md", []byte(input))
+	// The Authentication examples are bare provider blocks that convert fine; only the
+	// block under "## Example Usage" is replaced.
+	input := "## Authentication\n\n```terraform\n" +
+		`provider "tailscale" {` + "\n" +
+		`  api_key = "my_api_key"` + "\n" +
+		"}\n```\n"
+	actual, err := overrideExampleUsage.Edit("index.md", []byte(input))
 	require.NoError(t, err)
 	require.Equal(t, input, string(actual))
 }
