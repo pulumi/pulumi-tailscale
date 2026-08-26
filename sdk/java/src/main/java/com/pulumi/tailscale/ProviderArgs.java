@@ -18,14 +18,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     public static final ProviderArgs Empty = new ProviderArgs();
 
     /**
-     * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the API key. Conflicts with &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;.
+     * The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the API key. Conflicts with `oauthClientId` and `oauthClientSecret`.
      * 
      */
     @Import(name="apiKey")
     private @Nullable Output<String> apiKey;
 
     /**
-     * @return The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the API key. Conflicts with &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;.
+     * @return The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the API key. Conflicts with `oauthClientId` and `oauthClientSecret`.
      * 
      */
     public Optional<Output<String>> apiKey() {
@@ -33,14 +33,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the audience. Requires &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;, &#39;oauth_client_secret&#39;, &#39;identity_token&#39;, and &#39;identity_token_environment_variable_name&#39;.
+     * The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the audience. Requires `oauthClientId`. Conflicts with `apiKey`, `oauthClientSecret`, `identityToken`, and `identityTokenEnvironmentVariableName`.
      * 
      */
     @Import(name="audience")
     private @Nullable Output<String> audience;
 
     /**
-     * @return The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the audience. Requires &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;, &#39;oauth_client_secret&#39;, &#39;identity_token&#39;, and &#39;identity_token_environment_variable_name&#39;.
+     * @return The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the audience. Requires `oauthClientId`. Conflicts with `apiKey`, `oauthClientSecret`, `identityToken`, and `identityTokenEnvironmentVariableName`.
      * 
      */
     public Optional<Output<String>> audience() {
@@ -63,14 +63,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the identity token. Conflicts with &#39;api_key&#39;, &#39;oauth_client_secret&#39;, and &#39;identity_token_environment_variable_name&#39;.
+     * The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the identity token. Conflicts with `apiKey`, `oauthClientSecret`, and `identityTokenEnvironmentVariableName`.
      * 
      */
     @Import(name="identityToken")
     private @Nullable Output<String> identityToken;
 
     /**
-     * @return The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the identity token. Conflicts with &#39;api_key&#39;, &#39;oauth_client_secret&#39;, and &#39;identity_token_environment_variable_name&#39;.
+     * @return The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the identity token. Conflicts with `apiKey`, `oauthClientSecret`, and `identityTokenEnvironmentVariableName`.
      * 
      */
     public Optional<Output<String>> identityToken() {
@@ -78,14 +78,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Terraform Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains identity token. Conflicts with &#39;identity_token&#39;.
+     * The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Pulumi Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains identity token. Conflicts with `identityToken`.
      * 
      */
     @Import(name="identityTokenEnvironmentVariableName")
     private @Nullable Output<String> identityTokenEnvironmentVariableName;
 
     /**
-     * @return The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Terraform Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains identity token. Conflicts with &#39;identity_token&#39;.
+     * @return The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Pulumi Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains identity token. Conflicts with `identityToken`.
      * 
      */
     public Optional<Output<String>> identityTokenEnvironmentVariableName() {
@@ -93,14 +93,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The OAuth application or federated identity&#39;s ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the client ID. Either &#39;oauth_client_secret&#39; or &#39;identity_token&#39; must be set alongside &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;.
+     * The OAuth application or federated identity&#39;s ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the client ID. Either `oauthClientSecret` or `identityToken` must be set alongside `oauthClientId`. Conflicts with `apiKey`.
      * 
      */
     @Import(name="oauthClientId")
     private @Nullable Output<String> oauthClientId;
 
     /**
-     * @return The OAuth application or federated identity&#39;s ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the client ID. Either &#39;oauth_client_secret&#39; or &#39;identity_token&#39; must be set alongside &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;.
+     * @return The OAuth application or federated identity&#39;s ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the client ID. Either `oauthClientSecret` or `identityToken` must be set alongside `oauthClientId`. Conflicts with `apiKey`.
      * 
      */
     public Optional<Output<String>> oauthClientId() {
@@ -108,14 +108,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the client secret. Conflicts with &#39;api_key&#39; and &#39;identity_token&#39;.
+     * The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the client secret. Conflicts with `apiKey` and `identityToken`.
      * 
      */
     @Import(name="oauthClientSecret")
     private @Nullable Output<String> oauthClientSecret;
 
     /**
-     * @return The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the client secret. Conflicts with &#39;api_key&#39; and &#39;identity_token&#39;.
+     * @return The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the client secret. Conflicts with `apiKey` and `identityToken`.
      * 
      */
     public Optional<Output<String>> oauthClientSecret() {
@@ -123,14 +123,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;, or both are set.
+     * The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both `oauthClientId` and `oauthClientSecret` are set.
      * 
      */
     @Import(name="scopes", json=true)
     private @Nullable Output<List<String>> scopes;
 
     /**
-     * @return The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;, or both are set.
+     * @return The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both `oauthClientId` and `oauthClientSecret` are set.
      * 
      */
     public Optional<Output<List<String>>> scopes() {
@@ -201,7 +201,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param apiKey The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the API key. Conflicts with &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;.
+         * @param apiKey The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the API key. Conflicts with `oauthClientId` and `oauthClientSecret`.
          * 
          * @return builder
          * 
@@ -212,7 +212,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param apiKey The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the API key. Conflicts with &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;.
+         * @param apiKey The API key to use for authenticating requests to the API. Can be set via the TAILSCALE_API_KEY environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the API key. Conflicts with `oauthClientId` and `oauthClientSecret`.
          * 
          * @return builder
          * 
@@ -222,7 +222,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param audience The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the audience. Requires &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;, &#39;oauth_client_secret&#39;, &#39;identity_token&#39;, and &#39;identity_token_environment_variable_name&#39;.
+         * @param audience The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the audience. Requires `oauthClientId`. Conflicts with `apiKey`, `oauthClientSecret`, `identityToken`, and `identityTokenEnvironmentVariableName`.
          * 
          * @return builder
          * 
@@ -233,7 +233,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param audience The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the audience. Requires &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;, &#39;oauth_client_secret&#39;, &#39;identity_token&#39;, and &#39;identity_token_environment_variable_name&#39;.
+         * @param audience The OIDC audience to request when discovering an identity token from the runtime (GitHub Actions, AWS, or GCP) for workload identity federation. Can be set via the TAILSCALE_AUDIENCE environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the audience. Requires `oauthClientId`. Conflicts with `apiKey`, `oauthClientSecret`, `identityToken`, and `identityTokenEnvironmentVariableName`.
          * 
          * @return builder
          * 
@@ -264,7 +264,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param identityToken The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the identity token. Conflicts with &#39;api_key&#39;, &#39;oauth_client_secret&#39;, and &#39;identity_token_environment_variable_name&#39;.
+         * @param identityToken The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the identity token. Conflicts with `apiKey`, `oauthClientSecret`, and `identityTokenEnvironmentVariableName`.
          * 
          * @return builder
          * 
@@ -275,7 +275,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param identityToken The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the identity token. Conflicts with &#39;api_key&#39;, &#39;oauth_client_secret&#39;, and &#39;identity_token_environment_variable_name&#39;.
+         * @param identityToken The jwt identity token to exchange for a Tailscale API token when using a federated identity. Can be set via the TAILSCALE_IDENTITY_TOKEN environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the identity token. Conflicts with `apiKey`, `oauthClientSecret`, and `identityTokenEnvironmentVariableName`.
          * 
          * @return builder
          * 
@@ -285,7 +285,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param identityTokenEnvironmentVariableName The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Terraform Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains identity token. Conflicts with &#39;identity_token&#39;.
+         * @param identityTokenEnvironmentVariableName The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Pulumi Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains identity token. Conflicts with `identityToken`.
          * 
          * @return builder
          * 
@@ -296,7 +296,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param identityTokenEnvironmentVariableName The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Terraform Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains identity token. Conflicts with &#39;identity_token&#39;.
+         * @param identityTokenEnvironmentVariableName The name of an environment variable to read the identity token from. This is useful when the identity token is provided by an external system (such as Pulumi Cloud workload identity) in an environment variable you do not control. If the resolved value of the environment variable starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains identity token. Conflicts with `identityToken`.
          * 
          * @return builder
          * 
@@ -306,7 +306,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oauthClientId The OAuth application or federated identity&#39;s ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the client ID. Either &#39;oauth_client_secret&#39; or &#39;identity_token&#39; must be set alongside &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;.
+         * @param oauthClientId The OAuth application or federated identity&#39;s ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the client ID. Either `oauthClientSecret` or `identityToken` must be set alongside `oauthClientId`. Conflicts with `apiKey`.
          * 
          * @return builder
          * 
@@ -317,7 +317,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oauthClientId The OAuth application or federated identity&#39;s ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the client ID. Either &#39;oauth_client_secret&#39; or &#39;identity_token&#39; must be set alongside &#39;oauth_client_id&#39;. Conflicts with &#39;api_key&#39;.
+         * @param oauthClientId The OAuth application or federated identity&#39;s ID when using OAuth client credentials or workload identity federation. Can be set via the TAILSCALE_OAUTH_CLIENT_ID environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the client ID. Either `oauthClientSecret` or `identityToken` must be set alongside `oauthClientId`. Conflicts with `apiKey`.
          * 
          * @return builder
          * 
@@ -327,7 +327,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oauthClientSecret The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the client secret. Conflicts with &#39;api_key&#39; and &#39;identity_token&#39;.
+         * @param oauthClientSecret The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the client secret. Conflicts with `apiKey` and `identityToken`.
          * 
          * @return builder
          * 
@@ -338,7 +338,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oauthClientSecret The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the client secret. Conflicts with &#39;api_key&#39; and &#39;identity_token&#39;.
+         * @param oauthClientSecret The OAuth application&#39;s secret when using OAuth client credentials. Can be set via the TAILSCALE_OAUTH_CLIENT_SECRET environment variable. If the value starts with &#39;file:&#39; then it is treated as a path to a file on disk that contains the client secret. Conflicts with `apiKey` and `identityToken`.
          * 
          * @return builder
          * 
@@ -348,7 +348,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;, or both are set.
+         * @param scopes The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both `oauthClientId` and `oauthClientSecret` are set.
          * 
          * @return builder
          * 
@@ -359,7 +359,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;, or both are set.
+         * @param scopes The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both `oauthClientId` and `oauthClientSecret` are set.
          * 
          * @return builder
          * 
@@ -369,7 +369,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param scopes The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both &#39;oauth_client_id&#39; and &#39;oauth_client_secret&#39;, or both are set.
+         * @param scopes The OAuth 2.0 scopes to request when generating the access token using the supplied OAuth client credentials. See https://tailscale.com/kb/1623/trust-credentials#scopes for available scopes. Only valid when both `oauthClientId` and `oauthClientSecret` are set.
          * 
          * @return builder
          * 
