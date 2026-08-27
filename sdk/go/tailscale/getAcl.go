@@ -59,10 +59,8 @@ type LookupAclResult struct {
 }
 
 func LookupAclOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) LookupAclResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (LookupAclResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("tailscale:index/getAcl:getAcl", nil, LookupAclResultOutput{}, options).(LookupAclResultOutput), nil
-	}).(LookupAclResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("tailscale:index/getAcl:getAcl", nil, LookupAclResultOutput{}, options).(LookupAclResultOutput)
 }
 
 // A collection of values returned by getAcl.
