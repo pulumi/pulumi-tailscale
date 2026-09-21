@@ -87,8 +87,8 @@ class AwaitableGetDevicesResult(GetDevicesResult):
             name_prefix=self.name_prefix)
 
 
-def get_devices(devices: Optional[Sequence[Union['GetDevicesDeviceArgs', 'GetDevicesDeviceArgsDict']]] = None,
-                filters: Optional[Sequence[Union['GetDevicesFilterArgs', 'GetDevicesFilterArgsDict']]] = None,
+def get_devices(devices: Optional[Sequence[Union['GetDevicesDeviceArgs', 'GetDevicesDeviceArgsDict', 'outputs.GetDevicesDeviceResult']]] = None,
+                filters: Optional[Sequence[Union['GetDevicesFilterArgs', 'GetDevicesFilterArgsDict', 'outputs.GetDevicesFilterResult']]] = None,
                 name_prefix: Optional[_builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDevicesResult:
     """
@@ -117,8 +117,8 @@ def get_devices(devices: Optional[Sequence[Union['GetDevicesDeviceArgs', 'GetDev
     ```
 
 
-    :param Sequence[Union['GetDevicesDeviceArgs', 'GetDevicesDeviceArgsDict']] devices: The list of devices in the tailnet
-    :param Sequence[Union['GetDevicesFilterArgs', 'GetDevicesFilterArgsDict']] filters: Filters the device list to elements devices whose fields match the provided values.
+    :param Sequence[Union['GetDevicesDeviceArgs', 'GetDevicesDeviceArgsDict', 'outputs.GetDevicesDeviceResult']] devices: The list of devices in the tailnet
+    :param Sequence[Union['GetDevicesFilterArgs', 'GetDevicesFilterArgsDict', 'outputs.GetDevicesFilterResult']] filters: Filters the device list to elements devices whose fields match the provided values.
     :param _builtins.str name_prefix: Filters the device list to elements whose name has the provided prefix
     """
     __args__ = dict()
@@ -133,8 +133,8 @@ def get_devices(devices: Optional[Sequence[Union['GetDevicesDeviceArgs', 'GetDev
         filters=pulumi.get(__ret__, 'filters'),
         id=pulumi.get(__ret__, 'id'),
         name_prefix=pulumi.get(__ret__, 'name_prefix'))
-def get_devices_output(devices: pulumi.Input[Optional[Optional[Sequence[Union['GetDevicesDeviceArgs', 'GetDevicesDeviceArgsDict']]]]] = None,
-                       filters: pulumi.Input[Optional[Optional[Sequence[Union['GetDevicesFilterArgs', 'GetDevicesFilterArgsDict']]]]] = None,
+def get_devices_output(devices: pulumi.Input[Optional[Optional[Sequence[Union['GetDevicesDeviceArgs', 'GetDevicesDeviceArgsDict', 'outputs.GetDevicesDeviceResult']]]]] = None,
+                       filters: pulumi.Input[Optional[Optional[Sequence[Union['GetDevicesFilterArgs', 'GetDevicesFilterArgsDict', 'outputs.GetDevicesFilterResult']]]]] = None,
                        name_prefix: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDevicesResult]:
     """
@@ -163,8 +163,8 @@ def get_devices_output(devices: pulumi.Input[Optional[Optional[Sequence[Union['G
     ```
 
 
-    :param Sequence[Union['GetDevicesDeviceArgs', 'GetDevicesDeviceArgsDict']] devices: The list of devices in the tailnet
-    :param Sequence[Union['GetDevicesFilterArgs', 'GetDevicesFilterArgsDict']] filters: Filters the device list to elements devices whose fields match the provided values.
+    :param Sequence[Union['GetDevicesDeviceArgs', 'GetDevicesDeviceArgsDict', 'outputs.GetDevicesDeviceResult']] devices: The list of devices in the tailnet
+    :param Sequence[Union['GetDevicesFilterArgs', 'GetDevicesFilterArgsDict', 'outputs.GetDevicesFilterResult']] filters: Filters the device list to elements devices whose fields match the provided values.
     :param _builtins.str name_prefix: Filters the device list to elements whose name has the provided prefix
     """
     __args__ = dict()
