@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as tailscale from "@pulumi/tailscale";
  *
  * const prod = new tailscale.AwsExternalId("prod", {});
- * const tailscaleAssumeRole = aws.IamPolicyDocument({
+ * const tailscaleAssumeRole = aws.iamPolicyDocument({
  *     statement: [{
  *         actions: ["sts:AssumeRole"],
  *         principals: [{
@@ -42,7 +42,7 @@ import * as utilities from "./utilities";
  *     s3RoleArn: logsWriterIamRole.arn,
  *     s3ExternalId: prod.externalId,
  * });
- * const logsWriter = aws.IamPolicyDocument({
+ * const logsWriter = aws.iamPolicyDocument({
  *     statement: [{
  *         effect: "Allow",
  *         actions: ["s3:*"],

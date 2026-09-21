@@ -138,9 +138,9 @@ class Contacts(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 accounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]]]] = None,
-                 securities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]]]] = None,
-                 supports: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]]]] = None,
+                 accounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict', 'outputs.ContactsAccount']]]]] = None,
+                 securities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict', 'outputs.ContactsSecurity']]]]] = None,
+                 supports: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict', 'outputs.ContactsSupport']]]]] = None,
                  __props__=None):
         """
         The contacts resource allows you to configure contact details for your Tailscale network. See https://tailscale.com/kb/1224/contact-preferences for more information.
@@ -178,9 +178,9 @@ class Contacts(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]]] accounts: Configuration for communications about important changes to your tailnet
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]]] securities: Configuration for communications about security issues affecting your tailnet
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]]] supports: Configuration for communications about misconfigurations in your tailnet
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict', 'outputs.ContactsAccount']]]] accounts: Configuration for communications about important changes to your tailnet
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict', 'outputs.ContactsSecurity']]]] securities: Configuration for communications about security issues affecting your tailnet
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict', 'outputs.ContactsSupport']]]] supports: Configuration for communications about misconfigurations in your tailnet
         """
         ...
     @overload
@@ -237,9 +237,9 @@ class Contacts(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 accounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]]]] = None,
-                 securities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]]]] = None,
-                 supports: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]]]] = None,
+                 accounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict', 'outputs.ContactsAccount']]]]] = None,
+                 securities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict', 'outputs.ContactsSecurity']]]]] = None,
+                 supports: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict', 'outputs.ContactsSupport']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -262,9 +262,9 @@ class Contacts(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            accounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]]]] = None,
-            securities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]]]] = None,
-            supports: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]]]] = None) -> 'Contacts':
+            accounts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict', 'outputs.ContactsAccount']]]]] = None,
+            securities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict', 'outputs.ContactsSecurity']]]]] = None,
+            supports: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict', 'outputs.ContactsSupport']]]]] = None) -> 'Contacts':
         """
         Get an existing Contacts resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -272,9 +272,9 @@ class Contacts(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict']]]] accounts: Configuration for communications about important changes to your tailnet
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict']]]] securities: Configuration for communications about security issues affecting your tailnet
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict']]]] supports: Configuration for communications about misconfigurations in your tailnet
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactsAccountArgs', 'ContactsAccountArgsDict', 'outputs.ContactsAccount']]]] accounts: Configuration for communications about important changes to your tailnet
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactsSecurityArgs', 'ContactsSecurityArgsDict', 'outputs.ContactsSecurity']]]] securities: Configuration for communications about security issues affecting your tailnet
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ContactsSupportArgs', 'ContactsSupportArgsDict', 'outputs.ContactsSupport']]]] supports: Configuration for communications about misconfigurations in your tailnet
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

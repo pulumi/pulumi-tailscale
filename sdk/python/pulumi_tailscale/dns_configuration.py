@@ -203,10 +203,10 @@ class DnsConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  magic_dns: pulumi.Input[Optional[_builtins.bool]] = None,
-                 nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DnsConfigurationNameserverArgs', 'DnsConfigurationNameserverArgsDict']]]]] = None,
+                 nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DnsConfigurationNameserverArgs', 'DnsConfigurationNameserverArgsDict', 'outputs.DnsConfigurationNameserver']]]]] = None,
                  override_local_dns: pulumi.Input[Optional[_builtins.bool]] = None,
                  search_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 split_dns: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DnsConfigurationSplitDnArgs', 'DnsConfigurationSplitDnArgsDict']]]]] = None,
+                 split_dns: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DnsConfigurationSplitDnArgs', 'DnsConfigurationSplitDnArgsDict', 'outputs.DnsConfigurationSplitDn']]]]] = None,
                  __props__=None):
         """
         The dns_configuration resource allows you to manage the complete DNS configuration for your Tailscale network. See https://tailscale.com/kb/1054/dns for more information.
@@ -270,10 +270,10 @@ class DnsConfiguration(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] magic_dns: Whether or not to enable MagicDNS. Defaults to true.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DnsConfigurationNameserverArgs', 'DnsConfigurationNameserverArgsDict']]]] nameservers: Set the nameservers used by devices on your network to resolve DNS queries. `override_local_dns` must also be true to prefer these nameservers over local DNS configuration.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DnsConfigurationNameserverArgs', 'DnsConfigurationNameserverArgsDict', 'outputs.DnsConfigurationNameserver']]]] nameservers: Set the nameservers used by devices on your network to resolve DNS queries. `override_local_dns` must also be true to prefer these nameservers over local DNS configuration.
         :param pulumi.Input[_builtins.bool] override_local_dns: When enabled, use the configured DNS servers in `nameservers` to resolve names outside the tailnet. When disabled, devices will prefer their local DNS configuration. Defaults to false.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] search_paths: Additional search domains. When MagicDNS is on, the tailnet domain is automatically included as the first search domain.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DnsConfigurationSplitDnArgs', 'DnsConfigurationSplitDnArgsDict']]]] split_dns: Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `override_local_dns`.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DnsConfigurationSplitDnArgs', 'DnsConfigurationSplitDnArgsDict', 'outputs.DnsConfigurationSplitDn']]]] split_dns: Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `override_local_dns`.
         """
         ...
     @overload
@@ -356,10 +356,10 @@ class DnsConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  magic_dns: pulumi.Input[Optional[_builtins.bool]] = None,
-                 nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DnsConfigurationNameserverArgs', 'DnsConfigurationNameserverArgsDict']]]]] = None,
+                 nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DnsConfigurationNameserverArgs', 'DnsConfigurationNameserverArgsDict', 'outputs.DnsConfigurationNameserver']]]]] = None,
                  override_local_dns: pulumi.Input[Optional[_builtins.bool]] = None,
                  search_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 split_dns: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DnsConfigurationSplitDnArgs', 'DnsConfigurationSplitDnArgsDict']]]]] = None,
+                 split_dns: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DnsConfigurationSplitDnArgs', 'DnsConfigurationSplitDnArgsDict', 'outputs.DnsConfigurationSplitDn']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -385,10 +385,10 @@ class DnsConfiguration(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             magic_dns: pulumi.Input[Optional[_builtins.bool]] = None,
-            nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DnsConfigurationNameserverArgs', 'DnsConfigurationNameserverArgsDict']]]]] = None,
+            nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DnsConfigurationNameserverArgs', 'DnsConfigurationNameserverArgsDict', 'outputs.DnsConfigurationNameserver']]]]] = None,
             override_local_dns: pulumi.Input[Optional[_builtins.bool]] = None,
             search_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            split_dns: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DnsConfigurationSplitDnArgs', 'DnsConfigurationSplitDnArgsDict']]]]] = None) -> 'DnsConfiguration':
+            split_dns: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DnsConfigurationSplitDnArgs', 'DnsConfigurationSplitDnArgsDict', 'outputs.DnsConfigurationSplitDn']]]]] = None) -> 'DnsConfiguration':
         """
         Get an existing DnsConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -397,10 +397,10 @@ class DnsConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] magic_dns: Whether or not to enable MagicDNS. Defaults to true.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DnsConfigurationNameserverArgs', 'DnsConfigurationNameserverArgsDict']]]] nameservers: Set the nameservers used by devices on your network to resolve DNS queries. `override_local_dns` must also be true to prefer these nameservers over local DNS configuration.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DnsConfigurationNameserverArgs', 'DnsConfigurationNameserverArgsDict', 'outputs.DnsConfigurationNameserver']]]] nameservers: Set the nameservers used by devices on your network to resolve DNS queries. `override_local_dns` must also be true to prefer these nameservers over local DNS configuration.
         :param pulumi.Input[_builtins.bool] override_local_dns: When enabled, use the configured DNS servers in `nameservers` to resolve names outside the tailnet. When disabled, devices will prefer their local DNS configuration. Defaults to false.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] search_paths: Additional search domains. When MagicDNS is on, the tailnet domain is automatically included as the first search domain.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DnsConfigurationSplitDnArgs', 'DnsConfigurationSplitDnArgsDict']]]] split_dns: Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `override_local_dns`.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DnsConfigurationSplitDnArgs', 'DnsConfigurationSplitDnArgsDict', 'outputs.DnsConfigurationSplitDn']]]] split_dns: Set the nameservers used by devices on your network to resolve DNS queries on specific domains (requires Tailscale v1.8 or later). Configuration does not depend on `override_local_dns`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
