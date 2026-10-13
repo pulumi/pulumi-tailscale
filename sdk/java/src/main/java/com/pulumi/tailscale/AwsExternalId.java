@@ -63,16 +63,16 @@ import javax.annotation.Nullable;
  * 
  *         var logsWriterIamRole = new IamRole("logsWriterIamRole", IamRoleArgs.builder()
  *             .name("logs-writer")
- *             .assumeRolePolicy(tailscaleAssumeRole.json())
+ *             .assumeRolePolicy(tailscaleAssumeRole.get("json"))
  *             .build());
  * 
  *         var configurationLogs = new LogstreamConfiguration("configurationLogs", LogstreamConfigurationArgs.builder()
  *             .logType("configuration")
  *             .destinationType("s3")
- *             .s3Bucket(tailscaleLogs.id())
+ *             .s3Bucket(tailscaleLogs.get("id"))
  *             .s3Region("us-west-2")
  *             .s3AuthenticationType("rolearn")
- *             .s3RoleArn(logsWriterIamRole.arn())
+ *             .s3RoleArn(logsWriterIamRole.get("arn"))
  *             .s3ExternalId(prod.externalId())
  *             .build());
  * 
@@ -85,8 +85,8 @@ import javax.annotation.Nullable;
  *         ))));
  * 
  *         var logsWriterIamRolePolicy = new IamRolePolicy("logsWriterIamRolePolicy", IamRolePolicyArgs.builder()
- *             .role(logsWriterIamRole.id())
- *             .policy(logsWriter.json())
+ *             .role(logsWriterIamRole.get("id"))
+ *             .policy(logsWriter.get("json"))
  *             .build());
  * 
  *     }

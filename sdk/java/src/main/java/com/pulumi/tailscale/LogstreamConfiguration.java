@@ -56,11 +56,11 @@ import javax.annotation.Nullable;
  *         var sampleLogstreamConfigurationS3 = new LogstreamConfiguration("sampleLogstreamConfigurationS3", LogstreamConfigurationArgs.builder()
  *             .logType("configuration")
  *             .destinationType("s3")
- *             .s3Bucket(tailscaleLogs.id())
+ *             .s3Bucket(tailscaleLogs.get("id"))
  *             .s3Region("us-west-2")
  *             .s3AuthenticationType("rolearn")
- *             .s3RoleArn(tailscaleLogsWriter.arn())
- *             .s3ExternalId(prod.externalId())
+ *             .s3RoleArn(tailscaleLogsWriter.get("arn"))
+ *             .s3ExternalId(prod.get("externalId"))
  *             .build());
  * 
  *         // Example configuration for an S3-compatible logstreaming endpoint
