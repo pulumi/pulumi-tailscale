@@ -413,6 +413,22 @@ class DnsConfiguration(pulumi.CustomResource):
         __props__.__dict__["split_dns"] = split_dns
         return DnsConfiguration(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            magic_dns: pulumi.Input[Optional[_builtins.bool]] = None,
+            nameservers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DnsConfigurationNameserverArgs', 'DnsConfigurationNameserverArgsDict', 'outputs.DnsConfigurationNameserver']]]]] = None,
+            override_local_dns: pulumi.Input[Optional[_builtins.bool]] = None,
+            search_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            split_dns: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DnsConfigurationSplitDnArgs', 'DnsConfigurationSplitDnArgsDict', 'outputs.DnsConfigurationSplitDn']]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["magicDns"] = magic_dns
+        __props__["nameservers"] = nameservers
+        __props__["overrideLocalDns"] = override_local_dns
+        __props__["searchPaths"] = search_paths
+        __props__["splitDns"] = split_dns
+        return pulumi.runtime.exists_resource(None, 'tailscale:index/dnsConfiguration:DnsConfiguration', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="magicDns")
     def magic_dns(self) -> pulumi.Output[_builtins.bool]:

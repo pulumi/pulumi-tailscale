@@ -104,6 +104,12 @@ func (DnsSearchPathsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*dnsSearchPathsState)(nil)).Elem()
 }
 
+// DnsSearchPathsExists checks whether an existing DnsSearchPaths resource with the given ID exists.
+func DnsSearchPathsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DnsSearchPathsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale:index/dnsSearchPaths:DnsSearchPaths", id, state, "", opts...)
+}
+
 type dnsSearchPathsArgs struct {
 	// Devices on your network will use these domain suffixes to resolve DNS names.
 	SearchPaths []string `pulumi:"searchPaths"`

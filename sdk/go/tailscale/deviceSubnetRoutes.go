@@ -142,6 +142,12 @@ func (DeviceSubnetRoutesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*deviceSubnetRoutesState)(nil)).Elem()
 }
 
+// DeviceSubnetRoutesExists checks whether an existing DeviceSubnetRoutes resource with the given ID exists.
+func DeviceSubnetRoutesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DeviceSubnetRoutesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale:index/deviceSubnetRoutes:DeviceSubnetRoutes", id, state, "", opts...)
+}
+
 type deviceSubnetRoutesArgs struct {
 	// The device to set subnet routes for
 	DeviceId string `pulumi:"deviceId"`

@@ -166,6 +166,12 @@ func (TailnetSettingsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*tailnetSettingsState)(nil)).Elem()
 }
 
+// TailnetSettingsExists checks whether an existing TailnetSettings resource with the given ID exists.
+func TailnetSettingsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TailnetSettingsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale:index/tailnetSettings:TailnetSettings", id, state, "", opts...)
+}
+
 type tailnetSettingsArgs struct {
 	// Link to your external ACL definition or management system. Must be a valid URL.
 	AclsExternalLink *string `pulumi:"aclsExternalLink"`

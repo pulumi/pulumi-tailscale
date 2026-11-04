@@ -139,6 +139,12 @@ func (PostureIntegrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*postureIntegrationState)(nil)).Elem()
 }
 
+// PostureIntegrationExists checks whether an existing PostureIntegration resource with the given ID exists.
+func PostureIntegrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PostureIntegrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale:index/postureIntegration:PostureIntegration", id, state, "", opts...)
+}
+
 type postureIntegrationArgs struct {
 	// Unique identifier for your client.
 	ClientId *string `pulumi:"clientId"`

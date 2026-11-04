@@ -977,6 +977,50 @@ class LogstreamConfiguration(pulumi.CustomResource):
         __props__.__dict__["user"] = user
         return LogstreamConfiguration(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            compression_format: pulumi.Input[Optional[_builtins.str]] = None,
+            destination_type: pulumi.Input[Optional[_builtins.str]] = None,
+            gcs_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            gcs_credentials: pulumi.Input[Optional[_builtins.str]] = None,
+            gcs_key_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            gcs_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            log_type: pulumi.Input[Optional[_builtins.str]] = None,
+            s3_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            s3_authentication_type: pulumi.Input[Optional[_builtins.str]] = None,
+            s3_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            s3_external_id: pulumi.Input[Optional[_builtins.str]] = None,
+            s3_key_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            s3_region: pulumi.Input[Optional[_builtins.str]] = None,
+            s3_role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+            s3_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            token: pulumi.Input[Optional[_builtins.str]] = None,
+            upload_period_minutes: pulumi.Input[Optional[_builtins.int]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None,
+            user: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["compressionFormat"] = compression_format
+        __props__["destinationType"] = destination_type
+        __props__["gcsBucket"] = gcs_bucket
+        __props__["gcsCredentials"] = gcs_credentials
+        __props__["gcsKeyPrefix"] = gcs_key_prefix
+        __props__["gcsScopes"] = gcs_scopes
+        __props__["logType"] = log_type
+        __props__["s3AccessKeyId"] = s3_access_key_id
+        __props__["s3AuthenticationType"] = s3_authentication_type
+        __props__["s3Bucket"] = s3_bucket
+        __props__["s3ExternalId"] = s3_external_id
+        __props__["s3KeyPrefix"] = s3_key_prefix
+        __props__["s3Region"] = s3_region
+        __props__["s3RoleArn"] = s3_role_arn
+        __props__["s3SecretAccessKey"] = s3_secret_access_key
+        __props__["token"] = token
+        __props__["uploadPeriodMinutes"] = upload_period_minutes
+        __props__["url"] = url
+        __props__["user"] = user
+        return pulumi.runtime.exists_resource(None, 'tailscale:index/logstreamConfiguration:LogstreamConfiguration', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="compressionFormat")
     def compression_format(self) -> pulumi.Output[_builtins.str]:

@@ -498,6 +498,32 @@ class FederatedIdentity(pulumi.CustomResource):
         __props__.__dict__["user_id"] = user_id
         return FederatedIdentity(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            audience: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_claim_rules: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            subject: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            user_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["audience"] = audience
+        __props__["createdAt"] = created_at
+        __props__["customClaimRules"] = custom_claim_rules
+        __props__["description"] = description
+        __props__["issuer"] = issuer
+        __props__["scopes"] = scopes
+        __props__["subject"] = subject
+        __props__["tags"] = tags
+        __props__["updatedAt"] = updated_at
+        __props__["userId"] = user_id
+        return pulumi.runtime.exists_resource(None, 'tailscale:index/federatedIdentity:FederatedIdentity', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def audience(self) -> pulumi.Output[_builtins.str]:

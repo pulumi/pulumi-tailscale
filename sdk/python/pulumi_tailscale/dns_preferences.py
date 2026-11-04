@@ -184,6 +184,14 @@ class DnsPreferences(pulumi.CustomResource):
         __props__.__dict__["magic_dns"] = magic_dns
         return DnsPreferences(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            magic_dns: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["magicDns"] = magic_dns
+        return pulumi.runtime.exists_resource(None, 'tailscale:index/dnsPreferences:DnsPreferences', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="magicDns")
     def magic_dns(self) -> pulumi.Output[_builtins.bool]:

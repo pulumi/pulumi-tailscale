@@ -126,6 +126,12 @@ func (DeviceTagsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*deviceTagsState)(nil)).Elem()
 }
 
+// DeviceTagsExists checks whether an existing DeviceTags resource with the given ID exists.
+func DeviceTagsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DeviceTagsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale:index/deviceTags:DeviceTags", id, state, "", opts...)
+}
+
 type deviceTagsArgs struct {
 	// The device to set tags for
 	DeviceId string `pulumi:"deviceId"`

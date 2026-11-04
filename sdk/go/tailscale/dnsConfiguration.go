@@ -159,6 +159,12 @@ func (DnsConfigurationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*dnsConfigurationState)(nil)).Elem()
 }
 
+// DnsConfigurationExists checks whether an existing DnsConfiguration resource with the given ID exists.
+func DnsConfigurationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DnsConfigurationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale:index/dnsConfiguration:DnsConfiguration", id, state, "", opts...)
+}
+
 type dnsConfigurationArgs struct {
 	// Whether or not to enable MagicDNS. Defaults to true.
 	MagicDns *bool `pulumi:"magicDns"`
