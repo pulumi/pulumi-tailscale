@@ -297,6 +297,20 @@ class Webhook(pulumi.CustomResource):
         __props__.__dict__["subscriptions"] = subscriptions
         return Webhook(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            endpoint_url: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_type: pulumi.Input[Optional[_builtins.str]] = None,
+            secret: pulumi.Input[Optional[_builtins.str]] = None,
+            subscriptions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["endpointUrl"] = endpoint_url
+        __props__["providerType"] = provider_type
+        __props__["secret"] = secret
+        __props__["subscriptions"] = subscriptions
+        return pulumi.runtime.exists_resource(None, 'tailscale:index/webhook:Webhook', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="endpointUrl")
     def endpoint_url(self) -> pulumi.Output[_builtins.str]:

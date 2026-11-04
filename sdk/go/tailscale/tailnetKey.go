@@ -173,6 +173,12 @@ func (TailnetKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*tailnetKeyState)(nil)).Elem()
 }
 
+// TailnetKeyExists checks whether an existing TailnetKey resource with the given ID exists.
+func TailnetKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TailnetKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale:index/tailnetKey:TailnetKey", id, state, "", opts...)
+}
+
 type tailnetKeyArgs struct {
 	// A description of the key consisting of alphanumeric characters. Defaults to `""`.
 	Description *string `pulumi:"description"`

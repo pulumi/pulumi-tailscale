@@ -172,6 +172,12 @@ func (FederatedIdentityState) ElementType() reflect.Type {
 	return reflect.TypeOf((*federatedIdentityState)(nil)).Elem()
 }
 
+// FederatedIdentityExists checks whether an existing FederatedIdentity resource with the given ID exists.
+func FederatedIdentityExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FederatedIdentityState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale:index/federatedIdentity:FederatedIdentity", id, state, "", opts...)
+}
+
 type federatedIdentityArgs struct {
 	// The value used when matching against the `aud` claim from an OIDC identity token. Specifying the audience is optional as Tailscale will generate a secure audience at creation time by default.   It is recommended to let Tailscale generate the audience unless the identity provider you are integrating with requires a specific audience format.
 	Audience *string `pulumi:"audience"`

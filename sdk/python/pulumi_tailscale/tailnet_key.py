@@ -550,6 +550,36 @@ class TailnetKey(pulumi.CustomResource):
         __props__.__dict__["user_id"] = user_id
         return TailnetKey(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            ephemeral: pulumi.Input[Optional[_builtins.bool]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            expiry: pulumi.Input[Optional[_builtins.int]] = None,
+            invalid: pulumi.Input[Optional[_builtins.bool]] = None,
+            key: pulumi.Input[Optional[_builtins.str]] = None,
+            preauthorized: pulumi.Input[Optional[_builtins.bool]] = None,
+            recreate_if_invalid: pulumi.Input[Optional[_builtins.str]] = None,
+            reusable: pulumi.Input[Optional[_builtins.bool]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            user_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["description"] = description
+        __props__["ephemeral"] = ephemeral
+        __props__["expiresAt"] = expires_at
+        __props__["expiry"] = expiry
+        __props__["invalid"] = invalid
+        __props__["key"] = key
+        __props__["preauthorized"] = preauthorized
+        __props__["recreateIfInvalid"] = recreate_if_invalid
+        __props__["reusable"] = reusable
+        __props__["tags"] = tags
+        __props__["userId"] = user_id
+        return pulumi.runtime.exists_resource(None, 'tailscale:index/tailnetKey:TailnetKey', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[_builtins.str]:

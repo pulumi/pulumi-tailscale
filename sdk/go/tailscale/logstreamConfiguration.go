@@ -285,6 +285,12 @@ func (LogstreamConfigurationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*logstreamConfigurationState)(nil)).Elem()
 }
 
+// LogstreamConfigurationExists checks whether an existing LogstreamConfiguration resource with the given ID exists.
+func LogstreamConfigurationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LogstreamConfigurationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale:index/logstreamConfiguration:LogstreamConfiguration", id, state, "", opts...)
+}
+
 type logstreamConfigurationArgs struct {
 	// The compression algorithm used for logs. Valid values are `none`, `zstd` or `gzip`. Defaults to `none`.
 	CompressionFormat *string `pulumi:"compressionFormat"`

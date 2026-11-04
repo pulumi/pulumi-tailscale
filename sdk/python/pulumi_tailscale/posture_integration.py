@@ -351,6 +351,22 @@ class PostureIntegration(pulumi.CustomResource):
         __props__.__dict__["tenant_id"] = tenant_id
         return PostureIntegration(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            cloud_id: pulumi.Input[Optional[_builtins.str]] = None,
+            posture_provider: pulumi.Input[Optional[_builtins.str]] = None,
+            tenant_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["clientId"] = client_id
+        __props__["clientSecret"] = client_secret
+        __props__["cloudId"] = cloud_id
+        __props__["postureProvider"] = posture_provider
+        __props__["tenantId"] = tenant_id
+        return pulumi.runtime.exists_resource(None, 'tailscale:index/postureIntegration:PostureIntegration', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[_builtins.str]:

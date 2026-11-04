@@ -126,6 +126,12 @@ func (ContactsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*contactsState)(nil)).Elem()
 }
 
+// ContactsExists checks whether an existing Contacts resource with the given ID exists.
+func ContactsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ContactsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale:index/contacts:Contacts", id, state, "", opts...)
+}
+
 type contactsArgs struct {
 	// Configuration for communications about important changes to your tailnet
 	Accounts []ContactsAccount `pulumi:"accounts"`

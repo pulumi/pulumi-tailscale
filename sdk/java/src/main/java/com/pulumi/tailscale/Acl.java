@@ -41,12 +41,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var asJson = new Acl("asJson", AclArgs.builder()
  *             .acl(serializeJson(
  *                 jsonObject(
@@ -60,22 +60,22 @@ import javax.annotation.Nullable;
  * 
  *         var asHujson = new Acl("asHujson", AclArgs.builder()
  *             .acl("""
- *   {
+ *   }{{@code
  *     // Comments in HuJSON policy are preserved when the policy is applied.
- *     \"grants\": [
- *       {
+ *     }&#92;{@code "grants}&#92;{@code ": [
+ *       }{{@code
  *         // Allow all users access to all ports.
- *         \"src\": [\"*\"],
- *         \"dst\": [\"*\"],
- *         \"ip\": [\"*\"],
- *       },
+ *         }&#92;{@code "src}&#92;{@code ": [}&#92;{@code "*}&#92;{@code "],
+ *         }&#92;{@code "dst}&#92;{@code ": [}&#92;{@code "*}&#92;{@code "],
+ *         }&#92;{@code "ip}&#92;{@code ": [}&#92;{@code "*}&#92;{@code "],
+ *       }}{@code ,
  *     ],
- *   }
+ *   }}{@code
  *             """)
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * 

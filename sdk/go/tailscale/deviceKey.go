@@ -121,6 +121,12 @@ func (DeviceKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*deviceKeyState)(nil)).Elem()
 }
 
+// DeviceKeyExists checks whether an existing DeviceKey resource with the given ID exists.
+func DeviceKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DeviceKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale:index/deviceKey:DeviceKey", id, state, "", opts...)
+}
+
 type deviceKeyArgs struct {
 	// The device to update the key properties of
 	DeviceId string `pulumi:"deviceId"`

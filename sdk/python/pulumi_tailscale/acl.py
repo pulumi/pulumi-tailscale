@@ -304,6 +304,18 @@ class Acl(pulumi.CustomResource):
         __props__.__dict__["reset_acl_on_destroy"] = reset_acl_on_destroy
         return Acl(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            acl: pulumi.Input[Optional[_builtins.str]] = None,
+            overwrite_existing_content: pulumi.Input[Optional[_builtins.bool]] = None,
+            reset_acl_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["acl"] = acl
+        __props__["overwriteExistingContent"] = overwrite_existing_content
+        __props__["resetAclOnDestroy"] = reset_acl_on_destroy
+        return pulumi.runtime.exists_resource(None, 'tailscale:index/acl:Acl', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def acl(self) -> pulumi.Output[_builtins.str]:

@@ -184,6 +184,14 @@ class DnsSearchPaths(pulumi.CustomResource):
         __props__.__dict__["search_paths"] = search_paths
         return DnsSearchPaths(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            search_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["searchPaths"] = search_paths
+        return pulumi.runtime.exists_resource(None, 'tailscale:index/dnsSearchPaths:DnsSearchPaths', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="searchPaths")
     def search_paths(self) -> pulumi.Output[Sequence[_builtins.str]]:

@@ -114,6 +114,12 @@ func (DnsSplitNameserversState) ElementType() reflect.Type {
 	return reflect.TypeOf((*dnsSplitNameserversState)(nil)).Elem()
 }
 
+// DnsSplitNameserversExists checks whether an existing DnsSplitNameservers resource with the given ID exists.
+func DnsSplitNameserversExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DnsSplitNameserversState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale:index/dnsSplitNameservers:DnsSplitNameservers", id, state, "", opts...)
+}
+
 type dnsSplitNameserversArgs struct {
 	// Domain to configure split DNS for. Requests for this domain will be resolved using the provided nameservers. Changing this will force the resource to be recreated.
 	Domain string `pulumi:"domain"`

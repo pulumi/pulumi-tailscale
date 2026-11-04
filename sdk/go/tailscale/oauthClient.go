@@ -148,6 +148,12 @@ func (OauthClientState) ElementType() reflect.Type {
 	return reflect.TypeOf((*oauthClientState)(nil)).Elem()
 }
 
+// OauthClientExists checks whether an existing OauthClient resource with the given ID exists.
+func OauthClientExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OauthClientState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale:index/oauthClient:OauthClient", id, state, "", opts...)
+}
+
 type oauthClientArgs struct {
 	// A description of the OAuth client consisting of alphanumeric characters. Defaults to `""`.
 	Description *string `pulumi:"description"`

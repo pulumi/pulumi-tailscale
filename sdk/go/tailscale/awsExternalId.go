@@ -165,6 +165,12 @@ func (AwsExternalIdState) ElementType() reflect.Type {
 	return reflect.TypeOf((*awsExternalIdState)(nil)).Elem()
 }
 
+// AwsExternalIdExists checks whether an existing AwsExternalId resource with the given ID exists.
+func AwsExternalIdExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AwsExternalIdState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale:index/awsExternalId:AwsExternalId", id, state, "", opts...)
+}
+
 type awsExternalIdArgs struct {
 }
 

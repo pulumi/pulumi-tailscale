@@ -105,6 +105,12 @@ func (DnsNameserversState) ElementType() reflect.Type {
 	return reflect.TypeOf((*dnsNameserversState)(nil)).Elem()
 }
 
+// DnsNameserversExists checks whether an existing DnsNameservers resource with the given ID exists.
+func DnsNameserversExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DnsNameserversState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("tailscale:index/dnsNameservers:DnsNameservers", id, state, "", opts...)
+}
+
 type dnsNameserversArgs struct {
 	// Devices on your network will use these nameservers to resolve DNS names. IPv4 or IPv6 addresses are accepted.
 	Nameservers []string `pulumi:"nameservers"`

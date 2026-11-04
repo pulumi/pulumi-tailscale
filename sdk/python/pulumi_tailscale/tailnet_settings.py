@@ -591,6 +591,34 @@ class TailnetSettings(pulumi.CustomResource):
         __props__.__dict__["users_role_allowed_to_join_external_tailnet"] = users_role_allowed_to_join_external_tailnet
         return TailnetSettings(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            acls_external_link: pulumi.Input[Optional[_builtins.str]] = None,
+            acls_externally_managed_on: pulumi.Input[Optional[_builtins.bool]] = None,
+            devices_approval_on: pulumi.Input[Optional[_builtins.bool]] = None,
+            devices_auto_updates_on: pulumi.Input[Optional[_builtins.bool]] = None,
+            devices_key_duration_days: pulumi.Input[Optional[_builtins.int]] = None,
+            https_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            network_flow_logging_on: pulumi.Input[Optional[_builtins.bool]] = None,
+            posture_identity_collection_on: pulumi.Input[Optional[_builtins.bool]] = None,
+            regional_routing_on: pulumi.Input[Optional[_builtins.bool]] = None,
+            users_approval_on: pulumi.Input[Optional[_builtins.bool]] = None,
+            users_role_allowed_to_join_external_tailnet: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["aclsExternalLink"] = acls_external_link
+        __props__["aclsExternallyManagedOn"] = acls_externally_managed_on
+        __props__["devicesApprovalOn"] = devices_approval_on
+        __props__["devicesAutoUpdatesOn"] = devices_auto_updates_on
+        __props__["devicesKeyDurationDays"] = devices_key_duration_days
+        __props__["httpsEnabled"] = https_enabled
+        __props__["networkFlowLoggingOn"] = network_flow_logging_on
+        __props__["postureIdentityCollectionOn"] = posture_identity_collection_on
+        __props__["regionalRoutingOn"] = regional_routing_on
+        __props__["usersApprovalOn"] = users_approval_on
+        __props__["usersRoleAllowedToJoinExternalTailnet"] = users_role_allowed_to_join_external_tailnet
+        return pulumi.runtime.exists_resource(None, 'tailscale:index/tailnetSettings:TailnetSettings', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="aclsExternalLink")
     def acls_external_link(self) -> pulumi.Output[_builtins.str]:
