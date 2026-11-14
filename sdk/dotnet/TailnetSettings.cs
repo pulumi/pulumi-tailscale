@@ -100,10 +100,16 @@ namespace Pulumi.Tailscale
         public Output<bool> PostureIdentityCollectionOn { get; private set; } = null!;
 
         /// <summary>
-        /// Whether regional routing is enabled for the tailnet
+        /// Whether regional routing is enabled for the tailnet. This is a deprecated view of `RouteSelection`, and is equivalent to `RouteSelection = "regional-routing"`. Setting both `RegionalRoutingOn` and `RouteSelection` in the same configuration is an error.
         /// </summary>
         [Output("regionalRoutingOn")]
         public Output<bool> RegionalRoutingOn { get; private set; } = null!;
+
+        /// <summary>
+        /// The route selection algorithm in use by the tailnet. Supersedes the deprecated `RegionalRoutingOn`; setting both in the same configuration is an error.
+        /// </summary>
+        [Output("routeSelection")]
+        public Output<string> RouteSelection { get; private set; } = null!;
 
         /// <summary>
         /// Whether user approval is enabled for this tailnet
@@ -212,10 +218,16 @@ namespace Pulumi.Tailscale
         public Input<bool>? PostureIdentityCollectionOn { get; set; }
 
         /// <summary>
-        /// Whether regional routing is enabled for the tailnet
+        /// Whether regional routing is enabled for the tailnet. This is a deprecated view of `RouteSelection`, and is equivalent to `RouteSelection = "regional-routing"`. Setting both `RegionalRoutingOn` and `RouteSelection` in the same configuration is an error.
         /// </summary>
         [Input("regionalRoutingOn")]
         public Input<bool>? RegionalRoutingOn { get; set; }
+
+        /// <summary>
+        /// The route selection algorithm in use by the tailnet. Supersedes the deprecated `RegionalRoutingOn`; setting both in the same configuration is an error.
+        /// </summary>
+        [Input("routeSelection")]
+        public Input<string>? RouteSelection { get; set; }
 
         /// <summary>
         /// Whether user approval is enabled for this tailnet
@@ -286,10 +298,16 @@ namespace Pulumi.Tailscale
         public Input<bool>? PostureIdentityCollectionOn { get; set; }
 
         /// <summary>
-        /// Whether regional routing is enabled for the tailnet
+        /// Whether regional routing is enabled for the tailnet. This is a deprecated view of `RouteSelection`, and is equivalent to `RouteSelection = "regional-routing"`. Setting both `RegionalRoutingOn` and `RouteSelection` in the same configuration is an error.
         /// </summary>
         [Input("regionalRoutingOn")]
         public Input<bool>? RegionalRoutingOn { get; set; }
+
+        /// <summary>
+        /// The route selection algorithm in use by the tailnet. Supersedes the deprecated `RegionalRoutingOn`; setting both in the same configuration is an error.
+        /// </summary>
+        [Input("routeSelection")]
+        public Input<string>? RouteSelection { get; set; }
 
         /// <summary>
         /// Whether user approval is enabled for this tailnet

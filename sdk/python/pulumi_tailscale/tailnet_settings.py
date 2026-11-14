@@ -28,6 +28,7 @@ class TailnetSettingsArgs:
                  network_flow_logging_on: pulumi.Input[Optional[_builtins.bool]] = None,
                  posture_identity_collection_on: pulumi.Input[Optional[_builtins.bool]] = None,
                  regional_routing_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 route_selection: pulumi.Input[Optional[_builtins.str]] = None,
                  users_approval_on: pulumi.Input[Optional[_builtins.bool]] = None,
                  users_role_allowed_to_join_external_tailnet: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -41,7 +42,8 @@ class TailnetSettingsArgs:
         :param pulumi.Input[_builtins.bool] https_enabled: Whether provisioning of HTTPS certificates is enabled for the tailnet
         :param pulumi.Input[_builtins.bool] network_flow_logging_on: Whether network flow logs are enabled for the tailnet
         :param pulumi.Input[_builtins.bool] posture_identity_collection_on: Whether identity collection is enabled for device posture integrations for the tailnet
-        :param pulumi.Input[_builtins.bool] regional_routing_on: Whether regional routing is enabled for the tailnet
+        :param pulumi.Input[_builtins.bool] regional_routing_on: Whether regional routing is enabled for the tailnet. This is a deprecated view of `route_selection`, and is equivalent to `route_selection = "regional-routing"`. Setting both `regional_routing_on` and `route_selection` in the same configuration is an error.
+        :param pulumi.Input[_builtins.str] route_selection: The route selection algorithm in use by the tailnet. Supersedes the deprecated `regional_routing_on`; setting both in the same configuration is an error.
         :param pulumi.Input[_builtins.bool] users_approval_on: Whether user approval is enabled for this tailnet
         :param pulumi.Input[_builtins.str] users_role_allowed_to_join_external_tailnet: Which user roles are allowed to join external tailnets
         """
@@ -62,7 +64,12 @@ class TailnetSettingsArgs:
         if posture_identity_collection_on is not None:
             pulumi.set(__self__, "posture_identity_collection_on", posture_identity_collection_on)
         if regional_routing_on is not None:
+            warnings.warn("""Deprecated starting 2026-10-09; prefer setting route_selection instead.""", DeprecationWarning)
+            pulumi.log.warn("""regional_routing_on is deprecated: Deprecated starting 2026-10-09; prefer setting route_selection instead.""")
+        if regional_routing_on is not None:
             pulumi.set(__self__, "regional_routing_on", regional_routing_on)
+        if route_selection is not None:
+            pulumi.set(__self__, "route_selection", route_selection)
         if users_approval_on is not None:
             pulumi.set(__self__, "users_approval_on", users_approval_on)
         if users_role_allowed_to_join_external_tailnet is not None:
@@ -166,15 +173,28 @@ class TailnetSettingsArgs:
 
     @_builtins.property
     @pulumi.getter(name="regionalRoutingOn")
+    @_utilities.deprecated("""Deprecated starting 2026-10-09; prefer setting route_selection instead.""")
     def regional_routing_on(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Whether regional routing is enabled for the tailnet
+        Whether regional routing is enabled for the tailnet. This is a deprecated view of `route_selection`, and is equivalent to `route_selection = "regional-routing"`. Setting both `regional_routing_on` and `route_selection` in the same configuration is an error.
         """
         return pulumi.get(self, "regional_routing_on")
 
     @regional_routing_on.setter
     def regional_routing_on(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "regional_routing_on", value)
+
+    @_builtins.property
+    @pulumi.getter(name="routeSelection")
+    def route_selection(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The route selection algorithm in use by the tailnet. Supersedes the deprecated `regional_routing_on`; setting both in the same configuration is an error.
+        """
+        return pulumi.get(self, "route_selection")
+
+    @route_selection.setter
+    def route_selection(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "route_selection", value)
 
     @_builtins.property
     @pulumi.getter(name="usersApprovalOn")
@@ -213,6 +233,7 @@ class _TailnetSettingsState:
                  network_flow_logging_on: pulumi.Input[Optional[_builtins.bool]] = None,
                  posture_identity_collection_on: pulumi.Input[Optional[_builtins.bool]] = None,
                  regional_routing_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 route_selection: pulumi.Input[Optional[_builtins.str]] = None,
                  users_approval_on: pulumi.Input[Optional[_builtins.bool]] = None,
                  users_role_allowed_to_join_external_tailnet: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -226,7 +247,8 @@ class _TailnetSettingsState:
         :param pulumi.Input[_builtins.bool] https_enabled: Whether provisioning of HTTPS certificates is enabled for the tailnet
         :param pulumi.Input[_builtins.bool] network_flow_logging_on: Whether network flow logs are enabled for the tailnet
         :param pulumi.Input[_builtins.bool] posture_identity_collection_on: Whether identity collection is enabled for device posture integrations for the tailnet
-        :param pulumi.Input[_builtins.bool] regional_routing_on: Whether regional routing is enabled for the tailnet
+        :param pulumi.Input[_builtins.bool] regional_routing_on: Whether regional routing is enabled for the tailnet. This is a deprecated view of `route_selection`, and is equivalent to `route_selection = "regional-routing"`. Setting both `regional_routing_on` and `route_selection` in the same configuration is an error.
+        :param pulumi.Input[_builtins.str] route_selection: The route selection algorithm in use by the tailnet. Supersedes the deprecated `regional_routing_on`; setting both in the same configuration is an error.
         :param pulumi.Input[_builtins.bool] users_approval_on: Whether user approval is enabled for this tailnet
         :param pulumi.Input[_builtins.str] users_role_allowed_to_join_external_tailnet: Which user roles are allowed to join external tailnets
         """
@@ -247,7 +269,12 @@ class _TailnetSettingsState:
         if posture_identity_collection_on is not None:
             pulumi.set(__self__, "posture_identity_collection_on", posture_identity_collection_on)
         if regional_routing_on is not None:
+            warnings.warn("""Deprecated starting 2026-10-09; prefer setting route_selection instead.""", DeprecationWarning)
+            pulumi.log.warn("""regional_routing_on is deprecated: Deprecated starting 2026-10-09; prefer setting route_selection instead.""")
+        if regional_routing_on is not None:
             pulumi.set(__self__, "regional_routing_on", regional_routing_on)
+        if route_selection is not None:
+            pulumi.set(__self__, "route_selection", route_selection)
         if users_approval_on is not None:
             pulumi.set(__self__, "users_approval_on", users_approval_on)
         if users_role_allowed_to_join_external_tailnet is not None:
@@ -351,15 +378,28 @@ class _TailnetSettingsState:
 
     @_builtins.property
     @pulumi.getter(name="regionalRoutingOn")
+    @_utilities.deprecated("""Deprecated starting 2026-10-09; prefer setting route_selection instead.""")
     def regional_routing_on(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Whether regional routing is enabled for the tailnet
+        Whether regional routing is enabled for the tailnet. This is a deprecated view of `route_selection`, and is equivalent to `route_selection = "regional-routing"`. Setting both `regional_routing_on` and `route_selection` in the same configuration is an error.
         """
         return pulumi.get(self, "regional_routing_on")
 
     @regional_routing_on.setter
     def regional_routing_on(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "regional_routing_on", value)
+
+    @_builtins.property
+    @pulumi.getter(name="routeSelection")
+    def route_selection(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The route selection algorithm in use by the tailnet. Supersedes the deprecated `regional_routing_on`; setting both in the same configuration is an error.
+        """
+        return pulumi.get(self, "route_selection")
+
+    @route_selection.setter
+    def route_selection(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "route_selection", value)
 
     @_builtins.property
     @pulumi.getter(name="usersApprovalOn")
@@ -401,6 +441,7 @@ class TailnetSettings(pulumi.CustomResource):
                  network_flow_logging_on: pulumi.Input[Optional[_builtins.bool]] = None,
                  posture_identity_collection_on: pulumi.Input[Optional[_builtins.bool]] = None,
                  regional_routing_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 route_selection: pulumi.Input[Optional[_builtins.str]] = None,
                  users_approval_on: pulumi.Input[Optional[_builtins.bool]] = None,
                  users_role_allowed_to_join_external_tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -446,7 +487,8 @@ class TailnetSettings(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] https_enabled: Whether provisioning of HTTPS certificates is enabled for the tailnet
         :param pulumi.Input[_builtins.bool] network_flow_logging_on: Whether network flow logs are enabled for the tailnet
         :param pulumi.Input[_builtins.bool] posture_identity_collection_on: Whether identity collection is enabled for device posture integrations for the tailnet
-        :param pulumi.Input[_builtins.bool] regional_routing_on: Whether regional routing is enabled for the tailnet
+        :param pulumi.Input[_builtins.bool] regional_routing_on: Whether regional routing is enabled for the tailnet. This is a deprecated view of `route_selection`, and is equivalent to `route_selection = "regional-routing"`. Setting both `regional_routing_on` and `route_selection` in the same configuration is an error.
+        :param pulumi.Input[_builtins.str] route_selection: The route selection algorithm in use by the tailnet. Supersedes the deprecated `regional_routing_on`; setting both in the same configuration is an error.
         :param pulumi.Input[_builtins.bool] users_approval_on: Whether user approval is enabled for this tailnet
         :param pulumi.Input[_builtins.str] users_role_allowed_to_join_external_tailnet: Which user roles are allowed to join external tailnets
         """
@@ -512,6 +554,7 @@ class TailnetSettings(pulumi.CustomResource):
                  network_flow_logging_on: pulumi.Input[Optional[_builtins.bool]] = None,
                  posture_identity_collection_on: pulumi.Input[Optional[_builtins.bool]] = None,
                  regional_routing_on: pulumi.Input[Optional[_builtins.bool]] = None,
+                 route_selection: pulumi.Input[Optional[_builtins.str]] = None,
                  users_approval_on: pulumi.Input[Optional[_builtins.bool]] = None,
                  users_role_allowed_to_join_external_tailnet: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -532,6 +575,7 @@ class TailnetSettings(pulumi.CustomResource):
             __props__.__dict__["network_flow_logging_on"] = network_flow_logging_on
             __props__.__dict__["posture_identity_collection_on"] = posture_identity_collection_on
             __props__.__dict__["regional_routing_on"] = regional_routing_on
+            __props__.__dict__["route_selection"] = route_selection
             __props__.__dict__["users_approval_on"] = users_approval_on
             __props__.__dict__["users_role_allowed_to_join_external_tailnet"] = users_role_allowed_to_join_external_tailnet
         super(TailnetSettings, __self__).__init__(
@@ -553,6 +597,7 @@ class TailnetSettings(pulumi.CustomResource):
             network_flow_logging_on: pulumi.Input[Optional[_builtins.bool]] = None,
             posture_identity_collection_on: pulumi.Input[Optional[_builtins.bool]] = None,
             regional_routing_on: pulumi.Input[Optional[_builtins.bool]] = None,
+            route_selection: pulumi.Input[Optional[_builtins.str]] = None,
             users_approval_on: pulumi.Input[Optional[_builtins.bool]] = None,
             users_role_allowed_to_join_external_tailnet: pulumi.Input[Optional[_builtins.str]] = None) -> 'TailnetSettings':
         """
@@ -570,7 +615,8 @@ class TailnetSettings(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] https_enabled: Whether provisioning of HTTPS certificates is enabled for the tailnet
         :param pulumi.Input[_builtins.bool] network_flow_logging_on: Whether network flow logs are enabled for the tailnet
         :param pulumi.Input[_builtins.bool] posture_identity_collection_on: Whether identity collection is enabled for device posture integrations for the tailnet
-        :param pulumi.Input[_builtins.bool] regional_routing_on: Whether regional routing is enabled for the tailnet
+        :param pulumi.Input[_builtins.bool] regional_routing_on: Whether regional routing is enabled for the tailnet. This is a deprecated view of `route_selection`, and is equivalent to `route_selection = "regional-routing"`. Setting both `regional_routing_on` and `route_selection` in the same configuration is an error.
+        :param pulumi.Input[_builtins.str] route_selection: The route selection algorithm in use by the tailnet. Supersedes the deprecated `regional_routing_on`; setting both in the same configuration is an error.
         :param pulumi.Input[_builtins.bool] users_approval_on: Whether user approval is enabled for this tailnet
         :param pulumi.Input[_builtins.str] users_role_allowed_to_join_external_tailnet: Which user roles are allowed to join external tailnets
         """
@@ -587,6 +633,7 @@ class TailnetSettings(pulumi.CustomResource):
         __props__.__dict__["network_flow_logging_on"] = network_flow_logging_on
         __props__.__dict__["posture_identity_collection_on"] = posture_identity_collection_on
         __props__.__dict__["regional_routing_on"] = regional_routing_on
+        __props__.__dict__["route_selection"] = route_selection
         __props__.__dict__["users_approval_on"] = users_approval_on
         __props__.__dict__["users_role_allowed_to_join_external_tailnet"] = users_role_allowed_to_join_external_tailnet
         return TailnetSettings(resource_name, opts=opts, __props__=__props__)
@@ -603,6 +650,7 @@ class TailnetSettings(pulumi.CustomResource):
             network_flow_logging_on: pulumi.Input[Optional[_builtins.bool]] = None,
             posture_identity_collection_on: pulumi.Input[Optional[_builtins.bool]] = None,
             regional_routing_on: pulumi.Input[Optional[_builtins.bool]] = None,
+            route_selection: pulumi.Input[Optional[_builtins.str]] = None,
             users_approval_on: pulumi.Input[Optional[_builtins.bool]] = None,
             users_role_allowed_to_join_external_tailnet: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
@@ -615,6 +663,7 @@ class TailnetSettings(pulumi.CustomResource):
         __props__["networkFlowLoggingOn"] = network_flow_logging_on
         __props__["postureIdentityCollectionOn"] = posture_identity_collection_on
         __props__["regionalRoutingOn"] = regional_routing_on
+        __props__["routeSelection"] = route_selection
         __props__["usersApprovalOn"] = users_approval_on
         __props__["usersRoleAllowedToJoinExternalTailnet"] = users_role_allowed_to_join_external_tailnet
         return pulumi.runtime.exists_resource(None, 'tailscale:index/tailnetSettings:TailnetSettings', id, __props__, opts or pulumi.ResourceOptions())
@@ -685,11 +734,20 @@ class TailnetSettings(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="regionalRoutingOn")
+    @_utilities.deprecated("""Deprecated starting 2026-10-09; prefer setting route_selection instead.""")
     def regional_routing_on(self) -> pulumi.Output[_builtins.bool]:
         """
-        Whether regional routing is enabled for the tailnet
+        Whether regional routing is enabled for the tailnet. This is a deprecated view of `route_selection`, and is equivalent to `route_selection = "regional-routing"`. Setting both `regional_routing_on` and `route_selection` in the same configuration is an error.
         """
         return pulumi.get(self, "regional_routing_on")
+
+    @_builtins.property
+    @pulumi.getter(name="routeSelection")
+    def route_selection(self) -> pulumi.Output[_builtins.str]:
+        """
+        The route selection algorithm in use by the tailnet. Supersedes the deprecated `regional_routing_on`; setting both in the same configuration is an error.
+        """
+        return pulumi.get(self, "route_selection")
 
     @_builtins.property
     @pulumi.getter(name="usersApprovalOn")
