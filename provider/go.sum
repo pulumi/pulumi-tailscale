@@ -610,8 +610,8 @@ github.com/stretchr/testify v1.12.1 h1:EuwCh5fleGS7H32xRwO3wRGT7DxrDhLAT6FF8MpWD
 github.com/stretchr/testify v1.12.1/go.mod h1:MDEgiDPPsNp5cuIrHPPCyornHKgEVbtFUmoNlxoYthg=
 github.com/tailscale/hujson v0.0.0-20260727124030-b80ff77dac4f h1:9hiVElpCmKzsBKQHkBqZ8LGzt82iLfM8egxr4sew+Ys=
 github.com/tailscale/hujson v0.0.0-20260727124030-b80ff77dac4f/go.mod h1:8/zr1Tv0+cKpVtGCEB/7YfRXr2TszsMxMXLaT8YuBgU=
-github.com/tailscale/terraform-provider-tailscale v0.29.3 h1:Yj+jFWbmzzdmEsmf1prTz9/t7MaUP9vrR/2NEMPOKxU=
-github.com/tailscale/terraform-provider-tailscale v0.29.3/go.mod h1:LTFgrqkwu9ajDUHvqejxfRSWlNaMHWGa4kQtB82MCXg=
+github.com/tailscale/terraform-provider-tailscale v0.30.0 h1:aNZXcTyYW0+p33LVo/wBCTb8yS2y6V0PSd02pRqaeZc=
+github.com/tailscale/terraform-provider-tailscale v0.30.0/go.mod h1:LTFgrqkwu9ajDUHvqejxfRSWlNaMHWGa4kQtB82MCXg=
 github.com/teekennedy/goldmark-markdown v0.3.0 h1:ik9/biVGCwGWFg8dQ3KVm2pQ/wiiG0whYiUcz9xH0W8=
 github.com/teekennedy/goldmark-markdown v0.3.0/go.mod h1:kMhDz8La77A9UHvJGsxejd0QUflN9sS+QXCqnhmxmNo=
 github.com/texttheater/golang-levenshtein v1.0.1 h1:+cRNoVrfiwufQPhoMzB6N0Yf/Mqajr6t1lOv8GyGE2U=
