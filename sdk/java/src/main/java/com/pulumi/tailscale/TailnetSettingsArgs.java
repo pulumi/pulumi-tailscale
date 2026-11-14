@@ -138,18 +138,39 @@ public final class TailnetSettingsArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Whether regional routing is enabled for the tailnet
+     * Whether regional routing is enabled for the tailnet. This is a deprecated view of `routeSelection`, and is equivalent to `routeSelection = &#34;regional-routing&#34;`. Setting both `regionalRoutingOn` and `routeSelection` in the same configuration is an error.
+     * 
+     * @deprecated Deprecated starting 2026-10-09; prefer setting routeSelection instead.
      * 
      */
+    @Deprecated
     @Import(name="regionalRoutingOn")
     private @Nullable Output<Boolean> regionalRoutingOn;
 
     /**
-     * @return Whether regional routing is enabled for the tailnet
+     * @return Whether regional routing is enabled for the tailnet. This is a deprecated view of `routeSelection`, and is equivalent to `routeSelection = &#34;regional-routing&#34;`. Setting both `regionalRoutingOn` and `routeSelection` in the same configuration is an error.
+     * 
+     * @deprecated Deprecated starting 2026-10-09; prefer setting routeSelection instead.
      * 
      */
+    @Deprecated
     public Optional<Output<Boolean>> regionalRoutingOn() {
         return Optional.ofNullable(this.regionalRoutingOn);
+    }
+
+    /**
+     * The route selection algorithm in use by the tailnet. Supersedes the deprecated `regionalRoutingOn`; setting both in the same configuration is an error.
+     * 
+     */
+    @Import(name="routeSelection")
+    private @Nullable Output<String> routeSelection;
+
+    /**
+     * @return The route selection algorithm in use by the tailnet. Supersedes the deprecated `regionalRoutingOn`; setting both in the same configuration is an error.
+     * 
+     */
+    public Optional<Output<String>> routeSelection() {
+        return Optional.ofNullable(this.routeSelection);
     }
 
     /**
@@ -194,6 +215,7 @@ public final class TailnetSettingsArgs extends com.pulumi.resources.ResourceArgs
         this.networkFlowLoggingOn = $.networkFlowLoggingOn;
         this.postureIdentityCollectionOn = $.postureIdentityCollectionOn;
         this.regionalRoutingOn = $.regionalRoutingOn;
+        this.routeSelection = $.routeSelection;
         this.usersApprovalOn = $.usersApprovalOn;
         this.usersRoleAllowedToJoinExternalTailnet = $.usersRoleAllowedToJoinExternalTailnet;
     }
@@ -385,24 +407,51 @@ public final class TailnetSettingsArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param regionalRoutingOn Whether regional routing is enabled for the tailnet
+         * @param regionalRoutingOn Whether regional routing is enabled for the tailnet. This is a deprecated view of `routeSelection`, and is equivalent to `routeSelection = &#34;regional-routing&#34;`. Setting both `regionalRoutingOn` and `routeSelection` in the same configuration is an error.
          * 
          * @return builder
          * 
+         * @deprecated Deprecated starting 2026-10-09; prefer setting routeSelection instead.
+         * 
          */
+        @Deprecated
         public Builder regionalRoutingOn(@Nullable Output<Boolean> regionalRoutingOn) {
             $.regionalRoutingOn = regionalRoutingOn;
             return this;
         }
 
         /**
-         * @param regionalRoutingOn Whether regional routing is enabled for the tailnet
+         * @param regionalRoutingOn Whether regional routing is enabled for the tailnet. This is a deprecated view of `routeSelection`, and is equivalent to `routeSelection = &#34;regional-routing&#34;`. Setting both `regionalRoutingOn` and `routeSelection` in the same configuration is an error.
+         * 
+         * @return builder
+         * 
+         * @deprecated Deprecated starting 2026-10-09; prefer setting routeSelection instead.
+         * 
+         */
+        @Deprecated
+        public Builder regionalRoutingOn(Boolean regionalRoutingOn) {
+            return regionalRoutingOn(Output.of(regionalRoutingOn));
+        }
+
+        /**
+         * @param routeSelection The route selection algorithm in use by the tailnet. Supersedes the deprecated `regionalRoutingOn`; setting both in the same configuration is an error.
          * 
          * @return builder
          * 
          */
-        public Builder regionalRoutingOn(Boolean regionalRoutingOn) {
-            return regionalRoutingOn(Output.of(regionalRoutingOn));
+        public Builder routeSelection(@Nullable Output<String> routeSelection) {
+            $.routeSelection = routeSelection;
+            return this;
+        }
+
+        /**
+         * @param routeSelection The route selection algorithm in use by the tailnet. Supersedes the deprecated `regionalRoutingOn`; setting both in the same configuration is an error.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder routeSelection(String routeSelection) {
+            return routeSelection(Output.of(routeSelection));
         }
 
         /**

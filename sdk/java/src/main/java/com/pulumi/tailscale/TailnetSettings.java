@@ -185,18 +185,35 @@ public class TailnetSettings extends com.pulumi.resources.CustomResource {
         return this.postureIdentityCollectionOn;
     }
     /**
-     * Whether regional routing is enabled for the tailnet
+     * Whether regional routing is enabled for the tailnet. This is a deprecated view of `routeSelection`, and is equivalent to `routeSelection = &#34;regional-routing&#34;`. Setting both `regionalRoutingOn` and `routeSelection` in the same configuration is an error.
+     * 
+     * @deprecated Deprecated starting 2026-10-09; prefer setting routeSelection instead.
      * 
      */
+    @Deprecated
     @Export(name="regionalRoutingOn", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> regionalRoutingOn;
 
     /**
-     * @return Whether regional routing is enabled for the tailnet
+     * @return Whether regional routing is enabled for the tailnet. This is a deprecated view of `routeSelection`, and is equivalent to `routeSelection = &#34;regional-routing&#34;`. Setting both `regionalRoutingOn` and `routeSelection` in the same configuration is an error.
      * 
      */
     public Output<Boolean> regionalRoutingOn() {
         return this.regionalRoutingOn;
+    }
+    /**
+     * The route selection algorithm in use by the tailnet. Supersedes the deprecated `regionalRoutingOn`; setting both in the same configuration is an error.
+     * 
+     */
+    @Export(name="routeSelection", refs={String.class}, tree="[0]")
+    private Output<String> routeSelection;
+
+    /**
+     * @return The route selection algorithm in use by the tailnet. Supersedes the deprecated `regionalRoutingOn`; setting both in the same configuration is an error.
+     * 
+     */
+    public Output<String> routeSelection() {
+        return this.routeSelection;
     }
     /**
      * Whether user approval is enabled for this tailnet

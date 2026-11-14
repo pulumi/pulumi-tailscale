@@ -108,9 +108,15 @@ export class TailnetSettings extends pulumi.CustomResource {
      */
     declare public readonly postureIdentityCollectionOn: pulumi.Output<boolean>;
     /**
-     * Whether regional routing is enabled for the tailnet
+     * Whether regional routing is enabled for the tailnet. This is a deprecated view of `routeSelection`, and is equivalent to `routeSelection = "regional-routing"`. Setting both `regionalRoutingOn` and `routeSelection` in the same configuration is an error.
+     *
+     * @deprecated Deprecated starting 2026-10-09; prefer setting routeSelection instead.
      */
     declare public readonly regionalRoutingOn: pulumi.Output<boolean>;
+    /**
+     * The route selection algorithm in use by the tailnet. Supersedes the deprecated `regionalRoutingOn`; setting both in the same configuration is an error.
+     */
+    declare public readonly routeSelection: pulumi.Output<string>;
     /**
      * Whether user approval is enabled for this tailnet
      */
@@ -142,6 +148,7 @@ export class TailnetSettings extends pulumi.CustomResource {
             resourceInputs["networkFlowLoggingOn"] = state?.networkFlowLoggingOn;
             resourceInputs["postureIdentityCollectionOn"] = state?.postureIdentityCollectionOn;
             resourceInputs["regionalRoutingOn"] = state?.regionalRoutingOn;
+            resourceInputs["routeSelection"] = state?.routeSelection;
             resourceInputs["usersApprovalOn"] = state?.usersApprovalOn;
             resourceInputs["usersRoleAllowedToJoinExternalTailnet"] = state?.usersRoleAllowedToJoinExternalTailnet;
         } else {
@@ -155,6 +162,7 @@ export class TailnetSettings extends pulumi.CustomResource {
             resourceInputs["networkFlowLoggingOn"] = args?.networkFlowLoggingOn;
             resourceInputs["postureIdentityCollectionOn"] = args?.postureIdentityCollectionOn;
             resourceInputs["regionalRoutingOn"] = args?.regionalRoutingOn;
+            resourceInputs["routeSelection"] = args?.routeSelection;
             resourceInputs["usersApprovalOn"] = args?.usersApprovalOn;
             resourceInputs["usersRoleAllowedToJoinExternalTailnet"] = args?.usersRoleAllowedToJoinExternalTailnet;
         }
@@ -200,9 +208,15 @@ export interface TailnetSettingsState {
      */
     postureIdentityCollectionOn?: pulumi.Input<boolean | undefined>;
     /**
-     * Whether regional routing is enabled for the tailnet
+     * Whether regional routing is enabled for the tailnet. This is a deprecated view of `routeSelection`, and is equivalent to `routeSelection = "regional-routing"`. Setting both `regionalRoutingOn` and `routeSelection` in the same configuration is an error.
+     *
+     * @deprecated Deprecated starting 2026-10-09; prefer setting routeSelection instead.
      */
     regionalRoutingOn?: pulumi.Input<boolean | undefined>;
+    /**
+     * The route selection algorithm in use by the tailnet. Supersedes the deprecated `regionalRoutingOn`; setting both in the same configuration is an error.
+     */
+    routeSelection?: pulumi.Input<string | undefined>;
     /**
      * Whether user approval is enabled for this tailnet
      */
@@ -250,9 +264,15 @@ export interface TailnetSettingsArgs {
      */
     postureIdentityCollectionOn?: pulumi.Input<boolean | undefined>;
     /**
-     * Whether regional routing is enabled for the tailnet
+     * Whether regional routing is enabled for the tailnet. This is a deprecated view of `routeSelection`, and is equivalent to `routeSelection = "regional-routing"`. Setting both `regionalRoutingOn` and `routeSelection` in the same configuration is an error.
+     *
+     * @deprecated Deprecated starting 2026-10-09; prefer setting routeSelection instead.
      */
     regionalRoutingOn?: pulumi.Input<boolean | undefined>;
+    /**
+     * The route selection algorithm in use by the tailnet. Supersedes the deprecated `regionalRoutingOn`; setting both in the same configuration is an error.
+     */
+    routeSelection?: pulumi.Input<string | undefined>;
     /**
      * Whether user approval is enabled for this tailnet
      */

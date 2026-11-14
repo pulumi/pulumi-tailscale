@@ -75,8 +75,12 @@ type TailnetSettings struct {
 	NetworkFlowLoggingOn pulumi.BoolOutput `pulumi:"networkFlowLoggingOn"`
 	// Whether identity collection is enabled for device posture integrations for the tailnet
 	PostureIdentityCollectionOn pulumi.BoolOutput `pulumi:"postureIdentityCollectionOn"`
-	// Whether regional routing is enabled for the tailnet
+	// Whether regional routing is enabled for the tailnet. This is a deprecated view of `routeSelection`, and is equivalent to `routeSelection = "regional-routing"`. Setting both `regionalRoutingOn` and `routeSelection` in the same configuration is an error.
+	//
+	// Deprecated: Deprecated starting 2026-10-09; prefer setting routeSelection instead.
 	RegionalRoutingOn pulumi.BoolOutput `pulumi:"regionalRoutingOn"`
+	// The route selection algorithm in use by the tailnet. Supersedes the deprecated `regionalRoutingOn`; setting both in the same configuration is an error.
+	RouteSelection pulumi.StringOutput `pulumi:"routeSelection"`
 	// Whether user approval is enabled for this tailnet
 	UsersApprovalOn pulumi.BoolOutput `pulumi:"usersApprovalOn"`
 	// Which user roles are allowed to join external tailnets
@@ -129,8 +133,12 @@ type tailnetSettingsState struct {
 	NetworkFlowLoggingOn *bool `pulumi:"networkFlowLoggingOn"`
 	// Whether identity collection is enabled for device posture integrations for the tailnet
 	PostureIdentityCollectionOn *bool `pulumi:"postureIdentityCollectionOn"`
-	// Whether regional routing is enabled for the tailnet
+	// Whether regional routing is enabled for the tailnet. This is a deprecated view of `routeSelection`, and is equivalent to `routeSelection = "regional-routing"`. Setting both `regionalRoutingOn` and `routeSelection` in the same configuration is an error.
+	//
+	// Deprecated: Deprecated starting 2026-10-09; prefer setting routeSelection instead.
 	RegionalRoutingOn *bool `pulumi:"regionalRoutingOn"`
+	// The route selection algorithm in use by the tailnet. Supersedes the deprecated `regionalRoutingOn`; setting both in the same configuration is an error.
+	RouteSelection *string `pulumi:"routeSelection"`
 	// Whether user approval is enabled for this tailnet
 	UsersApprovalOn *bool `pulumi:"usersApprovalOn"`
 	// Which user roles are allowed to join external tailnets
@@ -154,8 +162,12 @@ type TailnetSettingsState struct {
 	NetworkFlowLoggingOn pulumi.BoolPtrInput
 	// Whether identity collection is enabled for device posture integrations for the tailnet
 	PostureIdentityCollectionOn pulumi.BoolPtrInput
-	// Whether regional routing is enabled for the tailnet
+	// Whether regional routing is enabled for the tailnet. This is a deprecated view of `routeSelection`, and is equivalent to `routeSelection = "regional-routing"`. Setting both `regionalRoutingOn` and `routeSelection` in the same configuration is an error.
+	//
+	// Deprecated: Deprecated starting 2026-10-09; prefer setting routeSelection instead.
 	RegionalRoutingOn pulumi.BoolPtrInput
+	// The route selection algorithm in use by the tailnet. Supersedes the deprecated `regionalRoutingOn`; setting both in the same configuration is an error.
+	RouteSelection pulumi.StringPtrInput
 	// Whether user approval is enabled for this tailnet
 	UsersApprovalOn pulumi.BoolPtrInput
 	// Which user roles are allowed to join external tailnets
@@ -189,8 +201,12 @@ type tailnetSettingsArgs struct {
 	NetworkFlowLoggingOn *bool `pulumi:"networkFlowLoggingOn"`
 	// Whether identity collection is enabled for device posture integrations for the tailnet
 	PostureIdentityCollectionOn *bool `pulumi:"postureIdentityCollectionOn"`
-	// Whether regional routing is enabled for the tailnet
+	// Whether regional routing is enabled for the tailnet. This is a deprecated view of `routeSelection`, and is equivalent to `routeSelection = "regional-routing"`. Setting both `regionalRoutingOn` and `routeSelection` in the same configuration is an error.
+	//
+	// Deprecated: Deprecated starting 2026-10-09; prefer setting routeSelection instead.
 	RegionalRoutingOn *bool `pulumi:"regionalRoutingOn"`
+	// The route selection algorithm in use by the tailnet. Supersedes the deprecated `regionalRoutingOn`; setting both in the same configuration is an error.
+	RouteSelection *string `pulumi:"routeSelection"`
 	// Whether user approval is enabled for this tailnet
 	UsersApprovalOn *bool `pulumi:"usersApprovalOn"`
 	// Which user roles are allowed to join external tailnets
@@ -215,8 +231,12 @@ type TailnetSettingsArgs struct {
 	NetworkFlowLoggingOn pulumi.BoolPtrInput
 	// Whether identity collection is enabled for device posture integrations for the tailnet
 	PostureIdentityCollectionOn pulumi.BoolPtrInput
-	// Whether regional routing is enabled for the tailnet
+	// Whether regional routing is enabled for the tailnet. This is a deprecated view of `routeSelection`, and is equivalent to `routeSelection = "regional-routing"`. Setting both `regionalRoutingOn` and `routeSelection` in the same configuration is an error.
+	//
+	// Deprecated: Deprecated starting 2026-10-09; prefer setting routeSelection instead.
 	RegionalRoutingOn pulumi.BoolPtrInput
+	// The route selection algorithm in use by the tailnet. Supersedes the deprecated `regionalRoutingOn`; setting both in the same configuration is an error.
+	RouteSelection pulumi.StringPtrInput
 	// Whether user approval is enabled for this tailnet
 	UsersApprovalOn pulumi.BoolPtrInput
 	// Which user roles are allowed to join external tailnets
@@ -350,9 +370,16 @@ func (o TailnetSettingsOutput) PostureIdentityCollectionOn() pulumi.BoolOutput {
 	return o.ApplyT(func(v *TailnetSettings) pulumi.BoolOutput { return v.PostureIdentityCollectionOn }).(pulumi.BoolOutput)
 }
 
-// Whether regional routing is enabled for the tailnet
+// Whether regional routing is enabled for the tailnet. This is a deprecated view of `routeSelection`, and is equivalent to `routeSelection = "regional-routing"`. Setting both `regionalRoutingOn` and `routeSelection` in the same configuration is an error.
+//
+// Deprecated: Deprecated starting 2026-10-09; prefer setting routeSelection instead.
 func (o TailnetSettingsOutput) RegionalRoutingOn() pulumi.BoolOutput {
 	return o.ApplyT(func(v *TailnetSettings) pulumi.BoolOutput { return v.RegionalRoutingOn }).(pulumi.BoolOutput)
+}
+
+// The route selection algorithm in use by the tailnet. Supersedes the deprecated `regionalRoutingOn`; setting both in the same configuration is an error.
+func (o TailnetSettingsOutput) RouteSelection() pulumi.StringOutput {
+	return o.ApplyT(func(v *TailnetSettings) pulumi.StringOutput { return v.RouteSelection }).(pulumi.StringOutput)
 }
 
 // Whether user approval is enabled for this tailnet

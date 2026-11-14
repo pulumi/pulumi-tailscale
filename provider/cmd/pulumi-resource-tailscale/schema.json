@@ -2114,7 +2114,12 @@
                 },
                 "regionalRoutingOn": {
                     "type": "boolean",
-                    "description": "Whether regional routing is enabled for the tailnet\n"
+                    "description": "Whether regional routing is enabled for the tailnet. This is a deprecated view of \u003cspan pulumi-lang-nodejs=\"`routeSelection`\" pulumi-lang-dotnet=\"`RouteSelection`\" pulumi-lang-go=\"`routeSelection`\" pulumi-lang-python=\"`route_selection`\" pulumi-lang-yaml=\"`routeSelection`\" pulumi-lang-java=\"`routeSelection`\" pulumi-lang-hcl=\"`route_selection`\"\u003e`routeSelection`\u003c/span\u003e, and is equivalent to \u003cspan pulumi-lang-nodejs=\"`routeSelection \" pulumi-lang-dotnet=\"`RouteSelection \" pulumi-lang-go=\"`routeSelection \" pulumi-lang-python=\"`route_selection \" pulumi-lang-yaml=\"`routeSelection \" pulumi-lang-java=\"`routeSelection \" pulumi-lang-hcl=\"`route_selection \"\u003e`routeSelection \u003c/span\u003e= \"regional-routing\"`. Setting both \u003cspan pulumi-lang-nodejs=\"`regionalRoutingOn`\" pulumi-lang-dotnet=\"`RegionalRoutingOn`\" pulumi-lang-go=\"`regionalRoutingOn`\" pulumi-lang-python=\"`regional_routing_on`\" pulumi-lang-yaml=\"`regionalRoutingOn`\" pulumi-lang-java=\"`regionalRoutingOn`\" pulumi-lang-hcl=\"`regional_routing_on`\"\u003e`regionalRoutingOn`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`routeSelection`\" pulumi-lang-dotnet=\"`RouteSelection`\" pulumi-lang-go=\"`routeSelection`\" pulumi-lang-python=\"`route_selection`\" pulumi-lang-yaml=\"`routeSelection`\" pulumi-lang-java=\"`routeSelection`\" pulumi-lang-hcl=\"`route_selection`\"\u003e`routeSelection`\u003c/span\u003e in the same configuration is an error.\n",
+                    "deprecationMessage": "Deprecated starting 2026-10-09; prefer setting\u003cspan pulumi-lang-nodejs=\" routeSelection \" pulumi-lang-dotnet=\" RouteSelection \" pulumi-lang-go=\" routeSelection \" pulumi-lang-python=\" route_selection \" pulumi-lang-yaml=\" routeSelection \" pulumi-lang-java=\" routeSelection \" pulumi-lang-hcl=\" route_selection \"\u003e routeSelection \u003c/span\u003einstead."
+                },
+                "routeSelection": {
+                    "type": "string",
+                    "description": "The route selection algorithm in use by the tailnet. Supersedes the deprecated \u003cspan pulumi-lang-nodejs=\"`regionalRoutingOn`\" pulumi-lang-dotnet=\"`RegionalRoutingOn`\" pulumi-lang-go=\"`regionalRoutingOn`\" pulumi-lang-python=\"`regional_routing_on`\" pulumi-lang-yaml=\"`regionalRoutingOn`\" pulumi-lang-java=\"`regionalRoutingOn`\" pulumi-lang-hcl=\"`regional_routing_on`\"\u003e`regionalRoutingOn`\u003c/span\u003e; setting both in the same configuration is an error.\n"
                 },
                 "usersApprovalOn": {
                     "type": "boolean",
@@ -2135,6 +2140,7 @@
                 "networkFlowLoggingOn",
                 "postureIdentityCollectionOn",
                 "regionalRoutingOn",
+                "routeSelection",
                 "usersApprovalOn",
                 "usersRoleAllowedToJoinExternalTailnet"
             ],
@@ -2173,7 +2179,12 @@
                 },
                 "regionalRoutingOn": {
                     "type": "boolean",
-                    "description": "Whether regional routing is enabled for the tailnet\n"
+                    "description": "Whether regional routing is enabled for the tailnet. This is a deprecated view of \u003cspan pulumi-lang-nodejs=\"`routeSelection`\" pulumi-lang-dotnet=\"`RouteSelection`\" pulumi-lang-go=\"`routeSelection`\" pulumi-lang-python=\"`route_selection`\" pulumi-lang-yaml=\"`routeSelection`\" pulumi-lang-java=\"`routeSelection`\" pulumi-lang-hcl=\"`route_selection`\"\u003e`routeSelection`\u003c/span\u003e, and is equivalent to \u003cspan pulumi-lang-nodejs=\"`routeSelection \" pulumi-lang-dotnet=\"`RouteSelection \" pulumi-lang-go=\"`routeSelection \" pulumi-lang-python=\"`route_selection \" pulumi-lang-yaml=\"`routeSelection \" pulumi-lang-java=\"`routeSelection \" pulumi-lang-hcl=\"`route_selection \"\u003e`routeSelection \u003c/span\u003e= \"regional-routing\"`. Setting both \u003cspan pulumi-lang-nodejs=\"`regionalRoutingOn`\" pulumi-lang-dotnet=\"`RegionalRoutingOn`\" pulumi-lang-go=\"`regionalRoutingOn`\" pulumi-lang-python=\"`regional_routing_on`\" pulumi-lang-yaml=\"`regionalRoutingOn`\" pulumi-lang-java=\"`regionalRoutingOn`\" pulumi-lang-hcl=\"`regional_routing_on`\"\u003e`regionalRoutingOn`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`routeSelection`\" pulumi-lang-dotnet=\"`RouteSelection`\" pulumi-lang-go=\"`routeSelection`\" pulumi-lang-python=\"`route_selection`\" pulumi-lang-yaml=\"`routeSelection`\" pulumi-lang-java=\"`routeSelection`\" pulumi-lang-hcl=\"`route_selection`\"\u003e`routeSelection`\u003c/span\u003e in the same configuration is an error.\n",
+                    "deprecationMessage": "Deprecated starting 2026-10-09; prefer setting\u003cspan pulumi-lang-nodejs=\" routeSelection \" pulumi-lang-dotnet=\" RouteSelection \" pulumi-lang-go=\" routeSelection \" pulumi-lang-python=\" route_selection \" pulumi-lang-yaml=\" routeSelection \" pulumi-lang-java=\" routeSelection \" pulumi-lang-hcl=\" route_selection \"\u003e routeSelection \u003c/span\u003einstead."
+                },
+                "routeSelection": {
+                    "type": "string",
+                    "description": "The route selection algorithm in use by the tailnet. Supersedes the deprecated \u003cspan pulumi-lang-nodejs=\"`regionalRoutingOn`\" pulumi-lang-dotnet=\"`RegionalRoutingOn`\" pulumi-lang-go=\"`regionalRoutingOn`\" pulumi-lang-python=\"`regional_routing_on`\" pulumi-lang-yaml=\"`regionalRoutingOn`\" pulumi-lang-java=\"`regionalRoutingOn`\" pulumi-lang-hcl=\"`regional_routing_on`\"\u003e`regionalRoutingOn`\u003c/span\u003e; setting both in the same configuration is an error.\n"
                 },
                 "usersApprovalOn": {
                     "type": "boolean",
@@ -2221,7 +2232,12 @@
                     },
                     "regionalRoutingOn": {
                         "type": "boolean",
-                        "description": "Whether regional routing is enabled for the tailnet\n"
+                        "description": "Whether regional routing is enabled for the tailnet. This is a deprecated view of \u003cspan pulumi-lang-nodejs=\"`routeSelection`\" pulumi-lang-dotnet=\"`RouteSelection`\" pulumi-lang-go=\"`routeSelection`\" pulumi-lang-python=\"`route_selection`\" pulumi-lang-yaml=\"`routeSelection`\" pulumi-lang-java=\"`routeSelection`\" pulumi-lang-hcl=\"`route_selection`\"\u003e`routeSelection`\u003c/span\u003e, and is equivalent to \u003cspan pulumi-lang-nodejs=\"`routeSelection \" pulumi-lang-dotnet=\"`RouteSelection \" pulumi-lang-go=\"`routeSelection \" pulumi-lang-python=\"`route_selection \" pulumi-lang-yaml=\"`routeSelection \" pulumi-lang-java=\"`routeSelection \" pulumi-lang-hcl=\"`route_selection \"\u003e`routeSelection \u003c/span\u003e= \"regional-routing\"`. Setting both \u003cspan pulumi-lang-nodejs=\"`regionalRoutingOn`\" pulumi-lang-dotnet=\"`RegionalRoutingOn`\" pulumi-lang-go=\"`regionalRoutingOn`\" pulumi-lang-python=\"`regional_routing_on`\" pulumi-lang-yaml=\"`regionalRoutingOn`\" pulumi-lang-java=\"`regionalRoutingOn`\" pulumi-lang-hcl=\"`regional_routing_on`\"\u003e`regionalRoutingOn`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`routeSelection`\" pulumi-lang-dotnet=\"`RouteSelection`\" pulumi-lang-go=\"`routeSelection`\" pulumi-lang-python=\"`route_selection`\" pulumi-lang-yaml=\"`routeSelection`\" pulumi-lang-java=\"`routeSelection`\" pulumi-lang-hcl=\"`route_selection`\"\u003e`routeSelection`\u003c/span\u003e in the same configuration is an error.\n",
+                        "deprecationMessage": "Deprecated starting 2026-10-09; prefer setting\u003cspan pulumi-lang-nodejs=\" routeSelection \" pulumi-lang-dotnet=\" RouteSelection \" pulumi-lang-go=\" routeSelection \" pulumi-lang-python=\" route_selection \" pulumi-lang-yaml=\" routeSelection \" pulumi-lang-java=\" routeSelection \" pulumi-lang-hcl=\" route_selection \"\u003e routeSelection \u003c/span\u003einstead."
+                    },
+                    "routeSelection": {
+                        "type": "string",
+                        "description": "The route selection algorithm in use by the tailnet. Supersedes the deprecated \u003cspan pulumi-lang-nodejs=\"`regionalRoutingOn`\" pulumi-lang-dotnet=\"`RegionalRoutingOn`\" pulumi-lang-go=\"`regionalRoutingOn`\" pulumi-lang-python=\"`regional_routing_on`\" pulumi-lang-yaml=\"`regionalRoutingOn`\" pulumi-lang-java=\"`regionalRoutingOn`\" pulumi-lang-hcl=\"`regional_routing_on`\"\u003e`regionalRoutingOn`\u003c/span\u003e; setting both in the same configuration is an error.\n"
                     },
                     "usersApprovalOn": {
                         "type": "boolean",

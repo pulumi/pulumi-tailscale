@@ -6,7 +6,7 @@ require (
 	github.com/pulumi/providertest v0.7.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.143.0
 	github.com/stretchr/testify v1.12.1
-	github.com/tailscale/terraform-provider-tailscale v0.29.3
+	github.com/tailscale/terraform-provider-tailscale v0.30.0
 )
 
 require (
